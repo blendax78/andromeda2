@@ -13,7 +13,7 @@ import sys
 @app.route('/')
 def index():
   return render_template('index.html')
-  # return set_access_control(response, 'application/json'), 200
+  # return render_response(json.dumps({'hello':'world'}), 'application/json')
 
 @app.before_request
 def before_request():
@@ -22,10 +22,10 @@ def before_request():
 
 # HELPER FUNCTIONS #############################################################
 
-def set_access_control(msg, mimetype):
+def render_response(msg, mimetype):
   resp = Response(msg, mimetype=mimetype)
   resp.headers['Access-Control-Allow-Origin'] = '*'
-  return resp
+  return resp, 200
 
 def unauthorized():
   response = json.dumps({'message': 'Not Authorized'})
