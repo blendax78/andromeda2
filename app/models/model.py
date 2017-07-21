@@ -1,12 +1,16 @@
 import pymysql.cursors
-import pymysql.cursors
 import configparser
 
-from app import configa # Will this work?
+from app.config import Config
 
 class Model(object):
 
   def __init__(self):
+    # This doesn't get called by child. Need to remove db_config & connection
+    # To call from child:
+    # class Foo(Bar):
+    #     def baz(self, arg):
+    #         return super(Foo, self).baz(arg)
     self.db_config = self.get_db_config()
     self.connection = self.get_connection()
     self.sql = ''

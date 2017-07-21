@@ -3,11 +3,13 @@ from app.models.model import Model
 class Log(Model):
 
   def __init__(self):
+
     self.subject = ''
     self.msg = ''
     self.sql = 'SELECT * FROM log'
     self.last = 'SELECT * FROM log ORDER BY id DESC LIMIT 1'
     self.db = 'site'
+    # super(Log, self).__init__()
 
   def log(self, subject, msg):
     connection = self.get_connection()
