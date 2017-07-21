@@ -2,6 +2,8 @@ import pymysql.cursors
 import pymysql.cursors
 import configparser
 
+from app import configa # Will this work?
+
 class Model(object):
 
   def __init__(self):
@@ -20,7 +22,7 @@ class Model(object):
     result = cursor.fetchone()
     connection.close()
 
-    return result    
+    return result
 
   def find(self, value):
     connection = self.get_connection()
@@ -40,7 +42,7 @@ class Model(object):
     result = cursor.fetchone()
     connection.close()
 
-    return result    
+    return result
 
   def get_connection(self):
     db = self.get_db_config()

@@ -7,12 +7,13 @@ class Config(object):
     self.db = {
       'db': 'andromeda'
     }
-    self.logfile = '/home/blendax/www/log/python/andromeda2.log'
-    self.configfile = '/home/blendax/www/lib/digitalocean.ini'
+    self.log_file = '/home/blendax/www/log/python/andromeda2.log'
+    self.config_file = '/home/blendax/www/lib/digitalocean.ini'
+    
+    self.auth_url = 'http://auth.vintimilla.org/login';
 
   def log(self, subject, message):
     print(subject, message)
-
     return True
 
   def set_db_config():
@@ -25,9 +26,9 @@ class Config(object):
   def get_config():
     config = None
 
-    if os.path.isfile(log_file):
+    if os.path.isfile(self.log_file):
      config = configparser.ConfigParser()
-     config.read(self.configfile)
+     config.read(self.config_file)
 
     return config
 

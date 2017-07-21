@@ -12,8 +12,11 @@ import sys
 
 @app.route('/')
 def index():
-  return render_template('index.html')
-  # return render_response(json.dumps({'hello':'world'}), 'application/json')
+  if  '127.0.0.1' in request.url or request.cookies.get('auth.id') != None:
+    # return render_response(json.dumps(request.cookies), 'application/json')
+    return render_template('index.html'), 200
+  else:
+    return redirect('%s?r=http://127.0.0.1:5001' % Config().auth_url)
 
 @app.before_request
 def before_request():
@@ -23,8 +26,11 @@ def before_request():
 # HELPER FUNCTIONS #############################################################
 
 def render_response(msg, mimetype):
+  # application/json text/html
   resp = Response(msg, mimetype=mimetype)
   resp.headers['Access-Control-Allow-Origin'] = '*'
+  
+  # resp.set_cookie('apple.butter', 'hello', domain='127.0.0.1')
   return resp, 200
 
 def unauthorized():
