@@ -1,0 +1,22 @@
+{
+  "name": "andromeda2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --env.dev",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/blendax78/andromeda2.git"
+  },
+  "dependencies": {
+    "webpack": "3.4.1",
+    "webpack-dev-server": "2.6.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/blendax78/andromeda2#readme"
+}
