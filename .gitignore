@@ -2,3 +2,4 @@ __pycache__/
 *.py[cod]
 virtualenv
 node_modules
+bower_components

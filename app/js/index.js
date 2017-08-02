@@ -1,22 +1,8 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import 'jquery';
 
-const styles = {
-  app: {
-    paddingTop: 40,
-    textAlign: 'center',
-  },
-}
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
 
-class App extends Component {
-  render() {
-    return (
-      <div style={styles.app}>
-        Welcome to React!
-      </div>
-    )
-  }
-}
+ReactDOM.render(<App />, document.querySelector('#app'));
 
-const root = document.querySelector('#app')
-ReactDOM.render(<App />, root)
