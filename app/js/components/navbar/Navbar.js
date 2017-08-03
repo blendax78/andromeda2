@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import NavbarRight from './NavbarRight';
 
 class Navbar extends Component {
 
   render() {
+    let right = '';
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div className="">
@@ -56,11 +58,7 @@ class Navbar extends Component {
               </ul>
             </li>
           </ul>
-          <div className="navbar-right">
-            <p className="navbar-text pull-right">
-                  User
-            </p>
-          </div>
+          <NavbarRight body={right} />
         </div>
       </div>
     </nav>
