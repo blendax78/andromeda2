@@ -2,13 +2,12 @@
   <head>
     <title>Andromeda</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/andromeda.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bower.css')}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body class="container">
     <div id="app"></div>
+    <script src="{{url_for('static', filename='js/bower.js')}}"></script>
     <script src="{{url_for('static', filename='js/andromeda.js')}}"></script>
-    <script src="{{url_for('static', filename='bower_components/jquery/dist/jquery.min.js')}}"></script>
-    <script src="{{url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   </body>
 </html>
