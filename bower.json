@@ -8,6 +8,7 @@
   "license": "ISC",
   "homepage": "",
   "private": true,
+  "directory": "app/static/bower_components",
   "ignore": [
     "**/.*",
     "node_modules",
