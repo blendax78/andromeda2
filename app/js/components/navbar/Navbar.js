@@ -13,7 +13,7 @@ class Navbar extends Component {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="#">Stocks</a>
+          <a className="navbar-brand" href="#">Andromeda</a>
         </div>
 
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -22,17 +22,18 @@ class Navbar extends Component {
               <a href="#" className="dropdown-toggle" data-toggle="dropdown">Accounts <b className="caret"></b></a>
               <ul className="dropdown-menu" >
                 <li>
-                  <a className="refresh" href="/">SB - Traditional IRA</a>
+                  <a className="refresh" href="#">SB - Traditional IRA</a>
                 </li>
                 <li>
-                  <a className="refresh" href="/?p=2">SB - ROTH IRA</a>
+                  <a className="refresh" href="#">SB - ROTH IRA</a>
                 </li>
                 <li>
-                  <a className="refresh" href="/?p=3">Fidelity - IRA</a>
+                  <a className="refresh" href="#">Fidelity - IRA</a>
                 </li>
               </ul>
             </li>
           </ul>
+          <ul className="nav navbar-nav"><li><a href="#">hi</a></li></ul>
           <ul className="nav navbar-nav">
             <li className="dropdown" id="">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown">Options <b className="caret"></b></a>
@@ -57,9 +58,7 @@ class Navbar extends Component {
           </ul>
           <div className="navbar-right">
             <p className="navbar-text pull-right">
-                  Change since yesterday: 
-              <span className="red" id="yesterday">-$75.36</span>&nbsp;
-              (<span className="red" id="yesterday_pct">-0.1%</span>)
+                  User
             </p>
           </div>
         </div>
