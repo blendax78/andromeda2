@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
 import NavbarRight from './NavbarRight';
+import NavItem from './NavItem';
+import NavDropdown from './NavDropdown';
+import Config from '../Config';
 
 class Navbar extends Component {
+  constructor() {
+    super();
+    this.Config = new Config();
+
+    let mainNavElems = [
+      { href: '#', text: 'link', onClick: () => console.log('nav click') },
+      { href: '#', text: 'link', onClick: () => console.log('nav click') },
+      { href: '#', text: 'link' }
+    ];
+
+    let topElems = [
+      <NavDropdown title="Main Nav" elems={mainNavElems} key={this.Config.randomKey('topNavItem')}/>,
+      <NavItem href="#" key={this.Config.randomKey('topNavItem')} text="Item" />
+    ];
+
+    this.state = { elems: topElems };
+  }
 
   render() {
-    let right = '';
+
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div className="">
@@ -15,50 +35,12 @@ class Navbar extends Component {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="#">Andromeda</a>
+          <a className="navbar-brand" href="#">{this.props.name}</a>
         </div>
 
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul className="nav navbar-nav">
-            <li className="dropdown" id="">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown">Accounts <b className="caret"></b></a>
-              <ul className="dropdown-menu" >
-                <li>
-                  <a className="refresh" href="#">SB - Traditional IRA</a>
-                </li>
-                <li>
-                  <a className="refresh" href="#">SB - ROTH IRA</a>
-                </li>
-                <li>
-                  <a className="refresh" href="#">Fidelity - IRA</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <ul className="nav navbar-nav"><li><a href="#">hi</a></li></ul>
-          <ul className="nav navbar-nav">
-            <li className="dropdown" id="">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown">Options <b className="caret"></b></a>
-              <ul className="dropdown-menu">
-                <li className="options">
-                  <form role="form">
-                    <div className="form-group">
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" id="auto_update" /> Auto Update
-                        </label>
-                      </div>
-                    </div>
-                  </form>
-                </li>
-                <li className="divider"></li>
-                <li>
-                  <a className="refresh" href="#">Refresh</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <NavbarRight body={right} />
+          {this.state.elems}
+          <NavbarRight />
         </div>
       </div>
     </nav>
