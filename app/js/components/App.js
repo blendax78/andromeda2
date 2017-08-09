@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import Navbar from './navbar/Navbar';
 import Config from './Config';
 
@@ -6,8 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.Config = new Config();
-    this.appName = this.Config.appName;
+    this.appName = Config.appName;
   }
 
   render() {

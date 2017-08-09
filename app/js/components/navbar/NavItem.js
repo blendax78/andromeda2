@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import Config from '../Config';
 
 class NavItem extends Component {
   constructor(props) {
     super(props);
 
-    this.Config = new Config();
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 

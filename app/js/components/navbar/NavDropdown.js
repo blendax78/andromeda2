@@ -4,14 +4,13 @@ import Config from '../Config';
 class NavDropdown extends Component {
   constructor(props) {
     super(props);
-    this.Config = new Config();
   }
 
   render() {
     let _this = this;
     let liElems = $.map(this.props.elems, function(li, index) {
       return (
-        <li key={_this.Config.randomKey('NavDropdownItem')}>
+        <li key={Config.randomKey('NavDropdownItem')}>
           <a href={li.href} onClick={li.onClick}>{li.text}</a>
         </li>
       );

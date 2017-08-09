@@ -7,7 +7,6 @@ import Config from '../Config';
 class Navbar extends Component {
   constructor() {
     super();
-    this.Config = new Config();
 
     let mainNavElems = [
       { href: '#', text: 'link', onClick: () => console.log('nav click') },
@@ -16,8 +15,8 @@ class Navbar extends Component {
     ];
 
     let topElems = [
-      <NavDropdown title="Main Nav" elems={mainNavElems} key={this.Config.randomKey('topNavItem')}/>,
-      <NavItem href="#" key={this.Config.randomKey('topNavItem')} text="Item" />
+      <NavDropdown title="Main Nav" elems={mainNavElems} key={Config.randomKey('topNavItem')}/>,
+      <NavItem href="#" key={Config.randomKey('topNavItem')} text="Item" />
     ];
 
     this.state = { elems: topElems };
