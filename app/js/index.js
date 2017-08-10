@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { createStore } from 'redux';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import Actions from './reducers';
+import Reducers from './reducers';
 
-let store = createStore(Actions);
-console.log(store);
+let store = createStore(Reducers);
+
+// Remove Later
 window.store = store;
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.render(<App store={store}/>, document.querySelector('#app'));

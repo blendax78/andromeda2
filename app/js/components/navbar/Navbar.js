@@ -5,8 +5,8 @@ import NavDropdown from './NavDropdown';
 import Config from '../Config';
 
 class Navbar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     let mainNavElems = [
       { href: '#', text: 'link', onClick: () => console.log('nav click') },
@@ -19,10 +19,20 @@ class Navbar extends Component {
       <NavItem href="#" key={Config.randomKey('topNavItem')} text="Item" />
     ];
 
-    this.state = { elems: topElems };
+    this.state = {
+      elems: topElems,
+      right: { body: this.props.store.getState().User.user_name }
+    };
+
+    props.store.subscribe(() => {
+      this.setState({
+        right: { body: this.props.store.getState().User.user_name }
+      });
+    });
   }
 
   render() {
+
 
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -39,7 +49,7 @@ class Navbar extends Component {
 
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           {this.state.elems}
-          <NavbarRight />
+          <NavbarRight body={this.state.right.body}/>
         </div>
       </div>
     </nav>

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import UserActions from './UserActions'
+import User from './User'
 
-const Actions = combineReducers({
-  UserActions
+const Reducers = combineReducers({
+  User
 });
 
-export default Actions;
+export default Reducers;

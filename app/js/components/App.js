@@ -8,12 +8,21 @@ class App extends Component {
     super(props);
 
     this.appName = Config.appName;
+    // Cause redux store & state update
+    this.state = {
+      User: props.store.getState().User
+    };
+
+    props.store.subscribe(() => {
+      this.setState({});
+    });
   }
+
 
   render() {
     return (
       <div>
-        <Navbar name={this.appName}/>
+        <Navbar name={this.appName} store={this.props.store} />
         <div id="main-content">Welcome to React!</div>
       </div>
     )
