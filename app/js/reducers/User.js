@@ -9,7 +9,9 @@ const User = (state = {}, action) => {
     token: '',
   };
 
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case USER.GET:
       state.user_name = 'hi';
       // Do nothing

@@ -20,8 +20,12 @@ class MainPanel extends Component {
 
 
     return (
-        <div className="nav-panel col-lg-8 col-md-8 col-sm-8">Main</div>
-      );
+      <div className="col-lg-8 col-md-8 col-sm-8">
+        <div className="nav-panel table-bordered main-panel col-lg-12 col-md-12 col-sm-12">
+          Main
+        </div>
+      </div>
+    );
   }
 
 }

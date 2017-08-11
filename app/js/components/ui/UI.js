@@ -23,16 +23,17 @@ class UI extends Component {
 
 
     return (
+      <div className="row">
         <div className="row">
-          <div className="row">
-            <MainPanel />
-            <RightPanel />
-          </div>
-          <div className="row">
-            <BottomPanel />
-          </div>
+          <MainPanel store={store}/>
+          <RightPanel store={store}/>
         </div>
-      );
+        <div className="row"><p></p></div>
+        <div className="row">
+          <BottomPanel store={this.props.store}/>
+        </div>
+      </div>
+    );
   }
 
 }
