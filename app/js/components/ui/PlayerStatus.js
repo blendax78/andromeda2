@@ -14,7 +14,7 @@ class PlayerStatus extends Component {
       });
     });
   }
-
+// maybe remove row elements
   render() {
     let player = this.state.player;
     return (
@@ -37,19 +37,12 @@ class PlayerStatus extends Component {
 
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6">
-            <span className="bold">HP: </span>
-            <span className="blue">{player.hp}</span>/{player.maxhp}
+            <span className="bold">MP: </span>
+            <span className="blue">{player.mp}</span>/{player.maxmp}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6">
             <span className="bold">Location: </span>
             {player.x}, {player.y}
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-lg-6 col-md-6 col-sm-6">
-            <span className="bold">MP: </span>
-            <span className="blue">{player.mp}</span>/{player.maxmp}
           </div>
         </div>
 

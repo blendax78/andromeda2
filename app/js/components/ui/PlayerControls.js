@@ -21,7 +21,7 @@ class PlayerControls extends Component {
     return (
       <div className="nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
         <div className="row">
-          <div className="col-lg-8 col-md-8 col-sm-4">
+          <div className="col-lg-10 col-md-10 col-sm-4">
           <p className="bold">Controls</p>
           <div className="btn-group">
             <button type="button" className="btn btn-default btn-direction">West</button>

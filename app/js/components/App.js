@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div>
         <Navbar name={this.appName} store={this.props.store} />
-        <div id="main-content" className="row">
+        <div id="main-content" className="row col-lg-12 col-md-12 col-sm-12">
           <UI store={this.props.store} />
         </div>
       </div>
