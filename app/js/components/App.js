@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './navbar/Navbar';
 import Config from './Config';
+import UI from './ui/UI';
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,9 @@ class App extends Component {
     return (
       <div>
         <Navbar name={this.appName} store={this.props.store} />
-        <div id="main-content">Welcome to React!</div>
+        <div id="main-content" className="row">
+          <UI />
+        </div>
       </div>
     )
   }
