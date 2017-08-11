@@ -13,6 +13,12 @@ let Config = {
     MESSAGES: {
       ADD: 'MSGS_ADD',
       REMOVE: 'MSGS_REMOVE'
+    },
+    MAP: {
+      EAST: 'MAP_EAST',
+      WEST: 'MAP_WEST',
+      NORTH: 'MAP_NORTH',
+      SOUTH: 'MAP_SOUTH'
     }
   },
 

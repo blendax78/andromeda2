@@ -21,7 +21,6 @@ class UI extends Component {
 
   render() {
 
-
     return (
       <div className="row">
         <div className="row">
