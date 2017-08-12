@@ -22,13 +22,11 @@ class UI extends Component {
   render() {
 
     return (
-      <div className="row">
-        <div className="row">
-          <MainPanel store={store}/>
-          <RightPanel store={store}/>
-        </div>
-        <div className="row"><p></p></div>
-        <div className="row">
+      <div className="">
+        <div className="col-lg-8 col-md-8 col-sm-8"><MainPanel store={store}/></div>
+        <div className=""><p></p></div>
+        <div className="col-lg-4 col-md-4 col-sm-4"><RightPanel store={store}/></div>
+        <div className="col-lg-12 col-md-12 col-sm-12">
           <BottomPanel store={this.props.store}/>
         </div>
       </div>

@@ -9,7 +9,7 @@ class RightPanel extends Component {
 
   render() {
     return (
-      <div className="col-lg-4 col-md-4 col-sm-4">
+      <div className="col-lg-12 col-md-12 col-sm-10">
         <div className="row"><PlayerStatus store={this.props.store} /></div>
         <div className="row">&nbsp;</div>
         <div className="row"><PlayerControls store={this.props.store} /></div>
