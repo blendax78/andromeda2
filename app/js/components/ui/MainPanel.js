@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import Map from './Map';
 
 class MainPanel extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   elems: topElems,
-    //   right: { body: this.props.store.getState().User.user_name }
-    // };
+    this.state = {
+      map: true
+    };
 
     // props.store.subscribe(() => {
     //   this.setState({
@@ -18,10 +18,11 @@ class MainPanel extends Component {
 
   render() {
 
+    let render = (this.state.map) ? <Map store={this.props.store} /> : '';
 
     return (
         <div className="nav-panel table-bordered main-panel col-lg-12 col-md-12 col-sm-12">
-          Main
+          {render}
         </div>
 
     );

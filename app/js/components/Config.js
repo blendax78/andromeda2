@@ -19,6 +19,9 @@ let Config = {
       WEST: 'MAP_WEST',
       NORTH: 'MAP_NORTH',
       SOUTH: 'MAP_SOUTH'
+    },
+    PLANET: {
+      GET: 'PLANET_GET'
     }
   },
 
