@@ -5,6 +5,7 @@ const Planet = (state = {}, action) => {
   const { type, payload } = action;
   state = { current: {}, locations: [], planets: [] };
 
+  // Probably will need to break this out into a file to import.
   let planets = [
     {
       id: 1,
