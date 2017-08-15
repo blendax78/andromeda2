@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Config from '../Config';
 
 class PlayerControls extends Component {
   constructor(props) {
@@ -15,8 +16,35 @@ class PlayerControls extends Component {
     });
   }
 
+  move(dir) {
+    switch (dir) {
+      case Config.ACTIONS.MAP.EAST:
+        this.props.store.dispatch({ type: Config.ACTIONS.MAP.EAST, payload: {} });
+      break;
+      case Config.ACTIONS.MAP.WEST:
+        this.props.store.dispatch({ type: Config.ACTIONS.MAP.WEST, payload: {} });
+      break;
+      case Config.ACTIONS.MAP.NORTH:
+        this.props.store.dispatch({ type: Config.ACTIONS.MAP.NORTH, payload: {} });
+      break;
+      case Config.ACTIONS.MAP.SOUTH:
+        this.props.store.dispatch({ type: Config.ACTIONS.MAP.SOUTH, payload: {} });
+      break;
+    }
+  }
+
   render() {
     let player = this.state.player;
+
+    // Buttons
+    let east = (player.x < 5) ? 
+      <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.EAST)}>East</button> : '';
+    let west = (player.x > 0) ? 
+      <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.WEST)}>West</button> : '';
+    let north = (player.y > 0) ? 
+      <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.NORTH)}>North</button> : '';
+    let south = (player.y < 5) ? 
+      <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.SOUTH)}>South</button> : '';
 
     return (
       <div className="nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
@@ -24,14 +52,14 @@ class PlayerControls extends Component {
           <div className="col-lg-10 col-md-10 col-sm-4">
             <p className="bold">Controls</p>
             <div className="btn-group">
-              <button type="button" className="btn btn-default btn-direction">West</button>
+              {west}
             </div>
             <div className="btn-group-vertical">
-              <button type="button" className="btn btn-default btn-direction">North</button>
-              <button type="button" className="btn btn-default btn-direction">South</button>
+              {north}
+              {south}
             </div>
             <div className="btn-group">
-              <button type="button" className="btn btn-default btn-direction">East</button>
+              {east}
             </div>
           </div>
         </div>

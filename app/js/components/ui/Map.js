@@ -20,7 +20,6 @@ class Map extends Component {
     let planet_id = this.props.store.getState().Player.planet_id;
 
     this.props.store.dispatch({ type: Config.ACTIONS.PLANET.GET, payload: { id: planet_id }});
-    return { description: 'test' };
   }
 
   componentDidMount() {

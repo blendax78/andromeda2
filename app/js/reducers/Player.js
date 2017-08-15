@@ -1,24 +1,25 @@
 import Config from '../components/Config';
 let PLAYER = Config.ACTIONS.PLAYER;
+let MAP = Config.ACTIONS.MAP;
 
 const Player = (state = {}, action) => {
   state = (state.id) ? state : {
     id: 1,
     name: 'Blendax',
     planet_id: 1,
-    x: 64,
-    y: 485,
-    hp: 67,
-    maxhp: 67,
+    x: 0,
+    y: 0,
+    hp: 50,
+    maxhp: 50,
     mp: 15,
     maxmp: 15,
-    stamina: 28,
-    maxstamina: 28,
-    strength: 33,
+    stamina: 15,
+    maxstamina: 15,
+    strength: 15,
     intelligence: 15,
-    dexterity: 28,
+    dexterity: 15,
     user_id: 1,
-    credits: 669,
+    credits: 15,
     encumbrance: 0
   };
 
@@ -30,6 +31,22 @@ const Player = (state = {}, action) => {
     break;
     case PLAYER.UPDATE:
       state = Config.partialUpdate(state, payload);
+    break;
+    case MAP.EAST:
+      state = Config.partialUpdate(state, { x: state.x + 1 });
+      console.log('p', state);
+    break;
+    case MAP.WEST:
+      state = Config.partialUpdate(state, { x: state.x - 1 });
+      console.log('p', state);
+    break;
+    case MAP.NORTH:
+      state = Config.partialUpdate(state, { y: state.y - 1 });
+      console.log('p', state);
+    break;
+    case MAP.SOUTH:
+      state = Config.partialUpdate(state, { y: state.y + 1 });
+      console.log('p', state);
     break;
   }
 
