@@ -1,6 +1,7 @@
 import Config from '../components/Config';
 import { PlanetData } from '../components/data/PlanetData';
 import { LandscapeData } from '../components/data/LandscapeData';
+import { DecorationData } from '../components/data/DecorationData';
 
 let PLANET = Config.ACTIONS.PLANET;
 
@@ -9,7 +10,8 @@ const Planet = (state = {}, action) => {
   state = (state.current) ? state : {
     current: {},
     locations: [],
-    landscapes: [ { description: '' } ]
+    landscapes: [ { description: '' } ],
+    decorations: []
   };
 
   switch (type) {

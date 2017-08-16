@@ -9,13 +9,13 @@ class Navbar extends Component {
     super(props);
 
     let mainNavElems = [
-      { href: '#', text: 'link', onClick: () => console.log('nav click') },
-      { href: '#', text: 'link', onClick: () => console.log('nav click') },
+      { href: '#', text: 'Skills', onClick: () => console.log('nav click') },
+      { href: '#', text: 'Spellbook', onClick: () => console.log('nav click') },
       { href: '#', text: 'link' }
     ];
 
     let topElems = [
-      <NavDropdown title="Main Nav" elems={mainNavElems} key={Config.randomKey('topNavItem')}/>,
+      <NavDropdown title="Player" elems={mainNavElems} key={Config.randomKey('topNavItem')}/>,
       <NavItem href="#" key={Config.randomKey('topNavItem')} text="Item" />
     ];
 

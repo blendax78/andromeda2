@@ -20,7 +20,8 @@ const Player = (state = {}, action) => {
     dexterity: 15,
     user_id: 1,
     credits: 15,
-    encumbrance: 0
+    encumbrance: 0,
+    run: false
   };
 
   const { type, payload } = action;

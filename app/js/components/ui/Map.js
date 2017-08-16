@@ -28,7 +28,6 @@ class Map extends Component {
   }
 
   getLandscape() {
-    console.log(this.state.planet.landscapes);
     // if (this.state.planet.landscapes.length > 1) {
       // Randomly select.
       return _.sample(this.state.planet.landscapes);

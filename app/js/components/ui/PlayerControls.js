@@ -54,15 +54,27 @@ class PlayerControls extends Component {
         <div className="row">
           <div className="col-lg-10 col-md-10 col-sm-4">
             <p className="bold">Controls</p>
-            <div className="btn-group">
-              {west}
+            <div className="row">
+              <div className="col-lg-12 col-md-12 col-sm-12">
+                <label className="checkbox-inline">
+                  <input type="checkbox" data-toggle="toggle" value="run" data-on="Run" data-off="Walk" />
+                </label>
+              </div>
             </div>
-            <div className="btn-group-vertical">
-              {north}
-              {south}
-            </div>
-            <div className="btn-group">
-              {east}
+            <div className="row">&nbsp;</div>
+            <div className="row">
+              <div className="col-lg-12 col-md-12 col-sm-12">
+                <div className="btn-group">
+                  {west}
+                </div>
+                <div className="btn-group-vertical">
+                  {north}
+                  {south}
+                </div>
+                <div className="btn-group">
+                  {east}
+                </div>
+              </div>
             </div>
           </div>
         </div>

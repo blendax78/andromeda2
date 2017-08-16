@@ -17,11 +17,15 @@ module.exports = function(grunt) {
           'bower_components/jquery/dist/jquery.min.js',
           'bower_components/bootstrap/dist/js/bootstrap.min.js',
           'bower_components/underscore/underscore-min.js',
+          'bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js' //note: js file needs an <ENTER> added to beginning
         ],
         dest: 'app/static/js/bower.js'
       },
       css: {
-        src: [ 'bower_components/bootstrap/dist/css/bootstrap.min.css'],
+        src: [
+          'bower_components/bootstrap/dist/css/bootstrap.min.css',
+          'bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css'
+        ],
         dest: 'app/static/css/bower.css'
       },
       bootstrap_eot: {
