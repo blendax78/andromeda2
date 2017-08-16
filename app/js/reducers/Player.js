@@ -2,6 +2,11 @@ import Config from '../components/Config';
 let PLAYER = Config.ACTIONS.PLAYER;
 let MAP = Config.ACTIONS.MAP;
 
+// Attribute Formula
+// Health  (Strength / 2) + Strength Bonus+ 50
+// Mana  Intelligence + Intelligence Bonus
+// Stamina Dexterity + Dexterity Bonus
+
 const Player = (state = {}, action) => {
   state = (state.id) ? state : {
     id: 1,
@@ -9,8 +14,8 @@ const Player = (state = {}, action) => {
     planet_id: 1,
     x: 0,
     y: 0,
-    hp: 50,
-    maxhp: 50,
+    hp: Math.round(15/2) + 50,
+    maxhp: Math.round(15/2) + 50,
     mp: 15,
     maxmp: 15,
     stamina: 15,
