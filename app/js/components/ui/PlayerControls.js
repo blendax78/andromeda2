@@ -6,12 +6,14 @@ class PlayerControls extends Component {
     super(props);
 
     this.state = {
-      player: props.store.getState().Player
+      player: props.store.getState().Player,
+      planet: props.store.getState().Planet
     };
 
     props.store.subscribe(() => {
       this.setState({
-        player: props.store.getState().Player
+        player: props.store.getState().Player,
+        planet: props.store.getState().Planet
       });
     });
   }
@@ -35,15 +37,16 @@ class PlayerControls extends Component {
 
   render() {
     let player = this.state.player;
+    let planet = this.state.planet;
 
     // Buttons
-    let east = (player.x < 5) ? 
+    let east = (player.x < planet.current.width) ? 
       <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.EAST)}>East</button> : '';
     let west = (player.x > 0) ? 
       <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.WEST)}>West</button> : '';
     let north = (player.y > 0) ? 
       <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.NORTH)}>North</button> : '';
-    let south = (player.y < 5) ? 
+    let south = (player.y < planet.current.height) ? 
       <button type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.SOUTH)}>South</button> : '';
 
     return (

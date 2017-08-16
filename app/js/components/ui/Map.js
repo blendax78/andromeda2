@@ -27,12 +27,32 @@ class Map extends Component {
     });
   }
 
+  getLandscape() {
+    console.log(this.state.planet.landscapes);
+    // if (this.state.planet.landscapes.length > 1) {
+      // Randomly select.
+      return _.sample(this.state.planet.landscapes);
+    // } else {
+      // return this.state.planet.landscapes[0];
+    // }
+  }
+
   render() {
     let planet = this.state.planet;
+    let landscape = this.getLandscape();
 
     return (
-        <div className="">
-          {planet.current.description}
+        <div>
+          <div className="row">
+            <div className="col-lg-4 col-md-4 col-sm-4 bold">
+              {planet.current.name}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              {landscape.description}
+            </div>
+          </div>
         </div>
 
     );

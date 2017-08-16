@@ -6,7 +6,6 @@ export const PlanetData = [
       width: 2000,
       locx: 0,
       locy: 0,
-      description: 'Grass everywhere',
       landscapes: [1]
     },
     {
@@ -16,7 +15,6 @@ export const PlanetData = [
       width: 1200,
       locx: 25,
       locy: 38,
-      description: 'Desert everywhere',
       landscapes: [2]
     }
   ];
