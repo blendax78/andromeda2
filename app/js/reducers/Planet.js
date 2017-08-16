@@ -6,7 +6,7 @@ let PLANET = Config.ACTIONS.PLANET;
 
 const Planet = (state = {}, action) => {
   const { type, payload } = action;
-  state = { current: {}, locations: [], landscapes: []};
+  state = (state.current) ? state : { current: {}, locations: [], landscapes: []};
 
   switch (type) {
     case PLANET.GET:

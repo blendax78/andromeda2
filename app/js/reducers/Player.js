@@ -34,19 +34,15 @@ const Player = (state = {}, action) => {
     break;
     case MAP.EAST:
       state = Config.partialUpdate(state, { x: state.x + 1 });
-      console.log('p', state);
     break;
     case MAP.WEST:
       state = Config.partialUpdate(state, { x: state.x - 1 });
-      console.log('p', state);
     break;
     case MAP.NORTH:
       state = Config.partialUpdate(state, { y: state.y - 1 });
-      console.log('p', state);
     break;
     case MAP.SOUTH:
       state = Config.partialUpdate(state, { y: state.y + 1 });
-      console.log('p', state);
     break;
   }
 

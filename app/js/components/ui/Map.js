@@ -6,24 +6,25 @@ class Map extends Component {
     super(props);
 
     this.state = {
-      planet: props.store.getState().Planet
+      planet: props.store.getState().Planet,
+      player: props.store.getState().Player
     };
 
     props.store.subscribe(() => {
       this.setState({
-        planet: this.props.store.getState().Planet
+        planet: this.props.store.getState().Planet,
+        player: this.props.store.getState().Player
       });
     });
   }
 
-  get_current_planet() {
-    let planet_id = this.props.store.getState().Player.planet_id;
-
-    this.props.store.dispatch({ type: Config.ACTIONS.PLANET.GET, payload: { id: planet_id }});
-  }
-
   componentDidMount() {
-    this.get_current_planet();
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLANET.GET,
+      payload: {
+        id: this.state.player.planet_id
+      }
+    });
   }
 
   render() {
