@@ -8,7 +8,9 @@ let Config = {
     PLAYER: {
       GET: 'PLAYER_GET',
       ENCUMBRANCE: 'PLAYER_ENCUMBRANCE',
-      UPDATE: 'PLAYER_UPDATE'
+      UPDATE: 'PLAYER_UPDATE',
+      RUN: 'PLAYER_RUN',
+      MOUNT: 'PLAYER_MOUNT'
     },
     MESSAGES: {
       ADD: 'MSGS_ADD',

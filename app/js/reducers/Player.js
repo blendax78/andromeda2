@@ -21,11 +21,33 @@ const Player = (state = {}, action) => {
     user_id: 1,
     credits: 15,
     encumbrance: 0,
-    run: false
+    run: false,
+    mount: false
   };
 
   const { type, payload } = action;
 
+  let move = (current, change, max,) => {
+    if (change > 0 && current + change > max) {
+      return max;
+    } else if (change < 0 && current - change < 0) {
+      return 0;
+    } else {
+      return current + change;
+    }
+  };
+
+  let increment = () => {
+    if (state.run) {
+      return 2;
+    } else if (state.mount) {
+      return 3;
+    } else {
+      return 1;
+    }
+  }
+
+  // running needs to decrease stamina
   switch (type) {
     case PLAYER.GET:
       // Do nothing
@@ -34,16 +56,16 @@ const Player = (state = {}, action) => {
       state = Config.partialUpdate(state, payload);
     break;
     case MAP.EAST:
-      state = Config.partialUpdate(state, { x: state.x + 1 });
+      state = Config.partialUpdate(state, { x: move(state.x, increment(), payload.maxx) });
     break;
     case MAP.WEST:
-      state = Config.partialUpdate(state, { x: state.x - 1 });
+      state = Config.partialUpdate(state, { x: move(state.x, -increment(), payload.maxx) });
     break;
     case MAP.NORTH:
-      state = Config.partialUpdate(state, { y: state.y - 1 });
+      state = Config.partialUpdate(state, { y: move(state.y, -increment(), payload.maxy) });
     break;
     case MAP.SOUTH:
-      state = Config.partialUpdate(state, { y: state.y + 1 });
+      state = Config.partialUpdate(state, { y: move(state.y, increment(), payload.maxy) });
     break;
   }
 
