@@ -42,6 +42,4 @@ let Config = {
   }
 }
 
-// Remove later
-window.ACTIONS = Config.ACTIONS;
 export default Config;
