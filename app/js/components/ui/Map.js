@@ -40,9 +40,31 @@ class Map extends Component {
     return zone;
   }
 
+  getDecorations(zone) {
+    if (!zone || !zone.decorations || zone.decorations.length === 0) {
+      return '';
+    }
+
+    let chance = Math.round(Math.random() * 100);
+
+    let decorations = _.filter(zone.decorations, (decoration) => {
+      // Might have to rethink this. This means that certain things will ALWAYS appear with more common items
+      return chance <= decoration.chance;
+    });
+
+    let results = '';
+    if (decorations.length > 0) {
+      results = _.map(decorations, (decoration) => <div key={Config.randomKey('decoration')}><a href="#">{decoration.description}</a></div>);
+    }
+
+    return results;
+  }
+
   render() {
     let planet = this.state.planet;
     let zone = this.getZone();
+    let decorations = this.getDecorations(zone);
+    console.log(decorations);
 
     return (
         <div>
@@ -54,6 +76,11 @@ class Map extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12">
               {zone.description}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              {decorations}
             </div>
           </div>
         </div>

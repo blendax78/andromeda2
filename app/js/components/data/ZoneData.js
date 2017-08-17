@@ -1,5 +1,5 @@
-// Chance: random number is selected and winner is below next number
-// Example: if a 25 is selected and there are 5 and 30, the 30 will be chosen.
+// Chance: random number is selected and winner is below that number
+// Can have multiple winners.
 export const ZoneData = [
   {
     id: 0,
@@ -34,7 +34,7 @@ export const ZoneData = [
       },
       {
         id: 2,
-        chance: 50
+        chance: 15
       }
     ],
     treasure: []

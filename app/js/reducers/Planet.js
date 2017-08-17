@@ -19,9 +19,18 @@ const Planet = (state = {}, action) => {
       state.current = _.findWhere(PlanetData, { id: payload.id });
 
       // ._extend() updates the first object
-      _.each(state.current.zones, (zone) => _.extend(zone, _.findWhere(ZoneData, { id: zone.id })));
+      _.each(state.current.zones, (zone) => {
+        _.extend(zone, _.findWhere(ZoneData, { id: zone.id }));
+
+        _.each(zone.decorations, (decoration) => {
+          _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
+        });
+      });
 
       state.defaultZone = _.findWhere(ZoneData, { id: state.current.defaultZone });
+      _.each(state.defaultZone.decorations, (decoration) => {
+        _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
+      });
     break;
   }
 
