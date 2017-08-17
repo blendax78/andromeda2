@@ -2,6 +2,7 @@ import Config from '../components/Config';
 import { PlanetData } from '../components/data/PlanetData';
 import { LandscapeData } from '../components/data/LandscapeData';
 import { DecorationData } from '../components/data/DecorationData';
+import { ZoneData } from '../components/data/ZoneData';
 
 let PLANET = Config.ACTIONS.PLANET;
 
