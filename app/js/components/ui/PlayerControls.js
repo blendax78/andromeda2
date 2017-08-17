@@ -23,41 +23,49 @@ class PlayerControls extends Component {
     let h = this.state.planet.current.height;
 
     switch (dir) {
-      case Config.ACTIONS.MAP.EAST:
-        this.props.store.dispatch({
-          type: Config.ACTIONS.MAP.EAST,
-          payload: {
-            maxx: w,
-            maxy: h
-          }
-        });
+      case Config.ACTIONS.PLAYER.EAST:
+        if (this.state.player.x < w) {
+          this.props.store.dispatch({
+            type: Config.ACTIONS.PLAYER.EAST,
+            payload: {
+              maxx: w,
+              maxy: h
+            }
+          });
+        }
       break;
-      case Config.ACTIONS.MAP.WEST:
-        this.props.store.dispatch({
-          type: Config.ACTIONS.MAP.WEST,
-          payload: {
-            maxx: w,
-            maxy: h
-          }
-        });
+      case Config.ACTIONS.PLAYER.WEST:
+        if (this.state.player.x > 0) {
+          this.props.store.dispatch({
+            type: Config.ACTIONS.PLAYER.WEST,
+            payload: {
+              maxx: w,
+              maxy: h
+            }
+          });
+        }
       break;
-      case Config.ACTIONS.MAP.NORTH:
-        this.props.store.dispatch({
-          type: Config.ACTIONS.MAP.NORTH,
-          payload: {
-            maxx: w,
-            maxy: h
-          }
-        });
+      case Config.ACTIONS.PLAYER.NORTH:
+        if (this.state.player.y > 0) {
+          this.props.store.dispatch({
+            type: Config.ACTIONS.PLAYER.NORTH,
+            payload: {
+              maxx: w,
+              maxy: h
+            }
+          });
+        }
       break;
-      case Config.ACTIONS.MAP.SOUTH:
-        this.props.store.dispatch({
-          type: Config.ACTIONS.MAP.SOUTH,
-          payload: {
-            maxx: w,
-            maxy: h
-          }
-        });
+      case Config.ACTIONS.PLAYER.SOUTH:
+        if (this.state.player.y < h) {
+          this.props.store.dispatch({
+            type: Config.ACTIONS.PLAYER.SOUTH,
+            payload: {
+              maxx: w,
+              maxy: h
+            }
+          });
+        }
       break;
     }
   }
@@ -65,7 +73,7 @@ class PlayerControls extends Component {
   updatePlayerMovement(movType) {
     switch (movType) {
       case Config.ACTIONS.PLAYER.RUN:
-        this.state.player.run = !this.state.player.run;
+        this.state.player.run = (this.state.player.stamina > 0) ? !this.state.player.run : false;
         this.state.player.mount = false;
       break;
       case Config.ACTIONS.PLAYER.MOUNT:
@@ -82,15 +90,40 @@ class PlayerControls extends Component {
   }
 
   componentDidMount() {
-    $('#run_check').attr('checked', this.state.player.run);
-    
-    // binds 'this' to event
-    $("#run_check").on('change', $.proxy(function () {
+    // Arrow functions inherit 'this' from outer function.
+    $("#run_check").off('change').on('change', () => {
       this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
-    }, this));
+    });
+
+    $(document).off('keyup').on('keyup', (e) => {
+      switch (e.keyCode) {
+        case 38:
+          this.move(Config.ACTIONS.PLAYER.NORTH);
+        break;
+        case 40:
+          this.move(Config.ACTIONS.PLAYER.SOUTH);
+        break;
+        case 37:
+          this.move(Config.ACTIONS.PLAYER.WEST);
+        break;
+        case 39:
+          this.move(Config.ACTIONS.PLAYER.EAST);
+        break;
+      }
+    });
+  }
+
+  componentDidUpdate() {
+    let check = $('#run_check');
+    if (check.prop('checked') && this.state.player.run === false) {
+      check.bootstrapToggle('off', false);
+    }
   }
 
   render() {
+    // console.log('run', this.state.player.run);
+    // $('#run_check').bootstrapToggle('on');
+
     let player = this.state.player;
     let planet = this.state.planet;
 
@@ -106,9 +139,14 @@ class PlayerControls extends Component {
           <div className="col-lg-10 col-md-10 col-sm-4">
             <p className="bold">Controls</p>
             <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12">
+              <div className="col-lg-6 col-md-6 col-sm-6">
                 <label className="checkbox-inline">
-                  <input type="checkbox" data-toggle="toggle" value="run" data-on="Run" data-off="Walk" id="run_check" />
+                  <input type="checkbox" defaultChecked={this.state.player.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
+                </label>
+              </div>
+              <div className="col-lg-6 col-md-6 col-sm-6">
+                <label className="checkbox-inline">
+                  <input type="checkbox" defaultChecked={this.state.player.hide} data-toggle="toggle" value="hide" data-on="Hide" data-off="Hide" id="hide_check" />
                 </label>
               </div>
             </div>
@@ -116,14 +154,14 @@ class PlayerControls extends Component {
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12">
                 <div className="btn-group">
-                  <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.WEST)}>West</button>
+                  <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>West</button>
                 </div>
                 <div className="btn-group-vertical">
-                  <button disabled={north} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.NORTH)}>North</button>
-                  <button disabled={false} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.SOUTH)}>South</button>
+                  <button disabled={north} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.NORTH)}>North</button>
+                  <button disabled={false} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.SOUTH)}>South</button>
                 </div>
                 <div className="btn-group">
-                  <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.MAP.EAST)}>East</button>
+                  <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.EAST)}>East</button>
                 </div>
               </div>
             </div>

@@ -1,6 +1,5 @@
 import Config from '../components/Config';
 import { PlanetData } from '../components/data/PlanetData';
-import { LandscapeData } from '../components/data/LandscapeData';
 import { DecorationData } from '../components/data/DecorationData';
 import { ZoneData } from '../components/data/ZoneData';
 
@@ -11,16 +10,18 @@ const Planet = (state = {}, action) => {
   state = (state.current) ? state : {
     current: {},
     locations: [],
-    landscapes: [ { description: '' } ],
+    defaultZone: { description: '' },
     decorations: []
   };
 
   switch (type) {
     case PLANET.GET:
       state.current = _.findWhere(PlanetData, { id: payload.id });
-      state.landscapes = _.filter(LandscapeData, function(landscape) {
-        return _.contains(state.current.landscapes, landscape.id);
-      });
+
+      // ._extend() updates the first object
+      _.each(state.current.zones, (zone) => _.extend(zone, _.findWhere(ZoneData, { id: zone.id })));
+
+      state.defaultZone = _.findWhere(ZoneData, { id: state.current.defaultZone });
     break;
   }
 

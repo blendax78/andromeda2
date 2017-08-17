@@ -1,6 +1,5 @@
 import Config from '../components/Config';
 let PLAYER = Config.ACTIONS.PLAYER;
-let MAP = Config.ACTIONS.MAP;
 
 // Attribute Formula
 // Health  (Strength / 2) + Strength Bonus+ 50
@@ -26,16 +25,47 @@ const Player = (state = {}, action) => {
     user_id: 1,
     credits: 15,
     encumbrance: 0,
+    hide: false,
     run: false,
     mount: false
   };
 
   const { type, payload } = action;
 
+  let update_stamina = (change) => {
+    if (state.stamina + change < 0) {
+      return 0;
+    } else if (state.stamina + change > state.maxstamina) {
+      return state.maxstamina;
+    } else {
+      return state.stamina + change;
+    }
+  };
+
+  let update_hp = (change) => {
+    if (state.hp + change < 0) {
+      return 0;
+    } else if (state.hp + change > state.maxhp) {
+      return state.maxhp;
+    } else {
+      return state.hp + change;
+    }
+  }
+
+  let update_mp = (change) => {
+    if (state.mp + change < 0) {
+      return 0;
+    } else if (state.mp + change > state.maxmp) {
+      return state.maxmp;
+    } else {
+      return state.mp + change;
+    }
+  }
+
   let move = (current, change, max,) => {
     if (change > 0 && current + change > max) {
       return max;
-    } else if (change < 0 && current - change < 0) {
+    } else if (change < 0 && current + change < 0) {
       return 0;
     } else {
       return current + change;
@@ -52,6 +82,8 @@ const Player = (state = {}, action) => {
     }
   }
 
+  let newState = {};
+
   // running needs to decrease stamina
   switch (type) {
     case PLAYER.GET:
@@ -60,17 +92,40 @@ const Player = (state = {}, action) => {
     case PLAYER.UPDATE:
       state = Config.partialUpdate(state, payload);
     break;
-    case MAP.EAST:
-      state = Config.partialUpdate(state, { x: move(state.x, increment(), payload.maxx) });
+    case PLAYER.EAST:
+      newState.x = move(state.x, increment(), payload.maxx);
+      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
+      newState.run = (newState.stamina === 0) ? false : state.run;
+      
+      state = Config.partialUpdate(state, newState);
     break;
-    case MAP.WEST:
-      state = Config.partialUpdate(state, { x: move(state.x, -increment(), payload.maxx) });
+    case PLAYER.WEST:
+      newState.x = move(state.x, -increment(), payload.maxx);
+      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
+      newState.run = (newState.stamina === 0) ? false : state.run;
+
+      state = Config.partialUpdate(state, newState);
     break;
-    case MAP.NORTH:
-      state = Config.partialUpdate(state, { y: move(state.y, -increment(), payload.maxy) });
+    case PLAYER.NORTH:
+      newState.y = move(state.y, -increment(), payload.maxy);
+      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
+      newState.run = (newState.stamina === 0) ? false : state.run;
+      
+      state = Config.partialUpdate(state, newState);
     break;
-    case MAP.SOUTH:
-      state = Config.partialUpdate(state, { y: move(state.y, increment(), payload.maxy) });
+    case PLAYER.SOUTH:
+      newState.y = move(state.y, increment(), payload.maxy);
+      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
+      newState.run = (newState.stamina === 0) ? false : state.run;
+
+      state = Config.partialUpdate(state, newState);
+    break;
+    case PLAYER.TICK:
+      newState.hp = update_hp(1);
+      newState.mp = update_mp(1);
+      newState.stamina = update_stamina(1);
+
+      state = Config.partialUpdate(state, newState);
     break;
   }
 

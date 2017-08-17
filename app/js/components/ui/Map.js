@@ -27,18 +27,22 @@ class Map extends Component {
     });
   }
 
-  getLandscape() {
-    // if (this.state.planet.landscapes.length > 1) {
-      // Randomly select.
-      return _.sample(this.state.planet.landscapes);
-    // } else {
-      // return this.state.planet.landscapes[0];
-    // }
+  getZone() {
+    let zone = this.state.planet.defaultZone;
+    let player = this.state.player;
+    _.each(this.state.planet.current.zones, function(possibleZone) {
+      if ( player.x >= possibleZone.zoneMinX && player.x <= possibleZone.zoneMaxX && 
+        player.y >= possibleZone.zoneMinY && player.y <= possibleZone.zoneMaxY ) {
+        zone = possibleZone;
+      }
+    });
+
+    return zone;
   }
 
   render() {
     let planet = this.state.planet;
-    let landscape = this.getLandscape();
+    let zone = this.getZone();
 
     return (
         <div>
@@ -49,7 +53,7 @@ class Map extends Component {
           </div>
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12">
-              {landscape.description}
+              {zone.description}
             </div>
           </div>
         </div>

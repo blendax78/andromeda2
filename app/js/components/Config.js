@@ -10,17 +10,16 @@ let Config = {
       ENCUMBRANCE: 'PLAYER_ENCUMBRANCE',
       UPDATE: 'PLAYER_UPDATE',
       RUN: 'PLAYER_RUN',
-      MOUNT: 'PLAYER_MOUNT'
+      MOUNT: 'PLAYER_MOUNT',
+      EAST: 'PLAYER_EAST',
+      WEST: 'PLAYER_WEST',
+      NORTH: 'PLAYER_NORTH',
+      SOUTH: 'PLAYER_SOUTH',
+      TICK: 'PLAYER_TICK'
     },
     MESSAGES: {
       ADD: 'MSGS_ADD',
       REMOVE: 'MSGS_REMOVE'
-    },
-    MAP: {
-      EAST: 'MAP_EAST',
-      WEST: 'MAP_WEST',
-      NORTH: 'MAP_NORTH',
-      SOUTH: 'MAP_SOUTH'
     },
     PLANET: {
       GET: 'PLANET_GET'
