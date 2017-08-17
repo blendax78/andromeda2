@@ -54,7 +54,9 @@ class Map extends Component {
 
     let results = '';
     if (decorations.length > 0) {
-      results = _.map(decorations, (decoration) => <div key={Config.randomKey('decoration')}><a href="#">{decoration.description}</a></div>);
+      results = _.map(decorations, (decoration) => {
+        return <p key={Config.randomKey('decoration')}><a href="#">{decoration.description}</a></p>
+      });
     }
 
     return results;
@@ -64,7 +66,6 @@ class Map extends Component {
     let planet = this.state.planet;
     let zone = this.getZone();
     let decorations = this.getDecorations(zone);
-    console.log(decorations);
 
     return (
         <div>

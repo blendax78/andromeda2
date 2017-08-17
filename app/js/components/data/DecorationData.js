@@ -1,7 +1,7 @@
 export const DecorationData = [
   {
     id: 1,
-    name: 'A small tree is growing here.',
+    description: 'A small tree is growing here.',
     action: {
       message: 'You hack at the tree.',
       skill: 'lumberjacking', // Use ID
@@ -16,7 +16,7 @@ export const DecorationData = [
   },
   {
     id: 2,
-    name: 'A large tree looms over you.',
+    description: 'A large tree looms over you.',
     action: {
       message: 'You hack at the tree.',
       skill: 'lumberjacking', // Use ID
@@ -31,7 +31,7 @@ export const DecorationData = [
   },
   {
     id: 3,
-    name: 'An enormous tree dominates your view.',
+    description: 'An enormous tree dominates your view.',
     action: {
       message: 'You hack at the tree.',
       skill: 'lumberjacking', // Use ID
