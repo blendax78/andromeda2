@@ -22,7 +22,7 @@ const Messages = (state = {}, action) => {
 
     state.messages.unshift(newMessage);
   };
-  console.log('red', payload, type);
+
   switch (type) {
     case MESSAGES.ERROR:
       payload.color = 'red';

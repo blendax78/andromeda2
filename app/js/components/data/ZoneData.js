@@ -18,11 +18,14 @@ export const ZoneData = [
     decorations: [
       {
         id: 1,
-        chance: 25
+        chance: 35
+      },
+      {
+        id: 4,
+        chance: 10
       }
     ],
     decorationList: [],
-    decorationChance: 25,
     maxDecorations: 2,
     treasure: []
   },
@@ -39,9 +42,12 @@ export const ZoneData = [
       {
         id: 2,
         chance: 15
+      },
+      {
+        id: 4,
+        chance: 10
       }
     ],
-    decorationChance: 30,
     maxDecorations: 3,
     decorationList: [],
     treasure: []
@@ -59,10 +65,13 @@ export const ZoneData = [
       {
         id: 2,
         chance: 25
+      },
+      {
+        id: 4,
+        chance: 10
       }
     ],
     maxDecorations: 3,
-    decorationChance: 30,
     decorationList: [],
     treasure: []
   },
@@ -74,7 +83,6 @@ export const ZoneData = [
     decorations: [
     ],
     maxDecorations: 4,
-    decorationChance: 40,
     decorationList: [],
     treasure: []
   },
@@ -84,9 +92,12 @@ export const ZoneData = [
     description: 'Desert as far as the eye can see.',
     mobs: [],
     decorations: [
+      {
+        id: 4,
+        chance: 10
+      }
     ],
     maxDecorations: 1,
-    decorationChance: 5,
     decorationList: [],
     treasure: []
   }

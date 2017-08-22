@@ -42,26 +42,33 @@ class Map extends Component {
   }
 
   getDecorations(zone) {
-    // Need to keep persistent data of objects/decorations
+    // Need to keep persistent data of objects/decorations in a Location Store
     // Currently, if you click a decoration, it will disappear.
     if (!zone || !zone.decorations || zone.decorations.length === 0) {
       return [];
     }
 
-    if (Math.round(Math.random() * 100) > zone.decorationChance) {
-      return [];
-    }
-
     let maxDecorations = Math.round(Math.random() * zone.maxDecorations);
+    // check for locations here
     let decorations = [];
+    let potentialDecorations = [];
 
     // Check the chance in this loop. currently, there is always a decoration.
     for (let i = 0; i <= maxDecorations; i++) {
-      let chance = Math.round(Math.random() * zone.decorationList.length);
-        if (zone.decorationList[chance]) {
-          // Need to clone this to distinguish objects from each other.
-          decorations.push(_.clone(_.findWhere(zone.decorations, { id: zone.decorationList[chance] })));
-        }
+      let chance = Math.round(Math.random() * 100);
+
+      potentialDecorations = _.filter(zone.decorations, (decoration) => {
+        return chance <= decoration.chance;
+      });
+
+      if (potentialDecorations.length > 0) {
+        let found = _.last(potentialDecorations);
+        decorations.push(found);
+
+        this.state.planet.locations.push(_.extend({}, found, { x: this.state.player.x, y: this.state.player.y }));
+      }
+      // Need to clone this to distinguish objects from each other.
+      // decorations.push(_.clone(_.findWhere(zone.decorations, { id: zone.decorationList[chance] })));
     }
 
     return this.getDecorationResults(decorations);
