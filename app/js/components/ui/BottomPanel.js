@@ -17,6 +17,7 @@ class BottomPanel extends Component {
   }
 
   render() {
+    console.log('msg', this.state.messages);
     let messageList = $.map(this.state.messages, function(message, index) {
       let style = { color: message.color };
       return (

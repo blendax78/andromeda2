@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Decoration from './Decoration';
 import Config from '../Config';
 
 class Map extends Component {
@@ -41,7 +42,13 @@ class Map extends Component {
   }
 
   getDecorations(zone) {
+    // Need to keep persistent data of objects/decorations
+    // Currently, if you click a decoration, it will disappear.
     if (!zone || !zone.decorations || zone.decorations.length === 0) {
+      return [];
+    }
+
+    if (Math.round(Math.random() * 100) > zone.decorationChance) {
       return [];
     }
 
@@ -50,9 +57,10 @@ class Map extends Component {
 
     // Check the chance in this loop. currently, there is always a decoration.
     for (let i = 0; i <= maxDecorations; i++) {
-      let chance = Math.round(Math.random() * 100);
-        if (zone.decorationList[i]) {
-          decorations.push(_.findWhere(zone.decorations, { id: zone.decorationList[i] }));
+      let chance = Math.round(Math.random() * zone.decorationList.length);
+        if (zone.decorationList[chance]) {
+          // Need to clone this to distinguish objects from each other.
+          decorations.push(_.clone(_.findWhere(zone.decorations, { id: zone.decorationList[chance] })));
         }
     }
 
@@ -62,7 +70,7 @@ class Map extends Component {
   getDecorationResults(decorations) {
     if (decorations.length > 0) {
       return _.map(decorations, (decoration) => {
-        return <p key={Config.randomKey('decoration')}><a href="#">{decoration.description}</a></p>
+        return <Decoration key={Config.randomKey('decoration')} data={decoration} store={this.props.store} />;
       });
     } else {
       return [];

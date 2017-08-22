@@ -5,7 +5,7 @@ export const DecorationData = [
     action: {
       message: 'You hack at the tree.',
       skill: 'lumberjacking', // Use ID
-      max: 1, //Need a way to store current value.
+      current: 1,
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',
@@ -20,7 +20,7 @@ export const DecorationData = [
     action: {
       message: 'You hack at the tree.',
       skill: 'lumberjacking', // Use ID
-      max: 2,
+      current: 2,
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',
@@ -35,7 +35,7 @@ export const DecorationData = [
     action: {
       message: 'You hack at the tree.',
       skill: 'lumberjacking', // Use ID
-      max: 3,
+      current: 3,
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',

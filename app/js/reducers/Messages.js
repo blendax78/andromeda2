@@ -8,20 +8,28 @@ const Messages = (state = {}, action) => {
 
   const { type, payload } = action;
 
+  let add = (payload) => {
+    let newMessage = {
+      id: Config.randomKey('msg'),
+      created: new Date().toLocaleString().replace(',', ''),
+      body: payload.body,
+      color: (payload.color) ? payload.color : ''
+    };
+
+    if (state.messages.length > 49) {
+      state.messages.pop();
+    }
+
+    state.messages.unshift(newMessage);
+  };
+  console.log('red', payload, type);
   switch (type) {
+    case MESSAGES.ERROR:
+      payload.color = 'red';
+      add(payload);
+    break;
     case MESSAGES.ADD:
-      let newMessage = {
-        id: Config.randomKey('msg'),
-        created: new Date().toLocaleString().replace(',', ''),
-        body: payload.body,
-        color: (payload.color) ? payload.color : ''
-      };
-
-      if (state.messages.length > 49) {
-        state.messages.pop();
-      }
-
-      state.messages.unshift(newMessage);
+      add(payload);
     break;
     case MESSAGES.REMOVE:
       console.log('remove ' + payload.id);

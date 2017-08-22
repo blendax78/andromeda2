@@ -6,6 +6,7 @@ export const ZoneData = [
     mobs: [],
     decorations: [],
     decorationList: [],
+    decorationChance: 5,
     maxDecorations: 1,
     treasure: []
   },
@@ -21,6 +22,7 @@ export const ZoneData = [
       }
     ],
     decorationList: [],
+    decorationChance: 25,
     maxDecorations: 2,
     treasure: []
   },
@@ -39,7 +41,8 @@ export const ZoneData = [
         chance: 15
       }
     ],
-    maxDecorations: 4,
+    decorationChance: 30,
+    maxDecorations: 3,
     decorationList: [],
     treasure: []
   },
@@ -58,7 +61,8 @@ export const ZoneData = [
         chance: 25
       }
     ],
-    maxDecorations: 4,
+    maxDecorations: 3,
+    decorationChance: 30,
     decorationList: [],
     treasure: []
   },
@@ -70,6 +74,7 @@ export const ZoneData = [
     decorations: [
     ],
     maxDecorations: 4,
+    decorationChance: 40,
     decorationList: [],
     treasure: []
   },
@@ -81,6 +86,7 @@ export const ZoneData = [
     decorations: [
     ],
     maxDecorations: 1,
+    decorationChance: 5,
     decorationList: [],
     treasure: []
   }

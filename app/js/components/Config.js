@@ -19,7 +19,8 @@ let Config = {
     },
     MESSAGES: {
       ADD: 'MSGS_ADD',
-      REMOVE: 'MSGS_REMOVE'
+      REMOVE: 'MSGS_REMOVE',
+      ERROR: 'MSGS_ERROR'
     },
     PLANET: {
       GET: 'PLANET_GET'
@@ -32,6 +33,7 @@ let Config = {
 
   partialUpdate: (original, newValues) => {
     // Both inputs should be objects;
+    // Using _clone will not update state.
 
     for (let i in newValues) {
       original[i] = newValues[i];
