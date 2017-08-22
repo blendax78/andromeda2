@@ -1,5 +1,3 @@
-// Chance: random number is selected and winner is below that number
-// Can have multiple winners.
 export const ZoneData = [
   {
     id: 0,
@@ -7,6 +5,8 @@ export const ZoneData = [
     description: 'The vacuum of space',
     mobs: [],
     decorations: [],
+    decorationList: [],
+    maxDecorations: 1,
     treasure: []
   },
   {
@@ -20,6 +20,8 @@ export const ZoneData = [
         chance: 25
       }
     ],
+    decorationList: [],
+    maxDecorations: 2,
     treasure: []
   },
   {
@@ -37,6 +39,8 @@ export const ZoneData = [
         chance: 15
       }
     ],
+    maxDecorations: 4,
+    decorationList: [],
     treasure: []
   },
   {
@@ -45,7 +49,17 @@ export const ZoneData = [
     description: 'Trees.',
     mobs: [],
     decorations: [
+      {
+        id: 1,
+        chance: 50
+      },
+      {
+        id: 2,
+        chance: 25
+      }
     ],
+    maxDecorations: 4,
+    decorationList: [],
     treasure: []
   },
   {
@@ -55,6 +69,8 @@ export const ZoneData = [
     mobs: [],
     decorations: [
     ],
+    maxDecorations: 4,
+    decorationList: [],
     treasure: []
   },
   {
@@ -64,6 +80,8 @@ export const ZoneData = [
     mobs: [],
     decorations: [
     ],
+    maxDecorations: 1,
+    decorationList: [],
     treasure: []
   }
 ];

@@ -42,24 +42,31 @@ class Map extends Component {
 
   getDecorations(zone) {
     if (!zone || !zone.decorations || zone.decorations.length === 0) {
-      return '';
+      return [];
     }
 
-    let chance = Math.round(Math.random() * 100);
+    let maxDecorations = Math.round(Math.random() * zone.maxDecorations);
+    let decorations = [];
 
-    let decorations = _.filter(zone.decorations, (decoration) => {
-      // Might have to rethink this. This means that certain things will ALWAYS appear with more common items
-      return chance <= decoration.chance;
-    });
+    // Check the chance in this loop. currently, there is always a decoration.
+    for (let i = 0; i <= maxDecorations; i++) {
+      let chance = Math.round(Math.random() * 100);
+        if (zone.decorationList[i]) {
+          decorations.push(_.findWhere(zone.decorations, { id: zone.decorationList[i] }));
+        }
+    }
 
-    let results = '';
+    return this.getDecorationResults(decorations);
+  }
+
+  getDecorationResults(decorations) {
     if (decorations.length > 0) {
-      results = _.map(decorations, (decoration) => {
+      return _.map(decorations, (decoration) => {
         return <p key={Config.randomKey('decoration')}><a href="#">{decoration.description}</a></p>
       });
+    } else {
+      return [];
     }
-
-    return results;
   }
 
   render() {

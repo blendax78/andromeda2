@@ -10,8 +10,7 @@ const Planet = (state = {}, action) => {
   state = (state.current) ? state : {
     current: {},
     locations: [],
-    defaultZone: { description: '' },
-    decorations: []
+    defaultZone: { description: '' }
   };
 
   switch (type) {
@@ -21,15 +20,23 @@ const Planet = (state = {}, action) => {
       // ._extend() updates the first object
       _.each(state.current.zones, (zone) => {
         _.extend(zone, _.findWhere(ZoneData, { id: zone.id }));
-
+        
         _.each(zone.decorations, (decoration) => {
           _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
+
+          for (let i = 1; i <= decoration.chance; i++) {
+            zone.decorationList.push(decoration.id);
+          }
         });
       });
 
       state.defaultZone = _.findWhere(ZoneData, { id: state.current.defaultZone });
       _.each(state.defaultZone.decorations, (decoration) => {
         _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
+
+        for (let i = 1; i <= decoration.chance; i++) {
+          state.defaultZone.decorationList.push(decoration.id);
+        }
       });
     break;
   }
