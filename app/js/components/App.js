@@ -26,7 +26,7 @@ class App extends Component {
     // Attach to App object in case we need to kill it.
     // Arrow function binds 'this' to scope where it was defined.
     this.engine = setInterval(() => {
-      this.props.store.dispatch({ type: Config.ACTIONS.PLAYER.TICK, payload: { id: this.state.player.id } })
+      this.props.store.dispatch({ type: Config.ACTIONS.PLAYER.TICK, payload: { id: this.state.player.id } });
     }, 1000);
   }
 

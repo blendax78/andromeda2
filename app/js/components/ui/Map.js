@@ -43,7 +43,6 @@ class Map extends Component {
 
   getDecorations(zone) {
     // Need to keep persistent data of objects/decorations in a Location Store
-    // Currently, if you click a decoration, it will disappear.
     if (!zone || !zone.decorations || zone.decorations.length === 0) {
       return [];
     }

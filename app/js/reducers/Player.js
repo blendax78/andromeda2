@@ -27,7 +27,12 @@ const Player = (state = {}, action) => {
     encumbrance: 0,
     hide: false,
     run: false,
-    mount: false
+    mount: false,
+    partial: {
+      stamina: 0,
+      hp: 0,
+      mp: 0
+    }
   };
 
   const { type, payload } = action;
@@ -82,9 +87,36 @@ const Player = (state = {}, action) => {
     }
   }
 
+  let update_partials = (stat) => {
+    switch (stat) {
+      case 'stamina':
+        state.partial.stamina += 0.2;
+        if (Math.floor(state.partial.stamina) === 1) {
+          state.partial.stamina = 0;
+          return true;
+        }
+      break;
+      case 'hp':
+        state.partial.hp += 0.2;
+        if (Math.floor(state.partial.hp) === 1) {
+          state.partial.hp = 0;
+          return true;
+        }
+      break;
+      case 'mp':
+        state.partial.mp += 0.2;
+        if (Math.floor(state.partial.mp) === 1) {
+          state.partial.mp = 0;
+          return true;
+        }
+      break;
+    }
+
+    return false;
+  };
+
   let newState = {};
 
-  // running needs to decrease stamina
   switch (type) {
     case PLAYER.GET:
       // Do nothing
@@ -121,9 +153,17 @@ const Player = (state = {}, action) => {
       state = Config.partialUpdate(state, newState);
     break;
     case PLAYER.TICK:
-      newState.hp = update_hp(1);
-      newState.mp = update_mp(1);
-      newState.stamina = update_stamina(1);
+      if (update_partials('hp')) {
+        newState.hp = update_hp(1);  
+      }
+      
+      if (update_partials('mp')) {
+        newState.mp = update_mp(1);
+      }
+
+      if (update_partials('stamina')) {
+        newState.stamina = update_stamina(1);
+      }
 
       state = Config.partialUpdate(state, newState);
     break;
