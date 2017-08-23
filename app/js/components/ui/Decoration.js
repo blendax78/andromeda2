@@ -23,7 +23,7 @@ class Decoration extends Component {
     if (!decoration.action) {
       return false;
     }
-    console.log(decoration);
+
     if (decoration.action.current > 0) {
       this.props.store.dispatch({ type: Config.ACTIONS.MESSAGES.ADD, payload: { body: decoration.action.message } });
       decoration.action.current--;

@@ -51,24 +51,29 @@ class Map extends Component {
     let maxDecorations = Math.round(Math.random() * zone.maxDecorations);
     // check for locations here
     let decorations = [];
-    let potentialDecorations = [];
 
-    // Check the chance in this loop. currently, there is always a decoration.
-    for (let i = 0; i <= maxDecorations; i++) {
-      let chance = Math.round(Math.random() * 100);
+    let locations = _.where(this.state.planet.locations, { x: this.state.player.x, y: this.state.player.y });
 
-      potentialDecorations = _.filter(zone.decorations, (decoration) => {
-        return chance <= decoration.chance;
-      });
+    if (locations && locations.length === 0) {
+      let potentialDecorations = [];
 
-      if (potentialDecorations.length > 0) {
-        let found = _.last(potentialDecorations);
-        decorations.push(found);
+      // Check the chance in this loop. currently, there is always a decoration.
+      for (let i = 0; i <= maxDecorations; i++) {
+        let chance = Math.round(Math.random() * 100);
 
-        this.state.planet.locations.push(_.extend({}, found, { x: this.state.player.x, y: this.state.player.y }));
+        potentialDecorations = _.filter(zone.decorations, (decoration) => {
+          return chance <= decoration.chance;
+        });
+
+        if (potentialDecorations.length > 0) {
+          let found = _.last(potentialDecorations);
+          decorations.push(found);
+
+          this.state.planet.locations.push(_.extend({ type: 'decoration' }, found, { x: this.state.player.x, y: this.state.player.y }));
+        }
       }
-      // Need to clone this to distinguish objects from each other.
-      // decorations.push(_.clone(_.findWhere(zone.decorations, { id: zone.decorationList[chance] })));
+    } else {
+      decorations = locations;
     }
 
     return this.getDecorationResults(decorations);

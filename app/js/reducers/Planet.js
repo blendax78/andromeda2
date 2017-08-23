@@ -26,7 +26,6 @@ const Planet = (state = {}, action) => {
         });
       });
 
-      // redo decorations. do 0-100 random number search. lowest decoration chance wins (rarer item)
       state.defaultZone = _.findWhere(ZoneData, { id: state.current.defaultZone });
       _.each(state.defaultZone.decorations, (decoration) => {
         _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
