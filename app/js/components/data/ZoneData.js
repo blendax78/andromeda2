@@ -2,7 +2,7 @@ export const ZoneData = [
   {
     id: 0,
     name: 'Space',
-    description: 'The vacuum of space',
+    description: 'The vacuum of space.',
     mobs: [],
     decorations: [],
     decorationList: [],
@@ -13,7 +13,7 @@ export const ZoneData = [
   {
     id: 1,
     name: 'Plains Zone 1',
-    description: 'Rolling fields.',
+    description: 'Rolling fields stretch as far as the eye can see.',
     mobs: [],//should contain IDs
     decorations: [
       {
@@ -32,7 +32,7 @@ export const ZoneData = [
   {
     id: 2,
     name: 'Plains Zone 2',
-    description: 'Trees sparsely populate this area.',
+    description: 'Trees sparsely populate this area, which is otherwise comrpised of tall grasses.',
     mobs: [],
     decorations: [
       {
@@ -55,7 +55,7 @@ export const ZoneData = [
   {
     id: 3,
     name: 'Forest Zone 1',
-    description: 'Trees.',
+    description: 'The forest is vast, bright, and blooming. Its canopy is demanded by hickory, sycamore, and larch. Enough light shimmers through their crowns for all sorts of plants to make use of the stony grounds below. Thick vines grasp many a tree, and a range of flowers look almost out of place in the otherwise emerald terrain.',
     mobs: [],
     decorations: [
       {
@@ -78,7 +78,7 @@ export const ZoneData = [
   {
     id: 4,
     name: 'Forest Zone 2',
-    description: 'More trees.',
+    description: 'The forest is limitless, luminous, and rich. Its canopy is ruled by dogwood, oak, and cottonwood. A sparkling light dancing between the branches allows for a hodgepodge of herbs to monopolize the rich grounds below. Quiet creepers wave from the occasional tree, and an array of flowers spruce up the otherwise beige forest floor. A cacophony of sounds fill the air and drown out the trickling sounds of a gentle river stream.',
     mobs: [],
     decorations: [
     ],
