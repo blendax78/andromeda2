@@ -24,6 +24,16 @@ let Config = {
     },
     PLANET: {
       GET: 'PLANET_GET'
+    },
+    ITEM: {
+      USE: 'ITEM_USE'
+    },
+    INVENTORY: {
+      ADD: 'INVENTORY_ADD',
+      REMOVE: 'INVENTORY_REMOVE',
+      SELL: 'INVENTORY_SELL',
+      EQUIP: 'INVENTORY_EQUIP',
+      UNEQUIP: 'INVENTORY_UNEQUIP'
     }
   },
 

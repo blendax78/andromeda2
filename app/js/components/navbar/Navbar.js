@@ -9,9 +9,9 @@ class Navbar extends Component {
     super(props);
 
     let mainNavElems = [
-      { href: '#', text: 'Skills', onClick: () => console.log('nav click') },
-      { href: '#', text: 'Spellbook', onClick: () => console.log('nav click') },
-      { href: '#', text: 'link' }
+      { href: '#', text: 'Skills', onClick: () => console.log('skills click') },
+      { href: '#', text: 'Spellbook', onClick: () => console.log('spells click') },
+      { href: '#', text: 'Inventory', onClick: () => console.log('inv click') }
     ];
 
     let topElems = [
