@@ -35,6 +35,10 @@ let Config = {
       SELL: 'INVENTORY_SELL',
       EQUIP: 'INVENTORY_EQUIP',
       UNEQUIP: 'INVENTORY_UNEQUIP'
+    },
+    SKILLS: {
+      LUMBERJACKING: 'SKILLS_LUMBERJACKING',
+      MINING: 'SKILLS_MINING'
     }
   },
 

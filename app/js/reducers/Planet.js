@@ -1,7 +1,7 @@
 import Config from '../components/Config';
-import { PlanetData } from '../components/data/PlanetData';
-import { DecorationData } from '../components/data/DecorationData';
-import { ZoneData } from '../components/data/ZoneData';
+import { PlanetData } from '../data/PlanetData';
+import { DecorationData } from '../data/DecorationData';
+import { ZoneData } from '../data/ZoneData';
 
 let PLANET = Config.ACTIONS.PLANET;
 
