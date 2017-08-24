@@ -21,7 +21,8 @@ let Config = {
       ADD: 'MSGS_ADD',
       REMOVE: 'MSGS_REMOVE',
       ERROR: 'MSGS_ERROR',
-      SPEAK: 'MSGS_SPEAK'
+      SPEAK: 'MSGS_SPEAK',
+      GAIN: 'MSGS_GAIN'
     },
     PLANET: {
       GET: 'PLANET_GET'
@@ -40,6 +41,10 @@ let Config = {
       LUMBERJACKING: 'SKILLS_LUMBERJACKING',
       MINING: 'SKILLS_MINING'
     }
+  },
+
+  upperCase: (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   },
 
   randomKey: (text = '') => {

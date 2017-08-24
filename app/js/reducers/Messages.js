@@ -37,6 +37,10 @@ const Messages = (state = {}, action) => {
       payload.color = 'green';
       add(payload);
     break;
+    case MESSAGES.GAIN:
+      payload.color = '#4169E1';
+      add(payload);
+    break;
     case MESSAGES.REMOVE:
       console.log('remove ' + payload.id);
     break;
