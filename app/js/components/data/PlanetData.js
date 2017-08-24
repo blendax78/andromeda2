@@ -14,17 +14,24 @@ export const PlanetData = [
     zones: [
       {
         id: 2,
-        zoneMinX: 10,
-        zoneMinY: 10,
-        zoneMaxX: 110,
-        zoneMaxY: 110
+        zoneMinX: 0,
+        zoneMinY: 25,
+        zoneMaxX: 2000,
+        zoneMaxY: 125
+      },
+      {
+        id: 2,
+        zoneMinX: 25,
+        zoneMinY: 0,
+        zoneMaxX: 2000,
+        zoneMaxY: 24
       },
       {
         id: 3,
-        zoneMinX: 111,
-        zoneMinY: 111,
-        zoneMaxX: 250,
-        zoneMaxY: 250
+        zoneMinX: 0,
+        zoneMinY: 125,
+        zoneMaxX: 2000,
+        zoneMaxY: 500
       }
     ],
     defaultZone: 1

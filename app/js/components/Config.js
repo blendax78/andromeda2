@@ -20,7 +20,8 @@ let Config = {
     MESSAGES: {
       ADD: 'MSGS_ADD',
       REMOVE: 'MSGS_REMOVE',
-      ERROR: 'MSGS_ERROR'
+      ERROR: 'MSGS_ERROR',
+      SPEAK: 'MSGS_SPEAK'
     },
     PLANET: {
       GET: 'PLANET_GET'

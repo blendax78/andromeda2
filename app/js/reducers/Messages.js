@@ -31,6 +31,11 @@ const Messages = (state = {}, action) => {
     case MESSAGES.ADD:
       add(payload);
     break;
+    case MESSAGES.SPEAK:
+      payload.body = `<${payload.speaker}> ${payload.body}`;
+      payload.color = 'green';
+      add(payload);
+    break;
     case MESSAGES.REMOVE:
       console.log('remove ' + payload.id);
     break;
