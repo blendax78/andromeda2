@@ -2,7 +2,7 @@ import Config from '../components/Config';
 let MESSAGES = Config.ACTIONS.MESSAGES;
 
 const Messages = (state = {}, action) => {
-  state = (state.messages) ? state : {
+  state.Messages = state.Messages || {
     messages: []
   };
 
@@ -16,11 +16,11 @@ const Messages = (state = {}, action) => {
       color: (payload.color) ? payload.color : ''
     };
 
-    if (state.messages.length > 49) {
-      state.messages.pop();
+    if (state.Messages.messages.length > 49) {
+      state.Messages.messages.pop();
     }
 
-    state.messages.unshift(newMessage);
+    state.Messages.messages.unshift(newMessage);
   };
 
   switch (type) {
@@ -46,7 +46,7 @@ const Messages = (state = {}, action) => {
     break;
   }
 
-  return state;
+  return state.Messages;
 }
 
 export default Messages;

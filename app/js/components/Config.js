@@ -3,43 +3,43 @@ let Config = {
   appName: 'Andromeda',
   ACTIONS: {
     USER: {
-      GET: 'USER_GET'
+      GET: 'USER.GET'
     },
     PLAYER: {
-      GET: 'PLAYER_GET',
-      ENCUMBRANCE: 'PLAYER_ENCUMBRANCE',
-      UPDATE: 'PLAYER_UPDATE',
-      RUN: 'PLAYER_RUN',
-      MOUNT: 'PLAYER_MOUNT',
-      EAST: 'PLAYER_EAST',
-      WEST: 'PLAYER_WEST',
-      NORTH: 'PLAYER_NORTH',
-      SOUTH: 'PLAYER_SOUTH',
-      TICK: 'PLAYER_TICK'
+      GET: 'PLAYER.GET',
+      ENCUMBRANCE: 'PLAYER.ENCUMBRANCE',
+      UPDATE: 'PLAYER.UPDATE',
+      RUN: 'PLAYER.RUN',
+      MOUNT: 'PLAYER.MOUNT',
+      EAST: 'PLAYER.EAST',
+      WEST: 'PLAYER.WEST',
+      NORTH: 'PLAYER.NORTH',
+      SOUTH: 'PLAYER.SOUTH',
+      TICK: 'PLAYER.TICK'
     },
     MESSAGES: {
-      ADD: 'MSGS_ADD',
-      REMOVE: 'MSGS_REMOVE',
-      ERROR: 'MSGS_ERROR',
-      SPEAK: 'MSGS_SPEAK',
-      GAIN: 'MSGS_GAIN'
+      ADD: 'MSGS.ADD',
+      REMOVE: 'MSGS.REMOVE',
+      ERROR: 'MSGS.ERROR',
+      SPEAK: 'MSGS.SPEAK',
+      GAIN: 'MSGS.GAIN'
     },
     PLANET: {
-      GET: 'PLANET_GET'
+      GET: 'PLANET.GET'
     },
     ITEM: {
-      USE: 'ITEM_USE'
+      USE: 'ITEM.USE'
     },
     INVENTORY: {
-      ADD: 'INVENTORY_ADD',
-      REMOVE: 'INVENTORY_REMOVE',
-      SELL: 'INVENTORY_SELL',
-      EQUIP: 'INVENTORY_EQUIP',
-      UNEQUIP: 'INVENTORY_UNEQUIP'
+      ADD: 'INVENTORY.ADD',
+      REMOVE: 'INVENTORY.REMOVE',
+      SELL: 'INVENTORY.SELL',
+      EQUIP: 'INVENTORY.EQUIP',
+      UNEQUIP: 'INVENTORY.UNEQUIP'
     },
     SKILLS: {
-      LUMBERJACKING: 'SKILLS_LUMBERJACKING',
-      MINING: 'SKILLS_MINING'
+      LUMBERJACKING: 'SKILLS.LUMBERJACKING',
+      MINING: 'SKILLS.MINING'
     }
   },
 
@@ -49,17 +49,6 @@ let Config = {
 
   randomKey: (text = '') => {
     return text + new Date().getTime() + Math.round(Math.random() * 10000);
-  },
-
-  partialUpdate: (original, newValues) => {
-    // Both inputs should be objects;
-    // Using _clone will not update state.
-
-    for (let i in newValues) {
-      original[i] = newValues[i];
-    }
-
-    return original;
   }
 }
 

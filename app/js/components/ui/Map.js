@@ -30,6 +30,7 @@ class Map extends Component {
 
   getZone() {
     let zone = this.state.planet.defaultZone;
+
     let player = this.state.player;
     _.each(this.state.planet.current.zones, function(possibleZone) {
       if ( player.x >= possibleZone.zoneMinX && player.x <= possibleZone.zoneMaxX && 

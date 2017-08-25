@@ -7,18 +7,20 @@ let PLANET = Config.ACTIONS.PLANET;
 
 const Planet = (state = {}, action) => {
   const { type, payload } = action;
-  state = (state.current) ? state : {
+  state.Planet = state.Planet || {
     current: {},
     locations: [],
-    defaultZone: { description: '' }
+    defaultZone: {
+      description: ''
+    }
   };
 
   switch (type) {
     case PLANET.GET:
-      state.current = _.findWhere(PlanetData, { id: payload.id });
+      state.Planet.current = _.findWhere(PlanetData, { id: payload.id });
 
       // ._extend() updates the first object
-      _.each(state.current.zones, (zone) => {
+      _.each(state.Planet.current.zones, (zone) => {
         _.extend(zone, _.findWhere(ZoneData, { id: zone.id }));
         
         _.each(zone.decorations, (decoration) => {
@@ -26,14 +28,15 @@ const Planet = (state = {}, action) => {
         });
       });
 
-      state.defaultZone = _.findWhere(ZoneData, { id: state.current.defaultZone });
-      _.each(state.defaultZone.decorations, (decoration) => {
+      state.Planet.defaultZone = _.findWhere(ZoneData, { id: state.Planet.current.defaultZone });
+
+      _.each(state.Planet.defaultZone.decorations, (decoration) => {
         _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
       });
     break;
   }
 
-  return state;
+  return state.Planet;
 }
 
 export default Planet;

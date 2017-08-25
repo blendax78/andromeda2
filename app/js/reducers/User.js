@@ -2,23 +2,24 @@ import Config from '../components/Config';
 let USER = Config.ACTIONS.USER;
 
 const User = (state = {}, action) => {
-  state = (state.id) ? state : {
+  state.User = state.User || {
     id: 1,
     name: 'empty',
     user_name: 'blendax78',
-    token: '',
+    token: ''
   };
 
   const { type, payload } = action;
 
   switch (type) {
     case USER.GET:
-      state.user_name = 'hi';
+      state.User.user_name = 'hi';
+      state.Player.name ='ho';
       // Do nothing
     break;
   }
 
-  return state;
+  return state.User;
 }
 
 export default User;

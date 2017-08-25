@@ -4,9 +4,9 @@ import { SkillData } from '../data/SkillData';
 let SKILLS = Config.ACTIONS.SKILLS;
 
 const Skills = (state = {}, action) => {
-  const { type, payload, store } = action;
+  const { type, payload } = action;
 
-  state = (state.lumberjacking) ? state : SkillData;
+  state.Skills = state.Skills || SkillData;
 
   let notifyGain = (msg) => {
     setTimeout(() => store.dispatch({
@@ -18,16 +18,12 @@ const Skills = (state = {}, action) => {
   };
 
   let checkStatGain = (skill) => {
-    if (!store || !store.getState().Player) {
-      return;
-    }
-
     let gain = Math.round((Math.random() * 100) % 19);
 
     if (gain <= 1) {
-      let player = store.getState().Player;
+      let player = state.Player;
       let statChance = Math.round(Math.random() * 100);
-      let stat = (statChance <= 75) ? state[skill].primary : state[skill].secondary;
+      let stat = (statChance <= 75) ? state.Skills[skill].primary : state.Skills[skill].secondary;
 
       if (player[stat] < 100) {
         player[stat]++;
@@ -40,22 +36,22 @@ const Skills = (state = {}, action) => {
     let rand = Math.random() * 100;
     let gain = 0;
 
-    if (state[skill].current < 20.0) {
+    if (state.Skills[skill].current < 20.0) {
       // Give a greater chance for skill gain.
-      let skillValue = 30.0 - state[skill].current;
+      let skillValue = 30.0 - state.Skills[skill].current;
 
       if (rand <= skillValue) {
         // 0.1 - 0.3
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
-    } else if (state[skill].current < 100.0) {
-      if (rand <= (100.0 - state[skill].current) / 10.0) {
+    } else if (state.Skills[skill].current < 100.0) {
+      if (rand <= (100.0 - state.Skills[skill].current) / 10.0) {
         gain = 0.1;
       }
     }
 
     if (gain > 0) {
-      state[skill].current += parseFloat(gain);
+      state.Skills[skill].current += parseFloat(gain);
       checkStatGain(skill);
 
       notifyGain(`${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
@@ -65,11 +61,11 @@ const Skills = (state = {}, action) => {
   let checkSuccess = (skill) => {
     let random = Math.round(Math.random() * 100);
 
-    if (random <= state[skill].current + state[skill].modifier) {
+    if (random <= state.Skills[skill].current + state.Skills[skill].modifier) {
       checkSkillGain(skill);
       return true;
     } else {
-      if (state[skill].current < 20.0) {
+      if (state.Skills[skill].current < 20.0) {
         // If under 20, check on fail.
         checkSkillGain(skill);
       }
@@ -86,7 +82,7 @@ const Skills = (state = {}, action) => {
     break;
   }
 
-  return state;
+  return state.Skills;
 }
 
 export default Skills;

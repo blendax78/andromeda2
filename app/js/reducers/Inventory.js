@@ -2,7 +2,7 @@ import Config from '../components/Config';
 let INVENTORY = Config.ACTIONS.INVENTORY;
 
 const Inventory = (state = {}, action) => {
-  state = (state.items) ? state : {
+  state.Inventory = state.Inventory || {
     items: [],
     weapons: [],
     armor: [],
@@ -19,7 +19,7 @@ const Inventory = (state = {}, action) => {
     break;
   }
 
-  return state;
+  return state.Inventory;
 }
 
 export default Inventory;

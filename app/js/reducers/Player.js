@@ -7,7 +7,7 @@ let PLAYER = Config.ACTIONS.PLAYER;
 // Stamina Dexterity + Dexterity Bonus
 
 const Player = (state = {}, action) => {
-  state = (state.id) ? state : {
+  state.Player = state.Player || {
     id: 1,
     name: 'Blendax',
     planet_id: 1,
@@ -38,32 +38,32 @@ const Player = (state = {}, action) => {
   const { type, payload } = action;
 
   let update_stamina = (change) => {
-    if (state.stamina + change < 0) {
+    if (state.Player.stamina + change < 0) {
       return 0;
-    } else if (state.stamina + change > state.maxstamina) {
-      return state.maxstamina;
+    } else if (state.Player.stamina + change > state.Player.maxstamina) {
+      return state.Player.maxstamina;
     } else {
-      return state.stamina + change;
+      return state.Player.stamina + change;
     }
   };
 
   let update_hp = (change) => {
-    if (state.hp + change < 0) {
+    if (state.Player.hp + change < 0) {
       return 0;
-    } else if (state.hp + change > state.maxhp) {
-      return state.maxhp;
+    } else if (state.Player.hp + change > state.Player.maxhp) {
+      return state.Player.maxhp;
     } else {
-      return state.hp + change;
+      return state.Player.hp + change;
     }
   }
 
   let update_mp = (change) => {
-    if (state.mp + change < 0) {
+    if (state.Player.mp + change < 0) {
       return 0;
-    } else if (state.mp + change > state.maxmp) {
-      return state.maxmp;
+    } else if (state.Player.mp + change > state.Player.maxmp) {
+      return state.Player.maxmp;
     } else {
-      return state.mp + change;
+      return state.Player.mp + change;
     }
   }
 
@@ -78,9 +78,9 @@ const Player = (state = {}, action) => {
   };
 
   let increment = () => {
-    if (state.run) {
+    if (state.Player.run) {
       return 2;
-    } else if (state.mount) {
+    } else if (state.Player.mount) {
       return 3;
     } else {
       return 1;
@@ -90,23 +90,23 @@ const Player = (state = {}, action) => {
   let update_partials = (stat) => {
     switch (stat) {
       case 'stamina':
-        state.partial.stamina += 0.2;
-        if (Math.floor(state.partial.stamina) === 1) {
-          state.partial.stamina = 0;
+        state.Player.partial.stamina += 0.2;
+        if (Math.floor(state.Player.partial.stamina) === 1) {
+          state.Player.partial.stamina = 0;
           return true;
         }
       break;
       case 'hp':
-        state.partial.hp += 0.2;
-        if (Math.floor(state.partial.hp) === 1) {
-          state.partial.hp = 0;
+        state.Player.partial.hp += 0.2;
+        if (Math.floor(state.Player.partial.hp) === 1) {
+          state.Player.partial.hp = 0;
           return true;
         }
       break;
       case 'mp':
-        state.partial.mp += 0.2;
-        if (Math.floor(state.partial.mp) === 1) {
-          state.partial.mp = 0;
+        state.Player.partial.mp += 0.2;
+        if (Math.floor(state.Player.partial.mp) === 1) {
+          state.Player.partial.mp = 0;
           return true;
         }
       break;
@@ -115,61 +115,49 @@ const Player = (state = {}, action) => {
     return false;
   };
 
-  let newState = {};
-
   switch (type) {
     case PLAYER.GET:
       // Do nothing
     break;
     case PLAYER.UPDATE:
-      state = Config.partialUpdate(state, payload);
+      state.Player = {...state.Player, payload};
     break;
     case PLAYER.EAST:
-      newState.x = move(state.x, increment(), payload.maxx);
-      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
-      newState.run = (newState.stamina === 0) ? false : state.run;
-      
-      state = Config.partialUpdate(state, newState);
+      state.Player.x = move(state.Player.x, increment(), payload.maxx);
+      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
     break;
     case PLAYER.WEST:
-      newState.x = move(state.x, -increment(), payload.maxx);
-      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
-      newState.run = (newState.stamina === 0) ? false : state.run;
-
-      state = Config.partialUpdate(state, newState);
+      state.Player.x = move(state.Player.x, -increment(), payload.maxx);
+      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
     break;
     case PLAYER.NORTH:
-      newState.y = move(state.y, -increment(), payload.maxy);
-      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
-      newState.run = (newState.stamina === 0) ? false : state.run;
-      
-      state = Config.partialUpdate(state, newState);
+      state.Player.y = move(state.Player.y, -increment(), payload.maxy);
+      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
     break;
     case PLAYER.SOUTH:
-      newState.y = move(state.y, increment(), payload.maxy);
-      newState.stamina = (state.run) ? update_stamina(-1) : state.stamina;
-      newState.run = (newState.stamina === 0) ? false : state.run;
-
-      state = Config.partialUpdate(state, newState);
+      state.Player.y = move(state.Player.y, increment(), payload.maxy);
+      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
     break;
     case PLAYER.TICK:
       if (update_partials('hp')) {
-        newState.hp = update_hp(1);  
+        state.Player.hp = update_hp(1);  
       }
       
       if (update_partials('mp')) {
-        newState.mp = update_mp(1);
+        state.Player.mp = update_mp(1);
       }
 
       if (update_partials('stamina')) {
-        newState.stamina = update_stamina(1);
+        state.Player.stamina = update_stamina(1);
       }
-
-      state = Config.partialUpdate(state, newState);
     break;
   }
 
-  return state;
+  return state.Player;
 }
 
 export default Player;
