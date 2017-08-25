@@ -54,6 +54,8 @@ class Map extends Component {
     let locations = _.where(this.state.planet.locations, { x: this.state.player.x, y: this.state.player.y });
 
     if (locations && locations.length === 0) {
+      // Populate an empty location so locations can be empty
+      this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y });
       let potentialDecorations = [];
 
       // Check the chance in this loop. currently, there is always a decoration.
