@@ -8,6 +8,15 @@ const Skills = (state = {}, action) => {
 
   state = (state.lumberjacking) ? state : SkillData;
 
+  let notifyGain = (msg) => {
+    setTimeout(() => store.dispatch({
+      type: Config.ACTIONS.MESSAGES.GAIN,
+      payload: {
+        body: msg
+      }
+    }), 0);
+  };
+
   let checkStatGain = (skill) => {
     if (!store || !store.getState().Player) {
       return;
@@ -22,12 +31,7 @@ const Skills = (state = {}, action) => {
 
       if (player[stat] < 100) {
         player[stat]++;
-        setTimeout(() => store.dispatch({
-          type: Config.ACTIONS.MESSAGES.GAIN,
-          payload: {
-            body: `${ Config.upperCase(stat) } increased by 1.`
-          }
-        }), 0);
+        notifyGain(`${ Config.upperCase(stat) } increased by 1.`);
       }
     }
   };
@@ -54,12 +58,7 @@ const Skills = (state = {}, action) => {
       state[skill].current += parseFloat(gain);
       checkStatGain(skill);
 
-      setTimeout(() => store.dispatch({
-        type: Config.ACTIONS.MESSAGES.GAIN,
-        payload: {
-          body: `${ Config.upperCase(skill) } increased by ${ gain.toString() }.`
-        }
-      }), 0);
+      notifyGain(`${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
     }
   };
 
