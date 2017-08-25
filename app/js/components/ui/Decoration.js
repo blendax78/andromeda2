@@ -26,6 +26,8 @@ class Decoration extends Component {
 
     if (decoration.action.current > 0) {
       this.props.store.dispatch({ type: Config.ACTIONS.MESSAGES.ADD, payload: { body: decoration.action.message } });
+      this.props.store.dispatch({ type: decoration.action.skill, payload: { action: decoration.action } });
+
       decoration.action.current--;
       this.setState({ data: decoration });
     } else {

@@ -32,6 +32,10 @@ const Player = (state = {}, action) => {
       stamina: 0,
       hp: 0,
       mp: 0
+    },
+    score: {
+      walked: 0,
+      run: 0
     }
   };
 
@@ -79,10 +83,12 @@ const Player = (state = {}, action) => {
 
   let increment = () => {
     if (state.Player.run) {
+      state.Player.score.run++;
       return 2;
     } else if (state.Player.mount) {
       return 3;
     } else {
+      state.Player.score.walked++;
       return 1;
     }
   }

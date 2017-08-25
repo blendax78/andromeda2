@@ -58,11 +58,18 @@ const Skills = (state = {}, action) => {
     }
   };
 
+  let checkResultSuccess = () => {
+    if (payload.action && payload.action.result) {
+      notifyGain(payload.action.result.message); 
+    }
+  };
+
   let checkSuccess = (skill) => {
     let random = Math.round(Math.random() * 100);
-
+    console.log(payload);
     if (random <= state.Skills[skill].current + state.Skills[skill].modifier) {
       checkSkillGain(skill);
+      checkResultSuccess();
       return true;
     } else {
       if (state.Skills[skill].current < 20.0) {
