@@ -52,11 +52,12 @@ class Map extends Component {
     // check for locations here
     let decorations = [];
 
-    let locations = _.where(this.state.planet.locations, { x: this.state.player.x, y: this.state.player.y });
+    let locations = _.where(this.state.planet.locations, {
+      x: this.state.player.x,
+      y: this.state.player.y
+    });
 
     if (locations && locations.length === 0) {
-      // Populate an empty location so locations can be empty
-      this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y });
       let potentialDecorations = [];
 
       // Check the chance in this loop. currently, there is always a decoration.
@@ -69,13 +70,27 @@ class Map extends Component {
 
         if (potentialDecorations.length > 0) {
           let found = _.last(potentialDecorations);
+
           decorations.push(found);
 
-          this.state.planet.locations.push(_.extend({ type: 'decoration' }, found, { x: this.state.player.x, y: this.state.player.y }));
+          this.state.planet.locations.push(_.extend({
+            key: Config.randomKey('decoration'),
+            type: 'decoration'
+          }, found, 
+          {
+            x: this.state.player.x,
+            y: this.state.player.y
+          }));
         }
       }
     } else {
       decorations = locations;
+    }
+
+    if (decorations.length === 0) {
+      // Still empty
+      // Populate an empty location so locations can be empty
+      this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y });
     }
 
     return this.getDecorationResults(decorations);
@@ -84,7 +99,9 @@ class Map extends Component {
   getDecorationResults(decorations) {
     if (decorations.length > 0) {
       return _.map(decorations, (decoration) => {
-        return <Decoration key={Config.randomKey('decoration')} data={decoration} store={this.props.store} />;
+        if (decoration.type === 'decoration') {
+          return <Decoration key={decoration.key} data={decoration} store={this.props.store} />;
+        }
       });
     } else {
       return [];

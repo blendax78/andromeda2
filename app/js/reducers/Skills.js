@@ -66,7 +66,9 @@ const Skills = (state = {}, action) => {
 
   let checkSuccess = (skill) => {
     let random = Math.round(Math.random() * 100);
-    console.log(payload);
+    let object = _.findWhere(state.Planet.locations, { key: payload.key });
+    console.log('key', object, payload);return;
+    if (state.Planet.locations)
     if (random <= state.Skills[skill].current + state.Skills[skill].modifier) {
       checkSkillGain(skill);
       checkResultSuccess();
