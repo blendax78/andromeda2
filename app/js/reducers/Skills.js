@@ -27,7 +27,7 @@ const Skills = (state = {}, action) => {
 
       if (player[stat] < 100) {
         player[stat]++;
-        notifyGain(`${ Config.upperCase(stat) } increased by 1.`);
+        notifyGain(store, `${ Config.upperCase(stat) } increased by 1.`);
       }
     }
   };
@@ -54,40 +54,48 @@ const Skills = (state = {}, action) => {
       state.Skills[skill].current += parseFloat(gain);
       checkStatGain(skill);
 
-      notifyGain(`${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
+      Config.notifyGain(store, `${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
     }
   };
 
   let checkResultSuccess = () => {
     if (payload.action && payload.action.result) {
-      notifyGain(payload.action.result.message); 
+      Config.notifyGain(store, payload.action.result.message); 
     }
   };
 
-  let checkSuccess = (skill) => {
+  let checkObjectSuccess = (skill) => {
+    // This function is called when an object is clicked and a skill is checked.
     let random = Math.round(Math.random() * 100);
     let object = _.findWhere(state.Planet.locations, { key: payload.key });
-    console.log('key', object, payload);return;
-    if (state.Planet.locations)
-    if (random <= state.Skills[skill].current + state.Skills[skill].modifier) {
-      checkSkillGain(skill);
-      checkResultSuccess();
-      return true;
-    } else {
-      if (state.Skills[skill].current < 20.0) {
-        // If under 20, check on fail.
-        checkSkillGain(skill);
+
+    if (object) {
+      if (object.action.count < 1) {
+        Config.notify(store, object.action.maxMessage)
+        return false;
       }
-      return false;
+
+      if (random <= state.Skills[skill].current + state.Skills[skill].modifier) {
+        object.action.current--;
+        checkSkillGain(skill);
+        checkResultSuccess();
+        return true;
+      } else {
+        if (state.Skills[skill].current < 20.0) {
+          // If under 20, check on fail.
+          checkSkillGain(skill);
+        }
+        return false;
+      }
     }
   }
 
   switch (type) {
     case SKILLS.LUMBERJACKING:
-      checkSuccess('lumberjacking');
+      checkObjectSuccess('lumberjacking');
     break;
     case SKILLS.MINING:
-      checkSuccess('mining');
+      checkObjectSuccess('mining');
     break;
   }
 

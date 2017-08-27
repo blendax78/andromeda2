@@ -28,7 +28,6 @@ class Decoration extends Component {
       this.props.store.dispatch({ type: Config.ACTIONS.MESSAGES.ADD, payload: { body: decoration.action.message } });
       this.props.store.dispatch({ type: decoration.action.skill, payload: { action: decoration.action, key: decoration.key } });
 
-      decoration.action.current--;
       this.setState({ data: decoration });
     } else {
       this.props.store.dispatch({ type: Config.ACTIONS.MESSAGES.ADD, payload: { body: decoration.action.maxMessage } });

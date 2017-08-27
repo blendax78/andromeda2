@@ -49,7 +49,23 @@ let Config = {
 
   randomKey: (text = '') => {
     return text + new Date().getTime() + Math.round(Math.random() * 1000000);
+  },
+
+// Need to redo these or whole object.
+  notifyGain: (store, msg) => {
+    this.a.notify(store, msg, this.a.ACTIONS.MESSAGES.GAIN);
+  },
+
+  notify: (store, msg, type = this.a.ACTIONS.MESSAGES.ADD) => {
+    console.log(store, msg);
+    setTimeout(() => store.dispatch({
+      type: this.a.ACTIONS.MESSAGES.GAIN,
+      payload: {
+        body: msg
+      }
+    }), 0);
   }
+
 }
 
 export default Config;
