@@ -69,18 +69,17 @@ class Map extends Component {
         });
 
         if (potentialDecorations.length > 0) {
-          let found = _.last(potentialDecorations);
+          // Extends decoration object by value, not reference
+          let found = $.extend(true, {
+            key: Config.randomKey('decoration'),
+            type: 'decoration',
+            x: this.state.player.x,
+            y: this.state.player.y
+          }, _.last(potentialDecorations));
 
           decorations.push(found);
 
-          this.state.planet.locations.push(_.extend({
-            key: Config.randomKey('decoration'),
-            type: 'decoration'
-          }, found, 
-          {
-            x: this.state.player.x,
-            y: this.state.player.y
-          }));
+          this.state.planet.locations.push(found);
         }
       }
     } else {
