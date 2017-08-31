@@ -4,7 +4,10 @@ A Flask backend with a React frontend.
 
 Currently, the backend isn't utilized (no saving to/from database yet).
 
-To run, you will need to have node, npm, & bower installed.
+To run, you will need to have node (using nvm is highly recommended), npm, & bower installed.
+```
+npm install -g bower
+```
 
 From main directory:
 ```

@@ -7,8 +7,10 @@ class Skills extends Component {
 
   render() {
     return (
-      <div className="col-lg-12 col-md-12 col-sm-10">
-        hello world.
+      <div className="row">
+        <div className="col-lg-12 col-md-12 col-sm-12">
+          hello world.
+        </div>
       </div>
     );
   }

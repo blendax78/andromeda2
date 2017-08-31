@@ -26,36 +26,37 @@ class Modal extends Component {
     // console.log(this.state.modal.skills);
     if (this.state.modal && this.state.modal.body && this.state.modal.body.length > 0 || this.state.modal.skills === true) {
       $('#modal-container').modal({ keyboard: false });
-    } 
+    }
   }
 
-  getActionButton(modal) {
-    return (
-      <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.clearModal()}>Close</button>
-    );
+  setSkillsModal() {
+    this.state.modal = {
+      body: <Skills store={this.props.store}/>,
+      title: 'Skills',
+      skills: true
+    };
   }
 
-  getSkillsModal() {
-    // need to do this without returning.
-    this.state.modal.body = <Skills store={this.props.store}/>
-    ;
-    return {body: this.state.modal.body, title: 'poop'};
-  }
-
-  getModalData() {
+  setModalData() {
     if (this.state.modal.skills === true) {
-      return this.getSkillsModal();
+      this.setSkillsModal()
+    }
+    
+    this.state.modal.title = this.state.modal.title || '';
+  }
+  
+  getModalBody() {
+    if (typeof this.state.modal.body === 'object') {
+      return <div className="modal-body">{this.state.modal.body}</div>;
     } else {
-      return this.state.modal;
+      return <div className="modal-body" dangerouslySetInnerHTML={{__html: this.state.modal.body}}></div>;
     }
   }
 
   render() {
-    let modal = this.getModalData();
+    this.setModalData();
 
-    modal.title = modal.title || '';
-
-    let action = this.getActionButton(modal);
+    let body = this.getModalBody();
 
     return (
       <div className="modal fade" tabIndex="-1" role="dialog" id="modal-container">
@@ -65,12 +66,11 @@ class Modal extends Component {
               <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.clearModal()}>
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 className="modal-title">{modal.title}</h4>
+              <h4 className="modal-title">{this.state.modal.title}</h4>
             </div>
-            <div className="modal-body" dangerouslySetInnerHTML={{__html: modal.body}}>
-            </div>
+            {body}
             <div className="modal-footer">
-              {action}
+              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.clearModal()}>Close</button>
             </div>
           </div>
         </div>
