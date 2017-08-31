@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Navbar from './navbar/Navbar';
+import Navbar from './ui/navbar/Navbar';
+import Modal from './ui/Modal';
 import Config from './Config';
 import UI from './ui/UI';
 
@@ -22,6 +23,10 @@ class App extends Component {
     });
   }
 
+  getInitialState() {
+    // nothing
+  }
+
   componentDidMount() {
     // Attach to App object in case we need to kill it.
     // Arrow function binds 'this' to scope where it was defined.
@@ -33,6 +38,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Modal store={this.props.store} />
         <Navbar name={this.appName} store={this.props.store} />
         <div id="main-content" className="">
           <UI store={this.props.store} />

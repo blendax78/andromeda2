@@ -5,6 +5,14 @@
 // zoneMaxX/zoneMaxY: minimum X/Y before a zone can start appearing.
 export const PlanetData = [
   {
+    id: 0,
+    name: 'Space',
+    height: 50000,
+    width: 50000,
+    zones: [],
+    defaultZone: 0
+  },
+  {
     id: 1,
     name: 'Alpha Centauri b',
     height: 2000,

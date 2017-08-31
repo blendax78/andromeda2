@@ -2,6 +2,10 @@
 let Config = {
   appName: 'Andromeda',
   ACTIONS: {
+    APP: {
+      MODAL_SHOW: 'APP.MODAL.SHOW',
+      MODAL_HIDE: 'APP.MODAL.HIDE'
+    },
     USER: {
       GET: 'USER.GET'
     },
@@ -62,7 +66,23 @@ let Config = {
         body: msg
       }
     }), 0);
-  }
+  },
+
+  skillsModal: (store) => {
+    this.a.modal(store, '', null, true);
+  },
+
+  modal: (store, body = '', title = null, skills = false) => {
+    // Just send the store if the modal does more than just show text.
+    setTimeout(() => store.dispatch({
+      type: this.a.ACTIONS.APP.MODAL_SHOW,
+      payload: {
+        body: body,
+        title: title,
+        skills: skills
+      }
+    }), 0);
+  },
 
 }
 

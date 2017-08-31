@@ -4,16 +4,19 @@ class NavItem extends Component {
   constructor(props) {
     super(props);
 
-    this.handleOnClick = this.handleOnClick.bind(this);
+    // this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   defaultClick(e) {
+    e.preventDefault();
     console.log('click');
   }
 
   handleOnClick(e) {
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    e.preventDefault();
+
+    if (this.props.click) {
+      this.props.click(e);
     } else {
       this.defaultClick(e);
     }
@@ -22,7 +25,7 @@ class NavItem extends Component {
   render() {
     return (
       <ul className="nav navbar-nav">
-        <li><a href={this.props.href} onClick={this.handleOnClick}>{this.props.text}</a></li>
+        <li><a href={this.props.href} onClick={ (e) => this.handleOnClick(e) }>{this.props.text}</a></li>
       </ul>
     );
   }

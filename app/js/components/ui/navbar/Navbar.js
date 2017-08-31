@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 import NavbarRight from './NavbarRight';
 import NavItem from './NavItem';
 import NavDropdown from './NavDropdown';
-import Config from '../Config';
+import Config from '../../Config';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
 
     let mainNavElems = [
-      { href: '#', text: 'Skills', onClick: () => console.log('skills click') },
+      { href: '#', text: 'Skills', onClick: () => this.showSkills() },
       { href: '#', text: 'Spellbook', onClick: () => console.log('spells click') },
       { href: '#', text: 'Inventory', onClick: () => console.log('inv click') }
     ];
 
     let topElems = [
       <NavDropdown title="Player" elems={mainNavElems} key={Config.randomKey('topNavItem')}/>,
-      <NavItem href="#" key={Config.randomKey('topNavItem')} text="Item" />
+      <NavItem href="#" key={Config.randomKey('topNavItem')} text="To Do" 
+        click={ () => this.showToDos() } />
     ];
 
     this.state = {
@@ -29,6 +30,14 @@ class Navbar extends Component {
         right: { body: this.props.store.getState().User.user_name }
       });
     });
+  }
+
+  showToDos() {
+    Config.modal(this.props.store, 'To Do List:<br/>', 'To Do List');
+  }
+
+  showSkills() {
+    Config.skillsModal(this.props.store);
   }
 
   render() {

@@ -4,12 +4,18 @@ import Messages from './Messages';
 import Planet from './Planet';
 import Inventory from './Inventory';
 import Skills from './Skills';
+import Config from '../components/Config';
+
+let APP = Config.ACTIONS.APP;
 
 const Reducers = (state = {}, action) => {
   const { type, payload } = action;
 
   if (!state.User) {
     state = {
+      App: {
+        modal: {}
+      },
       User: User(state, action),
       Player: Player(state, action),
       Messages: Messages(state, action),
@@ -40,11 +46,17 @@ const Reducers = (state = {}, action) => {
     case 'PLANET':
       Planet(state, action);
     break;
+    case 'APP':
+      switch (type) {
+        case APP.MODAL_SHOW:
+          state.App.modal = payload;
+        break;
+        case APP.MODAL_HIDE:
+          state.App.modal = { body: '' };
+        break;
+      }
+    break;
   }
-
-  // switch (type) {
-    // app actions?
-  // }
 
   return state;
 }
