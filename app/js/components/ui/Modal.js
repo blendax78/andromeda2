@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Skills from './Skills';
+import InventoryList from './InventoryList';
+import SkillsList from './SkillsList';
+import SpellBook from './SpellBook';
 import Config from '../Config';
 
 class Modal extends Component {
@@ -23,23 +25,48 @@ class Modal extends Component {
   }
 
   componentDidUpdate() {
-    // console.log(this.state.modal.skills);
-    if (this.state.modal && this.state.modal.body && this.state.modal.body.length > 0 || this.state.modal.skills === true) {
+    if ((typeof this.state.modal.body === 'string' && this.state.modal.body.length > 0) || typeof this.state.modal.body === 'object') {
       $('#modal-container').modal({ keyboard: false });
     }
   }
 
   setSkillsModal() {
     this.state.modal = {
-      body: <Skills store={this.props.store}/>,
+      body: <SkillsList store={this.props.store}/>,
       title: 'Skills',
-      skills: true
+      skills: true,
+      inventory: false,
+      spells: false
+    };
+  }
+
+  setSpellBookModal() {
+    this.state.modal = {
+      body: <SpellBook store={this.props.store}/>,
+      title: 'Spell Book',
+      spells: true,
+      inventory: false,
+      skills: false
+    };
+  }
+
+  setInventoryModal() {
+    this.state.modal = {
+      body: <InventoryList store={this.props.store}/>,
+      title: 'Inventory',
+      spells: false,
+      inventory: true,
+      skills: false
     };
   }
 
   setModalData() {
     if (this.state.modal.skills === true) {
-      this.setSkillsModal()
+      this.setSkillsModal();
+    } else if (this.state.modal.spells === true) {
+      this.setSpellBookModal();
+    } else if (this.state.modal.inventory === true) {
+      this.setInventoryModal();
     }
     
     this.state.modal.title = this.state.modal.title || '';

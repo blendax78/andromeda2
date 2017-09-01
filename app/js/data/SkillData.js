@@ -17,4 +17,13 @@ export const SkillData = {
     primary: 'strength',
     secondary: 'dexterity'
   },
+  wrestling: {
+    id: 2,
+    name: 'Wrestling',
+    description: '',
+    current: 10.0,
+    modifier: 0,
+    primary: 'strength',
+    secondary: 'dexterity'
+  },
 };

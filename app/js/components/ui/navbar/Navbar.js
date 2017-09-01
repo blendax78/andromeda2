@@ -9,9 +9,11 @@ class Navbar extends Component {
     super(props);
 
     let mainNavElems = [
-      { href: '#', text: 'Inventory', onClick: () => console.log('inv click') },
+      { href: '#', text: 'Inventory', onClick: () => this.showInventory() },
       { href: '#', text: 'Skills', onClick: () => this.showSkills() },
-      { href: '#', text: 'Spellbook', onClick: () => console.log('spells click') }
+      { href: '#', text: 'Spell Book', onClick: () => this.showSpells() },
+      { href: '#', type: 'divider' },
+      { href: '#', text: 'Player Effects', onClick: () => console.log('pe click') }
     ];
 
     let topElems = [
@@ -33,11 +35,23 @@ class Navbar extends Component {
   }
 
   showToDos() {
-    Config.modal(this.props.store, 'To Do List:<br/>', 'To Do List');
+    let todos = [
+      '<b>To Do List</b>',
+      'Encumbrance prevents running/walking'
+    ];
+    Config.modal(this.props.store, todos.join('<br/>'), 'To Do List');
   }
 
   showSkills() {
     Config.skillsModal(this.props.store);
+  }
+
+  showSpells() {
+    Config.spellBookModal(this.props.store);
+  }
+
+  showInventory() {
+    Config.inventoryModal(this.props.store);
   }
 
   render() {

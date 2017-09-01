@@ -8,15 +8,6 @@ const Skills = (state = {}, action) => {
 
   state.Skills = state.Skills || SkillData;
 
-  let notifyGain = (msg) => {
-    setTimeout(() => store.dispatch({
-      type: Config.ACTIONS.MESSAGES.GAIN,
-      payload: {
-        body: msg
-      }
-    }), 0);
-  };
-
   let checkStatGain = (skill) => {
     let gain = Math.round((Math.random() * 100) % 19);
 
@@ -27,7 +18,7 @@ const Skills = (state = {}, action) => {
 
       if (player[stat] < 100) {
         player[stat]++;
-        notifyGain(store, `${ Config.upperCase(stat) } increased by 1.`);
+        Config.notifyGain(store, `${ Config.upperCase(stat) } increased by 1.`);
       }
     }
   };
@@ -60,7 +51,23 @@ const Skills = (state = {}, action) => {
 
   let checkResultSuccess = () => {
     if (payload.action && payload.action.result) {
-      Config.notifyGain(store, payload.action.result.message); 
+      Config.notifyGain(store, payload.action.result.message);
+
+      if (payload.action.result.inventory === true) {
+
+        if (state.Player.encumbrance >= state.Player.maxencumbrance) {
+          Config.notify(store, 'You cannot carry any more.');
+          return;
+        }
+
+        setTimeout(() => store.dispatch({
+          type: Config.ACTIONS.INVENTORY.ADD,
+          payload: {
+            item: payload.action.result.item,
+            count: 1
+          }
+        }), 0);
+      }
     }
   };
 

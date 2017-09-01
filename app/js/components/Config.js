@@ -43,7 +43,8 @@ let Config = {
     },
     SKILLS: {
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
-      MINING: 'SKILLS.MINING'
+      MINING: 'SKILLS.MINING',
+      WRESTLING: 'SKILLS.WRESTLING'
     }
   },
 
@@ -61,25 +62,36 @@ let Config = {
 
   notify: (store, msg, type = this.a.ACTIONS.MESSAGES.ADD) => {
     setTimeout(() => store.dispatch({
-      type: this.a.ACTIONS.MESSAGES.GAIN,
+      type: type,
       payload: {
         body: msg
       }
     }), 0);
   },
 
-  skillsModal: (store) => {
-    this.a.modal(store, '', null, true);
+  inventoryModal: (store) => {
+    this.a.modal(store, '', null, false, false, true);
   },
 
-  modal: (store, body = '', title = null, skills = false) => {
+
+  skillsModal: (store) => {
+    this.a.modal(store, '', null, true, false, false);
+  },
+
+  spellBookModal: (store) => {
+    this.a.modal(store, '', null, false, true, false);
+  },
+
+  modal: (store, body = '', title = null, skills = false, spells = false, inventory = false) => {
     // Just send the store if the modal does more than just show text.
     setTimeout(() => store.dispatch({
       type: this.a.ACTIONS.APP.MODAL_SHOW,
       payload: {
         body: body,
         title: title,
-        skills: skills
+        skills: skills,
+        spells: spells,
+        inventory: inventory
       }
     }), 0);
   },

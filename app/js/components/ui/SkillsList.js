@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Config from '../Config';
 
-class Skills extends Component {
+class SkillsList extends Component {
   constructor(props) {
     super(props);
     
@@ -15,7 +15,7 @@ class Skills extends Component {
       return (
         <div className="row" key={Config.randomKey('skillModal')}>
           <div className="col-lg-6 col-md-6 col-sm-6">{skill.name}</div>
-          <div className="col-lg-6 col-md-6 col-sm-6">{skill.current}</div>
+          <div className="col-lg-6 col-md-6 col-sm-6">{skill.current.toFixed(1)}</div>
         </div>
       );
     });
@@ -31,4 +31,4 @@ class Skills extends Component {
 
 }
 
-export default Skills;
+export default SkillsList;

@@ -14,7 +14,9 @@ const Reducers = (state = {}, action) => {
   if (!state.User) {
     state = {
       App: {
-        modal: {}
+        modal: {
+          body: ''
+        }
       },
       User: User(state, action),
       Player: Player(state, action),

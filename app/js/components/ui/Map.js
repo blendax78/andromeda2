@@ -115,9 +115,9 @@ class Map extends Component {
     return (
         <div>
           <div className="row">
-            <div className="col-lg-4 col-md-4 col-sm-4 bold">
+            <h5 className="col-lg-4 col-md-4 col-sm-4 bold">
               {planet.current.name}
-            </div>
+            </h5>
           </div>
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12">

@@ -1,18 +1,22 @@
 export const ItemData = [
   {
     id: 1,
-    name: 'Plains Zone 1',
+    name: 'log',
+    plural: 'logs',
+    countable: true,
     description: '',
-    mobs: [],//should contain IDs
-    decorations: [], // object with id and chance
-    treasure: []
+    value: 0,
+    weight: 5,
+    type: 'items'
   },
   {
     id: 2,
-    name: 'Plains Zone 2',
-    description: 'The grasses look much taller here.',
-    mobs: [],
-    decorations: [],
-    treasure: []
+    name: 'ore',
+    plural: 'ore',
+    countable: true,
+    description: '',
+    value: 3,
+    weight: 10,
+    type: 'items'    
   }
 ];

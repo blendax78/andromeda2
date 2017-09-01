@@ -14,11 +14,8 @@ const Player = (state = {}, action) => {
     x: 0,
     y: 0,
     hp: Math.round(20/2) + 50,
-    maxhp: Math.round(20/2) + 50,
     mp: 20,
-    maxmp: 20,
     stamina: 20,
-    maxstamina: 20,
     strength: 20,
     intelligence: 20,
     dexterity: 20,
@@ -38,6 +35,11 @@ const Player = (state = {}, action) => {
       run: 0
     }
   };
+
+  state.Player.maxhp =  Math.round(state.Player.strength / 2) + 50;
+  state.Player.maxmp =  state.Player.intelligence;
+  state.Player.maxstamina =  state.Player.dexterity;
+  state.Player.maxencumbrance = state.Player.strength * 4;
 
   const { type, payload } = action;
 

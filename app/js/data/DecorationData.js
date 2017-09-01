@@ -12,7 +12,7 @@ export const DecorationData = [
       result: {
         message: 'You pick up some logs.',
         inventory: true,
-        item: 'a log', //Use ID
+        item: 1
       }
     }
   },
@@ -26,8 +26,8 @@ export const DecorationData = [
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',
-        inventory: true,
-        item: 'a log', //Use ID
+        inventory: true, // Means that a successful skill check will place this item in inventory
+        item: 1
       }
     }
   },
@@ -42,7 +42,7 @@ export const DecorationData = [
       result: {
         message: 'You pick up some logs.',
         inventory: true,
-        item: 'a log', //Use ID
+        item: 1
       }
     }      
   },
@@ -57,7 +57,7 @@ export const DecorationData = [
       result: {
         message: 'You pick up some ore.',
         inventory: true,
-        item: 'iron ore', //Use ID
+        item: 2
       }
     }      
   }
