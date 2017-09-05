@@ -30,6 +30,10 @@
   font-weight: bold;
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 .blue {
   color: blue;
 }
@@ -49,3 +53,4 @@
 button.btn-direction {
   min-width: 64px;
 }
+

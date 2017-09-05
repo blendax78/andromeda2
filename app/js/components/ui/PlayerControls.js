@@ -19,6 +19,11 @@ class PlayerControls extends Component {
   }
 
   move(dir) {
+    if (this.state.player.status.encumbered === true) {
+      Config.notifyWarning(store, 'You are too encumbered to move.');
+      return;
+    }    
+
     let w = this.state.planet.current.width;
     let h = this.state.planet.current.height;
 
@@ -73,26 +78,26 @@ class PlayerControls extends Component {
   updatePlayerMovement(movType) {
     switch (movType) {
       case Config.ACTIONS.PLAYER.RUN:
-        this.state.player.run = (this.state.player.stamina > 0) ? !this.state.player.run : false;
-        this.state.player.mount = false;
+        this.state.player.status.run = (this.state.player.stamina > 0) ? !this.state.player.status.run : false;
+        this.state.player.status.mount = false;
       break;
       case Config.ACTIONS.PLAYER.MOUNT:
-        this.state.player.run = false;
-        this.state.player.mount = !this.state.player.mount;
+        this.state.player.status.run = false;
+        this.state.player.status.mount = !this.state.player.status.mount;
       break;
       default:
-        this.state.player.run = false;
-        this.state.player.mount = false;
+        this.state.player.status.run = false;
+        this.state.player.status.mount = false;
       break;
     }
 
-    this.props.store.dispatch({ type: movType, payload: { run: this.state.player.run, mount: this.state.player.mount } });
+    this.props.store.dispatch({ type: movType, payload: { run: this.state.player.status.run, mount: this.state.player.status.mount } });
   }
 
   componentDidMount() {
     // Arrow functions inherit 'this' from outer function.
     $("#run_check").off('change').on('change', () => {
-      this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
+      this.updatePlayerMovement(Config.ACTIONS.PLAYER.STATUS.RUN);
     });
 
     $(document).off('keyup').on('keyup', (e) => {
@@ -115,15 +120,12 @@ class PlayerControls extends Component {
 
   componentDidUpdate() {
     let check = $('#run_check');
-    if (check.prop('checked') && this.state.player.run === false) {
+    if (check.prop('checked') && this.state.player.status.run === false) {
       check.bootstrapToggle('off', false);
     }
   }
 
   render() {
-    // console.log('run', this.state.player.run);
-    // $('#run_check').bootstrapToggle('on');
-
     let player = this.state.player;
     let planet = this.state.planet;
 
@@ -159,7 +161,7 @@ class PlayerControls extends Component {
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-6">
                 <label className="checkbox-inline">
-                  <input type="checkbox" defaultChecked={this.state.player.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
+                  <input type="checkbox" defaultChecked={this.state.player.status.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
                 </label>
               </div>
               <div className="col-lg-6 col-md-6 col-sm-6">

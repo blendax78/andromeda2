@@ -36,10 +36,16 @@ class Navbar extends Component {
 
   showToDos() {
     let todos = [
-      '<b>To Do List</b>',
-      'Encumbrance prevents running/walking'
+      <li className="line-through">Encumbrance prevents running/walking</li>,
+      <li>Towns</li>,
+      <li>Mobs</li>,
+      <li>Battles</li>,
+      <li>Corpses</li>,
+      <li>Dungeons</li>,
+      <li>Magic</li>
     ];
-    Config.modal(this.props.store, todos.join('<br/>'), 'To Do List');
+
+    Config.modal(this.props.store, <ul>{todos}</ul>, 'To Do List');
   }
 
   showSkills() {

@@ -22,9 +22,13 @@ const Player = (state = {}, action) => {
     user_id: 1,
     credits: 15,
     encumbrance: 0,
-    hide: false,
-    run: false,
-    mount: false,
+    status: {
+      hide: false,
+      run: false,
+      mount: false,
+      encumbered: false,
+      paralyzed: false
+    },
     partial: {
       stamina: 0,
       hp: 0,
@@ -32,7 +36,9 @@ const Player = (state = {}, action) => {
     },
     score: {
       walked: 0,
-      run: 0
+      run: 0,
+      logs: 0,
+      ore: 0
     }
   };
 
@@ -40,6 +46,11 @@ const Player = (state = {}, action) => {
   state.Player.maxmp =  state.Player.intelligence;
   state.Player.maxstamina =  state.Player.dexterity;
   state.Player.maxencumbrance = state.Player.strength * 4;
+
+  if (state.Player.encumbrance >= state.Player.maxencumbrance) {
+    state.Player.status.encumbered = true;
+    state.Player.status.run = false;
+  } 
 
   const { type, payload } = action;
 
@@ -74,6 +85,8 @@ const Player = (state = {}, action) => {
   }
 
   let move = (current, change, max,) => {
+    change = (state.Player.encumbered === true || state.Player.paralyzed === true) ? 0 : change;
+
     if (change > 0 && current + change > max) {
       return max;
     } else if (change < 0 && current + change < 0) {
@@ -84,8 +97,8 @@ const Player = (state = {}, action) => {
   };
 
   let increment = () => {
-    if (state.Player.run) {
-      state.Player.score.run++;
+    if (state.Player.status.run) {
+      state.Player.score.status.run++;
       return 2;
     } else if (state.Player.mount) {
       return 3;
@@ -132,23 +145,23 @@ const Player = (state = {}, action) => {
     break;
     case PLAYER.EAST:
       state.Player.x = move(state.Player.x, increment(), payload.maxx);
-      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
-      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
+      state.Player.stamina = (state.Player.status.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.WEST:
       state.Player.x = move(state.Player.x, -increment(), payload.maxx);
-      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
-      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
+      state.Player.stamina = (state.Player.status.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.NORTH:
       state.Player.y = move(state.Player.y, -increment(), payload.maxy);
-      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
-      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
+      state.Player.stamina = (state.Player.status.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.SOUTH:
       state.Player.y = move(state.Player.y, increment(), payload.maxy);
-      state.Player.stamina = (state.Player.run) ? update_stamina(-1) : state.Player.stamina;
-      state.Player.run = (state.Player.stamina === 0) ? false : state.Player.run;
+      state.Player.stamina = (state.Player.status.run) ? update_stamina(-1) : state.Player.stamina;
+      state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.TICK:
       if (update_partials('hp')) {

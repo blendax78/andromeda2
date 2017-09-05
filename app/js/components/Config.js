@@ -26,7 +26,8 @@ let Config = {
       REMOVE: 'MSGS.REMOVE',
       ERROR: 'MSGS.ERROR',
       SPEAK: 'MSGS.SPEAK',
-      GAIN: 'MSGS.GAIN'
+      GAIN: 'MSGS.GAIN',
+      WARNING: 'MSGS.WARNING'
     },
     PLANET: {
       GET: 'PLANET.GET'
@@ -58,6 +59,10 @@ let Config = {
 
   notifyGain: (store, msg) => {
     this.a.notify(store, msg, this.a.ACTIONS.MESSAGES.GAIN);
+  },
+
+  notifyWarning: (store, msg) => {
+    this.a.notify(store, msg, this.a.ACTIONS.MESSAGES.WARNING);
   },
 
   notify: (store, msg, type = this.a.ACTIONS.MESSAGES.ADD) => {
