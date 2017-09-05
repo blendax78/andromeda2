@@ -75,19 +75,23 @@ let Config = {
   },
 
   inventoryModal: (store) => {
-    this.a.modal(store, '', null, false, false, true);
+    this.a.modal(store, '', null, false, false, true, false);
   },
 
 
   skillsModal: (store) => {
-    this.a.modal(store, '', null, true, false, false);
+    this.a.modal(store, '', null, true, false, false, false);
+  },
+
+  playerStatsModal: (store) => {
+    this.a.modal(store, '', null, false, false, false, true);
   },
 
   spellBookModal: (store) => {
-    this.a.modal(store, '', null, false, true, false);
+    this.a.modal(store, '', null, false, true, false, false);
   },
 
-  modal: (store, body = '', title = null, skills = false, spells = false, inventory = false) => {
+  modal: (store, body = '', title = null, skills = false, spells = false, inventory = false, stats = false) => {
     // Just send the store if the modal does more than just show text.
     setTimeout(() => store.dispatch({
       type: this.a.ACTIONS.APP.MODAL_SHOW,
@@ -96,7 +100,8 @@ let Config = {
         title: title,
         skills: skills,
         spells: spells,
-        inventory: inventory
+        inventory: inventory,
+        stats: stats
       }
     }), 0);
   },

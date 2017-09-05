@@ -6,7 +6,7 @@ export const ItemData = [
     countable: true,
     description: '',
     value: 0,
-    weight: 125,
+    weight: 5,
     type: 'items'
   },
   {

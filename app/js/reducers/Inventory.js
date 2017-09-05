@@ -33,6 +33,10 @@ const Inventory = (state = {}, action) => {
         state.Inventory[item.type].push(item);
       }
 
+      if (payload.score && payload.score === true) {
+        state.Player.score[item.name]++;
+      }
+
       state.Player.encumbrance = calcEncumbrance();
 
     break;

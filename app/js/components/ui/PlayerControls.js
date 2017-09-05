@@ -97,7 +97,7 @@ class PlayerControls extends Component {
   componentDidMount() {
     // Arrow functions inherit 'this' from outer function.
     $("#run_check").off('change').on('change', () => {
-      this.updatePlayerMovement(Config.ACTIONS.PLAYER.STATUS.RUN);
+      this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
     });
 
     $(document).off('keyup').on('keyup', (e) => {

@@ -64,7 +64,8 @@ const Skills = (state = {}, action) => {
           type: Config.ACTIONS.INVENTORY.ADD,
           payload: {
             item: payload.action.result.item,
-            count: 1
+            count: 1,
+            score: true
           }
         }), 0);
       }

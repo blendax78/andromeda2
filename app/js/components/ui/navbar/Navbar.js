@@ -13,7 +13,8 @@ class Navbar extends Component {
       { href: '#', text: 'Skills', onClick: () => this.showSkills() },
       { href: '#', text: 'Spell Book', onClick: () => this.showSpells() },
       { href: '#', type: 'divider' },
-      { href: '#', text: 'Player Effects', onClick: () => console.log('pe click') }
+      { href: '#', text: 'Player Effects', onClick: () => console.log('pe click') },
+      { href: '#', text: 'Player Stats', onClick: () => this.showPlayerStats() }
     ];
 
     let topElems = [
@@ -54,6 +55,10 @@ class Navbar extends Component {
 
   showSpells() {
     Config.spellBookModal(this.props.store);
+  }
+
+  showPlayerStats() {
+    Config.playerStatsModal(this.props.store);
   }
 
   showInventory() {

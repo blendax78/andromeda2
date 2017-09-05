@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import InventoryList from './InventoryList';
 import SkillsList from './SkillsList';
 import SpellBook from './SpellBook';
+import PlayerStats from './PlayerStats';
 import Config from '../Config';
 
 class Modal extends Component {
@@ -36,7 +37,8 @@ class Modal extends Component {
       title: 'Skills',
       skills: true,
       inventory: false,
-      spells: false
+      spells: false,
+      stats: false
     };
   }
 
@@ -46,7 +48,19 @@ class Modal extends Component {
       title: 'Spell Book',
       spells: true,
       inventory: false,
-      skills: false
+      skills: false,
+      stats: false
+    };
+  }
+
+  setPlayerStatsModal() {
+    this.state.modal = {
+      body: <PlayerStats store={this.props.store}/>,
+      title: 'Player Stats',
+      spells: false,
+      inventory: false,
+      skills: false,
+      stats: true
     };
   }
 
@@ -56,7 +70,8 @@ class Modal extends Component {
       title: 'Inventory',
       spells: false,
       inventory: true,
-      skills: false
+      skills: false,
+      stats: false
     };
   }
 
@@ -67,6 +82,8 @@ class Modal extends Component {
       this.setSpellBookModal();
     } else if (this.state.modal.inventory === true) {
       this.setInventoryModal();
+    } else if (this.state.modal.stats === true) {
+      this.setPlayerStatsModal();
     }
     
     this.state.modal.title = this.state.modal.title || '';
