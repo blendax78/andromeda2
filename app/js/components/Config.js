@@ -46,6 +46,9 @@ let Config = {
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MINING: 'SKILLS.MINING',
       WRESTLING: 'SKILLS.WRESTLING'
+    },
+    MOBS: {
+      GET: 'MOBS.GET'
     }
   },
 
@@ -74,34 +77,14 @@ let Config = {
     }), 0);
   },
 
-  inventoryModal: (store) => {
-    this.a.modal(store, '', null, false, false, true, false);
-  },
-
-
-  skillsModal: (store) => {
-    this.a.modal(store, '', null, true, false, false, false);
-  },
-
-  playerStatsModal: (store) => {
-    this.a.modal(store, '', null, false, false, false, true);
-  },
-
-  spellBookModal: (store) => {
-    this.a.modal(store, '', null, false, true, false, false);
-  },
-
-  modal: (store, body = '', title = null, skills = false, spells = false, inventory = false, stats = false) => {
-    // Just send the store if the modal does more than just show text.
+  modal: (store, body = '', title = null, type = '', data = {}) => {
     setTimeout(() => store.dispatch({
       type: this.a.ACTIONS.APP.MODAL_SHOW,
       payload: {
         body: body,
         title: title,
-        skills: skills,
-        spells: spells,
-        inventory: inventory,
-        stats: stats
+        type: type,
+        data: data, //extra data
       }
     }), 0);
   },

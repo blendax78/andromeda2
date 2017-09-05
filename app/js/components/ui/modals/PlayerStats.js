@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Config from '../Config';
+import Config from '../../Config';
 
 class PlayerStats extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class PlayerStats extends Component {
         <div className="col-lg-12 col-md-12 col-sm-12">
           <p><span className="bold">Walking Steps: </span>{this.state.player.score.walked}</p>
           <p><span className="bold">Running Steps: </span>{this.state.player.score.run}</p>
+          <p><span className="bold">Kills: </span>{this.state.player.score.kills}</p>
           <p><span className="bold">Logs Found: </span>{this.state.player.score.log}</p>
           <p><span className="bold">Ore Found: </span>{this.state.player.score.ore}</p>
         </div>

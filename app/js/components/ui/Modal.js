@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import InventoryList from './InventoryList';
-import SkillsList from './SkillsList';
-import SpellBook from './SpellBook';
-import PlayerStats from './PlayerStats';
+import InventoryList from './modals/InventoryList';
+import SkillsList from './modals/SkillsList';
+import SpellBook from './modals/SpellBook';
+import PlayerStats from './modals/PlayerStats';
+import MobActions from './modals/MobActions';
 import Config from '../Config';
 
 class Modal extends Component {
@@ -35,10 +36,7 @@ class Modal extends Component {
     this.state.modal = {
       body: <SkillsList store={this.props.store}/>,
       title: 'Skills',
-      skills: true,
-      inventory: false,
-      spells: false,
-      stats: false
+      type: 'skills'
     };
   }
 
@@ -46,10 +44,7 @@ class Modal extends Component {
     this.state.modal = {
       body: <SpellBook store={this.props.store}/>,
       title: 'Spell Book',
-      spells: true,
-      inventory: false,
-      skills: false,
-      stats: false
+      type: 'spells'
     };
   }
 
@@ -57,10 +52,7 @@ class Modal extends Component {
     this.state.modal = {
       body: <PlayerStats store={this.props.store}/>,
       title: 'Player Stats',
-      spells: false,
-      inventory: false,
-      skills: false,
-      stats: true
+      type: 'player_stats'
     };
   }
 
@@ -68,22 +60,39 @@ class Modal extends Component {
     this.state.modal = {
       body: <InventoryList store={this.props.store}/>,
       title: 'Inventory',
-      spells: false,
-      inventory: true,
-      skills: false,
-      stats: false
+      type: 'inventory'
     };
   }
 
+  setMobActionsModal() {
+    let mob = this.state.modal.data;
+
+    if (mob) {
+      this.state.modal = {
+        body: <MobActions store={this.props.store} mob={mob}/>,
+        title: Config.upperCase(mob.name) + ' - Actions',
+        type: 'mob_actions'
+      };
+    }
+  }
+
   setModalData() {
-    if (this.state.modal.skills === true) {
-      this.setSkillsModal();
-    } else if (this.state.modal.spells === true) {
-      this.setSpellBookModal();
-    } else if (this.state.modal.inventory === true) {
-      this.setInventoryModal();
-    } else if (this.state.modal.stats === true) {
-      this.setPlayerStatsModal();
+    switch (this.state.modal.type) {
+      case 'skills':
+        this.setSkillsModal();
+      break;
+      case 'spells':
+        this.setSpellBookModal();
+      break;
+      case 'inventory':
+        this.setInventoryModal();
+      break;
+      case 'player_stats':
+        this.setPlayerStatsModal();
+      break;
+      case 'mob_actions':
+        this.setMobActionsModal();
+      break;
     }
     
     this.state.modal.title = this.state.modal.title || '';

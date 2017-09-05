@@ -9,6 +9,7 @@ class Decoration extends Component {
       data: this.props.data
     };
 
+    // Doesn't need to subscribe. Component is updated on Map
     // props.store.subscribe(() => {
     //   this.setState({
         // planet: this.props.store.getState().Planet,

@@ -1,6 +1,7 @@
 import Config from '../components/Config';
 import { PlanetData } from '../data/PlanetData';
 import { DecorationData } from '../data/DecorationData';
+import { MobData } from '../data/MobData';
 import { ZoneData } from '../data/ZoneData';
 
 let PLANET = Config.ACTIONS.PLANET;
@@ -23,6 +24,10 @@ const Planet = (state = {}, action) => {
       _.each(state.Planet.current.zones, (zone) => {
         _.extend(zone, _.findWhere(ZoneData, { id: zone.id }));
         
+        _.each(zone.mobs, (mob) => {
+          _.extend(mob, _.findWhere(MobData, { id: mob.id }));
+        });
+
         _.each(zone.decorations, (decoration) => {
           _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
         });
@@ -32,6 +37,10 @@ const Planet = (state = {}, action) => {
 
       _.each(state.Planet.defaultZone.decorations, (decoration) => {
         _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
+      });
+
+      _.each(state.Planet.defaultZone.mobs, (mob) => {
+        _.extend(mob, _.findWhere(MobData, { id: mob.id }));
       });
     break;
   }

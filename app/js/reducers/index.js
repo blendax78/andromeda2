@@ -4,6 +4,7 @@ import Messages from './Messages';
 import Planet from './Planet';
 import Inventory from './Inventory';
 import Skills from './Skills';
+import Mobs from './Mobs';
 import Config from '../components/Config';
 
 let APP = Config.ACTIONS.APP;
@@ -23,7 +24,8 @@ const Reducers = (state = {}, action) => {
       Messages: Messages(state, action),
       Planet: Planet(state, action),
       Inventory: Inventory(state, action),
-      Skills: Skills(state, action)
+      Skills: Skills(state, action),
+      Mobs: Mobs(state, action)
     }
   }
 
@@ -47,6 +49,9 @@ const Reducers = (state = {}, action) => {
     break;
     case 'PLANET':
       Planet(state, action);
+    break;
+    case 'MOBS':
+      Mobs(state, action);
     break;
     case 'APP':
       switch (type) {

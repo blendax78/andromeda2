@@ -38,11 +38,12 @@ class Navbar extends Component {
   showToDos() {
     let todos = [
       <li className="line-through">Encumbrance prevents running/walking</li>,
-      <li>Towns</li>,
       <li>Mobs</li>,
+      <li>Towns</li>,
       <li>Battles</li>,
       <li>Corpses</li>,
       <li>Dungeons</li>,
+      <li>Crafting</li>,
       <li>Magic</li>
     ];
 
@@ -50,19 +51,19 @@ class Navbar extends Component {
   }
 
   showSkills() {
-    Config.skillsModal(this.props.store);
+    Config.modal(this.props.store, '', '', 'skills');
   }
 
   showSpells() {
-    Config.spellBookModal(this.props.store);
+    Config.modal(this.props.store, '', '', 'spells');
   }
 
   showPlayerStats() {
-    Config.playerStatsModal(this.props.store);
+    Config.modal(this.props.store, '', '', 'player_stats');
   }
 
   showInventory() {
-    Config.inventoryModal(this.props.store);
+    Config.modal(this.props.store, '', '', 'inventory');
   }
 
   render() {

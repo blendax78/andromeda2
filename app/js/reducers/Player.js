@@ -35,6 +35,7 @@ const Player = (state = {}, action) => {
       mp: 0
     },
     score: {
+      kills: 0,
       walked: 0,
       run: 0,
       log: 0,

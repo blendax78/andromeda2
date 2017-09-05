@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Config from '../Config';
+import Config from '../../Config';
 
-class SkillsList extends Component {
+class SpellBook extends Component {
   constructor(props) {
     super(props);
     
@@ -31,4 +31,4 @@ class SkillsList extends Component {
 
 }
 
-export default SkillsList;
+export default SpellBook;

@@ -5,7 +5,7 @@ const User = (state = {}, action) => {
   state.User = state.User || {
     id: 1,
     name: 'empty',
-    user_name: 'blendax78',
+    user_name: 'test user',
     token: ''
   };
 
