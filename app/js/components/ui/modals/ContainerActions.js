@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Config from '../../Config';
 
-class MobActions extends Component {
+class ContainerActions extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      mob: props.mob
+      data: props.data
     };
   }
 
@@ -14,7 +14,7 @@ class MobActions extends Component {
     return (
       <div className="row">
         <div className="col-lg-12 col-md-12 col-sm-12">
-          <p>hi {this.state.mob.name}.</p>
+          <p>hi</p>
         </div>
       </div>
     );
@@ -22,4 +22,4 @@ class MobActions extends Component {
 
 }
 
-export default MobActions;
+export default ContainerActions;

@@ -1,10 +1,16 @@
 // System-wide functions and variables.
+import * as UUID from 'uuid';
+
 let Config = {
   appName: 'Andromeda',
   ACTIONS: {
     APP: {
       MODAL_SHOW: 'APP.MODAL.SHOW',
       MODAL_HIDE: 'APP.MODAL.HIDE'
+    },
+    COMBAT: {
+      RUN: 'COMBAT.RUN',
+      MELEE: 'COMBAT.MELEE'
     },
     USER: {
       GET: 'USER.GET'
@@ -48,8 +54,11 @@ let Config = {
       WRESTLING: 'SKILLS.WRESTLING'
     },
     MOBS: {
-      GET: 'MOBS.GET',
-      CREATE: 'MOBS.CREATE'
+      CREATE: 'MOBS.CREATE',
+      CLEAR_COMBAT: 'MOBS.CLEAR_COMBAT',
+      IN_COMBAT: 'MOBS.IN_COMBAT',
+      SHOW_ACTION: 'MOBS.SHOW_ACTION',
+      SHOW_COMBAT: 'MOBS.SHOW_COMBAT'
     }
   },
 
@@ -58,7 +67,7 @@ let Config = {
   },
 
   randomKey: (text = '') => {
-    return text + new Date().getTime() + Math.round(Math.random() * 1000000);
+    return text + UUID();
   },
 
   notifyGain: (store, msg) => {

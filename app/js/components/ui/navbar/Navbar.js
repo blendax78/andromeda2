@@ -35,16 +35,21 @@ class Navbar extends Component {
     });
   }
 
+  componentWillUnmount() {
+    // Make sure to unsubscribe!
+    this.props.store.unsubscribe();
+  }
+
   showToDos() {
     let todos = [
-      <li className="line-through">Encumbrance prevents running/walking</li>,
-      <li>Mobs</li>,
-      <li>Towns</li>,
-      <li>Battles</li>,
-      <li>Corpses</li>,
-      <li>Dungeons</li>,
-      <li>Crafting</li>,
-      <li>Magic</li>
+      <li key={Config.randomKey('li')} className="line-through">Encumbrance prevents running/walking</li>,
+      <li key={Config.randomKey('li')}>Mobs</li>,
+      <li key={Config.randomKey('li')}>Towns</li>,
+      <li key={Config.randomKey('li')}>Battles</li>,
+      <li key={Config.randomKey('li')}>Corpses</li>,
+      <li key={Config.randomKey('li')}>Dungeons</li>,
+      <li key={Config.randomKey('li')}>Crafting</li>,
+      <li key={Config.randomKey('li')}>Magic</li>
     ];
 
     Config.modal(this.props.store, <ul>{todos}</ul>, 'To Do List');

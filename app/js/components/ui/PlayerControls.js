@@ -18,6 +18,11 @@ class PlayerControls extends Component {
     });
   }
 
+  componentWillUnmount() {
+    // Make sure to unsubscribe!
+    this.props.store.unsubscribe();
+  }
+
   move(dir) {
     if (this.state.player.status.encumbered === true) {
       Config.notifyWarning(store, 'You are too encumbered to move.');

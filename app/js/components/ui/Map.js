@@ -22,6 +22,11 @@ class Map extends Component {
     });
   }
 
+  componentWillUnmount() {
+    // Make sure to unsubscribe!
+    this.props.store.unsubscribe();
+  }
+
   componentDidMount() {
     this.props.store.dispatch({
       type: Config.ACTIONS.PLANET.GET,

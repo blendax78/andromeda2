@@ -16,6 +16,11 @@ class BottomPanel extends Component {
     });
   }
 
+  componentWillUnmount() {
+    // Make sure to unsubscribe!
+    this.props.store.unsubscribe();
+  }
+
   render() {
     let messageList = $.map(this.state.messages, function(message, index) {
       let style = { color: message.color };

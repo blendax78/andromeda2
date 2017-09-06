@@ -3,7 +3,7 @@ import InventoryList from './modals/InventoryList';
 import SkillsList from './modals/SkillsList';
 import SpellBook from './modals/SpellBook';
 import PlayerStats from './modals/PlayerStats';
-import MobActions from './modals/MobActions';
+import ContainerActions from './modals/ContainerActions';
 import Config from '../Config';
 
 class Modal extends Component {
@@ -20,6 +20,11 @@ class Modal extends Component {
         modal: props.store.getState().App.modal
       });
     });
+  }
+
+  componentWillUnmount() {
+    // Make sure to unsubscribe!
+    this.props.store.unsubscribe();
   }
 
   clearModal() {
@@ -68,14 +73,14 @@ class Modal extends Component {
     };
   }
 
-  setMobActionsModal() {
+  setContainerActionsModal() {
     let mob = this.state.modal.data;
 
     if (mob) {
       this.state.modal = {
-        body: <MobActions store={this.props.store} mob={mob}/>,
-        title: Config.upperCase(mob.name) + ' - Actions',
-        type: 'mob_actions'
+        body: <ContainerActions store={this.props.store} data={mob}/>,
+        title: 'Container',
+        type: 'container_actions'
       };
     }
   }
@@ -94,8 +99,8 @@ class Modal extends Component {
       case 'player_stats':
         this.setPlayerStatsModal();
       break;
-      case 'mob_actions':
-        this.setMobActionsModal();
+      case 'container_actions':
+        this.setContainerActionsModal();
       break;
     }
     
