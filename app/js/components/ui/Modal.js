@@ -28,8 +28,12 @@ class Modal extends Component {
 
   componentDidUpdate() {
     if ((typeof this.state.modal.body === 'string' && this.state.modal.body.length > 0) || typeof this.state.modal.body === 'object') {
-      $('#modal-container').modal({ keyboard: false });
+      $('#modal-container').modal();
     }
+
+    $('#modal-container').on('hide.bs.modal', () => {
+      this.clearModal();
+    });      
   }
 
   setSkillsModal() {

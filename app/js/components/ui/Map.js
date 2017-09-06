@@ -9,13 +9,15 @@ class Map extends Component {
 
     this.state = {
       planet: props.store.getState().Planet,
-      player: props.store.getState().Player
+      player: props.store.getState().Player,
+      mobs: props.store.getState().Mobs
     };
 
     props.store.subscribe(() => {
       this.setState({
         planet: this.props.store.getState().Planet,
-        player: this.props.store.getState().Player
+        player: this.props.store.getState().Player,
+        mobs: this.props.store.getState().Mobs
       });
     });
   }
@@ -146,13 +148,26 @@ class Map extends Component {
             y: this.state.player.y
           }, _.last(potentialMobs));
 
+          found.hp = found.maxhp;
+
+          this.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
+
+          found.hp = found.maxhp;
           mobs.push(found);
 
-          this.state.planet.locations.push(found);
+          Config.dispatch(this.props.store, Config.ACTIONS.MOBS.CREATE, { mob: found });
+
         }
       }
     } else {
-      mobs = locations;
+      // go through locations and get state.mobs by key
+      mobs = _.map(locations, (location) => {
+        if (location.key && this.state.mobs.list[location.key]) {
+          return this.state.mobs.list[location.key];
+        } else {
+          return location;
+        }
+      });
     }
 
     if (mobs.length === 0) {

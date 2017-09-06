@@ -3,10 +3,8 @@ let MOBS = Config.ACTIONS.MOBS;
 
 const Mobs = (state = {}, action) => {
   state.Mobs = state.Mobs || {
-    id: 1,
-    name: 'empty',
-    user_name: 'test user',
-    token: ''
+    list: {},
+    action: {}
   };
 
   const { type, payload } = action;
@@ -14,6 +12,9 @@ const Mobs = (state = {}, action) => {
   switch (type) {
     case MOBS.GET:
       // Do nothing
+    break;
+    case MOBS.CREATE:
+      state.Mobs.list[payload.mob.key] = payload.mob;
     break;
   }
 

@@ -17,23 +17,12 @@ class Mob extends Component {
     // });
   }
 
+  getMobAction
+
   handleClick(e) {
     e.preventDefault();
-    console.log('click mob');
+
     Config.modal(this.props.store, '', '', 'mob_actions', this.state.mob);
-    // let decoration = this.state.data;
-    // if (!decoration.action) {
-    //   return false;
-    // }
-
-    // if (decoration.action.current > 0) {
-    //   this.props.store.dispatch({ type: Config.ACTIONS.MESSAGES.ADD, payload: { body: decoration.action.message } });
-    //   this.props.store.dispatch({ type: decoration.action.skill, payload: { action: decoration.action, key: decoration.key } });
-
-    //   this.setState({ data: decoration });
-    // } else {
-    //   this.props.store.dispatch({ type: Config.ACTIONS.MESSAGES.ADD, payload: { body: decoration.action.maxMessage } });
-    // }
   }
 
   render() {

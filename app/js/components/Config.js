@@ -48,7 +48,8 @@ let Config = {
       WRESTLING: 'SKILLS.WRESTLING'
     },
     MOBS: {
-      GET: 'MOBS.GET'
+      GET: 'MOBS.GET',
+      CREATE: 'MOBS.CREATE'
     }
   },
 
@@ -86,6 +87,13 @@ let Config = {
         type: type,
         data: data, //extra data
       }
+    }), 0);
+  },
+
+  dispatch: (store, type, payload) => {
+    setTimeout(() => store.dispatch({
+      type: type,
+      payload: payload
     }), 0);
   },
 
