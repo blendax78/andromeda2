@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Config from '../Config';
 import * as classNames from 'classnames';
-// import * as UUID from 'uuid';
 
 class Combat extends Component {
   constructor(props) {
