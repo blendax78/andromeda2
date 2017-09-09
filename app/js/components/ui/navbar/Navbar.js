@@ -49,7 +49,8 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')}>Corpses</li>,
       <li key={Config.randomKey('li')}>Dungeons</li>,
       <li key={Config.randomKey('li')}>Crafting</li>,
-      <li key={Config.randomKey('li')}>Magic</li>
+      <li key={Config.randomKey('li')}>Magic</li>,
+      <li key={Config.randomKey('li')}>Oceans & Boats</li>
     ];
 
     Config.modal(this.props.store, <ul>{todos}</ul>, 'To Do List');
