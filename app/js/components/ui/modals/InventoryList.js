@@ -10,6 +10,10 @@ class InventoryList extends Component {
     };
   }
 
+  clickDrop(item) {
+    this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.REMOVE, payload: {item: item.id, count: 1}});
+  }
+
   organizeItems(items) {
     // might break this into different functions: organizeWeapons(), organizeItems(), organizeArmor()
     // return <div> element from a separate function
@@ -25,7 +29,11 @@ class InventoryList extends Component {
 
       return (
         <div className="row" key={Config.randomKey('inventoryItem')}>
-          <div className="col-lg-12 col-md-12 col-sm-12">{name}</div>
+          <div className="col-lg-4 col-md-4 col-sm-4">{name}</div>
+          <div className="col-lg-4 col-md-4 col-sm-4">
+            <span className="glyphicon glyphicon-trash clickable" onClick={() => { this.clickDrop(inventory); } } data-id="data"></span>
+          </div>
+          <div className="col-lg-4 col-md-4 col-sm-4"></div>
         </div>
       );
     });

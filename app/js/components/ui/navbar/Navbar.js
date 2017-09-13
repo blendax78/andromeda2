@@ -43,14 +43,15 @@ class Navbar extends Component {
   showToDos() {
     let todos = [
       <li key={Config.randomKey('li')} className="line-through">Encumbrance prevents running/walking</li>,
-      <li key={Config.randomKey('li')}>Mobs</li>,
+      <li key={Config.randomKey('li')} className="line-through">Mobs</li>,
       <li key={Config.randomKey('li')}>Towns</li>,
       <li key={Config.randomKey('li')}>Battles</li>,
       <li key={Config.randomKey('li')}>Corpses</li>,
       <li key={Config.randomKey('li')}>Dungeons</li>,
       <li key={Config.randomKey('li')}>Crafting</li>,
       <li key={Config.randomKey('li')}>Magic</li>,
-      <li key={Config.randomKey('li')}>Oceans & Boats</li>
+      <li key={Config.randomKey('li')}>Oceans & Boats</li>,
+      <li key={Config.randomKey('li')}>(Eventually) Dropped items appear on ground</li>
     ];
 
     Config.modal(this.props.store, <ul>{todos}</ul>, 'To Do List');

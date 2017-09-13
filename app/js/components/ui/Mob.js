@@ -14,7 +14,7 @@ class Mob extends Component {
 
     props.store.subscribe(() => {
       this.setState({
-        mob: this.props.store.getState().Mobs.combat || this.props.data,
+        mob: this.state.mob,
         showAction: this.props.store.getState().Mobs.showAction,
         showCombat: this.props.store.getState().Mobs.showCombat
       });
@@ -23,8 +23,9 @@ class Mob extends Component {
 
   componentWillUnmount() {
     // Make sure to unsubscribe!
-    // this is throwing an error when you see a mob and leave the room.
-    this.props.store.unsubscribe();
+    if (this.props.store && this.props.store.unsubscribe) {
+      this.props.store.unsubscribe();
+    }
   }
 
   setMobAction(e) {

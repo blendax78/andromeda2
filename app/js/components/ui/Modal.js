@@ -28,7 +28,9 @@ class Modal extends Component {
   }
 
   clearModal() {
-    this.props.store.dispatch({ type: Config.ACTIONS.APP.MODAL_HIDE, payload: {} });
+    if ((typeof this.state.modal.body === 'string' && this.state.modal.body.length > 0) || typeof this.state.modal.body === 'object') {
+      this.props.store.dispatch({ type: Config.ACTIONS.APP.MODAL_HIDE, payload: {} });
+    }
   }
 
   componentDidUpdate() {

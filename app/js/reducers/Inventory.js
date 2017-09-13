@@ -21,11 +21,11 @@ const Inventory = (state = {}, action) => {
     return encumbrance;
   }
 
+  let item = (payload && payload.item) ? _.extend({}, _.findWhere(ItemData, { id: payload.item })) : {};
+  let inventoryItem = _.findWhere(state.Inventory[item.type], { id: item.id });
+
   switch (type) {
     case INVENTORY.ADD:
-      let item = _.extend({}, _.findWhere(ItemData, { id: payload.item }));
-      let inventoryItem = _.findWhere(state.Inventory[item.type], { id: item.id });
-
       if (item.countable === true && inventoryItem !== undefined) {
         inventoryItem.count += payload.count || 1;
       } else {
@@ -41,6 +41,19 @@ const Inventory = (state = {}, action) => {
 
     break;
     case INVENTORY.REMOVE:
+      if (item.countable === false) {
+        if (inventoryItem) {
+          let index = _.findIndex(state.Inventory[item.type], (inv) => {
+            return inv.id === item.id;
+          });
+
+          state.Inventory[item.type].splice(index, 1);
+        }
+      } else {
+        if (inventoryItem) {
+          inventoryItem.count -= payload.count;
+        }
+      }
 
     break;
   }

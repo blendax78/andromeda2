@@ -54,3 +54,7 @@ button.btn-direction {
   min-width: 64px;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
