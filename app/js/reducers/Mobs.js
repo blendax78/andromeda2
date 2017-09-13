@@ -14,11 +14,13 @@ const Mobs = (state = {}, action) => {
   switch (type) {
     case MOBS.SHOW_ACTION:
       state.Mobs.showAction = !state.Mobs.showAction;
-      console.log(state.Mobs);
+
+      if (!state.Mobs.showAction) {
+        state.Mobs.showCombat = false;
+      }
     break;
     case MOBS.SHOW_COMBAT:
       state.Mobs.showCombat = !state.Mobs.showCombat;
-      console.log(state.Mobs);
     break;
     case MOBS.CREATE:
       state.Mobs.list[payload.mob.key] = payload.mob;

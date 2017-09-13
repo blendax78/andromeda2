@@ -11,7 +11,9 @@ class InventoryList extends Component {
   }
 
   clickDrop(item) {
-    this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.REMOVE, payload: {item: item.id, count: 1}});
+    if (confirm('Are you sure you want to drop this?')) {
+      this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.REMOVE, payload: {item: item.id, count: 1}});
+    }
   }
 
   organizeItems(items) {

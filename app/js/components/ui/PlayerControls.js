@@ -32,6 +32,14 @@ class PlayerControls extends Component {
     let w = this.state.planet.current.width;
     let h = this.state.planet.current.height;
 
+    // Clear combat & actions
+    if (this.props.store.getState().Mobs.showAction) {
+      this.props.store.dispatch({
+        type: Config.ACTIONS.MOBS.SHOW_ACTION,
+        payload: {}
+      });
+    }
+
     switch (dir) {
       case Config.ACTIONS.PLAYER.EAST:
         if (this.state.player.x < w) {

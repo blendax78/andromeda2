@@ -13,23 +13,37 @@ class Mob extends Component {
     };
 
     props.store.subscribe(() => {
-      this.setState({
-        mob: this.state.mob,
-        showAction: this.props.store.getState().Mobs.showAction,
-        showCombat: this.props.store.getState().Mobs.showCombat
-      });
+      if (this.state.mounted) {
+        this.setState({
+          mob: this.state.mob,
+          showAction: this.props.store.getState().Mobs.showAction,
+          showCombat: this.props.store.getState().Mobs.showCombat
+        });
+      }
     });
+
   }
 
   componentWillUnmount() {
+    let state = this.state;
+    state.mounted = false;
+    this.setState(state);
+
     // Make sure to unsubscribe!
     if (this.props.store && this.props.store.unsubscribe) {
       this.props.store.unsubscribe();
     }
   }
 
+  componentDidMount() {
+    let state = this.state;
+    state.mounted = true;
+    this.setState(state);
+  }
+
   setMobAction(e) {
     e.preventDefault();
+
     // Config.modal(this.props.store, '', '', 'container_actions', this.state.mob);
     this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_ACTION, payload: {} });
   }

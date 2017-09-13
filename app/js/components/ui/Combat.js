@@ -25,8 +25,20 @@ class Combat extends Component {
   }
 
   componentWillUnmount() {
+    let state = this.state;
+    state.mounted = false;
+    this.setState(state);
+
     // Make sure to unsubscribe!
-    this.props.store.unsubscribe();
+    if (this.props.store && this.props.store.unsubscribe) {
+      this.props.store.unsubscribe();
+    }
+  }
+
+  componentDidMount() {
+    let state = this.state;
+    state.mounted = true;
+    this.setState(state);
   }
 
   toggleRun() {
