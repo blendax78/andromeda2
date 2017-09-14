@@ -14,11 +14,13 @@ class Combat extends Component {
 
     // Need to go through components and bind states to store. This will speed things up.
     props.store.subscribe(() => {
-      this.setState({
-        mob: this.props.store.getState().Mobs.combat || this.props.mob,
-        player: this.props.store.getState().Player,
-        combat: this.props.store.getState().Combat
-      });
+      if (this.state.mounted) {
+        this.setState({
+          mob: this.props.store.getState().Mobs.combat || this.props.mob,
+          player: this.props.store.getState().Player,
+          combat: this.props.store.getState().Combat
+        });
+      }
     });
 
     // Consider setting combat interval here
