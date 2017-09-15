@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     copy: {
       main: {
-        files: [{ //this is copying folder structure
+        files: [{
           expand: true,
           flatten: true,
           src: ['bower_components/bootstrap/dist/fonts/*'], 
@@ -33,26 +33,6 @@ module.exports = function(grunt) {
         ],
         dest: 'app/static/css/bower.css'
       },
-      // bootstrap_eot: {
-      //   src: [ 'bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot'],
-      //   dest: 'app/static/fonts/glyphicons-halflings-regular.eot'
-      // },
-      // bootstrap_svg: {
-      //   src: [ 'bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg'],
-      //   dest: 'app/static/fonts/glyphicons-halflings-regular.svg'
-      // },
-      // bootstrap_ttf: {
-      //   src: [ 'bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf'],
-      //   dest: 'app/static/fonts/glyphicons-halflings-regular.ttf'
-      // },
-      // bootstrap_woff: {
-      //   src: [ 'bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'],
-      //   dest: 'app/static/fonts/glyphicons-halflings-regular.woff'
-      // },
-      // bootstrap_woff2: {
-      //   src: [ 'bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2'],
-      //   dest: 'app/static/fonts/glyphicons-halflings-regular.woff2'
-      // },
     }
   });
 

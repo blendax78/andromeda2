@@ -8,15 +8,16 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.appName = Config.appName;
     // Cause redux store & state update
     this.state = {
+      appName: Config.APPNAME,
       user: props.store.getState().User,
       player: props.store.getState().Player
     };
 
     props.store.subscribe(() => {
       this.setState({
+        appName: Config.APPNAME,
         user: props.store.getState().User,
         player: props.store.getState().Player
       });
@@ -39,7 +40,7 @@ class App extends Component {
     return (
       <div>
         <Modal store={this.props.store} />
-        <Navbar name={this.appName} store={this.props.store} />
+        <Navbar name={this.state.appName} store={this.props.store} />
         <div id="main-content" className="">
           <UI store={this.props.store} />
         </div>

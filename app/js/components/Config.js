@@ -2,7 +2,7 @@
 import * as UUID from 'uuid';
 
 let Config = {
-  appName: 'Andromeda',
+  APPNAME: 'Andromeda',
   ACTIONS: {
     APP: {
       MODAL_SHOW: 'APP.MODAL.SHOW',
