@@ -15,11 +15,16 @@ bower install
 npm install
 ```
 
-Once dependencies are installed:
+Once dependencies are installed, you can run the development server on port 8080 by typing:
 ```
-sh dev.sh
-
+npm run dev
 ```
-
 Then, go to http://localhost:8080/app/templates/dev.html
+
+Or, you can run:
+```
+npm build
+```
+This will build the necessary files, and you'll be able to view the site at whatever URL you set your server to.
+
 
