@@ -1,7 +1,7 @@
 // System-wide functions and variables.
 import * as UUID from 'uuid';
 
-let Config = {
+const Config = {
   APPNAME: 'Andromeda',
   ACTIONS: {
     APP: {
