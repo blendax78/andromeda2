@@ -51,6 +51,7 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')}>Crafting</li>,
       <li key={Config.randomKey('li')}>Magic</li>,
       <li key={Config.randomKey('li')}>Oceans & Boats</li>,
+      <li key={Config.randomKey('li')}>Space & Planets</li>,
       <li key={Config.randomKey('li')}>(Eventually) Dropped items appear on ground</li>
     ];
 
