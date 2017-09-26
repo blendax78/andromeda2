@@ -6,7 +6,4 @@ import Reducers from './reducers';
 
 let store = createStore(Reducers);
 
-// Remove Later
-window.store = store;
-
 ReactDOM.render(<App store={store}/>, document.querySelector('#app'));
