@@ -29,8 +29,8 @@ class PlayerControls extends Component {
       return;
     }    
 
-    let w = this.state.planet.current.width;
-    let h = this.state.planet.current.height;
+    let w = this.state.planet.width;
+    let h = this.state.planet.height;
 
     // Clear combat & actions
     if (this.props.store.getState().Mobs.showAction) {
@@ -143,11 +143,11 @@ class PlayerControls extends Component {
     let planet = this.state.planet;
 
     // Buttons
-    let east = (player.x < planet.current.width) ? false : true;
+    let east = (player.x < planet.width) ? false : true;
     let west = (player.x > 0) ? false : true;      
     let north = (player.y > 0) ? false : true;      
-    let south = (player.y < planet.current.height) ? false : true;
-
+    let south = (player.y < planet.height) ? false : true;
+    // needs to be fixed. shrinking display overlaps run/hide buttons
     return (
       <div className="nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
         <div className="row">

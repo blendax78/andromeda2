@@ -5,9 +5,10 @@ export const ItemData = [
     plural: 'logs',
     countable: true,
     description: '',
-    value: 0,
-    weight: 5,
-    type: 'items'
+    value: 1,
+    weight: 2,
+    type: 'items',
+    sub_type: 'resources'
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ export const ItemData = [
     description: '',
     value: 3,
     weight: 10,
-    type: 'items'    
+    type: 'items',
+    sub_type: 'resources'
   }
 ];

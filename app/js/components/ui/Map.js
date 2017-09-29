@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Decoration from './Decoration';
+import Town from './Town';
 import Mob from './Mob';
 import Config from '../Config';
 
@@ -10,7 +11,8 @@ class Map extends Component {
     this.state = {
       planet: props.store.getState().Planet,
       player: props.store.getState().Player,
-      mobs: props.store.getState().Mobs
+      mobs: props.store.getState().Mobs,
+      town: false
     };
 
     props.store.subscribe(() => {
@@ -40,7 +42,7 @@ class Map extends Component {
     let zone = this.state.planet.defaultZone;
 
     let player = this.state.player;
-    _.each(this.state.planet.current.zones, function(possibleZone) {
+    _.each(this.state.planet.zones, function(possibleZone) {
       if ( player.x >= possibleZone.zoneMinX && player.x <= possibleZone.zoneMaxX && 
         player.y >= possibleZone.zoneMinY && player.y <= possibleZone.zoneMaxY ) {
         zone = possibleZone;
@@ -56,48 +58,55 @@ class Map extends Component {
       return [];
     }
 
+    this.state.town = false;
     let maxDecorations = Math.round(Math.random() * zone.maxDecorations);
     // check for locations here
     let decorations = [];
 
-    let locations = _.where(this.state.planet.locations, {
-      x: this.state.player.x,
-      y: this.state.player.y
-    });
+    let town = _.findWhere(this.state.planet.towns, { x: this.state.player.x, y: this.state.player.y });
 
-    if (locations && locations.length === 0) {
-      let potentialDecorations = [];
+    if (!town) {
+      let locations = _.where(this.state.planet.locations, {
+        x: this.state.player.x,
+        y: this.state.player.y
+      });
 
-      // Check the chance in this loop.
-      for (let i = 0; i <= maxDecorations; i++) {
-        let chance = Math.round(Math.random() * 100);
+      if (locations && locations.length === 0) {
+        let potentialDecorations = [];
 
-        potentialDecorations = _.filter(zone.decorations, (decoration) => {
-          return chance <= decoration.chance;
-        });
+        // Check the chance in this loop.
+        for (let i = 0; i <= maxDecorations; i++) {
+          let chance = Math.round(Math.random() * 100);
 
-        if (potentialDecorations.length > 0) {
-          // Extends decoration object by value, not reference
-          let found = $.extend(true, {
-            key: Config.randomKey('decoration'),
-            type: 'decoration',
-            x: this.state.player.x,
-            y: this.state.player.y
-          }, _.last(potentialDecorations));
+          potentialDecorations = _.filter(zone.decorations, (decoration) => {
+            return chance <= decoration.chance;
+          });
 
-          decorations.push(found);
+          if (potentialDecorations.length > 0) {
+            // Extends decoration object by value, not reference
+            let found = $.extend(true, {
+              key: Config.randomKey('decoration'),
+              type: 'decoration',
+              x: this.state.player.x,
+              y: this.state.player.y
+            }, _.last(potentialDecorations));
 
-          this.state.planet.locations.push(found);
+            decorations.push(found);
+
+            this.state.planet.locations.push(found);
+          }
         }
+      } else {
+        decorations = locations;
+      }
+
+      if (decorations.length === 0) {
+        // Still empty
+        // Populate an empty location so locations can be empty
+        this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y, type: 'decoration' });
       }
     } else {
-      decorations = locations;
-    }
-
-    if (decorations.length === 0) {
-      // Still empty
-      // Populate an empty location so locations can be empty
-      this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y, type: 'decoration' });
+      decorations = [ { ...town, type: 'town' } ];
     }
 
     return this.getDecorationResults(decorations);
@@ -107,8 +116,15 @@ class Map extends Component {
     if (decorations.length > 0) {
       return _.map(decorations, (decoration) => {
         // type isn't set if the room contains an empty location record.
-        if (decoration.type === 'decoration' && decoration.key) {
-          return <Decoration key={decoration.key} data={decoration} store={this.props.store} />;
+        switch (decoration.type) {
+          case 'decoration':
+            if (decoration.key) {
+              return <Decoration key={decoration.key} data={decoration} store={this.props.store} />;    
+            }
+          break;
+          case 'town':
+            return <Town key={Config.randomKey('town')} data={decoration} store={this.props.store} />
+          break;
         }
       });
     } else {
@@ -201,13 +217,13 @@ class Map extends Component {
     let planet = this.state.planet;
     let zone = this.getZone();
     let decorations = this.getDecorations(zone);
-    let mobs = this.getMobs(zone);
+    let mobs = (!this.state.town) ? this.getMobs(zone) : '';
 
     return (
         <div>
           <div className="row">
             <h5 className="col-lg-4 col-md-4 col-sm-4 bold">
-              {planet.current.name}
+              {planet.name}
             </h5>
           </div>
           <div className="row">

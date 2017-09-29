@@ -14,11 +14,18 @@ export const PlanetData = [
   },
   {
     id: 1,
-    name: 'Alpha Centauri b',
+    name: 'Trammel',
     height: 2000,
     width: 2000,
     planetX: 0,
     planetY: 0,
+    towns: [
+      {
+        id: 1,
+        x: 0,
+        y: 0
+      }
+    ],
     zones: [
       {
         id: 2,

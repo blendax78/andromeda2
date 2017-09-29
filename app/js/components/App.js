@@ -28,10 +28,19 @@ class App extends Component {
     // nothing
   }
 
+  componentWillMount() {
+    // Fetch user data. This will start a cascade of player & inventory fetching
+    this.props.store.dispatch({
+      type: Config.ACTIONS.USER.FETCH,
+      payload: { id: 1 }
+    });
+  }
+
   componentDidMount() {
     // Attach to App object in case we need to kill it.
     // Arrow function binds 'this' to scope where it was defined.
     this.playerTick = setInterval(() => {
+      // Consider moving this to reducer? randomKey IDs are constantly changing
       this.props.store.dispatch({ type: Config.ACTIONS.PLAYER.TICK, payload: { id: this.state.player.id } });
     }, 1000);
   }

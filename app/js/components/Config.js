@@ -13,10 +13,12 @@ const Config = {
       MELEE: 'COMBAT.MELEE'
     },
     USER: {
-      GET: 'USER.GET'
+      GET: 'USER.GET',
+      FETCH: 'USER.FETCH'
     },
     PLAYER: {
       GET: 'PLAYER.GET',
+      FETCH: 'PLAYER.FETCH',
       ENCUMBRANCE: 'PLAYER.ENCUMBRANCE',
       UPDATE: 'PLAYER.UPDATE',
       RUN: 'PLAYER.RUN',
