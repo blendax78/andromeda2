@@ -179,6 +179,27 @@ const Player = (state = {}, action) => {
     break;
   }
 
+  let player_tick = () => {
+    if (update_partials('hp')) {
+      state.Player.hp = update_hp(1);  
+    }
+    
+    if (update_partials('mp')) {
+      state.Player.mp = update_mp(1);
+    }
+
+    if (update_partials('stamina')) {
+      state.Player.stamina = update_stamina(1);
+    }
+  };
+
+  this.tick = this.tick || setInterval(() => {
+    // This does not refresh ui.
+    // However, components will have to 'watch' (via interval) for an update on the store in order to avoid updating components
+    // only after a user action.
+    player_tick();
+  }, 1000);
+
   return state.Player;
 }
 

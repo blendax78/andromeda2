@@ -14,7 +14,15 @@ class PlayerStatus extends Component {
       });
     });
   }
-// maybe remove row elements
+
+  componentDidMount() {
+    this.tick = this.tick || setInterval(() => {
+      this.setState({
+        player: this.props.store.getState().Player
+      })
+    }, 1000);
+  }
+
   render() {
     let player = this.state.player;
     return (

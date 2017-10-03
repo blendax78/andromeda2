@@ -172,12 +172,12 @@ class PlayerControls extends Component {
             <div className="row">&nbsp;</div>
 
             <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-6">
+              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label className="checkbox-inline">
                   <input type="checkbox" defaultChecked={this.state.player.status.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
                 </label>
               </div>
-              <div className="col-lg-6 col-md-6 col-sm-6">
+              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label className="checkbox-inline">
                   <input type="checkbox" defaultChecked={this.state.player.hide} data-toggle="toggle" value="hide" data-on="Hide" data-off="Hide" id="hide_check" />
                 </label>

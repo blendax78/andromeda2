@@ -33,9 +33,9 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')} className="line-through">Encumbrance prevents running/walking</li>,
       <li key={Config.randomKey('li')} className="line-through">Mobs</li>,
       <li key={Config.randomKey('li')}>Towns</li>,
-      <li key={Config.randomKey('li')}>nav dropdowns are 'blinking'</li>,
-      <li key={Config.randomKey('li')}>Fix layout of run/hide buttons</li>,
-      <li key={Config.randomKey('li')}>Move 'engine'</li>,
+      <li key={Config.randomKey('li')} className="line-through">nav dropdowns are 'blinking'</li>,
+      <li key={Config.randomKey('li')} className="line-through">Fix layout of run/hide buttons</li>,
+      <li key={Config.randomKey('li')} className="line-through">Move 'engine'</li>,
       <li key={Config.randomKey('li')}>Battles</li>,
       <li key={Config.randomKey('li')}>Equipment - Armor & Weapons</li>,
       <li key={Config.randomKey('li')}>Dungeons</li>,
@@ -77,19 +77,19 @@ class Navbar extends Component {
     ];
 
     let topElems = [
-      <NavDropdown title="Player" elems={mainNavElems} key={Config.randomKey('topNavItem')}/>,
+      <NavDropdown title="Player" elems={mainNavElems} key={Config.randomKey('topNavItem')} id="player_dropdown" />,
       <NavItem href="#" key={Config.randomKey('topNavItem')} text="To Do"
         click={ () => this.showToDos() } />
     ];
 
     let town = _.findWhere(this.state.planet.towns, { x: this.state.player.x, y: this.state.player.y });
+
     if (town) {
-      // Add before 'To Dos'
       let townElems = _.map(town.stores, (store) => {
         return { href: '#', text: store.name, onClick: () => this.showSkills() };
       });
-
-      topElems.splice(1, 0, <NavDropdown title={town.name} elems={townElems} key={Config.randomKey('topNavItem')}/>);
+      // Add before 'To Dos'
+      topElems.splice(1, 0, <NavDropdown title={town.name} elems={townElems} key={Config.randomKey('topNavItem')} id="town_dropdown" />);
     }
 
     return (

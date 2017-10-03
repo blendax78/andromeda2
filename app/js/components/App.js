@@ -37,12 +37,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Attach to App object in case we need to kill it.
-    // Arrow function binds 'this' to scope where it was defined.
-    this.playerTick = setInterval(() => {
-      // Consider moving this to reducer? randomKey IDs are constantly changing
-      this.props.store.dispatch({ type: Config.ACTIONS.PLAYER.TICK, payload: { id: this.state.player.id } });
-    }, 1000);
   }
 
   render() {
