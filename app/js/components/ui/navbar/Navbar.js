@@ -66,6 +66,10 @@ class Navbar extends Component {
     Config.modal(this.props.store, '', '', 'inventory');
   }
 
+  showStore(store) {
+    Config.modal(this.props.store, '', '', 'store', store);
+  }
+
   render() {
     let mainNavElems = [
       { href: '#', text: 'Inventory', onClick: () => this.showInventory() },
@@ -86,8 +90,9 @@ class Navbar extends Component {
 
     if (town) {
       let townElems = _.map(town.stores, (store) => {
-        return { href: '#', text: store.name, onClick: () => this.showSkills() };
+        return { href: '#', text: store.name, onClick: () => this.showStore(store) };
       });
+
       // Add before 'To Dos'
       topElems.splice(1, 0, <NavDropdown title={town.name} elems={townElems} key={Config.randomKey('topNavItem')} id="town_dropdown" />);
     }

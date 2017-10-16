@@ -3,6 +3,7 @@ import InventoryList from './modals/InventoryList';
 import SkillsList from './modals/SkillsList';
 import SpellBook from './modals/SpellBook';
 import PlayerStats from './modals/PlayerStats';
+import Store from './modals/Store';
 import ContainerActions from './modals/ContainerActions';
 import Config from '../Config';
 
@@ -75,6 +76,14 @@ class Modal extends Component {
     };
   }
 
+  setStoreModal() {
+    this.state.modal = {
+      body: <Store store={this.props.store} data={this.state.modal.data}/>,
+      title: (this.state.modal && this.state.modal.data && this.state.modal.data.name) ? this.state.modal.data.name : '',
+      type: 'store'
+    };
+  }
+
   setContainerActionsModal() {
     let mob = this.state.modal.data;
 
@@ -103,6 +112,9 @@ class Modal extends Component {
       break;
       case 'container_actions':
         this.setContainerActionsModal();
+      break;
+      case 'store':
+        this.setStoreModal();
       break;
     }
     

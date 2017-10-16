@@ -3,7 +3,7 @@ export const SkillData = {
     id: 1,
     name: 'Lumberjacking',
     description: '',
-    current: 10.0,
+    current: 0.0,
     modifier: 0,
     primary: 'strength',
     secondary: 'dexterity'
@@ -12,16 +12,34 @@ export const SkillData = {
     id: 2,
     name: 'Mining',
     description: '',
-    current: 10.0,
+    current: 0.0,
     modifier: 0,
     primary: 'strength',
     secondary: 'dexterity'
   },
   wrestling: {
-    id: 2,
+    id: 3,
     name: 'Wrestling',
     description: '',
-    current: 10.0,
+    current: 0.0,
+    modifier: 0,
+    primary: 'strength',
+    secondary: 'dexterity'
+  },
+  tailoring: {
+    id: 4,
+    name: 'Wrestling',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'intelligence'
+  },
+  blacksmithing: {
+    id: 5,
+    name: 'Wrestling',
+    description: '',
+    current: 0.0,
     modifier: 0,
     primary: 'strength',
     secondary: 'dexterity'
