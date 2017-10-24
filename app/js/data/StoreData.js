@@ -8,8 +8,8 @@ export const StoreData = [
       'armor',
       'weapons'
     ],
-    craft: 'blacksmithing',
-    buy: [2],
+    craft: ['blacksmithing'],
+    buy: [1],
     type: 'store'
   },
   {
@@ -20,8 +20,8 @@ export const StoreData = [
       'resources',
       'leather'
     ],
-    craft: 'tailoring',
-    buy: [],
+    craft: ['tailoring'],
+    buy: [1],
     type: 'store'
   },
   {
@@ -32,8 +32,8 @@ export const StoreData = [
       'scrolls',
       'potions'
     ],
-    craft: 'inscription',
-    buy: [],
+    craft: ['inscription'],
+    buy: [1],
     type: 'store'
   },
   {
@@ -42,6 +42,7 @@ export const StoreData = [
     description: 'A toothless woman looks at you. "Want a room?"',
     heal: 20,
     cost: 5,
+    craft: [],
     sell: [],
     buy: [],
     type: 'inn'
@@ -51,6 +52,7 @@ export const StoreData = [
     name: 'A wandering healer',
     description: 'An old monk is wandering around here.',
     sell: [],
+    craft: [],
     buy: [],
     type: 'healer'
   },

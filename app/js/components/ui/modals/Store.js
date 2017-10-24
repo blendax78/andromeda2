@@ -7,52 +7,61 @@ class Store extends Component {
     super(props);
 
     this.state = {
-      data: props.data
+      data: props.data,
+      crafting: ''
     };
   }
 
-  getCommerceButtons() {
-    let buttons = [];
-
-    if (this.state.data.buy.length > 0) {
-      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-default" id="buy_button">Buy</button>);
-    }
-
-    if (this.state.data.sell.length > 0) {
-      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-default" id="sell_button">Sell</button>);
-    }
-
-    return buttons;
+  setCrafting(type) {
+    let new_type = (this.state.crafting !== type) ? type : '';
+    this.setState({ crafting: new_type });
   }
 
   getActionButtons() {
     let buttons = [];
 
+    if (this.state.data.buy.length > 0) {
+      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-primary" id="buy_button">Buy</button>);
+    }
+
+    if (this.state.data.sell.length > 0) {
+      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-primary" id="sell_button">Sell</button>);
+    }
+
     switch (this.state.data.type) {
       case 'store':
+        // Nothing.
       break;
       case 'healer':
       break;
       case 'inn':
-        buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info" >Stay</button>);
+        buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info">Stay</button>);
       break;
+    }
+
+    for (let i in this.state.data.craft) {
+      switch (this.state.data.craft[i]) {
+        case 'blacksmithing':
+          buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info"
+            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Blacksmithing</button>);
+        break;
+        case 'inscription':
+          buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info"
+            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Inscription</button>);
+        break;
+        case 'tailoring':
+          buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info"
+            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Tailoring</button>);
+        break;
+      }
     }
 
     return buttons;
   }
 
   render() {
-    // let skills = _.map(this.state.skills, (skill, index) => {
-    //   return (
-    //     <div className="row" key={Config.randomKey('skillModal')}>
-    //       <div className="col-lg-6 col-md-6 col-sm-6">{skill.name}</div>
-    //       <div className="col-lg-6 col-md-6 col-sm-6">{skill.current.toFixed(1)}</div>
-    //     </div>
-    //   );
-    // });
-    console.log(this.state.data);
-
-    let buttons = this.getCommerceButtons().concat(this.getActionButtons());
+    let buttons = this.getActionButtons();
+    let crafting = (this.state.crafting === '') ? '' : <Crafting type={this.state.crafting} store={this.props.store}/>;
 
     return (
       <div className="row">
@@ -67,6 +76,11 @@ class Store extends Component {
               <div className="btn-group">
                 {buttons}
               </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              {crafting}
             </div>
           </div>
         </div>

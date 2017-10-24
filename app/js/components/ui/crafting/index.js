@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Config from '../../Config';
+import Blacksmithing from './Blacksmithing';
+import Bowcraft from './Bowcraft';
+import Carpentry from './Carpentry';
+import Tailoring from './Tailoring';
 
 class Crafting extends Component {
   constructor(props) {
@@ -24,9 +28,22 @@ class Crafting extends Component {
   }
 
   render() {
+    let crafting = '';
+
+    switch (this.props.type) {
+      case 'blacksmithing':
+        crafting = <Blacksmithing store={this.props.store} />;
+      break;
+      case 'tailoring':
+        crafting = <Tailoring store={this.props.store} />;
+      break;
+    }
     return (
-      <div>
-        craft!
+      <div className="row">
+        <div className="col-lg-12 col-md-12 col-sm-12">
+          <h4>Crafting</h4>
+          {crafting}
+        </div>
       </div>
     );
   }

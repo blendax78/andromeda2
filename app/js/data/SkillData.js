@@ -28,7 +28,7 @@ export const SkillData = {
   },
   tailoring: {
     id: 4,
-    name: 'Wrestling',
+    name: 'Tailoring',
     description: '',
     current: 0.0,
     modifier: 0,
@@ -37,7 +37,7 @@ export const SkillData = {
   },
   blacksmithing: {
     id: 5,
-    name: 'Wrestling',
+    name: 'Blacksmithing',
     description: '',
     current: 0.0,
     modifier: 0,
