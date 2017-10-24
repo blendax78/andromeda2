@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navbar from './ui/navbar/Navbar';
-import Modal from './ui/Modal';
+import Navbar from './ui/navbar';
+import Modal from './ui/modals/';
 import Config from './Config';
 import UI from './ui/UI';
 

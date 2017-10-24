@@ -3,35 +3,38 @@ export const StoreData = [
     id: 1,
     name: 'A small blacksmithy',
     description: 'A stout man stands behind a small forge.',
-    bought: [
+    sell: [
       'resources',
       'armor',
       'weapons'
     ],
     craft: 'blacksmithing',
-    sold: []
+    buy: [2],
+    type: 'store'
   },
   {
     id: 2,
     name: 'A small tailor shop',
-    description: 'You smeel a small spinning wheel and a loom. The caretaker is in the corner, sewing some hides.',
-    bought: [
+    description: 'You see a small spinning wheel and a loom. The caretaker is in the corner, sewing some hides.',
+    sell: [
       'resources',
       'leather'
     ],
     craft: 'tailoring',
-    sold: [ ]
+    buy: [],
+    type: 'store'
   },
   {
     id: 3,
     name: 'The town mage',
     description: 'A man in robes sits behind a desk, hunched over a book.',
-    bought: [
+    sell: [
       'scrolls',
       'potions'
     ],
-    craft: '',
-    sold: []
+    craft: 'inscription',
+    buy: [],
+    type: 'store'
   },
   {
     id: 4,
@@ -39,7 +42,16 @@ export const StoreData = [
     description: 'A toothless woman looks at you. "Want a room?"',
     heal: 20,
     cost: 5,
-    bought: [],
-    sold: []
+    sell: [],
+    buy: [],
+    type: 'inn'
+  },
+  {
+    id: 5,
+    name: 'A wandering healer',
+    description: 'An old monk is wandering around here.',
+    sell: [],
+    buy: [],
+    type: 'healer'
   },
 ];

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import InventoryList from './modals/InventoryList';
-import SkillsList from './modals/SkillsList';
-import SpellBook from './modals/SpellBook';
-import PlayerStats from './modals/PlayerStats';
-import Store from './modals/Store';
-import ContainerActions from './modals/ContainerActions';
-import Config from '../Config';
+import InventoryList from './InventoryList';
+import SkillsList from './SkillsList';
+import SpellBook from './SpellBook';
+import PlayerStats from './PlayerStats';
+import Store from './Store';
+import ContainerActions from './ContainerActions';
+import Config from '../../Config';
 
 class Modal extends Component {
   constructor(props) {

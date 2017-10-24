@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Config from '../../Config';
+import Crafting from '../crafting';
 
 class Store extends Component {
   constructor(props) {
@@ -8,6 +9,36 @@ class Store extends Component {
     this.state = {
       data: props.data
     };
+  }
+
+  getCommerceButtons() {
+    let buttons = [];
+
+    if (this.state.data.buy.length > 0) {
+      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-default" id="buy_button">Buy</button>);
+    }
+
+    if (this.state.data.sell.length > 0) {
+      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-default" id="sell_button">Sell</button>);
+    }
+
+    return buttons;
+  }
+
+  getActionButtons() {
+    let buttons = [];
+
+    switch (this.state.data.type) {
+      case 'store':
+      break;
+      case 'healer':
+      break;
+      case 'inn':
+        buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info" >Stay</button>);
+      break;
+    }
+
+    return buttons;
   }
 
   render() {
@@ -19,14 +50,25 @@ class Store extends Component {
     //     </div>
     //   );
     // });
-    
+    console.log(this.state.data);
+
+    let buttons = this.getCommerceButtons().concat(this.getActionButtons());
+
     return (
       <div className="row">
         <div className="col-lg-12 col-md-12 col-sm-12">
-          {this.state.data.description}
-        </div>
-        <div className="col-lg-12 col-md-12 col-sm-12">
-          ..action buttons (buy, sell, craft)
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              {this.state.data.description}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              <div className="btn-group">
+                {buttons}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
