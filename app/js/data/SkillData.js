@@ -44,4 +44,22 @@ export const SkillData = {
     primary: 'strength',
     secondary: 'dexterity'
   },
+  swordsmanship: {
+    id: 6,
+    name: 'Swordsmanship',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'strength',
+    secondary: 'dexterity'
+  },
+  fencing: {
+    id: 7,
+    name: 'Fencing',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'strength'
+  },
 };

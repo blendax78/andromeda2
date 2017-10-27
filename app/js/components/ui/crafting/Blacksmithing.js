@@ -6,24 +6,21 @@ class Blacksmithing extends Component {
     super(props);
 
     // this.state = {
-    //   mob: this.props.mob,
     //   player: this.props.store.getState().Player,
-    //   combat: this.props.store.getState().Combat
+    //   inventory: this.props.store.getState().Inventory
     // };
 
     // props.store.subscribe(() => {
-    //   if (this.state.mounted) {
-    //     this.setState({
-    //       mob: this.props.store.getState().Mobs.combat || this.props.mob,
-    //       player: this.props.store.getState().Player,
-    //       combat: this.props.store.getState().Combat
-    //     });
-    //   }
+    //   this.setState({
+    //     player: this.props.store.getState().Player,
+    //     inventory: this.props.store.getState().Inventory
+    //   });
     // });
 
   }
 
   render() {
+    console.log('props', this.props);
     return (
       <div className="row">
         <div className="col-lg-12 col-md-12 col-sm-12">
