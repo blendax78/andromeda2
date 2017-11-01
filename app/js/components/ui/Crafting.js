@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import Config from '../../Config';
-import Blacksmithing from './Blacksmithing';
-import Bowcraft from './Bowcraft';
-import Carpentry from './Carpentry';
-import Tailoring from './Tailoring';
-import { ItemData } from '../../../data/ItemData';
+import Config from '../Config';
+import { ItemData } from '../../data/ItemData';
 
 class Crafting extends Component {
   constructor(props) {
@@ -31,8 +27,6 @@ class Crafting extends Component {
   getAvailableItems(skill_name) {
     let skill_id = this.state.skills[skill_name].id;
     let resources = _.findWhere(this.state.inventory.items, {  });
-    console.log(this.state.inventory);
-
     let craftable = _.filter(ItemData, (item) => {
       if (!item.craft || !item.craft.resource) {
         return;
@@ -40,10 +34,42 @@ class Crafting extends Component {
 
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
-      return item.craft.skill === skill_id && resource.count >= item.craft.resource.min;
+      return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min;
     });
 
     return craftable;
+  }
+
+  craftItem(item) {
+    console.log('crafting', item);
+  }
+
+  getBlacksmithing(available) {
+    // calculate pct chance to craft
+    let items = _.map(available, (item) => {
+      return (
+        <tr key={Config.randomKey('crafting')}>
+          <td><a href="#" onClick={() => this.craftItem(item)}>{item.description}</a></td>
+          <td>{item.craft.resource.min}</td>
+          <td>{item.craft.skill.min}</td>
+        </tr>
+      );
+    });
+
+    return (
+      <table className="table table-condensed table-striped col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Resources</th>
+            <th>Skill</th>
+          </tr>
+        </thead>
+        <tbody>
+        {items}
+        </tbody>
+      </table>
+    );
   }
 
   getCraftingType(type) {
@@ -55,17 +81,17 @@ class Crafting extends Component {
     } else {
       switch (type) {
         case 'blacksmithing':
-          crafting = <Blacksmithing store={this.props.store} items={available} />;//remove crafting subtypes
+          crafting = this.getBlacksmithing(available);
         break;
         case 'tailoring':
-          crafting = <Tailoring store={this.props.store} items={available}/>;
+          crafting = 'tailoring';
         break;
       }
     }
 
     return (
       <div className="row">
-        <div className="col-lg-12 col-md-12 col-sm-12">
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           {crafting}
         </div>
       </div>
@@ -73,11 +99,12 @@ class Crafting extends Component {
   }
 
   render() {
-    let crafting = this.getCraftingType(this.props.type);
     let title = Config.upperCase(this.props.type);
+    let crafting = this.getCraftingType(this.props.type);
+
     return (
       <div className="row">
-        <div className="col-lg-12 col-md-12 col-sm-12">
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <h4>{title}</h4>
           {crafting}
         </div>

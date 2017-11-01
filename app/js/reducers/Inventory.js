@@ -5,7 +5,7 @@ let INVENTORY = Config.ACTIONS.INVENTORY;
 
 const Inventory = (state = {}, action) => {
   state.Inventory = state.Inventory || {
-    items: [],
+    items: [{count: 25, countable: true,description:'',id:1,name:'log',plural:'logs',sub_type:'resource',type:'items',value:1,weight:2},{count: 25, countable: true,description:'',id:2,name:'ore',plural:'ore',sub_type:'resource',type:'items',value:1,weight:5}],
     weapons: [],
     armor: [],
   };

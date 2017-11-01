@@ -17,7 +17,7 @@ export const ItemData = [
     countable: true,
     description: '',
     value: 3,
-    weight: 10,
+    weight: 5,
     type: 'items',
     sub_type: 'resource'
   },
@@ -26,13 +26,14 @@ export const ItemData = [
     name: 'dagger',
     plural: 'dagger',
     countable: false,
-    description: 'a sharp dagger',
+    description: 'a dagger',
     value: 5,
     weight: 1,
     type: 'weapons',
     craft: {
       skill: {
         id: 5,
+        name: 'blacksmithing',
         min: 0
       },
       resource: {
@@ -61,6 +62,7 @@ export const ItemData = [
     craft: {
       skill: {
         id: 5,
+        name: 'blacksmithing',
         min: 0
       },
       resource: {

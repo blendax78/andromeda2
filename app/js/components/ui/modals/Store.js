@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Config from '../../Config';
-import Crafting from '../crafting';
+import Crafting from '../Crafting';
 
 class Store extends Component {
   constructor(props) {

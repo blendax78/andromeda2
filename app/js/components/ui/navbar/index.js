@@ -32,7 +32,7 @@ class Navbar extends Component {
     let todos = [
       <li key={Config.randomKey('li')} className="line-through">Encumbrance prevents running/walking</li>,
       <li key={Config.randomKey('li')} className="line-through">Mobs</li>,
-      <li key={Config.randomKey('li')}>Towns</li>,
+      <li key={Config.randomKey('li')} className="line-through">Towns</li>,
       <li key={Config.randomKey('li')} className="line-through">nav dropdowns are 'blinking'</li>,
       <li key={Config.randomKey('li')} className="line-through">Fix layout of run/hide buttons</li>,
       <li key={Config.randomKey('li')} className="line-through">Move 'engine'</li>,
