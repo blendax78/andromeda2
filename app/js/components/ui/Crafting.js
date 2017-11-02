@@ -12,21 +12,22 @@ class Crafting extends Component {
       inventory: this.props.store.getState().Inventory,
     };
 
-    // props.store.subscribe(() => {
-    //   if (this.state.mounted) {
-    //     this.setState({
-    //       mob: this.props.store.getState().Mobs.combat || this.props.mob,
-    //       player: this.props.store.getState().Player,
-    //       combat: this.props.store.getState().Combat
-    //     });
-    //   }
-    // });
+    props.store.subscribe(() => {
+      // this.setState({
+      //   player: this.props.store.getState().Player,
+      //   skills: this.props.store.getState().Skills,
+      //   inventory: this.props.store.getState().Inventory,
+      // });
+    });
 
   }
 
   getAvailableItems(skill_name) {
     let skill_id = this.state.skills[skill_name].id;
-    let resources = _.findWhere(this.state.inventory.items, {  });
+    // Filter out by skill too?
+    this.resources = _.indexBy(_.where(this.state.inventory.items, { sub_type: 'resource' }), 'id');
+    this.player_skill = this.state.skills[skill_name];
+    
     let craftable = _.filter(ItemData, (item) => {
       if (!item.craft || !item.craft.resource) {
         return;
@@ -34,7 +35,7 @@ class Crafting extends Component {
 
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
-      return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min;
+      return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && this.player_skill.current >= item.craft.skill.min;
     });
 
     return craftable;
@@ -44,14 +45,20 @@ class Crafting extends Component {
     console.log('crafting', item);
   }
 
-  getBlacksmithing(available) {
+  getCraftingTable(available) {
     // calculate pct chance to craft
+    // pct = 50% at min required skill
+    // +2% chance per 1 point in skill
+    // pct = ((skill - req_skill) * 2) + 50
+
     let items = _.map(available, (item) => {
+      let resource_name = (item.craft.resource.min == 1) ? this.resources[item.craft.resource.id].name : this.resources[item.craft.resource.id].plural;
+      let chance = ((this.player_skill.current - item.craft.skill.min) * 2) + 50;
       return (
         <tr key={Config.randomKey('crafting')}>
           <td><a href="#" onClick={() => this.craftItem(item)}>{item.description}</a></td>
-          <td>{item.craft.resource.min}</td>
-          <td>{item.craft.skill.min}</td>
+          <td>{item.craft.resource.min} {resource_name}</td>
+          <td>{item.craft.skill.min} ({chance}%)</td>
         </tr>
       );
     });
@@ -62,7 +69,7 @@ class Crafting extends Component {
           <tr>
             <th>Item</th>
             <th>Resources</th>
-            <th>Skill</th>
+            <th>Skill Required</th>
           </tr>
         </thead>
         <tbody>
@@ -80,11 +87,8 @@ class Crafting extends Component {
       crafting = 'Not enough skill or resources.';
     } else {
       switch (type) {
-        case 'blacksmithing':
-          crafting = this.getBlacksmithing(available);
-        break;
-        case 'tailoring':
-          crafting = 'tailoring';
+        default:
+          crafting = this.getCraftingTable(available);
         break;
       }
     }
