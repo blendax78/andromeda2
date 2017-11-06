@@ -13,12 +13,12 @@ const Player = (state = {}, action) => {
     planet_id: 1,
     x: 0,
     y: 0,
-    hp: Math.round(20/2) + 50,
-    mp: 20,
-    stamina: 20,
-    strength: 20,
-    intelligence: 20,
-    dexterity: 20,
+    hp: 0,
+    mp: 10,
+    stamina: 10,
+    strength: 10,
+    intelligence: 10,
+    dexterity: 10,
     user_id: 1,
     credits: 15,
     encumbrance: 0,
@@ -43,6 +43,7 @@ const Player = (state = {}, action) => {
     }
   };
 
+  state.Player.hp =  Math.round(state.Player.strength / 2) + 50;
   state.Player.maxhp =  Math.round(state.Player.strength / 2) + 50;
   state.Player.maxmp =  state.Player.intelligence;
   state.Player.maxstamina =  state.Player.dexterity;

@@ -1,11 +1,8 @@
-from app import app
+from app import app, Config, render_response, unauthorized
 from flask import request, Response, json, render_template, redirect
-from app.config import Config
-#from app.controllers.user import User as UserController
-#from app.controllers.stamp import Stamp as StampController
-#from app.models.stamp import Stamp
 from app.controllers.logger import Log as Logger
 
+import app.controllers.main as controller
 import logging
 import os
 import sys
@@ -16,25 +13,19 @@ def index():
     # return render_response(json.dumps(request.cookies), 'application/json')
     return render_template('index.html'), 200
   else:
-    return redirect('%s?r=%s' % (Config().auth_url, Config().site_url))
+    return redirect('%s?r=%s' % (Config.auth_url, Config.site_url))
+
+@app.route('/player/<user_id>', methods=['GET'])
+def player_get(user_id=None):
+  print(controller.player_get(user_id))
+  return render_response(json.dumps({'user':user_id}), 'application/json')
 
 @app.before_request
 def before_request():
-  l = Logger()
+  pass
+  # l = Logger()
   # l.log('hi','ho')
   # c = Config()
   # print(c.log('hello', 'world'))
 
-# HELPER FUNCTIONS #############################################################
 
-def render_response(msg, mimetype):
-  # application/json text/html
-  resp = Response(msg, mimetype=mimetype)
-  resp.headers['Access-Control-Allow-Origin'] = '*'
-  
-  # resp.set_cookie('apple.butter', 'hello', domain='127.0.0.1')
-  return resp, 200
-
-def unauthorized():
-  response = json.dumps({'message': 'Not Authorized'})
-  return response, 401

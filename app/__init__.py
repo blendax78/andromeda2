@@ -1,4 +1,22 @@
-from flask import Flask
+from flask import Flask, request, Response
+from app.config import Config
+import json
+
+# HELPER FUNCTIONS #############################################################
+
+Config = Config()
+
+def render_response(msg, mimetype='application/json', code=200):
+  # application/json text/html
+  resp = Response(msg, mimetype=mimetype)
+  resp.headers['Access-Control-Allow-Origin'] = '*'
+  
+  return resp, code
+
+def unauthorized():
+  response = json.dumps({'message': 'Not Authorized'})
+  return response, 401
+
 
 app = Flask(__name__)
 
