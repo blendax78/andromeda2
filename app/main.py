@@ -15,13 +15,19 @@ def index():
   else:
     return redirect('%s?r=%s' % (Config.auth_url, Config.site_url))
 
+########## USER ##########
+@app.route('/user/<user_id>', methods=['GET'])
+def user_get(user_id=None):
+  return render_response(json.dumps(controller.user_get(user_id)), 'application/json')
+
+########## PLAYER ##########
 @app.route('/player/<user_id>', methods=['GET'])
 def player_get(user_id=None):
-  print(controller.player_get(user_id))
-  return render_response(json.dumps({'user':user_id}), 'application/json')
+  return render_response(json.dumps(controller.player_get(user_id)), 'application/json')
 
 @app.before_request
 def before_request():
+  # check for cookie
   pass
   # l = Logger()
   # l.log('hi','ho')

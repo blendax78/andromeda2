@@ -61,7 +61,12 @@ const Config = {
       IN_COMBAT: 'MOBS.IN_COMBAT',
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
       SHOW_COMBAT: 'MOBS.SHOW_COMBAT'
-    }
+    },
+  },
+  URLS: {
+    API: 'http://localhost:5001',
+    PLAYER: '/player',
+    USER: '/user',
   },
 
   upperCase: (string) => {

@@ -9,14 +9,14 @@ class Navbar extends Component {
     super(props);
 
     this.state = {
-      right: { body: this.props.store.getState().User.user_name },
+      right: { body: this.props.store.getState().User.name },
       player: this.props.store.getState().Player,
       planet: this.props.store.getState().Planet
     };
 
     props.store.subscribe(() => {
       this.setState({
-        right: { body: this.props.store.getState().User.user_name },
+        right: { body: this.props.store.getState().User.name },
         player: this.props.store.getState().Player,
         planet: this.props.store.getState().Planet
       });

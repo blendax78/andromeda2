@@ -34,6 +34,11 @@ class App extends Component {
       type: Config.ACTIONS.USER.FETCH,
       payload: { id: 1 }
     });
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLAYER.FETCH,
+      payload: { id: 1 }
+    });
   }
 
   componentDidMount() {

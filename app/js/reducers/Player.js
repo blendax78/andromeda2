@@ -140,7 +140,7 @@ const Player = (state = {}, action) => {
 
   switch (type) {
     case PLAYER.GET:
-      // Do nothing
+      state.Player = {...state.Player, ...payload};
     break;
     case PLAYER.UPDATE:
       state.Player = {...state.Player, payload};

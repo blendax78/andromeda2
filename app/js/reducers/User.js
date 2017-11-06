@@ -4,8 +4,7 @@ let USER = Config.ACTIONS.USER;
 const User = (state = {}, action) => {
   state.User = state.User || {
     id: 1,
-    name: 'empty',
-    user_name: 'test user',
+    name: 'test user',
     token: ''
   };
 
@@ -13,9 +12,7 @@ const User = (state = {}, action) => {
 
   switch (type) {
     case USER.GET:
-      state.User.user_name = 'hi';
-      state.Player.name ='ho';
-      // Do nothing
+      state.User = {...state.User, ...payload};
     break;
   }
 

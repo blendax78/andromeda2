@@ -15,7 +15,7 @@ class Model(object):
     self.connection = self.get_connection()
     self.sql = ''
     self.last = ''
-    self.db = ''
+    self.db = 'andromeda2'
     self.table = ''
 
   def plain_query(self, query):

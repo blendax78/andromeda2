@@ -1,7 +1,7 @@
 from app.models.model import Model
 import re
 
-class Player(Model):
+class User(Model):
 
   def __init__(self):
 
@@ -14,4 +14,4 @@ class Player(Model):
   def get(self, user_id):
     user_id = re.escape(user_id)
 
-    return self.plain_query('select * from player where user_id = %s' % user_id)
+    return self.plain_query('select * from user where id = %s' % user_id)
