@@ -1,32 +1,34 @@
 import pymysql.cursors
 import configparser
+import re
 
 from app.config import Config
 
 class Model(object):
 
   def __init__(self):
-    # This doesn't get called by child. Need to remove db_config & connection
-    # To call from child:
-    # class Foo(Bar):
-    #     def baz(self, arg):
-    #         return super(Foo, self).baz(arg)
-    self.db_config = self.get_db_config()
-    self.connection = self.get_connection()
     self.sql = ''
     self.last = ''
     self.db = 'andromeda2'
     self.table = ''
 
+    self.db_config = self.get_db_config()
+    self.connection = self.get_connection()
+
   def plain_query(self, query):
     connection = self.get_connection()
-    cursor = connection.cursor()
-    cursor.execute(query)
+    
+    with connection.cursor() as cursor:
+      cursor.execute(query)
 
-    result = cursor.fetchone()
+      if 'select' in query.lower():
+        result = cursor.fetchone()
+        return result
+
+    connection.commit()
     connection.close()
 
-    return result
+    return True
 
   def find(self, value):
     connection = self.get_connection()

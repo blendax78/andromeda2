@@ -44,6 +44,8 @@ const Config = {
       USE: 'ITEM.USE'
     },
     INVENTORY: {
+      FETCH: 'INVENTORY.FETCH',
+      GET: 'INVENTORY.GET',
       ADD: 'INVENTORY.ADD',
       REMOVE: 'INVENTORY.REMOVE',
       SELL: 'INVENTORY.SELL',
@@ -51,6 +53,7 @@ const Config = {
       UNEQUIP: 'INVENTORY.UNEQUIP'
     },
     SKILLS: {
+      FETCH: 'SKILLS.FETCH',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MINING: 'SKILLS.MINING',
       WRESTLING: 'SKILLS.WRESTLING'
@@ -67,6 +70,7 @@ const Config = {
     API: 'http://localhost:5001',
     PLAYER: '/player',
     USER: '/user',
+    INVENTORY: '/inventory',
   },
 
   upperCase: (string) => {

@@ -5,7 +5,7 @@ let INVENTORY = Config.ACTIONS.INVENTORY;
 
 const Inventory = (state = {}, action) => {
   state.Inventory = state.Inventory || {
-    items: [{count: 25, countable: true,description:'',id:1,name:'log',plural:'logs',sub_type:'resource',type:'items',value:1,weight:2},{count: 25, countable: true,description:'',id:2,name:'ore',plural:'ore',sub_type:'resource',type:'items',value:1,weight:5}],
+    items: [],
     weapons: [],
     armor: [],
   };
@@ -25,6 +25,13 @@ const Inventory = (state = {}, action) => {
   let inventoryItem = _.findWhere(state.Inventory[item.type], { id: item.id });
 
   switch (type) {
+    case INVENTORY.GET:
+      console.warn(payload);
+      state.Inventory = {...state.Inventory, ...payload};
+
+      state.Player.encumbrance = calcEncumbrance();
+
+    break;
     case INVENTORY.ADD:
       if (item.countable === true && inventoryItem !== undefined) {
         inventoryItem.count += payload.count || 1;

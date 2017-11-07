@@ -25,6 +25,21 @@ def user_get(user_id=None):
 def player_get(user_id=None):
   return render_response(json.dumps(controller.player_get(user_id)), 'application/json')
 
+########## SKILL ##########
+@app.route('/skill/<player_id>', methods=['GET'])
+def skill_get(player_id=None):
+  return render_response(json.dumps(controller.skill_get(player_id)), 'application/json')
+
+########## INVENTORY ##########
+@app.route('/inventory/<player_id>', methods=['GET'])
+def inventory_get(player_id=None):
+  return render_response(json.dumps(controller.inventory_get(player_id)), 'application/json')
+
+@app.route('/inventory/<player_id>', methods=['POST'])
+def inventory_set(player_id=None):
+  data = json.loads(request.form['data'])
+  return render_response(json.dumps(controller.inventory_set(player_id, data)), 'application/json')
+
 @app.before_request
 def before_request():
   # check for cookie
