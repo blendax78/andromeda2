@@ -20,15 +20,30 @@ def index():
 def user_get(user_id=None):
   return render_response(json.dumps(controller.user_get(user_id)), 'application/json')
 
+@app.route('/user/<user_id>', methods=['POST'])
+def user_set(user_id=None):
+  data = json.loads(request.form['data'])
+  return render_response(json.dumps(controller.user_set(user_id, data)), 'application/json')
+
 ########## PLAYER ##########
 @app.route('/player/<user_id>', methods=['GET'])
 def player_get(user_id=None):
   return render_response(json.dumps(controller.player_get(user_id)), 'application/json')
 
+@app.route('/player/<player_id>', methods=['POST'])
+def player_set(player_id=None):
+  data = json.loads(request.form['data'])
+  return render_response(json.dumps(controller.player_set(player_id, data)), 'application/json')
+
 ########## SKILL ##########
 @app.route('/skill/<player_id>', methods=['GET'])
 def skill_get(player_id=None):
   return render_response(json.dumps(controller.skill_get(player_id)), 'application/json')
+
+@app.route('/skill/<player_id>', methods=['POST'])
+def skill_set(player_id=None):
+  data = json.loads(request.form['data'])
+  return render_response(json.dumps(controller.skill_set(player_id, data)), 'application/json')
 
 ########## INVENTORY ##########
 @app.route('/inventory/<player_id>', methods=['GET'])

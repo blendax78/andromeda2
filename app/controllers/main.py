@@ -13,13 +13,19 @@ class Main(object):
     self.skill = skill
     self.inventory = inventory
 
+########## PLAYER ##########
+
   def player_get(self, user_id):
     user_id = re.escape(user_id)
     return self.player.get(user_id)
 
   def player_set(self, player_id, data={}):
     player_id = re.escape(player_id)
-    return self.player.set(player_id)
+    json_data = json.dumps(data)
+
+    return self.player.set(player_id, json_data)
+
+########## SKILL ##########
 
   def skill_get(self, player_id):
     player_id = re.escape(player_id)
@@ -31,7 +37,11 @@ class Main(object):
 
   def skill_set(self, player_id, data={}):
     player_id = re.escape(player_id)
-    return self.skill.set(player_id, data)
+    json_data = json.dumps(data)
+
+    return self.skill.set(player_id, json_data)
+
+########## INVENTORY ##########
 
   def inventory_get(self, player_id):
     player_id = re.escape(player_id)
@@ -47,10 +57,14 @@ class Main(object):
 
     return self.inventory.set(player_id, json_data)
 
+########## USER ##########
+
   def user_get(self, user_id):
     user_id = re.escape(user_id)
     return self.user.get(user_id)
 
   def user_set(self, user_id, data={}):
     user_id = re.escape(user_id)
-    return self.user.set(user_id, data)
+    json_data = json.dumps(data)
+
+    return self.user.set(user_id, json_data)

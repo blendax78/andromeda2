@@ -99,6 +99,9 @@ const Skills = (state = {}, action) => {
   }
 
   switch (type) {
+    case SKILLS.GET:
+      state.Skills = {...state.Skills, ...payload};
+      break;
     case SKILLS.LUMBERJACKING:
       checkObjectSuccess('lumberjacking');
     break;

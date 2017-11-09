@@ -13,5 +13,8 @@ class User(Model):
 
   def get(self, user_id):
     user_id = re.escape(user_id)
-
     return self.plain_query('select * from user where id = %s' % user_id)
+
+  def set(self, user_id, data):
+    # self.plain_query("update user set json = '%s' where id = %s" % (data, user_id))
+    return True

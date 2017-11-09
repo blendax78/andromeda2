@@ -43,20 +43,24 @@ const Player = (state = {}, action) => {
     }
   };
 
-  state.Player.hp =  Math.round(state.Player.strength / 2) + 50;
-  state.Player.maxhp =  Math.round(state.Player.strength / 2) + 50;
-  state.Player.maxmp =  state.Player.intelligence;
-  state.Player.maxstamina =  state.Player.dexterity;
-  state.Player.maxencumbrance = state.Player.strength * 4;
-
-  if (state.Player.encumbrance >= state.Player.maxencumbrance) {
-    state.Player.status.encumbered = true;
-    state.Player.status.run = false;
-  } 
-
   const { type, payload } = action;
 
+  let set_stats = () => {
+    state.Player.hp =  Math.round(state.Player.strength / 2) + 50;
+    state.Player.maxhp =  Math.round(state.Player.strength / 2) + 50;
+    state.Player.maxmp =  state.Player.intelligence;
+    state.Player.maxstamina =  state.Player.dexterity;
+    state.Player.maxencumbrance = state.Player.strength * 4;
+
+    if (state.Player.encumbrance >= state.Player.maxencumbrance) {
+      state.Player.status.encumbered = true;
+      state.Player.status.run = false;
+    }
+  };
+
   let update_stamina = (change) => {
+    // Note .. updating stats is not working
+    console.log('us', change, state.Player.stamina, state.Player.stamina + change > state.Player.maxstamina, state.Player.stamina + change);
     if (state.Player.stamina + change < 0) {
       return 0;
     } else if (state.Player.stamina + change > state.Player.maxstamina) {
@@ -167,7 +171,7 @@ const Player = (state = {}, action) => {
     break;
     case PLAYER.TICK:
       if (update_partials('hp')) {
-        state.Player.hp = update_hp(1);  
+        state.Player.hp = update_hp(1);
       }
       
       if (update_partials('mp')) {
@@ -175,14 +179,17 @@ const Player = (state = {}, action) => {
       }
 
       if (update_partials('stamina')) {
+        console.log('stam');
         state.Player.stamina = update_stamina(1);
+      } else {
+        console.log('no');
       }
     break;
   }
 
   let player_tick = () => {
     if (update_partials('hp')) {
-      state.Player.hp = update_hp(1);  
+      state.Player.hp = update_hp(1);
     }
     
     if (update_partials('mp')) {
@@ -193,6 +200,8 @@ const Player = (state = {}, action) => {
       state.Player.stamina = update_stamina(1);
     }
   };
+
+  set_stats();
 
   this.tick = this.tick || setInterval(() => {
     // This does not refresh ui.

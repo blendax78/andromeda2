@@ -26,9 +26,7 @@ const Inventory = (state = {}, action) => {
 
   switch (type) {
     case INVENTORY.GET:
-      console.warn(payload);
       state.Inventory = {...state.Inventory, ...payload};
-
       state.Player.encumbrance = calcEncumbrance();
 
     break;

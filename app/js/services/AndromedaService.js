@@ -73,7 +73,22 @@ const AndromedaService = store => next => action => {
               type: ACTIONS.INVENTORY.GET,
               payload: data.object
             });
-          }); 
+          });
+
+        // Skills
+        request
+          .get(Config.URLS.API + Config.URLS.SKILLS + '/' +  payload.id)
+          .end((err, res) => {
+            if (err) {
+              return;
+            }
+            const data = JSON.parse(res.text);
+
+            next({
+              type: ACTIONS.SKILLS.GET,
+              payload: data.object
+            });
+          });
 
         });
     break;

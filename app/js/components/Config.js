@@ -54,6 +54,7 @@ const Config = {
     },
     SKILLS: {
       FETCH: 'SKILLS.FETCH',
+      GET: 'SKILLS.GET',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MINING: 'SKILLS.MINING',
       WRESTLING: 'SKILLS.WRESTLING'
@@ -71,6 +72,7 @@ const Config = {
     PLAYER: '/player',
     USER: '/user',
     INVENTORY: '/inventory',
+    SKILLS: '/skill',
   },
 
   upperCase: (string) => {
