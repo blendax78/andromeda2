@@ -30,6 +30,30 @@ const AndromedaService = store => next => action => {
           });
         });
     break;
+    case ACTIONS.PLAYER.SAVE:
+      request
+        .post(Config.URLS.API + Config.URLS.PLAYER + '/' +  payload.id)
+        .send(JSON.stringify(payload))
+        //make sure to send the content type, or else an OPTIONS preflight request will be made
+        // .set('Content-Type', 'multipart/form-data')
+        // .type('json')
+        .end((err, res) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          // const data = JSON.parse(res.text);
+          console.log(res);
+
+          // next({
+          //   type: ACTIONS.PLAYER.GET,
+          //   payload: data
+          // });
+        });
+    break;
+    case ACTIONS.SKILLS.SAVE:
+
+    break;
     case ACTIONS.USER.FETCH:
       // User
       request
@@ -106,6 +130,9 @@ const AndromedaService = store => next => action => {
             payload: data.object
           });
         });
+    break;
+    case ACTIONS.INVENTORY.SAVE:
+
     break;
     default:
     break;

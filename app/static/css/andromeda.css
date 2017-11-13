@@ -43,7 +43,8 @@
   color: red;
 }
 
-.andromeda .container {
+/* The <body> has a container class */
+.container {
   background-color: #f7f7f7;
 }
 

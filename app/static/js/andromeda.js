@@ -29043,6 +29043,7 @@ var Player = function Player() {
     }
   };
 
+  // need to move this to its own function. healing/regen not working
   state.Player.hp = Math.round(state.Player.strength / 2) + 50;
   state.Player.maxhp = Math.round(state.Player.strength / 2) + 50;
   state.Player.maxmp = state.Player.intelligence;

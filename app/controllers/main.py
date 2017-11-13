@@ -20,6 +20,7 @@ class Main(object):
     return self.player.get(user_id)
 
   def player_set(self, player_id, data={}):
+    print(data)
     player_id = re.escape(player_id)
     json_data = json.dumps(data)
 

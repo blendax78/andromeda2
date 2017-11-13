@@ -32,6 +32,9 @@ def player_get(user_id=None):
 
 @app.route('/player/<player_id>', methods=['POST'])
 def player_set(player_id=None):
+  print('ho')
+  print(request.form)
+  print(json.dumps(request.form))
   data = json.loads(request.form['data'])
   return render_response(json.dumps(controller.player_set(player_id, data)), 'application/json')
 

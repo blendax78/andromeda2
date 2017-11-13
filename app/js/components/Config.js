@@ -17,6 +17,7 @@ const Config = {
       FETCH: 'USER.FETCH'
     },
     PLAYER: {
+      SAVE: 'PLAYER.SAVE',
       GET: 'PLAYER.GET',
       FETCH: 'PLAYER.FETCH',
       ENCUMBRANCE: 'PLAYER.ENCUMBRANCE',
@@ -44,6 +45,7 @@ const Config = {
       USE: 'ITEM.USE'
     },
     INVENTORY: {
+      SAVE: 'INVENTORY.SAVE',
       FETCH: 'INVENTORY.FETCH',
       GET: 'INVENTORY.GET',
       ADD: 'INVENTORY.ADD',
@@ -53,6 +55,7 @@ const Config = {
       UNEQUIP: 'INVENTORY.UNEQUIP'
     },
     SKILLS: {
+      SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',
       GET: 'SKILLS.GET',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
