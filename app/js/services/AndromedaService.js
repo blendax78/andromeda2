@@ -138,6 +138,16 @@ const AndromedaService = store => next => action => {
     break;
     case ACTIONS.INVENTORY.SAVE:
       // Fire and forget request
+      request
+        .post(Config.URLS.API + Config.URLS.INVENTORY + '/' +  payload.player_id)
+        .send({ data: JSON.stringify(payload) })
+        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+        .end((err, res) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        });
     break;
     default:
     break;

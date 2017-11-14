@@ -44,6 +44,7 @@ const Inventory = (state = {}, action) => {
         state.Player.score[item.name]++;
       }
 
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
       state.Player.encumbrance = calcEncumbrance();
 
     break;
@@ -61,6 +62,9 @@ const Inventory = (state = {}, action) => {
           inventoryItem.count -= payload.count;
         }
       }
+
+    Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
+    state.Player.encumbrance = calcEncumbrance();
 
     break;
   }

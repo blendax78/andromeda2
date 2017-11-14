@@ -48,6 +48,7 @@ class Main(object):
     player_id = re.escape(player_id)
 
     result = self.inventory.get(player_id)
+    print(result)
     result['object'] = json.loads(result['json'])
 
     return result
