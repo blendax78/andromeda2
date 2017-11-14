@@ -1,4 +1,6 @@
 from flask import Flask, request, Response
+from flask_cors import CORS
+
 from app.config import Config
 import json
 
@@ -19,5 +21,6 @@ def unauthorized():
 
 
 app = Flask(__name__)
+CORS(app)
 
 from app import main

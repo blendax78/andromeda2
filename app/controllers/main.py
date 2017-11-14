@@ -20,11 +20,9 @@ class Main(object):
     return self.player.get(user_id)
 
   def player_set(self, player_id, data={}):
-    print(data)
     player_id = re.escape(player_id)
-    json_data = json.dumps(data)
 
-    return self.player.set(player_id, json_data)
+    return self.player.set(player_id, data)
 
 ########## SKILL ##########
 
@@ -38,9 +36,11 @@ class Main(object):
 
   def skill_set(self, player_id, data={}):
     player_id = re.escape(player_id)
-    json_data = json.dumps(data)
 
-    return self.skill.set(player_id, json_data)
+    # Input should already be in json format
+    # json_data = json.dumps(data)
+
+    return self.skill.set(player_id, data)
 
 ########## INVENTORY ##########
 

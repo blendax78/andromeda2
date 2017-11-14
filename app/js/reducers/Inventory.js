@@ -26,6 +26,8 @@ const Inventory = (state = {}, action) => {
 
   switch (type) {
     case INVENTORY.GET:
+      delete payload.player_id;
+
       state.Inventory = {...state.Inventory, ...payload};
       state.Player.encumbrance = calcEncumbrance();
 

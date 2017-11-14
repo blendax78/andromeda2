@@ -31,28 +31,33 @@ const AndromedaService = store => next => action => {
         });
     break;
     case ACTIONS.PLAYER.SAVE:
+      // Fire and forget request
       request
         .post(Config.URLS.API + Config.URLS.PLAYER + '/' +  payload.id)
-        .send(JSON.stringify(payload))
-        //make sure to send the content type, or else an OPTIONS preflight request will be made
-        // .set('Content-Type', 'multipart/form-data')
-        // .type('json')
+        .send({ data: JSON.stringify(payload) })
+        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
         .end((err, res) => {
           if (err) {
             console.error(err);
             return;
           }
           // const data = JSON.parse(res.text);
-          console.log(res);
+          console.log(res.text);
 
-          // next({
-          //   type: ACTIONS.PLAYER.GET,
-          //   payload: data
-          // });
         });
     break;
     case ACTIONS.SKILLS.SAVE:
-
+      // Fire and forget request
+      request
+        .post(Config.URLS.API + Config.URLS.SKILLS + '/' +  payload.player_id)
+        .send({ data: JSON.stringify(payload) })
+        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+        .end((err, res) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        });
     break;
     case ACTIONS.USER.FETCH:
       // User
@@ -132,7 +137,7 @@ const AndromedaService = store => next => action => {
         });
     break;
     case ACTIONS.INVENTORY.SAVE:
-
+      // Fire and forget request
     break;
     default:
     break;

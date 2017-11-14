@@ -1,5 +1,6 @@
 from app import app, Config, render_response, unauthorized
 from flask import request, Response, json, render_template, redirect
+
 from app.controllers.logger import Log as Logger
 
 import app.controllers.main as controller
@@ -32,9 +33,6 @@ def player_get(user_id=None):
 
 @app.route('/player/<player_id>', methods=['POST'])
 def player_set(player_id=None):
-  print('ho')
-  print(request.form)
-  print(json.dumps(request.form))
   data = json.loads(request.form['data'])
   return render_response(json.dumps(controller.player_set(player_id, data)), 'application/json')
 
@@ -45,8 +43,8 @@ def skill_get(player_id=None):
 
 @app.route('/skill/<player_id>', methods=['POST'])
 def skill_set(player_id=None):
-  data = json.loads(request.form['data'])
-  return render_response(json.dumps(controller.skill_set(player_id, data)), 'application/json')
+  # data = json.loads(request.form['data'])
+  return render_response(json.dumps(controller.skill_set(player_id, request.form['data'])), 'application/json')
 
 ########## INVENTORY ##########
 @app.route('/inventory/<player_id>', methods=['GET'])

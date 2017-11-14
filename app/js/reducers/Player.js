@@ -141,6 +141,7 @@ const Player = (state = {}, action) => {
 
   switch (type) {
     case PLAYER.GET:
+      payload.score = JSON.parse(payload.score);
       state.Player = {...state.Player, ...payload};
     break;
     case PLAYER.UPDATE:

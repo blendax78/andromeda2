@@ -18,6 +18,8 @@ const Skills = (state = {}, action) => {
 
       if (player[stat] < 100) {
         player[stat]++;
+
+        Config.dispatch(store, Config.ACTIONS.PLAYER.SAVE, state.Player);
         Config.notifyGain(store, `${ Config.upperCase(stat) } increased by 1.`);
       }
     }
@@ -45,6 +47,7 @@ const Skills = (state = {}, action) => {
       state.Skills[skill].current += parseFloat(gain);
       checkStatGain(skill);
 
+      Config.dispatch(store, Config.ACTIONS.SKILLS.SAVE, { ...state.Skills, player_id: state.Player.id });
       Config.notifyGain(store, `${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
     }
   };
@@ -100,6 +103,8 @@ const Skills = (state = {}, action) => {
 
   switch (type) {
     case SKILLS.GET:
+      delete payload.player_id;
+
       state.Skills = {...state.Skills, ...payload};
       break;
     case SKILLS.LUMBERJACKING:
