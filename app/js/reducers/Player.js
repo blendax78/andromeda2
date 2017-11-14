@@ -43,19 +43,21 @@ const Player = (state = {}, action) => {
     }
   };
 
-// need to move this to its own function. healing/regen not working
-  state.Player.hp =  Math.round(state.Player.strength / 2) + 50;
-  state.Player.maxhp =  Math.round(state.Player.strength / 2) + 50;
-  state.Player.maxmp =  state.Player.intelligence;
-  state.Player.maxstamina =  state.Player.dexterity;
-  state.Player.maxencumbrance = state.Player.strength * 4;
-
-  if (state.Player.encumbrance >= state.Player.maxencumbrance) {
-    state.Player.status.encumbered = true;
-    state.Player.status.run = false;
-  } 
-
   const { type, payload } = action;
+
+  let update_stats = () => {
+    state.Player.hp = !_.isUndefined(state.Player.hp) ? state.Player.hp : Math.round(state.Player.strength / 2) + 50;
+    state.Player.mp = !_.isUndefined(state.Player.mp) ? state.Player.mp : state.Player.intelligence;
+    state.Player.stamina = !_.isUndefined(state.Player.stamina) ? state.Player.stamina : state.Player.dexterity;
+
+    state.Player.maxhp = Math.round(state.Player.strength / 2) + 50;
+    state.Player.maxmp = state.Player.intelligence;
+    state.Player.maxstamina = state.Player.dexterity;
+    state.Player.maxencumbrance = state.Player.strength * 4;
+
+    state.Player.status.encumbered = state.Player.encumbrance > state.Player.maxencumbrance;
+    state.Player.status.run = (state.Player.status.encumbered || state.Player.stamina < 1) ? false : state.Player.status.run;
+  };
 
   let update_stamina = (change) => {
     if (state.Player.stamina + change < 0) {
@@ -121,7 +123,7 @@ const Player = (state = {}, action) => {
         }
       break;
       case 'hp':
-        state.Player.partial.hp += 0.2;
+        state.Player.partial.hp += 0.15;
         if (Math.floor(state.Player.partial.hp) === 1) {
           state.Player.partial.hp = 0;
           return true;
@@ -145,7 +147,7 @@ const Player = (state = {}, action) => {
       state.Player = {...state.Player, ...payload};
     break;
     case PLAYER.UPDATE:
-      state.Player = {...state.Player, payload};
+      state.Player = {...state.Player, ...payload};
     break;
     case PLAYER.EAST:
       state.Player.x = move(state.Player.x, increment(), payload.maxx);
@@ -168,6 +170,7 @@ const Player = (state = {}, action) => {
       state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.TICK:
+      // player_tick();
       if (update_partials('hp')) {
         state.Player.hp = update_hp(1);  
       }
@@ -182,25 +185,10 @@ const Player = (state = {}, action) => {
     break;
   }
 
-  let player_tick = () => {
-    if (update_partials('hp')) {
-      state.Player.hp = update_hp(1);  
-    }
-    
-    if (update_partials('mp')) {
-      state.Player.mp = update_mp(1);
-    }
-
-    if (update_partials('stamina')) {
-      state.Player.stamina = update_stamina(1);
-    }
-  };
+  update_stats();
 
   this.tick = this.tick || setInterval(() => {
-    // This does not refresh ui.
-    // However, components will have to 'watch' (via interval) for an update on the store in order to avoid updating components
-    // only after a user action.
-    player_tick();
+    Config.dispatch(store, Config.ACTIONS.PLAYER.TICK, {});
   }, 1000);
 
   return state.Player;

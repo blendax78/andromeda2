@@ -147,7 +147,7 @@ class PlayerControls extends Component {
     let west = (player.x > 0) ? false : true;      
     let north = (player.y > 0) ? false : true;      
     let south = (player.y < planet.height) ? false : true;
-    // needs to be fixed. shrinking display overlaps run/hide buttons
+
     return (
       <div className="nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
         <div className="row">

@@ -90,6 +90,10 @@ const Config = {
     this.a.notify(store, msg, this.a.ACTIONS.MESSAGES.GAIN);
   },
 
+  notifyError: (store, msg) => {
+    this.a.notify(store, msg, this.a.ACTIONS.MESSAGES.ERROR);
+  },
+
   notifyWarning: (store, msg) => {
     this.a.notify(store, msg, this.a.ACTIONS.MESSAGES.WARNING);
   },

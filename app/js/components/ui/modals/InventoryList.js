@@ -13,6 +13,7 @@ class InventoryList extends Component {
   clickDrop(item) {
     if (confirm('Are you sure you want to drop this?')) {
       this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.REMOVE, payload: {item: item.id, count: 1}});
+      this.props.store.dispatch({ type: Config.ACTIONS.PLAYER.UPDATE, payload: {}});
     }
   }
 
