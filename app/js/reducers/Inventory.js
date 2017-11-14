@@ -12,7 +12,7 @@ const Inventory = (state = {}, action) => {
 
   const { type, payload } = action;
 
-  let calcEncumbrance = () => {
+  let calc_encumbrance = () => {
     let encumbrance = 0;
     _.each(_.union(state.Inventory.items, state.Inventory.weapons, state.Inventory.armor), (inv, key) => {
       encumbrance += inv.count * inv.weight;
@@ -29,7 +29,7 @@ const Inventory = (state = {}, action) => {
       delete payload.player_id;
 
       state.Inventory = {...state.Inventory, ...payload};
-      state.Player.encumbrance = calcEncumbrance();
+      state.Player.encumbrance = calc_encumbrance();
 
     break;
     case INVENTORY.ADD:
@@ -45,7 +45,7 @@ const Inventory = (state = {}, action) => {
       }
 
       Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
-      state.Player.encumbrance = calcEncumbrance();
+      state.Player.encumbrance = calc_encumbrance();
 
     break;
     case INVENTORY.REMOVE:
@@ -64,7 +64,7 @@ const Inventory = (state = {}, action) => {
       }
 
     Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
-    state.Player.encumbrance = calcEncumbrance();
+    state.Player.encumbrance = calc_encumbrance();
 
     break;
   }

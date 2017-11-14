@@ -13,7 +13,7 @@ const Player = (state = {}, action) => {
     planet_id: 1,
     x: 0,
     y: 0,
-    hp: 0,
+    hp: 1,
     mp: 10,
     stamina: 10,
     strength: 10,
@@ -190,6 +190,12 @@ const Player = (state = {}, action) => {
   this.tick = this.tick || setInterval(() => {
     Config.dispatch(store, Config.ACTIONS.PLAYER.TICK, {});
   }, 1000);
+
+  this.save = this.save || setInterval(() => {
+    // This does not have access to the updated state, only the initialized one.
+    Config.dispatch(store, Config.ACTIONS.PLAYER.SAVE, store.getState().Player);
+    Config.notifyGain(store, 'Saving Player.');
+  }, 30000);
 
   return state.Player;
 }
