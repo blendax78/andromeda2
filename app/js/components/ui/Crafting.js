@@ -35,14 +35,19 @@ class Crafting extends Component {
 
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
-      return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && this.player_skill.current >= item.craft.skill.min;
+      return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && 
+        ((this.player_skill.current - item.craft.skill.min) * 2) + 50 > 0 &&
+        this.state.player.encumbrance < this.state.player.maxencumbrance;
     });
 
     return craftable;
   }
 
   craftItem(item) {
-    console.log('crafting', item);
+    this.props.store.dispatch({
+      type: Config.ACTIONS.SKILLS.CRAFT,
+      payload: { item: item, player_skill: this.player_skill }
+    });
   }
 
   getCraftingTable(available) {
@@ -58,7 +63,7 @@ class Crafting extends Component {
         <tr key={`crafting.${item.type}.${item.id}`}>
           <td><a href="#" onClick={() => this.craftItem(item)}>{item.description}</a></td>
           <td>{item.craft.resource.min} {resource_name}</td>
-          <td>{item.craft.skill.min} ({chance}%)</td>
+          <td>{item.craft.skill.min} ({chance.toFixed(1)}%)</td>
         </tr>
       );
     });
@@ -105,11 +110,24 @@ class Crafting extends Component {
   render() {
     let title = Config.upperCase(this.props.type);
     let crafting = this.getCraftingType(this.props.type);
+    let skill = this.player_skill.current.toFixed(1);
+
+    let resources = _.map(this.resources, (resource) => {
+      return (
+        <div className="row" key={`resource.${resource.id}`}>
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span className="bold">{Config.upperCase(resource.plural)}:</span> {resource.count}</div>
+        </div>
+      );
+    });
 
     return (
       <div className="row">
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <h4>{title}</h4>
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span className="bold">Skill:</span> {skill}</div>
+          </div>
+          {resources}
           {crafting}
         </div>
       </div>

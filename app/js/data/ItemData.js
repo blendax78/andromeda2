@@ -34,7 +34,7 @@ export const ItemData = [
       skill: {
         id: 5,
         name: 'blacksmithing',
-        min: 0
+        min: 20
       },
       resource: {
         id: 2,
@@ -63,7 +63,7 @@ export const ItemData = [
       skill: {
         id: 5,
         name: 'blacksmithing',
-        min: 0
+        min: 20
       },
       resource: {
         id: 2,

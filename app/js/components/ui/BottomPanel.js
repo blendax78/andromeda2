@@ -5,17 +5,13 @@ class BottomPanel extends Component {
   constructor(props) {
     super(props);
 
-    this.keys = {
-      message_list: Config.randomKey('messageList')
-    };
-
     this.state = {
-      messages: props.store.getState().Messages.messages
+      messages: props.store.getState().Messages
     };
 
     props.store.subscribe(() => {
       this.setState({
-        messages: this.props.store.getState().Messages.messages
+        messages: this.props.store.getState().Messages
       });
     });
   }
@@ -29,7 +25,7 @@ class BottomPanel extends Component {
     let messageList = $.map(this.state.messages, (message, index) => {
       let style = { color: message.color };
       return (
-        <div className="row" key={this.keys.message_list}>
+        <div className="row" key={`message.${message.id}`}>
           <div className="col-lg-12 col-md-12 col-sm-12">
             <span className="bold">{message.created}</span>:
             <span className="messageBody" style={style}>{message.body}</span>
@@ -39,11 +35,9 @@ class BottomPanel extends Component {
     });
 
     return (
-
-        <div className="nav-panel table-bordered bottom-panel col-lg-12 col-md-12 col-sm-12">
-          {messageList}
-        </div>
-
+      <div className="nav-panel table-bordered bottom-panel col-lg-12 col-md-12 col-sm-12">
+        {messageList}
+      </div>
     );
   }
 

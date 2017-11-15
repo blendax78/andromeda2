@@ -25,7 +25,6 @@ class Mob extends Component {
         });
       }
     });
-
   }
 
   componentWillUnmount() {

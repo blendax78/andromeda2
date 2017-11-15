@@ -33,6 +33,10 @@ const Inventory = (state = {}, action) => {
 
     break;
     case INVENTORY.ADD:
+      if (!item.key) {
+        item.key = Config.randomKey('inventoryItem');
+      }
+
       if (item.countable === true && inventoryItem !== undefined) {
         inventoryItem.count += payload.count || 1;
       } else {

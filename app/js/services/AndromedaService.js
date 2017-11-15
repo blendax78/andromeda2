@@ -41,9 +41,6 @@ const AndromedaService = store => next => action => {
             console.error(err);
             return;
           }
-          // const data = JSON.parse(res.text);
-          console.log(res.text);
-
         });
     break;
     case ACTIONS.SKILLS.SAVE:

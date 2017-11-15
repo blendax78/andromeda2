@@ -55,6 +55,7 @@ const Config = {
       UNEQUIP: 'INVENTORY.UNEQUIP'
     },
     SKILLS: {
+      CRAFT: 'SKILLS.CRAFT',
       SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',
       GET: 'SKILLS.GET',

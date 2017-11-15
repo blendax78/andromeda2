@@ -63,16 +63,38 @@ const Skills = (state = {}, action) => {
           return;
         }
 
-        setTimeout(() => store.dispatch({
-          type: Config.ACTIONS.INVENTORY.ADD,
-          payload: {
+        Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD,
+          {
             item: payload.action.result.item,
             count: 1,
             score: true
-          }
-        }), 0);
+        });
       }
     }
+  };
+
+  let checkCraftingSuccess = (payload) => {
+    let random = Math.round(Math.random() * 100);
+    let chance = ((payload.player_skill.current - payload.item.craft.skill.min) * 2) + 50;
+
+    if (random < chance) {
+      // success
+      Config.notifyGain(store, `You craft ${payload.item.description}.`);
+
+      checkSkillGain(payload.player_skill.name.toLowerCase());
+
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1 });
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
+    } else {
+      // failure
+      Config.notify(store, `You fail to craft ${payload.item.description}. Some of the materials are lost.`);
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
+
+      if (payload.player_skill.current < 20.0) {
+        checkSkillGain(payload.player_skill.name.toLowerCase());
+      }
+    }
+
   };
 
   let checkObjectSuccess = (skill) => {
@@ -112,6 +134,10 @@ const Skills = (state = {}, action) => {
     break;
     case SKILLS.MINING:
       checkObjectSuccess('mining');
+    break;
+    case SKILLS.CRAFT:
+      // Handles all crafting skills
+      checkCraftingSuccess(payload);
     break;
   }
 

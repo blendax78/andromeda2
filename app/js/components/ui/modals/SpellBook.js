@@ -12,7 +12,6 @@ class SpellBook extends Component {
 
   render() {
     let skills = _.map(this.state.skills, (skill, index) => {
-      console.log(skill);
       return (
         <div className="row" key={`skill.${skill.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6">{skill.name}</div>
