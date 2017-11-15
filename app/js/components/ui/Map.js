@@ -8,6 +8,10 @@ class Map extends Component {
   constructor(props) {
     super(props);
 
+    this.keys = {
+      town: Config.randomKey('town')
+    };
+
     this.state = {
       planet: props.store.getState().Planet,
       player: props.store.getState().Player,
@@ -123,7 +127,7 @@ class Map extends Component {
             }
           break;
           case 'town':
-            return <Town key={Config.randomKey('town')} data={decoration} store={this.props.store} />
+            return <Town key={this.keys.town} data={decoration} store={this.props.store} />
           break;
         }
       });

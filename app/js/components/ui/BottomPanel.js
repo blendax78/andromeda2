@@ -5,6 +5,10 @@ class BottomPanel extends Component {
   constructor(props) {
     super(props);
 
+    this.keys = {
+      message_list: Config.randomKey('messageList')
+    };
+
     this.state = {
       messages: props.store.getState().Messages.messages
     };
@@ -22,10 +26,10 @@ class BottomPanel extends Component {
   }
 
   render() {
-    let messageList = $.map(this.state.messages, function(message, index) {
+    let messageList = $.map(this.state.messages, (message, index) => {
       let style = { color: message.color };
       return (
-        <div className="row" key={Config.randomKey('messageList')}>
+        <div className="row" key={this.keys.message_list}>
           <div className="col-lg-12 col-md-12 col-sm-12">
             <span className="bold">{message.created}</span>:
             <span className="messageBody" style={style}>{message.body}</span>

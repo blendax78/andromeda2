@@ -6,6 +6,11 @@ class Combat extends Component {
   constructor(props) {
     super(props);
 
+    this.keys = {
+      melee: Config.randomKey('combat'),
+      run: Config.randomKey('combat'),
+    };
+
     this.state = {
       mob: this.props.mob,
       player: this.props.store.getState().Player,
@@ -61,8 +66,8 @@ class Combat extends Component {
     let classRun = classNames({ btn: true, 'btn-info': this.state.combat.actions.run })
 
     let buttons = [
-      <span key={Config.randomKey('combat')}><button type="button" className={classMelee} onClick={() => this.toggleMelee()}>Melee</button>&nbsp;</span>, 
-      <span key={Config.randomKey('combat')}><button type="button" className={classRun} onClick={() => this.toggleRun()}>Run</button>&nbsp;</span>, 
+      <span key={this.keys.melee}><button type="button" className={classMelee} onClick={() => this.toggleMelee()}>Melee</button>&nbsp;</span>, 
+      <span key={this.keys.run}><button type="button" className={classRun} onClick={() => this.toggleRun()}>Run</button>&nbsp;</span>, 
     ];
 
     return buttons;

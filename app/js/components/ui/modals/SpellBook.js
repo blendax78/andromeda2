@@ -4,7 +4,7 @@ import Config from '../../Config';
 class SpellBook extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       skills: props.store.getState().Skills
     };
@@ -12,8 +12,9 @@ class SpellBook extends Component {
 
   render() {
     let skills = _.map(this.state.skills, (skill, index) => {
+      console.log(skill);
       return (
-        <div className="row" key={Config.randomKey('skillModal')}>
+        <div className="row" key={`skill.${skill.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6">{skill.name}</div>
           <div className="col-lg-6 col-md-6 col-sm-6">{skill.current.toFixed(1)}</div>
         </div>

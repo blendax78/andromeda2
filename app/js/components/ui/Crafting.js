@@ -55,7 +55,7 @@ class Crafting extends Component {
       let resource_name = (item.craft.resource.min == 1) ? this.resources[item.craft.resource.id].name : this.resources[item.craft.resource.id].plural;
       let chance = ((this.player_skill.current - item.craft.skill.min) * 2) + 50;
       return (
-        <tr key={Config.randomKey('crafting')}>
+        <tr key={`crafting.${item.type}.${item.id}`}>
           <td><a href="#" onClick={() => this.craftItem(item)}>{item.description}</a></td>
           <td>{item.craft.resource.min} {resource_name}</td>
           <td>{item.craft.skill.min} ({chance}%)</td>

@@ -31,7 +31,7 @@ class InventoryList extends Component {
       }
 
       return (
-        <div className="row" key={Config.randomKey('inventoryItem')}>
+        <div className="row" key={`inventoryItem.${inventory.type}.${inventory.id}`}>
           <div className="col-lg-4 col-md-4 col-sm-4">{name}</div>
           <div className="col-lg-4 col-md-4 col-sm-4">
             <span className="glyphicon glyphicon-trash clickable" onClick={() => { this.clickDrop(inventory); } } data-id="data"></span>

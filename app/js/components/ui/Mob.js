@@ -6,6 +6,10 @@ class Mob extends Component {
   constructor(props) {
     super(props);
 
+    this.keys = {
+      actions: Config.randomKey('mob_actions')
+    };
+
     this.state = {
       mob: this.props.data,
       showAction: this.props.store.getState().Mobs.showAction,
@@ -65,7 +69,7 @@ class Mob extends Component {
       buttons = <Combat store={this.props.store} mob={this.state.mob} />;
     } else {
       if (this.state.mob.attackable) {
-        buttons.push(<button key={Config.randomKey('mob_actions')} type="button" className="btn" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
+        buttons.push(<button key={this.keys.actions} type="button" className="btn" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
       }
     }
 

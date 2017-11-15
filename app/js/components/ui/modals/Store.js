@@ -6,6 +6,16 @@ class Store extends Component {
   constructor(props) {
     super(props);
 
+    this.keys = {
+      buy: Config.randomKey('commerce'),
+      sell: Config.randomKey('commerce'),
+      inn: Config.randomKey('commerce'),
+      healer: Config.randomKey('commerce'),
+      blacksmithing: Config.randomKey('commerce'),
+      inscription: Config.randomKey('commerce'),
+      tailoring: Config.randomKey('commerce')
+    };
+
     this.state = {
       data: props.data,
       crafting: ''
@@ -21,11 +31,11 @@ class Store extends Component {
     let buttons = [];
 
     if (this.state.data.buy.length > 0) {
-      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-primary" id="buy_button">Buy</button>);
+      buttons.push(<button key={this.keys.buy} className="btn btn-primary" id="buy_button">Buy</button>);
     }
 
     if (this.state.data.sell.length > 0) {
-      buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-primary" id="sell_button">Sell</button>);
+      buttons.push(<button key={this.keys.sell} className="btn btn-primary" id="sell_button">Sell</button>);
     }
 
     switch (this.state.data.type) {
@@ -35,22 +45,22 @@ class Store extends Component {
       case 'healer':
       break;
       case 'inn':
-        buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info">Stay</button>);
+        buttons.push(<button key={this.keys.inn} className="btn btn-info">Stay</button>);
       break;
     }
 
     for (let i in this.state.data.craft) {
       switch (this.state.data.craft[i]) {
         case 'blacksmithing':
-          buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info"
+          buttons.push(<button key={this.keys.blacksmithing} className="btn btn-info"
             onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Blacksmithing</button>);
         break;
         case 'inscription':
-          buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info"
+          buttons.push(<button key={this.keys.inscription} className="btn btn-info"
             onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Inscription</button>);
         break;
         case 'tailoring':
-          buttons.push(<button key={Config.randomKey('commerce')} className="btn btn-info"
+          buttons.push(<button key={this.keys.tailoring} className="btn btn-info"
             onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Tailoring</button>);
         break;
       }

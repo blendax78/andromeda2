@@ -8,6 +8,12 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
 
+    this.keys = {
+      town_nav: Config.randomKey('topNavItem'),
+      player_nav: Config.randomKey('topNavItem'),
+      todo: Config.randomKey('topNavItem'),
+    };
+
     this.state = {
       right: { body: this.props.store.getState().User.name },
       player: this.props.store.getState().Player,
@@ -80,9 +86,10 @@ class Navbar extends Component {
       { href: '#', text: 'Player Stats', onClick: () => this.showPlayerStats() }
     ];
 
+    // Use a static key, or else the dropdown will close during a state change, thanks to an ever-updating key
     let topElems = [
-      <NavDropdown title="Player" elems={mainNavElems} key={Config.randomKey('topNavItem')} id="player_dropdown" />,
-      <NavItem href="#" key={Config.randomKey('topNavItem')} text="To Do"
+      <NavDropdown title="Player" elems={mainNavElems} key={this.keys.player_nav} id="player_dropdown" />,
+      <NavItem href="#" key={this.keys.todo} text="To Do"
         click={ () => this.showToDos() } />
     ];
 
@@ -94,7 +101,7 @@ class Navbar extends Component {
       });
 
       // Add before 'To Dos'
-      topElems.splice(1, 0, <NavDropdown title={town.name} elems={townElems} key={Config.randomKey('topNavItem')} id="town_dropdown" />);
+      topElems.splice(1, 0, <NavDropdown title={town.name} elems={townElems} key={this.keys.town_nav} id="town_dropdown" />);
     }
 
     return (

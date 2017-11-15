@@ -13,7 +13,7 @@ class SkillsList extends Component {
   render() {
     let skills = _.map(this.state.skills, (skill, index) => {
       return (
-        <div className="row" key={Config.randomKey('skillModal')}>
+        <div className="row" key={`skill.${skill.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6">{skill.name}</div>
           <div className="col-lg-6 col-md-6 col-sm-6">{skill.current.toFixed(1)}</div>
         </div>

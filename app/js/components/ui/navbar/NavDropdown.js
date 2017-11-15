@@ -9,14 +9,13 @@ class NavDropdown extends Component {
   render() {
     let _this = this;
     let liElems = $.map(this.props.elems, function(li, index) {
-
       if (li.type && li.type === 'divider') {
         return (
-          <li key={Config.randomKey('NavDropdownItem')} role="separator" className="divider"></li>
+          <li key={li.id || Config.randomKey('NavDropdownItem')} role="separator" className="divider"></li>
         );
       } else {
         return (
-          <li key={Config.randomKey('NavDropdownItem')}>
+          <li key={li.id || Config.randomKey('NavDropdownItem')}>
             <a href={li.href} onClick={li.onClick}>{li.text}</a>
           </li>
         );
