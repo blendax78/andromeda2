@@ -4,11 +4,7 @@ import { ItemData } from '../data/ItemData';
 let INVENTORY = Config.ACTIONS.INVENTORY;
 
 const Inventory = (state = {}, action) => {
-  state.Inventory = state.Inventory || {
-    items: [],
-    weapons: [],
-    armor: [],
-  };
+  state.Inventory = state.Inventory || {'armor': [],'player_id': 1,'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5}]};
 
   const { type, payload } = action;
 
@@ -30,7 +26,6 @@ const Inventory = (state = {}, action) => {
 
       state.Inventory = {...state.Inventory, ...payload};
       state.Player.encumbrance = calc_encumbrance();
-
     break;
     case INVENTORY.ADD:
       if (!item.key) {
@@ -49,8 +44,6 @@ const Inventory = (state = {}, action) => {
       }
 
       Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
-      state.Player.encumbrance = calc_encumbrance();
-
     break;
     case INVENTORY.REMOVE:
       if (item.countable === false) {
@@ -68,11 +61,10 @@ const Inventory = (state = {}, action) => {
       }
 
     Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
-    state.Player.encumbrance = calc_encumbrance();
-
     break;
   }
 
+  state.Player.encumbrance = calc_encumbrance();
   return state.Inventory;
 }
 

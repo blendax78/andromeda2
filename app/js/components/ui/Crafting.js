@@ -106,7 +106,7 @@ class Crafting extends Component {
       </div>
     )
   }
-
+// Need to change this so that it just removes the <a> from a non-craftable item.
   render() {
     let title = Config.upperCase(this.props.type);
     let crafting = this.getCraftingType(this.props.type);
