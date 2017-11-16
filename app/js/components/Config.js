@@ -72,7 +72,7 @@ const Config = {
     },
   },
   URLS: {
-    API: 'http://localhost:5001',
+    API: 'https://andromeda.vintimilla.org',
     PLAYER: '/player',
     USER: '/user',
     INVENTORY: '/inventory',

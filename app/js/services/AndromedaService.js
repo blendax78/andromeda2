@@ -59,7 +59,7 @@ const AndromedaService = store => next => action => {
     case ACTIONS.USER.FETCH:
       // User
       request
-        .get(Config.URLS.API + Config.URLS.USER + '/1')
+        .get(Config.URLS.API + Config.URLS.USER)
         .end((err, res) => {
           if (err) {
             return;
@@ -73,7 +73,7 @@ const AndromedaService = store => next => action => {
 
         // Player
         request
-          .get(Config.URLS.API + Config.URLS.PLAYER + '/' +  payload.id)
+          .get(Config.URLS.API + Config.URLS.PLAYER + '/' +  data.player_id)
           .end((err, res) => {
             if (err) {
               return;
@@ -88,7 +88,7 @@ const AndromedaService = store => next => action => {
 
         // Inventory
         request
-          .get(Config.URLS.API + Config.URLS.INVENTORY + '/' +  payload.id)
+          .get(Config.URLS.API + Config.URLS.INVENTORY + '/' +  data.player_id)
           .end((err, res) => {
             if (err) {
               return;
@@ -103,7 +103,7 @@ const AndromedaService = store => next => action => {
 
         // Skills
         request
-          .get(Config.URLS.API + Config.URLS.SKILLS + '/' +  payload.id)
+          .get(Config.URLS.API + Config.URLS.SKILLS + '/' +  data.player_id)
           .end((err, res) => {
             if (err) {
               return;
@@ -120,7 +120,7 @@ const AndromedaService = store => next => action => {
     break;
     case ACTIONS.INVENTORY.FETCH:
       request
-        .get(Config.URLS.API + Config.URLS.INVENTORY + '/1')
+        .get(Config.URLS.API + Config.URLS.INVENTORY + '/' + payload.player_id)
         .end((err, res) => {
           if (err) {
             return;

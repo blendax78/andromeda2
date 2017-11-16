@@ -458,6 +458,7 @@ var Config = {
       FETCH: 'USER.FETCH'
     },
     PLAYER: {
+      SAVE: 'PLAYER.SAVE',
       GET: 'PLAYER.GET',
       FETCH: 'PLAYER.FETCH',
       ENCUMBRANCE: 'PLAYER.ENCUMBRANCE',
@@ -485,6 +486,7 @@ var Config = {
       USE: 'ITEM.USE'
     },
     INVENTORY: {
+      SAVE: 'INVENTORY.SAVE',
       FETCH: 'INVENTORY.FETCH',
       GET: 'INVENTORY.GET',
       ADD: 'INVENTORY.ADD',
@@ -494,6 +496,8 @@ var Config = {
       UNEQUIP: 'INVENTORY.UNEQUIP'
     },
     SKILLS: {
+      CRAFT: 'SKILLS.CRAFT',
+      SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',
       GET: 'SKILLS.GET',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
@@ -509,7 +513,7 @@ var Config = {
     }
   },
   URLS: {
-    API: 'http://localhost:5001',
+    API: 'https://andromeda.vintimilla.org',
     PLAYER: '/player',
     USER: '/user',
     INVENTORY: '/inventory',
@@ -528,6 +532,10 @@ var Config = {
 
   notifyGain: function notifyGain(store, msg) {
     _this.a.notify(store, msg, _this.a.ACTIONS.MESSAGES.GAIN);
+  },
+
+  notifyError: function notifyError(store, msg) {
+    _this.a.notify(store, msg, _this.a.ACTIONS.MESSAGES.ERROR);
   },
 
   notifyWarning: function notifyWarning(store, msg) {
@@ -1796,6 +1804,13 @@ module.exports = ReactUpdates;
 
 /***/ }),
 /* 19 */
+/***/ (function(module, exports) {
+
+var core = module.exports = {version: '2.4.0'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2065,13 +2080,6 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
   }
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-var core = module.exports = {version: '2.4.0'};
-if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ }),
 /* 21 */
@@ -2776,7 +2784,7 @@ module.exports = function(it, key){
 /***/ (function(module, exports, __webpack_require__) {
 
 var global    = __webpack_require__(22)
-  , core      = __webpack_require__(20)
+  , core      = __webpack_require__(19)
   , ctx       = __webpack_require__(127)
   , hide      = __webpack_require__(34)
   , PROTOTYPE = 'prototype';
@@ -3862,7 +3870,7 @@ module.exports = EventPluginHub;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 var getEventTarget = __webpack_require__(60);
 
@@ -7302,7 +7310,7 @@ exports.f = __webpack_require__(36);
 /***/ (function(module, exports, __webpack_require__) {
 
 var global         = __webpack_require__(22)
-  , core           = __webpack_require__(20)
+  , core           = __webpack_require__(19)
   , LIBRARY        = __webpack_require__(81)
   , wksExt         = __webpack_require__(86)
   , defineProperty = __webpack_require__(27).f;
@@ -11238,7 +11246,7 @@ var ItemData = [{
     skill: {
       id: 5,
       name: 'blacksmithing',
-      min: 0
+      min: 20
     },
     resource: {
       id: 2,
@@ -11266,7 +11274,7 @@ var ItemData = [{
     skill: {
       id: 5,
       name: 'blacksmithing',
-      min: 0
+      min: 20
     },
     resource: {
       id: 2,
@@ -15206,7 +15214,7 @@ module.exports = FallbackCompositionState;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 /**
  * @interface Event
@@ -15247,7 +15255,7 @@ module.exports = SyntheticCompositionEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 /**
  * @interface Event
@@ -15294,7 +15302,7 @@ var EventPropagators = __webpack_require__(38);
 var ExecutionEnvironment = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(18);
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 var inputValueTracking = __webpack_require__(107);
 var getEventTarget = __webpack_require__(60);
@@ -23096,7 +23104,7 @@ var EventPropagators = __webpack_require__(38);
 var ExecutionEnvironment = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInputSelection = __webpack_require__(122);
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 var getActiveElement = __webpack_require__(123);
 var isTextInputElement = __webpack_require__(108);
@@ -23293,7 +23301,7 @@ var EventPropagators = __webpack_require__(38);
 var ReactDOMComponentTree = __webpack_require__(12);
 var SyntheticAnimationEvent = __webpack_require__(240);
 var SyntheticClipboardEvent = __webpack_require__(241);
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 var SyntheticFocusEvent = __webpack_require__(242);
 var SyntheticKeyboardEvent = __webpack_require__(243);
 var SyntheticMouseEvent = __webpack_require__(49);
@@ -23517,7 +23525,7 @@ module.exports = SimpleEventPlugin;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 /**
  * @interface Event
@@ -23561,7 +23569,7 @@ module.exports = SyntheticAnimationEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 /**
  * @interface Event
@@ -23942,7 +23950,7 @@ module.exports = SyntheticTouchEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(19);
+var SyntheticEvent = __webpack_require__(20);
 
 /**
  * @interface Event
@@ -24665,7 +24673,7 @@ var App = function (_Component) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(261);
-module.exports = __webpack_require__(20).Object.getPrototypeOf;
+module.exports = __webpack_require__(19).Object.getPrototypeOf;
 
 /***/ }),
 /* 261 */
@@ -24687,7 +24695,7 @@ __webpack_require__(262)('getPrototypeOf', function(){
 
 // most Object methods by ES6 should accept primitives
 var $export = __webpack_require__(26)
-  , core    = __webpack_require__(20)
+  , core    = __webpack_require__(19)
   , fails   = __webpack_require__(35);
 module.exports = function(KEY, exec){
   var fn  = (core.Object || {})[KEY] || Object[KEY]
@@ -24716,7 +24724,7 @@ module.exports = { "default": __webpack_require__(265), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(266);
-var $Object = __webpack_require__(20).Object;
+var $Object = __webpack_require__(19).Object;
 module.exports = function defineProperty(it, key, desc){
   return $Object.defineProperty(it, key, desc);
 };
@@ -24966,7 +24974,7 @@ __webpack_require__(283);
 __webpack_require__(289);
 __webpack_require__(290);
 __webpack_require__(291);
-module.exports = __webpack_require__(20).Symbol;
+module.exports = __webpack_require__(19).Symbol;
 
 /***/ }),
 /* 283 */
@@ -25366,7 +25374,7 @@ module.exports = { "default": __webpack_require__(293), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(294);
-module.exports = __webpack_require__(20).Object.setPrototypeOf;
+module.exports = __webpack_require__(19).Object.setPrototypeOf;
 
 /***/ }),
 /* 294 */
@@ -25417,7 +25425,7 @@ module.exports = { "default": __webpack_require__(297), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(298);
-var $Object = __webpack_require__(20).Object;
+var $Object = __webpack_require__(19).Object;
 module.exports = function create(P, D){
   return $Object.create(P, D);
 };
@@ -25469,6 +25477,12 @@ var Navbar = function (_Component) {
     __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Navbar);
 
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Navbar.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Navbar)).call(this, props));
+
+    _this.keys = {
+      town_nav: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('topNavItem'),
+      player_nav: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('topNavItem'),
+      todo: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('topNavItem')
+    };
 
     _this.state = {
       right: { body: _this.props.store.getState().User.name },
@@ -25605,7 +25619,8 @@ var Navbar = function (_Component) {
           return _this2.showPlayerStats();
         } }];
 
-      var topElems = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__NavDropdown__["a" /* default */], { title: 'Player', elems: mainNavElems, key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('topNavItem'), id: 'player_dropdown' }), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__NavItem__["a" /* default */], { href: '#', key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('topNavItem'), text: 'To Do',
+      // Use a static key, or else the dropdown will close during a state change, thanks to an ever-updating key
+      var topElems = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__NavDropdown__["a" /* default */], { title: 'Player', elems: mainNavElems, key: this.keys.player_nav, id: 'player_dropdown' }), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__NavItem__["a" /* default */], { href: '#', key: this.keys.todo, text: 'To Do',
         click: function click() {
           return _this2.showToDos();
         } })];
@@ -25620,7 +25635,7 @@ var Navbar = function (_Component) {
         });
 
         // Add before 'To Dos'
-        topElems.splice(1, 0, __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__NavDropdown__["a" /* default */], { title: town.name, elems: townElems, key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('topNavItem'), id: 'town_dropdown' }));
+        topElems.splice(1, 0, __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__NavDropdown__["a" /* default */], { title: town.name, elems: townElems, key: this.keys.town_nav, id: 'town_dropdown' }));
       }
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -25839,13 +25854,12 @@ var NavDropdown = function (_Component) {
     value: function render() {
       var _this = this;
       var liElems = $.map(this.props.elems, function (li, index) {
-
         if (li.type && li.type === 'divider') {
-          return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('li', { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('NavDropdownItem'), role: 'separator', className: 'divider' });
+          return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('li', { key: li.id || __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('NavDropdownItem'), role: 'separator', className: 'divider' });
         } else {
           return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'li',
-            { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('NavDropdownItem') },
+            { key: li.id || __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('NavDropdownItem') },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'a',
               { href: li.href, onClick: li.onClick },
@@ -26329,6 +26343,7 @@ var InventoryList = function (_Component) {
     value: function clickDrop(item) {
       if (confirm('Are you sure you want to drop this?')) {
         this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, payload: { item: item.id, count: 1 } });
+        this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE, payload: {} });
       }
     }
   }, {
@@ -26350,7 +26365,7 @@ var InventoryList = function (_Component) {
 
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
-          { className: 'row', key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('inventoryItem') },
+          { className: 'row', key: 'inventoryItem.' + inventory.type + '.' + (inventory.key || inventory.id) },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-4 col-md-4 col-sm-4' },
@@ -26455,7 +26470,7 @@ var SkillsList = function (_Component) {
       var skills = _.map(this.state.skills, function (skill, index) {
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
-          { className: 'row', key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('skillModal') },
+          { className: 'row', key: 'skill.' + skill.id },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6' },
@@ -26532,7 +26547,7 @@ var SpellBook = function (_Component) {
       var skills = _.map(this.state.skills, function (skill, index) {
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
-          { className: 'row', key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('skillModal') },
+          { className: 'row', key: 'skill.' + skill.id },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6' },
@@ -26708,6 +26723,16 @@ var Store = function (_Component) {
 
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Store.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Store)).call(this, props));
 
+    _this.keys = {
+      buy: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
+      sell: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
+      inn: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
+      healer: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
+      blacksmithing: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
+      inscription: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
+      tailoring: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce')
+    };
+
     _this.state = {
       data: props.data,
       crafting: ''
@@ -26731,7 +26756,7 @@ var Store = function (_Component) {
       if (this.state.data.buy.length > 0) {
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
-          { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'), className: 'btn btn-primary', id: 'buy_button' },
+          { key: this.keys.buy, className: 'btn btn-primary', id: 'buy_button' },
           'Buy'
         ));
       }
@@ -26739,7 +26764,7 @@ var Store = function (_Component) {
       if (this.state.data.sell.length > 0) {
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
-          { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'), className: 'btn btn-primary', id: 'sell_button' },
+          { key: this.keys.sell, className: 'btn btn-primary', id: 'sell_button' },
           'Sell'
         ));
       }
@@ -26753,7 +26778,7 @@ var Store = function (_Component) {
         case 'inn':
           buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'button',
-            { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'), className: 'btn btn-info' },
+            { key: this.keys.inn, className: 'btn btn-info' },
             'Stay'
           ));
           break;
@@ -26764,7 +26789,7 @@ var Store = function (_Component) {
           case 'blacksmithing':
             buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'button',
-              { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'), className: 'btn btn-info',
+              { key: _this2.keys.blacksmithing, className: 'btn btn-info',
                 onClick: function onClick() {
                   return _this2.setCrafting(_this2.state.data.craft[i]);
                 } },
@@ -26774,7 +26799,7 @@ var Store = function (_Component) {
           case 'inscription':
             buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'button',
-              { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'), className: 'btn btn-info',
+              { key: _this2.keys.inscription, className: 'btn btn-info',
                 onClick: function onClick() {
                   return _this2.setCrafting(_this2.state.data.craft[i]);
                 } },
@@ -26784,7 +26809,7 @@ var Store = function (_Component) {
           case 'tailoring':
             buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'button',
-              { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'), className: 'btn btn-info',
+              { key: _this2.keys.tailoring, className: 'btn btn-info',
                 onClick: function onClick() {
                   return _this2.setCrafting(_this2.state.data.craft[i]);
                 } },
@@ -26923,7 +26948,7 @@ var Crafting = function (_Component) {
 
         var resource = _.findWhere(_this2.state.inventory.items, { id: item.craft.resource.id });
 
-        return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && _this2.player_skill.current >= item.craft.skill.min;
+        return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && (_this2.player_skill.current - item.craft.skill.min) * 2 + 50 > 0 && _this2.state.player.encumbrance < _this2.state.player.maxencumbrance;
       });
 
       return craftable;
@@ -26931,7 +26956,10 @@ var Crafting = function (_Component) {
   }, {
     key: 'craftItem',
     value: function craftItem(item) {
-      console.log('crafting', item);
+      this.props.store.dispatch({
+        type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.CRAFT,
+        payload: { item: item, player_skill: this.player_skill }
+      });
     }
   }, {
     key: 'getCraftingTable',
@@ -26948,7 +26976,7 @@ var Crafting = function (_Component) {
         var chance = (_this3.player_skill.current - item.craft.skill.min) * 2 + 50;
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'tr',
-          { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('crafting') },
+          { key: 'crafting.' + item.type + '.' + item.id },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'td',
             null,
@@ -26972,7 +27000,7 @@ var Crafting = function (_Component) {
             null,
             item.craft.skill.min,
             ' (',
-            chance,
+            chance.toFixed(1),
             '%)'
           )
         );
@@ -27042,6 +27070,26 @@ var Crafting = function (_Component) {
     value: function render() {
       var title = __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].upperCase(this.props.type);
       var crafting = this.getCraftingType(this.props.type);
+      var skill = this.player_skill.current.toFixed(1);
+
+      var resources = _.map(this.resources, function (resource) {
+        return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row', key: 'resource.' + resource.id },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold' },
+              __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].upperCase(resource.plural),
+              ':'
+            ),
+            ' ',
+            resource.count
+          )
+        );
+      });
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
@@ -27054,6 +27102,22 @@ var Crafting = function (_Component) {
             null,
             title
           ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'row' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'span',
+                { className: 'bold' },
+                'Skill:'
+              ),
+              ' ',
+              skill
+            )
+          ),
+          resources,
           crafting
         )
       );
@@ -27307,6 +27371,10 @@ var Map = function (_Component) {
 
     var _this = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Map.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(Map)).call(this, props));
 
+    _this.keys = {
+      town: __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].randomKey('town')
+    };
+
     _this.state = {
       planet: props.store.getState().Planet,
       player: props.store.getState().Player,
@@ -27437,7 +27505,7 @@ var Map = function (_Component) {
               }
               break;
             case 'town':
-              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Town__["a" /* default */], { key: __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].randomKey('town'), data: decoration, store: _this3.props.store });
+              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Town__["a" /* default */], { key: _this3.keys.town, data: decoration, store: _this3.props.store });
               break;
           }
         });
@@ -27603,7 +27671,7 @@ module.exports = { "default": __webpack_require__(318), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(319);
-module.exports = __webpack_require__(20).Object.assign;
+module.exports = __webpack_require__(19).Object.assign;
 
 /***/ }),
 /* 319 */
@@ -27855,6 +27923,10 @@ var Mob = function (_Component) {
 
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Mob.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Mob)).call(this, props));
 
+    _this.keys = {
+      actions: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions')
+    };
+
     _this.state = {
       mob: _this.props.data,
       showAction: _this.props.store.getState().Mobs.showAction,
@@ -27870,7 +27942,6 @@ var Mob = function (_Component) {
         });
       }
     });
-
     return _this;
   }
 
@@ -27925,7 +27996,7 @@ var Mob = function (_Component) {
         if (this.state.mob.attackable) {
           buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'button',
-            { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions'), type: 'button', className: 'btn', onClick: function onClick(e) {
+            { key: this.keys.actions, type: 'button', className: 'btn', onClick: function onClick(e) {
                 return _this2.toggleCombat(e);
               } },
             'Attack'
@@ -28009,6 +28080,11 @@ var Combat = function (_Component) {
 
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Combat.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Combat)).call(this, props));
 
+    _this.keys = {
+      melee: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('combat'),
+      run: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('combat')
+    };
+
     _this.state = {
       mob: _this.props.mob,
       player: _this.props.store.getState().Player,
@@ -28075,7 +28151,7 @@ var Combat = function (_Component) {
 
       var buttons = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'span',
-        { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('combat') },
+        { key: this.keys.melee },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classMelee, onClick: function onClick() {
@@ -28086,7 +28162,7 @@ var Combat = function (_Component) {
         '\xA0'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'span',
-        { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('combat') },
+        { key: this.keys.run },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classRun, onClick: function onClick() {
@@ -28659,7 +28735,7 @@ var PlayerControls = function (_Component) {
       var west = player.x > 0 ? false : true;
       var north = player.y > 0 ? false : true;
       var south = player.y < planet.height ? false : true;
-      // needs to be fixed. shrinking display overlaps run/hide buttons
+
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
         { className: 'nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12' },
@@ -28795,12 +28871,12 @@ var BottomPanel = function (_Component) {
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (BottomPanel.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(BottomPanel)).call(this, props));
 
     _this.state = {
-      messages: props.store.getState().Messages.messages
+      messages: props.store.getState().Messages
     };
 
     props.store.subscribe(function () {
       _this.setState({
-        messages: _this.props.store.getState().Messages.messages
+        messages: _this.props.store.getState().Messages
       });
     });
     return _this;
@@ -28819,7 +28895,7 @@ var BottomPanel = function (_Component) {
         var style = { color: message.color };
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
-          { className: 'row', key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('messageList') },
+          { className: 'row', key: 'message.' + message.id },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-12 col-md-12 col-sm-12' },
@@ -29013,7 +29089,7 @@ var Player = function Player() {
     planet_id: 1,
     x: 0,
     y: 0,
-    hp: 0,
+    hp: 1,
     mp: 10,
     stamina: 10,
     strength: 10,
@@ -29043,21 +29119,23 @@ var Player = function Player() {
     }
   };
 
-  // need to move this to its own function. healing/regen not working
-  state.Player.hp = Math.round(state.Player.strength / 2) + 50;
-  state.Player.maxhp = Math.round(state.Player.strength / 2) + 50;
-  state.Player.maxmp = state.Player.intelligence;
-  state.Player.maxstamina = state.Player.dexterity;
-  state.Player.maxencumbrance = state.Player.strength * 4;
-
-  if (state.Player.encumbrance >= state.Player.maxencumbrance) {
-    state.Player.status.encumbered = true;
-    state.Player.status.run = false;
-  }
-
   var type = action.type,
       payload = action.payload;
 
+
+  var update_stats = function update_stats() {
+    state.Player.hp = !_.isUndefined(state.Player.hp) ? state.Player.hp : Math.round(state.Player.strength / 2) + 50;
+    state.Player.mp = !_.isUndefined(state.Player.mp) ? state.Player.mp : state.Player.intelligence;
+    state.Player.stamina = !_.isUndefined(state.Player.stamina) ? state.Player.stamina : state.Player.dexterity;
+
+    state.Player.maxhp = Math.round(state.Player.strength / 2) + 50;
+    state.Player.maxmp = state.Player.intelligence;
+    state.Player.maxstamina = state.Player.dexterity;
+    state.Player.maxencumbrance = state.Player.strength * 4;
+
+    state.Player.status.encumbered = state.Player.encumbrance > state.Player.maxencumbrance;
+    state.Player.status.run = state.Player.status.encumbered || state.Player.stamina < 1 ? false : state.Player.status.run;
+  };
 
   var update_stamina = function update_stamina(change) {
     if (state.Player.stamina + change < 0) {
@@ -29123,7 +29201,7 @@ var Player = function Player() {
         }
         break;
       case 'hp':
-        state.Player.partial.hp += 0.2;
+        state.Player.partial.hp += 0.15;
         if (Math.floor(state.Player.partial.hp) === 1) {
           state.Player.partial.hp = 0;
           return true;
@@ -29143,10 +29221,11 @@ var Player = function Player() {
 
   switch (type) {
     case PLAYER.GET:
+      payload.score = JSON.parse(payload.score);
       state.Player = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player, payload);
       break;
     case PLAYER.UPDATE:
-      state.Player = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player, { payload: payload });
+      state.Player = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player, payload);
       break;
     case PLAYER.EAST:
       state.Player.x = move(state.Player.x, increment(), payload.maxx);
@@ -29169,6 +29248,7 @@ var Player = function Player() {
       state.Player.status.run = state.Player.stamina === 0 ? false : state.Player.status.run;
       break;
     case PLAYER.TICK:
+      // player_tick();
       if (update_partials('hp')) {
         state.Player.hp = update_hp(1);
       }
@@ -29183,26 +29263,17 @@ var Player = function Player() {
       break;
   }
 
-  var player_tick = function player_tick() {
-    if (update_partials('hp')) {
-      state.Player.hp = update_hp(1);
-    }
-
-    if (update_partials('mp')) {
-      state.Player.mp = update_mp(1);
-    }
-
-    if (update_partials('stamina')) {
-      state.Player.stamina = update_stamina(1);
-    }
-  };
+  update_stats();
 
   _this.tick = _this.tick || setInterval(function () {
-    // This does not refresh ui.
-    // However, components will have to 'watch' (via interval) for an update on the store in order to avoid updating components
-    // only after a user action.
-    player_tick();
+    __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.TICK, {});
   }, 1000);
+
+  _this.save = _this.save || setInterval(function () {
+    // This does not have access to the updated state, only the initialized one.
+    __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, store.getState().Player);
+    __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, 'Saving Player.');
+  }, 30000);
 
   return state.Player;
 };
@@ -29222,9 +29293,7 @@ var Messages = function Messages() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
-  state.Messages = state.Messages || {
-    messages: []
-  };
+  state.Messages = state.Messages || [];
 
   var type = action.type,
       payload = action.payload;
@@ -29238,11 +29307,11 @@ var Messages = function Messages() {
       color: payload.color ? payload.color : ''
     };
 
-    if (state.Messages.messages.length > 49) {
-      state.Messages.messages.pop();
+    if (state.Messages.length > 49) {
+      state.Messages.pop();
     }
 
-    state.Messages.messages.unshift(newMessage);
+    state.Messages.unshift(newMessage);
   };
 
   switch (type) {
@@ -29712,7 +29781,7 @@ var Inventory = function Inventory() {
       payload = action.payload;
 
 
-  var calcEncumbrance = function calcEncumbrance() {
+  var calc_encumbrance = function calc_encumbrance() {
     var encumbrance = 0;
     _.each(_.union(state.Inventory.items, state.Inventory.weapons, state.Inventory.armor), function (inv, key) {
       encumbrance += inv.count * inv.weight;
@@ -29726,11 +29795,17 @@ var Inventory = function Inventory() {
 
   switch (type) {
     case INVENTORY.GET:
+      delete payload.player_id;
+
       state.Inventory = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, payload);
-      state.Player.encumbrance = calcEncumbrance();
+      state.Player.encumbrance = calc_encumbrance();
 
       break;
     case INVENTORY.ADD:
+      if (!item.key) {
+        item.key = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].randomKey('inventoryItem');
+      }
+
       if (item.countable === true && inventoryItem !== undefined) {
         inventoryItem.count += payload.count || 1;
       } else {
@@ -29742,7 +29817,8 @@ var Inventory = function Inventory() {
         state.Player.score[item.name]++;
       }
 
-      state.Player.encumbrance = calcEncumbrance();
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, { player_id: state.Player.id }));
+      state.Player.encumbrance = calc_encumbrance();
 
       break;
     case INVENTORY.REMOVE:
@@ -29759,6 +29835,9 @@ var Inventory = function Inventory() {
           inventoryItem.count -= payload.count;
         }
       }
+
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, { player_id: state.Player.id }));
+      state.Player.encumbrance = calc_encumbrance();
 
       break;
   }
@@ -29802,6 +29881,8 @@ var Skills = function Skills() {
 
       if (player[stat] < 100) {
         player[stat]++;
+
+        __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, state.Player);
         __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(stat) + ' increased by 1.');
       }
     }
@@ -29829,6 +29910,7 @@ var Skills = function Skills() {
       state.Skills[skill].current += parseFloat(gain);
       checkStatGain(skill);
 
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.SKILLS.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, { player_id: state.Player.id }));
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(skill) + ' increased by ' + gain.toString() + '.');
     }
   };
@@ -29844,16 +29926,34 @@ var Skills = function Skills() {
           return;
         }
 
-        setTimeout(function () {
-          return store.dispatch({
-            type: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD,
-            payload: {
-              item: payload.action.result.item,
-              count: 1,
-              score: true
-            }
-          });
-        }, 0);
+        __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, {
+          item: payload.action.result.item,
+          count: 1,
+          score: true
+        });
+      }
+    }
+  };
+
+  var checkCraftingSuccess = function checkCraftingSuccess(payload) {
+    var random = Math.round(Math.random() * 100);
+    var chance = (payload.player_skill.current - payload.item.craft.skill.min) * 2 + 50;
+
+    if (random < chance) {
+      // success
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, 'You craft ' + payload.item.description + '.');
+
+      checkSkillGain(payload.player_skill.name.toLowerCase());
+
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1 });
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
+    } else {
+      // failure
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notify(store, 'You fail to craft ' + payload.item.description + '. Some of the materials are lost.');
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
+
+      if (payload.player_skill.current < 20.0) {
+        checkSkillGain(payload.player_skill.name.toLowerCase());
       }
     }
   };
@@ -29886,6 +29986,8 @@ var Skills = function Skills() {
 
   switch (type) {
     case SKILLS.GET:
+      delete payload.player_id;
+
       state.Skills = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, payload);
       break;
     case SKILLS.LUMBERJACKING:
@@ -29893,6 +29995,10 @@ var Skills = function Skills() {
       break;
     case SKILLS.MINING:
       checkObjectSuccess('mining');
+      break;
+    case SKILLS.CRAFT:
+      // Handles all crafting skills
+      checkCraftingSuccess(payload);
       break;
   }
 
@@ -30150,13 +30256,16 @@ var Combat = function Combat() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_superagent__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_superagent__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_superagent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Config__ = __webpack_require__(4);
 
 
 
-var ACTIONS = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS;
+
+var ACTIONS = __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].ACTIONS;
 
 var AndromedaService = function AndromedaService(store) {
   return function (next) {
@@ -30175,7 +30284,7 @@ var AndromedaService = function AndromedaService(store) {
           /*
           In case we receive an action to send an API request, send the appropriate request
           */
-          __WEBPACK_IMPORTED_MODULE_0_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.PLAYER + '/' + payload.id).end(function (err, res) {
+          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.PLAYER + '/' + payload.id).end(function (err, res) {
             if (err) {
               return;
             }
@@ -30187,9 +30296,27 @@ var AndromedaService = function AndromedaService(store) {
             });
           });
           break;
+        case ACTIONS.PLAYER.SAVE:
+          // Fire and forget request
+          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.PLAYER + '/' + payload.id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          });
+          break;
+        case ACTIONS.SKILLS.SAVE:
+          // Fire and forget request
+          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.SKILLS + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          });
+          break;
         case ACTIONS.USER.FETCH:
           // User
-          __WEBPACK_IMPORTED_MODULE_0_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.USER + '/1').end(function (err, res) {
+          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.USER).end(function (err, res) {
             if (err) {
               return;
             }
@@ -30201,7 +30328,7 @@ var AndromedaService = function AndromedaService(store) {
             });
 
             // Player
-            __WEBPACK_IMPORTED_MODULE_0_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.PLAYER + '/' + payload.id).end(function (err, res) {
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.PLAYER + '/' + data.player_id).end(function (err, res) {
               if (err) {
                 return;
               }
@@ -30214,7 +30341,7 @@ var AndromedaService = function AndromedaService(store) {
             });
 
             // Inventory
-            __WEBPACK_IMPORTED_MODULE_0_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.INVENTORY + '/' + payload.id).end(function (err, res) {
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.INVENTORY + '/' + data.player_id).end(function (err, res) {
               if (err) {
                 return;
               }
@@ -30227,7 +30354,7 @@ var AndromedaService = function AndromedaService(store) {
             });
 
             // Skills
-            __WEBPACK_IMPORTED_MODULE_0_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.SKILLS + '/' + payload.id).end(function (err, res) {
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.SKILLS + '/' + data.player_id).end(function (err, res) {
               if (err) {
                 return;
               }
@@ -30241,7 +30368,7 @@ var AndromedaService = function AndromedaService(store) {
           });
           break;
         case ACTIONS.INVENTORY.FETCH:
-          __WEBPACK_IMPORTED_MODULE_0_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.INVENTORY + '/1').end(function (err, res) {
+          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.INVENTORY + '/' + payload.player_id).end(function (err, res) {
             if (err) {
               return;
             }
@@ -30251,6 +30378,15 @@ var AndromedaService = function AndromedaService(store) {
               type: ACTIONS.INVENTORY.GET,
               payload: data.object
             });
+          });
+          break;
+        case ACTIONS.INVENTORY.SAVE:
+          // Fire and forget request
+          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.INVENTORY + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
+            if (err) {
+              console.error(err);
+              return;
+            }
           });
           break;
         default:
@@ -30264,6 +30400,22 @@ var AndromedaService = function AndromedaService(store) {
 
 /***/ }),
 /* 347 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(348), __esModule: true };
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var core  = __webpack_require__(19)
+  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+  return $JSON.stringify.apply($JSON, arguments);
+};
+
+/***/ }),
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -30280,11 +30432,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(348);
-var RequestBase = __webpack_require__(349);
+var Emitter = __webpack_require__(350);
+var RequestBase = __webpack_require__(351);
 var isObject = __webpack_require__(140);
-var ResponseBase = __webpack_require__(350);
-var shouldRetry = __webpack_require__(352);
+var ResponseBase = __webpack_require__(352);
+var shouldRetry = __webpack_require__(354);
 
 /**
  * Noop.
@@ -31175,7 +31327,7 @@ request.put = function(url, data, fn){
 
 
 /***/ }),
-/* 348 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -31344,7 +31496,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 349 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -31970,7 +32122,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 350 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -31978,7 +32130,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(351);
+var utils = __webpack_require__(353);
 
 /**
  * Expose `ResponseBase`.
@@ -32109,7 +32261,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 351 */
+/* 353 */
 /***/ (function(module, exports) {
 
 
@@ -32182,7 +32334,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 };
 
 /***/ }),
-/* 352 */
+/* 354 */
 /***/ (function(module, exports) {
 
 var ERROR_CODES = [

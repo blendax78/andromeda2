@@ -10,7 +10,7 @@ class Config(object):
     self.log_file = '/home/blendax/www/log/python/andromeda2.log'
     self.config_file = '/home/blendax/www/lib/digitalocean.ini'
     self.auth_url = 'http://auth.vintimilla.org/login';
-    self.site_url = 'http://127.0.0.1:5001'
+    self.site_url = 'https://andromeda.vintimilla.org'
 
   def log(self, subject, message):
     print(subject, message)

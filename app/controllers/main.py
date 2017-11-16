@@ -60,9 +60,9 @@ class Main(object):
 
 ########## USER ##########
 
-  def user_get(self, user_id):
-    user_id = re.escape(user_id)
-    return self.user.get(user_id)
+  def user_get(self, token):
+    token = re.escape(token)
+    return self.user.get(token)
 
   def user_set(self, user_id, data={}):
     user_id = re.escape(user_id)

@@ -17,9 +17,10 @@ def index():
     return redirect('%s?r=%s' % (Config.auth_url, Config.site_url))
 
 ########## USER ##########
-@app.route('/user/<user_id>', methods=['GET'])
-def user_get(user_id=None):
-  return render_response(json.dumps(controller.user_get(user_id)), 'application/json')
+@app.route('/user', methods=['GET'])
+def user_get():
+  token = request.cookies.get('auth.token');
+  return render_response(json.dumps(controller.user_get(token)), 'application/json')
 
 @app.route('/user/<user_id>', methods=['POST'])
 def user_set(user_id=None):
@@ -43,7 +44,6 @@ def skill_get(player_id=None):
 
 @app.route('/skill/<player_id>', methods=['POST'])
 def skill_set(player_id=None):
-  # data = json.loads(request.form['data'])
   return render_response(json.dumps(controller.skill_set(player_id, request.form['data'])), 'application/json')
 
 ########## INVENTORY ##########
@@ -58,8 +58,13 @@ def inventory_set(player_id=None):
 
 @app.before_request
 def before_request():
-  # check for cookie
-  pass
+  # print(request.cookies.get('auth.token'))
+  if 'auth.token' not in request.cookies:
+    if request.method == 'GET':
+      return redirect('%s?r=%s' % (Config.auth_url, request.url) )
+    else:
+      return unauthorized()
+
   # l = Logger()
   # l.log('hi','ho')
   # c = Config()
