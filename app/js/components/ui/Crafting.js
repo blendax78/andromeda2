@@ -27,17 +27,17 @@ class Crafting extends Component {
     // Filter out by skill too?
     this.resources = _.indexBy(_.where(this.state.inventory.items, { sub_type: 'resource' }), 'id');
     this.player_skill = this.state.skills[skill_name];
-    
-    let craftable = _.filter(ItemData, (item) => {
-      if (!item.craft || !item.craft.resource) {
-        return;
-      }
 
+    let craftable = _.map(_.filter(ItemData, (item) => {
+      return item.craft && item.craft.resource;
+    }), (item) => {
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
-      return item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && 
+      item.craftable = item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && 
         ((this.player_skill.current - item.craft.skill.min) * 2) + 50 > 0 &&
         this.state.player.encumbrance < this.state.player.maxencumbrance;
+
+      return item;
     });
 
     return craftable;
@@ -59,9 +59,10 @@ class Crafting extends Component {
     let items = _.map(available, (item) => {
       let resource_name = (item.craft.resource.min == 1) ? this.resources[item.craft.resource.id].name : this.resources[item.craft.resource.id].plural;
       let chance = ((this.player_skill.current - item.craft.skill.min) * 2) + 50;
+      let description = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{item.description}</a> : item.description;
       return (
         <tr key={`crafting.${item.type}.${item.id}`}>
-          <td><a href="#" onClick={() => this.craftItem(item)}>{item.description}</a></td>
+          <td>{description}</td>
           <td>{item.craft.resource.min} {resource_name}</td>
           <td>{item.craft.skill.min} ({chance.toFixed(1)}%)</td>
         </tr>
@@ -86,17 +87,7 @@ class Crafting extends Component {
 
   getCraftingType(type) {
     let available = this.getAvailableItems(type);
-    let crafting = '';
-
-    if (available.length === 0) {
-      crafting = 'Not enough skill or resources.';
-    } else {
-      switch (type) {
-        default:
-          crafting = this.getCraftingTable(available);
-        break;
-      }
-    }
+    let crafting = this.getCraftingTable(available);
 
     return (
       <div className="row">
@@ -106,7 +97,7 @@ class Crafting extends Component {
       </div>
     )
   }
-// Need to change this so that it just removes the <a> from a non-craftable item.
+
   render() {
     let title = Config.upperCase(this.props.type);
     let crafting = this.getCraftingType(this.props.type);
