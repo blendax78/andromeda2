@@ -16,7 +16,7 @@ class Mob extends Component {
       showCombat: this.props.store.getState().Mobs.showCombat
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       if (this.state.mounted) {
         this.setState({
           mob: this.state.mob,
@@ -33,9 +33,7 @@ class Mob extends Component {
     this.setState(state);
 
     // Make sure to unsubscribe!
-    if (this.props.store && this.props.store.unsubscribe) {
-      this.props.store.unsubscribe();
-    }
+    this.unsubscribe();
   }
 
   componentDidMount() {

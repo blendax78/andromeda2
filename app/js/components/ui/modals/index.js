@@ -16,7 +16,7 @@ class Modal extends Component {
       modal: props.store.getState().App.modal
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         modal: props.store.getState().App.modal
       });
@@ -25,7 +25,7 @@ class Modal extends Component {
 
   componentWillUnmount() {
     // Make sure to unsubscribe!
-    this.props.store.unsubscribe();
+    this.unsubscribe();
   }
 
   clearModal() {
@@ -41,7 +41,7 @@ class Modal extends Component {
 
     $('#modal-container').on('hide.bs.modal', () => {
       this.clearModal();
-    });      
+    });
   }
 
   setSkillsModal() {

@@ -13,13 +13,17 @@ class Buy extends Component {
       inventory: this.props.store.getState().Inventory,
     };
 
-    // props.store.subscribe(() => {
-    //   this.setState({
-    //     player: this.props.store.getState().Player,
-    //     inventory: this.props.store.getState().Inventory,
-    //   });
-    // });
+    this.unsubscribe = props.store.subscribe(() => {
+      this.setState({
+        player: this.props.store.getState().Player,
+        inventory: this.props.store.getState().Inventory,
+      });
+    });
 
+  }
+  
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   getBuyables() {
@@ -35,9 +39,25 @@ class Buy extends Component {
   }
 
   buyItem(item) {
-    console.warn(item);
     if (confirm(`Buy ${item.description} for ${item.value * this.value_mult} credits?`)) {
-
+      let credits = this.state.player.credits - (item.value * this.value_mult);
+      
+      this.props.store.dispatch({
+        type: Config.ACTIONS.PLAYER.UPDATE,
+        payload: {
+          credits: credits
+        }
+      });
+      
+      this.props.store.dispatch({
+        type: Config.ACTIONS.INVENTORY.ADD,
+        payload: {
+          item: item.id,
+          count: 1
+        }
+      });
+      
+      Config.notify(this.props.store, `You bought ${item.description} for ${item.value * this.value_mult} credits.`);
     }
   }
 

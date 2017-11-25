@@ -10,7 +10,7 @@ class PlayerControls extends Component {
       planet: props.store.getState().Planet
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         player: props.store.getState().Player,
         planet: props.store.getState().Planet
@@ -20,14 +20,14 @@ class PlayerControls extends Component {
 
   componentWillUnmount() {
     // Make sure to unsubscribe!
-    this.props.store.unsubscribe();
+    this.unsubscribe();
   }
 
   move(dir) {
     if (this.state.player.status.encumbered === true) {
       Config.notifyWarning(store, 'You are too encumbered to move.');
       return;
-    }    
+    }
 
     let w = this.state.planet.width;
     let h = this.state.planet.height;
@@ -144,8 +144,8 @@ class PlayerControls extends Component {
 
     // Buttons
     let east = (player.x < planet.width) ? false : true;
-    let west = (player.x > 0) ? false : true;      
-    let north = (player.y > 0) ? false : true;      
+    let west = (player.x > 0) ? false : true;
+    let north = (player.y > 0) ? false : true;
     let south = (player.y < planet.height) ? false : true;
 
     return (

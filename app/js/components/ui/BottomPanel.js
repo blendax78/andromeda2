@@ -9,7 +9,7 @@ class BottomPanel extends Component {
       messages: props.store.getState().Messages
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         messages: this.props.store.getState().Messages
       });
@@ -18,7 +18,7 @@ class BottomPanel extends Component {
 
   componentWillUnmount() {
     // Make sure to unsubscribe!
-    this.props.store.unsubscribe();
+    this.unsubscribe();
   }
 
   render() {

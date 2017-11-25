@@ -25490,7 +25490,7 @@ var Navbar = function (_Component) {
       planet: _this.props.store.getState().Planet
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         right: { body: _this.props.store.getState().User.name },
         player: _this.props.store.getState().Player,
@@ -25504,7 +25504,7 @@ var Navbar = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       // Make sure to unsubscribe!
-      this.props.store.unsubscribe();
+      this.unsubscribe();
     }
   }, {
     key: 'showToDos',
@@ -25533,6 +25533,10 @@ var Navbar = function (_Component) {
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
         'Move \'engine\''
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Change unsubscribes so they work like in Buy.js'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -26106,7 +26110,7 @@ var Modal = function (_Component) {
       modal: props.store.getState().App.modal
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         modal: props.store.getState().App.modal
       });
@@ -26118,7 +26122,7 @@ var Modal = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       // Make sure to unsubscribe!
-      this.props.store.unsubscribe();
+      this.unsubscribe();
     }
   }, {
     key: 'clearModal',
@@ -27196,17 +27200,22 @@ var Buy = function (_Component) {
       inventory: _this.props.store.getState().Inventory
     };
 
-    // props.store.subscribe(() => {
-    //   this.setState({
-    //     player: this.props.store.getState().Player,
-    //     inventory: this.props.store.getState().Inventory,
-    //   });
-    // });
+    _this.unsubscribe = props.store.subscribe(function () {
+      _this.setState({
+        player: _this.props.store.getState().Player,
+        inventory: _this.props.store.getState().Inventory
+      });
+    });
 
     return _this;
   }
 
   __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Buy, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.unsubscribe();
+    }
+  }, {
     key: 'getBuyables',
     value: function getBuyables() {
       var buyables = [];
@@ -27222,8 +27231,26 @@ var Buy = function (_Component) {
   }, {
     key: 'buyItem',
     value: function buyItem(item) {
-      console.warn(item);
-      if (confirm('Buy ' + item.description + ' for ' + item.value * this.value_mult + ' credits?')) {}
+      if (confirm('Buy ' + item.description + ' for ' + item.value * this.value_mult + ' credits?')) {
+        var credits = this.state.player.credits - item.value * this.value_mult;
+
+        this.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE,
+          payload: {
+            credits: credits
+          }
+        });
+
+        this.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.INVENTORY.ADD,
+          payload: {
+            item: item.id,
+            count: 1
+          }
+        });
+
+        __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notify(this.props.store, 'You bought ' + item.description + ' for ' + item.value * this.value_mult + ' credits.');
+      }
     }
   }, {
     key: 'getBuyTable',
@@ -27755,7 +27782,7 @@ var Map = function (_Component) {
       town: false
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         planet: _this.props.store.getState().Planet,
         player: _this.props.store.getState().Player,
@@ -27769,7 +27796,7 @@ var Map = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       // Make sure to unsubscribe!
-      this.props.store.unsubscribe();
+      this.unsubscribe();
     }
   }, {
     key: 'componentDidMount',
@@ -28306,7 +28333,7 @@ var Mob = function (_Component) {
       showCombat: _this.props.store.getState().Mobs.showCombat
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       if (_this.state.mounted) {
         _this.setState({
           mob: _this.state.mob,
@@ -28326,9 +28353,7 @@ var Mob = function (_Component) {
       this.setState(state);
 
       // Make sure to unsubscribe!
-      if (this.props.store && this.props.store.unsubscribe) {
-        this.props.store.unsubscribe();
-      }
+      this.unsubscribe();
     }
   }, {
     key: 'componentDidMount',
@@ -28959,7 +28984,7 @@ var PlayerControls = function (_Component) {
       planet: props.store.getState().Planet
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         player: props.store.getState().Player,
         planet: props.store.getState().Planet
@@ -28972,7 +28997,7 @@ var PlayerControls = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       // Make sure to unsubscribe!
-      this.props.store.unsubscribe();
+      this.unsubscribe();
     }
   }, {
     key: 'move',
@@ -29247,7 +29272,7 @@ var BottomPanel = function (_Component) {
       messages: props.store.getState().Messages
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         messages: _this.props.store.getState().Messages
       });
@@ -29259,7 +29284,7 @@ var BottomPanel = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       // Make sure to unsubscribe!
-      this.props.store.unsubscribe();
+      this.unsubscribe();
     }
   }, {
     key: 'render',

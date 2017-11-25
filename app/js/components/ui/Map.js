@@ -19,7 +19,7 @@ class Map extends Component {
       town: false
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         planet: this.props.store.getState().Planet,
         player: this.props.store.getState().Player,
@@ -30,7 +30,7 @@ class Map extends Component {
 
   componentWillUnmount() {
     // Make sure to unsubscribe!
-    this.props.store.unsubscribe();
+    this.unsubscribe();
   }
 
   componentDidMount() {
@@ -47,7 +47,7 @@ class Map extends Component {
 
     let player = this.state.player;
     _.each(this.state.planet.zones, function(possibleZone) {
-      if ( player.x >= possibleZone.zoneMinX && player.x <= possibleZone.zoneMaxX && 
+      if ( player.x >= possibleZone.zoneMinX && player.x <= possibleZone.zoneMaxX &&
         player.y >= possibleZone.zoneMinY && player.y <= possibleZone.zoneMaxY ) {
         zone = possibleZone;
       }
@@ -123,7 +123,7 @@ class Map extends Component {
         switch (decoration.type) {
           case 'decoration':
             if (decoration.key) {
-              return <Decoration key={decoration.key} data={decoration} store={this.props.store} />;    
+              return <Decoration key={decoration.key} data={decoration} store={this.props.store} />;
             }
           break;
           case 'town':

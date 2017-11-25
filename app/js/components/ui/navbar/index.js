@@ -20,7 +20,7 @@ class Navbar extends Component {
       planet: this.props.store.getState().Planet
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         right: { body: this.props.store.getState().User.name },
         player: this.props.store.getState().Player,
@@ -31,7 +31,7 @@ class Navbar extends Component {
 
   componentWillUnmount() {
     // Make sure to unsubscribe!
-    this.props.store.unsubscribe();
+    this.unsubscribe();
   }
 
   showToDos() {
@@ -42,6 +42,7 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')} className="line-through">nav dropdowns are 'blinking'</li>,
       <li key={Config.randomKey('li')} className="line-through">Fix layout of run/hide buttons</li>,
       <li key={Config.randomKey('li')} className="line-through">Move 'engine'</li>,
+      <li key={Config.randomKey('li')}>Change unsubscribes so they work like in Buy.js</li>,
       <li key={Config.randomKey('li')}>Battles</li>,
       <li key={Config.randomKey('li')}>Equipment - Armor & Weapons</li>,
       <li key={Config.randomKey('li')}>Dungeons</li>,
