@@ -149,13 +149,13 @@ class PlayerControls extends Component {
     let south = (player.y < planet.height) ? false : true;
 
     return (
-      <div className="nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
+      <div className="player-controls nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12 col-xs-12 top5">
         <div className="row">
-          <div className="col-lg-11 col-md-11 col-sm-4">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <p className="bold">Controls</p>
 
             <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12" style={{ paddingLeft: '40px' }}>
+              <div className="col-lg-8 col-md-7 col-sm-6 col-xs-8">
                 <div className="btn-group">
                   <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>West</button>
                 </div>
@@ -167,21 +167,19 @@ class PlayerControls extends Component {
                   <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.EAST)}>East</button>
                 </div>
               </div>
-            </div>
 
-            <div className="row">&nbsp;</div>
-
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div className="col-lg-4 col-md-5 col-sm-5 col-xs-4">
                 <label className="checkbox-inline">
                   <input type="checkbox" defaultChecked={this.state.player.status.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
                 </label>
               </div>
-              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+              <div className="col-lg-4 col-md-5 col-sm-5 col-xs-4 top5">
                 <label className="checkbox-inline">
                   <input type="checkbox" defaultChecked={this.state.player.hide} data-toggle="toggle" value="hide" data-on="Hide" data-off="Hide" id="hide_check" />
                 </label>
               </div>
+
             </div>
           </div>
         </div>

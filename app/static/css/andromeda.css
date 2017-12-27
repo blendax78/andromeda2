@@ -13,18 +13,40 @@
 }
 
 .andromeda .main-panel {
-  min-height: 360px;
-  margin-bottom: 25px;
-}
-
-.andromeda .right-panel {
+  min-height: 332px;
+  margin-bottom: 20px;
 }
 
 .andromeda .bottom-panel {
-  margin-top: 30px;
   min-height: 30px;
   max-height: 250px;
   overflow-y: scroll;
+}
+
+.andromeda .empty-row {
+  height: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* col-xs size */
+  .andromeda .main-panel {
+    min-height: 0px;
+    margin-bottom: 5px;
+  }
+
+  .andromeda .bottom-panel {
+    margin-top: 5px;
+    min-height: 30px;
+    max-height: 150px;
+  }
+
+  .andromeda .empty-row {
+    height: 5px;
+  }
+
+  .andromeda #main-content {
+    margin-top: 55px;
+  }
 }
 
 .bold {
@@ -58,5 +80,9 @@ button.btn-direction {
 
 .clickable {
   cursor: pointer;
+}
+
+.top5 {
+  margin-top: 5px;
 }
 

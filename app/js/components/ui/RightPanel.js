@@ -11,7 +11,6 @@ class RightPanel extends Component {
     return (
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div className="row"><PlayerStatus store={this.props.store} /></div>
-        <div className="row">&nbsp;</div>
         <div className="row"><PlayerControls store={this.props.store} /></div>
       </div>
     );

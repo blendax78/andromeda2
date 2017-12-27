@@ -28695,11 +28695,6 @@ var RightPanel = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'row' },
-          '\xA0'
-        ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          'div',
-          { className: 'row' },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__PlayerControls__["a" /* default */], { store: this.props.store })
         )
       );
@@ -28772,13 +28767,13 @@ var PlayerStatus = function (_Component) {
       var player = this.state.player;
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         "div",
-        { className: "nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12" },
+        { className: "player-status nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12" },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           "div",
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "bold col-lg-12 col-md-12 col-sm-12" },
+            { className: "bold col-lg-12 col-md-12 col-sm-12 col-xs-12" },
             player.name
           )
         ),
@@ -28787,7 +28782,7 @@ var PlayerStatus = function (_Component) {
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28803,7 +28798,7 @@ var PlayerStatus = function (_Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28817,7 +28812,7 @@ var PlayerStatus = function (_Component) {
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28833,7 +28828,7 @@ var PlayerStatus = function (_Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28849,7 +28844,7 @@ var PlayerStatus = function (_Component) {
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28864,17 +28859,13 @@ var PlayerStatus = function (_Component) {
             player.maxstamina
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          "div",
-          { className: "row" },
-          "\xA0"
-        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement("div", { className: "empty-row" }),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           "div",
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28888,7 +28879,7 @@ var PlayerStatus = function (_Component) {
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28902,7 +28893,7 @@ var PlayerStatus = function (_Component) {
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-6 col-md-6 col-sm-6" },
+            { className: "col-lg-6 col-md-6 col-sm-6 col-xs-6" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -28911,17 +28902,13 @@ var PlayerStatus = function (_Component) {
             player.intelligence
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          "div",
-          { className: "row" },
-          "\xA0"
-        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement("div", { className: "empty-row" }),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           "div",
           { className: "row" },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             "div",
-            { className: "col-lg-8 col-md-8 col-sm-8" },
+            { className: "col-lg-8 col-md-8 col-sm-8 col-xs-8" },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               "span",
               { className: "bold" },
@@ -29136,7 +29123,7 @@ var PlayerControls = function (_Component) {
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
-        { className: 'nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12' },
+        { className: 'player-controls nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12 col-xs-12' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'row' },
@@ -29150,10 +29137,10 @@ var PlayerControls = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
-              { className: 'row' },
+              { className: 'row player-direction' },
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-12 col-md-12 col-sm-12', style: { paddingLeft: '40px' } },
+                { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12', style: { paddingLeft: '40px' } },
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                   'div',
                   { className: 'btn-group' },
@@ -29198,15 +29185,10 @@ var PlayerControls = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
-              { className: 'row' },
-              '\xA0'
-            ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'div',
-              { className: 'row' },
+              { className: 'row player-movement' },
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-6 col-md-6 col-sm-12 col-xs-12' },
+                { className: 'col-lg-6 col-md-6 col-sm-12 col-xs-6' },
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                   'label',
                   { className: 'checkbox-inline' },
@@ -29215,7 +29197,7 @@ var PlayerControls = function (_Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-6 col-md-6 col-sm-12 col-xs-12' },
+                { className: 'col-lg-6 col-md-6 col-sm-12 col-xs-6' },
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                   'label',
                   { className: 'checkbox-inline' },
