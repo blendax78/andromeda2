@@ -61,7 +61,7 @@ def before_request():
   # print(request.cookies.get('auth.token'))
   if 'auth.token' not in request.cookies:
     if request.method == 'GET':
-      return redirect('%s?r=%s' % (Config.auth_url, request.url) )
+      return redirect('%s?r=%s' % (Config.auth_url, Config.site_url) )
     else:
       return unauthorized()
 
