@@ -78,5 +78,49 @@ export const ItemData = [
       min: 10,
       max: 13
     }
-  }
+  },
+  {
+    id: 5,
+    name: 'wool',
+    plural: 'pieces of wool',
+    countable: true,
+    description: '',
+    value: 1,
+    weight: 3,
+    type: 'items',
+    sub_type: 'resource'
+  },
+  {
+    id: 6,
+    name: 'cloth',
+    plural: 'pieces of cloth',
+    countable: true,
+    description: '',
+    value: 1,
+    weight: 1,
+    type: 'items',
+    sub_type: 'resource'
+  },
+  {
+    id: 7,
+    name: 'iron ingot',
+    plural: 'iron ingots',
+    countable: true,
+    description: '',
+    value: 1,
+    weight: 0.1,
+    type: 'items',
+    sub_type: 'resource'
+  },
+  {
+    id: 8,
+    name: 'board',
+    plural: 'boards',
+    countable: true,
+    description: '',
+    value: 1,
+    weight: 1,
+    type: 'items',
+    sub_type: 'resource'
+  },
 ];
