@@ -101,7 +101,7 @@ class Crafting extends Component {
   render() {
     let title = Config.upperCase(this.props.type);
     let crafting = this.getCraftingType(this.props.type);
-    let skill = this.player_skill.current.toFixed(1);
+    let skill = parseFloat(this.player_skill.current).toFixed(1);
 
     let resources = _.map(this.resources, (resource) => {
       return (

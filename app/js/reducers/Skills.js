@@ -6,7 +6,7 @@ let SKILLS = Config.ACTIONS.SKILLS;
 const Skills = (state = {}, action) => {
   const { type, payload } = action;
   // state.Skills = state.Skills || SkillData;
-  state.Skills = state.Skills || {'lumberjacking':{'current':15.8,'description':'','id':1,'modifier':0,'name':'Lumberjacking','primary':'strength','secondary':'dexterity'},'mining':{'current':12.3,'description':'','id':2,'modifier':0,'name':'Mining','primary':'strength','secondary':'dexterity'},'wrestling':{'current':0,'description':'','id':3,'modifier':0,'name':'Wrestling','primary':'strength','secondary':'dexterity'},'tailoring':{'current':0,'description':'','id':4,'modifier':0,'name':'Tailoring','primary':'dexterity','secondary':'intelligence'},'blacksmithing':{'current':5.899999999999998,'description':'','id':5,'modifier':0,'name':'Blacksmithing','primary':'strength','secondary':'dexterity'},'swordsmanship':{'current':0,'description':'','id':6,'modifier':0,'name':'Swordsmanship','primary':'strength','secondary':'dexterity'},'fencing':{'current':0,'description':'','id':7,'modifier':0,'name':'Fencing','primary':'dexterity','secondary':'strength'},'player_id':1};
+  state.Skills = state.Skills || {'lumberjacking':{'current':15.8,'description':'','id':1,'modifier':0,'name':'Lumberjacking','primary':'strength','secondary':'dexterity'},'mining':{'current':12.3,'description':'','id':2,'modifier':0,'name':'Mining','primary':'strength','secondary':'dexterity'},'wrestling':{'current':0,'description':'','id':3,'modifier':0,'name':'Wrestling','primary':'strength','secondary':'dexterity'},'tailoring':{'current':0,'description':'','id':4,'modifier':0,'name':'Tailoring','primary':'dexterity','secondary':'intelligence'},'blacksmithing':{'current':5.899999999999998,'description':'','id':5,'modifier':0,'name':'Blacksmithing','primary':'strength','secondary':'dexterity'},'swordsmanship':{'current':0,'description':'','id':6,'modifier':0,'name':'Swordsmanship','primary':'strength','secondary':'dexterity'},'fencing':{'current':0,'description':'','id':7,'modifier':0,'name':'Fencing','primary':'dexterity','secondary':'strength'}};
 
   let checkStatGain = (skill) => {
     let gain = Math.round((Math.random() * 100) % 19);
@@ -38,13 +38,14 @@ const Skills = (state = {}, action) => {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      if (rand <= (100.0 - state.Skills[skill].current) / 10.0) {
+      console.log(rand, (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10));
+      if (rand <= (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10)) {
         gain = 0.1;
       }
     }
 
     if (gain > 0) {
-      state.Skills[skill].current += parseFloat(gain);
+      state.Skills[skill].current = (parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1);
       checkStatGain(skill);
 
       Config.dispatch(store, Config.ACTIONS.SKILLS.SAVE, { ...state.Skills, player_id: state.Player.id });
@@ -83,7 +84,7 @@ const Skills = (state = {}, action) => {
 
       checkSkillGain(payload.player_skill.name.toLowerCase());
 
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1 });
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true });
       Config.dispatch(store, Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
     } else {
       // failure

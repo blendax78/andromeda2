@@ -19,6 +19,7 @@ class PlayerStats extends Component {
           <p><span className="bold">Kills: </span>{this.state.player.score.kills}</p>
           <p><span className="bold">Logs Found: </span>{this.state.player.score.log}</p>
           <p><span className="bold">Ore Found: </span>{this.state.player.score.ore}</p>
+          <p><span className="bold">Items Crafted: </span>{this.state.player.score.crafted}</p>
         </div>
       </div>
     );

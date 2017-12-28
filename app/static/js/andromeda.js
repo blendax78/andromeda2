@@ -26680,6 +26680,16 @@ var PlayerStats = function (_Component) {
               'Ore Found: '
             ),
             this.state.player.score.ore
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'p',
+            null,
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold' },
+              'Items Crafted: '
+            ),
+            this.state.player.score.crafted
           )
         )
       );
@@ -27098,7 +27108,7 @@ var Crafting = function (_Component) {
     value: function render() {
       var title = __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].upperCase(this.props.type);
       var crafting = this.getCraftingType(this.props.type);
-      var skill = this.player_skill.current.toFixed(1);
+      var skill = parseFloat(this.player_skill.current).toFixed(1);
 
       var resources = _.map(this.resources, function (resource) {
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -29123,13 +29133,13 @@ var PlayerControls = function (_Component) {
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
-        { className: 'player-controls nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+        { className: 'player-controls nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12 col-xs-12 top5' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'row' },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
-            { className: 'col-lg-11 col-md-11 col-sm-4' },
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'p',
               { className: 'bold' },
@@ -29137,10 +29147,10 @@ var PlayerControls = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
-              { className: 'row player-direction' },
+              { className: 'row' },
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12', style: { paddingLeft: '40px' } },
+                { className: 'col-lg-8 col-md-7 col-sm-6 col-xs-8' },
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                   'div',
                   { className: 'btn-group' },
@@ -29181,14 +29191,10 @@ var PlayerControls = function (_Component) {
                     'East'
                   )
                 )
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'div',
-              { className: 'row player-movement' },
+              ),
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-6 col-md-6 col-sm-12 col-xs-6' },
+                { className: 'col-lg-4 col-md-5 col-sm-5 col-xs-4' },
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                   'label',
                   { className: 'checkbox-inline' },
@@ -29197,7 +29203,7 @@ var PlayerControls = function (_Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-6 col-md-6 col-sm-12 col-xs-6' },
+                { className: 'col-lg-4 col-md-5 col-sm-5 col-xs-4 top5' },
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                   'label',
                   { className: 'checkbox-inline' },
@@ -30151,7 +30157,7 @@ var Inventory = function Inventory() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
-  state.Inventory = state.Inventory || { 'armor': [], 'player_id': 1, 'items': [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5 }] };
+  state.Inventory = state.Inventory || { 'armor': [], 'items': [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5 }] };
 
   var type = action.type,
       payload = action.payload;
@@ -30189,7 +30195,8 @@ var Inventory = function Inventory() {
       }
 
       if (payload.score && payload.score === true) {
-        state.Player.score[item.name]++;
+        var add_name = payload.craft === true ? 'crafted' : item.name;
+        state.Player.score[add_name]++;
       }
 
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, { player_id: state.Player.id }));
@@ -30241,7 +30248,7 @@ var Skills = function Skills() {
       payload = action.payload;
   // state.Skills = state.Skills || SkillData;
 
-  state.Skills = state.Skills || { 'lumberjacking': { 'current': 15.8, 'description': '', 'id': 1, 'modifier': 0, 'name': 'Lumberjacking', 'primary': 'strength', 'secondary': 'dexterity' }, 'mining': { 'current': 12.3, 'description': '', 'id': 2, 'modifier': 0, 'name': 'Mining', 'primary': 'strength', 'secondary': 'dexterity' }, 'wrestling': { 'current': 0, 'description': '', 'id': 3, 'modifier': 0, 'name': 'Wrestling', 'primary': 'strength', 'secondary': 'dexterity' }, 'tailoring': { 'current': 0, 'description': '', 'id': 4, 'modifier': 0, 'name': 'Tailoring', 'primary': 'dexterity', 'secondary': 'intelligence' }, 'blacksmithing': { 'current': 5.899999999999998, 'description': '', 'id': 5, 'modifier': 0, 'name': 'Blacksmithing', 'primary': 'strength', 'secondary': 'dexterity' }, 'swordsmanship': { 'current': 0, 'description': '', 'id': 6, 'modifier': 0, 'name': 'Swordsmanship', 'primary': 'strength', 'secondary': 'dexterity' }, 'fencing': { 'current': 0, 'description': '', 'id': 7, 'modifier': 0, 'name': 'Fencing', 'primary': 'dexterity', 'secondary': 'strength' }, 'player_id': 1 };
+  state.Skills = state.Skills || { 'lumberjacking': { 'current': 15.8, 'description': '', 'id': 1, 'modifier': 0, 'name': 'Lumberjacking', 'primary': 'strength', 'secondary': 'dexterity' }, 'mining': { 'current': 12.3, 'description': '', 'id': 2, 'modifier': 0, 'name': 'Mining', 'primary': 'strength', 'secondary': 'dexterity' }, 'wrestling': { 'current': 0, 'description': '', 'id': 3, 'modifier': 0, 'name': 'Wrestling', 'primary': 'strength', 'secondary': 'dexterity' }, 'tailoring': { 'current': 0, 'description': '', 'id': 4, 'modifier': 0, 'name': 'Tailoring', 'primary': 'dexterity', 'secondary': 'intelligence' }, 'blacksmithing': { 'current': 5.899999999999998, 'description': '', 'id': 5, 'modifier': 0, 'name': 'Blacksmithing', 'primary': 'strength', 'secondary': 'dexterity' }, 'swordsmanship': { 'current': 0, 'description': '', 'id': 6, 'modifier': 0, 'name': 'Swordsmanship', 'primary': 'strength', 'secondary': 'dexterity' }, 'fencing': { 'current': 0, 'description': '', 'id': 7, 'modifier': 0, 'name': 'Fencing', 'primary': 'dexterity', 'secondary': 'strength' } };
 
   var checkStatGain = function checkStatGain(skill) {
     var gain = Math.round(Math.random() * 100 % 19);
@@ -30273,13 +30280,14 @@ var Skills = function Skills() {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      if (rand <= (100.0 - state.Skills[skill].current) / 10.0) {
+      console.log(rand, (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10));
+      if (rand <= (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10)) {
         gain = 0.1;
       }
     }
 
     if (gain > 0) {
-      state.Skills[skill].current += parseFloat(gain);
+      state.Skills[skill].current = (parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1);
       checkStatGain(skill);
 
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.SKILLS.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, { player_id: state.Player.id }));
@@ -30317,7 +30325,7 @@ var Skills = function Skills() {
 
       checkSkillGain(payload.player_skill.name.toLowerCase());
 
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1 });
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true });
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
     } else {
       // failure
