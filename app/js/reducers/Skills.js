@@ -38,7 +38,6 @@ const Skills = (state = {}, action) => {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      console.log(rand, (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10));
       if (rand <= (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10)) {
         gain = 0.1;
       }
