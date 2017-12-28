@@ -5296,6 +5296,46 @@ var ItemData = [{
     min: 10,
     max: 13
   }
+}, {
+  id: 5,
+  name: 'wool',
+  plural: 'pieces of wool',
+  countable: true,
+  description: '',
+  value: 1,
+  weight: 3,
+  type: 'items',
+  sub_type: 'resource'
+}, {
+  id: 6,
+  name: 'cloth',
+  plural: 'pieces of cloth',
+  countable: true,
+  description: '',
+  value: 1,
+  weight: 1,
+  type: 'items',
+  sub_type: 'resource'
+}, {
+  id: 7,
+  name: 'iron ingot',
+  plural: 'iron ingots',
+  countable: true,
+  description: '',
+  value: 1,
+  weight: 0.1,
+  type: 'items',
+  sub_type: 'resource'
+}, {
+  id: 8,
+  name: 'board',
+  plural: 'boards',
+  countable: true,
+  description: '',
+  value: 1,
+  weight: 1,
+  type: 'items',
+  sub_type: 'resource'
 }];
 
 /***/ }),
@@ -24619,7 +24659,7 @@ var App = function (_Component) {
       player: props.store.getState().Player
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         appName: __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].APPNAME,
         user: props.store.getState().User,
@@ -24633,6 +24673,11 @@ var App = function (_Component) {
     key: 'getInitialState',
     value: function getInitialState() {
       // nothing
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.unsubscribe();
     }
   }, {
     key: 'componentWillMount',
@@ -25535,8 +25580,16 @@ var Navbar = function (_Component) {
         'Move \'engine\''
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
         'Change unsubscribes so they work like in Buy.js'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Selling'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Turning resources into craftables'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -25551,7 +25604,7 @@ var Navbar = function (_Component) {
         'Dungeons'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
         'Crafting'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -26967,13 +27020,13 @@ var Crafting = function (_Component) {
       inventory: _this.props.store.getState().Inventory
     };
 
-    props.store.subscribe(function () {
-      // this.setState({
-      //   player: this.props.store.getState().Player,
-      //   skills: this.props.store.getState().Skills,
-      //   inventory: this.props.store.getState().Inventory,
-      // });
-    });
+    // props.store.subscribe(() => {
+    // this.setState({
+    //   player: this.props.store.getState().Player,
+    //   skills: this.props.store.getState().Skills,
+    //   inventory: this.props.store.getState().Inventory,
+    // });
+    // });
 
     return _this;
   }
@@ -27257,6 +27310,11 @@ var Buy = function (_Component) {
             item: item.id,
             count: 1
           }
+        });
+
+        this.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.SAVE,
+          payload: store.getState().Player
         });
 
         __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notify(this.props.store, 'You bought ' + item.description + ' for ' + item.value * this.value_mult + ' credits.');
@@ -28499,14 +28557,17 @@ var Combat = function (_Component) {
       combat: _this.props.store.getState().Combat
     };
 
-    // Need to go through components and bind states to store. This will speed things up.
-    props.store.subscribe(function () {
-      if (_this.state.mounted) {
+    _this.mounted = true;
+    _this.unsubscribe = props.store.subscribe(function () {
+      if (_this.mounted) {
         _this.setState({
           mob: _this.props.store.getState().Mobs.combat || _this.props.mob,
           player: _this.props.store.getState().Player,
           combat: _this.props.store.getState().Combat
         });
+      } else {
+        _this.mounted = false;
+        _this.unsubscribe();
       }
     });
 
@@ -28514,25 +28575,18 @@ var Combat = function (_Component) {
     return _this;
   }
 
+  // Make sure to unsubscribe!
+
+
   __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Combat, [{
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      var state = this.state;
-      state.mounted = false;
-      this.setState(state);
-
-      // Make sure to unsubscribe!
-      if (this.props.store && this.props.store.unsubscribe) {
-        this.props.store.unsubscribe();
-      }
+      this.mounted = false;
+      this.unsubscribe();
     }
   }, {
     key: 'componentDidMount',
-    value: function componentDidMount() {
-      var state = this.state;
-      state.mounted = true;
-      this.setState(state);
-    }
+    value: function componentDidMount() {}
   }, {
     key: 'toggleRun',
     value: function toggleRun() {
@@ -28752,7 +28806,7 @@ var PlayerStatus = function (_Component) {
       player: props.store.getState().Player
     };
 
-    props.store.subscribe(function () {
+    _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         player: props.store.getState().Player
       });
@@ -28770,6 +28824,11 @@ var PlayerStatus = function (_Component) {
           player: _this2.props.store.getState().Player
         });
       }, 1000);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.unsubscribe();
     }
   }, {
     key: "render",
@@ -29501,7 +29560,8 @@ var Player = function Player() {
       walked: 0,
       run: 0,
       log: 0,
-      ore: 0
+      ore: 0,
+      crafted: 0
     }
   };
 
@@ -30280,7 +30340,6 @@ var Skills = function Skills() {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      console.log(rand, (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10));
       if (rand <= (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10)) {
         gain = 0.1;
       }
@@ -30325,7 +30384,7 @@ var Skills = function Skills() {
 
       checkSkillGain(payload.player_skill.name.toLowerCase());
 
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true });
+      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
     } else {
       // failure

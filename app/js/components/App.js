@@ -15,7 +15,7 @@ class App extends Component {
       player: props.store.getState().Player
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         appName: Config.APPNAME,
         user: props.store.getState().User,
@@ -26,6 +26,10 @@ class App extends Component {
 
   getInitialState() {
     // nothing
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   componentWillMount() {

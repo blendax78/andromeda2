@@ -12,13 +12,13 @@ class Crafting extends Component {
       inventory: this.props.store.getState().Inventory,
     };
 
-    props.store.subscribe(() => {
+    // props.store.subscribe(() => {
       // this.setState({
       //   player: this.props.store.getState().Player,
       //   skills: this.props.store.getState().Skills,
       //   inventory: this.props.store.getState().Inventory,
       // });
-    });
+    // });
 
   }
 

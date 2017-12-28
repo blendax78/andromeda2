@@ -83,7 +83,7 @@ const Skills = (state = {}, action) => {
 
       checkSkillGain(payload.player_skill.name.toLowerCase());
 
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true });
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
       Config.dispatch(store, Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
     } else {
       // failure

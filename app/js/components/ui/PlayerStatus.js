@@ -8,7 +8,7 @@ class PlayerStatus extends Component {
       player: props.store.getState().Player
     };
 
-    props.store.subscribe(() => {
+    this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         player: props.store.getState().Player
       });
@@ -21,6 +21,10 @@ class PlayerStatus extends Component {
         player: this.props.store.getState().Player
       })
     }, 1000);
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {

@@ -17,35 +17,30 @@ class Combat extends Component {
       combat: this.props.store.getState().Combat
     };
 
-    // Need to go through components and bind states to store. This will speed things up.
-    props.store.subscribe(() => {
-      if (this.state.mounted) {
+    this.mounted = true;
+    this.unsubscribe = props.store.subscribe(() => {
+      if (this.mounted) {
         this.setState({
           mob: this.props.store.getState().Mobs.combat || this.props.mob,
           player: this.props.store.getState().Player,
           combat: this.props.store.getState().Combat
-        });
+        });        
+      } else {
+        this.mounted = false;
+        this.unsubscribe();
       }
     });
 
     // Consider setting combat interval here
   }
 
+  // Make sure to unsubscribe!
   componentWillUnmount() {
-    let state = this.state;
-    state.mounted = false;
-    this.setState(state);
-
-    // Make sure to unsubscribe!
-    if (this.props.store && this.props.store.unsubscribe) {
-      this.props.store.unsubscribe();
-    }
+    this.mounted = false;
+    this.unsubscribe();
   }
 
   componentDidMount() {
-    let state = this.state;
-    state.mounted = true;
-    this.setState(state);
   }
 
   toggleRun() {

@@ -39,7 +39,8 @@ const Player = (state = {}, action) => {
       walked: 0,
       run: 0,
       log: 0,
-      ore: 0
+      ore: 0,
+      crafted: 0
     }
   };
 
