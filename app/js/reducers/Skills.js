@@ -44,7 +44,7 @@ const Skills = (state = {}, action) => {
     }
 
     if (gain > 0) {
-      state.Skills[skill].current = (parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1);
+      state.Skills[skill].current = parseFloat((parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1));
       checkStatGain(skill);
 
       Config.dispatch(store, Config.ACTIONS.SKILLS.SAVE, { ...state.Skills, player_id: state.Player.id });
@@ -128,6 +128,12 @@ const Skills = (state = {}, action) => {
       delete payload.player_id;
 
       state.Skills = {...state.Skills, ...payload};
+
+      for (let i in state.Skills) {
+        if (state.Skills[i] && state.Skills[i].current) {
+          state.Skills[i].current = parseFloat(state.Skills[i].current);
+        }
+      }
       break;
     case SKILLS.LUMBERJACKING:
       checkObjectSuccess('lumberjacking');

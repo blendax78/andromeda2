@@ -11,21 +11,38 @@ class Sell extends Component {
       inventory: this.props.store.getState().Inventory,
     };
 
-    // props.store.subscribe(() => {
-    //   this.setState({
-    //     player: this.props.store.getState().Player,
-    //     inventory: this.props.store.getState().Inventory,
-    //   });
-    // });
+    this.unsubscribe = props.store.subscribe(() => {
+      this.setState({
+        player: this.props.store.getState().Player,
+        inventory: this.props.store.getState().Inventory,
+      });
+    });
 
   }
 
   getSellables() {
-console.log(this.props.data);
-    return [];
+    let sellables = [];
+
+    if (this.props.data.sell) {
+      sellables = _.map(this.props.data.sell, (type) => {
+        if (this.state.inventory[type]) {
+          console.log(type, this.state.inventory[type], this.state.inventory);
+          return _.findWhere(this.state.inventory[type], { type: type });  
+        } else {
+          console.log(type, this.state.inventory.items, this.state.inventory);
+          return _.findWhere(this.state.inventory.items, { sub_type: type });
+        }
+        
+      });
+    }
+
+    console.log('sell',sellables);
+    return sellables;
   }
 
   getSellTable(available) {
+    this.getSellables();
+    return '';
     let items = _.map(this.getSellables(), (item) => {
 
       return (
