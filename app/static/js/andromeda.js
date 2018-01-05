@@ -30346,7 +30346,7 @@ var Skills = function Skills() {
     }
 
     if (gain > 0) {
-      state.Skills[skill].current = (parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1);
+      state.Skills[skill].current = parseFloat((parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1));
       checkStatGain(skill);
 
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.SKILLS.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, { player_id: state.Player.id }));
@@ -30428,6 +30428,12 @@ var Skills = function Skills() {
       delete payload.player_id;
 
       state.Skills = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, payload);
+
+      for (var i in state.Skills) {
+        if (state.Skills[i] && state.Skills[i].current) {
+          state.Skills[i].current = parseFloat(state.Skills[i].current);
+        }
+      }
       break;
     case SKILLS.LUMBERJACKING:
       checkObjectSuccess('lumberjacking');

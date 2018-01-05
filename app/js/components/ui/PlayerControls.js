@@ -155,33 +155,46 @@ class PlayerControls extends Component {
             <p className="bold">Controls</p>
 
             <div className="row">
-              <div className="col-lg-8 col-md-7 col-sm-6 col-xs-8">
+              <div className="col-lg-8 col-md-7 col-sm-12 col-xs-8">
                 <div className="btn-group">
-                  <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>West</button>
+                  <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>W</button>
                 </div>
                 <div className="btn-group-vertical">
-                  <button disabled={north} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.NORTH)}>North</button>
-                  <button disabled={false} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.SOUTH)}>South</button>
+                  <button disabled={north} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.NORTH)}>N</button>
+                  <button disabled={false} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.SOUTH)}>S</button>
                 </div>
                 <div className="btn-group">
-                  <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.EAST)}>East</button>
+                  <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.EAST)}>E</button>
                 </div>
               </div>
 
-              <div className="col-lg-4 col-md-5 col-sm-5 col-xs-4">
+              <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4">
                 <label className="checkbox-inline">
                   <input type="checkbox" defaultChecked={this.state.player.status.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
                 </label>
               </div>
 
-              <div className="col-lg-4 col-md-5 col-sm-5 col-xs-4 top5">
+              <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4 top5">
                 <label className="checkbox-inline">
                   <input type="checkbox" defaultChecked={this.state.player.hide} data-toggle="toggle" value="hide" data-on="Hide" data-off="Hide" id="hide_check" />
                 </label>
               </div>
-
             </div>
-          </div>
+
+
+              <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
+                <label className="checkbox-inline">
+                  <input type="checkbox" defaultChecked={this.state.player.status.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
+                </label>
+              </div>
+
+              <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
+                <label className="checkbox-inline">
+                  <input type="checkbox" defaultChecked={this.state.player.hide} data-toggle="toggle" value="hide" data-on="Hide" data-off="Hide" id="hide_check" />
+                </label>
+              </div>
+            </div>
+
         </div>
       </div>
     );
