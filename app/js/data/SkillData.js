@@ -33,8 +33,7 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'intelligence',
-    craft: [5, 6]
+    secondary: 'intelligence'
   },
   blacksmithing: {
     id: 5,
@@ -43,8 +42,7 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity',
-    craft: [2, 7]
+    secondary: 'dexterity'
   },
   swordsmanship: {
     id: 6,
@@ -71,8 +69,7 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'strength',
-    craft: [1, 8]
+    secondary: 'strength'
   },
 };
 

@@ -43,7 +43,7 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')} className="line-through">Fix layout of run/hide buttons</li>,
       <li key={Config.randomKey('li')} className="line-through">Move 'engine'</li>,
       <li key={Config.randomKey('li')} className="line-through">Change unsubscribes so they work like in Buy.js</li>,
-      <li key={Config.randomKey('li')}>Filter crafting resources (currently showing same in all menus)</li>,
+      <li key={Config.randomKey('li')} className="line-through">Filter crafting resources (currently showing same in all menus)</li>,
       <li key={Config.randomKey('li')}>Disabled movement in modals & combat</li>,
       <li key={Config.randomKey('li')}>Selling</li>,
       <li key={Config.randomKey('li')}>Turning resources into craftables</li>,

@@ -35,7 +35,7 @@ class BottomPanel extends Component {
     });
 
     return (
-      <div className="nav-panel table-bordered bottom-panel col-lg-12 col-md-12 col-sm-12">
+      <div className="nav-panel table-bordered bottom-panel col-lg-12 col-md-12 col-sm-12 top5">
         {messageList}
       </div>
     );

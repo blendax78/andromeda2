@@ -5229,7 +5229,8 @@ var ItemData = [{
   value: 1,
   weight: 2,
   type: 'items',
-  sub_type: 'resource'
+  sub_type: 'resource',
+  craft: ['bowcraft']
 }, {
   id: 2,
   name: 'ore',
@@ -5239,7 +5240,8 @@ var ItemData = [{
   value: 3,
   weight: 5,
   type: 'items',
-  sub_type: 'resource'
+  sub_type: 'resource',
+  craft: ['blacksmithing']
 }, {
   id: 3,
   name: 'dagger',
@@ -5305,7 +5307,8 @@ var ItemData = [{
   value: 1,
   weight: 3,
   type: 'items',
-  sub_type: 'resource'
+  sub_type: 'resource',
+  craft: ['tailoring']
 }, {
   id: 6,
   name: 'cloth',
@@ -5315,7 +5318,8 @@ var ItemData = [{
   value: 1,
   weight: 1,
   type: 'items',
-  sub_type: 'resource'
+  sub_type: 'resource',
+  craft: ['tailoring']
 }, {
   id: 7,
   name: 'iron ingot',
@@ -5325,7 +5329,8 @@ var ItemData = [{
   value: 1,
   weight: 0.1,
   type: 'items',
-  sub_type: 'resource'
+  sub_type: 'resource',
+  craft: ['blacksmithing']
 }, {
   id: 8,
   name: 'board',
@@ -5335,7 +5340,8 @@ var ItemData = [{
   value: 1,
   weight: 1,
   type: 'items',
-  sub_type: 'resource'
+  sub_type: 'resource',
+  craft: ['bowcraft']
 }];
 
 /***/ }),
@@ -26935,7 +26941,7 @@ var Store = function (_Component) {
     key: 'render',
     value: function render() {
       var buttons = this.getActionButtons();
-      var crafting = this.state.crafting === '' ? '' : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Crafting__["a" /* default */], { type: this.state.crafting, store: this.props.store });
+      var crafting = this.state.crafting === '' ? '' : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Crafting__["a" /* default */], { type: this.state.crafting, data: this.props.data, store: this.props.store });
       var trade = this.showTrade();
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -27039,7 +27045,7 @@ var Crafting = function (_Component) {
         });
       }
     });
-
+    console.log(_this.props);
     return _this;
   }
 
@@ -30404,10 +30410,7 @@ var Skills = function Skills() {
   if (!state.Skills) {
     state.Skills = __WEBPACK_IMPORTED_MODULE_2__data_SkillData__["a" /* SkillData */];
     // dev settings
-    // state.Skills = {...{'lumberjacking':{'current':15.8,'description':'','id':1,'modifier':0,'name':'Lumberjacking','primary':'strength','secondary':'dexterity'},'mining':{'current':12.3,'description':'','id':2,'modifier':0,'name':'Mining','primary':'strength','secondary':'dexterity'},'wrestling':{'current':0,'description':'','id':3,'modifier':0,'name':'Wrestling','primary':'strength','secondary':'dexterity'},'tailoring':{'current':0,'description':'','id':4,'modifier':0,'name':'Tailoring','primary':'dexterity','secondary':'intelligence'},'blacksmithing':{'current':5.899999999999998,'description':'','id':5,'modifier':0,'name':'Blacksmithing','primary':'strength','secondary':'dexterity'},'swordsmanship':{'current':0,'description':'','id':6,'modifier':0,'name':'Swordsmanship','primary':'strength','secondary':'dexterity'},'fencing':{'current':0,'description':'','id':7,'modifier':0,'name':'Fencing','primary':'dexterity','secondary':'strength'}}};
     // state.Skills = {...{'lumberjacking':{'current':15.8,'description':'','id':1,'modifier':0,'name':'Lumberjacking','primary':'strength','secondary':'dexterity'},'mining':{'current':12.3,'description':'','id':2,'modifier':0,'name':'Mining','primary':'strength','secondary':'dexterity'},'wrestling':{'current':0,'description':'','id':3,'modifier':0,'name':'Wrestling','primary':'strength','secondary':'dexterity'},'tailoring':{'current':0,'description':'','id':4,'modifier':0,'name':'Tailoring','primary':'dexterity','secondary':'intelligence'},'blacksmithing':{'current':5.899999999999998,'description':'','id':5,'modifier':0,'name':'Blacksmithing','primary':'strength','secondary':'dexterity'},'swordsmanship':{'current':0,'description':'','id':6,'modifier':0,'name':'Swordsmanship','primary':'strength','secondary':'dexterity'},'fencing':{'current':0,'description':'','id':7,'modifier':0,'name':'Fencing','primary':'dexterity','secondary':'strength'}};
-  } else {
-    state.Skills = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills);
   }
 
   var checkStatGain = function checkStatGain(skill) {
@@ -30527,7 +30530,11 @@ var Skills = function Skills() {
     case SKILLS.GET:
       delete payload.player_id;
 
-      state.Skills = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, payload);
+      _.each(payload, function (skill, index) {
+        // Need to parse this way to future-proof adding of new skill data.
+        state.Skills[index] = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills[index], skill);
+      });
+      // state.Skills = {...state.Skills, ...payload};
 
       for (var i in state.Skills) {
         if (state.Skills[i] && state.Skills[i].current) {
@@ -30593,8 +30600,7 @@ var SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'intelligence',
-    craft: [5, 6]
+    secondary: 'intelligence'
   },
   blacksmithing: {
     id: 5,
@@ -30603,8 +30609,7 @@ var SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity',
-    craft: [2, 7]
+    secondary: 'dexterity'
   },
   swordsmanship: {
     id: 6,
@@ -30631,8 +30636,7 @@ var SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'strength',
-    craft: [1, 8]
+    secondary: 'strength'
   }
 };
 

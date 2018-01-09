@@ -21,6 +21,7 @@
   min-height: 30px;
   max-height: 250px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .andromeda .empty-row {

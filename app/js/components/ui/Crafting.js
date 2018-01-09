@@ -23,7 +23,6 @@ class Crafting extends Component {
         });
       }
     });
-
   }
 
   componentWillUnmount() {
@@ -33,12 +32,15 @@ class Crafting extends Component {
 
   getAvailableItems(skill_name) {
     let skill_id = this.state.skills[skill_name].id;
-    // Filter out by skill too?
-    this.resources = _.indexBy(_.where(this.state.inventory.items, { sub_type: 'resource' }), 'id');
+
+    this.resources = _.indexBy(_.filter(this.state.inventory.items, (item) => {
+      return item.sub_type === 'resource' && _.contains(item.craft, skill_name);
+    }), 'id');
+
     this.player_skill = this.state.skills[skill_name];
 
     let craftable = _.map(_.filter(ItemData, (item) => {
-      return item.craft && item.craft.resource;
+      return item.craft && item.craft.resource && item.craft.skill.id === this.player_skill.id;
     }), (item) => {
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
