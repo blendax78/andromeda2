@@ -34,7 +34,9 @@ class Crafting extends Component {
     let skill_id = this.state.skills[skill_name].id;
 
     this.resources = _.indexBy(_.filter(this.state.inventory.items, (item) => {
-      return item.sub_type === 'resource' && _.contains(item.craft, skill_name);
+      // item = {...item, ..._.findWhere(ItemData, { id: item.id }) };
+      // need to turn skill into an array
+      return item.sub_type === 'resource' && item.craft.skill.id === skill_id;
     }), 'id');
 
     this.player_skill = this.state.skills[skill_name];

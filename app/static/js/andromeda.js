@@ -5230,7 +5230,12 @@ var ItemData = [{
   weight: 2,
   type: 'items',
   sub_type: 'resource',
-  craft: ['bowcraft']
+  craft: {
+    skill: {
+      id: 8,
+      name: 'bowcraft'
+    }
+  }
 }, {
   id: 2,
   name: 'ore',
@@ -5241,7 +5246,12 @@ var ItemData = [{
   weight: 5,
   type: 'items',
   sub_type: 'resource',
-  craft: ['blacksmithing']
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing'
+    }
+  }
 }, {
   id: 3,
   name: 'dagger',
@@ -5307,8 +5317,7 @@ var ItemData = [{
   value: 1,
   weight: 3,
   type: 'items',
-  sub_type: 'resource',
-  craft: ['tailoring']
+  sub_type: 'resource'
 }, {
   id: 6,
   name: 'cloth',
@@ -5319,7 +5328,12 @@ var ItemData = [{
   weight: 1,
   type: 'items',
   sub_type: 'resource',
-  craft: ['tailoring']
+  craft: {
+    skill: {
+      id: 4,
+      name: 'tailoring'
+    }
+  }
 }, {
   id: 7,
   name: 'iron ingot',
@@ -5330,7 +5344,12 @@ var ItemData = [{
   weight: 0.1,
   type: 'items',
   sub_type: 'resource',
-  craft: ['blacksmithing']
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing'
+    }
+  }
 }, {
   id: 8,
   name: 'board',
@@ -5341,7 +5360,12 @@ var ItemData = [{
   weight: 1,
   type: 'items',
   sub_type: 'resource',
-  craft: ['bowcraft']
+  craft: {
+    skill: {
+      id: 8,
+      name: 'bowcraft'
+    }
+  }
 }];
 
 /***/ }),
@@ -25590,7 +25614,7 @@ var Navbar = function (_Component) {
         'Change unsubscribes so they work like in Buy.js'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
         'Filter crafting resources (currently showing same in all menus)'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -26941,7 +26965,7 @@ var Store = function (_Component) {
     key: 'render',
     value: function render() {
       var buttons = this.getActionButtons();
-      var crafting = this.state.crafting === '' ? '' : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Crafting__["a" /* default */], { type: this.state.crafting, data: this.props.data, store: this.props.store });
+      var crafting = this.state.crafting === '' ? '' : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Crafting__["a" /* default */], { type: this.state.crafting, store: this.props.store });
       var trade = this.showTrade();
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -27045,7 +27069,6 @@ var Crafting = function (_Component) {
         });
       }
     });
-    console.log(_this.props);
     return _this;
   }
 
@@ -27061,12 +27084,17 @@ var Crafting = function (_Component) {
       var _this2 = this;
 
       var skill_id = this.state.skills[skill_name].id;
-      // Filter out by skill too?
-      this.resources = _.indexBy(_.where(this.state.inventory.items, { sub_type: 'resource' }), 'id');
+
+      this.resources = _.indexBy(_.filter(this.state.inventory.items, function (item) {
+        // item = {...item, ..._.findWhere(ItemData, { id: item.id }) };
+        // need to turn skill into an array
+        return item.sub_type === 'resource' && item.craft.skill.id === skill_id;
+      }), 'id');
+
       this.player_skill = this.state.skills[skill_name];
 
       var craftable = _.map(_.filter(__WEBPACK_IMPORTED_MODULE_7__data_ItemData__["a" /* ItemData */], function (item) {
-        return item.craft && item.craft.resource;
+        return item.craft && item.craft.resource && item.craft.skill.id === _this2.player_skill.id;
       }), function (item) {
         var resource = _.findWhere(_this2.state.inventory.items, { id: item.craft.resource.id });
 
@@ -29456,7 +29484,7 @@ var BottomPanel = function (_Component) {
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
-        { className: 'nav-panel table-bordered bottom-panel col-lg-12 col-md-12 col-sm-12' },
+        { className: 'nav-panel table-bordered bottom-panel col-lg-12 col-md-12 col-sm-12 top5' },
         messageList
       );
     }
@@ -30311,12 +30339,35 @@ var INVENTORY = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default 
 var Inventory = function Inventory() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
-
-  state.Inventory = state.Inventory || { 'armor': [], 'items': [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5 }] };
-
   var type = action.type,
       payload = action.payload;
 
+
+  var merge_new_data = function merge_new_data(data) {
+
+    var items = _.map(data.items, function (item) {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, _.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: item.id }));
+    });
+
+    var weapons = _.map(data.weapons, function (weapon) {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, weapon, _.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: weapon.id }));
+    });
+
+    var armor = _.map(data.armor, function (armor) {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, armor, _.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: armor.id }));
+    });
+
+    data.items = items;
+    data.weapons = weapons;
+    data.armor = armor;
+
+    return data;
+  };
+
+  if (!state.Inventory) {
+    state.Inventory = { 'armor': [], 'items': [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5 }] };
+    state.Inventory = merge_new_data(state.Inventory);
+  }
 
   var calc_encumbrance = function calc_encumbrance() {
     var encumbrance = 0;
@@ -30335,6 +30386,9 @@ var Inventory = function Inventory() {
       delete payload.player_id;
 
       state.Inventory = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, payload);
+      // Fix any missing data (new additions to data model)
+      state.Inventory = merge_new_data(state.Inventory);
+
       state.Player.encumbrance = calc_encumbrance();
       break;
     case INVENTORY.ADD:

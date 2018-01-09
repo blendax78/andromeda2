@@ -8,7 +8,13 @@ export const ItemData = [
     value: 1,
     weight: 2,
     type: 'items',
-    sub_type: 'resource'
+    sub_type: 'resource',
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft'
+      }
+    }
   },
   {
     id: 2,
@@ -19,7 +25,13 @@ export const ItemData = [
     value: 3,
     weight: 5,
     type: 'items',
-    sub_type: 'resource'
+    sub_type: 'resource',
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing'
+      }
+    }
   },
   {
     id: 3,
@@ -99,7 +111,13 @@ export const ItemData = [
     value: 1,
     weight: 1,
     type: 'items',
-    sub_type: 'resource'
+    sub_type: 'resource',
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring'
+      }
+    }
   },
   {
     id: 7,
@@ -110,7 +128,13 @@ export const ItemData = [
     value: 1,
     weight: 0.1,
     type: 'items',
-    sub_type: 'resource'
+    sub_type: 'resource',
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing'
+      }
+    }
   },
   {
     id: 8,
@@ -121,6 +145,12 @@ export const ItemData = [
     value: 1,
     weight: 1,
     type: 'items',
-    sub_type: 'resource'
+    sub_type: 'resource',
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft'
+      }
+    }
   },
 ];

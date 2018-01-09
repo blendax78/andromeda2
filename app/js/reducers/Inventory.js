@@ -4,9 +4,34 @@ import { ItemData } from '../data/ItemData';
 let INVENTORY = Config.ACTIONS.INVENTORY;
 
 const Inventory = (state = {}, action) => {
-  state.Inventory = state.Inventory || {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, craft: ['blacksmithing'], 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5}]};
 
   const { type, payload } = action;
+
+  let merge_new_data = (data) => {
+
+    let items = _.map(data.items, (item) => {
+      return {...item, ..._.findWhere(ItemData, { id: item.id }) };
+    });
+
+    let weapons = _.map(data.weapons, (weapon) => {
+      return {...weapon, ..._.findWhere(ItemData, { id: weapon.id }) };
+    });
+
+    let armor = _.map(data.armor, (armor) => {
+      return {...armor, ..._.findWhere(ItemData, { id: armor.id }) };
+    });
+
+    data.items = items;
+    data.weapons = weapons;
+    data.armor = armor;
+
+    return data;
+  }
+
+  if (!state.Inventory) {
+    state.Inventory = {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5}]};
+    state.Inventory = merge_new_data(state.Inventory);
+  }
 
   let calc_encumbrance = () => {
     let encumbrance = 0;
@@ -25,6 +50,9 @@ const Inventory = (state = {}, action) => {
       delete payload.player_id;
 
       state.Inventory = {...state.Inventory, ...payload};
+      // Fix any missing data (new additions to data model)
+      state.Inventory = merge_new_data(state.Inventory);
+
       state.Player.encumbrance = calc_encumbrance();
     break;
     case INVENTORY.ADD:
