@@ -12,14 +12,23 @@ class Crafting extends Component {
       inventory: this.props.store.getState().Inventory,
     };
 
-    // props.store.subscribe(() => {
-      // this.setState({
-      //   player: this.props.store.getState().Player,
-      //   skills: this.props.store.getState().Skills,
-      //   inventory: this.props.store.getState().Inventory,
-      // });
-    // });
+    this.mounted = true;
 
+    this.unsubscribe = props.store.subscribe(() => {
+      if (this.mounted) {
+        this.setState({
+          player: this.props.store.getState().Player,
+          skills: this.props.store.getState().Skills,
+          inventory: this.props.store.getState().Inventory,
+        });
+      }
+    });
+
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+    this.unsubscribe();
   }
 
   getAvailableItems(skill_name) {
@@ -54,6 +63,7 @@ class Crafting extends Component {
     // calculate pct chance to craft
     // pct = 50% at min required skill
     // +2% chance per 1 point in skill
+    // pct = ((skill - req_skill) * 2) + 50
     // pct = ((skill - req_skill) * 2) + 50
 
     let items = _.map(available, (item) => {

@@ -20,36 +20,82 @@ class Sell extends Component {
 
   }
 
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  sellItem(item) {
+    let description = (item.countable) ? item.name : item.description;
+
+    if (confirm(`Sell ${description} for ${item.value} credits?`)) {
+      let credits = this.state.player.credits + (item.value);
+      
+      this.props.store.dispatch({
+        type: Config.ACTIONS.PLAYER.UPDATE,
+        payload: {
+          credits: credits
+        }
+      });
+      
+      this.props.store.dispatch({
+        type: Config.ACTIONS.INVENTORY.REMOVE,
+        payload: {
+          item: item.id,
+          key: item.key,
+          count: 1
+        }
+      });
+
+      this.props.store.dispatch({
+        type: Config.ACTIONS.PLAYER.SAVE,
+        payload: store.getState().Player
+      });
+      
+      Config.notify(this.props.store, `You sold ${description} for ${item.value} credits.`);
+    }
+  }
+
   getSellables() {
     let sellables = [];
 
     if (this.props.data.sell) {
-      sellables = _.map(this.props.data.sell, (type) => {
+      _.each(this.props.data.sell, (type) => {
         if (this.state.inventory[type]) {
-          console.log(type, this.state.inventory[type], this.state.inventory);
-          return _.findWhere(this.state.inventory[type], { type: type });  
+          // weapons/armor
+          _.each(this.state.inventory[type], (match) => {
+            if (!match.countable || (match.countable && match.count > 0)) {
+              sellables.push(match);
+            }
+          });
         } else {
-          console.log(type, this.state.inventory.items, this.state.inventory);
-          return _.findWhere(this.state.inventory.items, { sub_type: type });
+          // items (search by sub_type)
+          _.each(this.state.inventory.items, (match) => {
+            if (match.sub_type === type || match.name === type) {
+              if (!match.countable || (match.countable && match.count > 0)) {
+                sellables.push(match);
+              }
+            }
+          });
         }
         
       });
     }
 
-    console.log('sell',sellables);
     return sellables;
   }
 
   getSellTable(available) {
-    this.getSellables();
-    return '';
     let items = _.map(this.getSellables(), (item) => {
+      let description = item.description;
+      if (item.countable) {
+        description = (item.count > 1) ? `${item.count} ${item.plural}` : `${item.count} ${item.name}`;
+      }
+      let link = <a href="#" onClick={() => { this.sellItem(item); }}>{description}</a>;
 
       return (
-        <tr key={`crafting.${item.type}.${item.id}`}>
-          <td><a href="#" onClick={() => this.craftItem(item)}>{item.description}</a></td>
-          <td>{item.craft.resource.min} {resource_name}</td>
-          <td>{item.craft.skill.min} ({chance.toFixed(1)}%)</td>
+        <tr key={`sell.${item.id}.${item.key}`}>
+          <td>{link}</td>
+          <td>{item.value}</td>
         </tr>
       );
     });
@@ -59,8 +105,7 @@ class Sell extends Component {
         <thead>
           <tr>
             <th>Item</th>
-            <th>Resources</th>
-            <th>Skill Required</th>
+            <th>Value</th>
           </tr>
         </thead>
         <tbody>

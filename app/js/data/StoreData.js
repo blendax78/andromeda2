@@ -4,7 +4,7 @@ export const StoreData = [
     name: 'A small blacksmithy',
     description: 'A stout man stands behind a small forge.',
     sell: [
-      'resources',
+      'ore',
       'armor',
       'weapons'
     ],
@@ -17,11 +17,11 @@ export const StoreData = [
     name: 'A small tailor shop',
     description: 'You see a small spinning wheel and a loom. The caretaker is in the corner, sewing some hides.',
     sell: [
-      'resources',
+      'cloth',
       'leather'
     ],
     craft: ['tailoring'],
-    buy: [1],
+    buy: [],
     type: 'store'
   },
   {
@@ -33,7 +33,7 @@ export const StoreData = [
       'potions'
     ],
     craft: ['inscription'],
-    buy: [1],
+    buy: [],
     type: 'store'
   },
   {

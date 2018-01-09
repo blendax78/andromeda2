@@ -50,7 +50,11 @@ const Inventory = (state = {}, action) => {
       if (item.countable === false) {
         if (inventoryItem) {
           let index = _.findIndex(state.Inventory[item.type], (inv) => {
-            return inv.id === item.id;
+            if (payload.key) {
+              return inv.key === payload.key;
+            } else {
+              return inv.id === item.id;
+            }
           });
 
           state.Inventory[item.type].splice(index, 1);
