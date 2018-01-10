@@ -59,8 +59,13 @@ class Crafting extends Component {
   craftItem(item) {
     this.props.store.dispatch({
       type: Config.ACTIONS.SKILLS.CRAFT,
-      payload: { item: item, player_skill: this.player_skill }
+      payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min }
     });
+  }
+
+  calcChance(item) {
+    let chance = ((this.player_skill.current - item.craft.skill.min) * 2) + 50;
+    return (chance > 100) ? 100 : chance;
   }
 
   getCraftingTable(available) {
@@ -72,7 +77,7 @@ class Crafting extends Component {
 
     let items = _.map(available, (item) => {
       let resource_name = (item.craft.resource.min == 1) ? this.resources[item.craft.resource.id].name : this.resources[item.craft.resource.id].plural;
-      let chance = ((this.player_skill.current - item.craft.skill.min) * 2) + 50;
+      let chance = this.calcChance(item);
       let description = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{item.description}</a> : item.description;
       return (
         <tr key={`crafting.${item.type}.${item.id}`}>

@@ -7,13 +7,15 @@ class PlayerControls extends Component {
 
     this.state = {
       player: props.store.getState().Player,
-      planet: props.store.getState().Planet
+      planet: props.store.getState().Planet,
+      app: props.store.getState().App
     };
 
     this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         player: props.store.getState().Player,
-        planet: props.store.getState().Planet
+        planet: props.store.getState().Planet,
+        app: props.store.getState().App
       });
     });
   }
@@ -24,6 +26,11 @@ class PlayerControls extends Component {
   }
 
   move(dir) {
+
+    if (this.state.app.modal.open) {
+      return;
+    }
+
     if (this.state.player.status.encumbered === true) {
       Config.notifyWarning(store, 'You are too encumbered to move.');
       return;
@@ -143,10 +150,10 @@ class PlayerControls extends Component {
     let planet = this.state.planet;
 
     // Buttons
-    let east = (player.x < planet.width) ? false : true;
-    let west = (player.x > 0) ? false : true;
-    let north = (player.y > 0) ? false : true;
-    let south = (player.y < planet.height) ? false : true;
+    let east = (player.x < planet.width && !this.state.app.modal.open) ? false : true;
+    let west = (player.x > 0 && !this.state.app.modal.open) ? false : true;
+    let north = (player.y > 0 && !this.state.app.modal.open) ? false : true;
+    let south = (player.y < planet.height && !this.state.app.modal.open) ? false : true;
 
     return (
       <div className="player-controls nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12 col-xs-12 top5">
