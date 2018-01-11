@@ -594,7 +594,7 @@ module.exports = reactProdInvariant;
 "use strict";
 
 
-module.exports = __webpack_require__(30);
+module.exports = __webpack_require__(31);
 
 
 /***/ }),
@@ -1070,7 +1070,7 @@ module.exports = ExecutionEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(31);
+var _prodInvariant = __webpack_require__(32);
 
 var ReactCurrentOwner = __webpack_require__(17);
 
@@ -1568,7 +1568,7 @@ var _prodInvariant = __webpack_require__(4),
 var CallbackQueue = __webpack_require__(106);
 var PooledClass = __webpack_require__(24);
 var ReactFeatureFlags = __webpack_require__(107);
-var ReactReconciler = __webpack_require__(32);
+var ReactReconciler = __webpack_require__(33);
 var Transaction = __webpack_require__(48);
 
 var invariant = __webpack_require__(1);
@@ -2786,7 +2786,7 @@ module.exports = function(it, key){
 var global    = __webpack_require__(22)
   , core      = __webpack_require__(19)
   , ctx       = __webpack_require__(128)
-  , hide      = __webpack_require__(34)
+  , hide      = __webpack_require__(35)
   , PROTOTYPE = 'prototype';
 
 var $export = function(type, name, source){
@@ -2871,7 +2871,7 @@ exports.f = __webpack_require__(28) ? Object.defineProperty : function definePro
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(35)(function(){
+module.exports = !__webpack_require__(36)(function(){
   return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 });
 
@@ -2888,6 +2888,35 @@ module.exports = function(it){
 
 /***/ }),
 /* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _assign = __webpack_require__(319);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _assign2.default || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3025,7 +3054,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3069,7 +3098,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3241,7 +3270,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3364,7 +3393,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP         = __webpack_require__(27)
@@ -3377,7 +3406,7 @@ module.exports = __webpack_require__(28) ? function(object, key, value){
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = function(exec){
@@ -3389,7 +3418,7 @@ module.exports = function(exec){
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var store      = __webpack_require__(78)('wks')
@@ -3403,35 +3432,6 @@ var $exports = module.exports = function(name){
 };
 
 $exports.store = store;
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _assign = __webpack_require__(319);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _assign2.default || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
 
 /***/ }),
 /* 38 */
@@ -5950,7 +5950,7 @@ module.exports = getEventModifierState;
 
 
 
-var DOMLazyTree = __webpack_require__(33);
+var DOMLazyTree = __webpack_require__(34);
 var Danger = __webpack_require__(193);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInstrumentation = __webpack_require__(15);
@@ -6249,7 +6249,7 @@ var _prodInvariant = __webpack_require__(4);
 var ReactPropTypesSecret = __webpack_require__(115);
 var propTypesFactory = __webpack_require__(95);
 
-var React = __webpack_require__(30);
+var React = __webpack_require__(31);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(1);
@@ -7447,7 +7447,7 @@ module.exports = (
 
 var def = __webpack_require__(27).f
   , has = __webpack_require__(25)
-  , TAG = __webpack_require__(36)('toStringTag');
+  , TAG = __webpack_require__(37)('toStringTag');
 
 module.exports = function(it, tag, stat){
   if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
@@ -7457,7 +7457,7 @@ module.exports = function(it, tag, stat){
 /* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.f = __webpack_require__(36);
+exports.f = __webpack_require__(37);
 
 /***/ }),
 /* 88 */
@@ -7496,7 +7496,7 @@ exports.f = Object.getOwnPropertySymbols;
 
 
 
-var _prodInvariant = __webpack_require__(31),
+var _prodInvariant = __webpack_require__(32),
     _assign = __webpack_require__(11);
 
 var ReactNoopUpdateQueue = __webpack_require__(91);
@@ -9921,7 +9921,7 @@ module.exports = instantiateReactComponent;
 
 var _prodInvariant = __webpack_require__(4);
 
-var React = __webpack_require__(30);
+var React = __webpack_require__(31);
 
 var invariant = __webpack_require__(1);
 
@@ -10512,9 +10512,9 @@ module.exports = getActiveElement;
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(33);
+var DOMLazyTree = __webpack_require__(34);
 var DOMProperty = __webpack_require__(21);
-var React = __webpack_require__(30);
+var React = __webpack_require__(31);
 var ReactBrowserEventEmitter = __webpack_require__(52);
 var ReactCurrentOwner = __webpack_require__(17);
 var ReactDOMComponentTree = __webpack_require__(12);
@@ -10524,7 +10524,7 @@ var ReactFeatureFlags = __webpack_require__(107);
 var ReactInstanceMap = __webpack_require__(41);
 var ReactInstrumentation = __webpack_require__(15);
 var ReactMarkupChecksum = __webpack_require__(251);
-var ReactReconciler = __webpack_require__(32);
+var ReactReconciler = __webpack_require__(33);
 var ReactUpdateQueue = __webpack_require__(72);
 var ReactUpdates = __webpack_require__(18);
 
@@ -11119,7 +11119,7 @@ module.exports = function(fn, that, length){
 /* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(28) && !__webpack_require__(35)(function(){
+module.exports = !__webpack_require__(28) && !__webpack_require__(36)(function(){
   return Object.defineProperty(__webpack_require__(130)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
@@ -11144,13 +11144,13 @@ module.exports = function(it){
 var LIBRARY        = __webpack_require__(82)
   , $export        = __webpack_require__(26)
   , redefine       = __webpack_require__(132)
-  , hide           = __webpack_require__(34)
+  , hide           = __webpack_require__(35)
   , has            = __webpack_require__(25)
   , Iterators      = __webpack_require__(83)
   , $iterCreate    = __webpack_require__(271)
   , setToStringTag = __webpack_require__(86)
   , getPrototypeOf = __webpack_require__(127)
-  , ITERATOR       = __webpack_require__(36)('iterator')
+  , ITERATOR       = __webpack_require__(37)('iterator')
   , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
   , FF_ITERATOR    = '@@iterator'
   , KEYS           = 'keys'
@@ -11215,7 +11215,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 /* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(34);
+module.exports = __webpack_require__(35);
 
 /***/ }),
 /* 133 */
@@ -11621,7 +11621,7 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(31);
+var _prodInvariant = __webpack_require__(32);
 
 var invariant = __webpack_require__(1);
 
@@ -11738,7 +11738,7 @@ module.exports = PooledClass;
 
 
 
-var _prodInvariant = __webpack_require__(31);
+var _prodInvariant = __webpack_require__(32);
 
 var ReactCurrentOwner = __webpack_require__(17);
 var REACT_ELEMENT_TYPE = __webpack_require__(92);
@@ -12159,7 +12159,7 @@ module.exports = ReactDOMFactories;
 
 
 
-var _prodInvariant = __webpack_require__(31);
+var _prodInvariant = __webpack_require__(32);
 
 var ReactPropTypeLocationNames = __webpack_require__(148);
 var ReactPropTypesSecret = __webpack_require__(149);
@@ -13844,7 +13844,7 @@ module.exports = factory;
  */
 
 
-var _prodInvariant = __webpack_require__(31);
+var _prodInvariant = __webpack_require__(32);
 
 var ReactElement = __webpack_require__(23);
 
@@ -14513,7 +14513,7 @@ module.exports = __webpack_require__(174);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactDefaultInjection = __webpack_require__(175);
 var ReactMount = __webpack_require__(125);
-var ReactReconciler = __webpack_require__(32);
+var ReactReconciler = __webpack_require__(33);
 var ReactUpdates = __webpack_require__(18);
 var ReactVersion = __webpack_require__(253);
 
@@ -16803,7 +16803,7 @@ module.exports = ReactComponentBrowserEnvironment;
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(33);
+var DOMLazyTree = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(13);
 
 var createNodesFromMarkup = __webpack_require__(194);
@@ -17222,7 +17222,7 @@ var _prodInvariant = __webpack_require__(4),
 
 var AutoFocusUtils = __webpack_require__(199);
 var CSSPropertyOperations = __webpack_require__(200);
-var DOMLazyTree = __webpack_require__(33);
+var DOMLazyTree = __webpack_require__(34);
 var DOMNamespaces = __webpack_require__(65);
 var DOMProperty = __webpack_require__(21);
 var DOMPropertyOperations = __webpack_require__(114);
@@ -19234,7 +19234,7 @@ module.exports = ReactDOMInput;
 
 var _assign = __webpack_require__(11);
 
-var React = __webpack_require__(30);
+var React = __webpack_require__(31);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactDOMSelect = __webpack_require__(116);
 
@@ -19533,7 +19533,7 @@ var ReactInstanceMap = __webpack_require__(41);
 var ReactInstrumentation = __webpack_require__(15);
 
 var ReactCurrentOwner = __webpack_require__(17);
-var ReactReconciler = __webpack_require__(32);
+var ReactReconciler = __webpack_require__(33);
 var ReactChildReconciler = __webpack_require__(214);
 
 var emptyFunction = __webpack_require__(16);
@@ -19978,7 +19978,7 @@ module.exports = ReactMultiChild;
 
 
 
-var ReactReconciler = __webpack_require__(32);
+var ReactReconciler = __webpack_require__(33);
 
 var instantiateReactComponent = __webpack_require__(117);
 var KeyEscapeUtils = __webpack_require__(71);
@@ -20140,14 +20140,14 @@ module.exports = ReactChildReconciler;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(11);
 
-var React = __webpack_require__(30);
+var React = __webpack_require__(31);
 var ReactComponentEnvironment = __webpack_require__(68);
 var ReactCurrentOwner = __webpack_require__(17);
 var ReactErrorUtils = __webpack_require__(60);
 var ReactInstanceMap = __webpack_require__(41);
 var ReactInstrumentation = __webpack_require__(15);
 var ReactNodeTypes = __webpack_require__(118);
-var ReactReconciler = __webpack_require__(32);
+var ReactReconciler = __webpack_require__(33);
 
 if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(216);
@@ -21589,7 +21589,7 @@ module.exports = ReactServerUpdateQueue;
 
 var _assign = __webpack_require__(11);
 
-var DOMLazyTree = __webpack_require__(33);
+var DOMLazyTree = __webpack_require__(34);
 var ReactDOMComponentTree = __webpack_require__(12);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -21798,7 +21798,7 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(11);
 
 var DOMChildrenOperations = __webpack_require__(64);
-var DOMLazyTree = __webpack_require__(33);
+var DOMLazyTree = __webpack_require__(34);
 var ReactDOMComponentTree = __webpack_require__(12);
 
 var escapeTextContentForBrowser = __webpack_require__(51);
@@ -24771,7 +24771,7 @@ __webpack_require__(262)('getPrototypeOf', function(){
 // most Object methods by ES6 should accept primitives
 var $export = __webpack_require__(26)
   , core    = __webpack_require__(19)
-  , fails   = __webpack_require__(35);
+  , fails   = __webpack_require__(36);
 module.exports = function(KEY, exec){
   var fn  = (core.Object || {})[KEY] || Object[KEY]
     , exp = {};
@@ -24883,7 +24883,7 @@ var create         = __webpack_require__(84)
   , IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(34)(IteratorPrototype, __webpack_require__(36)('iterator'), function(){ return this; });
+__webpack_require__(35)(IteratorPrototype, __webpack_require__(37)('iterator'), function(){ return this; });
 
 module.exports = function(Constructor, NAME, next){
   Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
@@ -24969,9 +24969,9 @@ module.exports = __webpack_require__(22).document && document.documentElement;
 
 __webpack_require__(278);
 var global        = __webpack_require__(22)
-  , hide          = __webpack_require__(34)
+  , hide          = __webpack_require__(35)
   , Iterators     = __webpack_require__(83)
-  , TO_STRING_TAG = __webpack_require__(36)('toStringTag');
+  , TO_STRING_TAG = __webpack_require__(37)('toStringTag');
 
 for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
   var NAME       = collections[i]
@@ -25064,11 +25064,11 @@ var global         = __webpack_require__(22)
   , $export        = __webpack_require__(26)
   , redefine       = __webpack_require__(132)
   , META           = __webpack_require__(284).KEY
-  , $fails         = __webpack_require__(35)
+  , $fails         = __webpack_require__(36)
   , shared         = __webpack_require__(78)
   , setToStringTag = __webpack_require__(86)
   , uid            = __webpack_require__(53)
-  , wks            = __webpack_require__(36)
+  , wks            = __webpack_require__(37)
   , wksExt         = __webpack_require__(87)
   , wksDefine      = __webpack_require__(88)
   , keyOf          = __webpack_require__(285)
@@ -25284,7 +25284,7 @@ $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function(){
 });
 
 // 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(34)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(35)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 // 19.4.3.5 Symbol.prototype[@@toStringTag]
 setToStringTag($Symbol, 'Symbol');
 // 20.2.1.9 Math[@@toStringTag]
@@ -25304,7 +25304,7 @@ var META     = __webpack_require__(53)('meta')
 var isExtensible = Object.isExtensible || function(){
   return true;
 };
-var FREEZE = !__webpack_require__(35)(function(){
+var FREEZE = !__webpack_require__(36)(function(){
   return isExtensible(Object.preventExtensions({}));
 });
 var setMeta = function(it){
@@ -25618,12 +25618,16 @@ var Navbar = function (_Component) {
         'Filter crafting resources (currently showing same in all menus)'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Disabled movement in modals & combat'
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
+        'Disable movement in modals & combat'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
+        'Selling'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Selling'
+        'Difficulty-based skills'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -27110,8 +27114,14 @@ var Crafting = function (_Component) {
     value: function craftItem(item) {
       this.props.store.dispatch({
         type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.CRAFT,
-        payload: { item: item, player_skill: this.player_skill }
+        payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item) }
       });
+    }
+  }, {
+    key: 'calcChance',
+    value: function calcChance(item) {
+      var chance = (this.player_skill.current - item.craft.skill.min) * 2 + 50;
+      return chance > 100 ? 100 : chance;
     }
   }, {
     key: 'getCraftingTable',
@@ -27126,7 +27136,7 @@ var Crafting = function (_Component) {
 
       var items = _.map(available, function (item) {
         var resource_name = item.craft.resource.min == 1 ? _this3.resources[item.craft.resource.id].name : _this3.resources[item.craft.resource.id].plural;
-        var chance = (_this3.player_skill.current - item.craft.skill.min) * 2 + 50;
+        var chance = _this3.calcChance(item);
         var description = item.craftable ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'a',
           { href: '#', onClick: function onClick() {
@@ -27906,7 +27916,7 @@ var MainPanel = function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
@@ -28270,7 +28280,7 @@ var getKeys  = __webpack_require__(44)
   , $assign  = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(35)(function(){
+module.exports = !$assign || __webpack_require__(36)(function(){
   var A = {}
     , B = {}
     , S = Symbol()
@@ -29142,13 +29152,15 @@ var PlayerControls = function (_Component) {
 
     _this.state = {
       player: props.store.getState().Player,
-      planet: props.store.getState().Planet
+      planet: props.store.getState().Planet,
+      app: props.store.getState().App
     };
 
     _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
         player: props.store.getState().Player,
-        planet: props.store.getState().Planet
+        planet: props.store.getState().Planet,
+        app: props.store.getState().App
       });
     });
     return _this;
@@ -29163,6 +29175,11 @@ var PlayerControls = function (_Component) {
   }, {
     key: 'move',
     value: function move(dir) {
+
+      if (this.state.app.modal.open) {
+        return;
+      }
+
       if (this.state.player.status.encumbered === true) {
         __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifyWarning(store, 'You are too encumbered to move.');
         return;
@@ -29290,10 +29307,10 @@ var PlayerControls = function (_Component) {
       var planet = this.state.planet;
 
       // Buttons
-      var east = player.x < planet.width ? false : true;
-      var west = player.x > 0 ? false : true;
-      var north = player.y > 0 ? false : true;
-      var south = player.y < planet.height ? false : true;
+      var east = player.x < planet.width && !this.state.app.modal.open ? false : true;
+      var west = player.x > 0 && !this.state.app.modal.open ? false : true;
+      var north = player.y > 0 && !this.state.app.modal.open ? false : true;
+      var south = player.y < planet.height && !this.state.app.modal.open ? false : true;
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
@@ -29500,15 +29517,17 @@ var BottomPanel = function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__User__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Player__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Messages__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Planet__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Inventory__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Skills__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Mobs__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Combat__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__User__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Messages__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Planet__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Inventory__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Skills__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Mobs__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Combat__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Config__ = __webpack_require__(3);
 
 
 
@@ -29519,7 +29538,8 @@ var BottomPanel = function (_Component) {
 
 
 
-var APP = __WEBPACK_IMPORTED_MODULE_8__components_Config__["a" /* default */].ACTIONS.APP;
+
+var APP = __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].ACTIONS.APP;
 
 var Reducers = function Reducers() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -29532,17 +29552,18 @@ var Reducers = function Reducers() {
     state = {
       App: {
         modal: {
-          body: ''
+          body: '',
+          open: false
         }
       },
-      User: Object(__WEBPACK_IMPORTED_MODULE_0__User__["a" /* default */])(state, action),
-      Player: Object(__WEBPACK_IMPORTED_MODULE_1__Player__["a" /* default */])(state, action),
-      Messages: Object(__WEBPACK_IMPORTED_MODULE_2__Messages__["a" /* default */])(state, action),
-      Planet: Object(__WEBPACK_IMPORTED_MODULE_3__Planet__["a" /* default */])(state, action),
-      Inventory: Object(__WEBPACK_IMPORTED_MODULE_4__Inventory__["a" /* default */])(state, action),
-      Skills: Object(__WEBPACK_IMPORTED_MODULE_5__Skills__["a" /* default */])(state, action),
-      Mobs: Object(__WEBPACK_IMPORTED_MODULE_6__Mobs__["a" /* default */])(state, action),
-      Combat: Object(__WEBPACK_IMPORTED_MODULE_7__Combat__["a" /* default */])(state, action)
+      User: Object(__WEBPACK_IMPORTED_MODULE_1__User__["a" /* default */])(state, action),
+      Player: Object(__WEBPACK_IMPORTED_MODULE_2__Player__["a" /* default */])(state, action),
+      Messages: Object(__WEBPACK_IMPORTED_MODULE_3__Messages__["a" /* default */])(state, action),
+      Planet: Object(__WEBPACK_IMPORTED_MODULE_4__Planet__["a" /* default */])(state, action),
+      Inventory: Object(__WEBPACK_IMPORTED_MODULE_5__Inventory__["a" /* default */])(state, action),
+      Skills: Object(__WEBPACK_IMPORTED_MODULE_6__Skills__["a" /* default */])(state, action),
+      Mobs: Object(__WEBPACK_IMPORTED_MODULE_7__Mobs__["a" /* default */])(state, action),
+      Combat: Object(__WEBPACK_IMPORTED_MODULE_8__Combat__["a" /* default */])(state, action)
     };
   }
 
@@ -29550,36 +29571,36 @@ var Reducers = function Reducers() {
 
   switch (method) {
     case 'USER':
-      Object(__WEBPACK_IMPORTED_MODULE_0__User__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_1__User__["a" /* default */])(state, action);
       break;
     case 'PLAYER':
-      Object(__WEBPACK_IMPORTED_MODULE_1__Player__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_2__Player__["a" /* default */])(state, action);
       break;
     case 'MSGS':
-      Object(__WEBPACK_IMPORTED_MODULE_2__Messages__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_3__Messages__["a" /* default */])(state, action);
       break;
     case 'INVENTORY':
-      Object(__WEBPACK_IMPORTED_MODULE_4__Inventory__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_5__Inventory__["a" /* default */])(state, action);
       break;
     case 'SKILLS':
-      Object(__WEBPACK_IMPORTED_MODULE_5__Skills__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_6__Skills__["a" /* default */])(state, action);
       break;
     case 'PLANET':
-      Object(__WEBPACK_IMPORTED_MODULE_3__Planet__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_4__Planet__["a" /* default */])(state, action);
       break;
     case 'MOBS':
-      Object(__WEBPACK_IMPORTED_MODULE_6__Mobs__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_7__Mobs__["a" /* default */])(state, action);
       break;
     case 'COMBAT':
-      Object(__WEBPACK_IMPORTED_MODULE_7__Combat__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_8__Combat__["a" /* default */])(state, action);
       break;
     case 'APP':
       switch (type) {
         case APP.MODAL_SHOW:
-          state.App.modal = payload;
+          state.App.modal = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, payload, { open: true });
           break;
         case APP.MODAL_HIDE:
-          state.App.modal = { body: '' };
+          state.App.modal = { body: '', open: false };
           break;
       }
       break;
@@ -29595,7 +29616,7 @@ var Reducers = function Reducers() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 
@@ -29632,7 +29653,7 @@ var User = function User() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 
@@ -29920,7 +29941,7 @@ var Messages = function Messages() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_PlanetData__ = __webpack_require__(337);
@@ -30326,7 +30347,7 @@ var StoreData = [{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(56);
@@ -30444,7 +30465,7 @@ var Inventory = function Inventory() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_SkillData__ = __webpack_require__(345);
@@ -30484,7 +30505,7 @@ var Skills = function Skills() {
     }
   };
 
-  var checkSkillGain = function checkSkillGain(skill) {
+  var checkSkillGain = function checkSkillGain(skill, chance) {
     var rand = Math.random() * 100;
     var gain = 0;
 
@@ -30497,7 +30518,10 @@ var Skills = function Skills() {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      if (rand <= (100.0 - state.Skills[skill].current) / (state.Skills[skill].current / 10)) {
+      // For every point above 50% chance, subtract 1 from probability of raise.
+      var diff_modifier = chance && 50 - chance < 0 ? 50 - chance : 0;
+
+      if (rand <= 100.0 - state.Skills[skill].current + diff_modifier / (state.Skills[skill].current / 10)) {
         gain = 0.1;
       }
     }
@@ -30539,7 +30563,7 @@ var Skills = function Skills() {
       // success
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, 'You craft ' + payload.item.description + '.');
 
-      checkSkillGain(payload.player_skill.name.toLowerCase());
+      checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
       __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });

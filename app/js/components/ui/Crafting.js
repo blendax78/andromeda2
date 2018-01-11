@@ -59,7 +59,7 @@ class Crafting extends Component {
   craftItem(item) {
     this.props.store.dispatch({
       type: Config.ACTIONS.SKILLS.CRAFT,
-      payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min }
+      payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item) }
     });
   }
 

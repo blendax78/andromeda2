@@ -1,3 +1,5 @@
+import Config from '../components/Config';
+
 export const ItemData = [
   {
     id: 1,
@@ -42,6 +44,10 @@ export const ItemData = [
     value: 5,
     weight: 1,
     type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
     craft: {
       skill: {
         id: 5,
@@ -71,6 +77,10 @@ export const ItemData = [
     value: 5,
     weight: 1,
     type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
     craft: {
       skill: {
         id: 5,

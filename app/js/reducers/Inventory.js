@@ -43,7 +43,14 @@ const Inventory = (state = {}, action) => {
   }
 
   let item = (payload && payload.item) ? _.extend({}, _.findWhere(ItemData, { id: payload.item })) : {};
-  let inventoryItem = _.findWhere(state.Inventory[item.type], { id: item.id });
+  // fix this to use key over id
+  let inventoryItem = {};
+  if (!!payload && payload.key) {
+    inventoryItem = _.findWhere(state.Inventory[item.type], { key: payload.key });
+  } else {
+    inventoryItem = _.findWhere(state.Inventory[item.type], { id: item.id });
+  }
+  
 
   switch (type) {
     case INVENTORY.GET:
@@ -94,6 +101,15 @@ const Inventory = (state = {}, action) => {
       }
 
     Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
+    break;
+    case INVENTORY.EQUIP:
+      console.log(inventoryItem.id, inventoryItem.key, inventoryItem.equip.equipped, 'items may be copying by reference');
+      inventoryItem.equip.equipped = true;
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
+    break;
+    case INVENTORY.UNEQUIP:
+      inventoryItem.equip.equipped = false;
+      Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
   }
 

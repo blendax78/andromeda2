@@ -29,7 +29,7 @@ const Skills = (state = {}, action) => {
     }
   };
 
-  let checkSkillGain = (skill, difficulty) => {
+  let checkSkillGain = (skill, chance) => {
     let rand = Math.random() * 100;
     let gain = 0;
 
@@ -42,9 +42,10 @@ const Skills = (state = {}, action) => {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      let diff_modifier = (difficulty && state.Skills[skill].current - difficulty > 0) ? (state.Skills[skill].current - difficulty) : 0;
-      console.log(diff_modifier, rand, (100.0 - state.Skills[skill].current) - diff_modifier / (state.Skills[skill].current / 10));
-      if (rand <= (100.0 - state.Skills[skill].current) - diff_modifier / (state.Skills[skill].current / 10)) {
+      // For every point above 50% chance, subtract 1 from probability of raise.
+      let diff_modifier = (chance && 50 - chance < 0) ? (50 - chance) : 0;
+
+      if (rand <= (100.0 - state.Skills[skill].current) + diff_modifier / (state.Skills[skill].current / 10)) {
         gain = 0.1;
       }
     }
@@ -87,7 +88,7 @@ const Skills = (state = {}, action) => {
       // success
       Config.notifyGain(store, `You craft ${payload.item.description}.`);
 
-      checkSkillGain(payload.player_skill.name.toLowerCase(), payload.difficulty);
+      checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
       Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
       Config.dispatch(store, Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
