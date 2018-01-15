@@ -65,7 +65,7 @@ class InventoryList extends Component {
         <div className="row" key={`inventoryItem.${inventory.type}.${inventory.key || inventory.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{name}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className={classEquip} onClick={() => { this.toggleEquip(inventory); } }></span>
+            <span className={classEquip} onClick={() => { this.toggleEquip(inventory); } } data-id="data"></span>
             <span className="glyphicon glyphicon-trash clickable" title="Drop" onClick={() => { this.clickDrop(inventory); } } data-id="data"></span>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>

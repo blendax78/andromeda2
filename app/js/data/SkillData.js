@@ -71,6 +71,15 @@ export const SkillData = {
     primary: 'dexterity',
     secondary: 'strength'
   },
+  hiding: {
+    id: 9,
+    name: 'Hiding',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'intelligence'
+  },
 };
 
 
@@ -110,12 +119,6 @@ Hiding  Dex Int
 Inscription Int Dex
 Item Identification Int Dex
 Lockpicking Dex Int 
-Skill
-
-Primary Stat
-
-Secondary Stat
-
 Lumberjacking Str Dex
 Mace Fighting Str Dex
 Magery  Int Str

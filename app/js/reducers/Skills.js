@@ -152,6 +152,9 @@ const Skills = (state = {}, action) => {
     case SKILLS.MINING:
       checkObjectSuccess('mining');
     break;
+    case SKILLS.HIDING:
+      console.log(SKILLS.HIDING);
+    break;
     case SKILLS.CRAFT:
       // Handles all crafting skills
       checkCraftingSuccess(payload);

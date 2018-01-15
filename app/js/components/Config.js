@@ -23,6 +23,7 @@ const Config = {
       ENCUMBRANCE: 'PLAYER.ENCUMBRANCE',
       UPDATE: 'PLAYER.UPDATE',
       RUN: 'PLAYER.RUN',
+      HIDE: 'PLAYER.HIDE',
       MOUNT: 'PLAYER.MOUNT',
       EAST: 'PLAYER.EAST',
       WEST: 'PLAYER.WEST',
@@ -55,6 +56,7 @@ const Config = {
       UNEQUIP: 'INVENTORY.UNEQUIP',
       RHAND: 'right hand',
       LHAND: 'left hand',
+      BOTHHANDS: 'both hands',
       FEET: 'feet',
       BODY: 'body',
       HEAD: 'head',
@@ -72,6 +74,7 @@ const Config = {
       GET: 'SKILLS.GET',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MINING: 'SKILLS.MINING',
+      HIDING: 'SKILLS.HIDING',
       WRESTLING: 'SKILLS.WRESTLING'
     },
     MOBS: {
@@ -136,6 +139,20 @@ const Config = {
       type: type,
       payload: payload
     }), 0);
+  },
+
+  clone: (object) => {
+    // Clone, but do not pass object params by reference (shallow).
+    let new_object = {};
+    for (let prop in object) {
+      if (!_.isObject(object[prop])) {
+        new_object[prop] = object[prop];
+      } else {
+        new_object[prop] = _.extend({}, object[prop]);
+      }
+    }
+
+    return new_object;
   },
 
 }

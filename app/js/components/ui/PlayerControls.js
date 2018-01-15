@@ -134,12 +134,28 @@ class PlayerControls extends Component {
         case 39:
           this.move(Config.ACTIONS.PLAYER.EAST);
         break;
+        case 82:
+          if (this.state.player.stamina > 0) {
+            $('#run_check').bootstrapToggle('toggle');
+          }
+        break;
+        case 72:
+          $('#hide_check').bootstrapToggle('toggle');
+          this.props.store.dispatch({
+            type: Config.ACTIONS.SKILLS.HIDING,
+            payload: {}
+          });
+        break;
+        default:
+          // console.log(e.keyCode);
+        break;
       }
     });
   }
 
   componentDidUpdate() {
     let check = $('#run_check');
+
     if (check.prop('checked') && this.state.player.status.run === false) {
       check.bootstrapToggle('off', false);
     }

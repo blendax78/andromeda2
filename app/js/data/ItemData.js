@@ -24,7 +24,7 @@ export const ItemData = [
     plural: 'ore',
     countable: true,
     description: '',
-    value: 3,
+    value: 1,
     weight: 5,
     type: 'items',
     sub_type: 'resource',
@@ -41,7 +41,7 @@ export const ItemData = [
     plural: 'dagger',
     countable: false,
     description: 'a dagger',
-    value: 5,
+    value: 3,
     weight: 1,
     type: 'weapons',
     equip: {
@@ -52,7 +52,7 @@ export const ItemData = [
       skill: {
         id: 5,
         name: 'blacksmithing',
-        min: 20
+        min: 0
       },
       resource: {
         id: 2,
@@ -74,7 +74,7 @@ export const ItemData = [
     plural: 'butcher knife',
     countable: false,
     description: 'a butcher knife',
-    value: 5,
+    value: 3,
     weight: 1,
     type: 'weapons',
     equip: {
@@ -85,7 +85,7 @@ export const ItemData = [
       skill: {
         id: 5,
         name: 'blacksmithing',
-        min: 20
+        min: 0
       },
       resource: {
         id: 2,
@@ -161,6 +161,64 @@ export const ItemData = [
         id: 8,
         name: 'bowcraft'
       }
+    }
+  },
+  {
+    id: 9,
+    name: 'chainmail coif',
+    plural: 'chainmail coif',
+    countable: false,
+    description: 'a chainmail coif',
+    value: 10,
+    weight: 7,
+    type: 'armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.HEAD,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 14.5
+      },
+      resource: {
+        id: 2,
+        min: 10
+      }
+    },
+    armor: {
+      strength: 60,
+      physical: 4
+    }
+  },
+{
+    id: 10,
+    name: 'bascinet',
+    plural: 'bascinet',
+    countable: false,
+    description: 'a bascinet',
+    value: 15,
+    weight: 5,
+    type: 'armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.HEAD,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 8.33
+      },
+      resource: {
+        id: 2,
+        min: 15
+      }
+    },
+    armor: {
+      strength: 40,
+      physical: 7
     }
   },
 ];

@@ -10,15 +10,15 @@ const Inventory = (state = {}, action) => {
   let merge_new_data = (data) => {
 
     let items = _.map(data.items, (item) => {
-      return {...item, ..._.findWhere(ItemData, { id: item.id }) };
+      return {...item, ...Config.clone(_.findWhere(ItemData, { id: item.id })) };
     });
 
     let weapons = _.map(data.weapons, (weapon) => {
-      return {...weapon, ..._.findWhere(ItemData, { id: weapon.id }) };
+      return {...weapon, ...Config.clone(_.findWhere(ItemData, { id: weapon.id })) };
     });
 
     let armor = _.map(data.armor, (armor) => {
-      return {...armor, ..._.findWhere(ItemData, { id: armor.id }) };
+      return {...armor, ...Config.clone(_.findWhere(ItemData, { id: armor.id })) };
     });
 
     data.items = items;
@@ -29,8 +29,18 @@ const Inventory = (state = {}, action) => {
   }
 
   if (!state.Inventory) {
-    state.Inventory = {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5}]};
+    state.Inventory = {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5}, {'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand'}}]};
     state.Inventory = merge_new_data(state.Inventory);
+  }
+
+  let unequip_others = (item) => {
+    let equipped_items = _.filter(state.Inventory[item.type], (eq) => {
+      return eq.equip.equipped && eq.equip.location === item.equip.location && eq.key !== item.key;
+    });
+
+    _.each(equipped_items, (eq) => {
+      eq.equip.equipped = false;
+    });
   }
 
   let calc_encumbrance = () => {
@@ -42,15 +52,15 @@ const Inventory = (state = {}, action) => {
     return encumbrance;
   }
 
-  let item = (payload && payload.item) ? _.extend({}, _.findWhere(ItemData, { id: payload.item })) : {};
+  let item = (payload && payload.item) ? Config.clone(_.findWhere(ItemData, { id: payload.item })) : {};
   // fix this to use key over id
   let inventoryItem = {};
+  // This shouldn't extend/clone the inventory object in order to maintain pass-by-reference.
   if (!!payload && payload.key) {
     inventoryItem = _.findWhere(state.Inventory[item.type], { key: payload.key });
   } else {
     inventoryItem = _.findWhere(state.Inventory[item.type], { id: item.id });
-  }
-  
+  }  
 
   switch (type) {
     case INVENTORY.GET:
@@ -103,17 +113,21 @@ const Inventory = (state = {}, action) => {
     Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
     case INVENTORY.EQUIP:
-      console.log(inventoryItem.id, inventoryItem.key, inventoryItem.equip.equipped, 'items may be copying by reference');
       inventoryItem.equip.equipped = true;
+      unequip_others(inventoryItem);
+
       Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
     case INVENTORY.UNEQUIP:
       inventoryItem.equip.equipped = false;
+
       Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
   }
 
+  // Note, these functions are being called twice. If it gets to be resource-intensive, move to switch() statement (multiple calls).
   state.Player.encumbrance = calc_encumbrance();
+
   return state.Inventory;
 }
 

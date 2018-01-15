@@ -29,6 +29,15 @@ const Player = (state = {}, action) => {
       encumbered: false,
       paralyzed: false
     },
+    defense: {
+      physical: 0,
+    },
+    offense: {
+      speed: 0,
+      min: 0,
+      max: 0,
+      skill: 0
+    },
     partial: {
       stamina: 0,
       hp: 0,
@@ -149,6 +158,9 @@ const Player = (state = {}, action) => {
     break;
     case PLAYER.UPDATE:
       state.Player = {...state.Player, ...payload};
+    break;
+    case PLAYER.RUN:
+      state.Player.status.run = payload.run;
     break;
     case PLAYER.EAST:
       state.Player.x = move(state.Player.x, increment(), payload.maxx);
