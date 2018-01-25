@@ -42,8 +42,8 @@ const Skills = (state = {}, action) => {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      // For every point above 50% chance, subtract 1 from probability of raise.
-      let diff_modifier = (chance && 50 - chance < 0) ? (50 - chance) : 0;
+      // For every point above 65% chance, subtract 1 from probability of raise.
+      let diff_modifier = (chance && 65 - chance < 0) ? (65 - chance) : 0;
 
       if (rand <= (100.0 - state.Skills[skill].current) + diff_modifier / (state.Skills[skill].current / 10)) {
         gain = 0.1;
