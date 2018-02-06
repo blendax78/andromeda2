@@ -420,6 +420,7 @@ var Config = {
       ENCUMBRANCE: 'PLAYER.ENCUMBRANCE',
       UPDATE: 'PLAYER.UPDATE',
       RUN: 'PLAYER.RUN',
+      HIDE: 'PLAYER.HIDE',
       MOUNT: 'PLAYER.MOUNT',
       EAST: 'PLAYER.EAST',
       WEST: 'PLAYER.WEST',
@@ -470,6 +471,7 @@ var Config = {
       GET: 'SKILLS.GET',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MINING: 'SKILLS.MINING',
+      HIDING: 'SKILLS.HIDING',
       WRESTLING: 'SKILLS.WRESTLING'
     },
     MOBS: {
@@ -25775,6 +25777,10 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
+        'Crafting'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
         'Difficulty-based skills'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -25783,11 +25789,19 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Turning resources into craftables**'
+        'Items not equipping from database'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Turning resources into craftables'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Battles'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Hiding'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -25798,8 +25812,8 @@ var Navbar = function (_Component) {
         'Dungeons'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li'), className: 'line-through' },
-        'Crafting'
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Mounts'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -29464,6 +29478,21 @@ var PlayerControls = function (_Component) {
           case 39:
             _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.EAST);
             break;
+          case 82:
+            if (_this2.state.player.stamina > 0) {
+              $('#run_check').bootstrapToggle('toggle');
+            }
+            break;
+          case 72:
+            $('#hide_check').bootstrapToggle('toggle');
+            _this2.props.store.dispatch({
+              type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.HIDING,
+              payload: {}
+            });
+            break;
+          default:
+            // console.log(e.keyCode);
+            break;
         }
       });
     }
@@ -29471,6 +29500,7 @@ var PlayerControls = function (_Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
       var check = $('#run_check');
+
       if (check.prop('checked') && this.state.player.status.run === false) {
         check.bootstrapToggle('off', false);
       }
@@ -30032,6 +30062,9 @@ var Player = function Player() {
     case PLAYER.UPDATE:
       state.Player = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player, payload);
       break;
+    case PLAYER.RUN:
+      state.Player.status.run = payload.run;
+      break;
     case PLAYER.EAST:
       state.Player.x = move(state.Player.x, increment(), payload.maxx);
       state.Player.stamina = state.Player.status.run ? update_stamina(-1) : state.Player.stamina;
@@ -30547,7 +30580,7 @@ var StoreData = [{
   description: 'A stout man stands behind a small forge.',
   sell: ['ore', 'armor', 'weapons'],
   craft: ['blacksmithing'],
-  buy: [3, 4],
+  buy: [3, 4, 9, 10],
   type: 'store'
 }, {
   id: 2,
@@ -30610,26 +30643,26 @@ var Inventory = function Inventory() {
   var merge_new_data = function merge_new_data(data) {
 
     var items = _.map(data.items, function (item) {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: item.id })));
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: item.id })), item);
     });
 
     var weapons = _.map(data.weapons, function (weapon) {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, weapon, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: weapon.id })));
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: weapon.id })), weapon);
     });
 
-    var armor = _.map(data.armor, function (armor) {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, armor, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: armor.id })));
+    var armors = _.map(data.armor, function (armor) {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: armor.id })), armor);
     });
 
     data.items = items;
     data.weapons = weapons;
-    data.armor = armor;
+    data.armor = armors;
 
     return data;
   };
 
   if (!state.Inventory) {
-    state.Inventory = { 'armor': [], 'items': [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5 }, { 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5 }] };
+    state.Inventory = { 'armor': [], 'items': [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5 }, { 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand' } }] };
     state.Inventory = merge_new_data(state.Inventory);
   }
 
@@ -30791,8 +30824,8 @@ var Skills = function Skills() {
         gain = parseFloat((Math.ceil(Math.random() * 3) / 10).toFixed(1));
       }
     } else if (state.Skills[skill].current < 100.0) {
-      // For every point above 50% chance, subtract 1 from probability of raise.
-      var diff_modifier = chance && 50 - chance < 0 ? 50 - chance : 0;
+      // For every point above 65% chance, subtract 1 from probability of raise.
+      var diff_modifier = chance && 65 - chance < 0 ? 65 - chance : 0;
 
       if (rand <= 100.0 - state.Skills[skill].current + diff_modifier / (state.Skills[skill].current / 10)) {
         gain = 0.1;
@@ -30899,6 +30932,9 @@ var Skills = function Skills() {
     case SKILLS.MINING:
       checkObjectSuccess('mining');
       break;
+    case SKILLS.HIDING:
+      console.log(SKILLS.HIDING);
+      break;
     case SKILLS.CRAFT:
       // Handles all crafting skills
       checkCraftingSuccess(payload);
@@ -30988,6 +31024,15 @@ var SkillData = {
     modifier: 0,
     primary: 'dexterity',
     secondary: 'strength'
+  },
+  hiding: {
+    id: 9,
+    name: 'Hiding',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'intelligence'
   }
 };
 
@@ -31027,12 +31072,6 @@ Hiding  Dex Int
 Inscription Int Dex
 Item Identification Int Dex
 Lockpicking Dex Int 
-Skill
-
-Primary Stat
-
-Secondary Stat
-
 Lumberjacking Str Dex
 Mace Fighting Str Dex
 Magery  Int Str

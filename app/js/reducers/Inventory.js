@@ -10,20 +10,20 @@ const Inventory = (state = {}, action) => {
   let merge_new_data = (data) => {
 
     let items = _.map(data.items, (item) => {
-      return {...item, ...Config.clone(_.findWhere(ItemData, { id: item.id })) };
+      return {...Config.clone(_.findWhere(ItemData, { id: item.id })), ...item };
     });
 
     let weapons = _.map(data.weapons, (weapon) => {
-      return {...weapon, ...Config.clone(_.findWhere(ItemData, { id: weapon.id })) };
+      return {...Config.clone(_.findWhere(ItemData, { id: weapon.id })), ...weapon };
     });
 
-    let armor = _.map(data.armor, (armor) => {
-      return {...armor, ...Config.clone(_.findWhere(ItemData, { id: armor.id })) };
+    let armors = _.map(data.armor, (armor) => {
+      return {...Config.clone(_.findWhere(ItemData, { id: armor.id })), ...armor };
     });
 
     data.items = items;
     data.weapons = weapons;
-    data.armor = armor;
+    data.armor = armors;
 
     return data;
   }
