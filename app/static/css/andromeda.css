@@ -83,3 +83,8 @@
   margin-top: 5px;
 }
 
+.scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 60%;
+}

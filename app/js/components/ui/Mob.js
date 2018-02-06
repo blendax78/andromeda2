@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Config from '../Config';
-import Combat from './Combat';
 
 class Mob extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class Mob extends Component {
     };
 
     this.unsubscribe = props.store.subscribe(() => {
-      if (this.state.mounted) {
+      if (this.mounted) {
         this.setState({
           mob: this.state.mob,
           showAction: this.props.store.getState().Mobs.showAction,
@@ -28,31 +27,25 @@ class Mob extends Component {
   }
 
   componentWillUnmount() {
-    let state = this.state;
-    state.mounted = false;
-    this.setState(state);
-
     // Make sure to unsubscribe!
     this.unsubscribe();
+    this.mounted = false;
   }
 
   componentDidMount() {
-    let state = this.state;
-    state.mounted = true;
-    this.setState(state);
+    this.mounted = true;
   }
 
   setMobAction(e) {
     e.preventDefault();
-
-    // Config.modal(this.props.store, '', '', 'container_actions', this.state.mob);
     this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_ACTION, payload: {} });
   }
 
   toggleCombat(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_COMBAT, payload: {} });
+    Config.modal(this.props.store, '', '', 'combat');
+    // this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_COMBAT, payload: {} });
   }
 
   getMobActions() {

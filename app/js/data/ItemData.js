@@ -25,7 +25,7 @@ export const ItemData = [
     countable: true,
     description: '',
     value: 1,
-    weight: 5,
+    weight: 10,
     type: 'items',
     sub_type: 'resource',
     craft: {
@@ -353,7 +353,401 @@ export const ItemData = [
       max: 17
     }
   },
+  {
+    id: 15,
+    name: 'battle axe',
+    plural: 'battle axes',
+    countable: false,
+    description: 'a battle axe',
+    value: 14,
+    weight: 14,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 30.5
+      },
+      resource: {
+        id: 7,
+        min: 14
+      }
+    },
+    weapon: {
+      strength: 35,
+      hands: 'two',
+      skill: 6,
+      speed: 3.5,
+      min: 16,
+      max: 19
+    }
+  },
+  {
+    id: 16,
+    name: 'cleaver',
+    plural: 'cleavers',
+    countable: false,
+    description: 'a cleaver',
+    value: 3,
+    weight: 3,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 20
+      },
+      resource: {
+        id: 7,
+        min: 3
+      }
+    },
+    weapon: {
+      strength: 10,
+      hands: 'one',
+      skill: 6,
+      speed: 2.5,
+      min: 10,
+      max: 14
+    }
+  },
+  {
+    id: 17,
+    name: 'cutlass',
+    plural: 'cutlasses',
+    countable: false,
+    description: 'a cutlass',
+    value: 8,
+    weight: 8,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 24.3
+      },
+      resource: {
+        id: 7,
+        min: 8
+      }
+    },
+    weapon: {
+      strength: 25,
+      hands: 'one',
+      skill: 6,
+      speed: 2.5,
+      min: 10,
+      max: 14
+    }
+  },
+  {
+    id: 18,
+    name: 'double axe',
+    plural: 'double axes',
+    countable: false,
+    description: 'a double axe',
+    value: 12,
+    weight: 12,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 29.3
+      },
+      resource: {
+        id: 7,
+        min: 12
+      }
+    },
+    weapon: {
+      strength: 45,
+      hands: 'two',
+      skill: 6,
+      speed: 3.25,
+      min: 15,
+      max: 18
+    }
+  },
+  {
+    id: 19,
+    name: 'executioner axe',
+    plural: 'executioner axes',
+    countable: false,
+    description: 'an executioner axe',
+    value: 14,
+    weight: 14,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 34.2
+      },
+      resource: {
+        id: 7,
+        min: 14
+      }
+    },
+    weapon: {
+      strength: 40,
+      hands: 'two',
+      skill: 6,
+      speed: 3.25,
+      min: 15,
+      max: 18
+    }
+  },
+  {
+    id: 20,
+    name: 'halberd',
+    plural: 'halberds',
+    countable: false,
+    description: 'a halberd',
+    value: 20,
+    weight: 20,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 39.1
+      },
+      resource: {
+        id: 7,
+        min: 20
+      }
+    },
+    weapon: {
+      strength: 95,
+      hands: 'two',
+      skill: 6,
+      speed: 4,
+      min: 18,
+      max: 21
+    }
+  },
+  {
+    id: 21,
+    name: 'hatchet',
+    plural: 'hatchets',
+    countable: false,
+    description: 'a hatchet',
+    value: 4,
+    weight: 4,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 39.1
+      },
+      resource: {
+        id: 7,
+        min: 4
+      }
+    },
+    weapon: {
+      strength: 20,
+      hands: 'two',
+      skill: 6,
+      speed: 2.75,
+      min: 13,
+      max: 16
+    }
+  },
+  {
+    id: 22,
+    name: 'large battle axe',
+    plural: 'large battle axes',
+    countable: false,
+    description: 'a large battle axe',
+    value: 12,
+    weight: 12,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 28
+      },
+      resource: {
+        id: 7,
+        min: 12
+      }
+    },
+    weapon: {
+      strength: 80,
+      hands: 'two',
+      skill: 6,
+      speed: 3.75,
+      min: 17,
+      max: 20
+    }
+  },
+  {
+    id: 23,
+    name: 'katana',
+    plural: 'katanas',
+    countable: false,
+    description: 'a katana',
+    value: 8,
+    weight: 8,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 44.1
+      },
+      resource: {
+        id: 7,
+        min: 8
+      }
+    },
+    weapon: {
+      strength: 25,
+      hands: 'one',
+      skill: 6,
+      speed: 2.5,
+      min: 10,
+      max: 14
+    }
+  },
+  {
+    id: 24,
+    name: 'longsword',
+    plural: 'longswords',
+    countable: false,
+    description: 'a longsword',
+    value: 12,
+    weight: 12,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 28
+      },
+      resource: {
+        id: 7,
+        min: 12
+      }
+    },
+    weapon: {
+      strength: 35,
+      hands: 'one',
+      skill: 6,
+      speed: 3.5,
+      min: 14,
+      max: 18
+    }
+  },
+  {
+    id: 25,
+    name: 'scimitar',
+    plural: 'scimitars',
+    countable: false,
+    description: 'a scimitar',
+    value: 10,
+    weight: 10,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 31.7
+      },
+      resource: {
+        id: 7,
+        min: 10
+      }
+    },
+    weapon: {
+      strength: 25,
+      hands: 'one',
+      skill: 6,
+      speed: 3,
+      min: 12,
+      max: 16
+    }
+  },
+  {
+    id: 26,
+    name: 'viking sword',
+    plural: 'viking swords',
+    countable: false,
+    description: 'a viking sword',
+    value: 14,
+    weight: 14,
+    type: 'weapons',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 24.3
+      },
+      resource: {
+        id: 7,
+        min: 14
+      }
+    },
+    weapon: {
+      strength: 40,
+      hands: 'one',
+      skill: 6,
+      speed: 3.75,
+      min: 15,
+      max: 19
+    }
+  },
 ];
 
-// https://uo.stratics.com/content/skills/swordsmanship.php
-// https://uo.stratics.com/content/skills/blacksmithing.php

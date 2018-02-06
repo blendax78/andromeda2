@@ -9,10 +9,10 @@ class Crafting extends Component {
     this.state = {
       player: this.props.store.getState().Player,
       skills: this.props.store.getState().Skills,
-      inventory: this.props.store.getState().Inventory,
+      inventory: this.props.store.getState().Inventory
     };
 
-    this.mounted = true;
+    this.state.resources = this.getResources();
 
     this.unsubscribe = props.store.subscribe(() => {
       if (this.mounted) {
@@ -20,9 +20,15 @@ class Crafting extends Component {
           player: this.props.store.getState().Player,
           skills: this.props.store.getState().Skills,
           inventory: this.props.store.getState().Inventory,
+          resources: this.getResources()
         });
       }
     });
+
+  }
+
+  componentDidMount() {
+    this.mounted = true;
   }
 
   componentWillUnmount() {
@@ -30,24 +36,34 @@ class Crafting extends Component {
     this.unsubscribe();
   }
 
+  getResources() {
+    let resources = {};
+
+    _.each(_.where(ItemData, { sub_type: 'resource'}), (resource) => {
+      resources[resource.id] = Config.clone(resource);
+      let inventory = _.findWhere(this.state.inventory.items, { id: resource.id });
+
+      if (inventory) {
+        resources[resource.id].count = inventory.count;
+      }
+    });
+
+    return resources;
+  }
+
   getAvailableItems(skill_name) {
     let skill_id = this.state.skills[skill_name].id;
-
-    this.resources = _.indexBy(_.filter(this.state.inventory.items, (item) => {
-      // item = {...item, ..._.findWhere(ItemData, { id: item.id }) };
-      // need to turn skill into an array
-      return item.sub_type === 'resource' && item.craft.skill.id === skill_id;
-    }), 'id');
 
     this.player_skill = this.state.skills[skill_name];
 
     let craftable = _.map(_.filter(ItemData, (item) => {
-      return item.craft && item.craft.resource && item.craft.skill.id === this.player_skill.id;
+      return item.craft && item.craft.resource && item.craft.skill && item.craft.skill.id === this.player_skill.id &&
+        ((this.player_skill.current - item.craft.skill.min) * 2) + 50 >= 0;
     }), (item) => {
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
-      item.craftable = item.craft.skill.id === skill_id && resource.count >= item.craft.resource.min && 
-        ((this.player_skill.current - item.craft.skill.min) * 2) + 50 > 0 &&
+      item.craftable = item.craft.skill.id === skill_id && resource && resource.count >= item.craft.resource.min && 
+        // ((this.player_skill.current - item.craft.skill.min) * 2) + 50 >= 0 &&
         this.state.player.encumbrance < this.state.player.maxencumbrance;
 
       return item;
@@ -76,7 +92,8 @@ class Crafting extends Component {
     }
   }
 
-  getCraftingTable(available) {
+  getCraftingTable(type) {
+    let available = this.getAvailableItems(type);
     // calculate pct chance to craft
     // pct = 50% at min required skill
     // +2% chance per 1 point in skill
@@ -84,7 +101,7 @@ class Crafting extends Component {
     // pct = ((skill - req_skill) * 2) + 50
 
     let items = _.map(available, (item) => {
-      let resource_name = (item.craft.resource.min == 1) ? this.resources[item.craft.resource.id].name : this.resources[item.craft.resource.id].plural;
+      let resource_name = (item.craft.resource.min == 1) ? this.state.resources[item.craft.resource.id].name : this.state.resources[item.craft.resource.id].plural;
       let chance = this.calcChance(item);
       let description = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{item.description}</a> : item.description;
       return (
@@ -112,30 +129,19 @@ class Crafting extends Component {
     );
   }
 
-  getCraftingType(type) {
-    let available = this.getAvailableItems(type);
-    let crafting = this.getCraftingTable(available);
-
-    return (
-      <div className="row">
-        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          {crafting}
-        </div>
-      </div>
-    )
-  }
-
   render() {
     let title = Config.upperCase(this.props.type);
-    let crafting = this.getCraftingType(this.props.type);
+    let crafting = this.getCraftingTable(this.props.type);
     let skill = parseFloat(this.player_skill.current).toFixed(1);
-
-    let resources = _.map(this.resources, (resource) => {
-      return (
-        <div className="row" key={`resource.${resource.id}`}>
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span className="bold">{Config.upperCase(resource.plural)}:</span> {resource.count}</div>
-        </div>
-      );
+    let resources = _.map(this.state.resources, (resource) => {
+      if (resource && resource.craft && resource.craft.skill && resource.craft.skill.name === this.props.type) {
+        let count = resource.count || 0;
+        return (
+          <div className="row" key={`resource.${resource.id}`}>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span className="bold">{Config.upperCase(resource.plural)}:</span> {count}</div>
+          </div>
+        );
+      }
     });
 
     return (

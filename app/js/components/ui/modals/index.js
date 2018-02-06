@@ -5,6 +5,7 @@ import SpellBook from './SpellBook';
 import PlayerStats from './PlayerStats';
 import Store from './Store';
 import ContainerActions from './ContainerActions';
+import Combat from './Combat';
 import Config from '../../Config';
 
 class Modal extends Component {
@@ -57,6 +58,14 @@ class Modal extends Component {
       body: <SpellBook store={this.props.store}/>,
       title: 'Spell Book',
       type: 'spells'
+    };
+  }
+
+  setCombatModal() {
+    this.state.modal = {
+      body: <Combat store={this.props.store}/>,
+      title: 'Combat',
+      type: 'combat'
     };
   }
 
@@ -116,6 +125,9 @@ class Modal extends Component {
       case 'store':
         this.setStoreModal();
       break;
+      case 'combat':
+        this.setCombatModal();
+      break;
     }
     
     this.state.modal.title = this.state.modal.title || '';
@@ -123,9 +135,9 @@ class Modal extends Component {
   
   getModalBody() {
     if (typeof this.state.modal.body === 'object') {
-      return <div className="modal-body">{this.state.modal.body}</div>;
+      return <div className="modal-body scrollable">{this.state.modal.body}</div>;
     } else {
-      return <div className="modal-body" dangerouslySetInnerHTML={{__html: this.state.modal.body}}></div>;
+      return <div className="modal-body scrollable" dangerouslySetInnerHTML={{__html: this.state.modal.body}}></div>;
     }
   }
 

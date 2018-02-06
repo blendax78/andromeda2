@@ -36,6 +36,16 @@ class Navbar extends Component {
 
   showToDos() {
     let todos = [
+      <li key={Config.randomKey('li')}>Battles</li>,
+      <li key={Config.randomKey('li')}>Hiding</li>,
+      <li key={Config.randomKey('li')}>Work on player effects (including armor/weapons)</li>,
+      <li key={Config.randomKey('li')}>Dungeons</li>,
+      <li key={Config.randomKey('li')}>Mounts</li>,
+      <li key={Config.randomKey('li')}>Magic</li>,
+      <li key={Config.randomKey('li')}>Oceans & Boats</li>,
+      <li key={Config.randomKey('li')}>Space & Planets</li>,
+      <li key={Config.randomKey('li')}>Corpses</li>,
+      <li key={Config.randomKey('li')}>(Eventually) Dropped items appear on ground</li>,
       <li key={Config.randomKey('li')} className="line-through">Encumbrance prevents running/walking</li>,
       <li key={Config.randomKey('li')} className="line-through">Mobs</li>,
       <li key={Config.randomKey('li')} className="line-through">Towns</li>,
@@ -51,17 +61,7 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')} className="line-through">Equipment - Armor & Weapons</li>,
       <li key={Config.randomKey('li')} className="line-through">Items not equipping from database</li>,
       <li key={Config.randomKey('li')} className="line-through">Turning resources into craftables</li>,
-      <li key={Config.randomKey('li')}>Battles</li>,
-      <li key={Config.randomKey('li')}>Craftables filter out &lt; 0 skill or scrollable</li>,
-      <li key={Config.randomKey('li')}>Hiding</li>,
-      <li key={Config.randomKey('li')}>Work on player effects (including armor/weapons)</li>,
-      <li key={Config.randomKey('li')}>Dungeons</li>,
-      <li key={Config.randomKey('li')}>Mounts</li>,
-      <li key={Config.randomKey('li')}>Magic</li>,
-      <li key={Config.randomKey('li')}>Oceans & Boats</li>,
-      <li key={Config.randomKey('li')}>Space & Planets</li>,
-      <li key={Config.randomKey('li')}>Corpses</li>,
-      <li key={Config.randomKey('li')}>(Eventually) Dropped items appear on ground</li>
+      <li key={Config.randomKey('li')} className="line-through">Craftables filter out &lt; 0 skill or scrollable</li>,
     ];
 
     Config.modal(this.props.store, <ul>{todos}</ul>, 'To Do List');
