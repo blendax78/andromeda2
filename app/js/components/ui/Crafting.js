@@ -53,7 +53,9 @@ class Crafting extends Component {
       return item;
     });
 
-    return craftable;
+    return _.sortBy(craftable, (item) => {
+      return item.craft.skill.min;
+    });
   }
 
   craftItem(item) {
@@ -65,7 +67,13 @@ class Crafting extends Component {
 
   calcChance(item) {
     let chance = ((this.player_skill.current - item.craft.skill.min) * 2) + 50;
-    return (chance > 100) ? 100 : chance;
+    if (chance > 100) {
+      return 100;
+    } else if (chance < 0) {
+      return 0;
+    } else {
+      return chance;
+    }
   }
 
   getCraftingTable(available) {
