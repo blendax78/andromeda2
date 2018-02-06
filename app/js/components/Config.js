@@ -98,7 +98,7 @@ const Config = {
   },
 
   randomKey: (text = '') => {
-    return text + UUID();
+    return text + UUID(text);
   },
 
   notifyGain: (store, msg) => {

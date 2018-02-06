@@ -49,7 +49,7 @@ const Inventory = (state = {}, action) => {
       encumbrance += inv.count * inv.weight;
     });
 
-    return encumbrance;
+    return Math.round(encumbrance);
   }
 
   let item = (payload && payload.item) ? Config.clone(_.findWhere(ItemData, { id: payload.item })) : {};

@@ -3,6 +3,7 @@ import Config from '../../Config';
 import Crafting from '../Crafting';
 import Buy from '../Buy';
 import Sell from '../Sell';
+import * as classNames from 'classnames';
 
 class Store extends Component {
   constructor(props) {
@@ -15,20 +16,57 @@ class Store extends Component {
       healer: Config.randomKey('commerce'),
       blacksmithing: Config.randomKey('commerce'),
       inscription: Config.randomKey('commerce'),
-      tailoring: Config.randomKey('commerce')
+      tailoring: Config.randomKey('commerce'),
+      resource: Config.randomKey('commerce')
     };
 
     this.state = {
       data: props.data,
       crafting: '',
       sell: false,
-      buy: false
+      buy: false,
+      inventory: this.props.store.getState().Inventory
     };
+
+    this.mounted = true;
+
+    this.unsubscribe = props.store.subscribe(() => {
+      if (this.mounted) {
+        this.setState({
+          inventory: this.props.store.getState().Inventory
+        });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+    this.mounted = false;
   }
 
   setCrafting(type) {
     let new_type = (this.state.crafting !== type) ? type : '';
     this.setState({ crafting: new_type, buy: false, sell: false });
+  }
+
+  smelt(ore) {
+    if (ore && ore.count > 0) {
+      let count = ore.count;
+      // Add iron ingots
+      this.props.store.dispatch({
+        type: Config.ACTIONS.INVENTORY.ADD,
+        payload: {item: 7, count: count * 3}
+      });
+
+      // Remove ore
+      this.props.store.dispatch({
+        type: Config.ACTIONS.INVENTORY.REMOVE,
+        payload: {item: ore.id, count: count}
+      });
+
+      Config.notify(this.props.store, `You smelted ${count} ore and received ${count * 3} iron ingots.`);
+    }
+
   }
 
   toggleBuy() {
@@ -76,6 +114,18 @@ class Store extends Component {
         case 'blacksmithing':
           buttons.push(<button key={this.keys.blacksmithing} className="btn btn-info"
             onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Blacksmithing</button>);
+
+          let ore = _.findWhere(this.state.inventory.items, { name: 'ore' });
+          let disabled = (!ore || ore.count === 0);
+          let smeltClasses = classNames({
+            btn: true,
+            'btn-info': true,
+            disabled: disabled
+          });
+
+          buttons.push(<button key={this.keys.resource} className="btn btn-info" disabled={disabled}
+            onClick={ () => this.smelt(ore) }>Smelt Ore</button>);
+
         break;
         case 'inscription':
           buttons.push(<button key={this.keys.inscription} className="btn btn-info"

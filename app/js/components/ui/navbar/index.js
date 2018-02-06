@@ -49,7 +49,7 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')} className="line-through">Crafting</li>,
       <li key={Config.randomKey('li')} className="line-through">Difficulty-based skills</li>,
       <li key={Config.randomKey('li')} className="line-through">Equipment - Armor & Weapons</li>,
-      <li key={Config.randomKey('li')}>Items not equipping from database</li>,
+      <li key={Config.randomKey('li')} className="line-through">Items not equipping from database</li>,
       <li key={Config.randomKey('li')}>Turning resources into craftables</li>,
       <li key={Config.randomKey('li')}>Battles</li>,
       <li key={Config.randomKey('li')}>Hiding</li>,

@@ -55,7 +55,7 @@ export const ItemData = [
         min: 0
       },
       resource: {
-        id: 2,
+        id: 7,
         min: 3
       }
     },
@@ -88,8 +88,8 @@ export const ItemData = [
         min: 0
       },
       resource: {
-        id: 2,
-        min: 3
+        id: 7,
+        min: 2
       }
     },
     weapon: {
@@ -183,7 +183,7 @@ export const ItemData = [
         min: 14.5
       },
       resource: {
-        id: 2,
+        id: 7,
         min: 10
       }
     },
@@ -212,7 +212,7 @@ export const ItemData = [
         min: 8.33
       },
       resource: {
-        id: 2,
+        id: 7,
         min: 15
       }
     },
