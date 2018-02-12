@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Config from '../../Config';
 import * as classNames from 'classnames';
+import MessageList from '../MessageList';
 
 class Combat extends Component {
   constructor(props) {
@@ -71,7 +72,21 @@ class Combat extends Component {
   render() {
     return (
       <div>
-        {this.getCombatActions()}
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            {this.getCombatActions()}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            sub actions
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <MessageList store={this.props.store} />
+          </div>
+        </div>
       </div>
     );
   }

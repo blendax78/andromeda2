@@ -38,10 +38,11 @@ class Navbar extends Component {
     let todos = [
       <li key={Config.randomKey('li')}>Battles</li>,
       <li key={Config.randomKey('li')}>Hiding</li>,
+      <li key={Config.randomKey('li')}>Magic</li>,
+      <li key={Config.randomKey('li')}>Meditation</li>,
       <li key={Config.randomKey('li')}>Work on player effects (including armor/weapons)</li>,
       <li key={Config.randomKey('li')}>Dungeons</li>,
       <li key={Config.randomKey('li')}>Mounts</li>,
-      <li key={Config.randomKey('li')}>Magic</li>,
       <li key={Config.randomKey('li')}>Oceans & Boats</li>,
       <li key={Config.randomKey('li')}>Space & Planets</li>,
       <li key={Config.randomKey('li')}>Corpses</li>,
