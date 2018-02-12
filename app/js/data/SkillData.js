@@ -80,6 +80,33 @@ export const SkillData = {
     primary: 'dexterity',
     secondary: 'intelligence'
   },
+  archery: {//perhaps archery allows you skill / # seconds to attack in beginning.
+    id: 10,
+    name: 'Archery',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'strength'
+  },
+  magery: {
+    id: 11,
+    name: 'Magery',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'intelligence',
+    secondary: 'strength'
+  },
+  meditation: {
+    id: 12,
+    name: 'Meditation',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'intelligence',
+    secondary: 'strength'
+  },
 };
 
 

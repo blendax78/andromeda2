@@ -28,6 +28,10 @@ const Combat = (state = {}, action) => {
       state.Combat.actions.melee = payload.melee;
       switchOffActions('melee');
     break;
+    case COMBAT.RANGED:
+      state.Combat.actions.ranged = payload.ranged;
+      switchOffActions('ranged');
+    break;
   }
 
   return state.Combat;

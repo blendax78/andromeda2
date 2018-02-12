@@ -10,7 +10,8 @@ const Config = {
     },
     COMBAT: {
       RUN: 'COMBAT.RUN',
-      MELEE: 'COMBAT.MELEE'
+      MELEE: 'COMBAT.MELEE',
+      RANGED: 'COMBAT.RANGED'
     },
     USER: {
       GET: 'USER.GET',

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Config from '../../Config';
 import * as classNames from 'classnames';
 import MessageList from '../MessageList';
+import PlayerStatus from '../PlayerStatus';
 
 class Combat extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Combat extends Component {
 
     this.keys = {
       melee: Config.randomKey('combat'),
+      ranged: Config.randomKey('combat'),
       run: Config.randomKey('combat'),
     };
 
@@ -53,16 +55,23 @@ class Combat extends Component {
     this.setCombatant();
   }
 
+  toggleRanged() {
+    this.props.store.dispatch({type: Config.ACTIONS.COMBAT.RANGED, payload: { ranged: !this.state.combat.actions.ranged }});
+    this.setCombatant();
+  }
+
   setCombatant() {
     this.props.store.dispatch({type: Config.ACTIONS.MOBS.IN_COMBAT, payload: { combat: this.props.mob }});
   }
 
   getCombatActions() {
-    let classMelee = classNames({ btn: true, 'btn-info': this.state.combat.actions.melee })
-    let classRun = classNames({ btn: true, 'btn-info': this.state.combat.actions.run })
+    let classMelee = classNames({ btn: true, 'btn-info': this.state.combat.actions.melee });
+    let classRanged = classNames({ btn: true, 'btn-info': this.state.combat.actions.ranged });
+    let classRun = classNames({ btn: true, 'btn-info': this.state.combat.actions.run });
 
     let buttons = [
       <span key={this.keys.melee}><button type="button" className={classMelee} onClick={() => this.toggleMelee()}>Melee</button>&nbsp;</span>, 
+      <span key={this.keys.ranged}><button type="button" className={classRanged} onClick={() => this.toggleRanged()}>Ranged</button>&nbsp;</span>, 
       <span key={this.keys.run}><button type="button" className={classRun} onClick={() => this.toggleRun()}>Run</button>&nbsp;</span>, 
     ];
 
@@ -73,13 +82,16 @@ class Combat extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {this.getCombatActions()}
+            <div className="row">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                sub actions
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            sub actions
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <PlayerStatus store={this.props.store} />
           </div>
         </div>
         <div className="row">

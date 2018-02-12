@@ -11,7 +11,11 @@ class SkillsList extends Component {
   }
 
   render() {
-    let skills = _.map(this.state.skills, (skill, index) => {
+    let ordered_skills = _.sortBy(this.state.skills, (skill) => {
+      return skill.name;
+    });
+
+    let skills = _.map(ordered_skills, (skill, index) => {
       return (
         <div className="row" key={`skill.${skill.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6">{skill.name}</div>

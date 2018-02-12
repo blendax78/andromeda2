@@ -65,7 +65,8 @@ export const ItemData = [
       skill: 7,
       speed: 2,
       min: 10,
-      max: 12
+      max: 12,
+      type: 'melee'
     }
   },
   {
@@ -98,7 +99,8 @@ export const ItemData = [
       skill: 6,
       speed: 2.25,
       min: 10,
-      max: 13
+      max: 13,
+      type: 'melee'
     }
   },
   {
@@ -251,7 +253,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.00,
       min: 14,
-      max: 17
+      max: 17,
+      type: 'melee'
     }
   },
   {
@@ -284,7 +287,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.75,
       min: 17,
-      max: 20
+      max: 20,
+      type: 'melee'
     }
   },
   {
@@ -317,7 +321,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.5,
       min: 16,
-      max: 19
+      max: 19,
+      type: 'melee'
     }
   },
   {
@@ -350,7 +355,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.25,
       min: 13,
-      max: 17
+      max: 17,
+      type: 'melee'
     }
   },
   {
@@ -383,7 +389,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.5,
       min: 16,
-      max: 19
+      max: 19,
+      type: 'melee'
     }
   },
   {
@@ -416,7 +423,8 @@ export const ItemData = [
       skill: 6,
       speed: 2.5,
       min: 10,
-      max: 14
+      max: 14,
+      type: 'melee'
     }
   },
   {
@@ -449,7 +457,8 @@ export const ItemData = [
       skill: 6,
       speed: 2.5,
       min: 10,
-      max: 14
+      max: 14,
+      type: 'melee'
     }
   },
   {
@@ -482,7 +491,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.25,
       min: 15,
-      max: 18
+      max: 18,
+      type: 'melee'
     }
   },
   {
@@ -515,7 +525,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.25,
       min: 15,
-      max: 18
+      max: 18,
+      type: 'melee'
     }
   },
   {
@@ -548,7 +559,8 @@ export const ItemData = [
       skill: 6,
       speed: 4,
       min: 18,
-      max: 21
+      max: 21,
+      type: 'melee'
     }
   },
   {
@@ -581,7 +593,8 @@ export const ItemData = [
       skill: 6,
       speed: 2.75,
       min: 13,
-      max: 16
+      max: 16,
+      type: 'melee'
     }
   },
   {
@@ -614,7 +627,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.75,
       min: 17,
-      max: 20
+      max: 20,
+      type: 'melee'
     }
   },
   {
@@ -647,7 +661,8 @@ export const ItemData = [
       skill: 6,
       speed: 2.5,
       min: 10,
-      max: 14
+      max: 14,
+      type: 'melee'
     }
   },
   {
@@ -680,7 +695,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.5,
       min: 14,
-      max: 18
+      max: 18,
+      type: 'melee'
     }
   },
   {
@@ -713,7 +729,8 @@ export const ItemData = [
       skill: 6,
       speed: 3,
       min: 12,
-      max: 16
+      max: 16,
+      type: 'melee'
     }
   },
   {
@@ -746,7 +763,8 @@ export const ItemData = [
       skill: 6,
       speed: 3.75,
       min: 15,
-      max: 19
+      max: 19,
+      type: 'melee'
     }
   },
 ];
