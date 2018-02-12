@@ -5,6 +5,7 @@ const Combat = (state = {}, action) => {
   state.Combat = state.Combat || {
     actions: {
       melee: false,
+      ranged: false,
       run: false
     }
   };

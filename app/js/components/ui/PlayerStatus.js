@@ -9,22 +9,28 @@ class PlayerStatus extends Component {
     };
 
     this.unsubscribe = props.store.subscribe(() => {
-      this.setState({
-        player: props.store.getState().Player
-      });
+      if (this.mounted) {
+        this.setState({
+          player: props.store.getState().Player
+        });
+      }
     });
   }
 
   componentDidMount() {
+    this.mounted = true;
     this.tick = this.tick || setInterval(() => {
-      this.setState({
-        player: this.props.store.getState().Player
-      })
+      if (this.mounted) {
+        this.setState({
+          player: this.props.store.getState().Player
+        });
+      }
     }, 1000);
   }
 
   componentWillUnmount() {
     this.unsubscribe();
+    this.mounted = false;
   }
 
   render() {

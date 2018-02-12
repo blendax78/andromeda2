@@ -44,8 +44,10 @@ class Mob extends Component {
   toggleCombat(e) {
     e.preventDefault();
     e.stopPropagation();
+
+    this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_ACTION, payload: {} });
+    this.props.store.dispatch({ type: Config.ACTIONS.MOBS.IN_COMBAT, payload: { data: this.state.mob } });
     Config.modal(this.props.store, '', '', 'combat');
-    // this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_COMBAT, payload: {} });
   }
 
   getMobActions() {
@@ -55,12 +57,8 @@ class Mob extends Component {
 
     let buttons = [];
 
-    if (this.state.showCombat) {
-      buttons = <Combat store={this.props.store} mob={this.state.mob} />;
-    } else {
-      if (this.state.mob.attackable) {
-        buttons.push(<button key={this.keys.actions} type="button" className="btn" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
-      }
+    if (this.state.mob.attackable) {
+      buttons.push(<button key={this.keys.actions} type="button" className="btn" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
     }
 
     return (

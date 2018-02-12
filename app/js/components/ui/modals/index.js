@@ -36,8 +36,13 @@ class Modal extends Component {
   }
 
   componentDidUpdate() {
+    let options = {
+      keyboard: !this.state.modal.locked,
+      backdrop: 'static'
+    };
+
     if ((typeof this.state.modal.body === 'string' && this.state.modal.body.length > 0) || typeof this.state.modal.body === 'object') {
-      $('#modal-container').modal();
+      $('#modal-container').modal(options);
     }
 
     $('#modal-container').on('hide.bs.modal', () => {
@@ -62,10 +67,12 @@ class Modal extends Component {
   }
 
   setCombatModal() {
+    // need to move components out of state.
     this.state.modal = {
       body: <Combat store={this.props.store}/>,
       title: 'Combat',
-      type: 'combat'
+      type: 'combat',
+      locked: true
     };
   }
 
@@ -145,21 +152,28 @@ class Modal extends Component {
     this.setModalData();
 
     let body = this.getModalBody();
+    let closeButton = (this.state.modal.locked) ? '' : (
+      <div className="modal-footer">
+        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.clearModal()}>Close</button>
+      </div>
+    );
+
+    let closeX = (this.state.modal.locked) ? '' : (
+      <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.clearModal()}>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    );
 
     return (
       <div className="modal fade" tabIndex="-1" role="dialog" id="modal-container">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.clearModal()}>
-                <span aria-hidden="true">&times;</span>
-              </button>
+              {closeX}
               <h4 className="modal-title">{this.state.modal.title}</h4>
             </div>
             {body}
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.clearModal()}>Close</button>
-            </div>
+            {closeButton}
           </div>
         </div>
       </div>

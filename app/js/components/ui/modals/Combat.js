@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Config from '../../Config';
 import * as classNames from 'classnames';
 import MessageList from '../MessageList';
-import PlayerStatus from '../PlayerStatus';
+import CombatStatus from '../CombatStatus';
 
 class Combat extends Component {
   constructor(props) {
@@ -24,13 +24,10 @@ class Combat extends Component {
     this.unsubscribe = props.store.subscribe(() => {
       if (this.mounted) {
         this.setState({
-          mob: this.props.store.getState().Mobs.combat || this.props.mob,
+          mob: this.props.store.getState().Mobs.combat,
           player: this.props.store.getState().Player,
           combat: this.props.store.getState().Combat
         });        
-      } else {
-        this.mounted = false;
-        this.unsubscribe();
       }
     });
 
@@ -44,6 +41,7 @@ class Combat extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
   }
 
   toggleRun() {
@@ -52,16 +50,10 @@ class Combat extends Component {
 
   toggleMelee() {
     this.props.store.dispatch({type: Config.ACTIONS.COMBAT.MELEE, payload: { melee: !this.state.combat.actions.melee }});
-    this.setCombatant();
   }
 
   toggleRanged() {
     this.props.store.dispatch({type: Config.ACTIONS.COMBAT.RANGED, payload: { ranged: !this.state.combat.actions.ranged }});
-    this.setCombatant();
-  }
-
-  setCombatant() {
-    this.props.store.dispatch({type: Config.ACTIONS.MOBS.IN_COMBAT, payload: { combat: this.props.mob }});
   }
 
   getCombatActions() {
@@ -91,7 +83,7 @@ class Combat extends Component {
             </div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <PlayerStatus store={this.props.store} />
+            <CombatStatus store={this.props.store} />
           </div>
         </div>
         <div className="row">

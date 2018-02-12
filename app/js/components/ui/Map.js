@@ -173,11 +173,8 @@ class Map extends Component {
             y: this.state.player.y
           }, _.last(potentialMobs));
 
-          found.hp = found.maxhp;
-
           this.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
 
-          found.hp = found.maxhp;
           mobs.push(found);
 
           Config.dispatch(this.props.store, Config.ACTIONS.MOBS.CREATE, { mob: found });

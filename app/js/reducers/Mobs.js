@@ -29,7 +29,14 @@ const Mobs = (state = {}, action) => {
       state.Mobs.combat = undefined;
     break;
     case MOBS.IN_COMBAT:
-      state.Mobs.combat = payload.combat;
+      let mob = payload.data;
+      mob.hp = 
+      state.Mobs.combat = {
+        hp: mob.hp || mob.maxhp,
+        mp: mob.mp || mob.intelligence,
+        stamina: mob.stamina || mob.dexterity,
+        ...payload.data
+      };
     break;
   }
 
