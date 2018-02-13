@@ -1,3 +1,4 @@
+// get rid of this reducer
 import Config from '../components/Config';
 let COMBAT = Config.ACTIONS.COMBAT;
 

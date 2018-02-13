@@ -102,3 +102,4 @@ class Combat extends Component {
 
 export default Combat;
 
+//https://uo.stratics.com/content/arms-armor/combat.php

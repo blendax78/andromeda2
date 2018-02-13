@@ -107,6 +107,15 @@ export const SkillData = {
     primary: 'intelligence',
     secondary: 'strength'
   },
+  tactics: {
+    id: 13,
+    name: 'Tactics',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'strength',
+    secondary: 'dexterity'
+  },
 };
 
 

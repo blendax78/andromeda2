@@ -6,6 +6,7 @@ import Inventory from './Inventory';
 import Skills from './Skills';
 import Mobs from './Mobs';
 import Combat from './Combat';
+import Effects from './Effects';
 import Config from '../components/Config';
 
 let APP = Config.ACTIONS.APP;
@@ -32,33 +33,6 @@ const Reducers = (state = {}, action) => {
     }
   }
 
-  let apply_effects = () => {
-    // Consider moving this to Config or reducers/index so it can also handle player effects
-    let defense = {
-      physical: 0
-    };
-
-    let offense = {
-      speed: 0,
-      base: 0
-    };
-
-    _.each(_.union(state.Inventory.weapons, state.Inventory.armor), (eq) => {
-      if (eq.type === 'armor') {
-        if (eq.equip.equipped === true) {
-          defense.physical += eq.armor.physical;
-        }
-      } else if (eq.type === 'weapons') {
-        if (eq.equip.equipped === true) {
-          offense = Config.clone(eq.weapon);
-        }
-      }      
-    });
-
-    state.Player.defense = Config.clone(defense);
-    state.Player.offense = Config.clone(offense);
-  }
-
   let method = type.split('.')[0];
 
   switch (method) {
@@ -67,14 +41,14 @@ const Reducers = (state = {}, action) => {
     break;
     case 'PLAYER':
       Player(state, action);
-      apply_effects();
+      Effects(state, action);
     break;
     case 'MSGS':
       Messages(state, action);
     break;
     case 'INVENTORY':
       Inventory(state, action);
-      apply_effects();
+      Effects(state, action);
     break;
     case 'SKILLS':
       Skills(state, action);
