@@ -77,6 +77,10 @@ class PlayerStatus extends Component {
             <span className="bold">Strength: </span>
             {player.strength}
           </div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="bold">Damage: </span>
+            {player.offense.min} - {player.offense.max}
+          </div>
         </div>
 
         <div className="row">
@@ -84,12 +88,20 @@ class PlayerStatus extends Component {
             <span className="bold">Dexterity: </span>
             {player.dexterity}
           </div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="bold">Speed: </span>
+            {player.offense.speed}
+          </div>
         </div>
 
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Intelligence: </span>
             {player.intelligence}
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="bold">AR: </span>
+            {player.defense.physical}
           </div>
         </div>
 

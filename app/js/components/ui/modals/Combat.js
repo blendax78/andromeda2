@@ -42,6 +42,9 @@ class Combat extends Component {
 
   componentDidMount() {
     this.mounted = true;
+
+    // checked equipped weapons and toggle.
+    this.toggleMelee();
   }
 
   toggleRun() {
