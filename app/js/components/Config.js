@@ -88,6 +88,7 @@ const Config = {
   },
   URLS: {
     API: 'https://andromeda.vintimilla.org',
+    IMAGES: 'https://andromeda.vintimilla.org/static/images',
     PLAYER: '/player',
     USER: '/user',
     INVENTORY: '/inventory',

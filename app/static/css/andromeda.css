@@ -88,3 +88,7 @@
   overflow-x: hidden;
   max-height: 60%;
 }
+
+.center {
+  text-align: center;
+}

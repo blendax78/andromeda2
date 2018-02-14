@@ -74,6 +74,9 @@ class Combat extends Component {
   }
 
   render() {
+    let mob = this.state.mob || {};
+    let img = mob.img || '';
+
     return (
       <div>
         <div className="row">
@@ -84,6 +87,11 @@ class Combat extends Component {
                 sub actions
               </div>
             </div>
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+              <img src={img} />
+            </div>
+          </div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <CombatStatus store={this.props.store} />

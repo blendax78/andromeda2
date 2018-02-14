@@ -1,3 +1,5 @@
+import Config from '../components/Config';
+
 export const MobData = [
   {
     id: 1,
@@ -14,6 +16,7 @@ export const MobData = [
     attackable: true,
     aggro: false,
     resources: [], //item IDs that are found on corpse
+    img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`
   },
 
 ];
