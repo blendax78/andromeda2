@@ -41,6 +41,10 @@
     max-height: 150px;
   }
 
+  .andromeda .modal-messages {
+    max-height: 80px;
+  }
+
   .andromeda .empty-row {
     height: 5px;
   }

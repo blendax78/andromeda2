@@ -30,7 +30,12 @@ const Config = {
       WEST: 'PLAYER.WEST',
       NORTH: 'PLAYER.NORTH',
       SOUTH: 'PLAYER.SOUTH',
-      TICK: 'PLAYER.TICK'
+      TICK: 'PLAYER.TICK',
+      COMBAT: {
+        MELEE: 'COMBAT.MELEE',
+        RANGED: 'COMBAT.RANGED',
+        RUN: 'COMBAT.RUN'
+      }
     },
     MESSAGES: {
       ADD: 'MSGS.ADD',
@@ -65,8 +70,8 @@ const Config = {
       HANDS: 'hands',
       LEGS: 'legs',
       NECK: 'neck',
-      'RFINGER': 'right finger',
-      'LFINGER': 'left finger',
+      RFINGER: 'right finger',
+      LFINGER: 'left finger',
     },
     SKILLS: {
       CRAFT: 'SKILLS.CRAFT',

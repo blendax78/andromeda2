@@ -52,36 +52,36 @@ class CombatStatus extends Component {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">HP: </span>
-            <span className="blue">{player.hp}</span>/{player.maxhp}
+            <div><span className="blue">{player.hp}</span>/{player.maxhp}</div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold hidden-xs">Strength: </span>
             <span className="bold hidden-sm hidden-md hidden-lg">Str: </span>
-            {player.strength}
+            <div>{player.strength}</div>
           </div>
         </div>
 
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">MP: </span>
-            <span className="blue">{player.mp}</span>/{player.maxmp}
+            <div><span className="blue">{player.mp}</span>/{player.maxmp}</div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold hidden-xs">Intelligence: </span>
             <span className="bold hidden-sm hidden-md hidden-lg">Int: </span>
-            {player.intelligence}
+            <div>{player.intelligence}</div>
           </div>
         </div>
 
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Stamina: </span>
-            <span className="blue">{player.stamina}</span>/{player.maxstamina}
+            <div><span className="blue">{player.stamina}</span>/{player.maxstamina}</div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold hidden-xs">Dexterity: </span>
             <span className="bold hidden-sm hidden-md hidden-lg">Dex: </span>
-            {player.dexterity}
+            <div>{player.dexterity}</div>
           </div>
         </div>
 

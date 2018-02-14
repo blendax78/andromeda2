@@ -5,7 +5,6 @@ import Planet from './Planet';
 import Inventory from './Inventory';
 import Skills from './Skills';
 import Mobs from './Mobs';
-import Combat from './Combat';
 import Effects from './Effects';
 import Config from '../components/Config';
 
@@ -28,8 +27,7 @@ const Reducers = (state = {}, action) => {
       Planet: Planet(state, action),
       Inventory: Inventory(state, action),
       Skills: Skills(state, action),
-      Mobs: Mobs(state, action),
-      Combat: Combat(state, action)
+      Mobs: Mobs(state, action)
     }
   }
 
@@ -39,6 +37,7 @@ const Reducers = (state = {}, action) => {
     case 'USER':
       User(state, action);
     break;
+    case 'COMBAT':
     case 'PLAYER':
       Player(state, action);
       Effects(state, action);
@@ -56,11 +55,9 @@ const Reducers = (state = {}, action) => {
     case 'PLANET':
       Planet(state, action);
     break;
+    case 'COMBAT':
     case 'MOBS':
       Mobs(state, action);
-    break;
-    case 'COMBAT':
-      Combat(state, action);
     break;
     case 'APP':
       switch (type) {

@@ -183,7 +183,6 @@ const Player = (state = {}, action) => {
       state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.TICK:
-      // player_tick();
       if (update_partials('hp')) {
         state.Player.hp = update_hp(1);  
       }
@@ -195,6 +194,15 @@ const Player = (state = {}, action) => {
       if (update_partials('stamina')) {
         state.Player.stamina = update_stamina(1);
       }
+    break;
+    case PLAYER.COMBAT.RUN:
+      state.Combat.actions.run = payload.run;
+    break;
+    case PLAYER.COMBAT.MELEE:
+      state.Combat.actions.melee = payload.melee;
+    break;
+    case PLAYER.COMBAT.RANGED:
+      state.Combat.actions.ranged = payload.ranged;
     break;
   }
 

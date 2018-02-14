@@ -17,7 +17,11 @@ class Combat extends Component {
     this.state = {
       mob: this.props.mob,
       player: this.props.store.getState().Player,
-      combat: this.props.store.getState().Combat
+      combat: {
+        melee: true,
+        ranged: false,
+        run: false
+      }
     };
 
     this.mounted = true;
@@ -26,12 +30,9 @@ class Combat extends Component {
         this.setState({
           mob: this.props.store.getState().Mobs.combat,
           player: this.props.store.getState().Player,
-          combat: this.props.store.getState().Combat
         });        
       }
     });
-
-    // Consider setting combat interval here
   }
 
   // Make sure to unsubscribe!
@@ -42,27 +43,49 @@ class Combat extends Component {
 
   componentDidMount() {
     this.mounted = true;
+    // Consider setting combat interval here
+  }
 
-    // checked equipped weapons and toggle.
-    this.toggleMelee();
+  switchOffActions(current) {
+    let combat = this.state.combat;
+
+    for (let action in combat) {
+      if (action !== current) {
+        combat[action] = false;
+      }
+    }
+
+    this.setState({ combat: combat });
   }
 
   toggleRun() {
-    this.props.store.dispatch({type: Config.ACTIONS.COMBAT.RUN, payload: { run: !this.state.combat.actions.run }});
+    this.switchOffActions('run');
+
+    this.setState({
+      combat: { run: !this.state.combat.run }
+    });
   }
 
   toggleMelee() {
-    this.props.store.dispatch({type: Config.ACTIONS.COMBAT.MELEE, payload: { melee: !this.state.combat.actions.melee }});
+    this.switchOffActions('melee');
+    let combat = this.state.combat;
+    this.setState({
+      combat: { melee: !this.state.combat.melee }
+    });
   }
 
   toggleRanged() {
-    this.props.store.dispatch({type: Config.ACTIONS.COMBAT.RANGED, payload: { ranged: !this.state.combat.actions.ranged }});
+    this.switchOffActions('ranged');
+    let combat = this.state.combat;
+    this.setState({
+      combat: { ranged: !this.state.combat.ranged }
+    });
   }
 
   getCombatActions() {
-    let classMelee = classNames({ btn: true, 'btn-info': this.state.combat.actions.melee, top5: true });
-    let classRanged = classNames({ btn: true, 'btn-info': this.state.combat.actions.ranged, top5: true });
-    let classRun = classNames({ btn: true, 'btn-info': this.state.combat.actions.run, top5: true });
+    let classMelee = classNames({ btn: true, 'btn-info': this.state.combat.melee, top5: true });
+    let classRanged = classNames({ btn: true, 'btn-info': this.state.combat.ranged, top5: true });
+    let classRun = classNames({ btn: true, 'btn-info': this.state.combat.run, top5: true });
 
     let buttons = [
       <span key={this.keys.melee} className="col-6">
@@ -104,7 +127,7 @@ class Combat extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-panel modal-messages">
             <MessageList store={this.props.store} />
           </div>
         </div>

@@ -427,7 +427,12 @@ var Config = {
       WEST: 'PLAYER.WEST',
       NORTH: 'PLAYER.NORTH',
       SOUTH: 'PLAYER.SOUTH',
-      TICK: 'PLAYER.TICK'
+      TICK: 'PLAYER.TICK',
+      COMBAT: {
+        MELEE: 'COMBAT.MELEE',
+        RANGED: 'COMBAT.RANGED',
+        RUN: 'COMBAT.RUN'
+      }
     },
     MESSAGES: {
       ADD: 'MSGS.ADD',
@@ -462,8 +467,8 @@ var Config = {
       HANDS: 'hands',
       LEGS: 'legs',
       NECK: 'neck',
-      'RFINGER': 'right finger',
-      'LFINGER': 'left finger'
+      RFINGER: 'right finger',
+      LFINGER: 'left finger'
     },
     SKILLS: {
       CRAFT: 'SKILLS.CRAFT',
@@ -12174,7 +12179,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_App__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reducers__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_AndromedaService__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_AndromedaService__ = __webpack_require__(350);
 
 
 
@@ -28816,7 +28821,11 @@ var Combat = function (_Component) {
     _this.state = {
       mob: _this.props.mob,
       player: _this.props.store.getState().Player,
-      combat: _this.props.store.getState().Combat
+      combat: {
+        melee: true,
+        ranged: false,
+        run: false
+      }
     };
 
     _this.mounted = true;
@@ -28824,13 +28833,10 @@ var Combat = function (_Component) {
       if (_this.mounted) {
         _this.setState({
           mob: _this.props.store.getState().Mobs.combat,
-          player: _this.props.store.getState().Player,
-          combat: _this.props.store.getState().Combat
+          player: _this.props.store.getState().Player
         });
       }
     });
-
-    // Consider setting combat interval here
     return _this;
   }
 
@@ -28847,37 +28853,60 @@ var Combat = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.mounted = true;
+      // Consider setting combat interval here
+    }
+  }, {
+    key: 'switchOffActions',
+    value: function switchOffActions(current) {
+      var combat = this.state.combat;
 
-      // checked equipped weapons and toggle.
-      this.toggleMelee();
+      for (var action in combat) {
+        if (action !== current) {
+          combat[action] = false;
+        }
+      }
+
+      this.setState({ combat: combat });
     }
   }, {
     key: 'toggleRun',
     value: function toggleRun() {
-      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.COMBAT.RUN, payload: { run: !this.state.combat.actions.run } });
+      this.switchOffActions('run');
+
+      this.setState({
+        combat: { run: !this.state.combat.run }
+      });
     }
   }, {
     key: 'toggleMelee',
     value: function toggleMelee() {
-      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.COMBAT.MELEE, payload: { melee: !this.state.combat.actions.melee } });
+      this.switchOffActions('melee');
+      var combat = this.state.combat;
+      this.setState({
+        combat: { melee: !this.state.combat.melee }
+      });
     }
   }, {
     key: 'toggleRanged',
     value: function toggleRanged() {
-      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.COMBAT.RANGED, payload: { ranged: !this.state.combat.actions.ranged } });
+      this.switchOffActions('ranged');
+      var combat = this.state.combat;
+      this.setState({
+        combat: { ranged: !this.state.combat.ranged }
+      });
     }
   }, {
     key: 'getCombatActions',
     value: function getCombatActions() {
       var _this2 = this;
 
-      var classMelee = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.actions.melee });
-      var classRanged = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.actions.ranged });
-      var classRun = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.actions.run });
+      var classMelee = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.melee, top5: true });
+      var classRanged = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.ranged, top5: true });
+      var classRun = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.run, top5: true });
 
       var buttons = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'span',
-        { key: this.keys.melee },
+        { key: this.keys.melee, className: 'col-6' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classMelee, onClick: function onClick() {
@@ -28888,7 +28917,7 @@ var Combat = function (_Component) {
         '\xA0'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'span',
-        { key: this.keys.ranged },
+        { key: this.keys.ranged, className: 'col-6' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classRanged, onClick: function onClick() {
@@ -28899,7 +28928,7 @@ var Combat = function (_Component) {
         '\xA0'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'span',
-        { key: this.keys.run },
+        { key: this.keys.run, className: 'col-6' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classRun, onClick: function onClick() {
@@ -28958,7 +28987,7 @@ var Combat = function (_Component) {
           { className: 'row' },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
-            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-panel modal-messages' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__MessageList__["a" /* default */], { store: this.props.store })
           )
         )
@@ -29075,22 +29104,35 @@ var CombatStatus = function (_Component) {
               'HP: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'blue' },
-              player.hp
-            ),
-            '/',
-            player.maxhp
+              'div',
+              null,
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'span',
+                { className: 'blue' },
+                player.hp
+              ),
+              '/',
+              player.maxhp
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'bold' },
+              { className: 'bold hidden-xs' },
               'Strength: '
             ),
-            player.strength
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold hidden-sm hidden-md hidden-lg' },
+              'Str: '
+            ),
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              player.strength
+            )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -29105,22 +29147,35 @@ var CombatStatus = function (_Component) {
               'MP: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'blue' },
-              player.mp
-            ),
-            '/',
-            player.maxmp
+              'div',
+              null,
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'span',
+                { className: 'blue' },
+                player.mp
+              ),
+              '/',
+              player.maxmp
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'bold' },
+              { className: 'bold hidden-xs' },
               'Intelligence: '
             ),
-            player.intelligence
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold hidden-sm hidden-md hidden-lg' },
+              'Int: '
+            ),
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              player.intelligence
+            )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -29135,22 +29190,35 @@ var CombatStatus = function (_Component) {
               'Stamina: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'blue' },
-              player.stamina
-            ),
-            '/',
-            player.maxstamina
+              'div',
+              null,
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'span',
+                { className: 'blue' },
+                player.stamina
+              ),
+              '/',
+              player.maxstamina
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'bold' },
+              { className: 'bold hidden-xs' },
               'Dexterity: '
             ),
-            player.dexterity
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold hidden-sm hidden-md hidden-lg' },
+              'Dex: '
+            ),
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              player.dexterity
+            )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('div', { className: 'empty-row' }),
@@ -30021,7 +30089,7 @@ var Mob = function (_Component) {
       if (this.state.mob.attackable) {
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
-          { key: this.keys.actions, type: 'button', className: 'btn', onClick: function onClick(e) {
+          { key: this.keys.actions, type: 'button', className: 'btn top5', onClick: function onClick(e) {
               return _this2.toggleCombat(e);
             } },
           'Attack'
@@ -30789,9 +30857,8 @@ var BottomPanel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Inventory__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Skills__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Mobs__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Combat__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Effects__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Effects__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Config__ = __webpack_require__(3);
 
 
 
@@ -30803,8 +30870,7 @@ var BottomPanel = function (_Component) {
 
 
 
-
-var APP = __WEBPACK_IMPORTED_MODULE_10__components_Config__["a" /* default */].ACTIONS.APP;
+var APP = __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].ACTIONS.APP;
 
 var Reducers = function Reducers() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -30827,8 +30893,7 @@ var Reducers = function Reducers() {
       Planet: Object(__WEBPACK_IMPORTED_MODULE_4__Planet__["a" /* default */])(state, action),
       Inventory: Object(__WEBPACK_IMPORTED_MODULE_5__Inventory__["a" /* default */])(state, action),
       Skills: Object(__WEBPACK_IMPORTED_MODULE_6__Skills__["a" /* default */])(state, action),
-      Mobs: Object(__WEBPACK_IMPORTED_MODULE_7__Mobs__["a" /* default */])(state, action),
-      Combat: Object(__WEBPACK_IMPORTED_MODULE_8__Combat__["a" /* default */])(state, action)
+      Mobs: Object(__WEBPACK_IMPORTED_MODULE_7__Mobs__["a" /* default */])(state, action)
     };
   }
 
@@ -30838,16 +30903,17 @@ var Reducers = function Reducers() {
     case 'USER':
       Object(__WEBPACK_IMPORTED_MODULE_1__User__["a" /* default */])(state, action);
       break;
+    case 'COMBAT':
     case 'PLAYER':
       Object(__WEBPACK_IMPORTED_MODULE_2__Player__["a" /* default */])(state, action);
-      Object(__WEBPACK_IMPORTED_MODULE_9__Effects__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_8__Effects__["a" /* default */])(state, action);
       break;
     case 'MSGS':
       Object(__WEBPACK_IMPORTED_MODULE_3__Messages__["a" /* default */])(state, action);
       break;
     case 'INVENTORY':
       Object(__WEBPACK_IMPORTED_MODULE_5__Inventory__["a" /* default */])(state, action);
-      Object(__WEBPACK_IMPORTED_MODULE_9__Effects__["a" /* default */])(state, action);
+      Object(__WEBPACK_IMPORTED_MODULE_8__Effects__["a" /* default */])(state, action);
       break;
     case 'SKILLS':
       Object(__WEBPACK_IMPORTED_MODULE_6__Skills__["a" /* default */])(state, action);
@@ -30855,11 +30921,9 @@ var Reducers = function Reducers() {
     case 'PLANET':
       Object(__WEBPACK_IMPORTED_MODULE_4__Planet__["a" /* default */])(state, action);
       break;
+    case 'COMBAT':
     case 'MOBS':
       Object(__WEBPACK_IMPORTED_MODULE_7__Mobs__["a" /* default */])(state, action);
-      break;
-    case 'COMBAT':
-      Object(__WEBPACK_IMPORTED_MODULE_8__Combat__["a" /* default */])(state, action);
       break;
     case 'APP':
       switch (type) {
@@ -31117,7 +31181,6 @@ var Player = function Player() {
       state.Player.status.run = state.Player.stamina === 0 ? false : state.Player.status.run;
       break;
     case PLAYER.TICK:
-      // player_tick();
       if (update_partials('hp')) {
         state.Player.hp = update_hp(1);
       }
@@ -31129,6 +31192,15 @@ var Player = function Player() {
       if (update_partials('stamina')) {
         state.Player.stamina = update_stamina(1);
       }
+      break;
+    case PLAYER.COMBAT.RUN:
+      state.Combat.actions.run = payload.run;
+      break;
+    case PLAYER.COMBAT.MELEE:
+      state.Combat.actions.melee = payload.melee;
+      break;
+    case PLAYER.COMBAT.RANGED:
+      state.Combat.actions.ranged = payload.ranged;
       break;
   }
 
@@ -32239,60 +32311,6 @@ var Mobs = function Mobs() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
-// get rid of this reducer
-
-var COMBAT = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.COMBAT;
-
-var Combat = function Combat() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments[1];
-
-  state.Combat = state.Combat || {
-    actions: {
-      melee: false,
-      ranged: false,
-      run: false
-    }
-  };
-
-  var type = action.type,
-      payload = action.payload;
-
-
-  var switchOffActions = function switchOffActions(current) {
-    for (var _action in state.Combat.actions) {
-      if (_action !== current) {
-        state.Combat.actions[_action] = false;
-      }
-    }
-  };
-
-  switch (type) {
-    case COMBAT.RUN:
-      state.Combat.actions.run = payload.run;
-      switchOffActions('run');
-      break;
-    case COMBAT.MELEE:
-      state.Combat.actions.melee = payload.melee;
-      switchOffActions('melee');
-      break;
-    case COMBAT.RANGED:
-      state.Combat.actions.ranged = payload.ranged;
-      switchOffActions('ranged');
-      break;
-  }
-
-  return state.Combat;
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Combat);
-
-/***/ }),
-/* 350 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
 
 
 // Not a true reducer. Does not return a state object
@@ -32366,13 +32384,13 @@ Example: ((17 - 1) * (100.0 / (100 + 20))) = 13 ticks.
 */
 
 /***/ }),
-/* 351 */
+/* 350 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__ = __webpack_require__(351);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_superagent__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_superagent__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_superagent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Config__ = __webpack_require__(3);
 
@@ -32523,13 +32541,13 @@ var AndromedaService = function AndromedaService(store) {
 /* harmony default export */ __webpack_exports__["a"] = (AndromedaService);
 
 /***/ }),
-/* 352 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(353), __esModule: true };
+module.exports = { "default": __webpack_require__(352), __esModule: true };
 
 /***/ }),
-/* 353 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var core  = __webpack_require__(19)
@@ -32539,7 +32557,7 @@ module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
 };
 
 /***/ }),
-/* 354 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -32556,11 +32574,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(355);
-var RequestBase = __webpack_require__(356);
+var Emitter = __webpack_require__(354);
+var RequestBase = __webpack_require__(355);
 var isObject = __webpack_require__(142);
-var ResponseBase = __webpack_require__(357);
-var shouldRetry = __webpack_require__(359);
+var ResponseBase = __webpack_require__(356);
+var shouldRetry = __webpack_require__(358);
 
 /**
  * Noop.
@@ -33451,7 +33469,7 @@ request.put = function(url, data, fn){
 
 
 /***/ }),
-/* 355 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -33620,7 +33638,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 356 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -34246,7 +34264,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 357 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -34254,7 +34272,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(358);
+var utils = __webpack_require__(357);
 
 /**
  * Expose `ResponseBase`.
@@ -34385,7 +34403,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 358 */
+/* 357 */
 /***/ (function(module, exports) {
 
 
@@ -34458,7 +34476,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 };
 
 /***/ }),
-/* 359 */
+/* 358 */
 /***/ (function(module, exports) {
 
 var ERROR_CODES = [
