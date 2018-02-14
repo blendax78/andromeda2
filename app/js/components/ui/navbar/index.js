@@ -36,6 +36,8 @@ class Navbar extends Component {
 
   showToDos() {
     let todos = [
+      <li key={Config.randomKey('li')}>Remove combat reducer</li>,
+      <li key={Config.randomKey('li')}>Fix combat status in xs size</li>,
       <li key={Config.randomKey('li')}>Battles</li>,
       <li key={Config.randomKey('li')}>Hiding</li>,
       <li key={Config.randomKey('li')}>Magic</li>,

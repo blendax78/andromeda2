@@ -60,14 +60,20 @@ class Combat extends Component {
   }
 
   getCombatActions() {
-    let classMelee = classNames({ btn: true, 'btn-info': this.state.combat.actions.melee });
-    let classRanged = classNames({ btn: true, 'btn-info': this.state.combat.actions.ranged });
-    let classRun = classNames({ btn: true, 'btn-info': this.state.combat.actions.run });
+    let classMelee = classNames({ btn: true, 'btn-info': this.state.combat.actions.melee, top5: true });
+    let classRanged = classNames({ btn: true, 'btn-info': this.state.combat.actions.ranged, top5: true });
+    let classRun = classNames({ btn: true, 'btn-info': this.state.combat.actions.run, top5: true });
 
     let buttons = [
-      <span key={this.keys.melee}><button type="button" className={classMelee} onClick={() => this.toggleMelee()}>Melee</button>&nbsp;</span>, 
-      <span key={this.keys.ranged}><button type="button" className={classRanged} onClick={() => this.toggleRanged()}>Ranged</button>&nbsp;</span>, 
-      <span key={this.keys.run}><button type="button" className={classRun} onClick={() => this.toggleRun()}>Run</button>&nbsp;</span>, 
+      <span key={this.keys.melee} className="col-6">
+        <button type="button" className={classMelee} onClick={() => this.toggleMelee()}>Melee</button>&nbsp;
+      </span>,
+      <span key={this.keys.ranged} className="col-6">
+        <button type="button" className={classRanged} onClick={() => this.toggleRanged()}>Ranged</button>&nbsp;
+      </span>,
+      <span key={this.keys.run} className="col-6">
+        <button type="button" className={classRun} onClick={() => this.toggleRun()}>Run</button>&nbsp;
+      </span>,
     ];
 
     return buttons;

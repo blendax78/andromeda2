@@ -55,7 +55,8 @@ class CombatStatus extends Component {
             <span className="blue">{player.hp}</span>/{player.maxhp}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="bold">Strength: </span>
+            <span className="bold hidden-xs">Strength: </span>
+            <span className="bold hidden-sm hidden-md hidden-lg">Str: </span>
             {player.strength}
           </div>
         </div>
@@ -66,7 +67,8 @@ class CombatStatus extends Component {
             <span className="blue">{player.mp}</span>/{player.maxmp}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="bold">Intelligence: </span>
+            <span className="bold hidden-xs">Intelligence: </span>
+            <span className="bold hidden-sm hidden-md hidden-lg">Int: </span>
             {player.intelligence}
           </div>
         </div>
@@ -77,7 +79,8 @@ class CombatStatus extends Component {
             <span className="blue">{player.stamina}</span>/{player.maxstamina}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="bold">Dexterity: </span>
+            <span className="bold hidden-xs">Dexterity: </span>
+            <span className="bold hidden-sm hidden-md hidden-lg">Dex: </span>
             {player.dexterity}
           </div>
         </div>
