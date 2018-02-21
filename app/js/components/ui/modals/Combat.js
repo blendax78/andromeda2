@@ -20,9 +20,10 @@ class Combat extends Component {
       mob: this.props.mob,
       player: this.props.store.getState().Player,
       inventory: this.props.store.getState().Inventory,
+      skills: this.props.store.getState().Skills,
       combat: {
-        melee: equipped.weapon.weapon.type === 'melee',
-        ranged: equipped.weapon.weapon.type === 'ranged',
+        melee: (equipped.weapon && equipped.weapon.weapon.type === 'melee') || !equipped.weapon,
+        ranged: equipped.weapon && equipped.weapon.weapon.type === 'ranged',
         run: false
       },
       equipped: equipped
@@ -35,6 +36,7 @@ class Combat extends Component {
           mob: this.props.store.getState().Mobs.combat,
           player: this.props.store.getState().Player,
           inventory: this.props.store.getState().Inventory,
+          skills: this.props.store.getState().Skills,
           // For now, weapons can't be equipped in combat.
           // equipped: Config.getEquipped(this.props.store.getState().Inventory)
         });        
@@ -52,14 +54,72 @@ class Combat extends Component {
   componentDidMount() {
     this.mounted = true;
     this.tick = this.tick || setInterval(() => {
-      this.combatTickHandler();
+      if (!!this.state.mob && !!this.state.player && !!this.state.inventory && !!this.state.skills) {
+        this.combatTickHandler();
+      }
     }, 250);
+  }
+
+  calcCHanceToBlock() {
+    /*
+      FORMULA: 
+      Blocking with a shield:
+      % Chance = (Parrying - Bushido) / 4 (If less than 0, the chance is 0)
+      (Add 5% if Parrying or Bushido skill is 100 or above)
+      Blocking with a 1-handed weapon (without a shield):
+      New = (Parrying * 10) * (Bushido * 10) / 48000 (Add 5% if Parrying or Bushido skill is 100 or above)
+      Legacy = (Parrying * 10) / 80 (Add 5% if Parrying skill if 100 or above)
+      % Chance = Whichever is highest of the New and the Legacy formula.
+
+      Blocking with a 2-handed weapon:
+      New = (Parrying * 10) * (Bushido * 10) / 41140 (Add 5% if Parrying or Bushido skill is 100 or above)
+      Legacy = (Parrying * 10) / 80 (Add 5% if Parrying skill if 100 or above)
+      % Chance = Whichever is highest of the New and the Legacy formula.
+
+      Dexterity Modifier if dex is less than 80*: (80 - Dexterity) / 100 (If Dexterity is higher than 80, the modifier is 0)
+      Final % Chance of blocking = Base Chance * (1 - Dexterity Modifier)
+    */
+  }
+
+  calcDamage() {
+    /*
+      FORMULAS:
+      Tactics Damage Bonus% = Tactics ÷ 1.6 (Add 6.25% if Tactics >= 100)
+      Anatomy Damage Bonus% = (Anatomy ÷ 2) (Add 5% if Anatomy >= 100)
+      Lumberjack Damage Bonus% = Lumberjack ÷ 5 (Add 10% if Lumberjacking >= 100)
+      Strength Damage Bonus% = Strength * 0.3 (Add 5% if Strength >= 100)
+      Final Damage Bonus% = Tactics Bonus + Anatomy Bonus + Lumber Bonus + Strength Bonus + Damage Increase Items*
+      Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
+      * Damage Increase is capped at 100%.
+    */
+  }
+
+  calcChanceToHit(attack, defend, attack_bonus = 0, defend_bonus = 0) {
+    /*
+      FORMULA:
+      Hit Chance% = ( ( [Attacker's Combat Ability + 20] * [100% + Attacker's Hit Chance Increase] ) divided by
+      ( [Defender's Combat Ability + 20] * [100% + Defender's Defense Chance Increase] * 2 ) ) * 100
+      Minimum hit Chance% is 2% at all times.
+    */
+    // let weapon = this.state.equipped.weapon;
+    // let skill = (!!weapon) ? _.findWhere(this.state.skills, { id: weapon.skill} ) : this.state.skills.wrestling;
+
+
+    let chance = 100 * ((attack + 20) * (1 + (attack_bonus / 100))) / ((defend + 20) * (2 + (defend_bonus / 100)));
+
+    return (chance > 2) ? chance : 2;;
   }
 
   combatTickHandler() {
     this.timer = this.timer || 0;
 
-    if (this.timer % 1 === 0) {
+    if (this.timer % this.state.player.offense.speed === 0) {
+      let weapon = this.state.equipped.weapon;
+      let skill = (weapon) ? _.findWhere(this.state.skills, { id: weapon.weapon.skill} ) : this.state.skills.wrestling;
+
+      if (skill) {
+        let chance_to_hit = this.calcChanceToHit(skill.current, this.state.mob.skills.wrestling);
+      }
 
     }
     this.timer += 0.25;
@@ -86,9 +146,9 @@ class Combat extends Component {
   }
 
   toggleMelee() {
-    if (this.state.equipped.weapon.weapon.type !== 'melee') {
-      return;
-    }
+    // if (this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee') {
+    //   return;
+    // }
 
     this.switchOffActions('melee');
     let combat = this.state.combat;
@@ -98,9 +158,9 @@ class Combat extends Component {
   }
 
   toggleRanged() {
-    if (this.state.equipped.weapon.weapon.type !== 'ranged') {
-      return;
-    }
+    // if (!this.state.equipped.weapon || this.state.equipped.weapon.weapon.type !== 'ranged') {
+    //   return;
+    // }
 
     this.switchOffActions('ranged');
     let combat = this.state.combat;
@@ -114,13 +174,14 @@ class Combat extends Component {
       btn: true,
       'btn-info': this.state.combat.melee,
       top5: true,
-      disabled: this.state.equipped.weapon.weapon.type !== 'melee'
+      disabled: (this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee') 
     });
     let classRanged = classNames({
       btn: true,
       'btn-info': this.state.combat.ranged,
       top5: true,
-      disabled: this.state.equipped.weapon.weapon.type !== 'ranged'
+      disabled: !this.state.equipped.weapon ||
+        (this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'ranged')
     });
     let classRun = classNames({
       btn: true,
@@ -130,10 +191,12 @@ class Combat extends Component {
 
     let buttons = [
       <span key={this.keys.melee} className="col-6">
-        <button type="button" className={classMelee} onClick={() => this.toggleMelee()}>Melee</button>&nbsp;
+        <button type="button" className={classMelee} onClick={() => this.toggleMelee()}
+          disabled={(this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee')} >Melee</button>&nbsp;
       </span>,
       <span key={this.keys.ranged} className="col-6">
-        <button type="button" className={classRanged} onClick={() => this.toggleRanged()}>Ranged</button>&nbsp;
+        <button type="button" className={classRanged} onClick={() => this.toggleRanged()}
+          disabled={(!this.state.equipped.weapon || this.state.equipped.weapon.weapon.type !== 'ranged')}>Ranged</button>&nbsp;
       </span>,
       <span key={this.keys.run} className="col-6">
         <button type="button" className={classRun} onClick={() => this.toggleRun()}>Run</button>&nbsp;

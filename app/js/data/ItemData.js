@@ -100,7 +100,7 @@ export const ItemData = [
       speed: 2.25,
       min: 10,
       max: 13,
-      type: 'melee'
+      type: 'ranged'
     }
   },
   {

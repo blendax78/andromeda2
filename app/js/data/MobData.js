@@ -16,7 +16,12 @@ export const MobData = [
     attackable: true,
     aggro: false,
     resources: [], //item IDs that are found on corpse
-    img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`
+    img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
+    skills: {
+        wrestling: 5,
+        tactics: 6,
+        magic_resistance: 5
+    }
   },
 
 ];
