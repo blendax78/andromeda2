@@ -100,7 +100,8 @@ export const ItemData = [
       speed: 2.25,
       min: 10,
       max: 13,
-      type: 'ranged'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -254,7 +255,8 @@ export const ItemData = [
       speed: 3.00,
       min: 14,
       max: 17,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'axe'
     }
   },
   {
@@ -288,7 +290,8 @@ export const ItemData = [
       speed: 3.75,
       min: 17,
       max: 20,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -322,7 +325,8 @@ export const ItemData = [
       speed: 3.5,
       min: 16,
       max: 19,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'axe'
     }
   },
   {
@@ -356,7 +360,8 @@ export const ItemData = [
       speed: 3.25,
       min: 13,
       max: 17,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -390,7 +395,8 @@ export const ItemData = [
       speed: 3.5,
       min: 16,
       max: 19,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'axe'
     }
   },
   {
@@ -424,7 +430,8 @@ export const ItemData = [
       speed: 2.5,
       min: 10,
       max: 14,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -458,7 +465,8 @@ export const ItemData = [
       speed: 2.5,
       min: 10,
       max: 14,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -492,7 +500,8 @@ export const ItemData = [
       speed: 3.25,
       min: 15,
       max: 18,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'axe'
     }
   },
   {
@@ -526,7 +535,8 @@ export const ItemData = [
       speed: 3.25,
       min: 15,
       max: 18,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'axe'
     }
   },
   {
@@ -560,7 +570,8 @@ export const ItemData = [
       speed: 4,
       min: 18,
       max: 21,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -594,7 +605,8 @@ export const ItemData = [
       speed: 2.75,
       min: 13,
       max: 16,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'axe'
     }
   },
   {
@@ -628,7 +640,8 @@ export const ItemData = [
       speed: 3.75,
       min: 17,
       max: 20,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'axe'
     }
   },
   {
@@ -662,7 +675,8 @@ export const ItemData = [
       speed: 2.5,
       min: 10,
       max: 14,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -696,7 +710,8 @@ export const ItemData = [
       speed: 3.5,
       min: 14,
       max: 18,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -730,7 +745,8 @@ export const ItemData = [
       speed: 3,
       min: 12,
       max: 16,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
   {
@@ -764,7 +780,8 @@ export const ItemData = [
       speed: 3.75,
       min: 15,
       max: 19,
-      type: 'melee'
+      type: 'melee',
+      sub_type: 'blade'
     }
   },
 ];

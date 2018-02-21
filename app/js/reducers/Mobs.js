@@ -12,6 +12,9 @@ const Mobs = (state = {}, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case MOBS.UPDATE:
+      console.log('mob red',state.Mobs.combat, payload);
+    break;
     case MOBS.SHOW_ACTION:
       state.Mobs.showAction = !state.Mobs.showAction;
 

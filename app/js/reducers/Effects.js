@@ -30,9 +30,19 @@ const Effects = (state = {}, action) => {
   offense.speed = (speed < 1.25) ? 1.25 : speed;
 
   let strength_mod = Math.round(state.Player.strength * 0.3);
+  // Strength + tactics
   offense.min = (offense.min - Math.round(offense.min * ((50 - state.Skills.tactics.current) / 100))) + strength_mod;
   offense.min = (offense.min === 0) ? 1 : offense.min;
   offense.max = (offense.max - Math.round(offense.max * ((50 - state.Skills.tactics.current) / 100))) + strength_mod;
+
+  // Lumberjacking
+  // Lumberjack Damage Bonus% = Lumberjack ÷ 5 (Add 10% if Lumberjacking >= 100)
+
+  if (offense.type === 'melee' && offense.sub_type === 'axe') {
+    let lumberjack_bonus = (state.Skills.lumberjacking.current < 100) ? Math.round(state.Skills.lumberjacking.current / 5) : 30;
+    offense.min += lumberjack_bonus
+    offense.max += lumberjack_bonus;
+  }
 
   state.Player.defense = defense;
   state.Player.offense = offense;

@@ -43,7 +43,8 @@ const Config = {
       ERROR: 'MSGS.ERROR',
       SPEAK: 'MSGS.SPEAK',
       GAIN: 'MSGS.GAIN',
-      WARNING: 'MSGS.WARNING'
+      WARNING: 'MSGS.WARNING',
+      SUCCESS: 'MSGS.SUCCESS'
     },
     PLANET: {
       GET: 'PLANET.GET'
@@ -88,7 +89,8 @@ const Config = {
       CLEAR_COMBAT: 'MOBS.CLEAR_COMBAT',
       IN_COMBAT: 'MOBS.IN_COMBAT',
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
-      SHOW_COMBAT: 'MOBS.SHOW_COMBAT'
+      SHOW_COMBAT: 'MOBS.SHOW_COMBAT',
+      UPDATE: 'MOBS.UPDATE'
     },
   },
   URLS: {
@@ -106,6 +108,10 @@ const Config = {
 
   randomKey: (text = '') => {
     return text + UUID(text);
+  },
+
+  notifySuccess: (store, msg) => {
+    this.a.notify(store, msg, this.a.ACTIONS.MESSAGES.SUCCESS);
   },
 
   notifyGain: (store, msg) => {
@@ -157,6 +163,14 @@ const Config = {
         return weapon.equip.equipped === true;
       })
     };
+  },
+
+  env: () => {
+    if (location.href.indexOf('localhost') !== -1) {
+      return 'dev';
+    } else {
+      return 'prod';
+    }
   },
 
   clone: (object) => {

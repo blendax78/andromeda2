@@ -11,10 +11,6 @@ const AndromedaService = store => next => action => {
   */
   next(action);
 
-  if (this.offline) {
-    return;
-  }
-
   switch (type) {
     case ACTIONS.PLAYER.FETCH:
       /*
@@ -36,93 +32,90 @@ const AndromedaService = store => next => action => {
     break;
     case ACTIONS.PLAYER.SAVE:
       // Fire and forget request
-      request
-        .post(Config.URLS.API + Config.URLS.PLAYER + '/' +  payload.id)
-        .send({ data: JSON.stringify(payload) })
-        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-        .end((err, res) => {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        });
+      if (Config.env() === 'prod') {
+        request
+          .post(Config.URLS.API + Config.URLS.PLAYER + '/' +  payload.id)
+          .send({ data: JSON.stringify(payload) })
+          .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+          .end((err, res) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          });
+      }
     break;
     case ACTIONS.SKILLS.SAVE:
       // Fire and forget request
-      request
-        .post(Config.URLS.API + Config.URLS.SKILLS + '/' +  payload.player_id)
-        .send({ data: JSON.stringify(payload) })
-        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-        .end((err, res) => {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        });
+      if (Config.env() === 'prod') {
+        request
+          .post(Config.URLS.API + Config.URLS.SKILLS + '/' +  payload.player_id)
+          .send({ data: JSON.stringify(payload) })
+          .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+          .end((err, res) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          });
+      }
     break;
     case ACTIONS.USER.FETCH:
       // User
       request
         .get(Config.URLS.API + Config.URLS.USER)
         .end((err, res) => {
-          if (err) {
-            this.offline = true;
-            return;
-          }
-          const data = JSON.parse(res.text);
+          const data = (!!res) ? JSON.parse(res.text) : {};
 
           next({
             type: ACTIONS.USER.GET,
             payload: data
           });
 
-        if (!this.offline) {
-          // Player
-          request
-            .get(Config.URLS.API + Config.URLS.PLAYER + '/' +  data.player_id)
-            .end((err, res) => {
-              if (err) {
-                return;
-              }
-              const data = JSON.parse(res.text);
+        // Player
+      request
+        .get(Config.URLS.API + Config.URLS.PLAYER + '/' +  data.player_id)
+        .end((err, res) => {
+          if (err) {
+            return;
+          }
+          const data = JSON.parse(res.text);
 
-              next({
-                type: ACTIONS.PLAYER.GET,
-                payload: data
-              });
-            });
+          next({
+            type: ACTIONS.PLAYER.GET,
+            payload: data
+          });
+        });
 
-          // Inventory
-          request
-            .get(Config.URLS.API + Config.URLS.INVENTORY + '/' +  data.player_id)
-            .end((err, res) => {
-              if (err) {
-                return;
-              }
-              const data = JSON.parse(res.text);
+      // Inventory
+      request
+        .get(Config.URLS.API + Config.URLS.INVENTORY + '/' +  data.player_id)
+        .end((err, res) => {
+          if (err) {
+            return;
+          }
+          const data = JSON.parse(res.text);
 
-              next({
-                type: ACTIONS.INVENTORY.GET,
-                payload: data.object
-              });
-            });
+          next({
+            type: ACTIONS.INVENTORY.GET,
+            payload: data.object
+          });
+        });
 
-          // Skills
-          request
-            .get(Config.URLS.API + Config.URLS.SKILLS + '/' +  data.player_id)
-            .end((err, res) => {
-              if (err) {
-                return;
-              }
-              const data = JSON.parse(res.text);
+      // Skills
+      request
+        .get(Config.URLS.API + Config.URLS.SKILLS + '/' +  data.player_id)
+        .end((err, res) => {
+          if (err) {
+            return;
+          }
+          const data = JSON.parse(res.text);
 
-              next({
-                type: ACTIONS.SKILLS.GET,
-                payload: data.object
-              });
-            });
-        }
-
+          next({
+            type: ACTIONS.SKILLS.GET,
+            payload: data.object
+          });
+        });
 
       });
     break;
@@ -143,16 +136,18 @@ const AndromedaService = store => next => action => {
     break;
     case ACTIONS.INVENTORY.SAVE:
       // Fire and forget request
-      request
-        .post(Config.URLS.API + Config.URLS.INVENTORY + '/' +  payload.player_id)
-        .send({ data: JSON.stringify(payload) })
-        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-        .end((err, res) => {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        });
+      if (Config.env() === 'prod') {
+        request
+          .post(Config.URLS.API + Config.URLS.INVENTORY + '/' +  payload.player_id)
+          .send({ data: JSON.stringify(payload) })
+          .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+          .end((err, res) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          });
+        }
     break;
     default:
     break;

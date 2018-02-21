@@ -16,7 +16,7 @@ export const ZoneData = [
     mobs: [
       {
         id: 1,
-        chance: 20
+        chance: 90 //change back to 20
       }
     ],
     decorations: [

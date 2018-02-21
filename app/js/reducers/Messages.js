@@ -35,6 +35,10 @@ const Messages = (state = {}, action) => {
       payload.color = 'green';
       add(payload);
     break;
+    case MESSAGES.SUCCESS:
+      payload.color = 'green';
+      add(payload);
+    break;
     case MESSAGES.WARNING:
       payload.color = '#FF8C00';
       add(payload);

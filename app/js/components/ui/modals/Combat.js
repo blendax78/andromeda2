@@ -60,7 +60,7 @@ class Combat extends Component {
     }, 250);
   }
 
-  calcCHanceToBlock() {
+  calcChanceToBlock(attack, defend) {
     /*
       FORMULA: 
       Blocking with a shield:
@@ -79,9 +79,11 @@ class Combat extends Component {
       Dexterity Modifier if dex is less than 80*: (80 - Dexterity) / 100 (If Dexterity is higher than 80, the modifier is 0)
       Final % Chance of blocking = Base Chance * (1 - Dexterity Modifier)
     */
+
+
   }
 
-  calcDamage() {
+  calcDamage(min, max, defense = 0) {
     /*
       FORMULAS:
       Tactics Damage Bonus% = Tactics ÷ 1.6 (Add 6.25% if Tactics >= 100)
@@ -92,6 +94,10 @@ class Combat extends Component {
       Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
       * Damage Increase is capped at 100%.
     */
+
+    // This is already calculated in MobData & Effects.js
+    let damage = _.random(min, max) - defense;
+    return (damage > 0) ? damage : 0;
   }
 
   calcChanceToHit(attack, defend, attack_bonus = 0, defend_bonus = 0) {
@@ -101,27 +107,39 @@ class Combat extends Component {
       ( [Defender's Combat Ability + 20] * [100% + Defender's Defense Chance Increase] * 2 ) ) * 100
       Minimum hit Chance% is 2% at all times.
     */
-    // let weapon = this.state.equipped.weapon;
-    // let skill = (!!weapon) ? _.findWhere(this.state.skills, { id: weapon.skill} ) : this.state.skills.wrestling;
-
 
     let chance = 100 * ((attack + 20) * (1 + (attack_bonus / 100))) / ((defend + 20) * (2 + (defend_bonus / 100)));
-
     return (chance > 2) ? chance : 2;;
   }
 
   combatTickHandler() {
     this.timer = this.timer || 0;
 
+    // Player attack
     if (this.timer % this.state.player.offense.speed === 0) {
+      let mob = this.state.mob;
+      let player = this.state.player;
+
       let weapon = this.state.equipped.weapon;
       let skill = (weapon) ? _.findWhere(this.state.skills, { id: weapon.weapon.skill} ) : this.state.skills.wrestling;
 
       if (skill) {
-        let chance_to_hit = this.calcChanceToHit(skill.current, this.state.mob.skills.wrestling);
-      }
+        let chance_to_hit = this.calcChanceToHit(skill.current, mob.skills.wrestling);
 
+        if (Math.round(Math.random() * 100) <= chance_to_hit) {
+          let damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
+          Config.notifyGain(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
+
+          Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
+          // Calc skill gain.
+        } else {
+          Config.notify(this.props.store, `You miss the ${mob.name}.`);
+        }
+      }
     }
+
+    // Mob attack
+
     this.timer += 0.25;
   }
 
