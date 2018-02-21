@@ -208,16 +208,6 @@ const Player = (state = {}, action) => {
 
   update_stats();
 
-  this.tick = this.tick || setInterval(() => {
-    Config.dispatch(store, Config.ACTIONS.PLAYER.TICK, {});
-  }, 1000);
-
-  this.save = this.save || setInterval(() => {
-    // This does not have access to the updated state, only the initialized one.
-    Config.dispatch(store, Config.ACTIONS.PLAYER.SAVE, store.getState().Player);
-    Config.notifyGain(store, 'Saving Player.');
-  }, 30000);
-
   return state.Player;
 }
 

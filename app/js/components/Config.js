@@ -148,6 +148,17 @@ const Config = {
     }), 0);
   },
 
+  getEquipped: (inventory) => {
+    return {
+      weapon: _.first(_.filter(inventory.weapons, (weapon) => {
+        return weapon.equip.equipped === true;
+      })),
+      armor: _.filter(inventory.weapons, (weapon) => {
+        return weapon.equip.equipped === true;
+      })
+    };
+  },
+
   clone: (object) => {
     // Clone, but do not pass object params by reference (shallow).
     let new_object = {};

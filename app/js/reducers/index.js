@@ -13,6 +13,17 @@ let APP = Config.ACTIONS.APP;
 const Reducers = (state = {}, action) => {
   const { type, payload } = action;
 
+  let tick_handler = () => {
+    Config.dispatch(store, Config.ACTIONS.PLAYER.TICK, {});
+
+    if (this.timer % 30 === 0) {
+      Config.dispatch(store, Config.ACTIONS.PLAYER.SAVE, store.getState().Player);
+      Config.notifyGain(store, 'Saving Player.');
+    }
+
+    this.timer++;
+  };
+
   if (!state.User) {
     state = {
       App: {
@@ -70,6 +81,12 @@ const Reducers = (state = {}, action) => {
       }
     break;
   }
+
+  // Global tick handler
+  this.timer = this.timer || 0;
+  this.tick = this.tick || setInterval(() => {
+    tick_handler();
+  }, 1000);
 
   return state;
 }

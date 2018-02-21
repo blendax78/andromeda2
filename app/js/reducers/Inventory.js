@@ -14,11 +14,27 @@ const Inventory = (state = {}, action) => {
     });
 
     let weapons = _.map(data.weapons, (weapon) => {
-      return {...Config.clone(_.findWhere(ItemData, { id: weapon.id })), ...weapon };
+      // Need to get latest item model structure.
+      let item_data = Config.clone(_.findWhere(ItemData, { id: weapon.id }));
+
+      // Return information saved from player (equipped, key, etc)
+      return {
+        ...item_data,
+        key: weapon.key,
+        equip: { ...weapon.equip }
+      };
     });
 
     let armors = _.map(data.armor, (armor) => {
-      return {...Config.clone(_.findWhere(ItemData, { id: armor.id })), ...armor };
+      // Need to get latest item model structure.
+      let item_data = Config.clone(_.findWhere(ItemData, { id: armor.id }));
+
+      // Return information saved from player (equipped, key, etc)
+      return {
+        ...item_data,
+        key: armor.key,
+        equip: { ...armor.equip }
+      };
     });
 
     data.items = items;
