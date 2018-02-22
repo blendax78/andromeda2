@@ -28950,9 +28950,9 @@ var Combat = function (_Component) {
         Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
         * Damage Increase is capped at 100%.
       */
-
-      // This is already calculated in MobData & Effects.js
-      var damage = _.random(min, max) - defense;
+      // AR/defense is a percentage
+      var damage = _.random(min, max);
+      damage = Math.round(damage * ((100 - defense) / 100));
       return damage > 0 ? damage : 0;
     }
   }, {
@@ -28977,6 +28977,8 @@ var Combat = function (_Component) {
       this.timer = this.timer || 0;
 
       // Player attack
+
+      // *****Need to check for attack type (melee/ranged/run/none)
       if (this.timer % this.state.player.offense.speed === 0) {
         var mob = this.state.mob;
         var player = this.state.player;

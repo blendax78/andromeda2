@@ -94,9 +94,9 @@ class Combat extends Component {
       Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
       * Damage Increase is capped at 100%.
     */
-
-    // This is already calculated in MobData & Effects.js
-    let damage = _.random(min, max) - defense;
+    // AR/defense is a percentage
+    let damage = _.random(min, max);
+    damage = Math.round(damage * ((100 - defense)/100 ));
     return (damage > 0) ? damage : 0;
   }
 
