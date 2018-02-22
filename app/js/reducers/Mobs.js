@@ -11,9 +11,20 @@ const Mobs = (state = {}, action) => {
 
   const { type, payload } = action;
 
+  let update_combat_stats = (mob) => {
+    mob.hp = mob.hp || mob.maxhp;
+    mob.mp = mob.mp || mob.intelligence;
+    mob.stamina = mob.stamina || mob.dexterity;
+
+    let speed = ((mob.offense.speed * 4  - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
+    mob.offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
+
+    state.Mobs.combat = { ...mob };
+  };
+
   switch (type) {
     case MOBS.UPDATE:
-      console.log('mob red',state.Mobs.combat, payload);
+      state.Mobs.combat = { ...payload };
     break;
     case MOBS.SHOW_ACTION:
       state.Mobs.showAction = !state.Mobs.showAction;
@@ -32,14 +43,9 @@ const Mobs = (state = {}, action) => {
       state.Mobs.combat = undefined;
     break;
     case MOBS.IN_COMBAT:
-      let mob = payload.data;
-      mob.hp = 
-      state.Mobs.combat = {
-        hp: mob.hp || mob.maxhp,
-        mp: mob.mp || mob.intelligence,
-        stamina: mob.stamina || mob.dexterity,
-        ...payload.data
-      };
+      state.Mobs.combat = payload.data;
+      // move setting of hp/stamina here
+      update_combat_stats(payload.data);
     break;
   }
 

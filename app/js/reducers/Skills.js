@@ -29,7 +29,7 @@ const Skills = (state = {}, action) => {
     }
   };
 
-  let checkSkillGain = (skill, chance) => {
+  let checkSkillGain = (skill, chance = undefined) => {
     let rand = Math.random() * 100;
     let gain = 0;
 
@@ -158,6 +158,9 @@ const Skills = (state = {}, action) => {
     case SKILLS.CRAFT:
       // Handles all crafting skills
       checkCraftingSuccess(payload);
+    break;
+    case SKILLS.GAIN:
+      checkSkillGain(payload.name)
     break;
   }
 

@@ -55,9 +55,8 @@ class CombatStatus extends Component {
             <div><span className="blue">{player.hp}</span>/{player.maxhp}</div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="bold hidden-xs">Strength: </span>
-            <span className="bold hidden-sm hidden-md hidden-lg">Str: </span>
-            <div>{player.strength}</div>
+            <span className="bold">Damage: </span>
+            <div>{player.offense.min} - {player.offense.max}</div>
           </div>
         </div>
 
@@ -67,9 +66,8 @@ class CombatStatus extends Component {
             <div><span className="blue">{player.mp}</span>/{player.maxmp}</div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="bold hidden-xs">Intelligence: </span>
-            <span className="bold hidden-sm hidden-md hidden-lg">Int: </span>
-            <div>{player.intelligence}</div>
+            <span className="bold">Speed: </span>
+            <div>{player.offense.speed}</div>
           </div>
         </div>
 
@@ -79,9 +77,8 @@ class CombatStatus extends Component {
             <div><span className="blue">{player.stamina}</span>/{player.maxstamina}</div>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="bold hidden-xs">Dexterity: </span>
-            <span className="bold hidden-sm hidden-md hidden-lg">Dex: </span>
-            <div>{player.dexterity}</div>
+            <span className="bold">AR: </span>
+            <div>{player.defense.physical}</div>
           </div>
         </div>
 
@@ -95,21 +92,33 @@ class CombatStatus extends Component {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">HP: </span>
-            <span className="blue">{mob.hp}</span>/{mob.maxhp}
+            <div><span className="blue">{mob.hp}</span>/{mob.maxhp}</div>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="bold">Damage: </span>
+            <div>{mob.offense.min} - {mob.offense.max}</div>
           </div>
         </div>
 
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">MP: </span>
-            <span className="blue">{mob.mp}</span>/{mob.intelligence}
+            <div><span className="blue">{mob.mp}</span>/{mob.intelligence}</div>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="bold">Speed: </span>
+            <div>{mob.offense.speed}</div>
           </div>
         </div>
 
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Stamina: </span>
-            <span className="blue">{mob.stamina}</span>/{mob.dexterity}
+            <div><span className="blue">{mob.stamina}</span>/{mob.dexterity}</div>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="bold">AR: </span>
+            <div>{mob.armor}</div>
           </div>
         </div>
 

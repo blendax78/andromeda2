@@ -33,10 +33,10 @@ const Player = (state = {}, action) => {
       physical: 0,
     },
     offense: {
-      speed: 0,
-      min: 0,
-      max: 0,
-      skill: 0
+      speed: 2,
+      min: 1,
+      max: 4,
+      skill: 3
     },
     partial: {
       stamina: 0,

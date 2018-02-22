@@ -25,9 +25,8 @@ const Effects = (state = {}, action) => {
     }      
   });
 
-
   let speed = ((offense.speed * 4  - Math.floor(state.Player.stamina / 30)) / 4).toFixed(2);
-  offense.speed = (speed < 1.25) ? 1.25 : speed;
+  offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
 
   let strength_mod = Math.round(state.Player.strength * 0.3);
   // Strength + tactics

@@ -18,15 +18,15 @@ class SkillsList extends Component {
     let skills = _.map(ordered_skills, (skill, index) => {
       return (
         <div className="row" key={`skill.${skill.id}`}>
-          <div className="col-lg-6 col-md-6 col-sm-6">{skill.name}</div>
-          <div className="col-lg-6 col-md-6 col-sm-6">{skill.current.toFixed(1)}</div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{skill.name}</div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{skill.current.toFixed(1)}</div>
         </div>
       );
     });
     
     return (
-      <div className="row">
-        <div className="col-lg-12 col-md-12 col-sm-12">
+      <div className="row scrollable">
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           {skills}
         </div>
       </div>

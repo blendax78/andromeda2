@@ -116,6 +116,8 @@ class Combat extends Component {
     this.timer = this.timer || 0;
 
     // Player attack
+
+    // *****Need to check for attack type (melee/ranged/run/none)
     if (this.timer % this.state.player.offense.speed === 0) {
       let mob = this.state.mob;
       let player = this.state.player;
@@ -124,19 +126,27 @@ class Combat extends Component {
       let skill = (weapon) ? _.findWhere(this.state.skills, { id: weapon.weapon.skill} ) : this.state.skills.wrestling;
 
       if (skill) {
+        // Break this out to playerAttack function
         let chance_to_hit = this.calcChanceToHit(skill.current, mob.skills.wrestling);
 
         if (Math.round(Math.random() * 100) <= chance_to_hit) {
           let damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
           Config.notifyGain(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
 
-          Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
-          // Calc skill gain.
+          mob.hp -= damage;
+          // No need to update store (for now?)
+          // Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
+          Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
         } else {
           Config.notify(this.props.store, `You miss the ${mob.name}.`);
+          if (skill.current < 20) {
+            Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
+          }
         }
       }
     }
+
+
 
     // Mob attack
 

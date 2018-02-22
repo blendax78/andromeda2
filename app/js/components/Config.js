@@ -75,6 +75,7 @@ const Config = {
       LFINGER: 'left finger',
     },
     SKILLS: {
+      GAIN: 'SKILLS.GAIN',
       CRAFT: 'SKILLS.CRAFT',
       SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',

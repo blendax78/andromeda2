@@ -7,14 +7,17 @@ export const MobData = [
     description: 'A small sheep is wandering around here.',
     armor: 6,
     maxhp: 12,
-    damageMin: 1,
-    damageMax: 2,
+    offense: {
+      min: 1,
+      max: 2,
+      aggro: false,
+      speed: 2
+    },
     strength: 19,
     dexterity: 25,
     intelligence: 5,
     wander: true,
     attackable: true,
-    aggro: false,
     resources: [], //item IDs that are found on corpse
     img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
     skills: {

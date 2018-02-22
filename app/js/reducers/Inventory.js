@@ -62,7 +62,7 @@ const Inventory = (state = {}, action) => {
   let calc_encumbrance = () => {
     let encumbrance = 0;
     _.each(_.union(state.Inventory.items, state.Inventory.weapons, state.Inventory.armor), (inv, key) => {
-      encumbrance += inv.count * inv.weight;
+      encumbrance += (inv.countable) ? inv.count * inv.weight : inv.weight;
     });
 
     return Math.round(encumbrance);

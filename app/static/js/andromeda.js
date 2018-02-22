@@ -440,7 +440,8 @@ var Config = {
       ERROR: 'MSGS.ERROR',
       SPEAK: 'MSGS.SPEAK',
       GAIN: 'MSGS.GAIN',
-      WARNING: 'MSGS.WARNING'
+      WARNING: 'MSGS.WARNING',
+      SUCCESS: 'MSGS.SUCCESS'
     },
     PLANET: {
       GET: 'PLANET.GET'
@@ -471,6 +472,7 @@ var Config = {
       LFINGER: 'left finger'
     },
     SKILLS: {
+      GAIN: 'SKILLS.GAIN',
       CRAFT: 'SKILLS.CRAFT',
       SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',
@@ -485,7 +487,8 @@ var Config = {
       CLEAR_COMBAT: 'MOBS.CLEAR_COMBAT',
       IN_COMBAT: 'MOBS.IN_COMBAT',
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
-      SHOW_COMBAT: 'MOBS.SHOW_COMBAT'
+      SHOW_COMBAT: 'MOBS.SHOW_COMBAT',
+      UPDATE: 'MOBS.UPDATE'
     }
   },
   URLS: {
@@ -505,6 +508,10 @@ var Config = {
     var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
     return text + __WEBPACK_IMPORTED_MODULE_0_uuid__(text);
+  },
+
+  notifySuccess: function notifySuccess(store, msg) {
+    _this.a.notify(store, msg, _this.a.ACTIONS.MESSAGES.SUCCESS);
   },
 
   notifyGain: function notifyGain(store, msg) {
@@ -558,6 +565,25 @@ var Config = {
         payload: payload
       });
     }, 0);
+  },
+
+  getEquipped: function getEquipped(inventory) {
+    return {
+      weapon: _.first(_.filter(inventory.weapons, function (weapon) {
+        return weapon.equip.equipped === true;
+      })),
+      armor: _.filter(inventory.weapons, function (weapon) {
+        return weapon.equip.equipped === true;
+      })
+    };
+  },
+
+  env: function env() {
+    if (location.href.indexOf('localhost') !== -1) {
+      return 'dev';
+    } else {
+      return 'prod';
+    }
   },
 
   clone: function clone(object) {
@@ -5354,7 +5380,8 @@ var ItemData = [{
     speed: 2.25,
     min: 10,
     max: 13,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 5,
@@ -5501,7 +5528,8 @@ var ItemData = [{
     speed: 3.00,
     min: 14,
     max: 17,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'axe'
   }
 }, {
   id: 12,
@@ -5534,7 +5562,8 @@ var ItemData = [{
     speed: 3.75,
     min: 17,
     max: 20,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 13,
@@ -5567,7 +5596,8 @@ var ItemData = [{
     speed: 3.5,
     min: 16,
     max: 19,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'axe'
   }
 }, {
   id: 14,
@@ -5600,7 +5630,8 @@ var ItemData = [{
     speed: 3.25,
     min: 13,
     max: 17,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 15,
@@ -5633,7 +5664,8 @@ var ItemData = [{
     speed: 3.5,
     min: 16,
     max: 19,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'axe'
   }
 }, {
   id: 16,
@@ -5666,7 +5698,8 @@ var ItemData = [{
     speed: 2.5,
     min: 10,
     max: 14,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 17,
@@ -5699,7 +5732,8 @@ var ItemData = [{
     speed: 2.5,
     min: 10,
     max: 14,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 18,
@@ -5732,7 +5766,8 @@ var ItemData = [{
     speed: 3.25,
     min: 15,
     max: 18,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'axe'
   }
 }, {
   id: 19,
@@ -5765,7 +5800,8 @@ var ItemData = [{
     speed: 3.25,
     min: 15,
     max: 18,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'axe'
   }
 }, {
   id: 20,
@@ -5798,7 +5834,8 @@ var ItemData = [{
     speed: 4,
     min: 18,
     max: 21,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 21,
@@ -5831,7 +5868,8 @@ var ItemData = [{
     speed: 2.75,
     min: 13,
     max: 16,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'axe'
   }
 }, {
   id: 22,
@@ -5864,7 +5902,8 @@ var ItemData = [{
     speed: 3.75,
     min: 17,
     max: 20,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'axe'
   }
 }, {
   id: 23,
@@ -5897,7 +5936,8 @@ var ItemData = [{
     speed: 2.5,
     min: 10,
     max: 14,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 24,
@@ -5930,7 +5970,8 @@ var ItemData = [{
     speed: 3.5,
     min: 14,
     max: 18,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 25,
@@ -5963,7 +6004,8 @@ var ItemData = [{
     speed: 3,
     min: 12,
     max: 16,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }, {
   id: 26,
@@ -5996,7 +6038,8 @@ var ItemData = [{
     speed: 3.75,
     min: 15,
     max: 19,
-    type: 'melee'
+    type: 'melee',
+    sub_type: 'blade'
   }
 }];
 
@@ -27160,11 +27203,11 @@ var Modal = function (_Component) {
       if (__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default()(this.state.modal.body) === 'object') {
         return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
-          { className: 'modal-body scrollable' },
+          { className: 'modal-body' },
           this.state.modal.body
         );
       } else {
-        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('div', { className: 'modal-body scrollable', dangerouslySetInnerHTML: { __html: this.state.modal.body } });
+        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('div', { className: 'modal-body', dangerouslySetInnerHTML: { __html: this.state.modal.body } });
       }
     }
   }, {
@@ -27490,12 +27533,12 @@ var SkillsList = function (_Component) {
           { className: 'row', key: 'skill.' + skill.id },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
-            { className: 'col-lg-6 col-md-6 col-sm-6' },
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             skill.name
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
-            { className: 'col-lg-6 col-md-6 col-sm-6' },
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             skill.current.toFixed(1)
           )
         );
@@ -27503,10 +27546,10 @@ var SkillsList = function (_Component) {
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
-        { className: 'row' },
+        { className: 'row scrollable' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
-          { className: 'col-lg-12 col-md-12 col-sm-12' },
+          { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
           skills
         )
       );
@@ -28812,6 +28855,8 @@ var Combat = function (_Component) {
 
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Combat.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Combat)).call(this, props));
 
+    var equipped = __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].getEquipped(_this.props.store.getState().Inventory);
+
     _this.keys = {
       melee: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('combat'),
       ranged: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('combat'),
@@ -28821,11 +28866,14 @@ var Combat = function (_Component) {
     _this.state = {
       mob: _this.props.mob,
       player: _this.props.store.getState().Player,
+      inventory: _this.props.store.getState().Inventory,
+      skills: _this.props.store.getState().Skills,
       combat: {
-        melee: true,
-        ranged: false,
+        melee: equipped.weapon && equipped.weapon.weapon.type === 'melee' || !equipped.weapon,
+        ranged: equipped.weapon && equipped.weapon.weapon.type === 'ranged',
         run: false
-      }
+      },
+      equipped: equipped
     };
 
     _this.mounted = true;
@@ -28833,7 +28881,11 @@ var Combat = function (_Component) {
       if (_this.mounted) {
         _this.setState({
           mob: _this.props.store.getState().Mobs.combat,
-          player: _this.props.store.getState().Player
+          player: _this.props.store.getState().Player,
+          inventory: _this.props.store.getState().Inventory,
+          skills: _this.props.store.getState().Skills
+          // For now, weapons can't be equipped in combat.
+          // equipped: Config.getEquipped(this.props.store.getState().Inventory)
         });
       }
     });
@@ -28847,13 +28899,115 @@ var Combat = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       this.mounted = false;
+      clearInterval(this.tick);
       this.unsubscribe();
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.mounted = true;
-      // Consider setting combat interval here
+      this.tick = this.tick || setInterval(function () {
+        if (!!_this2.state.mob && !!_this2.state.player && !!_this2.state.inventory && !!_this2.state.skills) {
+          _this2.combatTickHandler();
+        }
+      }, 250);
+    }
+  }, {
+    key: 'calcChanceToBlock',
+    value: function calcChanceToBlock(attack, defend) {
+      /*
+        FORMULA: 
+        Blocking with a shield:
+        % Chance = (Parrying - Bushido) / 4 (If less than 0, the chance is 0)
+        (Add 5% if Parrying or Bushido skill is 100 or above)
+        Blocking with a 1-handed weapon (without a shield):
+        New = (Parrying * 10) * (Bushido * 10) / 48000 (Add 5% if Parrying or Bushido skill is 100 or above)
+        Legacy = (Parrying * 10) / 80 (Add 5% if Parrying skill if 100 or above)
+        % Chance = Whichever is highest of the New and the Legacy formula.
+          Blocking with a 2-handed weapon:
+        New = (Parrying * 10) * (Bushido * 10) / 41140 (Add 5% if Parrying or Bushido skill is 100 or above)
+        Legacy = (Parrying * 10) / 80 (Add 5% if Parrying skill if 100 or above)
+        % Chance = Whichever is highest of the New and the Legacy formula.
+          Dexterity Modifier if dex is less than 80*: (80 - Dexterity) / 100 (If Dexterity is higher than 80, the modifier is 0)
+        Final % Chance of blocking = Base Chance * (1 - Dexterity Modifier)
+      */
+
+    }
+  }, {
+    key: 'calcDamage',
+    value: function calcDamage(min, max) {
+      var defense = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+      /*
+        FORMULAS:
+        Tactics Damage Bonus% = Tactics ÷ 1.6 (Add 6.25% if Tactics >= 100)
+        Anatomy Damage Bonus% = (Anatomy ÷ 2) (Add 5% if Anatomy >= 100)
+        Lumberjack Damage Bonus% = Lumberjack ÷ 5 (Add 10% if Lumberjacking >= 100)
+        Strength Damage Bonus% = Strength * 0.3 (Add 5% if Strength >= 100)
+        Final Damage Bonus% = Tactics Bonus + Anatomy Bonus + Lumber Bonus + Strength Bonus + Damage Increase Items*
+        Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
+        * Damage Increase is capped at 100%.
+      */
+
+      // This is already calculated in MobData & Effects.js
+      var damage = _.random(min, max) - defense;
+      return damage > 0 ? damage : 0;
+    }
+  }, {
+    key: 'calcChanceToHit',
+    value: function calcChanceToHit(attack, defend) {
+      var attack_bonus = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+      var defend_bonus = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+
+      /*
+        FORMULA:
+        Hit Chance% = ( ( [Attacker's Combat Ability + 20] * [100% + Attacker's Hit Chance Increase] ) divided by
+        ( [Defender's Combat Ability + 20] * [100% + Defender's Defense Chance Increase] * 2 ) ) * 100
+        Minimum hit Chance% is 2% at all times.
+      */
+
+      var chance = 100 * ((attack + 20) * (1 + attack_bonus / 100)) / ((defend + 20) * (2 + defend_bonus / 100));
+      return chance > 2 ? chance : 2;;
+    }
+  }, {
+    key: 'combatTickHandler',
+    value: function combatTickHandler() {
+      this.timer = this.timer || 0;
+
+      // Player attack
+      if (this.timer % this.state.player.offense.speed === 0) {
+        var mob = this.state.mob;
+        var player = this.state.player;
+
+        var weapon = this.state.equipped.weapon;
+        var skill = weapon ? _.findWhere(this.state.skills, { id: weapon.weapon.skill }) : this.state.skills.wrestling;
+
+        if (skill) {
+          // Break this out to playerAttack function
+          var chance_to_hit = this.calcChanceToHit(skill.current, mob.skills.wrestling);
+
+          if (Math.round(Math.random() * 100) <= chance_to_hit) {
+            var damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
+            __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifyGain(this.props.store, 'You hit the ' + mob.name + ' for ' + damage + ' damage.');
+
+            mob.hp -= damage;
+            // No need to update store (for now?)
+            // Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
+            __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
+          } else {
+            __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notify(this.props.store, 'You miss the ' + mob.name + '.');
+            if (skill.current < 20) {
+              __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
+            }
+          }
+        }
+      }
+
+      // Mob attack
+
+      this.timer += 0.25;
     }
   }, {
     key: 'switchOffActions',
@@ -28880,6 +29034,10 @@ var Combat = function (_Component) {
   }, {
     key: 'toggleMelee',
     value: function toggleMelee() {
+      // if (this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee') {
+      //   return;
+      // }
+
       this.switchOffActions('melee');
       var combat = this.state.combat;
       this.setState({
@@ -28889,6 +29047,10 @@ var Combat = function (_Component) {
   }, {
     key: 'toggleRanged',
     value: function toggleRanged() {
+      // if (!this.state.equipped.weapon || this.state.equipped.weapon.weapon.type !== 'ranged') {
+      //   return;
+      // }
+
       this.switchOffActions('ranged');
       var combat = this.state.combat;
       this.setState({
@@ -28898,11 +29060,25 @@ var Combat = function (_Component) {
   }, {
     key: 'getCombatActions',
     value: function getCombatActions() {
-      var _this2 = this;
+      var _this3 = this;
 
-      var classMelee = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.melee, top5: true });
-      var classRanged = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.ranged, top5: true });
-      var classRun = __WEBPACK_IMPORTED_MODULE_7_classnames__({ btn: true, 'btn-info': this.state.combat.run, top5: true });
+      var classMelee = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+        btn: true,
+        'btn-info': this.state.combat.melee,
+        top5: true,
+        disabled: this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee'
+      });
+      var classRanged = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+        btn: true,
+        'btn-info': this.state.combat.ranged,
+        top5: true,
+        disabled: !this.state.equipped.weapon || this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'ranged'
+      });
+      var classRun = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+        btn: true,
+        'btn-info': this.state.combat.run,
+        top5: true
+      });
 
       var buttons = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'span',
@@ -28910,8 +29086,9 @@ var Combat = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classMelee, onClick: function onClick() {
-              return _this2.toggleMelee();
-            } },
+              return _this3.toggleMelee();
+            },
+            disabled: this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee' },
           'Melee'
         ),
         '\xA0'
@@ -28921,8 +29098,9 @@ var Combat = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classRanged, onClick: function onClick() {
-              return _this2.toggleRanged();
-            } },
+              return _this3.toggleRanged();
+            },
+            disabled: !this.state.equipped.weapon || this.state.equipped.weapon.weapon.type !== 'ranged' },
           'Ranged'
         ),
         '\xA0'
@@ -28932,7 +29110,7 @@ var Combat = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classRun, onClick: function onClick() {
-              return _this2.toggleRun();
+              return _this3.toggleRun();
             } },
           'Run'
         ),
@@ -29001,6 +29179,16 @@ var Combat = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Combat);
 
 //https://uo.stratics.com/content/arms-armor/combat.php
+// Attack Sequence
+// 1) Determine Speed of Attack
+// 2) Determine % Chance to Hit
+// 3) Modify for Chance to Block an Attack
+// 4) Determine Base Weapon Damage
+// 5) Determine Damage Bonuses for Tactics, Anatomy, Lumberjacking and Strength
+// 6) Determine Final Damage
+// 7) Determine Damage Distribution
+// 8) Determine Damage Absorption
+// 9) Apply Resulting Damage
 
 /***/ }),
 /* 319 */
@@ -29120,18 +29308,15 @@ var CombatStatus = function (_Component) {
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'bold hidden-xs' },
-              'Strength: '
-            ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold hidden-sm hidden-md hidden-lg' },
-              'Str: '
+              { className: 'bold' },
+              'Damage: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
               null,
-              player.strength
+              player.offense.min,
+              ' - ',
+              player.offense.max
             )
           )
         ),
@@ -29163,18 +29348,13 @@ var CombatStatus = function (_Component) {
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'bold hidden-xs' },
-              'Intelligence: '
-            ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold hidden-sm hidden-md hidden-lg' },
-              'Int: '
+              { className: 'bold' },
+              'Speed: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
               null,
-              player.intelligence
+              player.offense.speed
             )
           )
         ),
@@ -29206,18 +29386,13 @@ var CombatStatus = function (_Component) {
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'bold hidden-xs' },
-              'Dexterity: '
-            ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold hidden-sm hidden-md hidden-lg' },
-              'Dex: '
+              { className: 'bold' },
+              'AR: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
               null,
-              player.dexterity
+              player.defense.physical
             )
           )
         ),
@@ -29243,12 +29418,32 @@ var CombatStatus = function (_Component) {
               'HP: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'span',
+                { className: 'blue' },
+                mob.hp
+              ),
+              '/',
+              mob.maxhp
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'blue' },
-              mob.hp
+              { className: 'bold' },
+              'Damage: '
             ),
-            '/',
-            mob.maxhp
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              mob.offense.min,
+              ' - ',
+              mob.offense.max
+            )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -29263,12 +29458,30 @@ var CombatStatus = function (_Component) {
               'MP: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'span',
+                { className: 'blue' },
+                mob.mp
+              ),
+              '/',
+              mob.intelligence
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'blue' },
-              mob.mp
+              { className: 'bold' },
+              'Speed: '
             ),
-            '/',
-            mob.intelligence
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              mob.offense.speed
+            )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -29283,12 +29496,30 @@ var CombatStatus = function (_Component) {
               'Stamina: '
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'span',
+                { className: 'blue' },
+                mob.stamina
+              ),
+              '/',
+              mob.dexterity
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
-              { className: 'blue' },
-              mob.stamina
+              { className: 'bold' },
+              'AR: '
             ),
-            '/',
-            mob.dexterity
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              null,
+              mob.armor
+            )
           )
         )
       );
@@ -30861,6 +31092,9 @@ var BottomPanel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Config__ = __webpack_require__(3);
 
 
+var _this = this;
+
+
 
 
 
@@ -30878,6 +31112,20 @@ var Reducers = function Reducers() {
   var type = action.type,
       payload = action.payload;
 
+
+  var tick_handler = function tick_handler() {
+    __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].ACTIONS.PLAYER.TICK, {});
+
+    if (_this.timer % 30 === 0) {
+      if (__WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].env() === 'prod') {
+        // Only if not on local.
+        __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, store.getState().Player);
+        __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].notifyGain(store, 'Saving Player.');
+      }
+    }
+
+    _this.timer++;
+  };
 
   if (!state.User) {
     state = {
@@ -30937,6 +31185,12 @@ var Reducers = function Reducers() {
       break;
   }
 
+  // Global tick handler
+  _this.timer = _this.timer || 0;
+  _this.tick = _this.tick || setInterval(function () {
+    tick_handler();
+  }, 1000);
+
   return state;
 };
 
@@ -30989,9 +31243,6 @@ var User = function User() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 
 
-var _this = this;
-
-
 var PLAYER = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER;
 
 // Attribute Formula
@@ -31029,10 +31280,10 @@ var Player = function Player() {
       physical: 0
     },
     offense: {
-      speed: 0,
-      min: 0,
-      max: 0,
-      skill: 0
+      speed: 2,
+      min: 1,
+      max: 4,
+      skill: 3
     },
     partial: {
       stamina: 0,
@@ -31206,16 +31457,6 @@ var Player = function Player() {
 
   update_stats();
 
-  _this.tick = _this.tick || setInterval(function () {
-    __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.TICK, {});
-  }, 1000);
-
-  _this.save = _this.save || setInterval(function () {
-    // This does not have access to the updated state, only the initialized one.
-    __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, store.getState().Player);
-    __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, 'Saving Player.');
-  }, 30000);
-
   return state.Player;
 };
 
@@ -31266,6 +31507,10 @@ var Messages = function Messages() {
     case MESSAGES.SPEAK:
       // ES6 String interpolation (note the back ticks)
       payload.body = '<' + payload.speaker + '> ' + payload.body;
+      payload.color = 'green';
+      add(payload);
+      break;
+    case MESSAGES.SUCCESS:
       payload.color = 'green';
       add(payload);
       break;
@@ -31542,16 +31787,24 @@ var MobData = [{
   description: 'A small sheep is wandering around here.',
   armor: 6,
   maxhp: 12,
-  damageMin: 1,
-  damageMax: 2,
+  offense: {
+    min: 1,
+    max: 2,
+    aggro: false,
+    speed: 2
+  },
   strength: 19,
   dexterity: 25,
   intelligence: 5,
   wander: true,
   attackable: true,
-  aggro: false,
   resources: [], //item IDs that are found on corpse
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png'
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png',
+  skills: {
+    wrestling: 5,
+    tactics: 6,
+    magic_resistance: 5
+  }
 }];
 
 /***/ }),
@@ -31575,7 +31828,7 @@ var ZoneData = [{
   description: 'Rolling fields stretch as far as the eye can see.',
   mobs: [{
     id: 1,
-    chance: 20
+    chance: 90 //change back to 20
   }],
   decorations: [{
     id: 1,
@@ -31754,11 +32007,25 @@ var Inventory = function Inventory() {
     });
 
     var weapons = _.map(data.weapons, function (weapon) {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: weapon.id })), weapon);
+      // Need to get latest item model structure.
+      var item_data = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: weapon.id }));
+
+      // Return information saved from player (equipped, key, etc)
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, {
+        key: weapon.key,
+        equip: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, weapon.equip)
+      });
     });
 
     var armors = _.map(data.armor, function (armor) {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: armor.id })), armor);
+      // Need to get latest item model structure.
+      var item_data = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: armor.id }));
+
+      // Return information saved from player (equipped, key, etc)
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, {
+        key: armor.key,
+        equip: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, armor.equip)
+      });
     });
 
     data.items = items;
@@ -31786,7 +32053,7 @@ var Inventory = function Inventory() {
   var calc_encumbrance = function calc_encumbrance() {
     var encumbrance = 0;
     _.each(_.union(state.Inventory.items, state.Inventory.weapons, state.Inventory.armor), function (inv, key) {
-      encumbrance += inv.count * inv.weight;
+      encumbrance += inv.countable ? inv.count * inv.weight : inv.weight;
     });
 
     return Math.round(encumbrance);
@@ -31918,7 +32185,9 @@ var Skills = function Skills() {
     }
   };
 
-  var checkSkillGain = function checkSkillGain(skill, chance) {
+  var checkSkillGain = function checkSkillGain(skill) {
+    var chance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+
     var rand = Math.random() * 100;
     var gain = 0;
 
@@ -32045,6 +32314,9 @@ var Skills = function Skills() {
     case SKILLS.CRAFT:
       // Handles all crafting skills
       checkCraftingSuccess(payload);
+      break;
+    case SKILLS.GAIN:
+      checkSkillGain(payload.name);
       break;
   }
 
@@ -32273,7 +32545,21 @@ var Mobs = function Mobs() {
       payload = action.payload;
 
 
+  var update_combat_stats = function update_combat_stats(mob) {
+    mob.hp = mob.hp || mob.maxhp;
+    mob.mp = mob.mp || mob.intelligence;
+    mob.stamina = mob.stamina || mob.dexterity;
+
+    var speed = ((mob.offense.speed * 4 - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
+    mob.offense.speed = parseFloat(speed < 1.25 ? 1.25 : speed);
+
+    state.Mobs.combat = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, mob);
+  };
+
   switch (type) {
+    case MOBS.UPDATE:
+      state.Mobs.combat = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, payload);
+      break;
     case MOBS.SHOW_ACTION:
       state.Mobs.showAction = !state.Mobs.showAction;
 
@@ -32291,12 +32577,9 @@ var Mobs = function Mobs() {
       state.Mobs.combat = undefined;
       break;
     case MOBS.IN_COMBAT:
-      var mob = payload.data;
-      mob.hp = state.Mobs.combat = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({
-        hp: mob.hp || mob.maxhp,
-        mp: mob.mp || mob.intelligence,
-        stamina: mob.stamina || mob.dexterity
-      }, payload.data);
+      state.Mobs.combat = payload.data;
+      // move setting of hp/stamina here
+      update_combat_stats(payload.data);
       break;
   }
 
@@ -32344,12 +32627,22 @@ var Effects = function Effects() {
   });
 
   var speed = ((offense.speed * 4 - Math.floor(state.Player.stamina / 30)) / 4).toFixed(2);
-  offense.speed = speed < 1.25 ? 1.25 : speed;
+  offense.speed = parseFloat(speed < 1.25 ? 1.25 : speed);
 
   var strength_mod = Math.round(state.Player.strength * 0.3);
+  // Strength + tactics
   offense.min = offense.min - Math.round(offense.min * ((50 - state.Skills.tactics.current) / 100)) + strength_mod;
   offense.min = offense.min === 0 ? 1 : offense.min;
   offense.max = offense.max - Math.round(offense.max * ((50 - state.Skills.tactics.current) / 100)) + strength_mod;
+
+  // Lumberjacking
+  // Lumberjack Damage Bonus% = Lumberjack ÷ 5 (Add 10% if Lumberjacking >= 100)
+
+  if (offense.type === 'melee' && offense.sub_type === 'axe') {
+    var lumberjack_bonus = state.Skills.lumberjacking.current < 100 ? Math.round(state.Skills.lumberjacking.current / 5) : 30;
+    offense.min += lumberjack_bonus;
+    offense.max += lumberjack_bonus;
+  }
 
   state.Player.defense = defense;
   state.Player.offense = offense;
@@ -32395,9 +32688,6 @@ Example: ((17 - 1) * (100.0 / (100 + 20))) = 13 ticks.
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Config__ = __webpack_require__(3);
 
 
-var _this = this;
-
-
 
 
 var ACTIONS = __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].ACTIONS;
@@ -32413,10 +32703,6 @@ var AndromedaService = function AndromedaService(store) {
       */
 
       next(action);
-
-      if (_this.offline) {
-        return;
-      }
 
       switch (type) {
         case ACTIONS.PLAYER.FETCH:
@@ -32437,76 +32723,74 @@ var AndromedaService = function AndromedaService(store) {
           break;
         case ACTIONS.PLAYER.SAVE:
           // Fire and forget request
-          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.PLAYER + '/' + payload.id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
-            if (err) {
-              console.error(err);
-              return;
-            }
-          });
+          if (__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].env() === 'prod') {
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.PLAYER + '/' + payload.id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
+              if (err) {
+                console.error(err);
+                return;
+              }
+            });
+          }
           break;
         case ACTIONS.SKILLS.SAVE:
           // Fire and forget request
-          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.SKILLS + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
-            if (err) {
-              console.error(err);
-              return;
-            }
-          });
+          if (__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].env() === 'prod') {
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.SKILLS + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
+              if (err) {
+                console.error(err);
+                return;
+              }
+            });
+          }
           break;
         case ACTIONS.USER.FETCH:
           // User
           __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.USER).end(function (err, res) {
-            if (err) {
-              _this.offline = true;
-              return;
-            }
-            var data = JSON.parse(res.text);
+            var data = !!res ? JSON.parse(res.text) : {};
 
             next({
               type: ACTIONS.USER.GET,
               payload: data
             });
 
-            if (!_this.offline) {
-              // Player
-              __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.PLAYER + '/' + data.player_id).end(function (err, res) {
-                if (err) {
-                  return;
-                }
-                var data = JSON.parse(res.text);
+            // Player
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.PLAYER + '/' + data.player_id).end(function (err, res) {
+              if (err) {
+                return;
+              }
+              var data = JSON.parse(res.text);
 
-                next({
-                  type: ACTIONS.PLAYER.GET,
-                  payload: data
-                });
+              next({
+                type: ACTIONS.PLAYER.GET,
+                payload: data
               });
+            });
 
-              // Inventory
-              __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.INVENTORY + '/' + data.player_id).end(function (err, res) {
-                if (err) {
-                  return;
-                }
-                var data = JSON.parse(res.text);
+            // Inventory
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.INVENTORY + '/' + data.player_id).end(function (err, res) {
+              if (err) {
+                return;
+              }
+              var data = JSON.parse(res.text);
 
-                next({
-                  type: ACTIONS.INVENTORY.GET,
-                  payload: data.object
-                });
+              next({
+                type: ACTIONS.INVENTORY.GET,
+                payload: data.object
               });
+            });
 
-              // Skills
-              __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.SKILLS + '/' + data.player_id).end(function (err, res) {
-                if (err) {
-                  return;
-                }
-                var data = JSON.parse(res.text);
+            // Skills
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.get(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.SKILLS + '/' + data.player_id).end(function (err, res) {
+              if (err) {
+                return;
+              }
+              var data = JSON.parse(res.text);
 
-                next({
-                  type: ACTIONS.SKILLS.GET,
-                  payload: data.object
-                });
+              next({
+                type: ACTIONS.SKILLS.GET,
+                payload: data.object
               });
-            }
+            });
           });
           break;
         case ACTIONS.INVENTORY.FETCH:
@@ -32524,12 +32808,14 @@ var AndromedaService = function AndromedaService(store) {
           break;
         case ACTIONS.INVENTORY.SAVE:
           // Fire and forget request
-          __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.INVENTORY + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
-            if (err) {
-              console.error(err);
-              return;
-            }
-          });
+          if (__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].env() === 'prod') {
+            __WEBPACK_IMPORTED_MODULE_1_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].URLS.INVENTORY + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
+              if (err) {
+                console.error(err);
+                return;
+              }
+            });
+          }
           break;
         default:
           break;

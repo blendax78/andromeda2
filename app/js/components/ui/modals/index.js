@@ -142,9 +142,9 @@ class Modal extends Component {
   
   getModalBody() {
     if (typeof this.state.modal.body === 'object') {
-      return <div className="modal-body scrollable">{this.state.modal.body}</div>;
+      return <div className="modal-body">{this.state.modal.body}</div>;
     } else {
-      return <div className="modal-body scrollable" dangerouslySetInnerHTML={{__html: this.state.modal.body}}></div>;
+      return <div className="modal-body" dangerouslySetInnerHTML={{__html: this.state.modal.body}}></div>;
     }
   }
 
