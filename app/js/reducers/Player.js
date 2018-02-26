@@ -27,7 +27,10 @@ const Player = (state = {}, action) => {
       run: false,
       mount: false,
       encumbered: false,
-      paralyzed: false
+      paralyzed: false,
+      hp_regen: 0,
+      mp_regen: 0,
+      stamina_regen: 0
     },
     defense: {
       physical: 0,
@@ -126,22 +129,22 @@ const Player = (state = {}, action) => {
   let update_partials = (stat) => {
     switch (stat) {
       case 'stamina':
-        state.Player.partial.stamina += 0.2;
-        if (Math.floor(state.Player.partial.stamina) === 1) {
+        state.Player.partial.stamina += (0.2 + state.Player.status.stamina_regen);
+        if (Math.floor(state.Player.partial.stamina) >= 1) {
           state.Player.partial.stamina = 0;
           return true;
         }
       break;
       case 'hp':
-        state.Player.partial.hp += 0.15;
-        if (Math.floor(state.Player.partial.hp) === 1) {
+        state.Player.partial.hp += (0.2 + state.Player.status.hp_regen);
+        if (Math.floor(state.Player.partial.hp) >= 1) {
           state.Player.partial.hp = 0;
           return true;
         }
       break;
       case 'mp':
-        state.Player.partial.mp += 0.2;
-        if (Math.floor(state.Player.partial.mp) === 1) {
+        state.Player.partial.mp += (0.2 + state.Player.status.mp_regen);
+        if (Math.floor(state.Player.partial.mp) >= 1) {
           state.Player.partial.mp = 0;
           return true;
         }
