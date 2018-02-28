@@ -91,7 +91,8 @@ const Config = {
       IN_COMBAT: 'MOBS.IN_COMBAT',
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
       SHOW_COMBAT: 'MOBS.SHOW_COMBAT',
-      UPDATE: 'MOBS.UPDATE'
+      UPDATE: 'MOBS.UPDATE',
+      TICK: 'MOBS.TICK'
     },
   },
   URLS: {

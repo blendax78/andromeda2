@@ -112,16 +112,12 @@ class Combat extends Component {
     return (chance > 2) ? chance : 2;;
   }
 
-  combatTickHandler() {
-    this.timer = this.timer || 0;
-
-    // Player attack
-
+  playerAttack() {
     // *****Need to check for attack type (melee/ranged/run/none)
-    if (this.timer % this.state.player.offense.speed === 0) {
-      let mob = this.state.mob;
-      let player = this.state.player;
+    let mob = this.state.mob;
+    let player = this.state.player;
 
+    if (this.timer % player.offense.speed === 0) {
       let weapon = this.state.equipped.weapon;
       let skill = (weapon) ? _.findWhere(this.state.skills, { id: weapon.weapon.skill} ) : this.state.skills.wrestling;
 
@@ -144,13 +140,115 @@ class Combat extends Component {
           }
         }
       }
+    }    
+  }
+
+  mobAttack() {
+    // *****Need to check for attack type (melee/ranged/run/none)
+    let mob = this.state.mob;
+    let player = this.state.player;
+
+    if (this.timer % mob.offense.speed === 0) {
+      let weapon = this.state.equipped.weapon;
+      let skill = (weapon) ? _.findWhere(this.state.skills, { id: weapon.weapon.skill} ) : this.state.skills.wrestling;
+
+      if (skill) {
+        // Break this out to playerAttack function
+        let chance_to_hit = this.calcChanceToHit(mob.skills.wrestling, skill.current);
+
+        if (Math.round(Math.random() * 100) <= chance_to_hit) {
+          let damage = this.calcDamage(mob.offense.min, mob.offense.max, player.defense.physical);
+          Config.notifyError(this.props.store, `The ${mob.name} hits you for ${damage} damage.`);
+
+          player.hp -= damage;
+        } else {
+          Config.notify(this.props.store, `The ${mob.name} misses you.`);
+        }
+      }
     }
+  }
 
+  combatTickHandler() {
+    this.timer = this.timer || 0;
 
+    // Player attack
+    this.playerAttack();
 
     // Mob attack
+    this.mobAttack();
 
-    this.timer += 0.25;
+    if (this.state.player.hp <= 0 || this.state.mob.hp <= 0) {
+      clearInterval(this.tick);
+
+      if (this.state.mob.hp <= 0) {
+        // Player wins
+        this.playerWin();
+      } else {
+        // Mob wins
+        this.mobWin();
+        console.log('mob win');
+      }
+    } else {
+      this.timer += 0.25;
+    }
+  }
+
+  mobWin() {
+    let score = this.state.player.score;
+    score.deaths++;
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLAYER.UPDATE,
+      payload: {
+        score: score
+      }
+    });
+
+    setTimeout(() => {
+      this.props.store.dispatch({
+        type: Config.ACTIONS.APP.MODAL_HIDE,
+        payload: {}
+      });
+    }, 2000);
+  }
+
+  playerWin() {
+    if (!!this.state.mob.credits && this.state.mob.credits > 0) {
+      Config.notifySuccess(this.props.store, `You found ${this.state.mob.credits} credits.`);
+    }
+    let credits = this.state.player.credits + this.state.mob.credits;
+    let score = this.state.player.score;
+    score.kills++;
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLAYER.UPDATE,
+      payload: {
+        credits: credits,
+        score: score
+      }
+    });
+
+    // Add player kill count
+    
+    // this.props.store.dispatch({
+    //   type: Config.ACTIONS.INVENTORY.ADD,
+    //   payload: {
+    //     item: item.id,
+    //     count: 1
+    //   }
+    // });
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLAYER.SAVE,
+      payload: store.getState().Player
+    });
+
+    setTimeout(() => {
+      this.props.store.dispatch({
+        type: Config.ACTIONS.APP.MODAL_HIDE,
+        payload: {}
+      });
+    }, 2000);
   }
 
   switchOffActions(current) {

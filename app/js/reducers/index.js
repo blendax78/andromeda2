@@ -15,6 +15,7 @@ const Reducers = (state = {}, action) => {
 
   let tick_handler = () => {
     Config.dispatch(store, Config.ACTIONS.PLAYER.TICK, {});
+    Config.dispatch(store, Config.ACTIONS.MOBS.TICK, {});
 
     if (this.timer % 30 === 0) {
       if (Config.env() === 'prod') {
@@ -80,6 +81,7 @@ const Reducers = (state = {}, action) => {
         break;
         case APP.MODAL_HIDE:
           state.App.modal = { body: '', open: false };
+          // $('#modal-container').modal('hide');
         break;
       }
     break;

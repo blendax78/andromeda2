@@ -47,6 +47,19 @@ const Mobs = (state = {}, action) => {
       // move setting of hp/stamina here
       update_combat_stats(payload.data);
     break;
+    case MOBS.TICK:
+      _.each(state.Mobs.list, (mob) => {
+        if (mob.hp && mob.hp !== mob.maxhp) {
+          mob.partial = mob.partial || 0;
+          mob.partial += 0.2;
+
+          if (mob.partial % 1 === 0) {
+            mob.hp++;
+            mob.partial = 0;
+          }
+        }
+      });
+    break;
   }
 
   return state.Mobs;

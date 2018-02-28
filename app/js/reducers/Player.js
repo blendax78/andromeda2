@@ -52,7 +52,8 @@ const Player = (state = {}, action) => {
       run: 0,
       log: 0,
       ore: 0,
-      crafted: 0
+      crafted: 0,
+      deaths: 0
     }
   };
 

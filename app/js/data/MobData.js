@@ -19,6 +19,7 @@ export const MobData = [
     wander: true,
     attackable: true,
     resources: [], //item IDs that are found on corpse
+    credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
     skills: {
         wrestling: 5,
