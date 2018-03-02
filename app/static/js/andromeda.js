@@ -488,7 +488,8 @@ var Config = {
       IN_COMBAT: 'MOBS.IN_COMBAT',
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
       SHOW_COMBAT: 'MOBS.SHOW_COMBAT',
-      UPDATE: 'MOBS.UPDATE'
+      UPDATE: 'MOBS.UPDATE',
+      TICK: 'MOBS.TICK'
     }
   },
   URLS: {
@@ -27723,6 +27724,16 @@ var PlayerStats = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'span',
               { className: 'bold' },
+              'Deaths: '
+            ),
+            this.state.player.score.deaths
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'p',
+            null,
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold' },
               'Logs Found: '
             ),
             this.state.player.score.log
@@ -28972,17 +28983,13 @@ var Combat = function (_Component) {
       return chance > 2 ? chance : 2;;
     }
   }, {
-    key: 'combatTickHandler',
-    value: function combatTickHandler() {
-      this.timer = this.timer || 0;
-
-      // Player attack
-
+    key: 'playerAttack',
+    value: function playerAttack() {
       // *****Need to check for attack type (melee/ranged/run/none)
-      if (this.timer % this.state.player.offense.speed === 0) {
-        var mob = this.state.mob;
-        var player = this.state.player;
+      var mob = this.state.mob;
+      var player = this.state.player;
 
+      if (this.timer % player.offense.speed === 0) {
         var weapon = this.state.equipped.weapon;
         var skill = weapon ? _.findWhere(this.state.skills, { id: weapon.weapon.skill }) : this.state.skills.wrestling;
 
@@ -29006,10 +29013,122 @@ var Combat = function (_Component) {
           }
         }
       }
+    }
+  }, {
+    key: 'mobAttack',
+    value: function mobAttack() {
+      // *****Need to check for attack type (melee/ranged/run/none)
+      var mob = this.state.mob;
+      var player = this.state.player;
+
+      if (this.timer % mob.offense.speed === 0) {
+        var weapon = this.state.equipped.weapon;
+        var skill = weapon ? _.findWhere(this.state.skills, { id: weapon.weapon.skill }) : this.state.skills.wrestling;
+
+        if (skill) {
+          // Break this out to playerAttack function
+          var chance_to_hit = this.calcChanceToHit(mob.skills.wrestling, skill.current);
+
+          if (Math.round(Math.random() * 100) <= chance_to_hit) {
+            var damage = this.calcDamage(mob.offense.min, mob.offense.max, player.defense.physical);
+            __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifyError(this.props.store, 'The ' + mob.name + ' hits you for ' + damage + ' damage.');
+
+            player.hp -= damage;
+          } else {
+            __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notify(this.props.store, 'The ' + mob.name + ' misses you.');
+          }
+        }
+      }
+    }
+  }, {
+    key: 'combatTickHandler',
+    value: function combatTickHandler() {
+      this.timer = this.timer || 0;
+
+      // Player attack
+      this.playerAttack();
 
       // Mob attack
+      this.mobAttack();
 
-      this.timer += 0.25;
+      if (this.state.player.hp <= 0 || this.state.mob.hp <= 0) {
+        clearInterval(this.tick);
+
+        if (this.state.mob.hp <= 0) {
+          // Player wins
+          this.playerWin();
+        } else {
+          // Mob wins
+          this.mobWin();
+          console.log('mob win');
+        }
+      } else {
+        this.timer += 0.25;
+      }
+    }
+  }, {
+    key: 'mobWin',
+    value: function mobWin() {
+      var _this3 = this;
+
+      var score = this.state.player.score;
+      score.deaths++;
+
+      this.props.store.dispatch({
+        type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE,
+        payload: {
+          score: score
+        }
+      });
+
+      setTimeout(function () {
+        _this3.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.APP.MODAL_HIDE,
+          payload: {}
+        });
+      }, 2000);
+    }
+  }, {
+    key: 'playerWin',
+    value: function playerWin() {
+      var _this4 = this;
+
+      if (!!this.state.mob.credits && this.state.mob.credits > 0) {
+        __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifySuccess(this.props.store, 'You found ' + this.state.mob.credits + ' credits.');
+      }
+      var credits = this.state.player.credits + this.state.mob.credits;
+      var score = this.state.player.score;
+      score.kills++;
+
+      this.props.store.dispatch({
+        type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE,
+        payload: {
+          credits: credits,
+          score: score
+        }
+      });
+
+      // Add player kill count
+
+      // this.props.store.dispatch({
+      //   type: Config.ACTIONS.INVENTORY.ADD,
+      //   payload: {
+      //     item: item.id,
+      //     count: 1
+      //   }
+      // });
+
+      this.props.store.dispatch({
+        type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.SAVE,
+        payload: store.getState().Player
+      });
+
+      setTimeout(function () {
+        _this4.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.APP.MODAL_HIDE,
+          payload: {}
+        });
+      }, 2000);
     }
   }, {
     key: 'switchOffActions',
@@ -29062,7 +29181,7 @@ var Combat = function (_Component) {
   }, {
     key: 'getCombatActions',
     value: function getCombatActions() {
-      var _this3 = this;
+      var _this5 = this;
 
       var classMelee = __WEBPACK_IMPORTED_MODULE_7_classnames__({
         btn: true,
@@ -29088,7 +29207,7 @@ var Combat = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classMelee, onClick: function onClick() {
-              return _this3.toggleMelee();
+              return _this5.toggleMelee();
             },
             disabled: this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee' },
           'Melee'
@@ -29100,7 +29219,7 @@ var Combat = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classRanged, onClick: function onClick() {
-              return _this3.toggleRanged();
+              return _this5.toggleRanged();
             },
             disabled: !this.state.equipped.weapon || this.state.equipped.weapon.weapon.type !== 'ranged' },
           'Ranged'
@@ -29112,7 +29231,7 @@ var Combat = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { type: 'button', className: classRun, onClick: function onClick() {
-              return _this3.toggleRun();
+              return _this5.toggleRun();
             } },
           'Run'
         ),
@@ -31117,6 +31236,7 @@ var Reducers = function Reducers() {
 
   var tick_handler = function tick_handler() {
     __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].ACTIONS.PLAYER.TICK, {});
+    __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].ACTIONS.MOBS.TICK, {});
 
     if (_this.timer % 30 === 0) {
       if (__WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].env() === 'prod') {
@@ -31182,6 +31302,7 @@ var Reducers = function Reducers() {
           break;
         case APP.MODAL_HIDE:
           state.App.modal = { body: '', open: false };
+          // $('#modal-container').modal('hide');
           break;
       }
       break;
@@ -31276,7 +31397,10 @@ var Player = function Player() {
       run: false,
       mount: false,
       encumbered: false,
-      paralyzed: false
+      paralyzed: false,
+      hp_regen: 0,
+      mp_regen: 0,
+      stamina_regen: 0
     },
     defense: {
       physical: 0
@@ -31298,7 +31422,8 @@ var Player = function Player() {
       run: 0,
       log: 0,
       ore: 0,
-      crafted: 0
+      crafted: 0,
+      deaths: 0
     }
   };
 
@@ -31377,22 +31502,22 @@ var Player = function Player() {
   var update_partials = function update_partials(stat) {
     switch (stat) {
       case 'stamina':
-        state.Player.partial.stamina += 0.2;
-        if (Math.floor(state.Player.partial.stamina) === 1) {
+        state.Player.partial.stamina += 0.2 + state.Player.status.stamina_regen;
+        if (Math.floor(state.Player.partial.stamina) >= 1) {
           state.Player.partial.stamina = 0;
           return true;
         }
         break;
       case 'hp':
-        state.Player.partial.hp += 0.15;
-        if (Math.floor(state.Player.partial.hp) === 1) {
+        state.Player.partial.hp += 0.2 + state.Player.status.hp_regen;
+        if (Math.floor(state.Player.partial.hp) >= 1) {
           state.Player.partial.hp = 0;
           return true;
         }
         break;
       case 'mp':
-        state.Player.partial.mp += 0.2;
-        if (Math.floor(state.Player.partial.mp) === 1) {
+        state.Player.partial.mp += 0.2 + state.Player.status.mp_regen;
+        if (Math.floor(state.Player.partial.mp) >= 1) {
           state.Player.partial.mp = 0;
           return true;
         }
@@ -31801,6 +31926,7 @@ var MobData = [{
   wander: true,
   attackable: true,
   resources: [], //item IDs that are found on corpse
+  credits: 0,
   img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png',
   skills: {
     wrestling: 5,
@@ -32582,6 +32708,19 @@ var Mobs = function Mobs() {
       state.Mobs.combat = payload.data;
       // move setting of hp/stamina here
       update_combat_stats(payload.data);
+      break;
+    case MOBS.TICK:
+      _.each(state.Mobs.list, function (mob) {
+        if (mob.hp && mob.hp !== mob.maxhp) {
+          mob.partial = mob.partial || 0;
+          mob.partial += 0.2;
+
+          if (mob.partial % 1 === 0) {
+            mob.hp++;
+            mob.partial = 0;
+          }
+        }
+      });
       break;
   }
 
