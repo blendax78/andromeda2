@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
   const JS = [
     'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'node_modules/bootstrap/dist/js/bjootstrap.min.js',
     'node_modules/bootstrap-toggle/js/bootstrap-toggle.js',
     'node_modules/underscore/underscore-min.js'
   ];
