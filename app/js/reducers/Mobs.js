@@ -25,6 +25,12 @@ const Mobs = (state = {}, action) => {
   switch (type) {
     case MOBS.UPDATE:
       state.Mobs.combat = { ...payload };
+      state.Mobs.list[payload.key] = { ...state.Mobs.combat };
+
+      if (state.Mobs.combat.hp <= 0) {
+        delete state.Mobs.list[payload.key];
+        delete state.Planet.locations[_.findIndex(state.Planet.locations, { key: payload.key })];
+      }
     break;
     case MOBS.SHOW_ACTION:
       state.Mobs.showAction = !state.Mobs.showAction;

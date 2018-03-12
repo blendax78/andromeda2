@@ -129,7 +129,8 @@ class Combat extends Component {
           let damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
           Config.notifyGain(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
 
-          mob.hp -= damage;
+          mob.hp -= (mob.hp - damage >= 0) ? damage : mob.hp;
+
           // No need to update store (for now?)
           // Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
           Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
@@ -160,7 +161,8 @@ class Combat extends Component {
           let damage = this.calcDamage(mob.offense.min, mob.offense.max, player.defense.physical);
           Config.notifyError(this.props.store, `The ${mob.name} hits you for ${damage} damage.`);
 
-          player.hp -= damage;
+          player.hp -= (player.hp - damage >= 0) ? damage : player.hp;
+
         } else {
           Config.notify(this.props.store, `The ${mob.name} misses you.`);
         }
@@ -191,6 +193,20 @@ class Combat extends Component {
     } else {
       this.timer += 0.25;
     }
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLAYER.UPDATE,
+      payload: {
+        ...this.state.player
+      }
+    });
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.MOBS.UPDATE,
+      payload: {
+        ...this.state.mob
+      }
+    });
   }
 
   mobWin() {
