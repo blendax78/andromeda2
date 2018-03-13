@@ -192,7 +192,6 @@ class Combat extends Component {
       } else {
         // Mob wins
         this.mobWin();
-        console.log('mob win');
       }
 
       this.props.store.dispatch({
@@ -225,9 +224,14 @@ class Combat extends Component {
     this.props.store.dispatch({
       type: Config.ACTIONS.PLAYER.UPDATE,
       payload: {
+        hp: 0,
+        x: 0,
+        y: 0,
         score: score
       }
     });
+
+    Config.notifyError(this.props.store, `The ${mob.name} has killed you.`);
   }
 
   playerWin() {

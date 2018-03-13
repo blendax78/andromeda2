@@ -16,7 +16,11 @@ export const ZoneData = [
     mobs: [
       {
         id: 1,
-        chance: 90 //change back to 20
+        chance: 20
+      },
+      {
+        id: 2,
+        chance: 10
       }
     ],
     decorations: [
@@ -40,6 +44,10 @@ export const ZoneData = [
       {
         id: 1,
         chance: 20
+      },
+      {
+        id: 2,
+        chance: 10
       }
     ],
     decorations: [
@@ -67,6 +75,10 @@ export const ZoneData = [
       {
         id: 1,
         chance: 10
+      },
+      {
+        id: 2,
+        chance: 30
       }
     ],
     decorations: [
@@ -94,6 +106,10 @@ export const ZoneData = [
       {
         id: 1,
         chance: 10
+      },
+      {
+        id: 2,
+        chance: 30
       }
     ],
     decorations: [
