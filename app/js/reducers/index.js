@@ -32,8 +32,9 @@ const Reducers = (state = {}, action) => {
     state = {
       App: {
         modal: {
-          body: '',
-          open: false
+          body: false,
+          open: false,
+          locked: false
         }
       },
       User: User(state, action),
@@ -77,11 +78,13 @@ const Reducers = (state = {}, action) => {
     case 'APP':
       switch (type) {
         case APP.MODAL_SHOW:
-          state.App.modal = { ...payload, open: true };
+          state.App.modal = { ...state.App.modal, ...payload, open: true };
         break;
         case APP.MODAL_HIDE:
-          state.App.modal = { body: '', open: false };
-          // $('#modal-container').modal('hide');
+          state.App.modal = { body: false, open: false, locked: false };
+        break;
+        case APP.MODAL_UPDATE:
+          state.App.modal = { ...state.App.modal, ...payload };
         break;
       }
     break;

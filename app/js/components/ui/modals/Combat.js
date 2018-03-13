@@ -127,12 +127,12 @@ class Combat extends Component {
 
         if (Math.round(Math.random() * 100) <= chance_to_hit) {
           let damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
-          Config.notifyGain(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
+          Config.notifyWarning(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
 
           mob.hp -= (mob.hp - damage >= 0) ? damage : mob.hp;
 
           // No need to update store (for now?)
-          // Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
+          Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
           Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
         } else {
           Config.notify(this.props.store, `You miss the ${mob.name}.`);
@@ -171,6 +171,7 @@ class Combat extends Component {
   }
 
   combatTickHandler() {
+    // Main combat loop
     this.timer = this.timer || 0;
 
     // Player attack
@@ -190,6 +191,11 @@ class Combat extends Component {
         this.mobWin();
         console.log('mob win');
       }
+
+      this.props.store.dispatch({
+        type: Config.ACTIONS.APP.MODAL_UPDATE,
+        payload: { locked: false }
+      });
     } else {
       this.timer += 0.25;
     }
@@ -219,20 +225,27 @@ class Combat extends Component {
         score: score
       }
     });
-
-    setTimeout(() => {
-      this.props.store.dispatch({
-        type: Config.ACTIONS.APP.MODAL_HIDE,
-        payload: {}
-      });
-    }, 2000);
   }
 
   playerWin() {
+    let credits = this.state.player.credits;
+
     if (!!this.state.mob.credits && this.state.mob.credits > 0) {
       Config.notifySuccess(this.props.store, `You found ${this.state.mob.credits} credits.`);
+      credits += this.state.mob.credits;
     }
-    let credits = this.state.player.credits + this.state.mob.credits;
+
+    if (!!this.state.mob.inventory) {
+      Config.notifySuccess(this.props.store, `You found stuff.`);
+    // this.props.store.dispatch({
+    //   type: Config.ACTIONS.INVENTORY.ADD,
+    //   payload: {
+    //     item: item.id,
+    //     count: 1
+    //   }
+    // });
+    }
+    
     let score = this.state.player.score;
     score.kills++;
 
@@ -244,27 +257,10 @@ class Combat extends Component {
       }
     });
 
-    // Add player kill count
-    
-    // this.props.store.dispatch({
-    //   type: Config.ACTIONS.INVENTORY.ADD,
-    //   payload: {
-    //     item: item.id,
-    //     count: 1
-    //   }
-    // });
-
     this.props.store.dispatch({
       type: Config.ACTIONS.PLAYER.SAVE,
       payload: store.getState().Player
     });
-
-    setTimeout(() => {
-      this.props.store.dispatch({
-        type: Config.ACTIONS.APP.MODAL_HIDE,
-        payload: {}
-      });
-    }, 2000);
   }
 
   switchOffActions(current) {

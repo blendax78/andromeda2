@@ -6,7 +6,8 @@ const Config = {
   ACTIONS: {
     APP: {
       MODAL_SHOW: 'APP.MODAL.SHOW',
-      MODAL_HIDE: 'APP.MODAL.HIDE'
+      MODAL_HIDE: 'APP.MODAL.HIDE',
+      MODAL_UPDATE: 'APP.MODAL.UPDATE'
     },
     COMBAT: {
       RUN: 'COMBAT.RUN',

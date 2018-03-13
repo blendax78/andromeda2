@@ -12,7 +12,6 @@ class Modal extends Component {
   constructor(props) {
     super(props);
 
-    // Cause redux store & state update
     this.state = {
       modal: props.store.getState().App.modal
     };
@@ -67,13 +66,14 @@ class Modal extends Component {
   }
 
   setCombatModal() {
-    // need to move components out of state.
+    // this is being constantly run, so it's always locked
     this.state.modal = {
       body: <Combat store={this.props.store}/>,
       title: 'Combat',
       type: 'combat',
-      locked: true
+      locked: true// this.props.store.getState().App.modal.locked
     };
+
   }
 
   setPlayerStatsModal() {
