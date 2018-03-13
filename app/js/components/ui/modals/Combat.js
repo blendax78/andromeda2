@@ -49,9 +49,11 @@ class Combat extends Component {
     this.mounted = false;
     clearInterval(this.tick);
     this.unsubscribe();
+    this.props.store.dispatch({ type: Config.ACTIONS.APP.MODAL_UPDATE, payload: { locked: false } });
   }
 
   componentDidMount() {
+    this.props.store.dispatch({ type: Config.ACTIONS.APP.MODAL_UPDATE, payload: { locked: true } });
     this.mounted = true;
     this.tick = this.tick || setInterval(() => {
       if (!!this.state.mob && !!this.state.player && !!this.state.inventory && !!this.state.skills) {
@@ -113,7 +115,6 @@ class Combat extends Component {
   }
 
   playerAttack() {
-    // *****Need to check for attack type (melee/ranged/run/none)
     let mob = this.state.mob;
     let player = this.state.player;
 
@@ -174,8 +175,10 @@ class Combat extends Component {
     // Main combat loop
     this.timer = this.timer || 0;
 
-    // Player attack
-    this.playerAttack();
+    if (this.state.combat.melee === true || this.state.combat.ranged === true) {
+      // Player attack
+      this.playerAttack();
+    }
 
     // Mob attack
     this.mobAttack();

@@ -71,9 +71,8 @@ class Modal extends Component {
       body: <Combat store={this.props.store}/>,
       title: 'Combat',
       type: 'combat',
-      locked: true// this.props.store.getState().App.modal.locked
+      locked: this.props.store.getState().App.modal.locked
     };
-
   }
 
   setPlayerStatsModal() {
@@ -143,7 +142,7 @@ class Modal extends Component {
   getModalBody() {
     if (typeof this.state.modal.body === 'object') {
       return <div className="modal-body">{this.state.modal.body}</div>;
-    } else {
+    } else if (typeof this.state.modal.body !== 'boolean') {
       return <div className="modal-body" dangerouslySetInnerHTML={{__html: this.state.modal.body}}></div>;
     }
   }
