@@ -12,6 +12,11 @@ const Mobs = (state = {}, action) => {
   const { type, payload } = action;
 
   let update_combat_stats = (mob) => {
+    mob.strength = mob.strength || _.random(mob.stats.str_min, mob.stats.str_max);
+    mob.intelligence = mob.intelligence || _.random(mob.stats.int_min, mob.stats.int_max);
+    mob.dexterity = mob.dexterity || _.random(mob.stats.dex_min, mob.stats.dex_max);
+    mob.maxhp = mob.maxhp || _.random(mob.stats.hp_min, mob.stats.hp_max);
+
     mob.hp = mob.hp || mob.maxhp;
     mob.mp = mob.mp || mob.intelligence;
     mob.stamina = mob.stamina || mob.dexterity;
@@ -26,6 +31,8 @@ const Mobs = (state = {}, action) => {
     case MOBS.UPDATE:
       state.Mobs.combat = { ...payload };
       state.Mobs.list[payload.key] = { ...state.Mobs.combat };
+
+      // Possibly use update_combat_stats() for effects
 
       if (state.Mobs.combat.hp <= 0) {
         delete state.Mobs.list[payload.key];
@@ -44,6 +51,7 @@ const Mobs = (state = {}, action) => {
     break;
     case MOBS.CREATE:
       state.Mobs.list[payload.mob.key] = payload.mob;
+      update_combat_stats(payload.mob);
     break;
     case MOBS.CLEAR_COMBAT:
       state.Mobs.combat = undefined;

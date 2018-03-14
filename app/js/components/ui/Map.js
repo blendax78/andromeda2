@@ -63,7 +63,7 @@ class Map extends Component {
     }
 
     this.state.town = false;
-    let maxDecorations = Math.round(Math.random() * zone.maxDecorations);
+    let maxDecorations = _.random(1, zone.maxDecorations);
     // check for locations here
     let decorations = [];
 
@@ -80,7 +80,7 @@ class Map extends Component {
 
         // Check the chance in this loop.
         for (let i = 0; i <= maxDecorations; i++) {
-          let chance = Math.round(Math.random() * 100);
+          let chance = _.random(1, 100);
 
           potentialDecorations = _.filter(zone.decorations, (decoration) => {
             return chance <= decoration.chance;
@@ -158,7 +158,7 @@ class Map extends Component {
 
       // Check the chance in this loop.
       for (let i = 1; i <= maxMobs; i++) {
-        let chance = Math.round(Math.random() * 100);
+        let chance = _.random(1, 100);
 
         potentialMobs = _.filter(zone.mobs, (mob) => {
           return chance <= mob.chance;

@@ -126,7 +126,7 @@ class Combat extends Component {
         // Break this out to playerAttack function
         let chance_to_hit = this.calcChanceToHit(skill.current, mob.skills.wrestling);
 
-        if (Math.round(Math.random() * 100) <= chance_to_hit) {
+        if (_.random(1, 100) <= chance_to_hit) {
           let damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
           Config.notifyWarning(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
 
@@ -158,7 +158,7 @@ class Combat extends Component {
         // Break this out to playerAttack function
         let chance_to_hit = this.calcChanceToHit(mob.skills.wrestling, skill.current);
 
-        if (Math.round(Math.random() * 100) <= chance_to_hit) {
+        if (_.random(1, 100) <= chance_to_hit) {
           let damage = this.calcDamage(mob.offense.min, mob.offense.max, player.defense.physical);
           Config.notifyError(this.props.store, `The ${mob.name} hits you for ${damage} damage.`);
 
@@ -247,7 +247,7 @@ class Combat extends Component {
       credits += this.state.mob.credits;
     }
 
-    if (!!this.state.mob.inventory) {
+    if (!!this.state.mob.inventory && this.state.mob.inventory.length > 1) {
       Config.notifySuccess(this.props.store, `You found stuff.`);
     // this.props.store.dispatch({
     //   type: Config.ACTIONS.INVENTORY.ADD,

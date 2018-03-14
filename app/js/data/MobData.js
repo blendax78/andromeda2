@@ -5,8 +5,7 @@ export const MobData = [
     id: 1,
     name: 'sheep',
     description: 'A small sheep is wandering around here.',
-    armor: 12,
-    maxhp: 8,
+    armor: 6,
     karma: 0,
     fame: 300,
     offense: {
@@ -15,12 +14,19 @@ export const MobData = [
       aggro: false,
       speed: 2
     },
-    strength: 19,
-    dexterity: 25,
-    intelligence: 5,
+    stats: {
+      str_min: 19,
+      str_max: 19,
+      dex_min: 25,
+      dex_max: 25,
+      int_min: 5,
+      int_max: 5,
+      hp_min: 12,
+      hp_max: 12
+    },
     wander: true,
     attackable: true,
-    resources: [], //item IDs that are found on corpse
+    inventory: [], //item IDs that are found on corpse
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
     skills: {
@@ -33,22 +39,28 @@ export const MobData = [
     id: 2,
     name: 'hind',
     description: 'A hind is wandering here.',
-    armor: 10,
-    maxhp: 22,
+    armor: 8,
     karma: 0,
     fame: 300,
+    stats: {
+      str_min: 21,
+      str_max: 51,
+      dex_min: 47,
+      dex_max: 77,
+      int_min: 17,
+      int_max: 47,
+      hp_min: 15,
+      hp_max: 29
+    },
     offense: {
       min: 4,
       max: 4,
       aggro: false,
       speed: 2
     },
-    strength: 36,
-    dexterity: 62,
-    intelligence: 32,
     wander: true,
     attackable: true,
-    resources: [], //item IDs that are found on corpse
+    inventory: [], //item IDs that are found on corpse
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Hind_100.png`,
     skills: {

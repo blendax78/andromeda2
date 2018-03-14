@@ -13,11 +13,11 @@ const Skills = (state = {}, action) => {
   }
 
   let checkStatGain = (skill) => {
-    let gain = Math.round((Math.random() * 100) % 19);
+    let gain = Math.round(_.random(1, 100) % 19);
 
     if (gain <= 1) {
       let player = state.Player;
-      let statChance = Math.round(Math.random() * 100);
+      let statChance = _.random(1, 100);
       let stat = (statChance <= 75) ? state.Skills[skill].primary : state.Skills[skill].secondary;
 
       if (player[stat] < 100) {
@@ -30,7 +30,7 @@ const Skills = (state = {}, action) => {
   };
 
   let checkSkillGain = (skill, chance = undefined) => {
-    let rand = Math.random() * 100;
+    let rand = _.random(1, 100);
     let gain = 0;
 
     if (state.Skills[skill].current < 20.0) {
@@ -81,7 +81,7 @@ const Skills = (state = {}, action) => {
   };
 
   let checkCraftingSuccess = (payload) => {
-    let random = Math.round(Math.random() * 100);
+    let random = _.random(1, 100);
     let chance = ((payload.player_skill.current - payload.item.craft.skill.min) * 2) + 50;
 
     if (random < chance) {
@@ -106,7 +106,7 @@ const Skills = (state = {}, action) => {
 
   let checkObjectSuccess = (skill) => {
     // This function is called when an object is clicked and a skill is checked.
-    let random = Math.round(Math.random() * 100);
+    let random = _.random(1, 100);
     let object = _.findWhere(state.Planet.locations, { key: payload.key });
 
     if (object) {
