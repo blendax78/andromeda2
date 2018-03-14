@@ -784,5 +784,39 @@ export const ItemData = [
       sub_type: 'blade'
     }
   },
+  {
+    id: 27,
+    name: 'leather hide',
+    plural: 'leather hides',
+    countable: true,
+    description: '',
+    value: 3,
+    weight: 5,
+    type: 'items',
+    sub_type: 'resource',
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring'
+      }
+    }
+  },
+  {
+    id: 28,
+    name: 'cut leather',
+    plural: 'pieces of cut leather',
+    countable: true,
+    description: '',
+    value: 1,
+    weight: 1,
+    type: 'items',
+    sub_type: 'resource',
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring'
+      }
+    }
+  },
 ];
 

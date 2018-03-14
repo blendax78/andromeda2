@@ -29144,7 +29144,7 @@ var Combat = function (_Component) {
         }
       });
 
-      __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifyError(this.props.store, 'The ' + this.state.mob.name + ' has killed you.');
+      __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifyError(this.props.store, 'The ' + this.state.mob.name + ' has defeated you.');
     }
   }, {
     key: 'playerWin',
@@ -29182,6 +29182,8 @@ var Combat = function (_Component) {
         type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.PLAYER.SAVE,
         payload: store.getState().Player
       });
+
+      __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifySuccess(this.props.store, 'You have defeated the ' + this.state.mob.name + '.');
     }
   }, {
     key: 'switchOffActions',

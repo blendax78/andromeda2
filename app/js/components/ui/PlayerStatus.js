@@ -35,7 +35,7 @@ class PlayerStatus extends Component {
 
   render() {
     let player = this.state.player;
-    let dead = (player.status.dead) ? '(DEAD)' : '';
+    let dead = (player.status.dead) ? <span className="red">(DEAD)</span> : '';
     return (
       <div className="player-status nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
         <div className="row">

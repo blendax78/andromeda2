@@ -26,7 +26,9 @@ export const MobData = [
     },
     wander: true,
     attackable: true,
-    inventory: [], //item IDs that are found on corpse
+    inventory: [
+      { id: 5, count: 3 }
+    ], //item IDs that are found on corpse
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
     skills: {
@@ -60,7 +62,9 @@ export const MobData = [
     },
     wander: true,
     attackable: true,
-    inventory: [], //item IDs that are found on corpse
+    inventory: [
+      { id: 27, count: 8 }
+    ], //item IDs that are found on corpse
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Hind_100.png`,
     skills: {

@@ -50,6 +50,7 @@ class Store extends Component {
   }
 
   smelt(ore) {
+    // convert this to reusable function for other resources
     if (ore && ore.count > 0) {
       let count = ore.count;
       // Add iron ingots

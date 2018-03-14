@@ -18,7 +18,7 @@ const Reducers = (state = {}, action) => {
     Config.dispatch(store, Config.ACTIONS.MOBS.TICK, {});
 
     if (this.timer % 30 === 0) {
-      if (Config.env() === 'prod') {
+      if (Config.ENV === 'prod') {
         // Only if not on local.
         Config.dispatch(store, Config.ACTIONS.PLAYER.SAVE, store.getState().Player);
         Config.notifyGain(store, 'Saving Player.');

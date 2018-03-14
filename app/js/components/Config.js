@@ -3,6 +3,7 @@ import * as UUID from 'uuid';
 
 const Config = {
   APPNAME: 'Andromeda',
+  ENV: (location.href.indexOf('localhost') !== -1) ? 'dev' : 'prod',
   ACTIONS: {
     APP: {
       MODAL_SHOW: 'APP.MODAL.SHOW',
@@ -166,14 +167,6 @@ const Config = {
         return weapon.equip.equipped === true;
       })
     };
-  },
-
-  env: () => {
-    if (location.href.indexOf('localhost') !== -1) {
-      return 'dev';
-    } else {
-      return 'prod';
-    }
   },
 
   clone: (object) => {

@@ -32,7 +32,7 @@ const AndromedaService = store => next => action => {
     break;
     case ACTIONS.PLAYER.SAVE:
       // Fire and forget request
-      if (Config.env() === 'prod') {
+      if (Config.ENV === 'prod') {
         request
           .post(Config.URLS.API + Config.URLS.PLAYER + '/' +  payload.id)
           .send({ data: JSON.stringify(payload) })
@@ -47,7 +47,7 @@ const AndromedaService = store => next => action => {
     break;
     case ACTIONS.SKILLS.SAVE:
       // Fire and forget request
-      if (Config.env() === 'prod') {
+      if (Config.ENV === 'prod') {
         request
           .post(Config.URLS.API + Config.URLS.SKILLS + '/' +  payload.player_id)
           .send({ data: JSON.stringify(payload) })
@@ -136,7 +136,7 @@ const AndromedaService = store => next => action => {
     break;
     case ACTIONS.INVENTORY.SAVE:
       // Fire and forget request
-      if (Config.env() === 'prod') {
+      if (Config.ENV === 'prod') {
         request
           .post(Config.URLS.API + Config.URLS.INVENTORY + '/' +  payload.player_id)
           .send({ data: JSON.stringify(payload) })

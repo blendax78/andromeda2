@@ -3,6 +3,7 @@ import Config from '../../Config';
 import * as classNames from 'classnames';
 import MessageList from '../MessageList';
 import CombatStatus from '../CombatStatus';
+import { ItemData } from '../../../data/ItemData';
 
 class Combat extends Component {
   constructor(props) {
@@ -236,10 +237,12 @@ class Combat extends Component {
       }
     });
 
-    Config.notifyError(this.props.store, `The ${this.state.mob.name} has killed you.`);
+    Config.notifyError(this.props.store, `The ${this.state.mob.name} has defeated you.`);
   }
 
   playerWin() {
+    Config.notifySuccess(this.props.store, `You have defeated the ${this.state.mob.name}.`);
+
     let credits = this.state.player.credits;
 
     if (!!this.state.mob.credits && this.state.mob.credits > 0) {
@@ -247,15 +250,21 @@ class Combat extends Component {
       credits += this.state.mob.credits;
     }
 
-    if (!!this.state.mob.inventory && this.state.mob.inventory.length > 1) {
-      Config.notifySuccess(this.props.store, `You found stuff.`);
-    // this.props.store.dispatch({
-    //   type: Config.ACTIONS.INVENTORY.ADD,
-    //   payload: {
-    //     item: item.id,
-    //     count: 1
-    //   }
-    // });
+    if (!!this.state.mob.inventory && this.state.mob.inventory.length > 0) {
+      _.each(this.state.mob.inventory, (inventory) => {
+        let found = { ..._.findWhere(ItemData, { id: inventory.id } ), ...inventory };
+        let count = found.count || 1;
+        let desc = (count > 1) ? `${count} ${found.plural}` : found.name;
+
+        this.props.store.dispatch({
+          type: Config.ACTIONS.INVENTORY.ADD,
+          payload: {
+            item: found.id,
+            count: count
+          }
+        });
+        Config.notifySuccess(this.props.store, `You found ${desc}.`);
+      });
     }
     
     let score = this.state.player.score;
@@ -273,6 +282,7 @@ class Combat extends Component {
       type: Config.ACTIONS.PLAYER.SAVE,
       payload: store.getState().Player
     });
+
   }
 
   switchOffActions(current) {
@@ -367,7 +377,7 @@ class Combat extends Component {
             {this.getCombatActions()}
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                sub actions
+                sub actions?
               </div>
             </div>
           <div className="row">
