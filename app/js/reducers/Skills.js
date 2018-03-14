@@ -12,6 +12,26 @@ const Skills = (state = {}, action) => {
     // state.Skills = {...{'lumberjacking':{'current':15.8,'description':'','id':1,'modifier':0,'name':'Lumberjacking','primary':'strength','secondary':'dexterity'},'mining':{'current':12.3,'description':'','id':2,'modifier':0,'name':'Mining','primary':'strength','secondary':'dexterity'},'wrestling':{'current':0,'description':'','id':3,'modifier':0,'name':'Wrestling','primary':'strength','secondary':'dexterity'},'tailoring':{'current':0,'description':'','id':4,'modifier':0,'name':'Tailoring','primary':'dexterity','secondary':'intelligence'},'blacksmithing':{'current':5.899999999999998,'description':'','id':5,'modifier':0,'name':'Blacksmithing','primary':'strength','secondary':'dexterity'},'swordsmanship':{'current':0,'description':'','id':6,'modifier':0,'name':'Swordsmanship','primary':'strength','secondary':'dexterity'},'fencing':{'current':0,'description':'','id':7,'modifier':0,'name':'Fencing','primary':'dexterity','secondary':'strength'}};
   }
 
+  let notifySuccess = (msg) => {
+    notify(msg, Config.ACTIONS.MESSAGES.SUCCESS);
+  };
+
+  let notifyGain = (msg) => {
+    notify(msg, Config.ACTIONS.MESSAGES.GAIN);
+  };
+
+  let notifyError = (msg) => {
+    notify(msg, Config.ACTIONS.MESSAGES.ERROR);
+  };
+
+  let notifyWarning = (msg) => {
+    notify(msg, Config.ACTIONS.MESSAGES.WARNING);
+  };
+
+  let notify = (msg, type = Config.ACTIONS.MESSAGES.ADD) => {
+    state.Queue.add('actions', type, { body: msg });
+  };
+
   let checkStatGain = (skill) => {
     let gain = Math.round(_.random(1, 100) % 19);
 
@@ -23,8 +43,8 @@ const Skills = (state = {}, action) => {
       if (player[stat] < 100) {
         player[stat]++;
 
-        Config.dispatch(store, Config.ACTIONS.PLAYER.SAVE, state.Player);
-        Config.notifyGain(store, `${ Config.upperCase(stat) } increased by 1.`);
+        state.Queue.add('actions', Config.ACTIONS.PLAYER.SAVE, state.Player);
+        notifyGain(`${ Config.upperCase(stat) } increased by 1.`);
       }
     }
   };
@@ -54,23 +74,23 @@ const Skills = (state = {}, action) => {
       state.Skills[skill].current = parseFloat((parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1));
       checkStatGain(skill);
 
-      Config.dispatch(store, Config.ACTIONS.SKILLS.SAVE, { ...state.Skills, player_id: state.Player.id });
-      Config.notifyGain(store, `${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
+      state.Queue.add('actions', Config.ACTIONS.SKILLS.SAVE, { ...state.Skills, player_id: state.Player.id });
+      notifyGain(`${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
     }
   };
 
   let checkResultSuccess = () => {
     if (payload.action && payload.action.result) {
-      Config.notifyGain(store, payload.action.result.message);
+      notifyGain(payload.action.result.message);
 
       if (payload.action.result.inventory === true) {
 
         if (state.Player.encumbrance >= state.Player.maxencumbrance) {
-          Config.notify(store, 'You cannot carry any more.');
+          notify('You cannot carry any more.');
           return;
         }
 
-        Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD,
+        state.Queue.add('actions', Config.ACTIONS.INVENTORY.ADD,
           {
             item: payload.action.result.item,
             count: 1,
@@ -86,16 +106,16 @@ const Skills = (state = {}, action) => {
 
     if (random < chance) {
       // success
-      Config.notifyGain(store, `You craft ${payload.item.description}.`);
+      notifyGain(`You craft ${payload.item.description}.`);
 
       checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
     } else {
       // failure
-      Config.notify(store, `You fail to craft ${payload.item.description}. Some of the materials are lost.`);
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
+      notify(`You fail to craft ${payload.item.description}. Some of the materials are lost.`);
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
 
       if (payload.player_skill.current < 20.0) {
         checkSkillGain(payload.player_skill.name.toLowerCase());
@@ -111,7 +131,7 @@ const Skills = (state = {}, action) => {
 
     if (object) {
       if (object.action.count < 1) {
-        Config.notify(store, object.action.maxMessage)
+        notify(object.action.maxMessage)
         return false;
       }
 

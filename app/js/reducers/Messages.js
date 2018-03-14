@@ -30,7 +30,6 @@ const Messages = (state = {}, action) => {
       add(payload);
     break;
     case MESSAGES.SPEAK:
-      // ES6 String interpolation (note the back ticks)
       payload.body = `<${payload.speaker}> ${payload.body}`;
       payload.color = 'green';
       add(payload);

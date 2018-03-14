@@ -6,27 +6,13 @@ import Inventory from './Inventory';
 import Skills from './Skills';
 import Mobs from './Mobs';
 import Effects from './Effects';
+import Queue from './Queue';
 import Config from '../components/Config';
 
 let APP = Config.ACTIONS.APP;
 
 const Reducers = (state = {}, action) => {
   const { type, payload } = action;
-
-  let tick_handler = () => {
-    Config.dispatch(store, Config.ACTIONS.PLAYER.TICK, {});
-    Config.dispatch(store, Config.ACTIONS.MOBS.TICK, {});
-
-    if (this.timer % 30 === 0) {
-      if (Config.ENV === 'prod') {
-        // Only if not on local.
-        Config.dispatch(store, Config.ACTIONS.PLAYER.SAVE, store.getState().Player);
-        Config.notifyGain(store, 'Saving Player.');
-      }
-    }
-
-    this.timer++;
-  };
 
   if (!state.User) {
     state = {
@@ -43,7 +29,8 @@ const Reducers = (state = {}, action) => {
       Planet: Planet(state, action),
       Inventory: Inventory(state, action),
       Skills: Skills(state, action),
-      Mobs: Mobs(state, action)
+      Mobs: Mobs(state, action),
+      Queue: Queue(state, action)
     }
   }
 
@@ -64,6 +51,9 @@ const Reducers = (state = {}, action) => {
     case 'INVENTORY':
       Inventory(state, action);
       Effects(state, action);
+    break;
+    case 'QUEUE':
+      Queue(state, action);
     break;
     case 'SKILLS':
       Skills(state, action);
@@ -89,12 +79,6 @@ const Reducers = (state = {}, action) => {
       }
     break;
   }
-
-  // Global tick handler
-  this.timer = this.timer || 0;
-  this.tick = this.tick || setInterval(() => {
-    tick_handler();
-  }, 1000);
 
   return state;
 }

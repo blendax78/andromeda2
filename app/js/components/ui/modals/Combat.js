@@ -97,9 +97,9 @@ class Combat extends Component {
       Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
       * Damage Increase is capped at 100%.
     */
-    // AR/defense is a percentage
+    // FORMULA: Damage Absorbed= Random value between of 1/2 AR to full AR of Hit Location's piece of armor.
     let damage = _.random(min, max);
-    damage = Math.round(damage * ((100 - defense)/100 ));
+    damage = Math.round(damage - _.random(Math.round(defense / 2), defense));
     return (damage > 0) ? damage : 0;
   }
 
@@ -402,8 +402,8 @@ class Combat extends Component {
 }
 
 export default Combat;
-
-//https://uo.stratics.com/content/arms-armor/combat.php
+// http://web.archive.org/web/20020806221626/http://uo.stratics.com/content/arms-armor/combat.shtml#8
+// https://uo.stratics.com/content/arms-armor/combat.php
 // Attack Sequence
 // 1) Determine Speed of Attack
 // 2) Determine % Chance to Hit

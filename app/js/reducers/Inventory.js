@@ -3,6 +3,7 @@ import { ItemData } from '../data/ItemData';
 
 let INVENTORY = Config.ACTIONS.INVENTORY;
 
+// NOTE: Saving to database is handled in AndromedaService
 const Inventory = (state = {}, action) => {
 
   const { type, payload } = action;
@@ -104,8 +105,6 @@ const Inventory = (state = {}, action) => {
         let add_name = (payload.craft === true) ? 'crafted' : item.name;
         state.Player.score[add_name]++;
       }
-
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
     case INVENTORY.REMOVE:
       if (item.countable === false) {
@@ -125,19 +124,6 @@ const Inventory = (state = {}, action) => {
           inventoryItem.count -= payload.count;
         }
       }
-
-    Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
-    break;
-    case INVENTORY.EQUIP:
-      inventoryItem.equip.equipped = true;
-      unequip_others(inventoryItem);
-
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
-    break;
-    case INVENTORY.UNEQUIP:
-      inventoryItem.equip.equipped = false;
-
-      Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
   }
 

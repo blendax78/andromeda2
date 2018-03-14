@@ -22,6 +22,35 @@ class App extends Component {
         player: props.store.getState().Player
       });
     });
+
+    let tick_handler = () => {
+      Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.TICK, {});
+      Config.dispatch(this.props.store, Config.ACTIONS.MOBS.TICK, {});
+
+      if (this.timer % 30 === 0) {
+        if (Config.ENV === 'prod') {
+          // Only if not on local.
+          Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.SAVE, this.props.store.getState().Player);
+          Config.notifyGain(this.props.store, 'Saving Player.');
+        }
+      }
+
+      this.timer++;
+    };
+
+    // Global tick handler
+    this.timer = this.timer || 0;
+    this.tick = this.tick || setInterval(() => {
+      tick_handler();
+    }, 1000);
+
+    this.queue_processor = this.queue_processor || setInterval(() => {
+      // Queued Actions
+      let queue_item = this.props.store.getState().Queue.remove('actions');
+      if (!!queue_item) {
+        Config.dispatch(this.props.store, queue_item.action, queue_item.payload);
+      }
+    }, 250);
   }
 
   getInitialState() {

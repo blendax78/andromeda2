@@ -60,6 +60,16 @@ const AndromedaService = store => next => action => {
           });
       }
     break;
+    case ACTIONS.INVENTORY.EQUIP:
+    case ACTIONS.INVENTORY.UNEQUIP:
+    case ACTIONS.INVENTORY.REMOVE:
+    case ACTIONS.INVENTORY.ADD:
+      // Save inventory updates
+      store.dispatch({
+        type: ACTIONS.INVENTORY.SAVE,
+        payload: { ...store.getState().Inventory, player_id: store.getState().Player.id }
+      });
+    break;
     case ACTIONS.USER.FETCH:
       // User
       request

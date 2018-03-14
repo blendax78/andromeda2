@@ -96,6 +96,10 @@ const Config = {
       UPDATE: 'MOBS.UPDATE',
       TICK: 'MOBS.TICK'
     },
+    QUEUE: {
+      ADD: 'QUEUE.ADD',
+      REMOVE: 'QUEUE.REMOVE'
+    }
   },
   URLS: {
     API: 'https://andromeda.vintimilla.org',

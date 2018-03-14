@@ -59,7 +59,7 @@ class Buy extends Component {
 
       this.props.store.dispatch({
         type: Config.ACTIONS.PLAYER.SAVE,
-        payload: store.getState().Player
+        payload: this.state.player
       });
       
       Config.notify(this.props.store, `You bought ${item.description} for ${item.value * this.value_mult} credits.`);

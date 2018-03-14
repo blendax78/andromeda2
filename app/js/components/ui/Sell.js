@@ -48,7 +48,7 @@ class Sell extends Component {
 
       this.props.store.dispatch({
         type: Config.ACTIONS.PLAYER.SAVE,
-        payload: store.getState().Player
+        payload: this.state.player
       });
       
       Config.notify(this.props.store, `You sold ${description} for ${item.value} credits.`);
