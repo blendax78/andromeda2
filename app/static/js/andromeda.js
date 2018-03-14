@@ -488,6 +488,10 @@ var Config = {
       SHOW_COMBAT: 'MOBS.SHOW_COMBAT',
       UPDATE: 'MOBS.UPDATE',
       TICK: 'MOBS.TICK'
+    },
+    QUEUE: {
+      ADD: 'QUEUE.ADD',
+      REMOVE: 'QUEUE.REMOVE'
     }
   },
   URLS: {
@@ -12271,7 +12275,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_App__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reducers__ = __webpack_require__(332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AndromedaService__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AndromedaService__ = __webpack_require__(349);
 
 
 
@@ -25801,6 +25805,14 @@ var App = function (_Component) {
     _this.tick = _this.tick || setInterval(function () {
       tick_handler();
     }, 1000);
+
+    _this.queue_processor = _this.queue_processor || setInterval(function () {
+      // Queued Actions
+      var queue_item = _this.props.store.getState().Queue.remove('actions');
+      if (!!queue_item) {
+        __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, queue_item.action, queue_item.payload);
+      }
+    }, 250);
     return _this;
   }
 
@@ -29071,7 +29083,7 @@ var Combat = function (_Component) {
       // FORMULA: Damage Absorbed= Random value between of 1/2 AR to full AR of Hit Location's piece of armor.
       var damage = _.random(min, max);
       damage = Math.round(damage - _.random(Math.round(defense / 2), defense));
-      return damage > 0 ? damage : 0;
+      return damage > 0 ? damage : 1;
     }
   }, {
     key: 'calcChanceToHit',
@@ -29257,7 +29269,7 @@ var Combat = function (_Component) {
 
       this.props.store.dispatch({
         type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.PLAYER.SAVE,
-        payload: store.getState().Player
+        payload: this.props.store.getState().Player
       });
     }
   }, {
@@ -31346,7 +31358,8 @@ var BottomPanel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Skills__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Mobs__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Effects__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Queue__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Config__ = __webpack_require__(3);
 
 
 
@@ -31358,7 +31371,8 @@ var BottomPanel = function (_Component) {
 
 
 
-var APP = __WEBPACK_IMPORTED_MODULE_9__components_Config__["a" /* default */].ACTIONS.APP;
+
+var APP = __WEBPACK_IMPORTED_MODULE_10__components_Config__["a" /* default */].ACTIONS.APP;
 
 var Reducers = function Reducers() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -31382,7 +31396,8 @@ var Reducers = function Reducers() {
       Planet: Object(__WEBPACK_IMPORTED_MODULE_4__Planet__["a" /* default */])(state, action),
       Inventory: Object(__WEBPACK_IMPORTED_MODULE_5__Inventory__["a" /* default */])(state, action),
       Skills: Object(__WEBPACK_IMPORTED_MODULE_6__Skills__["a" /* default */])(state, action),
-      Mobs: Object(__WEBPACK_IMPORTED_MODULE_7__Mobs__["a" /* default */])(state, action)
+      Mobs: Object(__WEBPACK_IMPORTED_MODULE_7__Mobs__["a" /* default */])(state, action),
+      Queue: Object(__WEBPACK_IMPORTED_MODULE_9__Queue__["a" /* default */])(state, action)
     };
   }
 
@@ -31403,6 +31418,9 @@ var Reducers = function Reducers() {
     case 'INVENTORY':
       Object(__WEBPACK_IMPORTED_MODULE_5__Inventory__["a" /* default */])(state, action);
       Object(__WEBPACK_IMPORTED_MODULE_8__Effects__["a" /* default */])(state, action);
+      break;
+    case 'QUEUE':
+      Object(__WEBPACK_IMPORTED_MODULE_9__Queue__["a" /* default */])(state, action);
       break;
     case 'SKILLS':
       Object(__WEBPACK_IMPORTED_MODULE_6__Skills__["a" /* default */])(state, action);
@@ -31752,7 +31770,6 @@ var Messages = function Messages() {
       add(payload);
       break;
     case MESSAGES.SPEAK:
-      // ES6 String interpolation (note the back ticks)
       payload.body = '<' + payload.speaker + '> ' + payload.body;
       payload.color = 'green';
       add(payload);
@@ -32294,6 +32311,7 @@ var StoreData = [{
 
 var INVENTORY = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY;
 
+// NOTE: Saving to database is handled in AndromedaService
 var Inventory = function Inventory() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
@@ -32454,6 +32472,28 @@ var Skills = function Skills() {
     // state.Skills = {...{'lumberjacking':{'current':15.8,'description':'','id':1,'modifier':0,'name':'Lumberjacking','primary':'strength','secondary':'dexterity'},'mining':{'current':12.3,'description':'','id':2,'modifier':0,'name':'Mining','primary':'strength','secondary':'dexterity'},'wrestling':{'current':0,'description':'','id':3,'modifier':0,'name':'Wrestling','primary':'strength','secondary':'dexterity'},'tailoring':{'current':0,'description':'','id':4,'modifier':0,'name':'Tailoring','primary':'dexterity','secondary':'intelligence'},'blacksmithing':{'current':5.899999999999998,'description':'','id':5,'modifier':0,'name':'Blacksmithing','primary':'strength','secondary':'dexterity'},'swordsmanship':{'current':0,'description':'','id':6,'modifier':0,'name':'Swordsmanship','primary':'strength','secondary':'dexterity'},'fencing':{'current':0,'description':'','id':7,'modifier':0,'name':'Fencing','primary':'dexterity','secondary':'strength'}};
   }
 
+  var notifySuccess = function notifySuccess(msg) {
+    notify(msg, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.MESSAGES.SUCCESS);
+  };
+
+  var notifyGain = function notifyGain(msg) {
+    notify(msg, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.MESSAGES.GAIN);
+  };
+
+  var notifyError = function notifyError(msg) {
+    notify(msg, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.MESSAGES.ERROR);
+  };
+
+  var notifyWarning = function notifyWarning(msg) {
+    notify(msg, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.MESSAGES.WARNING);
+  };
+
+  var notify = function notify(msg) {
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.MESSAGES.ADD;
+
+    state.Queue.add('actions', type, { body: msg });
+  };
+
   var checkStatGain = function checkStatGain(skill) {
     var gain = Math.round(_.random(1, 100) % 19);
 
@@ -32465,8 +32505,8 @@ var Skills = function Skills() {
       if (player[stat] < 100) {
         player[stat]++;
 
-        __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, state.Player);
-        __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(stat) + ' increased by 1.');
+        state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, state.Player);
+        notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(stat) + ' increased by 1.');
       }
     }
   };
@@ -32498,23 +32538,23 @@ var Skills = function Skills() {
       state.Skills[skill].current = parseFloat((parseFloat(state.Skills[skill].current) + parseFloat(gain)).toFixed(1));
       checkStatGain(skill);
 
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.SKILLS.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, { player_id: state.Player.id }));
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(skill) + ' increased by ' + gain.toString() + '.');
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.SKILLS.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, { player_id: state.Player.id }));
+      notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(skill) + ' increased by ' + gain.toString() + '.');
     }
   };
 
   var checkResultSuccess = function checkResultSuccess() {
     if (payload.action && payload.action.result) {
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, payload.action.result.message);
+      notifyGain(payload.action.result.message);
 
       if (payload.action.result.inventory === true) {
 
         if (state.Player.encumbrance >= state.Player.maxencumbrance) {
-          __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notify(store, 'You cannot carry any more.');
+          notify('You cannot carry any more.');
           return;
         }
 
-        __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, {
+        state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, {
           item: payload.action.result.item,
           count: 1,
           score: true
@@ -32529,16 +32569,16 @@ var Skills = function Skills() {
 
     if (random < chance) {
       // success
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notifyGain(store, 'You craft ' + payload.item.description + '.');
+      notifyGain('You craft ' + payload.item.description + '.');
 
       checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
     } else {
       // failure
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notify(store, 'You fail to craft ' + payload.item.description + '. Some of the materials are lost.');
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
+      notify('You fail to craft ' + payload.item.description + '. Some of the materials are lost.');
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
 
       if (payload.player_skill.current < 20.0) {
         checkSkillGain(payload.player_skill.name.toLowerCase());
@@ -32553,7 +32593,7 @@ var Skills = function Skills() {
 
     if (object) {
       if (object.action.count < 1) {
-        __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].notify(store, object.action.maxMessage);
+        notify(object.action.maxMessage);
         return false;
       }
 
@@ -32994,11 +33034,54 @@ Example: ((17 - 1) * (100.0 / (100 + 20))) = 13 ticks.
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
+
+var QUEUE = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.QUEUE;
+
+// Handles messaging queues.
+// Add new array for a different queue
+var Queue = function Queue() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  state.Queue = state.Queue || {
+    actions: [],
+    add: function add(queue, action, message) {
+      state.Queue[queue].push({ action: action, payload: message });
+    },
+    remove: function remove(queue) {
+      return state.Queue[queue].shift();
+    }
+  };
+
+  var type = action.type,
+      payload = action.payload;
+
+
+  switch (type) {
+    case QUEUE.ADD:
+      // Probably won't be used
+      state.Queue[payload.queue].push(payload.message);
+      break;
+    case QUEUE.REMOVE:
+      break;
+  }
+
+  return state.Queue;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (Queue);
+
+/***/ }),
+/* 349 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__ = __webpack_require__(350);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent__ = __webpack_require__(352);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_superagent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Config__ = __webpack_require__(3);
 
@@ -33064,7 +33147,6 @@ var AndromedaService = function AndromedaService(store) {
         case ACTIONS.INVENTORY.REMOVE:
         case ACTIONS.INVENTORY.ADD:
           // Save inventory updates
-          console.log(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, store.getState().Inventory, { player_id: store.getState().Player.id }));
           store.dispatch({
             type: ACTIONS.INVENTORY.SAVE,
             payload: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, store.getState().Inventory, { player_id: store.getState().Player.id })
@@ -33135,9 +33217,8 @@ var AndromedaService = function AndromedaService(store) {
           break;
         case ACTIONS.INVENTORY.SAVE:
           // Fire and forget request
-          console.log(ACTIONS.INVENTORY.SAVE, __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].ENV);
           if (__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].ENV === 'prod') {
-            __WEBPACK_IMPORTED_MODULE_2_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.INVENTORY + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default()(payload), bang: 'fizz' }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
+            __WEBPACK_IMPORTED_MODULE_2_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.INVENTORY + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
               if (err) {
                 console.error(err);
                 return;
@@ -33155,13 +33236,13 @@ var AndromedaService = function AndromedaService(store) {
 /* harmony default export */ __webpack_exports__["a"] = (AndromedaService);
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(350), __esModule: true };
+module.exports = { "default": __webpack_require__(351), __esModule: true };
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var core = __webpack_require__(19);
@@ -33172,7 +33253,7 @@ module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
 
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -33189,11 +33270,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(352);
-var RequestBase = __webpack_require__(353);
+var Emitter = __webpack_require__(353);
+var RequestBase = __webpack_require__(354);
 var isObject = __webpack_require__(142);
-var ResponseBase = __webpack_require__(354);
-var Agent = __webpack_require__(356);
+var ResponseBase = __webpack_require__(355);
+var Agent = __webpack_require__(357);
 
 /**
  * Noop.
@@ -34098,7 +34179,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -34267,7 +34348,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34968,7 +35049,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34978,7 +35059,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(355);
+var utils = __webpack_require__(356);
 
 /**
  * Expose `ResponseBase`.
@@ -35109,7 +35190,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35187,7 +35268,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports) {
 
 function Agent() {
