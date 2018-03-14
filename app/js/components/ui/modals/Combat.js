@@ -219,19 +219,24 @@ class Combat extends Component {
 
   mobWin() {
     let score = this.state.player.score;
+    let status = this.state.player.status;
     score.deaths++;
+    status.dead = true;
 
     this.props.store.dispatch({
       type: Config.ACTIONS.PLAYER.UPDATE,
       payload: {
         hp: 0,
+        mp: 0,
+        stamina: 1,
         x: 0,
         y: 0,
+        status: status,
         score: score
       }
     });
 
-    Config.notifyError(this.props.store, `The ${mob.name} has killed you.`);
+    Config.notifyError(this.props.store, `The ${this.state.mob.name} has killed you.`);
   }
 
   playerWin() {

@@ -12,6 +12,7 @@ class Navbar extends Component {
       town_nav: Config.randomKey('topNavItem'),
       player_nav: Config.randomKey('topNavItem'),
       todo: Config.randomKey('topNavItem'),
+      dead: Config.randomKey('topNavItem'),
     };
 
     this.state = {
@@ -86,9 +87,12 @@ class Navbar extends Component {
     // Use a static key, or else the dropdown will close during a state change, thanks to an ever-updating key
     let topElems = [
       <NavDropdown title="Player" elems={mainNavElems} key={this.keys.player_nav} id="player_dropdown" />,
-      <NavItem href="#" key={this.keys.todo} text="To Do"
-        click={ () => this.showToDos() } />
+      <NavItem href="#" key={this.keys.todo} text="To Do" click={ () => this.showToDos() } />
     ];
+
+    if (this.state.player.status.dead) {
+      topElems.push(<NavItem href="#" key={this.keys.dead} text="You are Dead" color="red"  />);
+    }
 
     let town = _.findWhere(this.state.planet.towns, { x: this.state.player.x, y: this.state.player.y });
 

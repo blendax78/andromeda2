@@ -30,7 +30,8 @@ const Player = (state = {}, action) => {
       paralyzed: false,
       hp_regen: 0,
       mp_regen: 0,
-      stamina_regen: 0
+      stamina_regen: 0,
+      dead: false
     },
     defense: {
       physical: 0,
@@ -187,6 +188,10 @@ const Player = (state = {}, action) => {
       state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.TICK:
+      if (state.Player.status.dead) {
+        break;
+      }
+
       if (update_partials('hp')) {
         state.Player.hp = update_hp(1);  
       }

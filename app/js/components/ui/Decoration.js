@@ -6,22 +6,15 @@ class Decoration extends Component {
     super(props);
 
     this.state = {
-      data: this.props.data
+      data: this.props.data,
+      player: this.props.store.getState().Player
     };
-
-    // Doesn't need to subscribe. Component is updated on Map
-    // props.store.subscribe(() => {
-    //   this.setState({
-        // planet: this.props.store.getState().Planet,
-        // player: this.props.store.getState().Player
-    //   });
-    // });
   }
 
   handleClick(e) {
     e.preventDefault();
     let decoration = this.state.data;
-    if (!decoration.action) {
+    if (!decoration.action || this.state.player.status.dead) {
       return false;
     }
 

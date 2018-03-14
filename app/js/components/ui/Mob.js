@@ -11,6 +11,7 @@ class Mob extends Component {
 
     this.state = {
       mob: this.props.data,
+      player: this.props.store.getState().Player,
       showAction: this.props.store.getState().Mobs.showAction,
       showCombat: this.props.store.getState().Mobs.showCombat
     };
@@ -19,6 +20,7 @@ class Mob extends Component {
       if (this.mounted) {
         this.setState({
           mob: this.state.mob,
+          player: this.props.store.getState().Player,
           showAction: this.props.store.getState().Mobs.showAction,
           showCombat: this.props.store.getState().Mobs.showCombat
         });
@@ -57,7 +59,7 @@ class Mob extends Component {
 
     let buttons = [];
 
-    if (this.state.mob.attackable) {
+    if (this.state.mob.attackable && !this.state.player.status.dead) {
       buttons.push(<button key={this.keys.actions} type="button" className="btn top5" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
     }
 
