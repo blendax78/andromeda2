@@ -97,10 +97,6 @@ class Navbar extends Component {
       <NavItem href="#" key={this.keys.todo} text="To Do" click={ () => this.showToDos() } />
     ];
 
-    if (this.state.player.status.dead) {
-      topElems.push(<NavItem href="#" key={this.keys.dead} text="You are Dead" color="red"  />);
-    }
-
     let town = _.findWhere(this.state.planet.towns, { x: this.state.player.x, y: this.state.player.y });
 
     if (town) {
