@@ -16,7 +16,7 @@ class Player(Model):
     for field in int_fields:
       query += '%s = %i,' % (field, int(data[field]))
 
-    query += "score = '%s'" % json.dumps(data['score'])
+    query += "score = '%s', status= '%s'" % (json.dumps(data['score']), json.dumps(data['status']))
     # Remove trailing comma
     query += ' where id = %i' % int(player_id)
 

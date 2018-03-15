@@ -24,7 +24,12 @@ export const PlanetData = [
         id: 1,
         x: 0,
         y: 0
-      }
+      },
+      {
+        id: 2,
+        x: 200,
+        y: 500
+      },
     ],
     zones: [
       {
@@ -32,7 +37,7 @@ export const PlanetData = [
         zoneMinX: 0,
         zoneMinY: 25,
         zoneMaxX: 2000,
-        zoneMaxY: 125
+        zoneMaxY: 750
       },
       {
         id: 2,
@@ -44,7 +49,7 @@ export const PlanetData = [
       {
         id: 3,
         zoneMinX: 0,
-        zoneMinY: 125,
+        zoneMinY: 750,
         zoneMaxX: 2000,
         zoneMaxY: 500
       }

@@ -30,7 +30,7 @@ class App extends Component {
       if (this.timer % 30 === 0) {
         if (Config.ENV === 'prod') {
           // Only if not on local.
-          Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.SAVE, this.props.store.getState().Player);
+          Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.SAVE, this.state.player);
           Config.notifyGain(this.props.store, 'Saving Player.');
         }
       }
@@ -44,13 +44,14 @@ class App extends Component {
       tick_handler();
     }, 1000);
 
-    this.queue_processor = this.queue_processor || setInterval(() => {
-      // Queued Actions
-      let queue_item = this.props.store.getState().Queue.remove('actions');
-      if (!!queue_item) {
+    let queue_processor = () => {
+      let queue_item = this.props.store.getState().Queue.remove('actions'); 
+      if (queue_item !== undefined) {
         Config.dispatch(this.props.store, queue_item.action, queue_item.payload);
       }
-    }, 250);
+    };
+
+    this.queue = this.queue | setInterval(queue_processor, 100);
   }
 
   getInitialState() {

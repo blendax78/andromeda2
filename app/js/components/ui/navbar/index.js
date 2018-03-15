@@ -38,6 +38,7 @@ class Navbar extends Component {
   showToDos() {
     let todos = [
       <li key={Config.randomKey('li')}>Ranged Combat</li>,
+      <li key={Config.randomKey('li')}>Arrows? Regs?</li>,
       <li key={Config.randomKey('li')}>Hiding</li>,
       <li key={Config.randomKey('li')}>Magic</li>,
       <li key={Config.randomKey('li')}>Meditation (with button by run/hide)</li>,

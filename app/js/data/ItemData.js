@@ -12,6 +12,10 @@ export const ItemData = [
     type: 'items',
     sub_type: 'resource',
     craft: {
+      conversion: {
+        id: 8,
+        count: 1
+      },
       skill: {
         id: 8,
         name: 'bowcraft'
@@ -29,6 +33,10 @@ export const ItemData = [
     type: 'items',
     sub_type: 'resource',
     craft: {
+      conversion: {
+        id: 7,
+        count: 3
+      },
       skill: {
         id: 5,
         name: 'blacksmithing'
@@ -111,9 +119,19 @@ export const ItemData = [
     countable: true,
     description: '',
     value: 1,
-    weight: 3,
+    weight: 5,
     type: 'items',
-    sub_type: 'resource'
+    sub_type: 'resource',
+    craft: {
+      conversion: {
+        id: 6,
+        count: 10
+      },
+      skill: {
+        id: 4,
+        name: 'tailoring'
+      }
+    }
   },
   {
     id: 6,
@@ -122,7 +140,7 @@ export const ItemData = [
     countable: true,
     description: '',
     value: 1,
-    weight: 1,
+    weight: 0.25,
     type: 'items',
     sub_type: 'resource',
     craft: {
@@ -335,8 +353,8 @@ export const ItemData = [
     plural: 'broadswords',
     countable: false,
     description: 'a broadsword',
-    value: 18,
-    weight: 18,
+    value: 10,
+    weight: 10,
     type: 'weapons',
     equip: {
       equipped: false,
@@ -795,6 +813,10 @@ export const ItemData = [
     type: 'items',
     sub_type: 'resource',
     craft: {
+      conversion: {
+        id: 28,
+        count: 1
+      },
       skill: {
         id: 4,
         name: 'tailoring'
@@ -816,6 +838,72 @@ export const ItemData = [
         id: 4,
         name: 'tailoring'
       }
+    }
+  },
+  {
+    id: 29,
+    name: 'bow',
+    plural: 'bow',
+    countable: false,
+    description: 'a bow',
+    value: 6,
+    weight: 6,
+    type: 'weapons',
+    sub_type: 'bow',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft',
+        min: 0
+      },
+      resource: {
+        id: 8,
+        min: 6
+      }
+    },
+    weapon: {
+      strength: 30,
+      hands: 'one',
+      skill: 10,
+      speed: 4.25,
+      min: 17,
+      max: 21,
+      type: 'ranged',
+      sub_type: 'bow'
+    }
+  },
+  {
+    id: 30,
+    name: 'bandana',
+    plural: 'bandanas',
+    countable: false,
+    description: 'a bandana',
+    value: 2,
+    weight: 2,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.HEAD,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 0
+      },
+      resource: {
+        id: 6,
+        min: 2
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0
     }
   },
 ];

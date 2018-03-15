@@ -9,20 +9,28 @@ const Inventory = (state = {}, action) => {
   const { type, payload } = action;
 
   let merge_new_data = (data) => {
-
+    let item_data = {};
+    // Consider rewriting so it loops through properties & sub-objects
     let items = _.map(data.items, (item) => {
-      return {...Config.clone(_.findWhere(ItemData, { id: item.id })), ...item };
+      item_data = Config.clone(_.findWhere(ItemData, { id: item.id }));
+
+      return {
+        ...item_data,
+        ...item,
+        craft: { ...item_data.craft, ...item.craft },
+      };
     });
 
     let weapons = _.map(data.weapons, (weapon) => {
       // Need to get latest item model structure.
-      let item_data = Config.clone(_.findWhere(ItemData, { id: weapon.id }));
+      item_data = Config.clone(_.findWhere(ItemData, { id: weapon.id }));
 
       // Return information saved from player (equipped, key, etc)
       return {
         ...item_data,
-        key: weapon.key,
-        equip: { ...weapon.equip }
+        ...weapon,
+        equip: { ...weapon.equip },
+        craft: { ...item_data.craft, ...weapon.craft }
       };
     });
 
@@ -33,8 +41,9 @@ const Inventory = (state = {}, action) => {
       // Return information saved from player (equipped, key, etc)
       return {
         ...item_data,
-        key: armor.key,
-        equip: { ...armor.equip }
+        ...armor,
+        equip: { ...armor.equip },
+        craft: { ...item_data.craft, ...armor.craft }
       };
     });
 
@@ -46,13 +55,16 @@ const Inventory = (state = {}, action) => {
   }
 
   if (!state.Inventory) {
-    state.Inventory = {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5}, {'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand'}}]};
+    state.Inventory = {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife2', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife2', 'name': 'butcher knife2', 'value': 5, 'equip': { 'equipped': false, 'location': 'both hands'}}, {'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand'}}]};
     state.Inventory = merge_new_data(state.Inventory);
   }
 
   let unequip_others = (item) => {
     let equipped_items = _.filter(state.Inventory[item.type], (eq) => {
-      return eq.equip.equipped && eq.equip.location === item.equip.location && eq.key !== item.key;
+      return eq.equip.equipped && eq.key !== item.key
+        && ((eq.equip.location === item.equip.location)
+        || (item.equip.location === INVENTORY.BOTHHANDS && (eq.equip.location === INVENTORY.LHAND || eq.equip.location === INVENTORY.RHAND))
+        || (eq.equip.location === INVENTORY.BOTHHANDS && (item.equip.location === INVENTORY.LHAND || item.equip.location === INVENTORY.RHAND)));
     });
 
     _.each(equipped_items, (eq) => {
@@ -70,6 +82,7 @@ const Inventory = (state = {}, action) => {
   }
 
   let item = (payload && payload.item) ? Config.clone(_.findWhere(ItemData, { id: payload.item })) : {};
+
   // fix this to use key over id
   let inventoryItem = {};
   // This shouldn't extend/clone the inventory object in order to maintain pass-by-reference.
@@ -94,7 +107,7 @@ const Inventory = (state = {}, action) => {
         item.key = Config.randomKey('inventoryItem');
       }
 
-      if (item.countable === true && inventoryItem !== undefined) {
+        if (item.countable === true && !!inventoryItem) {
         inventoryItem.count += payload.count || 1;
       } else {
         item.count = payload.count;
@@ -124,6 +137,14 @@ const Inventory = (state = {}, action) => {
           inventoryItem.count -= payload.count;
         }
       }
+    break;
+    case INVENTORY.EQUIP:
+      inventoryItem.equip.equipped = true;
+      unequip_others(inventoryItem);
+    break;
+    case INVENTORY.UNEQUIP:
+       inventoryItem.equip.equipped = false;
+       Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
   }
 

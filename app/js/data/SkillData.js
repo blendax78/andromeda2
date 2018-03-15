@@ -64,7 +64,7 @@ export const SkillData = {
   },
   bowcraft: {
     id: 8,
-    name: 'Bowcraft/Fletching',
+    name: 'Bowcraft',
     description: '',
     current: 0.0,
     modifier: 0,
@@ -80,7 +80,7 @@ export const SkillData = {
     primary: 'dexterity',
     secondary: 'intelligence'
   },
-  archery: {//perhaps archery allows you skill / # seconds to attack in beginning.
+  archery: {
     id: 10,
     name: 'Archery',
     description: '',

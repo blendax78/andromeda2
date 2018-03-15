@@ -4,7 +4,7 @@ export const MobData = [
   {
     id: 1,
     name: 'sheep',
-    description: 'A small sheep is wandering around here.',
+    description: 'A little sheep is wandering around here.',
     armor: 6,
     karma: 0,
     fame: 300,

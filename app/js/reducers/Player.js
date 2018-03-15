@@ -16,9 +16,9 @@ const Player = (state = {}, action) => {
     hp: undefined,
     mp: undefined,
     stamina: undefined,
-    strength: 10,
-    intelligence: 10,
-    dexterity: 10,
+    strength: 15,
+    intelligence: 15,
+    dexterity: 15,
     user_id: 1,
     credits: 15,
     encumbrance: 0,
@@ -54,7 +54,8 @@ const Player = (state = {}, action) => {
       log: 0,
       ore: 0,
       crafted: 0,
-      deaths: 0
+      deaths: 0,
+      timer: 0
     }
   };
 
@@ -158,8 +159,13 @@ const Player = (state = {}, action) => {
 
   switch (type) {
     case PLAYER.GET:
-      payload.score = JSON.parse(payload.score);
-      state.Player = {...state.Player, ...payload};
+      let score = { ...state.Player.score, ...payload.score };
+      let status = { ...state.Player.status, ...payload.status };
+
+      state.Player = {...state.Player, ...payload };
+      state.Player.score = score;
+      state.Player.status = status;
+
     break;
     case PLAYER.UPDATE:
       state.Player = {...state.Player, ...payload};
@@ -188,6 +194,8 @@ const Player = (state = {}, action) => {
       state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
     case PLAYER.TICK:
+      state.Player.score.timer++;
+
       if (state.Player.status.dead) {
         break;
       }

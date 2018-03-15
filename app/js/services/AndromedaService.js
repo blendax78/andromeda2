@@ -89,7 +89,9 @@ const AndromedaService = store => next => action => {
           if (err) {
             return;
           }
-          const data = JSON.parse(res.text);
+          let data = JSON.parse(res.text);
+          data.score = (!!data.score) ? JSON.parse(data.score) : {};
+          data.status = (!!data.status) ? JSON.parse(data.status) : {};
 
           next({
             type: ACTIONS.PLAYER.GET,

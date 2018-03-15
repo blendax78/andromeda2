@@ -18,10 +18,12 @@ export const StoreData = [
     description: 'You see a small spinning wheel and a loom. The caretaker is in the corner, sewing some hides.',
     sell: [
       'cloth',
-      'leather'
+      'cut leather',
+      'leather hide',
+      'wool'
     ],
     craft: ['tailoring'],
-    buy: [],
+    buy: [30],
     type: 'store'
   },
   {
@@ -55,5 +57,18 @@ export const StoreData = [
     craft: [],
     buy: [],
     type: 'healer'
+  },
+  {
+    id: 6,
+    name: 'Slings & Arrows',
+    description: 'A tall man stands over a long piece of wood, slowly bending it into shape.',
+    sell: [
+      8,
+      'bow',
+      1
+    ],
+    craft: ['bowcraft'],
+    buy: [29],
+    type: 'store'
   },
 ];

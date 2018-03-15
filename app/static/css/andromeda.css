@@ -91,6 +91,10 @@
   margin-top: 5px;
 }
 
+.bottom5 {
+  margin-bottom: 5px;
+}
+
 .scrollable {
   overflow-y: auto;
   overflow-x: hidden;

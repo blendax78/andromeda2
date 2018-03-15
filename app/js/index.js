@@ -12,6 +12,7 @@ if (Config.ENV === 'dev') {
   // Breaks reducers that use 'store'.
   // Need to rework.
   window.store = store;
+  window.Config = Config;
 }
 
 ReactDOM.render(<App store={store}/>, document.querySelector('#app'));

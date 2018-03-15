@@ -153,16 +153,16 @@ const Skills = (state = {}, action) => {
   switch (type) {
     case SKILLS.GET:
       delete payload.player_id;
-
       _.each(payload, (skill, index) => {
         // Need to parse this way to future-proof adding of new skill data.
-        state.Skills[index] = {...state.Skills[index], ...skill};
+        state.Skills[index].current = skill.current;
+        state.Skills[index].modifier = skill.modifier;
       });
-      // state.Skills = {...state.Skills, ...payload};
 
       for (let i in state.Skills) {
         if (state.Skills[i] && state.Skills[i].current) {
           state.Skills[i].current = parseFloat(state.Skills[i].current);
+          state.Skills[i].modifier = parseFloat(state.Skills[i].modifier);
         }
       }
       break;

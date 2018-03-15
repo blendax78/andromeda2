@@ -115,6 +115,14 @@ class Combat extends Component {
     return (chance > 2) ? chance : 2;;
   }
 
+  playerRun() {
+    // if ranged weapon, player can still attack while running.
+    // base on stamina and/or speed
+    let mob = this.state.mob;
+    let player = this.state.player;
+    console.log('run!');
+  }
+
   playerAttack() {
     let mob = this.state.mob;
     let player = this.state.player;
@@ -132,6 +140,7 @@ class Combat extends Component {
           Config.notifyWarning(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
 
           mob.hp -= (mob.hp - damage >= 0) ? damage : mob.hp;
+          mob.stamina -= (mob.stamina - Math.ceil(damage / 2) >= 0) ? Math.ceil(damage / 2) : mob.stamina;
 
           // No need to update store (for now?)
           Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
@@ -164,6 +173,7 @@ class Combat extends Component {
           Config.notifyError(this.props.store, `The ${mob.name} hits you for ${damage} damage.`);
 
           player.hp -= (player.hp - damage >= 0) ? damage : player.hp;
+          player.stamina -= (player.stamina - Math.ceil(damage / 2) >= 0) ? Math.ceil(damage / 2) : player.stamina;
 
         } else {
           Config.notify(this.props.store, `The ${mob.name} misses you.`);
@@ -176,7 +186,12 @@ class Combat extends Component {
     // Main combat loop
     this.timer = this.timer || 0;
 
+    if (this.state.combat.run === true) {
+      this.playerRun();
+    }
+
     if (this.state.combat.melee === true || this.state.combat.ranged === true) {
+      // Need to offer some kind of ranged effect.
       // Player attack
       this.playerAttack();
     }

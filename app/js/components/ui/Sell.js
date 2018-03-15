@@ -58,25 +58,29 @@ class Sell extends Component {
   getSellables() {
     let sellables = [];
 
+// rewrite this so it loops through items/armor/weapons in 1 loop.
     if (this.props.data.sell) {
+      let matches = [];
+      let hash = {};
+
       _.each(this.props.data.sell, (type) => {
-        if (this.state.inventory[type]) {
-          // weapons/armor
-          _.each(this.state.inventory[type], (match) => {
-            if (!match.countable || (match.countable && match.count > 0)) {
-              sellables.push(match);
-            }
-          });
-        } else {
-          // items (search by sub_type)
-          _.each(this.state.inventory.items, (match) => {
-            if (match.sub_type === type || match.name === type) {
-              if (!match.countable || (match.countable && match.count > 0)) {
+        let inventory_types = ['armor', 'weapons', 'items'];
+        _.each(inventory_types, (inventory_type) => {
+          // match on these fields
+          _.each(['type', 'sub_type', 'name', 'id'], (search) => {
+            hash = {};
+            hash[search] = type;
+            matches = _.where(this.state.inventory[inventory_type], hash);
+
+            if (!!matches && matches.length > 0) {
+              _.each(matches, (match) => {
+                if (match.countable === false || (match.countable === true && match.count > 0) )
                 sellables.push(match);
-              }
+              });
             }
           });
-        }
+
+        });
         
       });
     }

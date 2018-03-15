@@ -32,7 +32,7 @@ class PlayerControls extends Component {
     }
 
     if (this.state.player.status.encumbered === true) {
-      Config.notifyWarning(store, 'You are too encumbered to move.');
+      Config.notifyWarning(this.props.store, 'You are too encumbered to move.');
       return;
     }
 

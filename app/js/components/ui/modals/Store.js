@@ -3,6 +3,7 @@ import Config from '../../Config';
 import Crafting from '../Crafting';
 import Buy from '../Buy';
 import Sell from '../Sell';
+import {ItemData} from '../../../data/ItemData';
 import * as classNames from 'classnames';
 
 class Store extends Component {
@@ -17,7 +18,9 @@ class Store extends Component {
       blacksmithing: Config.randomKey('commerce'),
       inscription: Config.randomKey('commerce'),
       tailoring: Config.randomKey('commerce'),
-      resource: Config.randomKey('commerce')
+      bowcraft: Config.randomKey('commerce'),
+      resource: Config.randomKey('commerce'),
+      resource2: Config.randomKey('commerce')
     };
 
     this.state = {
@@ -49,25 +52,24 @@ class Store extends Component {
     this.setState({ crafting: new_type, buy: false, sell: false });
   }
 
-  smelt(ore) {
-    // convert this to reusable function for other resources
-    if (ore && ore.count > 0) {
-      let count = ore.count;
-      // Add iron ingots
+  convertResource(resource) {
+    if (!!resource && resource.count > 0 && !!resource.craft && !!resource.craft.conversion) {
+      let count = resource.count;
+      let new_count = Math.round(count * resource.craft.conversion.count);
       this.props.store.dispatch({
         type: Config.ACTIONS.INVENTORY.ADD,
-        payload: {item: 7, count: count * 3}
+        payload: {item: resource.craft.conversion.id, count: new_count}
       });
 
-      // Remove ore
       this.props.store.dispatch({
         type: Config.ACTIONS.INVENTORY.REMOVE,
-        payload: {item: ore.id, count: count}
+        payload: {item: resource.id, count: count}
       });
 
-      Config.notify(this.props.store, `You smelted ${count} ore and received ${count * 3} iron ingots.`);
-    }
+      let new_resource = _.findWhere(ItemData, { id: resource.craft.conversion.id });
 
+      Config.notify(this.props.store, `You processed ${count} ${resource.plural} and received ${new_count} ${new_resource.plural}.`);
+    }
   }
 
   toggleBuy() {
@@ -104,11 +106,19 @@ class Store extends Component {
         // Nothing.
       break;
       case 'healer':
+        buttons.push(<button key={this.keys.healer} className="btn btn-info">Resurrect</button>);
       break;
       case 'inn':
         buttons.push(<button key={this.keys.inn} className="btn btn-info">Stay</button>);
       break;
     }
+
+    let disabled = true;
+    let processClasses = classNames({
+      btn: true,
+      'btn-info': true,
+      disabled: disabled
+    });
 
     for (let i in this.state.data.craft) {
       switch (this.state.data.craft[i]) {
@@ -116,16 +126,16 @@ class Store extends Component {
           buttons.push(<button key={this.keys.blacksmithing} className="btn btn-info"
             onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Blacksmithing</button>);
 
-          let ore = _.findWhere(this.state.inventory.items, { name: 'ore' });
-          let disabled = (!ore || ore.count === 0);
-          let smeltClasses = classNames({
+          let ore = _.findWhere(this.state.inventory.items, { id: 2 });
+          disabled = (!ore || ore.count === 0);
+          processClasses = classNames({
             btn: true,
             'btn-info': true,
             disabled: disabled
           });
 
-          buttons.push(<button key={this.keys.resource} className="btn btn-info" disabled={disabled}
-            onClick={ () => this.smelt(ore) }>Smelt Ore</button>);
+          buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
+            onClick={ () => this.convertResource(ore) }>Smelt Ore</button>);
 
         break;
         case 'inscription':
@@ -135,6 +145,42 @@ class Store extends Component {
         case 'tailoring':
           buttons.push(<button key={this.keys.tailoring} className="btn btn-info"
             onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Tailoring</button>);
+
+          let wool = _.findWhere(this.state.inventory.items, { id: 5 });
+          disabled = (!wool || wool.count === 0);
+          let processClasses = classNames({
+            btn: true,
+            'btn-info': true,
+            disabled: disabled
+          });
+
+          buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
+            onClick={ () => this.convertResource(wool) }>Weave Cloth</button>);
+
+          let leather = _.findWhere(this.state.inventory.items, { id: 27 });
+          disabled = (!leather || leather.count === 0);
+          processClasses = classNames({
+            btn: true,
+            'btn-info': true,
+            disabled: disabled
+          });
+          buttons.push(<button key={this.keys.resource2} className={processClasses} disabled={disabled}
+            onClick={ () => this.convertResource(leather) }>Cut Leather</button>);
+        break;
+        case 'bowcraft':
+          buttons.push(<button key={this.keys.bowcraft} className="btn btn-info"
+            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Bowcraft</button>);
+
+          let logs = _.findWhere(this.state.inventory.items, { id: 1 });
+          disabled = (!logs || logs.count === 0);
+          processClasses = classNames({
+            btn: true,
+            'btn-info': true,
+            disabled: disabled
+          });
+
+          buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
+            onClick={ () => this.convertResource(logs) }>Cut Wood</button>);
         break;
       }
     }
