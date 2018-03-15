@@ -20,10 +20,11 @@ export const StoreData = [
       'cloth',
       'cut leather',
       'leather hide',
-      'wool'
+      'wool',
+      'leather'
     ],
     craft: ['tailoring'],
-    buy: [30],
+    buy: [30, 31],
     type: 'store'
   },
   {

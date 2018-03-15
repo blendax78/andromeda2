@@ -28,7 +28,8 @@ class Store extends Component {
       crafting: '',
       sell: false,
       buy: false,
-      inventory: this.props.store.getState().Inventory
+      inventory: this.props.store.getState().Inventory,
+      player: this.props.store.getState().Player
     };
 
     this.mounted = true;
@@ -36,7 +37,8 @@ class Store extends Component {
     this.unsubscribe = props.store.subscribe(() => {
       if (this.mounted) {
         this.setState({
-          inventory: this.props.store.getState().Inventory
+          inventory: this.props.store.getState().Inventory,
+          player: this.props.store.getState().Player
         });
       }
     });
@@ -72,6 +74,18 @@ class Store extends Component {
     }
   }
 
+  resurrect() {
+    let status = this.state.player.status;
+    status.dead = false;
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLAYER.UPDATE,
+      payload: { status: status }
+    });
+
+    Config.notifySuccess(this.props.store, 'You have been resurrected.');
+  }
+
   toggleBuy() {
     this.setState({ crafting: '', buy: !this.state.buy, sell: false });
   }
@@ -93,24 +107,12 @@ class Store extends Component {
   getActionButtons() {
     let buttons = [];
 
-    if (this.state.data.buy.length > 0) {
+    if (this.state.data.buy.length > 0 &&  !this.state.player.status.dead) {
       buttons.push(<button key={this.keys.buy} onClick={ () => this.toggleBuy() } className="btn btn-primary" id="buy_button">Buy</button>);
     }
 
-    if (this.state.data.sell.length > 0) {
+    if (this.state.data.sell.length > 0 &&  !this.state.player.status.dead) {
       buttons.push(<button key={this.keys.sell} onClick={ () => this.toggleSell() } className="btn btn-primary" id="sell_button">Sell</button>);
-    }
-
-    switch (this.state.data.type) {
-      case 'store':
-        // Nothing.
-      break;
-      case 'healer':
-        buttons.push(<button key={this.keys.healer} className="btn btn-info">Resurrect</button>);
-      break;
-      case 'inn':
-        buttons.push(<button key={this.keys.inn} className="btn btn-info">Stay</button>);
-      break;
     }
 
     let disabled = true;
@@ -120,68 +122,88 @@ class Store extends Component {
       disabled: disabled
     });
 
-    for (let i in this.state.data.craft) {
-      switch (this.state.data.craft[i]) {
-        case 'blacksmithing':
-          buttons.push(<button key={this.keys.blacksmithing} className="btn btn-info"
-            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Blacksmithing</button>);
+    switch (this.state.data.type) {
+      case 'store':
+        // Nothing.
+      break;
+      case 'healer':
+        disabled = !this.state.player.status.dead;
+        processClasses = classNames({
+          btn: true,
+          'btn-info': true,
+          disabled: disabled
+        });
+        buttons.push(<button key={this.keys.healer} onClick={ () => this.resurrect() } className={processClasses} disabled={disabled}>Resurrect</button>);
+      break;
+      case 'inn':
+        buttons.push(<button key={this.keys.inn} className="btn btn-info">Stay</button>);
+      break;
+    }
 
-          let ore = _.findWhere(this.state.inventory.items, { id: 2 });
-          disabled = (!ore || ore.count === 0);
-          processClasses = classNames({
-            btn: true,
-            'btn-info': true,
-            disabled: disabled
-          });
+    if (!this.state.player.status.dead) {
+      for (let i in this.state.data.craft) {
+        switch (this.state.data.craft[i]) {
+          case 'blacksmithing':
+            buttons.push(<button key={this.keys.blacksmithing} className="btn btn-info"
+              onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Blacksmithing</button>);
 
-          buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
-            onClick={ () => this.convertResource(ore) }>Smelt Ore</button>);
+            let ore = _.findWhere(this.state.inventory.items, { id: 2 });
+            disabled = (!ore || ore.count === 0);
+            processClasses = classNames({
+              btn: true,
+              'btn-info': true,
+              disabled: disabled
+            });
 
-        break;
-        case 'inscription':
-          buttons.push(<button key={this.keys.inscription} className="btn btn-info"
-            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Inscription</button>);
-        break;
-        case 'tailoring':
-          buttons.push(<button key={this.keys.tailoring} className="btn btn-info"
-            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Tailoring</button>);
+            buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
+              onClick={ () => this.convertResource(ore) }>Smelt Ore</button>);
 
-          let wool = _.findWhere(this.state.inventory.items, { id: 5 });
-          disabled = (!wool || wool.count === 0);
-          let processClasses = classNames({
-            btn: true,
-            'btn-info': true,
-            disabled: disabled
-          });
+          break;
+          case 'inscription':
+            buttons.push(<button key={this.keys.inscription} className="btn btn-info"
+              onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Inscription</button>);
+          break;
+          case 'tailoring':
+            buttons.push(<button key={this.keys.tailoring} className="btn btn-info"
+              onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Tailoring</button>);
 
-          buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
-            onClick={ () => this.convertResource(wool) }>Weave Cloth</button>);
+            let wool = _.findWhere(this.state.inventory.items, { id: 5 });
+            disabled = (!wool || wool.count === 0);
+            processClasses = classNames({
+              btn: true,
+              'btn-info': true,
+              disabled: disabled
+            });
 
-          let leather = _.findWhere(this.state.inventory.items, { id: 27 });
-          disabled = (!leather || leather.count === 0);
-          processClasses = classNames({
-            btn: true,
-            'btn-info': true,
-            disabled: disabled
-          });
-          buttons.push(<button key={this.keys.resource2} className={processClasses} disabled={disabled}
-            onClick={ () => this.convertResource(leather) }>Cut Leather</button>);
-        break;
-        case 'bowcraft':
-          buttons.push(<button key={this.keys.bowcraft} className="btn btn-info"
-            onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Bowcraft</button>);
+            buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
+              onClick={ () => this.convertResource(wool) }>Weave Cloth</button>);
 
-          let logs = _.findWhere(this.state.inventory.items, { id: 1 });
-          disabled = (!logs || logs.count === 0);
-          processClasses = classNames({
-            btn: true,
-            'btn-info': true,
-            disabled: disabled
-          });
+            let leather = _.findWhere(this.state.inventory.items, { id: 27 });
+            disabled = (!leather || leather.count === 0);
+            processClasses = classNames({
+              btn: true,
+              'btn-info': true,
+              disabled: disabled
+            });
+            buttons.push(<button key={this.keys.resource2} className={processClasses} disabled={disabled}
+              onClick={ () => this.convertResource(leather) }>Cut Leather</button>);
+          break;
+          case 'bowcraft':
+            buttons.push(<button key={this.keys.bowcraft} className="btn btn-info"
+              onClick={ () => this.setCrafting(this.state.data.craft[i]) }>Bowcraft</button>);
 
-          buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
-            onClick={ () => this.convertResource(logs) }>Cut Wood</button>);
-        break;
+            let logs = _.findWhere(this.state.inventory.items, { id: 1 });
+            disabled = (!logs || logs.count === 0);
+            processClasses = classNames({
+              btn: true,
+              'btn-info': true,
+              disabled: disabled
+            });
+
+            buttons.push(<button key={this.keys.resource} className={processClasses} disabled={disabled}
+              onClick={ () => this.convertResource(logs) }>Cut Wood</button>);
+          break;
+        }
       }
     }
 

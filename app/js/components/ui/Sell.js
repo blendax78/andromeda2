@@ -58,7 +58,6 @@ class Sell extends Component {
   getSellables() {
     let sellables = [];
 
-// rewrite this so it loops through items/armor/weapons in 1 loop.
     if (this.props.data.sell) {
       let matches = [];
       let hash = {};

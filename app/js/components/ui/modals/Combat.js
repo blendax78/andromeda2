@@ -236,8 +236,13 @@ class Combat extends Component {
   mobWin() {
     let score = this.state.player.score;
     let status = this.state.player.status;
+    let credits = Math.ceil(this.state.player.credits * 0.75);
+
     score.deaths++;
     status.dead = true;
+
+    Config.notifyError(this.props.store, `The ${this.state.mob.name} has defeated you.`);
+    Config.notifyError(this.props.store, `You lost ${this.state.player.credits - credits} credits.`);
 
     this.props.store.dispatch({
       type: Config.ACTIONS.PLAYER.UPDATE,
@@ -248,11 +253,10 @@ class Combat extends Component {
         x: 0,
         y: 0,
         status: status,
-        score: score
+        score: score,
+        credits: credits
       }
     });
-
-    Config.notifyError(this.props.store, `The ${this.state.mob.name} has defeated you.`);
   }
 
   playerWin() {

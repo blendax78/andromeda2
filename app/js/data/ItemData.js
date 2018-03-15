@@ -903,7 +903,37 @@ export const ItemData = [
     },
     armor: {
       strength: 0,
-      physical: 0
+      physical: 1
+    }
+  },
+  {
+    id: 31,
+    name: 'leather cap',
+    plural: 'leather caps',
+    countable: false,
+    description: 'a leather cap',
+    value: 2,
+    weight: 2,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.HEAD,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 6.2
+      },
+      resource: {
+        id: 28,
+        min: 2
+      }
+    },
+    armor: {
+      strength: 20,
+      physical: 2
     }
   },
 ];

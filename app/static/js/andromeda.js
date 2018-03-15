@@ -4388,7 +4388,36 @@ var ItemData = [{
   },
   armor: {
     strength: 0,
-    physical: 0
+    physical: 1
+  }
+}, {
+  id: 31,
+  name: 'leather cap',
+  plural: 'leather caps',
+  countable: false,
+  description: 'a leather cap',
+  value: 2,
+  weight: 2,
+  type: 'armor',
+  sub_type: 'leather',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.HEAD
+  },
+  craft: {
+    skill: {
+      id: 4,
+      name: 'tailoring',
+      min: 6.2
+    },
+    resource: {
+      id: 28,
+      min: 2
+    }
+  },
+  armor: {
+    strength: 20,
+    physical: 2
   }
 }];
 
@@ -28393,7 +28422,8 @@ var Store = function (_Component) {
       crafting: '',
       sell: false,
       buy: false,
-      inventory: _this.props.store.getState().Inventory
+      inventory: _this.props.store.getState().Inventory,
+      player: _this.props.store.getState().Player
     };
 
     _this.mounted = true;
@@ -28401,7 +28431,8 @@ var Store = function (_Component) {
     _this.unsubscribe = props.store.subscribe(function () {
       if (_this.mounted) {
         _this.setState({
-          inventory: _this.props.store.getState().Inventory
+          inventory: _this.props.store.getState().Inventory,
+          player: _this.props.store.getState().Player
         });
       }
     });
@@ -28442,6 +28473,19 @@ var Store = function (_Component) {
       }
     }
   }, {
+    key: 'resurrect',
+    value: function resurrect() {
+      var status = this.state.player.status;
+      status.dead = false;
+
+      this.props.store.dispatch({
+        type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE,
+        payload: { status: status }
+      });
+
+      __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifySuccess(this.props.store, 'You have been resurrected.');
+    }
+  }, {
     key: 'toggleBuy',
     value: function toggleBuy() {
       this.setState({ crafting: '', buy: !this.state.buy, sell: false });
@@ -28469,7 +28513,7 @@ var Store = function (_Component) {
 
       var buttons = [];
 
-      if (this.state.data.buy.length > 0) {
+      if (this.state.data.buy.length > 0 && !this.state.player.status.dead) {
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { key: this.keys.buy, onClick: function onClick() {
@@ -28479,7 +28523,7 @@ var Store = function (_Component) {
         ));
       }
 
-      if (this.state.data.sell.length > 0) {
+      if (this.state.data.sell.length > 0 && !this.state.player.status.dead) {
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { key: this.keys.sell, onClick: function onClick() {
@@ -28489,14 +28533,29 @@ var Store = function (_Component) {
         ));
       }
 
+      var disabled = true;
+      var processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
+        btn: true,
+        'btn-info': true,
+        disabled: disabled
+      });
+
       switch (this.state.data.type) {
         case 'store':
           // Nothing.
           break;
         case 'healer':
+          disabled = !this.state.player.status.dead;
+          processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
+            btn: true,
+            'btn-info': true,
+            disabled: disabled
+          });
           buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'button',
-            { key: this.keys.healer, className: 'btn btn-info' },
+            { key: this.keys.healer, onClick: function onClick() {
+                return _this2.resurrect();
+              }, className: processClasses, disabled: disabled },
             'Resurrect'
           ));
           break;
@@ -28509,128 +28568,123 @@ var Store = function (_Component) {
           break;
       }
 
-      var disabled = true;
-      var processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
-        btn: true,
-        'btn-info': true,
-        disabled: disabled
-      });
+      if (!this.state.player.status.dead) {
+        var _loop = function _loop(i) {
+          switch (_this2.state.data.craft[i]) {
+            case 'blacksmithing':
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.blacksmithing, className: 'btn btn-info',
+                  onClick: function onClick() {
+                    return _this2.setCrafting(_this2.state.data.craft[i]);
+                  } },
+                'Blacksmithing'
+              ));
 
-      var _loop = function _loop(i) {
-        switch (_this2.state.data.craft[i]) {
-          case 'blacksmithing':
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.blacksmithing, className: 'btn btn-info',
-                onClick: function onClick() {
-                  return _this2.setCrafting(_this2.state.data.craft[i]);
-                } },
-              'Blacksmithing'
-            ));
+              var ore = _.findWhere(_this2.state.inventory.items, { id: 2 });
+              disabled = !ore || ore.count === 0;
+              processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
+                btn: true,
+                'btn-info': true,
+                disabled: disabled
+              });
 
-            var ore = _.findWhere(_this2.state.inventory.items, { id: 2 });
-            disabled = !ore || ore.count === 0;
-            _processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
-              btn: true,
-              'btn-info': true,
-              disabled: disabled
-            });
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.resource, className: processClasses, disabled: disabled,
+                  onClick: function onClick() {
+                    return _this2.convertResource(ore);
+                  } },
+                'Smelt Ore'
+              ));
 
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.resource, className: _processClasses, disabled: disabled,
-                onClick: function onClick() {
-                  return _this2.convertResource(ore);
-                } },
-              'Smelt Ore'
-            ));
+              break;
+            case 'inscription':
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.inscription, className: 'btn btn-info',
+                  onClick: function onClick() {
+                    return _this2.setCrafting(_this2.state.data.craft[i]);
+                  } },
+                'Inscription'
+              ));
+              break;
+            case 'tailoring':
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.tailoring, className: 'btn btn-info',
+                  onClick: function onClick() {
+                    return _this2.setCrafting(_this2.state.data.craft[i]);
+                  } },
+                'Tailoring'
+              ));
 
-            break;
-          case 'inscription':
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.inscription, className: 'btn btn-info',
-                onClick: function onClick() {
-                  return _this2.setCrafting(_this2.state.data.craft[i]);
-                } },
-              'Inscription'
-            ));
-            break;
-          case 'tailoring':
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.tailoring, className: 'btn btn-info',
-                onClick: function onClick() {
-                  return _this2.setCrafting(_this2.state.data.craft[i]);
-                } },
-              'Tailoring'
-            ));
+              var wool = _.findWhere(_this2.state.inventory.items, { id: 5 });
+              disabled = !wool || wool.count === 0;
+              processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
+                btn: true,
+                'btn-info': true,
+                disabled: disabled
+              });
 
-            var wool = _.findWhere(_this2.state.inventory.items, { id: 5 });
-            disabled = !wool || wool.count === 0;
-            var _processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
-              btn: true,
-              'btn-info': true,
-              disabled: disabled
-            });
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.resource, className: processClasses, disabled: disabled,
+                  onClick: function onClick() {
+                    return _this2.convertResource(wool);
+                  } },
+                'Weave Cloth'
+              ));
 
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.resource, className: _processClasses, disabled: disabled,
-                onClick: function onClick() {
-                  return _this2.convertResource(wool);
-                } },
-              'Weave Cloth'
-            ));
+              var leather = _.findWhere(_this2.state.inventory.items, { id: 27 });
+              disabled = !leather || leather.count === 0;
+              processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
+                btn: true,
+                'btn-info': true,
+                disabled: disabled
+              });
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.resource2, className: processClasses, disabled: disabled,
+                  onClick: function onClick() {
+                    return _this2.convertResource(leather);
+                  } },
+                'Cut Leather'
+              ));
+              break;
+            case 'bowcraft':
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.bowcraft, className: 'btn btn-info',
+                  onClick: function onClick() {
+                    return _this2.setCrafting(_this2.state.data.craft[i]);
+                  } },
+                'Bowcraft'
+              ));
 
-            var leather = _.findWhere(_this2.state.inventory.items, { id: 27 });
-            disabled = !leather || leather.count === 0;
-            _processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
-              btn: true,
-              'btn-info': true,
-              disabled: disabled
-            });
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.resource2, className: _processClasses, disabled: disabled,
-                onClick: function onClick() {
-                  return _this2.convertResource(leather);
-                } },
-              'Cut Leather'
-            ));
-            break;
-          case 'bowcraft':
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.bowcraft, className: 'btn btn-info',
-                onClick: function onClick() {
-                  return _this2.setCrafting(_this2.state.data.craft[i]);
-                } },
-              'Bowcraft'
-            ));
+              var logs = _.findWhere(_this2.state.inventory.items, { id: 1 });
+              disabled = !logs || logs.count === 0;
+              processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
+                btn: true,
+                'btn-info': true,
+                disabled: disabled
+              });
 
-            var logs = _.findWhere(_this2.state.inventory.items, { id: 1 });
-            disabled = !logs || logs.count === 0;
-            _processClasses = __WEBPACK_IMPORTED_MODULE_11_classnames__({
-              btn: true,
-              'btn-info': true,
-              disabled: disabled
-            });
+              buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'button',
+                { key: _this2.keys.resource, className: processClasses, disabled: disabled,
+                  onClick: function onClick() {
+                    return _this2.convertResource(logs);
+                  } },
+                'Cut Wood'
+              ));
+              break;
+          }
+        };
 
-            buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'button',
-              { key: _this2.keys.resource, className: _processClasses, disabled: disabled,
-                onClick: function onClick() {
-                  return _this2.convertResource(logs);
-                } },
-              'Cut Wood'
-            ));
-            break;
+        for (var i in this.state.data.craft) {
+          _loop(i);
         }
-      };
-
-      for (var i in this.state.data.craft) {
-        _loop(i);
       }
 
       return buttons;
@@ -29267,7 +29321,6 @@ var Sell = function (_Component) {
 
       var sellables = [];
 
-      // rewrite this so it loops through items/armor/weapons in 1 loop.
       if (this.props.data.sell) {
         var matches = [];
         var hash = {};
@@ -29750,8 +29803,13 @@ var Combat = function (_Component) {
     value: function mobWin() {
       var score = this.state.player.score;
       var status = this.state.player.status;
+      var credits = Math.ceil(this.state.player.credits * 0.75);
+
       score.deaths++;
       status.dead = true;
+
+      __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifyError(this.props.store, 'The ' + this.state.mob.name + ' has defeated you.');
+      __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifyError(this.props.store, 'You lost ' + (this.state.player.credits - credits) + ' credits.');
 
       this.props.store.dispatch({
         type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE,
@@ -29762,11 +29820,10 @@ var Combat = function (_Component) {
           x: 0,
           y: 0,
           status: status,
-          score: score
+          score: score,
+          credits: credits
         }
       });
-
-      __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifyError(this.props.store, 'The ' + this.state.mob.name + ' has defeated you.');
     }
   }, {
     key: 'playerWin',
@@ -32510,9 +32567,9 @@ var StoreData = [{
   id: 2,
   name: 'A small tailor shop',
   description: 'You see a small spinning wheel and a loom. The caretaker is in the corner, sewing some hides.',
-  sell: ['cloth', 'cut leather', 'leather hide', 'wool'],
+  sell: ['cloth', 'cut leather', 'leather hide', 'wool', 'leather'],
   craft: ['tailoring'],
-  buy: [30],
+  buy: [30, 31],
   type: 'store'
 }, {
   id: 3,
