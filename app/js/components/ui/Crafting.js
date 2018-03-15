@@ -62,9 +62,7 @@ class Crafting extends Component {
     }), (item) => {
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
-      item.craftable = item.craft.skill.id === skill_id && resource && resource.count >= item.craft.resource.min && 
-        // ((this.player_skill.current - item.craft.skill.min) * 2) + 50 >= 0 &&
-        this.state.player.encumbrance < this.state.player.maxencumbrance;
+      item.craftable = item.craft.skill.id === skill_id && resource && resource.count >= item.craft.resource.min;
 
       return item;
     });
