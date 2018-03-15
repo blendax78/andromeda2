@@ -12,7 +12,7 @@ export const MobData = [
       min: 1,
       max: 2,
       aggro: false,
-      speed: 2
+      speed: 3
     },
     stats: {
       str_min: 19,
@@ -58,7 +58,7 @@ export const MobData = [
       min: 4,
       max: 4,
       aggro: false,
-      speed: 2
+      speed: 3
     },
     wander: true,
     attackable: true,

@@ -3635,7 +3635,7 @@ var ItemData = [{
   craft: {
     conversion: {
       id: 6,
-      count: 10
+      count: 5
     },
     skill: {
       id: 4,
@@ -27295,10 +27295,6 @@ var Navbar = function (_Component) {
           return _this2.showToDos();
         } })];
 
-      if (this.state.player.status.dead) {
-        topElems.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__NavItem__["a" /* default */], { href: '#', key: this.keys.dead, text: 'You are Dead', color: 'red' }));
-      }
-
       var town = _.findWhere(this.state.planet.towns, { x: this.state.player.x, y: this.state.player.y });
 
       if (town) {
@@ -32354,7 +32350,7 @@ var MobData = [{
     min: 1,
     max: 2,
     aggro: false,
-    speed: 2
+    speed: 3
   },
   stats: {
     str_min: 19,
@@ -32397,7 +32393,7 @@ var MobData = [{
     min: 4,
     max: 4,
     aggro: false,
-    speed: 2
+    speed: 3
   },
   wander: true,
   attackable: true,
@@ -32754,7 +32750,6 @@ var Inventory = function Inventory() {
     case INVENTORY.EQUIP:
 
       var strength = inventoryItem.type === 'armor' || inventoryItem.type === 'weapon' ? inventoryItem[inventoryItem.type].strength : 0;
-      console.log('str', state.Player.strength, strength);
 
       if (state.Player.strength >= strength) {
         inventoryItem.equip.equipped = true;

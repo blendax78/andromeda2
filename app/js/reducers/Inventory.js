@@ -141,7 +141,6 @@ const Inventory = (state = {}, action) => {
     case INVENTORY.EQUIP:
 
       let strength = (inventoryItem.type === 'armor' || inventoryItem.type === 'weapon') ? inventoryItem[inventoryItem.type].strength: 0;
-      console.log('str', state.Player.strength, strength);
 
       if (state.Player.strength >= strength) {
         inventoryItem.equip.equipped = true;

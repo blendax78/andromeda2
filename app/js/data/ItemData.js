@@ -125,7 +125,7 @@ export const ItemData = [
     craft: {
       conversion: {
         id: 6,
-        count: 10
+        count: 5
       },
       skill: {
         id: 4,
