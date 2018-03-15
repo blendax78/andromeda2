@@ -52,6 +52,7 @@ export const ItemData = [
     value: 3,
     weight: 1,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -86,6 +87,7 @@ export const ItemData = [
     value: 2,
     weight: 1,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -193,6 +195,7 @@ export const ItemData = [
     value: 10,
     weight: 7,
     type: 'armor',
+    sub_type: 'metal armor',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.HEAD,
@@ -222,6 +225,7 @@ export const ItemData = [
     value: 15,
     weight: 5,
     type: 'armor',
+    sub_type: 'metal armor',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.HEAD,
@@ -251,6 +255,7 @@ export const ItemData = [
     value: 14,
     weight: 14,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -286,6 +291,7 @@ export const ItemData = [
     value: 18,
     weight: 18,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -321,6 +327,7 @@ export const ItemData = [
     value: 14,
     weight: 14,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -356,6 +363,7 @@ export const ItemData = [
     value: 10,
     weight: 10,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -384,13 +392,14 @@ export const ItemData = [
   },
   {
     id: 15,
-    name: 'battle axe',
-    plural: 'battle axes',
+    name: 'empty',
+    plural: 'empty',
     countable: false,
-    description: 'a battle axe',
+    description: 'empty',
     value: 14,
     weight: 14,
-    type: 'weapons',
+    type: 'empty',
+    sub_type: 'empty',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -414,7 +423,7 @@ export const ItemData = [
       min: 16,
       max: 19,
       type: 'melee',
-      sub_type: 'axe'
+      sub_type: 'empty'
     }
   },
   {
@@ -426,6 +435,7 @@ export const ItemData = [
     value: 3,
     weight: 3,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -461,6 +471,7 @@ export const ItemData = [
     value: 8,
     weight: 8,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -496,6 +507,7 @@ export const ItemData = [
     value: 12,
     weight: 12,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -531,6 +543,7 @@ export const ItemData = [
     value: 14,
     weight: 14,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -566,6 +579,7 @@ export const ItemData = [
     value: 20,
     weight: 20,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -601,6 +615,7 @@ export const ItemData = [
     value: 4,
     weight: 4,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -636,6 +651,7 @@ export const ItemData = [
     value: 12,
     weight: 12,
     type: 'weapons',
+    sub_type: 'axe',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -671,6 +687,7 @@ export const ItemData = [
     value: 8,
     weight: 8,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -706,6 +723,7 @@ export const ItemData = [
     value: 12,
     weight: 12,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -741,6 +759,7 @@ export const ItemData = [
     value: 10,
     weight: 10,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -776,6 +795,7 @@ export const ItemData = [
     value: 14,
     weight: 14,
     type: 'weapons',
+    sub_type: 'blade',
     equip: {
       equipped: false,
       location: Config.ACTIONS.INVENTORY.RHAND,
@@ -903,7 +923,7 @@ export const ItemData = [
     },
     armor: {
       strength: 0,
-      physical: 1
+      physical: 0.5
     }
   },
   {
@@ -932,9 +952,165 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
-      physical: 2
+      strength: 15,
+      physical: 1.8
+    }
+  },
+  {
+    id: 32,
+    name: 'leather sleeves',
+    plural: 'leather sleeves',
+    countable: false,
+    description: 'leather sleeves',
+    value: 4,
+    weight: 2,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.ARMS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 53.9
+      },
+      resource: {
+        id: 28,
+        min: 4
+      }
+    },
+    armor: {
+      strength: 10,
+      physical: 1.8
+    }
+  },
+  {
+    id: 33,
+    name: 'leather gloves',
+    plural: 'leather gloves',
+    countable: false,
+    description: 'leather gloves',
+    value: 3,
+    weight: 1,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 51.8
+      },
+      resource: {
+        id: 28,
+        min: 3
+      }
+    },
+    armor: {
+      strength: 10,
+      physical: 0.9
+    }
+  },
+  {
+    id: 34,
+    name: 'leather gorget',
+    plural: 'leather gorgets',
+    countable: false,
+    description: 'a leather gorget',
+    value: 3,
+    weight: 1,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.NECK,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 51.8
+      },
+      resource: {
+        id: 28,
+        min: 3
+      }
+    },
+    armor: {
+      strength: 10,
+      physical: 0.9
+    }
+  },
+  {
+    id: 35,
+    name: 'leather leggings',
+    plural: 'leather leggings',
+    countable: false,
+    description: 'leather leggings',
+    value: 2,
+    weight: 4,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 66.3
+      },
+      resource: {
+        id: 28,
+        min: 10
+      }
+    },
+    armor: {
+      strength: 10,
+      physical: 1.8
+    }
+  },
+  {
+    id: 36,
+    name: 'leather tunic',
+    plural: 'leather tunics',
+    countable: false,
+    description: 'a leather tunic',
+    value: 12,
+    weight: 6,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 70.5
+      },
+      resource: {
+        id: 28,
+        min: 12
+      }
+    },
+    armor: {
+      strength: 15,
+      physical: 5.7
     }
   },
 ];
 
+
+
+/*
+http://www.uoguide.com/Tailoring
+http://www.uorenaissance.com/list/Leather/P
+*/

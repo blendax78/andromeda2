@@ -30,12 +30,30 @@ class Buy extends Component {
     let buyables = [];
 
     if (this.props.data.buy) {
-      buyables = _.map(this.props.data.buy, (id) => {
-        return _.findWhere(ItemData, { id: id });
+      let matches = [];
+      let hash = {};
+
+      _.each(this.props.data.buy, (type) => {
+        // match on these fields
+        _.each(['type', 'sub_type', 'name', 'id'], (search) => {
+          hash = {};
+          hash[search] = type;
+          matches = _.where(ItemData, hash);
+
+          if (!!matches && matches.length > 0) {
+            _.each(matches, (match) => {
+              if (match.countable === false || (match.countable === true && match.count > 0) )
+              buyables.push(match);
+            });
+          }
+        });
+      
       });
     }
 
-    return buyables;
+    return _.uniq(_.sortBy(buyables, (buyable) => {
+      return buyable.name
+    }));
   }
 
   buyItem(item) {
@@ -72,7 +90,7 @@ class Buy extends Component {
         item.description;
 
       return (
-        <tr key={`buy.${item.id}`}>
+        <tr key={`${Config.randomKey('buy')}.buy.${item.id}`}>
           <td>{link}</td>
           <td>{item.value * this.value_mult}</td>
         </tr>
@@ -103,7 +121,7 @@ class Buy extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span className="bold">Credits:</span> {this.state.player.credits}</div>
           </div>
-          <div className="row">
+          <div className="row scrollable top5">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {buy}
             </div>

@@ -118,6 +118,7 @@ class Combat extends Component {
   playerRun() {
     // if ranged weapon, player can still attack while running.
     // base on stamina and/or speed
+    // Upon running, toggle mob aggro
     let mob = this.state.mob;
     let player = this.state.player;
     console.log('run!');

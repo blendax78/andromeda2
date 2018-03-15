@@ -84,16 +84,20 @@ class Sell extends Component {
       });
     }
 
-    return sellables;
+    return _.sortBy(sellables, (sellable) => {
+      return sellable.name
+    });
   }
 
   getSellTable(available) {
     let items = _.map(this.getSellables(), (item) => {
       let description = item.description;
+      let equipped = (!!item.equip && item.equip.equipped === true) ? <span className="glyphicon glyphicon-ok-sign"></span> : '';
+
       if (item.countable) {
         description = (item.count > 1) ? `${item.count} ${item.plural}` : `${item.count} ${item.name}`;
       }
-      let link = <a href="#" onClick={() => { this.sellItem(item); }}>{description}</a>;
+      let link = <a href="#" onClick={() => { this.sellItem(item); }}>{description} {equipped}</a>;
 
       return (
         <tr key={`sell.${item.id}.${item.key}`}>
@@ -127,7 +131,7 @@ class Sell extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span className="bold">Credits:</span> {this.state.player.credits}</div>
           </div>
-          <div className="row">
+          <div className="row scrollable top5">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {sell}
             </div>

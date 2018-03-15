@@ -9,7 +9,7 @@ export const StoreData = [
       'weapons'
     ],
     craft: ['blacksmithing'],
-    buy: [3, 4, 9, 10],
+    buy: ['axe', 'metal_armor', 'blade'],
     type: 'store'
   },
   {
@@ -24,7 +24,7 @@ export const StoreData = [
       'leather'
     ],
     craft: ['tailoring'],
-    buy: [30, 31],
+    buy: ['leather', 'cloth'],
     type: 'store'
   },
   {

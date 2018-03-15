@@ -159,3 +159,10 @@ class Crafting extends Component {
 }
 
 export default Crafting;
+
+/*
+
+Exceptional = 1% for every 1% above min skill
+Exceptionally crafted Weapons get a 35% Damage Increase bonus as a free Item Property.
+An exceptionally made piece of Armor will gain a 15% bonus that is distributed randomly among the base resistances of that item. For example, an exceptionally made Platemail Tunic could have 5% applied to Physical, 6% to Fire, and 2% to each Cold and Poison. Or, and this would be extremely rare, all 15% could be added to Physical.
+*/

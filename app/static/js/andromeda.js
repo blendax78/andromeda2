@@ -3564,6 +3564,7 @@ var ItemData = [{
   value: 3,
   weight: 1,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3597,6 +3598,7 @@ var ItemData = [{
   value: 2,
   weight: 1,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3699,6 +3701,7 @@ var ItemData = [{
   value: 10,
   weight: 7,
   type: 'armor',
+  sub_type: 'metal armor',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.HEAD
@@ -3727,6 +3730,7 @@ var ItemData = [{
   value: 15,
   weight: 5,
   type: 'armor',
+  sub_type: 'metal armor',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.HEAD
@@ -3755,6 +3759,7 @@ var ItemData = [{
   value: 14,
   weight: 14,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3789,6 +3794,7 @@ var ItemData = [{
   value: 18,
   weight: 18,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3823,6 +3829,7 @@ var ItemData = [{
   value: 14,
   weight: 14,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3857,6 +3864,7 @@ var ItemData = [{
   value: 10,
   weight: 10,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3884,13 +3892,14 @@ var ItemData = [{
   }
 }, {
   id: 15,
-  name: 'battle axe',
-  plural: 'battle axes',
+  name: 'empty',
+  plural: 'empty',
   countable: false,
-  description: 'a battle axe',
+  description: 'empty',
   value: 14,
   weight: 14,
-  type: 'weapons',
+  type: 'empty',
+  sub_type: 'empty',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3914,7 +3923,7 @@ var ItemData = [{
     min: 16,
     max: 19,
     type: 'melee',
-    sub_type: 'axe'
+    sub_type: 'empty'
   }
 }, {
   id: 16,
@@ -3925,6 +3934,7 @@ var ItemData = [{
   value: 3,
   weight: 3,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3959,6 +3969,7 @@ var ItemData = [{
   value: 8,
   weight: 8,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -3993,6 +4004,7 @@ var ItemData = [{
   value: 12,
   weight: 12,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4027,6 +4039,7 @@ var ItemData = [{
   value: 14,
   weight: 14,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4061,6 +4074,7 @@ var ItemData = [{
   value: 20,
   weight: 20,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4095,6 +4109,7 @@ var ItemData = [{
   value: 4,
   weight: 4,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4129,6 +4144,7 @@ var ItemData = [{
   value: 12,
   weight: 12,
   type: 'weapons',
+  sub_type: 'axe',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4163,6 +4179,7 @@ var ItemData = [{
   value: 8,
   weight: 8,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4197,6 +4214,7 @@ var ItemData = [{
   value: 12,
   weight: 12,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4231,6 +4249,7 @@ var ItemData = [{
   value: 10,
   weight: 10,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4265,6 +4284,7 @@ var ItemData = [{
   value: 14,
   weight: 14,
   type: 'weapons',
+  sub_type: 'blade',
   equip: {
     equipped: false,
     location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
@@ -4388,7 +4408,7 @@ var ItemData = [{
   },
   armor: {
     strength: 0,
-    physical: 1
+    physical: 0.5
   }
 }, {
   id: 31,
@@ -4416,10 +4436,160 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
-    physical: 2
+    strength: 15,
+    physical: 1.8
+  }
+}, {
+  id: 32,
+  name: 'leather sleeves',
+  plural: 'leather sleeves',
+  countable: false,
+  description: 'leather sleeves',
+  value: 4,
+  weight: 2,
+  type: 'armor',
+  sub_type: 'leather',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.ARMS
+  },
+  craft: {
+    skill: {
+      id: 4,
+      name: 'tailoring',
+      min: 53.9
+    },
+    resource: {
+      id: 28,
+      min: 4
+    }
+  },
+  armor: {
+    strength: 10,
+    physical: 1.8
+  }
+}, {
+  id: 33,
+  name: 'leather gloves',
+  plural: 'leather gloves',
+  countable: false,
+  description: 'leather gloves',
+  value: 3,
+  weight: 1,
+  type: 'armor',
+  sub_type: 'leather',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.BOTHHANDS
+  },
+  craft: {
+    skill: {
+      id: 4,
+      name: 'tailoring',
+      min: 51.8
+    },
+    resource: {
+      id: 28,
+      min: 3
+    }
+  },
+  armor: {
+    strength: 10,
+    physical: 0.9
+  }
+}, {
+  id: 34,
+  name: 'leather gorget',
+  plural: 'leather gorgets',
+  countable: false,
+  description: 'a leather gorget',
+  value: 3,
+  weight: 1,
+  type: 'armor',
+  sub_type: 'leather',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.NECK
+  },
+  craft: {
+    skill: {
+      id: 4,
+      name: 'tailoring',
+      min: 51.8
+    },
+    resource: {
+      id: 28,
+      min: 3
+    }
+  },
+  armor: {
+    strength: 10,
+    physical: 0.9
+  }
+}, {
+  id: 35,
+  name: 'leather leggings',
+  plural: 'leather leggings',
+  countable: false,
+  description: 'leather leggings',
+  value: 2,
+  weight: 4,
+  type: 'armor',
+  sub_type: 'leather',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.LEGS
+  },
+  craft: {
+    skill: {
+      id: 4,
+      name: 'tailoring',
+      min: 66.3
+    },
+    resource: {
+      id: 28,
+      min: 10
+    }
+  },
+  armor: {
+    strength: 10,
+    physical: 1.8
+  }
+}, {
+  id: 36,
+  name: 'leather tunic',
+  plural: 'leather tunics',
+  countable: false,
+  description: 'a leather tunic',
+  value: 12,
+  weight: 6,
+  type: 'armor',
+  sub_type: 'leather',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.BODY
+  },
+  craft: {
+    skill: {
+      id: 4,
+      name: 'tailoring',
+      min: 70.5
+    },
+    resource: {
+      id: 28,
+      min: 12
+    }
+  },
+  armor: {
+    strength: 15,
+    physical: 5.7
   }
 }];
+
+/*
+http://www.uoguide.com/Tailoring
+http://www.uorenaissance.com/list/Leather/P
+*/
 
 /***/ }),
 /* 40 */
@@ -27167,10 +27337,6 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'When selling, marked equipped'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Ranged Combat'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -29019,6 +29185,13 @@ var Crafting = function (_Component) {
 
 /* harmony default export */ __webpack_exports__["a"] = (Crafting);
 
+/*
+
+Exceptional = 1% for every 1% above min skill
+Exceptionally crafted Weapons get a 35% Damage Increase bonus as a free Item Property.
+An exceptionally made piece of Armor will gain a 15% bonus that is distributed randomly among the base resistances of that item. For example, an exceptionally made Platemail Tunic could have 5% applied to Physical, 6% to Fire, and 2% to each Cold and Poison. Or, and this would be extremely rare, all 15% could be added to Physical.
+*/
+
 /***/ }),
 /* 314 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -29083,12 +29256,28 @@ var Buy = function (_Component) {
       var buyables = [];
 
       if (this.props.data.buy) {
-        buyables = _.map(this.props.data.buy, function (id) {
-          return _.findWhere(__WEBPACK_IMPORTED_MODULE_7__data_ItemData__["a" /* ItemData */], { id: id });
+        var matches = [];
+        var hash = {};
+
+        _.each(this.props.data.buy, function (type) {
+          // match on these fields
+          _.each(['type', 'sub_type', 'name', 'id'], function (search) {
+            hash = {};
+            hash[search] = type;
+            matches = _.where(__WEBPACK_IMPORTED_MODULE_7__data_ItemData__["a" /* ItemData */], hash);
+
+            if (!!matches && matches.length > 0) {
+              _.each(matches, function (match) {
+                if (match.countable === false || match.countable === true && match.count > 0) buyables.push(match);
+              });
+            }
+          });
         });
       }
 
-      return buyables;
+      return _.uniq(_.sortBy(buyables, function (buyable) {
+        return buyable.name;
+      }));
     }
   }, {
     key: 'buyItem',
@@ -29135,7 +29324,7 @@ var Buy = function (_Component) {
 
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'tr',
-          { key: 'buy.' + item.id },
+          { key: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('buy') + '.buy.' + item.id },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'td',
             null,
@@ -29205,7 +29394,7 @@ var Buy = function (_Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
-            { className: 'row' },
+            { className: 'row scrollable top5' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
               { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
@@ -29340,7 +29529,9 @@ var Sell = function (_Component) {
         });
       }
 
-      return sellables;
+      return _.sortBy(sellables, function (sellable) {
+        return sellable.name;
+      });
     }
   }, {
     key: 'getSellTable',
@@ -29349,6 +29540,8 @@ var Sell = function (_Component) {
 
       var items = _.map(this.getSellables(), function (item) {
         var description = item.description;
+        var equipped = !!item.equip && item.equip.equipped === true ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-ok-sign' }) : '';
+
         if (item.countable) {
           description = item.count > 1 ? item.count + ' ' + item.plural : item.count + ' ' + item.name;
         }
@@ -29357,7 +29550,9 @@ var Sell = function (_Component) {
           { href: '#', onClick: function onClick() {
               _this3.sellItem(item);
             } },
-          description
+          description,
+          ' ',
+          equipped
         );
 
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -29432,7 +29627,7 @@ var Sell = function (_Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
-            { className: 'row' },
+            { className: 'row scrollable top5' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
               { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
@@ -29682,6 +29877,7 @@ var Combat = function (_Component) {
     value: function playerRun() {
       // if ranged weapon, player can still attack while running.
       // base on stamina and/or speed
+      // Upon running, toggle mob aggro
       var mob = this.state.mob;
       var player = this.state.player;
       console.log('run!');
@@ -32557,7 +32753,7 @@ var StoreData = [{
   description: 'A stout man stands behind a small forge.',
   sell: ['ore', 'armor', 'weapons'],
   craft: ['blacksmithing'],
-  buy: [3, 4, 9, 10],
+  buy: ['axe', 'metal_armor', 'blade'],
   type: 'store'
 }, {
   id: 2,
@@ -32565,7 +32761,7 @@ var StoreData = [{
   description: 'You see a small spinning wheel and a loom. The caretaker is in the corner, sewing some hides.',
   sell: ['cloth', 'cut leather', 'leather hide', 'wool', 'leather'],
   craft: ['tailoring'],
-  buy: [30, 31],
+  buy: ['leather', 'cloth'],
   type: 'store'
 }, {
   id: 3,
@@ -33303,6 +33499,8 @@ var Effects = function Effects() {
       offense = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].clone(eq.weapon);
     }
   });
+
+  defense.physical = Math.round(defense.physical);
 
   var speed = ((offense.speed * 4 - Math.floor(state.Player.stamina / 30)) / 4).toFixed(2);
   offense.speed = parseFloat(speed < 1.25 ? 1.25 : speed);
