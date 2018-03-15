@@ -55,7 +55,7 @@ const Inventory = (state = {}, action) => {
   }
 
   if (!state.Inventory) {
-    state.Inventory = {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife2', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife2', 'name': 'butcher knife2', 'value': 5, 'equip': { 'equipped': false, 'location': 'both hands'}}, {'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand'}}]};
+    state.Inventory = {'armor': [],'items': [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}], 'weapons': [{'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': false, 'location': 'right hand'}}, {'weapon': {'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one'}, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': {'resource': {'id': 2, 'min': 3}, 'skill': {'min': 20, 'id': 5, 'name': 'blacksmithing'}}, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand'}}]};
     state.Inventory = merge_new_data(state.Inventory);
   }
 
@@ -139,8 +139,19 @@ const Inventory = (state = {}, action) => {
       }
     break;
     case INVENTORY.EQUIP:
-      inventoryItem.equip.equipped = true;
-      unequip_others(inventoryItem);
+
+      let strength = (inventoryItem.type === 'armor' || inventoryItem.type === 'weapon') ? inventoryItem[inventoryItem.type].strength: 0;
+      console.log('str', state.Player.strength, strength);
+
+      if (state.Player.strength >= strength) {
+        inventoryItem.equip.equipped = true;
+        unequip_others(inventoryItem);
+      } else {
+        inventoryItem.equip.equipped = false;
+        state.Queue.add('actions', Config.ACTIONS.MESSAGES.WARNING, 
+          { body: `You need at least ${strength} strength to equip this.` }
+        );
+      }
     break;
     case INVENTORY.UNEQUIP:
        inventoryItem.equip.equipped = false;
