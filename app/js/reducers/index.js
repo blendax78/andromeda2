@@ -7,6 +7,7 @@ import Skills from './Skills';
 import Mobs from './Mobs';
 import Effects from './Effects';
 import Queue from './Queue';
+import Bank from './Bank';
 import Config from '../components/Config';
 
 let APP = Config.ACTIONS.APP;
@@ -30,7 +31,8 @@ const Reducers = (state = {}, action) => {
       Inventory: Inventory(state, action),
       Skills: Skills(state, action),
       Mobs: Mobs(state, action),
-      Queue: Queue(state, action)
+      Queue: Queue(state, action),
+      Bank: Bank(state, action)
     }
   }
 
@@ -64,6 +66,9 @@ const Reducers = (state = {}, action) => {
     case 'COMBAT':
     case 'MOBS':
       Mobs(state, action);
+    break;
+    case 'BANK':
+      Bank(state, action);
     break;
     case 'APP':
       switch (type) {

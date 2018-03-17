@@ -54,6 +54,13 @@ const Config = {
     ITEM: {
       USE: 'ITEM.USE'
     },
+    BANK: {
+      DEPOSIT: 'BANK.DEPOSIT',
+      WITHDRAW: 'BANK.WITHDRAW',
+      SAVE: 'BANK.SAVE',
+      FETCH: 'BANK.FETCH',
+      GET: 'BANK.GET'
+    },
     INVENTORY: {
       SAVE: 'INVENTORY.SAVE',
       FETCH: 'INVENTORY.FETCH',
@@ -107,6 +114,7 @@ const Config = {
     PLAYER: '/player',
     USER: '/user',
     INVENTORY: '/inventory',
+    BANK: '/bank',
     SKILLS: '/skill',
   },
 

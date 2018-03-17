@@ -61,7 +61,7 @@ export const StoreData = [
   },
   {
     id: 6,
-    name: 'Slings & Arrows',
+    name: 'Bowyer',
     description: 'A tall man stands over a long piece of wood, slowly bending it into shape.',
     sell: [
       8,
@@ -71,5 +71,14 @@ export const StoreData = [
     craft: ['bowcraft'],
     buy: [29],
     type: 'store'
+  },
+  {
+    id: 7,
+    name: 'Bank of Trammel',
+    description: 'A man stares at you through a small, barred window.',
+    sell: [],
+    craft: [],
+    buy: [],
+    type: 'bank'
   },
 ];

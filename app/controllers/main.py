@@ -2,6 +2,7 @@ from app.models import player
 from app.models import user
 from app.models import skill
 from app.models import inventory
+from app.models import bank
 
 import json
 import re
@@ -11,6 +12,7 @@ class Main(object):
     self.player = player
     self.user = user
     self.skill = skill
+    self.bank = bank
     self.inventory = inventory
 
 ########## PLAYER ##########
@@ -57,6 +59,22 @@ class Main(object):
     json_data = json.dumps(data)
 
     return self.inventory.set(player_id, json_data)
+
+########## BANK ##########
+
+  def bank_get(self, player_id):
+    player_id = re.escape(player_id)
+
+    result = self.bank.get(player_id)
+    result['object'] = json.loads(result['json'])
+
+    return result
+
+  def bank_set(self, player_id, data={}):
+    player_id = re.escape(player_id)
+    json_data = json.dumps(data)
+
+    return self.bank.set(player_id, json_data)
 
 ########## USER ##########
 

@@ -13,6 +13,8 @@ class Store extends Component {
     this.keys = {
       buy: Config.randomKey('commerce'),
       sell: Config.randomKey('commerce'),
+      bank_deposit: Config.randomKey('commerce'),
+      bank_withdraw: Config.randomKey('commerce'),
       inn: Config.randomKey('commerce'),
       healer: Config.randomKey('commerce'),
       blacksmithing: Config.randomKey('commerce'),
@@ -134,6 +136,10 @@ class Store extends Component {
           disabled: disabled
         });
         buttons.push(<button key={this.keys.healer} onClick={ () => this.resurrect() } className={processClasses} disabled={disabled}>Resurrect</button>);
+      break;
+      case 'bank':
+        buttons.push(<button key={this.keys.bank_deposit} className="btn btn-info">Deposit</button>);
+        buttons.push(<button key={this.keys.bank_withdraw} className="btn btn-info">Withdraw</button>);
       break;
       case 'inn':
         buttons.push(<button key={this.keys.inn} className="btn btn-info">Stay</button>);

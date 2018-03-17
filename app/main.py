@@ -56,6 +56,18 @@ def inventory_set(player_id=None):
   data = json.loads(request.form['data'])
   return render_response(json.dumps(controller.inventory_set(player_id, data)), 'application/json')
 
+########## BANK ##########
+@app.route('/bank/<player_id>', methods=['GET'])
+def bank_get(player_id=None):
+  return render_response(json.dumps(controller.bank_get(player_id)), 'application/json')
+
+@app.route('/inventory/<player_id>', methods=['POST'])
+def bank_set(player_id=None):
+  data = json.loads(request.form['data'])
+  return render_response(json.dumps(controller.bank_set(player_id, data)), 'application/json')
+
+########## SHARED ##########
+
 @app.before_request
 def before_request():
   # print(request.cookies.get('auth.token'))
