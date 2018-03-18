@@ -40,7 +40,7 @@ const Skills = (state = {}, action) => {
         player[stat]++;
 
         state.Queue.add('actions', Config.ACTIONS.PLAYER.SAVE, state.Player);
-        notifyGain(`${ Config.upperCase(stat) } increased by 1.`);
+        notifyGain(`${ Config.upperCase(stat) } increased by 1. It is now ${player[stat].toString()}.`);
       }
     }
   };
@@ -71,7 +71,7 @@ const Skills = (state = {}, action) => {
       checkStatGain(skill);
 
       state.Queue.add('actions', Config.ACTIONS.SKILLS.SAVE, { ...state.Skills, player_id: state.Player.id });
-      notifyGain(`${ Config.upperCase(skill) } increased by ${ gain.toString() }.`);
+      notifyGain(`${ Config.upperCase(skill) } increased by ${gain.toString()}. It is now ${state.Skills[skill].current}.`);
     }
   };
 

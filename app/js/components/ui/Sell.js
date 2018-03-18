@@ -92,7 +92,7 @@ class Sell extends Component {
   getSellTable(available) {
     let items = _.map(this.getSellables(), (item) => {
       let description = item.description;
-      let equipped = (!!item.equip && item.equip.equipped === true) ? <span className="glyphicon glyphicon-ok-sign"></span> : '';
+      let equipped = (!!item.equip && item.equip.equipped === true) ? <span title="Equipped" className="glyphicon glyphicon-ok-sign"></span> : '';
 
       if (item.countable) {
         description = (item.count > 1) ? `${item.count} ${item.plural}` : `${item.count} ${item.name}`;

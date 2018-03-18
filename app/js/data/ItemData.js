@@ -1052,7 +1052,7 @@ export const ItemData = [
     plural: 'leather leggings',
     countable: false,
     description: 'leather leggings',
-    value: 2,
+    value: 10,
     weight: 4,
     type: 'armor',
     sub_type: 'leather',

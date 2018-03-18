@@ -4010,7 +4010,7 @@ var ItemData = [{
   plural: 'leather leggings',
   countable: false,
   description: 'leather leggings',
-  value: 2,
+  value: 10,
   weight: 4,
   type: 'armor',
   sub_type: 'leather',
@@ -29925,7 +29925,7 @@ var Sell = function (_Component) {
 
       var items = _.map(this.getSellables(), function (item) {
         var description = item.description;
-        var equipped = !!item.equip && item.equip.equipped === true ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-ok-sign' }) : '';
+        var equipped = !!item.equip && item.equip.equipped === true ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { title: 'Equipped', className: 'glyphicon glyphicon-ok-sign' }) : '';
 
         if (item.countable) {
           description = item.count > 1 ? item.count + ' ' + item.plural : item.count + ' ' + item.name;
@@ -33427,7 +33427,7 @@ var Skills = function Skills() {
         player[stat]++;
 
         state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, state.Player);
-        notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(stat) + ' increased by 1.');
+        notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(stat) + ' increased by 1. It is now ' + player[stat].toString() + '.');
       }
     }
   };
@@ -33460,7 +33460,7 @@ var Skills = function Skills() {
       checkStatGain(skill);
 
       state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.SKILLS.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, { player_id: state.Player.id }));
-      notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(skill) + ' increased by ' + gain.toString() + '.');
+      notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(skill) + ' increased by ' + gain.toString() + '. It is now ' + state.Skills[skill].current + '.');
     }
   };
 
