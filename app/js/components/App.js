@@ -27,7 +27,7 @@ class App extends Component {
       Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.TICK, {});
       Config.dispatch(this.props.store, Config.ACTIONS.MOBS.TICK, {});
 
-      if (this.timer % 30 === 0) {
+      if (this.timer % 30 === 0 && this.timer !== 0) {
         if (Config.ENV === 'prod') {
           // Only if not on local.
           Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.SAVE, this.state.player);

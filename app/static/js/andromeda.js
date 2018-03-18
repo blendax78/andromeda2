@@ -26337,7 +26337,7 @@ var App = function (_Component) {
       __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.PLAYER.TICK, {});
       __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.MOBS.TICK, {});
 
-      if (_this.timer % 30 === 0) {
+      if (_this.timer % 30 === 0 && _this.timer !== 0) {
         if (__WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ENV === 'prod') {
           // Only if not on local.
           __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.PLAYER.SAVE, _this.state.player);
