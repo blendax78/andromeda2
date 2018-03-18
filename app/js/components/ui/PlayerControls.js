@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Config from '../Config';
+import * as classNames from 'classnames';
 
 class PlayerControls extends Component {
   constructor(props) {
@@ -105,20 +106,21 @@ class PlayerControls extends Component {
         this.state.player.status.run = false;
         this.state.player.status.mount = !this.state.player.status.mount;
       break;
+      case Config.ACTIONS.PLAYER.HIDE:
+        this.hide();
+        this.state.player.status.run = false;
+        this.state.player.status.mount = false;
+      break;      
       default:
         this.state.player.status.run = false;
         this.state.player.status.mount = false;
       break;
     }
 
-    this.props.store.dispatch({ type: movType, payload: { run: this.state.player.status.run, mount: this.state.player.status.mount } });
+    this.props.store.dispatch({ type: movType, payload: { hide: this.state.player.status.hide, run: this.state.player.status.run, mount: this.state.player.status.mount } });
   }
 
   componentDidMount() {
-    // Arrow functions inherit 'this' from outer function.
-    $("#run_check").off('change').on('change', () => {
-      this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
-    });
 
     $(document).off('keyup').on('keyup', (e) => {
       switch (e.keyCode) {
@@ -135,16 +137,10 @@ class PlayerControls extends Component {
           this.move(Config.ACTIONS.PLAYER.EAST);
         break;
         case 82:
-          if (this.state.player.stamina > 0) {
-            $('#run_check').bootstrapToggle('toggle');
-          }
+          this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
         break;
         case 72:
-          $('#hide_check').bootstrapToggle('toggle');
-          this.props.store.dispatch({
-            type: Config.ACTIONS.SKILLS.HIDING,
-            payload: {}
-          });
+          this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE);
         break;
         default:
           // console.log(e.keyCode);
@@ -153,12 +149,38 @@ class PlayerControls extends Component {
     });
   }
 
-  componentDidUpdate() {
-    let check = $('#run_check');
-
-    if (check.prop('checked') && this.state.player.status.run === false) {
-      check.bootstrapToggle('off', false);
+  run() {
+    let player = this.state.player;
+    if (this.state.player.stamina > 0 && !this.state.app.modal.open && this.state.player.status.run === false) {
+      player.status.run = true;
+    } else {
+      let player = this.state.player;
+      player.status.run = false;
     }
+
+    this.setState({
+      player: player
+    });
+  }
+
+  hide() {
+    if (this.state.player.stamina > 0 && !this.state.app.modal.open && this.state.player.status.hide === false) {
+      this.state.player.stamina--; 
+      this.props.store.dispatch({
+        type: Config.ACTIONS.SKILLS.HIDING,
+        payload: {}
+      });
+    } else {
+      let player = this.state.player;
+      player.status.hide = false;
+
+      this.setState({
+        player: player
+      });
+    }
+  }
+
+  componentDidUpdate() {
   }
 
   render() {
@@ -170,6 +192,19 @@ class PlayerControls extends Component {
     let west = (player.x > 0 && !this.state.app.modal.open) ? false : true;
     let north = (player.y > 0 && !this.state.app.modal.open) ? false : true;
     let south = (player.y < planet.height && !this.state.app.modal.open) ? false : true;
+
+    let move_disabled = (this.state.player.stamina === 0) ? true : false;
+    let hide_classes = classNames({
+      'active': this.state.player.status.hide,
+      'btn': true,
+      'btn-default': true
+    });
+
+    let run_classes = classNames({
+      'active': this.state.player.status.run,
+      'btn': true,
+      'btn-default': true
+    });
 
     return (
       <div className="player-controls nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12 col-xs-12 top5">
@@ -193,13 +228,15 @@ class PlayerControls extends Component {
 
               <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4">
                 <label className="checkbox-inline">
-                  <input type="checkbox" defaultChecked={this.state.player.status.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
+                  <button disabled={move_disabled} type="button" className={run_classes} 
+                    onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN)}>Run</button>
                 </label>
               </div>
 
               <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4 top5">
                 <label className="checkbox-inline">
-                  <input type="checkbox" defaultChecked={this.state.player.hide} data-toggle="toggle" value="hide" data-on="Hide" data-off="Hide" id="hide_check" />
+                  <button disabled={move_disabled} type="button" className={hide_classes} 
+                    onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
                 </label>
               </div>
             </div>
@@ -207,13 +244,15 @@ class PlayerControls extends Component {
 
               <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
                 <label className="checkbox-inline">
-                  <input type="checkbox" defaultChecked={this.state.player.status.run} data-toggle="toggle" value="run" data-on="Run" data-off="Run" id="run_check" />
+                  <button disabled={move_disabled} type="button" className={run_classes} 
+                    onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN)}>Run</button>
                 </label>
               </div>
 
               <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
                 <label className="checkbox-inline">
-                  <input type="checkbox" defaultChecked={this.state.player.hide} data-toggle="toggle" value="hide" data-on="Hide" data-off="Hide" id="hide_check" />
+                  <button disabled={move_disabled} type="button" className={hide_classes} 
+                    onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
                 </label>
               </div>
             </div>

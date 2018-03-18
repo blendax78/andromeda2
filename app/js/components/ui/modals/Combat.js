@@ -146,10 +146,15 @@ class Combat extends Component {
           // No need to update store (for now?)
           Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
           Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
+          Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: 'tactics' });
         } else {
           Config.notify(this.props.store, `You miss the ${mob.name}.`);
           if (skill.current < 20) {
             Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
+          }
+
+          if (this.state.skills.tactics.current < 20) {
+            Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: 'tactics' });
           }
         }
       }

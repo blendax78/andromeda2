@@ -1106,6 +1106,366 @@ export const ItemData = [
       physical: 5.7
     }
   },
+  {
+    id: 37,
+    name: 'short pants',
+    plural: 'short pants',
+    countable: false,
+    description: 'short pants',
+    value: 3,
+    weight: 3,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 24.8
+      },
+      resource: {
+        id: 6,
+        min: 6
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 38,
+    name: 'kilt',
+    plural: 'kilts',
+    countable: false,
+    description: 'a kilt',
+    value: 4,
+    weight: 4,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 20.7
+      },
+      resource: {
+        id: 6,
+        min: 8
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 39,
+    name: 'long pants',
+    plural: 'long pants',
+    countable: false,
+    description: 'long pants',
+    value: 3,
+    weight: 3,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 24.8
+      },
+      resource: {
+        id: 6,
+        min: 6
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 40,
+    name: 'skirt',
+    plural: 'skirts',
+    countable: false,
+    description: 'a skirt',
+    value: 5,
+    weight: 5,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 29.0
+      },
+      resource: {
+        id: 6,
+        min: 10
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 41,
+    name: 'surcoat',
+    plural: 'surcoats',
+    countable: false,
+    description: 'a surcoat',
+    value: 7,
+    weight: 7,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 8.2
+      },
+      resource: {
+        id: 6,
+        min: 14
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 42,
+    name: 'shirt',
+    plural: 'shirts',
+    countable: false,
+    description: 'a shirt',
+    value: 4,
+    weight: 4,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 20.7
+      },
+      resource: {
+        id: 6,
+        min: 8
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 43,
+    name: 'robe',
+    plural: 'robes',
+    countable: false,
+    description: 'a robe',
+    value: 8,
+    weight: 8,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 53.9
+      },
+      resource: {
+        id: 6,
+        min: 16
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 44,
+    name: 'plain dress',
+    plural: 'plain dresses',
+    countable: false,
+    description: 'a plain dress',
+    value: 5,
+    weight: 5,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 12.4
+      },
+      resource: {
+        id: 6,
+        min: 10
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 45,
+    name: 'fancy dress',
+    plural: 'fancy dresses',
+    countable: false,
+    description: 'a fancy dress',
+    value: 6,
+    weight: 6,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 33.1
+      },
+      resource: {
+        id: 6,
+        min: 12
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 46,
+    name: 'fancy shirt',
+    plural: 'fancy shirts',
+    countable: false,
+    description: 'a fancy shirt',
+    value: 4,
+    weight: 4,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 24.8
+      },
+      resource: {
+        id: 6,
+        min: 8
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 47,
+    name: 'cloak',
+    plural: 'cloaks',
+    countable: false,
+    description: 'a cloak',
+    value: 7,
+    weight: 7,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BACK,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 41.4
+      },
+      resource: {
+        id: 6,
+        min: 14
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 48,
+    name: 'wizard hat',
+    plural: 'wizard hats',
+    countable: false,
+    description: 'a wizard hat',
+    value: 7,
+    weight: 7,
+    type: 'armor',
+    sub_type: 'cloth',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BACK,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 7.2
+      },
+      resource: {
+        id: 6,
+        min: 14
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
 ];
 
 

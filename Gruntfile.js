@@ -1,14 +1,12 @@
 module.exports = function(grunt) {
 
   const CSS = [
-    'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css'
+    'node_modules/bootstrap/dist/css/bootstrap.min.css'
   ];
 
   const JS = [
     'node_modules/jquery/dist/jquery.min.js',
     'node_modules/bootstrap/dist/js/bootstrap.min.js',
-    'node_modules/bootstrap-toggle/js/bootstrap-toggle.js',
     'node_modules/underscore/underscore-min.js'
   ];
 

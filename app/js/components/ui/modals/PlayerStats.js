@@ -6,7 +6,8 @@ class PlayerStats extends Component {
     super(props);
     
     this.state = {
-      player: props.store.getState().Player
+      player: props.store.getState().Player,
+      skills: props.store.getState().Skills
     };
   }
 
@@ -25,10 +26,41 @@ class PlayerStats extends Component {
     return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
   }
 
+  getTitle() {
+    let title = '';
+    let highest = _.first(_.sortBy(this.state.skills, (skill) => {
+      return skill.current * -1;
+    }));
+    
+    if (highest.current === 100) {
+      title = 'Grandmaster';
+    } else if (highest.current >= 90) {
+      title = 'Master';
+    } else if (highest.current >= 80) {
+      title = 'Adept';
+    } else if (highest.current >= 70) {
+      title = 'Expert';
+    } else if (highest.current >= 60) {
+      title = 'Journeyman';
+    } else if (highest.current >= 50) {
+      title = 'Apprentice';
+    } else if (highest.current >= 40) {
+      title = 'Novice';
+    } else if (highest.current >= 30) {
+      title = 'Neophyte';
+    } else {
+      title = '';
+    }
+
+    return `${title} ${highest.title}`;
+  }
+
   render() {
+    let title = this.getTitle();
     return (
       <div className="row">
         <div className="col-lg-12 col-md-12 col-sm-12">
+          <p><span className="bold">Title: </span>{this.state.player.name}, the {title}</p>
           <p><span className="bold">Time in World: </span>{this.calcTime()}</p>
           <p><span className="bold">Walking Steps: </span>{this.state.player.score.walked}</p>
           <p><span className="bold">Running Steps: </span>{this.state.player.score.run}</p>

@@ -80,6 +80,7 @@ const Config = {
       HANDS: 'hands',
       LEGS: 'legs',
       NECK: 'neck',
+      BACK: 'back',
       RFINGER: 'right finger',
       LFINGER: 'left finger',
     },

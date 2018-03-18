@@ -41,7 +41,6 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')}>Arrows? Regs?</li>,
       <li key={Config.randomKey('li')}>Exceptional Crafting</li>,
       <li key={Config.randomKey('li')}>Banks</li>,
-      <li key={Config.randomKey('li')}>Hiding</li>,
       <li key={Config.randomKey('li')}>Magic</li>,
       <li key={Config.randomKey('li')}>Meditation (with button by run/hide)</li>,
       <li key={Config.randomKey('li')}>Aggro Mobs</li>,

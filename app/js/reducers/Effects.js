@@ -30,11 +30,11 @@ const Effects = (state = {}, action) => {
   let speed = ((offense.speed * 4  - Math.floor(state.Player.stamina / 30)) / 4).toFixed(2);
   offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
 
-  let strength_mod = Math.round(state.Player.strength * 0.3);
+  let strength_mod = 1 + ((state.Player.strength * 0.3) / 100);
   // Strength + tactics
-  offense.min = (offense.min - Math.round(offense.min * ((50 - state.Skills.tactics.current) / 100))) + strength_mod;
+  offense.min = Math.round((offense.min - Math.round(offense.min * ((50 - state.Skills.tactics.current) / 100))) * strength_mod);
   offense.min = (offense.min === 0) ? 1 : offense.min;
-  offense.max = (offense.max - Math.round(offense.max * ((50 - state.Skills.tactics.current) / 100))) + strength_mod;
+  offense.max = Math.round((offense.max - Math.round(offense.max * ((50 - state.Skills.tactics.current) / 100))) * strength_mod);
 
   // Lumberjacking
   // Lumberjack Damage Bonus% = Lumberjack ÷ 5 (Add 10% if Lumberjacking >= 100)

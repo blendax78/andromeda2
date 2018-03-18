@@ -146,6 +146,32 @@ const Skills = (state = {}, action) => {
     }
   }
 
+  let hide = () => {
+    let skill = state.Skills.hiding;
+    // This function is called when an object is clicked and a skill is checked.
+    let random = _.random(1, 100);
+
+    if (random <= skill.current + skill.modifier) {
+      notify('You have hidden yourself well.');
+
+      checkSkillGain(skill.name.toLowerCase());
+      checkResultSuccess();
+
+      state.Player.status.hide = true;
+      return true;
+    } else {
+      notify('You fail to hide yourself.')
+      if (skill.current < 20.0) {
+        // If under 20, check on fail.
+        checkSkillGain(skill.name.toLowerCase());
+      }
+
+      state.Player.status.hide = false;
+      return false;
+    }
+
+  }
+
   switch (type) {
     case SKILLS.GET:
       delete payload.player_id;
@@ -169,7 +195,7 @@ const Skills = (state = {}, action) => {
       checkObjectSuccess('mining');
     break;
     case SKILLS.HIDING:
-      console.log(SKILLS.HIDING);
+      hide();
     break;
     case SKILLS.CRAFT:
       // Handles all crafting skills

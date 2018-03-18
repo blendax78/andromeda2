@@ -6,7 +6,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity'
+    secondary: 'dexterity',
+    title: 'Lumberjack'
   },
   mining: {
     id: 2,
@@ -15,7 +16,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity'
+    secondary: 'dexterity',
+    title: 'Miner'
   },
   wrestling: {
     id: 3,
@@ -24,7 +26,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity'
+    secondary: 'dexterity',
+    title: 'Wrestler'
   },
   tailoring: {
     id: 4,
@@ -33,7 +36,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'intelligence'
+    secondary: 'intelligence',
+    title: 'Tailor'
   },
   blacksmithing: {
     id: 5,
@@ -42,7 +46,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity'
+    secondary: 'dexterity',
+    title: 'Blacksmith'
   },
   swordsmanship: {
     id: 6,
@@ -51,7 +56,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity'
+    secondary: 'dexterity',
+    title: 'Swordsman'
   },
   fencing: {
     id: 7,
@@ -60,7 +66,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'strength'
+    secondary: 'strength',
+    title: 'Fencer'
   },
   bowcraft: {
     id: 8,
@@ -69,7 +76,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'strength'
+    secondary: 'strength',
+    title: 'Bowyer'
   },
   hiding: {
     id: 9,
@@ -78,7 +86,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'intelligence'
+    secondary: 'intelligence',
+    title: 'Shade'
   },
   archery: {
     id: 10,
@@ -87,7 +96,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'dexterity',
-    secondary: 'strength'
+    secondary: 'strength',
+    title: 'Archer'
   },
   magery: {
     id: 11,
@@ -96,7 +106,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'intelligence',
-    secondary: 'strength'
+    secondary: 'strength',
+    title: 'Mage'
   },
   meditation: {
     id: 12,
@@ -105,7 +116,8 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'intelligence',
-    secondary: 'strength'
+    secondary: 'strength',
+    title: 'Stoic'
   },
   tactics: {
     id: 13,
@@ -114,7 +126,18 @@ export const SkillData = {
     current: 0.0,
     modifier: 0,
     primary: 'strength',
-    secondary: 'dexterity'
+    secondary: 'dexterity',
+    title: 'Tactician'
+  },
+  stealth: {
+    id: 14,
+    name: 'Stealth',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'intelligence',
+    title: 'Shade'
   },
 };
 
@@ -184,4 +207,67 @@ Tinkering Dex Int
 Tracking  Int Dex
 Veterinary  Int Dex
 Wrestling Str Dex
+*/
+
+/*
+TITLES
+
+Skill Title
+Alchemy Alchemist
+Anatomy Biologist
+Animal Lore Naturalist
+Animal Taming Tamer
+Archery Archer
+Arms Lore Weapons Master
+Begging Beggar
+Blacksmithy Smith
+Bowcraft & Fletching  Bowyer
+Bushido Samurai
+Camping Explorer
+Carpentry Carpenter
+Cartography Cartographer
+Chivalry  Paladin
+Cooking Chef
+Detecting Hidden  Scout
+Discordance Demoralizer
+Evaluating Intelligence Scholar
+Fencing Fencer
+Fishing Fisherman
+Focus Stoic
+Forensic Evaluation Detective
+Healing Healer
+Herding Shepherd
+Hiding  Shade
+Imbuing Artificer
+Inscription Scribe
+Item Identification Merchant
+Lockpicking Infiltrator
+Lumberjacking Lumberjack
+Mace Fighting Armsman
+Magery  Mage
+Meditation  Stoic
+Mining  Miner
+Musicianship  Bard
+Mysticism Mystic
+Necromancy  Necromancer
+Ninjitsu  Ninja
+Parry Duelist
+Peacemaking Pacifier
+Poisoning Assassin
+Provocation Rouser
+Remove Trap Trap Specialist
+Resisting Spells  Mage
+Snooping  Spy
+Spellweaving  Arcanist
+Spirit Speak  Medium
+Stealing  Pickpocket
+Stealth Rogue
+Swordsmanship Swordsman
+Tactics Tactician
+Tailoring Tailor
+Taste Identification  Praegustator
+Throwing  Bladeweaver
+Tinkering Tinker
+Tracking  Ranger
+Veterinary  Veterinarian
 */
