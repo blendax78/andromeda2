@@ -359,12 +359,14 @@ class Combat extends Component {
   getCombatActions() {
     let classMelee = classNames({
       btn: true,
+      'btn-default': !this.state.combat.melee,
       'btn-info': this.state.combat.melee,
       top5: true,
       disabled: (this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee') 
     });
     let classRanged = classNames({
       btn: true,
+      'btn-default': !this.state.combat.ranged,
       'btn-info': this.state.combat.ranged,
       top5: true,
       disabled: !this.state.equipped.weapon ||
@@ -372,6 +374,7 @@ class Combat extends Component {
     });
     let classRun = classNames({
       btn: true,
+      'btn-default': !this.state.combat.run,
       'btn-info': this.state.combat.run,
       top5: true
     });

@@ -36,15 +36,17 @@ class Modal extends Component {
 
   componentDidUpdate() {
     let options = {
-      keyboard: !this.state.modal.locked,
+      keyboard: false,
       backdrop: 'static'
     };
 
     if ((typeof this.state.modal.body === 'string' && this.state.modal.body.length > 0) || typeof this.state.modal.body === 'object') {
       $('#modal-container').modal(options);
     }
+  }
 
-    $('#modal-container').on('hide.bs.modal', () => {
+  componentDidMount() {
+    this.modalEvent = $('#modal-container').on('hide.bs.modal', () => {
       this.clearModal();
     });
   }

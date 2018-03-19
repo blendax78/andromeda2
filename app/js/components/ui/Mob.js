@@ -60,7 +60,7 @@ class Mob extends Component {
     let buttons = [];
 
     if (this.state.mob.attackable && !this.state.player.status.dead) {
-      buttons.push(<button key={this.keys.actions} type="button" className="btn top5" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
+      buttons.push(<button key={this.keys.actions} type="button" className="btn btn-default top5" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
     }
 
     return (

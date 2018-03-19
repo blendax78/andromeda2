@@ -27,7 +27,7 @@ class PlayerControls extends Component {
   }
 
   move(dir) {
-
+    this.state.player.status.meditate = false;
     if (this.state.app.modal.open) {
       return;
     }
@@ -101,19 +101,23 @@ class PlayerControls extends Component {
       case Config.ACTIONS.PLAYER.RUN:
         this.state.player.status.run = (this.state.player.stamina > 0) ? !this.state.player.status.run : false;
         this.state.player.status.mount = false;
+        this.state.player.status.meditate = false;
       break;
       case Config.ACTIONS.PLAYER.MOUNT:
         this.state.player.status.run = false;
         this.state.player.status.mount = !this.state.player.status.mount;
+        this.state.player.status.meditate = false;
       break;
       case Config.ACTIONS.PLAYER.HIDE:
         this.hide();
         this.state.player.status.run = false;
         this.state.player.status.mount = false;
+        this.state.player.status.meditate = false;
       break;      
       default:
         this.state.player.status.run = false;
         this.state.player.status.mount = false;
+        this.state.player.status.meditate = false;
       break;
     }
 
@@ -163,6 +167,27 @@ class PlayerControls extends Component {
     });
   }
 
+  meditate() {
+    this.state.player.status.run = false;
+    this.state.player.status.hide = false;
+
+    if (this.state.player.stamina > 0 && !this.state.app.modal.open && this.state.player.status.meditate === false) {
+      this.state.player.stamina--; 
+      this.props.store.dispatch({
+        type: Config.ACTIONS.SKILLS.MEDITATION,
+        payload: {}
+      });
+    } else {
+      let player = this.state.player;
+      player.status.meditate = false;
+
+      this.setState({
+        player: player
+      });
+    }
+  }
+
+
   hide() {
     if (this.state.player.stamina > 0 && !this.state.app.modal.open && this.state.player.status.hide === false) {
       this.state.player.stamina--; 
@@ -194,6 +219,7 @@ class PlayerControls extends Component {
     let south = (player.y < planet.height && !this.state.app.modal.open) ? false : true;
 
     let move_disabled = (this.state.player.stamina === 0) ? true : false;
+
     let hide_classes = classNames({
       'active': this.state.player.status.hide,
       'btn': true,
@@ -202,6 +228,12 @@ class PlayerControls extends Component {
 
     let run_classes = classNames({
       'active': this.state.player.status.run,
+      'btn': true,
+      'btn-default': true
+    });
+
+    let med_classes = classNames({
+      'active': this.state.player.status.meditate,
       'btn': true,
       'btn-default': true
     });
@@ -239,6 +271,13 @@ class PlayerControls extends Component {
                     onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
                 </label>
               </div>
+
+              <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4 top5">
+                <label className="checkbox-inline">
+                  <button disabled={move_disabled} type="button" className={med_classes} 
+                    onClick={() => this.meditate()}>Meditate</button>
+                </label>
+              </div>
             </div>
 
 
@@ -253,6 +292,13 @@ class PlayerControls extends Component {
                 <label className="checkbox-inline">
                   <button disabled={move_disabled} type="button" className={hide_classes} 
                     onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
+                </label>
+              </div>
+
+              <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
+                <label className="checkbox-inline">
+                  <button disabled={move_disabled} type="button" className={med_classes} 
+                    onClick={() => this.meditate()}>Meditate</button>
                 </label>
               </div>
             </div>

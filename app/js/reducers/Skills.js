@@ -172,6 +172,33 @@ const Skills = (state = {}, action) => {
 
   }
 
+  let meditate = () => {
+    let skill = state.Skills.meditation;
+    // This function is called when an object is clicked and a skill is checked.
+    let random = _.random(1, 100);
+
+    if (random <= skill.current + skill.modifier) {
+      notify('You enter a meditative trance.');
+
+      checkSkillGain(skill.name.toLowerCase());
+      checkResultSuccess();
+
+      state.Player.status.meditate = true;
+      return true;
+    } else {
+      notify('You cannot focus your concentration.')
+      if (skill.current < 20.0) {
+        // If under 20, check on fail.
+        checkSkillGain(skill.name.toLowerCase());
+      }
+
+      state.Player.status.meditate = false;
+      return false;
+    }
+
+  }
+
+
   switch (type) {
     case SKILLS.GET:
       delete payload.player_id;
@@ -196,6 +223,9 @@ const Skills = (state = {}, action) => {
     break;
     case SKILLS.HIDING:
       hide();
+    break;
+    case SKILLS.MEDITATION:
+      meditate();
     break;
     case SKILLS.CRAFT:
       // Handles all crafting skills

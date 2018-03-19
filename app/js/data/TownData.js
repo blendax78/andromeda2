@@ -4,7 +4,7 @@ export const TownData = [
     name: 'Yew',
     description: 'The small town of Yew lies here. Barely a town, it seems more like a large outpost. A handful of people mill around the dirt streets.',
     stores: [
-      {id: 7}, {id: 1}, {id: 2}, {id: 5}]
+      {id: 7}, {id: 1}, {id: 2}, {id: 5}, {id: 4}]
   },
   {
     id: 2,

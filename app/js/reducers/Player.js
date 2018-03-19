@@ -23,6 +23,8 @@ const Player = (state = {}, action) => {
     credits: 15,
     encumbrance: 0,
     status: {
+      inn: false,
+      meditate: false,
       hide: false,
       run: false,
       mount: false,
@@ -146,7 +148,21 @@ const Player = (state = {}, action) => {
         }
       break;
       case 'mp':
-        state.Player.partial.mp += (0.2 + state.Player.status.mp_regen);
+        let mp_change = 0.2;
+
+        /*
+          https://uo.stratics.com/content/skills/meditation.php
+
+          Let Meditation Bonus be 0.0075 * Meditation Skill + 0.0025 * Intelligence Attribute
+          If your Meditation Skill is GM or above, multiple Meditation Bonus by 1.1
+          If you are actively meditating, multiply Meditation Bonus by 2
+        */
+
+        mp_change *= (state.Skills.meditation.current >= 100) ? 1.1 : 1;
+        mp_change += (0.0075 * state.Skills.meditation.current) + (0.0025 * state.Player.intelligence);
+        mp_change *= (state.Player.status.meditate === true) ? 2 : 1;
+
+        state.Player.partial.mp += (mp_change + state.Player.status.mp_regen);
         if (Math.floor(state.Player.partial.mp) >= 1) {
           state.Player.partial.mp = 0;
           return true;
@@ -198,6 +214,10 @@ const Player = (state = {}, action) => {
 
       if (state.Player.status.dead) {
         break;
+      }
+
+      if (state.Player.status.inn !== false) {
+        state.Player.credits -= state.Player.status.inn;
       }
 
       if (update_partials('hp')) {

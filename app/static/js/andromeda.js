@@ -487,9 +487,10 @@ var Config = {
       SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',
       GET: 'SKILLS.GET',
-      LUMBERJACKING: 'SKILLS.LUMBERJACKING',
-      MINING: 'SKILLS.MINING',
       HIDING: 'SKILLS.HIDING',
+      LUMBERJACKING: 'SKILLS.LUMBERJACKING',
+      MEDITATION: 'SKILLS.MEDITATION',
+      MINING: 'SKILLS.MINING',
       WRESTLING: 'SKILLS.WRESTLING'
     },
     MOBS: {
@@ -13245,7 +13246,7 @@ var PlayerControls = function (_Component) {
   }, {
     key: 'move',
     value: function move(dir) {
-
+      this.state.player.status.meditate = false;
       if (this.state.app.modal.open) {
         return;
       }
@@ -13320,19 +13321,23 @@ var PlayerControls = function (_Component) {
         case __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.RUN:
           this.state.player.status.run = this.state.player.stamina > 0 ? !this.state.player.status.run : false;
           this.state.player.status.mount = false;
+          this.state.player.status.meditate = false;
           break;
         case __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.MOUNT:
           this.state.player.status.run = false;
           this.state.player.status.mount = !this.state.player.status.mount;
+          this.state.player.status.meditate = false;
           break;
         case __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE:
           this.hide();
           this.state.player.status.run = false;
           this.state.player.status.mount = false;
+          this.state.player.status.meditate = false;
           break;
         default:
           this.state.player.status.run = false;
           this.state.player.status.mount = false;
+          this.state.player.status.meditate = false;
           break;
       }
 
@@ -13385,6 +13390,27 @@ var PlayerControls = function (_Component) {
       });
     }
   }, {
+    key: 'meditate',
+    value: function meditate() {
+      this.state.player.status.run = false;
+      this.state.player.status.hide = false;
+
+      if (this.state.player.stamina > 0 && !this.state.app.modal.open && this.state.player.status.meditate === false) {
+        this.state.player.stamina--;
+        this.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.MEDITATION,
+          payload: {}
+        });
+      } else {
+        var player = this.state.player;
+        player.status.meditate = false;
+
+        this.setState({
+          player: player
+        });
+      }
+    }
+  }, {
     key: 'hide',
     value: function hide() {
       if (this.state.player.stamina > 0 && !this.state.app.modal.open && this.state.player.status.hide === false) {
@@ -13420,6 +13446,7 @@ var PlayerControls = function (_Component) {
       var south = player.y < planet.height && !this.state.app.modal.open ? false : true;
 
       var move_disabled = this.state.player.stamina === 0 ? true : false;
+
       var hide_classes = __WEBPACK_IMPORTED_MODULE_7_classnames__({
         'active': this.state.player.status.hide,
         'btn': true,
@@ -13428,6 +13455,12 @@ var PlayerControls = function (_Component) {
 
       var run_classes = __WEBPACK_IMPORTED_MODULE_7_classnames__({
         'active': this.state.player.status.run,
+        'btn': true,
+        'btn-default': true
+      });
+
+      var med_classes = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+        'active': this.state.player.status.meditate,
         'btn': true,
         'btn-default': true
       });
@@ -13524,6 +13557,22 @@ var PlayerControls = function (_Component) {
                     'Hide'
                   )
                 )
+              ),
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'div',
+                { className: 'hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4 top5' },
+                __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                  'label',
+                  { className: 'checkbox-inline' },
+                  __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                    'button',
+                    { disabled: move_disabled, type: 'button', className: med_classes,
+                      onClick: function onClick() {
+                        return _this3.meditate();
+                      } },
+                    'Meditate'
+                  )
+                )
               )
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -13555,6 +13604,22 @@ var PlayerControls = function (_Component) {
                       return _this3.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE);
                     } },
                   'Hide'
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'div',
+              { className: 'hidden-lg hidden-md hidden-xs col-sm-5 top5' },
+              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                'label',
+                { className: 'checkbox-inline' },
+                __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                  'button',
+                  { disabled: move_disabled, type: 'button', className: med_classes,
+                    onClick: function onClick() {
+                      return _this3.meditate();
+                    } },
+                  'Meditate'
                 )
               )
             )
@@ -27988,7 +28053,11 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Ranged Combat'
+        'Fix PC Buttons'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Running from Combat'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -28459,18 +28528,21 @@ var Modal = function (_Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      var _this2 = this;
-
       var options = {
-        keyboard: !this.state.modal.locked,
+        keyboard: false,
         backdrop: 'static'
       };
 
       if (typeof this.state.modal.body === 'string' && this.state.modal.body.length > 0 || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default()(this.state.modal.body) === 'object') {
         $('#modal-container').modal(options);
       }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
 
-      $('#modal-container').on('hide.bs.modal', function () {
+      this.modalEvent = $('#modal-container').on('hide.bs.modal', function () {
         _this2.clearModal();
       });
     }
@@ -29285,6 +29357,13 @@ var Store = function (_Component) {
 
     _this.unsubscribe = props.store.subscribe(function () {
       if (_this.mounted) {
+        var player = _this.props.store.getState().Player;
+        var status = player.status;
+
+        if ((player.credits === 0 || player.hp === player.maxhp) && status.inn !== false) {
+          _this.stopResting();
+        }
+
         _this.setState({
           inventory: _this.props.store.getState().Inventory,
           player: _this.props.store.getState().Player
@@ -29299,6 +29378,13 @@ var Store = function (_Component) {
     value: function componentWillUnmount() {
       this.unsubscribe();
       this.mounted = false;
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (this.props.store.getState().App.modal.open === false && this.state.player.status.inn !== false) {
+        this.stopResting();
+      }
     }
   }, {
     key: 'setCrafting',
@@ -29326,6 +29412,37 @@ var Store = function (_Component) {
 
         __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notify(this.props.store, 'You processed ' + count + ' ' + resource.plural + ' and received ' + new_count + ' ' + new_resource.plural + '.');
       }
+    }
+  }, {
+    key: 'stopResting',
+    value: function stopResting() {
+      var status = this.state.player.status;
+      status.inn = false;
+      status.hp_regen = 0;
+      status.stamina_regen = 0;
+
+      __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE, { status: status });
+      __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notify(this.props.store, 'You stop resting.');
+    }
+  }, {
+    key: 'toggleRest',
+    value: function toggleRest() {
+      if (this.state.player.status.inn !== false) {
+        this.stopResting();
+      } else {
+        this.rest();
+      }
+    }
+  }, {
+    key: 'rest',
+    value: function rest() {
+      var status = this.state.player.status;
+      status.inn = this.props.data.cost;
+      status.hp_regen = this.props.data.heal;
+      status.stamina_regen = this.props.data.heal;
+
+      __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE, { status: status });
+      __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notify(this.props.store, 'You start to rest.');
     }
   }, {
     key: 'resurrect',
@@ -29427,10 +29544,20 @@ var Store = function (_Component) {
           ));
           break;
         case 'inn':
+          var inn_disabled = this.state.player.credits === 0 ? true : false;
+          var inn_classes = __WEBPACK_IMPORTED_MODULE_11_classnames__({
+            'btn': true,
+            'btn-info': this.state.player.status.inn === false,
+            'active': this.state.player.status.inn !== false,
+            'btn-success': this.state.player.status.inn !== false
+          });
+
           buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'button',
-            { key: this.keys.inn, className: 'btn btn-info' },
-            'Stay'
+            { key: this.keys.inn, onClick: function onClick() {
+                return _this2.toggleRest();
+              }, className: inn_classes, disabled: inn_disabled },
+            'Rest'
           ));
           break;
       }
@@ -30831,18 +30958,21 @@ var Combat = function (_Component) {
 
       var classMelee = __WEBPACK_IMPORTED_MODULE_8_classnames__({
         btn: true,
+        'btn-default': !this.state.combat.melee,
         'btn-info': this.state.combat.melee,
         top5: true,
         disabled: this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'melee'
       });
       var classRanged = __WEBPACK_IMPORTED_MODULE_8_classnames__({
         btn: true,
+        'btn-default': !this.state.combat.ranged,
         'btn-info': this.state.combat.ranged,
         top5: true,
         disabled: !this.state.equipped.weapon || this.state.equipped.weapon && this.state.equipped.weapon.weapon.type !== 'ranged'
       });
       var classRun = __WEBPACK_IMPORTED_MODULE_8_classnames__({
         btn: true,
+        'btn-default': !this.state.combat.run,
         'btn-info': this.state.combat.run,
         top5: true
       });
@@ -32089,7 +32219,7 @@ var Mob = function (_Component) {
       if (this.state.mob.attackable && !this.state.player.status.dead) {
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
-          { key: this.keys.actions, type: 'button', className: 'btn top5', onClick: function onClick(e) {
+          { key: this.keys.actions, type: 'button', className: 'btn btn-default top5', onClick: function onClick(e) {
               return _this2.toggleCombat(e);
             } },
           'Attack'
@@ -32718,6 +32848,8 @@ var Player = function Player() {
     credits: 15,
     encumbrance: 0,
     status: {
+      inn: false,
+      meditate: false,
       hide: false,
       run: false,
       mount: false,
@@ -32843,7 +32975,20 @@ var Player = function Player() {
         }
         break;
       case 'mp':
-        state.Player.partial.mp += 0.2 + state.Player.status.mp_regen;
+        var mp_change = 0.2;
+
+        /*
+          https://uo.stratics.com/content/skills/meditation.php
+           Let Meditation Bonus be 0.0075 * Meditation Skill + 0.0025 * Intelligence Attribute
+          If your Meditation Skill is GM or above, multiple Meditation Bonus by 1.1
+          If you are actively meditating, multiply Meditation Bonus by 2
+        */
+
+        mp_change *= state.Skills.meditation.current >= 100 ? 1.1 : 1;
+        mp_change += 0.0075 * state.Skills.meditation.current + 0.0025 * state.Player.intelligence;
+        mp_change *= state.Player.status.meditate === true ? 2 : 1;
+
+        state.Player.partial.mp += mp_change + state.Player.status.mp_regen;
         if (Math.floor(state.Player.partial.mp) >= 1) {
           state.Player.partial.mp = 0;
           return true;
@@ -32895,6 +33040,10 @@ var Player = function Player() {
 
       if (state.Player.status.dead) {
         break;
+      }
+
+      if (state.Player.status.inn !== false) {
+        state.Player.credits -= state.Player.status.inn;
       }
 
       if (update_partials('hp')) {
@@ -33447,7 +33596,7 @@ var TownData = [{
   id: 1,
   name: 'Yew',
   description: 'The small town of Yew lies here. Barely a town, it seems more like a large outpost. A handful of people mill around the dirt streets.',
-  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 5 }]
+  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 5 }, { id: 4 }]
 }, {
   id: 2,
   name: 'Skara Brae',
@@ -33489,8 +33638,8 @@ var StoreData = [{
   id: 4,
   name: 'A dilapidated inn',
   description: 'A toothless woman looks at you. "Want a room?"',
-  heal: 20,
-  cost: 5,
+  cost: 1,
+  heal: 0.1,
   craft: [],
   sell: [],
   buy: [],
@@ -33880,6 +34029,31 @@ var Skills = function Skills() {
     }
   };
 
+  var meditate = function meditate() {
+    var skill = state.Skills.meditation;
+    // This function is called when an object is clicked and a skill is checked.
+    var random = _.random(1, 100);
+
+    if (random <= skill.current + skill.modifier) {
+      notify('You enter a meditative trance.');
+
+      checkSkillGain(skill.name.toLowerCase());
+      checkResultSuccess();
+
+      state.Player.status.meditate = true;
+      return true;
+    } else {
+      notify('You cannot focus your concentration.');
+      if (skill.current < 20.0) {
+        // If under 20, check on fail.
+        checkSkillGain(skill.name.toLowerCase());
+      }
+
+      state.Player.status.meditate = false;
+      return false;
+    }
+  };
+
   switch (type) {
     case SKILLS.GET:
       delete payload.player_id;
@@ -33904,6 +34078,9 @@ var Skills = function Skills() {
       break;
     case SKILLS.HIDING:
       hide();
+      break;
+    case SKILLS.MEDITATION:
+      meditate();
       break;
     case SKILLS.CRAFT:
       // Handles all crafting skills

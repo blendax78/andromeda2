@@ -38,6 +38,13 @@ class Store extends Component {
 
     this.unsubscribe = props.store.subscribe(() => {
       if (this.mounted) {
+        let player = this.props.store.getState().Player;
+        let status = player.status;
+
+        if ((player.credits === 0 || player.hp === player.maxhp) && status.inn !== false) {
+          this.stopResting();
+        }
+
         this.setState({
           inventory: this.props.store.getState().Inventory,
           player: this.props.store.getState().Player
@@ -49,6 +56,12 @@ class Store extends Component {
   componentWillUnmount() {
     this.unsubscribe();
     this.mounted = false;
+  }
+
+  componentDidUpdate() {
+    if (this.props.store.getState().App.modal.open === false && this.state.player.status.inn !== false) {
+      this.stopResting();
+    }
   }
 
   setCrafting(type) {
@@ -74,6 +87,34 @@ class Store extends Component {
 
       Config.notify(this.props.store, `You processed ${count} ${resource.plural} and received ${new_count} ${new_resource.plural}.`);
     }
+  }
+
+  stopResting() {
+    let status = this.state.player.status;
+    status.inn = false;
+    status.hp_regen = 0;
+    status.stamina_regen = 0;
+
+    Config.dispatch(store, Config.ACTIONS.PLAYER.UPDATE, { status: status });
+    Config.notify(this.props.store, 'You stop resting.');
+  }
+
+  toggleRest() {
+    if (this.state.player.status.inn !== false) {
+      this.stopResting();
+    } else {
+      this.rest();
+    }
+  }
+
+  rest() {
+    let status = this.state.player.status;
+    status.inn = this.props.data.cost;
+    status.hp_regen = this.props.data.heal;
+    status.stamina_regen = this.props.data.heal;
+
+    Config.dispatch(store, Config.ACTIONS.PLAYER.UPDATE, { status: status });
+    Config.notify(this.props.store, 'You start to rest.');
   }
 
   resurrect() {
@@ -142,7 +183,15 @@ class Store extends Component {
         buttons.push(<button key={this.keys.bank_withdraw} className="btn btn-info">Withdraw</button>);
       break;
       case 'inn':
-        buttons.push(<button key={this.keys.inn} className="btn btn-info">Stay</button>);
+        let inn_disabled = (this.state.player.credits === 0) ? true : false;
+        let inn_classes = classNames({
+          'btn': true,
+          'btn-info': this.state.player.status.inn === false,
+          'active': this.state.player.status.inn !== false,
+          'btn-success': this.state.player.status.inn !== false
+        });
+
+        buttons.push(<button key={this.keys.inn} onClick={ () => this.toggleRest() } className={inn_classes} disabled={inn_disabled}>Rest</button>);
       break;
     }
 
