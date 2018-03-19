@@ -30,7 +30,7 @@ class App extends Component {
       if (this.timer % 30 === 0 && this.timer !== 0) {
         if (Config.ENV === 'prod') {
           // Only if not on local.
-          Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.SAVE, this.state.player);
+          Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.SAVE, this.props.store.getState().Player);
           Config.notifyGain(this.props.store, 'Saving Player.');
         }
       }

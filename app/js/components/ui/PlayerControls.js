@@ -157,7 +157,7 @@ class PlayerControls extends Component {
           this.meditate();
         break;
         default:
-          console.log(e.keyCode);
+          // console.log(e.keyCode);
         break;
       }
     });

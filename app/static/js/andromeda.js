@@ -13663,7 +13663,7 @@ var PlayerControls = function (_Component) {
             _this2.meditate();
             break;
           default:
-            console.log(e.keyCode);
+            // console.log(e.keyCode);
             break;
         }
       });
@@ -27438,7 +27438,7 @@ var App = function (_Component) {
       if (_this.timer % 30 === 0 && _this.timer !== 0) {
         if (__WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ENV === 'prod') {
           // Only if not on local.
-          __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.PLAYER.SAVE, _this.state.player);
+          __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.PLAYER.SAVE, _this.props.store.getState().Player);
           __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].notifyGain(_this.props.store, 'Saving Player.');
         }
       }
@@ -28350,6 +28350,10 @@ var Navbar = function (_Component) {
     key: 'showToDos',
     value: function showToDos() {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Prevent overwriting db with test data!!!!'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Running from Combat'
