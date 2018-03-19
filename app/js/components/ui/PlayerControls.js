@@ -129,25 +129,35 @@ class PlayerControls extends Component {
     $(document).off('keyup').on('keyup', (e) => {
       switch (e.keyCode) {
         case 38:
+          // up
           this.move(Config.ACTIONS.PLAYER.NORTH);
         break;
         case 40:
+          // down
           this.move(Config.ACTIONS.PLAYER.SOUTH);
         break;
         case 37:
+          // left
           this.move(Config.ACTIONS.PLAYER.WEST);
         break;
         case 39:
+          // right
           this.move(Config.ACTIONS.PLAYER.EAST);
         break;
         case 82:
+          // R
           this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
         break;
         case 72:
+          // H
           this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE);
         break;
+        case 77:
+          // M
+          this.meditate();
+        break;
         default:
-          // console.log(e.keyCode);
+          console.log(e.keyCode);
         break;
       }
     });

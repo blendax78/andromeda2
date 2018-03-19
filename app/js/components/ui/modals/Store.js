@@ -4,6 +4,7 @@ import Crafting from '../Crafting';
 import Buy from '../Buy';
 import Sell from '../Sell';
 import {ItemData} from '../../../data/ItemData';
+import PlayerStatus from '../PlayerStatus';
 import * as classNames from 'classnames';
 
 class Store extends Component {
@@ -41,7 +42,7 @@ class Store extends Component {
         let player = this.props.store.getState().Player;
         let status = player.status;
 
-        if ((player.credits === 0 || player.hp === player.maxhp) && status.inn !== false) {
+        if ((player.credits === 0 || (player.hp === player.maxhp && player.stamina === player.maxstamina)) && status.inn !== false) {
           this.stopResting();
         }
 
@@ -95,7 +96,7 @@ class Store extends Component {
     status.hp_regen = 0;
     status.stamina_regen = 0;
 
-    Config.dispatch(store, Config.ACTIONS.PLAYER.UPDATE, { status: status });
+    Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.UPDATE, { status: status });
     Config.notify(this.props.store, 'You stop resting.');
   }
 
@@ -113,7 +114,7 @@ class Store extends Component {
     status.hp_regen = this.props.data.heal;
     status.stamina_regen = this.props.data.heal;
 
-    Config.dispatch(store, Config.ACTIONS.PLAYER.UPDATE, { status: status });
+    Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.UPDATE, { status: status });
     Config.notify(this.props.store, 'You start to rest.');
   }
 
@@ -142,6 +143,12 @@ class Store extends Component {
       return <Buy store={this.props.store} data={this.state.data} />;
     } else if (this.state.sell) {
       return <Sell store={this.props.store} data={this.state.data} />;
+    } else if (this.state.data.type === 'inn') {
+      return (
+        <div className="row">
+          <PlayerStatus store={this.props.store} />
+        </div>
+      );
     }
 
     return '';
@@ -184,6 +191,7 @@ class Store extends Component {
       break;
       case 'inn':
         let inn_disabled = (this.state.player.credits === 0) ? true : false;
+
         let inn_classes = classNames({
           'btn': true,
           'btn-info': this.state.player.status.inn === false,

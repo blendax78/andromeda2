@@ -61,7 +61,7 @@ export const StoreData = [
   },
   {
     id: 6,
-    name: 'Bowyer',
+    name: 'A bowyer stall',
     description: 'A tall man stands over a long piece of wood, slowly bending it into shape.',
     sell: [
       8,

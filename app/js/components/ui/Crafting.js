@@ -25,6 +25,7 @@ class Crafting extends Component {
       }
     });
 
+    this.crafting = false;
   }
 
   componentDidMount() {
@@ -62,7 +63,7 @@ class Crafting extends Component {
     }), (item) => {
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
-      item.craftable = item.craft.skill.id === skill_id && resource && resource.count >= item.craft.resource.min;
+      item.craftable = !this.crafting && item.craft.skill.id === skill_id && resource && resource.count >= item.craft.resource.min;
 
       return item;
     });
@@ -73,10 +74,17 @@ class Crafting extends Component {
   }
 
   craftItem(item) {
-    this.props.store.dispatch({
-      type: Config.ACTIONS.SKILLS.CRAFT,
-      payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item) }
-    });
+    if (this.state.resources[item.craft.resource.id].count > item.craft.resource.min) {
+      this.crafting = true;
+
+      this.props.store.dispatch({
+        type: Config.ACTIONS.SKILLS.CRAFT,
+        payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item) }
+      });
+
+      // Prevent rapid-fire crafting and possibility of negatives
+      setTimeout(() => { this.crafting = false; }, 500);
+    }
   }
 
   calcChance(item) {

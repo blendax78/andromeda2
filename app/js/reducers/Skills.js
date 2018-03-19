@@ -99,6 +99,11 @@ const Skills = (state = {}, action) => {
   let checkCraftingSuccess = (payload) => {
     let random = _.random(1, 100);
     let chance = ((payload.player_skill.current - payload.item.craft.skill.min) * 2) + 50;
+    let inventory_item = _.findWhere(state.Inventory.items, { id: payload.item.craft.resource.id });
+
+    if (!inventory_item || inventory_item.count < payload.item.craft.resource.min) {
+      return;
+    }
 
     if (random < chance) {
       // success

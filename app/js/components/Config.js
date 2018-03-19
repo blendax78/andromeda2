@@ -145,6 +145,10 @@ const Config = {
   },
 
   notify: (store, msg, type = this.a.ACTIONS.MESSAGES.ADD) => {
+    if (!store) {
+      config.error('store not defined', msg, type);
+    }
+
     setTimeout(() => store.dispatch({
       type: type,
       payload: {
@@ -166,6 +170,10 @@ const Config = {
   },
 
   dispatch: (store, type, payload) => {
+    if (!store) {
+      config.error('store not defined', type, payload);
+    }
+
     setTimeout(() => store.dispatch({
       type: type,
       payload: payload
