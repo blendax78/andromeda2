@@ -203,7 +203,9 @@ class Combat extends Component {
     }
 
     // Mob attack
-    this.mobAttack();
+    if (!(this.state.combat.ranged === true && this.timer < this.state.player.offense.speed)) {
+      this.mobAttack();
+    }
 
     if (this.state.player.hp <= 0 || this.state.mob.hp <= 0) {
       clearInterval(this.tick);

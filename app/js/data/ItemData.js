@@ -193,7 +193,7 @@ export const ItemData = [
     countable: false,
     description: 'a chainmail coif',
     value: 10,
-    weight: 7,
+    weight: 1,
     type: 'armor',
     sub_type: 'metal armor',
     equip: {
@@ -212,8 +212,8 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 60,
-      physical: 4
+      strength: 20,
+      physical: 3.2
     }
   },
 {
@@ -1233,7 +1233,7 @@ export const ItemData = [
     countable: false,
     description: 'a surcoat',
     value: 7,
-    weight: 7,
+    weight: 3,
     type: 'armor',
     sub_type: 'cloth',
     equip: {
@@ -1448,7 +1448,7 @@ export const ItemData = [
     sub_type: 'cloth',
     equip: {
       equipped: false,
-      location: Config.ACTIONS.INVENTORY.BACK,
+      location: Config.ACTIONS.INVENTORY.HEAD,
     },
     craft: {
       skill: {
@@ -1466,11 +1466,342 @@ export const ItemData = [
       physical: 0.5
     }
   },
+  {
+    id: 49,
+    name: 'chainmail leggings',
+    plural: 'chainmail leggings',
+    countable: false,
+    description: 'chainmail leggings',
+    value: 18,
+    weight: 7,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 36.7
+      },
+      resource: {
+        id: 7,
+        min: 18
+      }
+    },
+    armor: {
+      strength: 20,
+      physical: 3.2
+    }
+  },
+  {
+    id: 50,
+    name: 'chainmail tunic',
+    plural: 'chainmail tunics',
+    countable: false,
+    description: 'a chainmail tunic',
+    value: 20,
+    weight: 7,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 39.1
+      },
+      resource: {
+        id: 7,
+        min: 20
+      }
+    },
+    armor: {
+      strength: 20,
+      physical: 10.1
+    }
+  },
+  {
+    id: 51,
+    name: 'ringmail sleeves',
+    plural: 'ringmail sleeves',
+    countable: false,
+    description: 'ringmail sleeves',
+    value: 14,
+    weight: 15,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.ARMS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 16.9
+      },
+      resource: {
+        id: 7,
+        min: 14
+      }
+    },
+    armor: {
+      strength: 20,
+      physical: 2.8
+    }
+  },
+  {
+    id: 52,
+    name: 'ringmail gloves',
+    plural: 'ringmail gloves',
+    countable: false,
+    description: 'ringmail gloves',
+    value: 10,
+    weight: 2,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 12
+      },
+      resource: {
+        id: 7,
+        min: 10
+      }
+    },
+    armor: {
+      strength: 20,
+      physical: 1.4
+    }
+  },
+  {
+    id: 53,
+    name: 'ringmail leggings',
+    plural: 'ringmail leggings',
+    countable: false,
+    description: 'ringmail leggings',
+    value: 16,
+    weight: 15,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 19.4
+      },
+      resource: {
+        id: 7,
+        min: 16
+      }
+    },
+    armor: {
+      strength: 20,
+      physical: 2.8
+    }
+  },
+  {
+    id: 54,
+    name: 'ringmail tunic',
+    plural: 'ringmail tunic',
+    countable: false,
+    description: 'a ringmail tunic',
+    value: 18,
+    weight: 15,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 21.9
+      },
+      resource: {
+        id: 7,
+        min: 18
+      }
+    },
+    armor: {
+      strength: 20,
+      physical: 8.8
+    }
+  },
+  {
+    id: 55,
+    name: 'studded sleeves',
+    plural: 'studded sleeves',
+    countable: false,
+    description: 'studded sleeves',
+    value: 10,
+    weight: 4,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.ARMS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 87.1
+      },
+      resource: {
+        id: 6,
+        min: 10
+      }
+    },
+    armor: {
+      strength: 25,
+      physical: 2.2
+    }
+  },
+  {
+    id: 56,
+    name: 'studded tunic',
+    plural: 'studded tunics',
+    countable: false,
+    description: 'a studded tunic',
+    value: 14,
+    weight: 8,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 94
+      },
+      resource: {
+        id: 6,
+        min: 14
+      }
+    },
+    armor: {
+      strength: 35,
+      physical: 7
+    }
+  },
+  {
+    id: 57,
+    name: 'studded gloves',
+    plural: 'studded gloves',
+    countable: false,
+    description: 'studded gloves',
+    value: 8,
+    weight: 1,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 82.9
+      },
+      resource: {
+        id: 6,
+        min: 8
+      }
+    },
+    armor: {
+      strength: 25,
+      physical: 1.1
+    }
+  },
+  {
+    id: 58,
+    name: 'studded gorget',
+    plural: 'studded gorgets',
+    countable: false,
+    description: 'a studded gorget',
+    value: 8,
+    weight: 1,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.NECK,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 78.8
+      },
+      resource: {
+        id: 6,
+        min: 6
+      }
+    },
+    armor: {
+      strength: 25,
+      physical: 1.1
+    }
+  },
+  {
+    id: 59,
+    name: 'studded leggings',
+    plural: 'studded leggings',
+    countable: false,
+    description: 'a studded leggings',
+    value: 12,
+    weight: 5,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 91.2
+      },
+      resource: {
+        id: 6,
+        min: 12
+      }
+    },
+    armor: {
+      strength: 35,
+      physical: 2.2
+    }
+  },
 ];
 
 
 
 /*
 http://www.uoguide.com/Tailoring
-http://www.uorenaissance.com/list/Leather/P
+http://www.uoguide.com/Blacksmithy
+http://www.uorenaissance.com/list/Plate/P
 */
