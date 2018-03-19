@@ -9,7 +9,7 @@ export const StoreData = [
       'weapons'
     ],
     craft: ['blacksmithing'],
-    buy: ['axe', 'metal_armor', 'blade'],
+    buy: ['axe', 'metal armor', 'blade'],
     type: 'store'
   },
   {

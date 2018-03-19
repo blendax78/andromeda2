@@ -33467,7 +33467,7 @@ var StoreData = [{
   description: 'A stout man stands behind a small forge.',
   sell: ['ore', 'armor', 'weapons'],
   craft: ['blacksmithing'],
-  buy: ['axe', 'metal_armor', 'blade'],
+  buy: ['axe', 'metal armor', 'blade'],
   type: 'store'
 }, {
   id: 2,
