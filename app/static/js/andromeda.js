@@ -13484,7 +13484,12 @@ var PlayerControls = function (_Component) {
               { className: 'row' },
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-8 col-md-7 col-sm-12 col-xs-8' },
+                { className: 'col-lg-6 col-md-6 col-sm-12 col-xs-7' },
+                __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+                  'div',
+                  { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+                  '\xA0'
+                ),
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                   'div',
                   { className: 'btn-group' },
@@ -13577,7 +13582,7 @@ var PlayerControls = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
-              { className: 'hidden-lg hidden-md hidden-xs col-sm-5 top5' },
+              { className: 'hidden-lg hidden-md hidden-xs col-sm-6 top5' },
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'label',
                 { className: 'checkbox-inline' },
@@ -13593,7 +13598,7 @@ var PlayerControls = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
-              { className: 'hidden-lg hidden-md hidden-xs col-sm-5 top5' },
+              { className: 'hidden-lg hidden-md hidden-xs col-sm-6 top5' },
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'label',
                 { className: 'checkbox-inline' },
@@ -13609,7 +13614,7 @@ var PlayerControls = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'div',
-              { className: 'hidden-lg hidden-md hidden-xs col-sm-5 top5' },
+              { className: 'hidden-lg hidden-md hidden-xs col-sm-8 top5' },
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'label',
                 { className: 'checkbox-inline' },
@@ -28053,6 +28058,14 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Check HP or stamina for inn'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Add meditation hotkey'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Fix PC Buttons'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -28835,7 +28848,7 @@ var InventoryList = function (_Component) {
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: classEquip, onClick: function onClick() {
                 _this2.toggleEquip(inventory);
-              }, 'data-id': 'data' }),
+              }, 'data-id': 'data', title: 'Equip/Unequip' }),
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-trash clickable', title: 'Drop', onClick: function onClick() {
                 _this2.clickDrop(inventory);
               }, 'data-id': 'data' })

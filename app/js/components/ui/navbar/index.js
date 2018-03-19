@@ -37,6 +37,8 @@ class Navbar extends Component {
 
   showToDos() {
     let todos = [
+      <li key={Config.randomKey('li')}>Check HP or stamina for inn</li>,
+      <li key={Config.randomKey('li')}>Add meditation hotkey</li>,
       <li key={Config.randomKey('li')}>Fix PC Buttons</li>,
       <li key={Config.randomKey('li')}>Running from Combat</li>,
       <li key={Config.randomKey('li')}>Arrows? Regs?</li>,

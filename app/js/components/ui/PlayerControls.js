@@ -245,7 +245,8 @@ class PlayerControls extends Component {
             <p className="bold">Controls</p>
 
             <div className="row">
-              <div className="col-lg-8 col-md-7 col-sm-12 col-xs-8">
+              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-7">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">&nbsp;</div>
                 <div className="btn-group">
                   <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>W</button>
                 </div>
@@ -281,21 +282,21 @@ class PlayerControls extends Component {
             </div>
 
 
-              <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
+              <div className="hidden-lg hidden-md hidden-xs col-sm-6 top5">
                 <label className="checkbox-inline">
                   <button disabled={move_disabled} type="button" className={run_classes} 
                     onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN)}>Run</button>
                 </label>
               </div>
 
-              <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
+              <div className="hidden-lg hidden-md hidden-xs col-sm-6 top5">
                 <label className="checkbox-inline">
                   <button disabled={move_disabled} type="button" className={hide_classes} 
                     onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
                 </label>
               </div>
 
-              <div className="hidden-lg hidden-md hidden-xs col-sm-5 top5">
+              <div className="hidden-lg hidden-md hidden-xs col-sm-8 top5">
                 <label className="checkbox-inline">
                   <button disabled={move_disabled} type="button" className={med_classes} 
                     onClick={() => this.meditate()}>Meditate</button>
