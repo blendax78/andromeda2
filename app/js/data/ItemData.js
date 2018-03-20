@@ -868,7 +868,6 @@ export const ItemData = [
     description: 'a bow',
     value: 6,
     weight: 6,
-    requires: 60,
     type: 'weapons',
     sub_type: 'bow',
     equip: {
@@ -887,6 +886,7 @@ export const ItemData = [
       }
     },
     weapon: {
+      requires: 60,
       strength: 30,
       hands: 'two',
       skill: 10,
@@ -1824,7 +1824,6 @@ export const ItemData = [
     name: 'crossbow',
     plural: 'crossbows',
     countable: false,
-    requires: 60,
     description: 'a crossbow',
     value: 7,
     weight: 7,
@@ -1846,6 +1845,7 @@ export const ItemData = [
       }
     },
     weapon: {
+      requires: 60,
       strength: 35,
       hands: 'two',
       skill: 10,
@@ -1860,7 +1860,6 @@ export const ItemData = [
     id: 62,
     name: 'composite bow',
     plural: 'composite bows',
-    requires: 60,
     countable: false,
     description: 'a composite bow',
     value: 7,
@@ -1898,7 +1897,6 @@ export const ItemData = [
     name: 'heavy crossbow',
     plural: 'heavy crossbows',
     countable: false,
-    requires: 60,
     description: 'a heavy crossbow',
     value: 10,
     weight: 10,
@@ -1920,6 +1918,7 @@ export const ItemData = [
       }
     },
     weapon: {
+      requires: 60,
       strength: 80,
       hands: 'two',
       skill: 10,
@@ -1935,7 +1934,6 @@ export const ItemData = [
     name: 'repeating crossbow',
     plural: 'repeating crossbows',
     countable: false,
-    requires: 60,
     description: 'a repeating crossbow',
     value: 10,
     weight: 10,
@@ -1957,6 +1955,7 @@ export const ItemData = [
       }
     },
     weapon: {
+      requires: 60,
       strength: 30,
       hands: 'two',
       skill: 10,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ItemData } from '../../data/ItemData';
 import Config from '../Config';
 
 class CombatStatus extends Component {
@@ -7,14 +8,16 @@ class CombatStatus extends Component {
 
     this.state = {
       player: props.store.getState().Player,
-      mob: props.store.getState().Mobs.combat
+      mob: props.store.getState().Mobs.combat,
+      inventory: props.store.getState().Inventory
     };
 
     this.unsubscribe = props.store.subscribe(() => {
       if (this.mounted) {
         this.setState({
           player: props.store.getState().Player,
-          mob: props.store.getState().Mobs.combat
+          mob: props.store.getState().Mobs.combat,
+          inventory: props.store.getState().Inventory
         });
       }
     });
@@ -38,9 +41,40 @@ class CombatStatus extends Component {
     this.tick = null;
   }
 
+  calcAmmo() {
+    let equipped = Config.getEquipped(this.state.inventory);
+    let weapon = (!!equipped && !!equipped.weapon) ? equipped.weapon : {};
+    let count = undefined;
+
+    if (!!weapon && weapon.weapon && !!weapon.weapon.requires) {
+      let ammo = _.findWhere(this.state.inventory.items, { id: weapon.weapon.requires });
+
+      if (!ammo) {
+        ammo = _.findWhere(ItemData, { id: weapon.weapon.requires });
+      }
+
+      count = (ammo.count === 1) ? `1 ${ammo.name}` : `${ammo.count} ${ammo.plural}`;
+
+      if (ammo.count < 5) {
+        count = <span className="red">{count}</span>;
+      }
+    }
+
+    return count;
+  }
+
   render() {
     let player = this.state.player;
     let mob = this.state.mob;
+    let ammo = this.calcAmmo();
+    let ammo_section = (!!ammo) ? (
+      <div className="row">
+        <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <span className="bold">Ammo: </span>
+          <div>{ammo}</div>
+        </div>
+      </div>
+    ) : '';
 
     return (
       <div className="player-status nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
@@ -81,6 +115,8 @@ class CombatStatus extends Component {
             <div>{player.defense.physical}</div>
           </div>
         </div>
+
+        {ammo_section}
 
         <div className="empty-row"></div>
 

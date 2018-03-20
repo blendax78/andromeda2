@@ -30,7 +30,8 @@ const Inventory = (state = {}, action) => {
         ...item_data,
         ...weapon,
         equip: { ...weapon.equip },
-        craft: { ...item_data.craft, ...weapon.craft }
+        craft: { ...item_data.craft, ...weapon.craft },
+        weapon: { ...item_data.weapon, ...weapon.weapon }
       };
     });
 

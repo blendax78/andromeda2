@@ -40,7 +40,7 @@ class Combat extends Component {
           skills: this.props.store.getState().Skills,
           // For now, weapons can't be equipped in combat.
           // equipped: Config.getEquipped(this.props.store.getState().Inventory)
-        });        
+        });
       }
     });
   }
@@ -124,6 +124,17 @@ class Combat extends Component {
     console.log('run!');
   }
 
+  calcAmmo(weapon) {
+    if (!!weapon && weapon.weapon && !!weapon.weapon.requires) {
+      let ammo = _.findWhere(this.state.inventory.items, { id: weapon.weapon.requires });
+
+      return (!!ammo) ? ammo : { count: 0 };
+    } else {
+      // always return ammo if ammo is not required.
+      return { count: 1 };
+    }
+  }
+
   playerAttack() {
     let mob = this.state.mob;
     let player = this.state.player;
@@ -131,8 +142,22 @@ class Combat extends Component {
     if (this.timer % player.offense.speed === 0) {
       let weapon = this.state.equipped.weapon;
       let skill = (weapon) ? _.findWhere(this.state.skills, { id: weapon.weapon.skill} ) : this.state.skills.wrestling;
+      let ammo = this.calcAmmo(weapon);
 
       if (skill) {
+        if (ammo.count <= 0) {
+          return;
+        } else if (!!ammo.id) {
+          // Requires ammo. Need to subtract 1.
+          this.props.store.dispatch({
+            type: Config.ACTIONS.INVENTORY.REMOVE,
+            payload: {
+              item: ammo.id,
+              count: 1
+            }
+          });
+        }
+
         // Break this out to playerAttack function
         let chance_to_hit = this.calcChanceToHit(skill.current, mob.skills.wrestling);
 
@@ -144,7 +169,7 @@ class Combat extends Component {
           mob.stamina -= (mob.stamina - Math.ceil(damage / 2) >= 0) ? Math.ceil(damage / 2) : mob.stamina;
 
           // No need to update store (for now?)
-          Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob); 
+          Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob);
           Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
           Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: 'tactics' });
         } else {

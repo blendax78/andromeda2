@@ -8,14 +8,6 @@ class Town extends Component {
     this.state = {
       town: this.props.data
     };
-
-    // Doesn't need to subscribe. Component is updated on Map
-    // props.store.subscribe(() => {
-    //   this.setState({
-        // planet: this.props.store.getState().Planet,
-        // player: this.props.store.getState().Player
-    //   });
-    // });
   }
 
   render() {

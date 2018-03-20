@@ -227,7 +227,7 @@ class Map extends Component {
               {planet.name}
             </h5>
           </div>
-          <div className="row">
+          <div className="row bottom5">
             <div className="col-lg-12 col-md-12 col-sm-12">
               {zone.description}
             </div>
