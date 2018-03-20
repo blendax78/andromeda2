@@ -127,7 +127,7 @@ class Map extends Component {
             }
           break;
           case 'town':
-            return <Town key={this.keys.town} data={decoration} store={this.props.store} />
+            return <Town key={this.keys.town} data={decoration} store={this.props.store} className="top5"/>
           break;
         }
       });

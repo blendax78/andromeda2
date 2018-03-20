@@ -105,18 +105,20 @@ const Skills = (state = {}, action) => {
       return;
     }
 
+    let count = (payload.item.countable === true) ? 10 : 1;
+
     if (random < chance) {
       // success
       notifyGain(`You craft ${payload.item.description}.`);
 
       checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
-      state.Queue.add('actions', Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
-      state.Queue.add('actions', Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: count, craft: true, score: true });
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min * count });
     } else {
       // failure
       notify(`You fail to craft ${payload.item.description}. Some of the materials are lost.`);
-      state.Queue.add('actions', Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor((payload.item.craft.resource.min * count) / 2) });
 
       if (payload.player_skill.current < 20.0) {
         checkSkillGain(payload.player_skill.name.toLowerCase());

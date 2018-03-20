@@ -74,7 +74,8 @@ class Crafting extends Component {
   }
 
   craftItem(item) {
-    if (this.state.resources[item.craft.resource.id].count >= item.craft.resource.min) {
+    if ((item.countable === false && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min) ||
+      (item.countable === true && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min * 10) ) {
       this.crafting = true;
 
       this.props.store.dispatch({
@@ -109,11 +110,13 @@ class Crafting extends Component {
     let items = _.map(available, (item) => {
       let resource_name = (item.craft.resource.min == 1) ? this.state.resources[item.craft.resource.id].name : this.state.resources[item.craft.resource.id].plural;
       let chance = this.calcChance(item);
-      let description = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{item.description}</a> : item.description;
+      let description = (item.countable) ? `10 ${item.description}` : item.description;
+      let craft_link = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{description}</a> : description;
+      let count = (item.countable) ? 10 : 1;
       return (
         <tr key={`crafting.${item.type}.${item.id}`}>
-          <td>{description}</td>
-          <td>{item.craft.resource.min} {resource_name}</td>
+          <td>{craft_link}</td>
+          <td>{count} {resource_name}</td>
           <td>{item.craft.skill.min} ({chance.toFixed(1)}%)</td>
         </tr>
       );

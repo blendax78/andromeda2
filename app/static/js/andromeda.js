@@ -3830,6 +3830,7 @@ var ItemData = [{
   description: 'a bow',
   value: 6,
   weight: 6,
+  requires: 60,
   type: 'weapons',
   sub_type: 'bow',
   equip: {
@@ -4731,13 +4732,12 @@ var ItemData = [{
   id: 60,
   name: 'arrow',
   plural: 'arrows',
-  countable: false,
+  countable: true,
   description: 'arrows',
   value: 1,
   weight: 0.1,
   type: 'items',
   sub_type: 'ammunition',
-  required_by: 10,
   craft: {
     skill: {
       id: 8,
@@ -4754,6 +4754,7 @@ var ItemData = [{
   name: 'crossbow',
   plural: 'crossbows',
   countable: false,
+  requires: 60,
   description: 'a crossbow',
   value: 7,
   weight: 7,
@@ -4788,6 +4789,7 @@ var ItemData = [{
   id: 62,
   name: 'composite bow',
   plural: 'composite bows',
+  requires: 60,
   countable: false,
   description: 'a composite bow',
   value: 7,
@@ -4824,6 +4826,7 @@ var ItemData = [{
   name: 'heavy crossbow',
   plural: 'heavy crossbows',
   countable: false,
+  requires: 60,
   description: 'a heavy crossbow',
   value: 10,
   weight: 10,
@@ -4859,6 +4862,7 @@ var ItemData = [{
   name: 'repeating crossbow',
   plural: 'repeating crossbows',
   countable: false,
+  requires: 60,
   description: 'a repeating crossbow',
   value: 10,
   weight: 10,
@@ -30537,7 +30541,7 @@ var Crafting = function (_Component) {
     value: function craftItem(item) {
       var _this4 = this;
 
-      if (this.state.resources[item.craft.resource.id].count >= item.craft.resource.min) {
+      if (item.countable === false && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min || item.countable === true && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min * 10) {
         this.crafting = true;
 
         this.props.store.dispatch({
@@ -30578,25 +30582,27 @@ var Crafting = function (_Component) {
       var items = _.map(available, function (item) {
         var resource_name = item.craft.resource.min == 1 ? _this5.state.resources[item.craft.resource.id].name : _this5.state.resources[item.craft.resource.id].plural;
         var chance = _this5.calcChance(item);
-        var description = item.craftable ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        var description = item.countable ? '10 ' + item.description : item.description;
+        var craft_link = item.craftable ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'a',
           { href: '#', onClick: function onClick() {
               return _this5.craftItem(item);
             } },
-          item.description
-        ) : item.description;
+          description
+        ) : description;
+        var count = item.countable ? 10 : 1;
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'tr',
           { key: 'crafting.' + item.type + '.' + item.id },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'td',
             null,
-            description
+            craft_link
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'td',
             null,
-            item.craft.resource.min,
+            count,
             ' ',
             resource_name
           ),
@@ -30795,7 +30801,7 @@ var Buy = function (_Component) {
 
             if (!!matches && matches.length > 0) {
               _.each(matches, function (match) {
-                if (match.countable === false || match.countable === true && match.count > 0) buyables.push(match);
+                buyables.push(match);
               });
             }
           });
@@ -30808,9 +30814,10 @@ var Buy = function (_Component) {
     }
   }, {
     key: 'buyItem',
-    value: function buyItem(item) {
-      if (confirm('Buy ' + item.description + ' for ' + item.value * this.value_mult + ' credits?')) {
-        var credits = this.state.player.credits - item.value * this.value_mult;
+    value: function buyItem(count, description, item) {
+
+      if (confirm('Buy ' + description + ' for ' + item.value * this.value_mult * count + ' credits?')) {
+        var credits = this.state.player.credits - item.value * this.value_mult * count;
 
         this.props.store.dispatch({
           type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE,
@@ -30823,7 +30830,7 @@ var Buy = function (_Component) {
           type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.INVENTORY.ADD,
           payload: {
             item: item.id,
-            count: 1
+            count: count
           }
         });
 
@@ -30841,13 +30848,21 @@ var Buy = function (_Component) {
       var _this2 = this;
 
       var items = _.map(this.getBuyables(), function (item) {
-        var link = item.value * _this2.value_mult <= _this2.state.player.credits ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        var count = 1;
+        var description = item.description;
+
+        if (item.countable) {
+          count = 10;
+          description = count + ' ' + description;
+        }
+
+        var link = item.value * _this2.value_mult * count <= _this2.state.player.credits ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'a',
           { href: '#', onClick: function onClick() {
-              _this2.buyItem(item);
+              _this2.buyItem(count, description, item);
             } },
-          item.description
-        ) : item.description;
+          description
+        ) : description;
 
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'tr',
@@ -30860,7 +30875,7 @@ var Buy = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'td',
             null,
-            item.value * _this2.value_mult
+            item.value * _this2.value_mult * count
           )
         );
       });
@@ -31048,7 +31063,9 @@ var Sell = function (_Component) {
 
               if (!!matches && matches.length > 0) {
                 _.each(matches, function (match) {
-                  if (match.countable === false || match.countable === true && match.count > 0) sellables.push(match);
+                  if (match.countable === false || match.countable === true && match.count > 0) {
+                    sellables.push(match);
+                  }
                 });
               }
             });
@@ -32515,7 +32532,7 @@ var Map = function (_Component) {
               }
               break;
             case 'town':
-              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Town__["a" /* default */], { key: _this3.keys.town, data: decoration, store: _this3.props.store });
+              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Town__["a" /* default */], { key: _this3.keys.town, data: decoration, store: _this3.props.store, className: 'top5' });
               break;
           }
         });
@@ -33931,7 +33948,7 @@ var MobData = [{
   credits: 0,
   img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
   skills: {
-    wrestling: 50, //where did i get skills from in hind & sheep?
+    wrestling: 50,
     tactics: 50,
     magic_resistance: 30
   }
@@ -34139,9 +34156,9 @@ var StoreData = [{
   id: 6,
   name: 'A bowyer stall',
   description: 'A tall man stands over a long piece of wood, slowly bending it into shape.',
-  sell: [8, 'bow', 1],
+  sell: [8, 'bow', 1, 60],
   craft: ['bowcraft'],
-  buy: [29],
+  buy: ['bow', 60],
   type: 'store'
 }, {
   id: 7,
@@ -34447,18 +34464,20 @@ var Skills = function Skills() {
       return;
     }
 
+    var count = payload.item.countable === true ? 10 : 1;
+
     if (random < chance) {
       // success
       notifyGain('You craft ' + payload.item.description + '.');
 
       checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
-      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: 1, craft: true, score: true });
-      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min });
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: count, craft: true, score: true });
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min * count });
     } else {
       // failure
       notify('You fail to craft ' + payload.item.description + '. Some of the materials are lost.');
-      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min / 2) });
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: Math.floor(payload.item.craft.resource.min * count / 2) });
 
       if (payload.player_skill.current < 20.0) {
         checkSkillGain(payload.player_skill.name.toLowerCase());

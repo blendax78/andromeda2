@@ -104,7 +104,7 @@ export const MobData = [
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/BlackBear_100.png`,
     skills: {
-        wrestling: 50, //where did i get skills from in hind & sheep?
+        wrestling: 50,
         tactics: 50,
         magic_resistance: 30
     }

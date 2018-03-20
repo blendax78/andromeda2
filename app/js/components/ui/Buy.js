@@ -42,7 +42,6 @@ class Buy extends Component {
 
           if (!!matches && matches.length > 0) {
             _.each(matches, (match) => {
-              if (match.countable === false || (match.countable === true && match.count > 0) )
               buyables.push(match);
             });
           }
@@ -56,9 +55,10 @@ class Buy extends Component {
     }));
   }
 
-  buyItem(item) {
-    if (confirm(`Buy ${item.description} for ${item.value * this.value_mult} credits?`)) {
-      let credits = this.state.player.credits - (item.value * this.value_mult);
+  buyItem(count, description, item) {
+
+    if (confirm(`Buy ${description} for ${item.value * this.value_mult * count} credits?`)) {
+      let credits = this.state.player.credits - (item.value * this.value_mult * count);
       
       this.props.store.dispatch({
         type: Config.ACTIONS.PLAYER.UPDATE,
@@ -71,7 +71,7 @@ class Buy extends Component {
         type: Config.ACTIONS.INVENTORY.ADD,
         payload: {
           item: item.id,
-          count: 1
+          count: count
         }
       });
 
@@ -86,13 +86,21 @@ class Buy extends Component {
 
   getBuyTable(available) {
     let items = _.map(this.getBuyables(), (item) => {
-      let link = (item.value * this.value_mult <= this.state.player.credits) ? <a href="#" onClick={() => { this.buyItem(item); }}>{item.description}</a> :
-        item.description;
+      let count = 1;
+      let description = item.description;
+
+      if (item.countable) {
+        count = 10;
+        description = `${count} ${description}`;
+      }
+
+      let link = (item.value * this.value_mult * count <= this.state.player.credits) ? <a href="#" onClick={() => { this.buyItem(count, description, item); }}>{description}</a> :
+        description;
 
       return (
         <tr key={`${Config.randomKey('buy')}.buy.${item.id}`}>
           <td>{link}</td>
-          <td>{item.value * this.value_mult}</td>
+          <td>{item.value * this.value_mult * count}</td>
         </tr>
       );
     });

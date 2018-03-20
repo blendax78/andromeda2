@@ -73,8 +73,9 @@ class Sell extends Component {
 
             if (!!matches && matches.length > 0) {
               _.each(matches, (match) => {
-                if (match.countable === false || (match.countable === true && match.count > 0) )
-                sellables.push(match);
+                if (match.countable === false || (match.countable === true && match.count > 0) ) {
+                  sellables.push(match);
+                }
               });
             }
           });

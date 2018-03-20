@@ -66,10 +66,11 @@ export const StoreData = [
     sell: [
       8,
       'bow',
-      1
+      1,
+      60
     ],
     craft: ['bowcraft'],
-    buy: [29],
+    buy: ['bow', 60],
     type: 'store'
   },
   {
