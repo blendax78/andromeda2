@@ -30536,8 +30536,7 @@ var Crafting = function (_Component) {
       }), function (item) {
         var resource = _.findWhere(_this3.state.inventory.items, { id: item.craft.resource.id });
 
-        item.craftable = !_this3.crafting && item.craft.skill.id === skill_id && !!resource && (!resource.countable && resource.count >= item.craft.resource.min || resource.countable && resource.count * 10 >= item.craft.resource.min * 10);
-        console.log(item.description, !_this3.crafting, item.craft.skill.id === skill_id, !!resource, !resource.countable && resource.count >= item.craft.resource.min, resource.countable && resource.count * 10 >= item.craft.resource.min * 10, resource.count * 10, item.craft.resource.min * 10);
+        item.craftable = !_this3.crafting && item.craft.skill.id === skill_id && !!resource && (item.countable !== true && resource.count >= item.craft.resource.min || item.countable === true && resource.count >= item.craft.resource.min * 10);
         return item;
       });
 
@@ -33964,8 +33963,14 @@ var MobData = [{
   img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
   skills: {
     wrestling: 50,
+    wrestling_min: 40,
+    wrestling_max: 60,
     tactics: 50,
-    magic_resistance: 30
+    tactics_min: 40,
+    tactics_max: 60,
+    magic_resistance: 30,
+    magic_resistance_min: 20,
+    magic_resistance_max: 40
   }
 }];
 

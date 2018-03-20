@@ -64,9 +64,7 @@ class Crafting extends Component {
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
       item.craftable = !this.crafting && item.craft.skill.id === skill_id && !!resource && 
-        ((!resource.countable && resource.count >= item.craft.resource.min) || (resource.countable && resource.count * 10 >= item.craft.resource.min * 10));
-      console.log(item.description, !this.crafting , item.craft.skill.id === skill_id , !!resource ,
-        (!resource.countable && resource.count >= item.craft.resource.min) , (resource.countable && resource.count * 10 >= item.craft.resource.min * 10),resource.count * 10,item.craft.resource.min * 10);
+        ((item.countable !== true && resource.count >= item.craft.resource.min) || (item.countable === true && resource.count >= item.craft.resource.min * 10));
       return item;
     });
 

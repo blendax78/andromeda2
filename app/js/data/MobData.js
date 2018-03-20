@@ -105,8 +105,14 @@ export const MobData = [
     img: `${Config.URLS.IMAGES}/mobs/BlackBear_100.png`,
     skills: {
         wrestling: 50,
+        wrestling_min: 40,
+        wrestling_max: 60,
         tactics: 50,
-        magic_resistance: 30
+        tactics_min: 40,
+        tactics_max: 60,
+        magic_resistance: 30,
+        magic_resistance_min: 20,
+        magic_resistance_max: 40,
     }
   },
 ];
