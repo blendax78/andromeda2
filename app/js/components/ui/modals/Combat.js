@@ -404,9 +404,14 @@ class Combat extends Component {
     return buttons;
   }
 
+  getSubActions() {
+    // show ammunition counts
+  }
+
   render() {
     let mob = this.state.mob || {};
     let img = mob.img || '';
+    let sub_actions = this.getSubActions();
 
     return (
       <div>
@@ -415,7 +420,7 @@ class Combat extends Component {
             {this.getCombatActions()}
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                sub actions?
+                {sub_actions}
               </div>
             </div>
           <div className="row">
