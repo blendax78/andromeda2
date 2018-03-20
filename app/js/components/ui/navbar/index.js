@@ -39,7 +39,6 @@ class Navbar extends Component {
     let todos = [
       <li key={Config.randomKey('li')}>Prevent overwriting db with test data!!!!</li>,
       <li key={Config.randomKey('li')}>Change archery bonus</li>,
-      <li key={Config.randomKey('li')}>Change archery bonus</li>,
       <li key={Config.randomKey('li')}>Running from Combat</li>,
       <li key={Config.randomKey('li')}>Arrows? Regs?</li>,
       <li key={Config.randomKey('li')}>Exceptional Crafting</li>,

@@ -8,10 +8,10 @@ export const MobData = [
     armor: 6,
     karma: 0,
     fame: 300,
+    aggro: false,
     offense: {
       min: 1,
       max: 2,
-      aggro: false,
       speed: 2
     },
     stats: {
@@ -54,10 +54,10 @@ export const MobData = [
       hp_min: 15,
       hp_max: 29
     },
+    aggro: false,
     offense: {
       min: 4,
       max: 4,
-      aggro: false,
       speed: 2
     },
     wander: true,
@@ -90,10 +90,10 @@ export const MobData = [
       hp_min: 46,
       hp_max: 60
     },
+    aggro: false,
     offense: {
       min: 6,
       max: 16,
-      aggro: false,
       speed: 2
     },
     wander: true,

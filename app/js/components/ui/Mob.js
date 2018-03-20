@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Config from '../Config';
+import * as classNames from 'classnames';
 
 class Mob extends Component {
   constructor(props) {
@@ -73,10 +74,14 @@ class Mob extends Component {
   }
 
   render() {
+    let mob_classes = classNames({
+      red: this.state.mob.aggro,
+    });
+
     return (
       <div className="row">
-        <div className="col-lg-10 col-md-10 col-sm-10">
-          <a href="#" onClick={ (e) => this.setMobAction(e) }>{this.state.mob.description}</a>
+        <div className="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <a href="#" onClick={ (e) => this.setMobAction(e) } className={mob_classes}>{this.state.mob.description}</a>
           {this.getMobActions()}
         </div>
       </div>

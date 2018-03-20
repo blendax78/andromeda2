@@ -878,16 +878,16 @@ export const ItemData = [
       skill: {
         id: 8,
         name: 'bowcraft',
-        min: 0
+        min: 30
       },
       resource: {
         id: 8,
-        min: 6
+        min: 7
       }
     },
     weapon: {
       strength: 30,
-      hands: 'one',
+      hands: 'two',
       skill: 10,
       speed: 4.25,
       min: 17,
@@ -1796,6 +1796,173 @@ export const ItemData = [
       physical: 2.2
     }
   },
+  {
+    id: 60,
+    name: 'arrow',
+    plural: 'arrows',
+    countable: false,
+    description: 'arrows',
+    value: 1,
+    weight: 0.1,
+    type: 'items',
+    sub_type: 'ammunition',
+    required_by: 10,
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft',
+        min: 0
+      },
+      resource: {
+        id: 8,
+        min: 1
+      }
+    }
+  },
+  {
+    id: 61,
+    name: 'crossbow',
+    plural: 'crossbows',
+    countable: false,
+    description: 'a crossbow',
+    value: 7,
+    weight: 7,
+    type: 'weapons',
+    sub_type: 'bow',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft',
+        min: 60
+      },
+      resource: {
+        id: 8,
+        min: 7
+      }
+    },
+    weapon: {
+      strength: 35,
+      hands: 'two',
+      skill: 10,
+      speed: 4.5,
+      min: 18,
+      max: 22,
+      type: 'ranged',
+      sub_type: 'bow'
+    }
+  },
+  {
+    id: 62,
+    name: 'composite bow',
+    plural: 'composite bows',
+    countable: false,
+    description: 'a composite bow',
+    value: 7,
+    weight: 7,
+    type: 'weapons',
+    sub_type: 'bow',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft',
+        min: 70
+      },
+      resource: {
+        id: 8,
+        min: 7
+      }
+    },
+    weapon: {
+      strength: 45,
+      hands: 'two',
+      skill: 10,
+      speed: 4,
+      min: 16,
+      max: 20,
+      type: 'ranged',
+      sub_type: 'bow'
+    }
+  },
+  {
+    id: 63,
+    name: 'heavy crossbow',
+    plural: 'heavy crossbows',
+    countable: false,
+    description: 'a heavy crossbow',
+    value: 10,
+    weight: 10,
+    type: 'weapons',
+    sub_type: 'bow',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft',
+        min: 80
+      },
+      resource: {
+        id: 8,
+        min: 10
+      }
+    },
+    weapon: {
+      strength: 80,
+      hands: 'two',
+      skill: 10,
+      speed: 5,
+      min: 20,
+      max: 24,
+      type: 'ranged',
+      sub_type: 'bow'
+    }
+  },
+  {
+    id: 64,
+    name: 'repeating crossbow',
+    plural: 'repeating crossbows',
+    countable: false,
+    description: 'a repeating crossbow',
+    value: 10,
+    weight: 10,
+    type: 'weapons',
+    sub_type: 'bow',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 8,
+        name: 'bowcraft',
+        min: 90
+      },
+      resource: {
+        id: 8,
+        min: 10
+      }
+    },
+    weapon: {
+      strength: 30,
+      hands: 'two',
+      skill: 10,
+      speed: 2.75,
+      min: 11,
+      max: 15,
+      type: 'ranged',
+      sub_type: 'bow'
+    }
+  },
 ];
 
 
@@ -1804,4 +1971,6 @@ export const ItemData = [
 http://www.uoguide.com/Tailoring
 http://www.uoguide.com/Blacksmithy
 http://www.uorenaissance.com/list/Plate/P
+https://uo.stratics.com/database/view.php?db_content=gameitem&id=1680
+http://www.uoguide.com/Fencing
 */
