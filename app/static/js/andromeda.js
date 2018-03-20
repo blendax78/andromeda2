@@ -28727,11 +28727,11 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Prevent overwriting db with test data!!!!'
+        'Banks'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Change archery bonus'
+        'Prevent overwriting db with test data!!!!'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -28744,10 +28744,6 @@ var Navbar = function (_Component) {
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Exceptional Crafting'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Banks'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -29652,7 +29648,10 @@ var SkillsList = function (_Component) {
         return skill.name;
       });
 
+      var total = 0;
       var skills = _.map(ordered_skills, function (skill, index) {
+        total += skill.current;
+
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'row', key: 'skill.' + skill.id },
@@ -29675,6 +29674,16 @@ var SkillsList = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'row' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'h5',
+              { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12 bold' },
+              'Total: ',
+              total
+            )
+          ),
           skills
         )
       );
@@ -30527,8 +30536,8 @@ var Crafting = function (_Component) {
       }), function (item) {
         var resource = _.findWhere(_this3.state.inventory.items, { id: item.craft.resource.id });
 
-        item.craftable = !_this3.crafting && item.craft.skill.id === skill_id && resource && resource.count >= item.craft.resource.min;
-
+        item.craftable = !_this3.crafting && item.craft.skill.id === skill_id && !!resource && (!resource.countable && resource.count >= item.craft.resource.min || resource.countable && resource.count * 10 >= item.craft.resource.min * 10);
+        console.log(item.description, !_this3.crafting, item.craft.skill.id === skill_id, !!resource, !resource.countable && resource.count >= item.craft.resource.min, resource.countable && resource.count * 10 >= item.craft.resource.min * 10, resource.count * 10, item.craft.resource.min * 10);
         return item;
       });
 
@@ -30602,7 +30611,7 @@ var Crafting = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'td',
             null,
-            count,
+            count * item.craft.resource.min,
             ' ',
             resource_name
           ),
@@ -31737,10 +31746,16 @@ var Combat = function (_Component) {
       return buttons;
     }
   }, {
+    key: 'getSubActions',
+    value: function getSubActions() {
+      // show ammunition counts
+    }
+  }, {
     key: 'render',
     value: function render() {
       var mob = this.state.mob || {};
       var img = mob.img || '';
+      var sub_actions = this.getSubActions();
 
       return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         'div',
@@ -31758,7 +31773,7 @@ var Combat = function (_Component) {
               __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'div',
                 { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
-                'sub actions?'
+                sub_actions
               )
             ),
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
@@ -34459,12 +34474,11 @@ var Skills = function Skills() {
     var random = _.random(1, 100);
     var chance = (payload.player_skill.current - payload.item.craft.skill.min) * 2 + 50;
     var inventory_item = _.findWhere(state.Inventory.items, { id: payload.item.craft.resource.id });
+    var count = payload.item.countable === true ? 10 : 1;
 
-    if (!inventory_item || inventory_item.count < payload.item.craft.resource.min) {
+    if (!inventory_item || inventory_item.count < payload.item.craft.resource.min * count) {
       return;
     }
-
-    var count = payload.item.countable === true ? 10 : 1;
 
     if (random < chance) {
       // success
