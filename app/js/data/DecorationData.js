@@ -7,7 +7,7 @@ export const DecorationData = [
     action: {
       message: 'You hack at the tree.',
       skill: Config.ACTIONS.SKILLS.LUMBERJACKING,
-      current: 1,
+      current: 4,
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',
@@ -22,7 +22,7 @@ export const DecorationData = [
     action: {
       message: 'You hack at the tree.',
       skill: Config.ACTIONS.SKILLS.LUMBERJACKING,
-      current: 2,
+      current: 6,
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',
@@ -37,7 +37,7 @@ export const DecorationData = [
     action: {
       message: 'You hack at the tree.',
       skill: Config.ACTIONS.SKILLS.LUMBERJACKING,
-      current: 3,
+      current: 8,
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',
@@ -52,7 +52,7 @@ export const DecorationData = [
     action: {
       message: 'You pick at the rock.',
       skill: Config.ACTIONS.SKILLS.MINING,
-      current: 1,
+      current: 2,
       maxMessage: 'There is no more ore to be harvested.',
       result: {
         message: 'You pick up some ore.',
@@ -67,7 +67,7 @@ export const DecorationData = [
     action: {
       message: 'You pick at the rocks.',
       skill: Config.ACTIONS.SKILLS.MINING,
-      current: 2,
+      current: 4,
       maxMessage: 'There is no more ore to be harvested.',
       result: {
         message: 'You pick up some ore.',
@@ -82,7 +82,7 @@ export const DecorationData = [
     action: {
       message: 'You pick at the boulder.',
       skill: Config.ACTIONS.SKILLS.MINING,
-      current: 3,
+      current: 6,
       maxMessage: 'There is no more ore to be harvested.',
       result: {
         message: 'You pick up some ore.',

@@ -12,7 +12,7 @@ export const MobData = [
       min: 1,
       max: 2,
       aggro: false,
-      speed: 3
+      speed: 2
     },
     stats: {
       str_min: 19,
@@ -58,7 +58,7 @@ export const MobData = [
       min: 4,
       max: 4,
       aggro: false,
-      speed: 3
+      speed: 2
     },
     wander: true,
     attackable: true,
@@ -71,6 +71,42 @@ export const MobData = [
         wrestling: 26,
         tactics: 19,
         magic_resistance: 15
+    }
+  },
+  {
+    id: 3,
+    name: 'black bear',
+    description: 'A black bear is sitting here, staring at you.',
+    armor: 24,
+    karma: 0,
+    fame: 450,
+    stats: {
+      str_min: 76,
+      str_max: 100,
+      dex_min: 56,
+      dex_max: 75,
+      int_min: 11,
+      int_max: 14,
+      hp_min: 46,
+      hp_max: 60
+    },
+    offense: {
+      min: 6,
+      max: 16,
+      aggro: false,
+      speed: 2
+    },
+    wander: true,
+    attackable: true,
+    inventory: [
+      { id: 27, count: 12 }
+    ], //item IDs that are found on corpse
+    credits: 0,
+    img: `${Config.URLS.IMAGES}/mobs/BlackBear_100.png`,
+    skills: {
+        wrestling: 50, //where did i get skills from in hind & sheep?
+        tactics: 50,
+        magic_resistance: 30
     }
   },
 ];

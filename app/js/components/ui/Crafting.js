@@ -74,7 +74,7 @@ class Crafting extends Component {
   }
 
   craftItem(item) {
-    if (this.state.resources[item.craft.resource.id].count > item.craft.resource.min) {
+    if (this.state.resources[item.craft.resource.id].count >= item.craft.resource.min) {
       this.crafting = true;
 
       this.props.store.dispatch({
@@ -83,7 +83,7 @@ class Crafting extends Component {
       });
 
       // Prevent rapid-fire crafting and possibility of negatives
-      setTimeout(() => { this.crafting = false; }, 500);
+      setTimeout(() => { this.crafting = false; }, 250);
     }
   }
 

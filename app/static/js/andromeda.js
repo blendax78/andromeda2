@@ -28356,6 +28356,14 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Change archery bonus'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Change archery bonus'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Running from Combat'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -30162,7 +30170,7 @@ var Crafting = function (_Component) {
     value: function craftItem(item) {
       var _this4 = this;
 
-      if (this.state.resources[item.craft.resource.id].count > item.craft.resource.min) {
+      if (this.state.resources[item.craft.resource.id].count >= item.craft.resource.min) {
         this.crafting = true;
 
         this.props.store.dispatch({
@@ -30173,7 +30181,7 @@ var Crafting = function (_Component) {
         // Prevent rapid-fire crafting and possibility of negatives
         setTimeout(function () {
           _this4.crafting = false;
-        }, 500);
+        }, 250);
       }
     }
   }, {
@@ -33311,7 +33319,7 @@ var PlanetData = [{
     zoneMinX: 0,
     zoneMinY: 25,
     zoneMaxX: 2000,
-    zoneMaxY: 750
+    zoneMaxY: 100
   }, {
     id: 2,
     zoneMinX: 25,
@@ -33321,9 +33329,9 @@ var PlanetData = [{
   }, {
     id: 3,
     zoneMinX: 0,
-    zoneMinY: 750,
+    zoneMinY: 100,
     zoneMaxX: 2000,
-    zoneMaxY: 500
+    zoneMaxY: 1000
   }],
   defaultZone: 1
 }, {
@@ -33353,7 +33361,7 @@ var DecorationData = [{
   action: {
     message: 'You hack at the tree.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.LUMBERJACKING,
-    current: 1,
+    current: 4,
     maxMessage: 'There is no more wood to be harvested.',
     result: {
       message: 'You pick up some logs.',
@@ -33367,7 +33375,7 @@ var DecorationData = [{
   action: {
     message: 'You hack at the tree.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.LUMBERJACKING,
-    current: 2,
+    current: 6,
     maxMessage: 'There is no more wood to be harvested.',
     result: {
       message: 'You pick up some logs.',
@@ -33381,7 +33389,7 @@ var DecorationData = [{
   action: {
     message: 'You hack at the tree.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.LUMBERJACKING,
-    current: 3,
+    current: 8,
     maxMessage: 'There is no more wood to be harvested.',
     result: {
       message: 'You pick up some logs.',
@@ -33395,7 +33403,7 @@ var DecorationData = [{
   action: {
     message: 'You pick at the rock.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.MINING,
-    current: 1,
+    current: 2,
     maxMessage: 'There is no more ore to be harvested.',
     result: {
       message: 'You pick up some ore.',
@@ -33409,7 +33417,7 @@ var DecorationData = [{
   action: {
     message: 'You pick at the rocks.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.MINING,
-    current: 2,
+    current: 4,
     maxMessage: 'There is no more ore to be harvested.',
     result: {
       message: 'You pick up some ore.',
@@ -33423,7 +33431,7 @@ var DecorationData = [{
   action: {
     message: 'You pick at the boulder.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.MINING,
-    current: 3,
+    current: 6,
     maxMessage: 'There is no more ore to be harvested.',
     result: {
       message: 'You pick up some ore.',
@@ -33453,7 +33461,7 @@ var MobData = [{
     min: 1,
     max: 2,
     aggro: false,
-    speed: 3
+    speed: 2
   },
   stats: {
     str_min: 19,
@@ -33496,7 +33504,7 @@ var MobData = [{
     min: 4,
     max: 4,
     aggro: false,
-    speed: 3
+    speed: 2
   },
   wander: true,
   attackable: true,
@@ -33507,6 +33515,39 @@ var MobData = [{
     wrestling: 26,
     tactics: 19,
     magic_resistance: 15
+  }
+}, {
+  id: 3,
+  name: 'black bear',
+  description: 'A black bear is sitting here, staring at you.',
+  armor: 24,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str_min: 76,
+    str_max: 100,
+    dex_min: 56,
+    dex_max: 75,
+    int_min: 11,
+    int_max: 14,
+    hp_min: 46,
+    hp_max: 60
+  },
+  offense: {
+    min: 6,
+    max: 16,
+    aggro: false,
+    speed: 2
+  },
+  wander: true,
+  attackable: true,
+  inventory: [{ id: 27, count: 12 }], //item IDs that are found on corpse
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
+  skills: {
+    wrestling: 50, //where did i get skills from in hind & sheep?
+    tactics: 50,
+    magic_resistance: 30
   }
 }];
 
@@ -33535,6 +33576,9 @@ var ZoneData = [{
   }, {
     id: 2,
     chance: 10
+  }, {
+    id: 3,
+    chance: 5
   }],
   decorations: [{
     id: 1,
@@ -33555,6 +33599,9 @@ var ZoneData = [{
   }, {
     id: 2,
     chance: 10
+  }, {
+    id: 3,
+    chance: 5
   }],
   decorations: [{
     id: 1,
@@ -33578,6 +33625,9 @@ var ZoneData = [{
   }, {
     id: 2,
     chance: 30
+  }, {
+    id: 3,
+    chance: 10
   }],
   decorations: [{
     id: 1,
@@ -33601,6 +33651,9 @@ var ZoneData = [{
   }, {
     id: 2,
     chance: 30
+  }, {
+    id: 3,
+    chance: 10
   }],
   decorations: [{
     id: 1,
