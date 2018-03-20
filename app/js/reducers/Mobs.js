@@ -21,8 +21,8 @@ const Mobs = (state = {}, action) => {
     mob.mp = mob.mp || mob.intelligence;
     mob.stamina = mob.stamina || mob.dexterity;
 
-    let speed = ((mob.offense.speed * 4  - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
-    mob.offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
+    // let speed = ((mob.offense.speed * 4  - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
+    // mob.offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
 
     state.Mobs.combat = { ...mob };
   };

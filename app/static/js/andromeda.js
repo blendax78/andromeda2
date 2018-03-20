@@ -29786,7 +29786,7 @@ var Store = function (_Component) {
       } else if (this.state.data.type === 'inn') {
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
-          { className: 'row' },
+          { className: 'row top5' },
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__PlayerStatus__["a" /* default */], { store: this.props.store })
         );
       }
@@ -34514,8 +34514,8 @@ var Mobs = function Mobs() {
     mob.mp = mob.mp || mob.intelligence;
     mob.stamina = mob.stamina || mob.dexterity;
 
-    var speed = ((mob.offense.speed * 4 - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
-    mob.offense.speed = parseFloat(speed < 1.25 ? 1.25 : speed);
+    // let speed = ((mob.offense.speed * 4  - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
+    // mob.offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
 
     state.Mobs.combat = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, mob);
   };

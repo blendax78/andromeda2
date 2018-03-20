@@ -145,7 +145,7 @@ class Store extends Component {
       return <Sell store={this.props.store} data={this.state.data} />;
     } else if (this.state.data.type === 'inn') {
       return (
-        <div className="row">
+        <div className="row top5">
           <PlayerStatus store={this.props.store} />
         </div>
       );
