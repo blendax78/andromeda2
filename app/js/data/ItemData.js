@@ -1963,6 +1963,126 @@ export const ItemData = [
       sub_type: 'bow'
     }
   },
+  {
+    id: 65,
+    name: 'shoes',
+    plural: 'shoes',
+    countable: false,
+    description: 'shoes',
+    value: 6,
+    weight: 1,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.FEET,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 16.5
+      },
+      resource: {
+        id: 28,
+        min: 6
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 66,
+    name: 'sandals',
+    plural: 'sandals',
+    countable: false,
+    description: 'sandals',
+    value: 4,
+    weight: 1,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.FEET,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 12.4
+      },
+      resource: {
+        id: 28,
+        min: 4
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 67,
+    name: 'boots',
+    plural: 'boots',
+    countable: false,
+    description: 'boots',
+    value: 8,
+    weight: 2,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.FEET,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 33.1
+      },
+      resource: {
+        id: 28,
+        min: 8
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
+  {
+    id: 68,
+    name: 'thigh boots',
+    plural: 'thigh boots',
+    countable: false,
+    description: 'thigh boots',
+    value: 10,
+    weight: 2,
+    type: 'armor',
+    sub_type: 'leather',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.FEET,
+    },
+    craft: {
+      skill: {
+        id: 4,
+        name: 'tailoring',
+        min: 41.4
+      },
+      resource: {
+        id: 28,
+        min: 10
+      }
+    },
+    armor: {
+      strength: 0,
+      physical: 0.5
+    }
+  },
 ];
 
 
