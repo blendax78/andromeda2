@@ -5,6 +5,8 @@ import Buy from '../Buy';
 import Sell from '../Sell';
 import {ItemData} from '../../../data/ItemData';
 import PlayerStatus from '../PlayerStatus';
+import InventoryList from './InventoryList';
+
 import * as classNames from 'classnames';
 
 class Store extends Component {
@@ -32,7 +34,8 @@ class Store extends Component {
       sell: false,
       buy: false,
       inventory: this.props.store.getState().Inventory,
-      player: this.props.store.getState().Player
+      player: this.props.store.getState().Player,
+      deposit: false
     };
 
     this.mounted = true;
@@ -48,7 +51,7 @@ class Store extends Component {
 
         this.setState({
           inventory: this.props.store.getState().Inventory,
-          player: this.props.store.getState().Player
+          player: this.props.store.getState().Player,
         });
       }
     });
@@ -154,6 +157,10 @@ class Store extends Component {
     return '';
   }
 
+  toggleDeposit() {
+    this.setState({ deposit: !this.state.deposit });
+  }
+
   getActionButtons() {
     let buttons = [];
 
@@ -186,7 +193,7 @@ class Store extends Component {
         buttons.push(<button key={this.keys.healer} onClick={ () => this.resurrect() } className={processClasses} disabled={disabled}>Resurrect</button>);
       break;
       case 'bank':
-        buttons.push(<button key={this.keys.bank_deposit} className="btn btn-info">Deposit</button>);
+        buttons.push(<button key={this.keys.bank_deposit} className="btn btn-info" onClick={() => { this.toggleDeposit() } }>Deposit</button>);
         buttons.push(<button key={this.keys.bank_withdraw} className="btn btn-info">Withdraw</button>);
       break;
       case 'inn':
@@ -277,26 +284,28 @@ class Store extends Component {
     let buttons = this.getActionButtons();
     let crafting = (this.state.crafting === '') ? '' : <Crafting type={this.state.crafting} store={this.props.store}/>;
     let trade = this.showTrade();
+    let deposit = (this.state.deposit) ? <InventoryList store={this.props.store} bank={true} /> : '';
 
     return (
       <div className="row">
-        <div className="col-lg-12 col-md-12 col-sm-12">
+        <div className="col-lg-12 col-md-12 col-sm-1 col-xs-12">
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {this.state.data.description}
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="btn-group">
                 {buttons}
               </div>
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {trade}
               {crafting}
+              {deposit}
             </div>
           </div>
         </div>

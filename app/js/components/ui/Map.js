@@ -16,14 +16,15 @@ class Map extends Component {
       planet: props.store.getState().Planet,
       player: props.store.getState().Player,
       mobs: props.store.getState().Mobs,
-      town: false
+      town: _.findWhere(props.store.getState().Planet.towns, { x: props.store.getState().Player.x, y: props.store.getState().Player.y })
     };
 
     this.unsubscribe = props.store.subscribe(() => {
       this.setState({
         planet: this.props.store.getState().Planet,
         player: this.props.store.getState().Player,
-        mobs: this.props.store.getState().Mobs
+        mobs: this.props.store.getState().Mobs,
+        town: _.findWhere(props.store.getState().Planet.towns, { x: props.store.getState().Player.x, y: props.store.getState().Player.y })
       });
     });
   }
@@ -62,14 +63,11 @@ class Map extends Component {
       return [];
     }
 
-    this.state.town = false;
     let maxDecorations = _.random(1, zone.maxDecorations);
     // check for locations here
     let decorations = [];
 
-    let town = _.findWhere(this.state.planet.towns, { x: this.state.player.x, y: this.state.player.y });
-
-    if (!town) {
+    if (!this.state.town) {
       let locations = _.where(this.state.planet.locations, {
         x: this.state.player.x,
         y: this.state.player.y
@@ -110,7 +108,7 @@ class Map extends Component {
         this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y, type: 'decoration' });
       }
     } else {
-      decorations = [ { ...town, type: 'town' } ];
+      decorations = [ { ...this.state.town, type: 'town' } ];
     }
 
     return this.getDecorationResults(decorations);
@@ -219,26 +217,26 @@ class Map extends Component {
     let zone = this.getZone();
     let decorations = this.getDecorations(zone);
     let mobs = (!this.state.town) ? this.getMobs(zone) : '';
-
+    let town_name = (!!this.state.town) ? ` - ${this.state.town.name}` : '';
     return (
         <div>
           <div className="row">
-            <h5 className="col-lg-4 col-md-4 col-sm-4 bold">
-              {planet.name}
+            <h5 className="col-lg-4 col-md-4 col-sm-4 col-xs-4 bold">
+              {planet.name}{town_name}
             </h5>
           </div>
           <div className="row bottom5">
-            <div className="col-lg-12 col-md-12 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {zone.description}
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {decorations}
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {mobs}
             </div>
           </div>
