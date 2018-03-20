@@ -202,8 +202,16 @@ class Combat extends Component {
       this.playerAttack();
     }
 
+    let player_weapon = this.state.equipped.weapon;
+    let player_skill = (player_weapon) ? _.findWhere(this.state.skills, { id: player_weapon.weapon.skill} ) : undefined;
+    let delay = 0;
+
+    if (this.state.combat.ranged === true && !!player_skill) {
+      delay = (player_skill.current / 25 > 0.25) ? player_skill.current / 25 : 0.25;
+    }
+
     // Mob attack
-    if (!(this.state.combat.ranged === true && this.timer < this.state.player.offense.speed)) {
+    if (!(this.state.combat.ranged === true && this.timer < delay)) {
       this.mobAttack();
     }
 

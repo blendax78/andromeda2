@@ -255,7 +255,7 @@ class PlayerControls extends Component {
             <p className="bold">Controls</p>
 
             <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-7">
+              <div className="col-lg-6 col-md-7 col-sm-12 col-xs-7">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">&nbsp;</div>
                 <div className="btn-group">
                   <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>W</button>
