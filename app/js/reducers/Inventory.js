@@ -91,7 +91,7 @@ const Inventory = (state = {}, action) => {
     inventoryItem = _.findWhere(state.Inventory[item.type], { key: payload.key });
   } else {
     inventoryItem = _.findWhere(state.Inventory[item.type], { id: item.id });
-  }  
+  }
 
   switch (type) {
     case INVENTORY.GET:
@@ -141,21 +141,30 @@ const Inventory = (state = {}, action) => {
     break;
     case INVENTORY.EQUIP:
 
-      let strength = (inventoryItem.type === 'armor' || inventoryItem.type === 'weapon') ? inventoryItem[inventoryItem.type].strength: 0;
+      let strength = 0;
+      if (inventoryItem.type === 'armor') {
+         strength = inventoryItem.armor.str_req || 0;
+      }
+
+      if (inventoryItem.type === 'weapons') {
+         strength = inventoryItem.weapon.str_req || 0;
+      }
 
       if (state.Player.strength >= strength) {
         inventoryItem.equip.equipped = true;
         unequip_others(inventoryItem);
       } else {
-        inventoryItem.equip.equipped = false;
         state.Queue.add('actions', Config.ACTIONS.MESSAGES.WARNING, 
           { body: `You need at least ${strength} strength to equip this.` }
         );
+        inventoryItem.equip.equipped = false;
+        state.Queue.add('actions', Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
       }
+
     break;
     case INVENTORY.UNEQUIP:
-       inventoryItem.equip.equipped = false;
-       Config.dispatch(store, Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
+      inventoryItem.equip.equipped = false;
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.SAVE, { ...state.Inventory, player_id: state.Player.id });
     break;
   }
 

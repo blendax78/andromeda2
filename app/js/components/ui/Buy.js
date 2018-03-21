@@ -6,7 +6,7 @@ class Buy extends Component {
   constructor(props) {
     super(props);
 
-    this.value_mult = 2;
+    this.value_mult = 3;
 
     this.state = {
       player: this.props.store.getState().Player,

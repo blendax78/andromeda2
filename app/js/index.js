@@ -9,8 +9,6 @@ import AndromedaService from './services/AndromedaService';
 let store = createStore(Reducers, {}, applyMiddleware(AndromedaService));
 
 if (Config.ENV === 'dev') {
-  // Breaks reducers that use 'store'.
-  // Need to rework.
   window.store = store;
   window.Config = Config;
 }

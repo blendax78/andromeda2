@@ -16,10 +16,20 @@ const Effects = (state = {}, action) => {
     speed: 2.0
   };
 
+  state.Player.effects.strength = state.Player.strength;
+  state.Player.effects.dexterity = state.Player.dexterity;
+  state.Player.effects.intelligence = state.Player.intelligence;
+
   // Equipment
   _.each(_.union(state.Inventory.weapons, state.Inventory.armor), (eq) => {
     if (eq.type === 'armor' && eq.equip && eq.equip.equipped === true) {
       defense.physical += eq.armor.physical;
+
+      // Stat Penalty/Bonus
+      state.Player.effects.dexterity += (!!eq.armor.dexterity) ? eq.armor.dexterity : 0;
+      state.Player.effects.intelligence += (!!eq.armor.intelligence) ? eq.armor.intelligence : 0;
+      state.Player.effects.strength += (!!eq.armor.strength) ? eq.armor.strength : 0;
+
     } else if (eq.type === 'weapons' && eq.equip && eq.equip.equipped === true) {
       offense = Config.clone(eq.weapon);
     }      

@@ -2487,7 +2487,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 10,
+    str_req: 10,
     hands: 'one',
     skill: 7,
     speed: 2,
@@ -2521,7 +2521,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 5,
+    str_req: 5,
     hands: 'one',
     skill: 6,
     speed: 2.25,
@@ -2624,7 +2624,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
+    str_req: 20,
     physical: 3.2
   }
 }, {
@@ -2653,7 +2653,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 40,
+    str_req: 40,
     physical: 7
   }
 }, {
@@ -2682,7 +2682,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 35,
+    str_req: 35,
     hands: 'two',
     skill: 6,
     speed: 3.00,
@@ -2717,7 +2717,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 45,
+    str_req: 45,
     hands: 'two',
     skill: 6,
     speed: 3.75,
@@ -2752,7 +2752,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 35,
+    str_req: 35,
     hands: 'two',
     skill: 6,
     speed: 3.5,
@@ -2787,7 +2787,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 30,
+    str_req: 30,
     hands: 'one',
     skill: 6,
     speed: 3.25,
@@ -2822,7 +2822,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 35,
+    str_req: 35,
     hands: 'two',
     skill: 6,
     speed: 3.5,
@@ -2857,7 +2857,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 10,
+    str_req: 10,
     hands: 'one',
     skill: 6,
     speed: 2.5,
@@ -2892,7 +2892,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 25,
+    str_req: 25,
     hands: 'one',
     skill: 6,
     speed: 2.5,
@@ -2927,7 +2927,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 45,
+    str_req: 45,
     hands: 'two',
     skill: 6,
     speed: 3.25,
@@ -2962,7 +2962,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 40,
+    str_req: 40,
     hands: 'two',
     skill: 6,
     speed: 3.25,
@@ -2997,7 +2997,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 95,
+    str_req: 95,
     hands: 'two',
     skill: 6,
     speed: 4,
@@ -3032,7 +3032,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 20,
+    str_req: 20,
     hands: 'two',
     skill: 6,
     speed: 2.75,
@@ -3067,7 +3067,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 80,
+    str_req: 80,
     hands: 'two',
     skill: 6,
     speed: 3.75,
@@ -3102,7 +3102,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 25,
+    str_req: 25,
     hands: 'one',
     skill: 6,
     speed: 2.5,
@@ -3137,7 +3137,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 35,
+    str_req: 35,
     hands: 'one',
     skill: 6,
     speed: 3.5,
@@ -3172,7 +3172,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 25,
+    str_req: 25,
     hands: 'one',
     skill: 6,
     speed: 3,
@@ -3207,7 +3207,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 40,
+    str_req: 40,
     hands: 'one',
     skill: 6,
     speed: 3.75,
@@ -3270,17 +3270,16 @@ var ItemData = [{
     skill: {
       id: 8,
       name: 'bowcraft',
-      min: 30
+      min: 0
     },
     resource: {
       id: 8,
-      min: 7
+      min: 6
     }
   },
   weapon: {
-    requires: 60,
-    strength: 30,
-    hands: 'two',
+    str_req: 30,
+    hands: 'one',
     skill: 10,
     speed: 4.25,
     min: 17,
@@ -3314,7 +3313,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3343,7 +3342,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 15,
+    str_req: 15,
     physical: 1.8
   }
 }, {
@@ -3372,7 +3371,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 10,
+    str_req: 10,
     physical: 1.8
   }
 }, {
@@ -3401,7 +3400,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 10,
+    str_req: 10,
     physical: 0.9
   }
 }, {
@@ -3430,7 +3429,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 10,
+    str_req: 10,
     physical: 0.9
   }
 }, {
@@ -3459,7 +3458,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 10,
+    str_req: 10,
     physical: 1.8
   }
 }, {
@@ -3488,7 +3487,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 15,
+    str_req: 15,
     physical: 5.7
   }
 }, {
@@ -3517,7 +3516,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3546,7 +3545,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3575,7 +3574,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3604,7 +3603,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3633,7 +3632,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3662,7 +3661,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3691,7 +3690,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3720,7 +3719,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3749,7 +3748,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3778,7 +3777,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3807,7 +3806,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3836,7 +3835,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -3865,7 +3864,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
+    str_req: 20,
     physical: 3.2
   }
 }, {
@@ -3894,7 +3893,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
+    str_req: 20,
     physical: 10.1
   }
 }, {
@@ -3923,7 +3922,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
+    str_req: 20,
     physical: 2.8
   }
 }, {
@@ -3952,7 +3951,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
+    str_req: 20,
     physical: 1.4
   }
 }, {
@@ -3981,7 +3980,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
+    str_req: 20,
     physical: 2.8
   }
 }, {
@@ -4010,7 +4009,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 20,
+    str_req: 20,
     physical: 8.8
   }
 }, {
@@ -4039,7 +4038,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 25,
+    str_req: 25,
     physical: 2.2
   }
 }, {
@@ -4068,7 +4067,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 35,
+    str_req: 35,
     physical: 7
   }
 }, {
@@ -4097,7 +4096,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 25,
+    str_req: 25,
     physical: 1.1
   }
 }, {
@@ -4126,7 +4125,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 25,
+    str_req: 25,
     physical: 1.1
   }
 }, {
@@ -4155,7 +4154,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 35,
+    str_req: 35,
     physical: 2.2
   }
 }, {
@@ -4206,7 +4205,7 @@ var ItemData = [{
   },
   weapon: {
     requires: 60,
-    strength: 35,
+    str_req: 35,
     hands: 'two',
     skill: 10,
     speed: 4.5,
@@ -4241,7 +4240,7 @@ var ItemData = [{
     }
   },
   weapon: {
-    strength: 45,
+    str_req: 45,
     hands: 'two',
     skill: 10,
     speed: 4,
@@ -4277,7 +4276,7 @@ var ItemData = [{
   },
   weapon: {
     requires: 60,
-    strength: 80,
+    str_req: 80,
     hands: 'two',
     skill: 10,
     speed: 5,
@@ -4313,7 +4312,7 @@ var ItemData = [{
   },
   weapon: {
     requires: 60,
-    strength: 30,
+    str_req: 30,
     hands: 'two',
     skill: 10,
     speed: 2.75,
@@ -4348,7 +4347,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -4377,7 +4376,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -4406,7 +4405,7 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
   }
 }, {
@@ -4435,8 +4434,290 @@ var ItemData = [{
     }
   },
   armor: {
-    strength: 0,
+    str_req: 0,
     physical: 0.5
+  }
+}, {
+  id: 69,
+  name: 'kryss',
+  plural: 'krysses',
+  countable: false,
+  description: 'a kryss',
+  value: 8,
+  weight: 1,
+  type: 'weapons',
+  sub_type: 'blade',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 36.7
+    },
+    resource: {
+      id: 7,
+      min: 8
+    }
+  },
+  weapon: {
+    str_req: 10,
+    hands: 'one',
+    skill: 7,
+    speed: 2,
+    min: 10,
+    max: 12,
+    type: 'melee'
+  }
+}, {
+  id: 70,
+  name: 'war fork',
+  plural: 'war forks',
+  countable: false,
+  description: 'a war fork',
+  value: 12,
+  weight: 4,
+  type: 'weapons',
+  sub_type: 'blade',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.RHAND
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 42.9
+    },
+    resource: {
+      id: 7,
+      min: 12
+    }
+  },
+  weapon: {
+    str_req: 45,
+    hands: 'one',
+    skill: 7,
+    speed: 2.5,
+    min: 10,
+    max: 14,
+    type: 'melee'
+  }
+}, {
+  id: 71,
+  name: 'short spear',
+  plural: 'short spears',
+  countable: false,
+  description: 'a short spear',
+  value: 6,
+  weight: 5,
+  type: 'weapons',
+  sub_type: 'blade',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.BOTHHANDS
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 45.3
+    },
+    resource: {
+      id: 7,
+      min: 6
+    }
+  },
+  weapon: {
+    str_req: 40,
+    hands: 'two',
+    skill: 7,
+    speed: 2,
+    min: 10,
+    max: 13,
+    type: 'melee'
+  }
+}, {
+  id: 72,
+  name: 'platemail tunic',
+  plural: 'platemail tunics',
+  countable: false,
+  description: 'a platemail tunic',
+  value: 25,
+  weight: 10,
+  type: 'armor',
+  sub_type: 'metal armor',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.BODY
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 75
+    },
+    resource: {
+      id: 7,
+      min: 25
+    }
+  },
+  armor: {
+    str_req: 60,
+    physical: 13.2,
+    dexterity: -5
+  }
+}, {
+  id: 73,
+  name: 'platemail gloves',
+  plural: 'platemail gloves',
+  countable: false,
+  description: 'platemail gloves',
+  value: 10,
+  weight: 5,
+  type: 'armor',
+  sub_type: 'metal armor',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.BOTHHANDS
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 58.9
+    },
+    resource: {
+      id: 7,
+      min: 10
+    }
+  },
+  armor: {
+    str_req: 30,
+    physical: 2.1,
+    dexterity: -3
+  }
+}, {
+  id: 74,
+  name: 'platemail gorget',
+  plural: 'platemail gorgets',
+  countable: false,
+  description: 'a platemail gorget',
+  value: 10,
+  weight: 2,
+  type: 'armor',
+  sub_type: 'metal armor',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.NECK
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 56.4
+    },
+    resource: {
+      id: 7,
+      min: 10
+    }
+  },
+  armor: {
+    str_req: 30,
+    physical: 2.1,
+    dexterity: -1
+  }
+}, {
+  id: 75,
+  name: 'platemail sleeves',
+  plural: 'platemail sleeves',
+  countable: false,
+  description: 'platemail sleeves',
+  value: 18,
+  weight: 5,
+  type: 'armor',
+  sub_type: 'metal armor',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.ARMS
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 66.3
+    },
+    resource: {
+      id: 7,
+      min: 18
+    }
+  },
+  armor: {
+    str_req: 40,
+    physical: 4.2,
+    dexterity: -2
+  }
+}, {
+  id: 76,
+  name: 'platemail leggings',
+  plural: 'platemail leggings',
+  countable: false,
+  description: 'platemail leggings',
+  value: 20,
+  weight: 7,
+  type: 'armor',
+  sub_type: 'metal armor',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.LEGS
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 68.8
+    },
+    resource: {
+      id: 7,
+      min: 20
+    }
+  },
+  armor: {
+    str_req: 60,
+    physical: 4.2,
+    dexterity: -7
+  }
+}, {
+  id: 77,
+  name: 'platemail helmet',
+  plural: 'platemail helmets',
+  countable: false,
+  description: 'a platemail helmet',
+  value: 15,
+  weight: 5,
+  type: 'armor',
+  sub_type: 'metal armor',
+  equip: {
+    equipped: false,
+    location: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.INVENTORY.HEAD
+  },
+  craft: {
+    skill: {
+      id: 5,
+      name: 'blacksmithing',
+      min: 62.6
+    },
+    resource: {
+      id: 7,
+      min: 15
+    }
+  },
+  armor: {
+    str_req: 40,
+    physical: 4.2,
+    dexterity: -1
   }
 }];
 
@@ -4444,8 +4725,6 @@ var ItemData = [{
 http://www.uoguide.com/Tailoring
 http://www.uoguide.com/Blacksmithy
 http://www.uorenaissance.com/list/Plate/P
-https://uo.stratics.com/database/view.php?db_content=gameitem&id=1680
-http://www.uoguide.com/Fencing
 */
 
 /***/ }),
@@ -13663,6 +13942,10 @@ var PlayerStatus = function (_Component) {
         { className: 'red' },
         '(DEAD)'
       ) : '';
+      var dexterity_text = player.get('dexterity') === player.dexterity ? player.dexterity : player.get('dexterity') + ' (' + player.dexterity + ')';
+      var strength_text = player.get('strength') === player.strength ? player.strength : player.get('strength') + ' (' + player.strength + ')';
+      var intelligence_text = player.get('intelligence') === player.intelligence ? player.intelligence : player.get('intelligence') + ' (' + player.intelligence + ')';
+
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
         { className: 'player-status nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12' },
@@ -13771,7 +14054,7 @@ var PlayerStatus = function (_Component) {
               { className: 'bold' },
               'Strength: '
             ),
-            player.strength
+            strength_text
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
@@ -13797,7 +14080,7 @@ var PlayerStatus = function (_Component) {
               { className: 'bold' },
               'Dexterity: '
             ),
-            player.dexterity
+            dexterity_text
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
@@ -13821,7 +14104,7 @@ var PlayerStatus = function (_Component) {
               { className: 'bold' },
               'Intelligence: '
             ),
-            player.intelligence
+            intelligence_text
           ),
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
@@ -14473,8 +14756,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var store = Object(__WEBPACK_IMPORTED_MODULE_1_redux__["b" /* createStore */])(__WEBPACK_IMPORTED_MODULE_5__reducers__["a" /* default */], {}, Object(__WEBPACK_IMPORTED_MODULE_1_redux__["a" /* applyMiddleware */])(__WEBPACK_IMPORTED_MODULE_6__services_AndromedaService__["a" /* default */]));
 
 if (__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].ENV === 'dev') {
-  // Breaks reducers that use 'store'.
-  // Need to rework.
   window.store = store;
   window.Config = __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */];
 }
@@ -30692,7 +30973,7 @@ var Buy = function (_Component) {
 
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Buy.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Buy)).call(this, props));
 
-    _this.value_mult = 2;
+    _this.value_mult = 3;
 
     _this.state = {
       player: _this.props.store.getState().Player,
@@ -33316,8 +33597,14 @@ var Player = function Player() {
       stamina_regen: 0,
       dead: false
     },
+    effects: {
+      dexterity: 0,
+      strength: 0,
+      intelligence: 0
+    },
     defense: {
-      physical: 0
+      physical: 0,
+      dexterity: 0
     },
     offense: {
       speed: 2,
@@ -33342,19 +33629,23 @@ var Player = function Player() {
     }
   };
 
+  state.Player.get = function (stat) {
+    return state.Player[stat] !== state.Player.effects[stat] ? state.Player.effects[stat] : state.Player[stat];
+  };
+
   var type = action.type,
       payload = action.payload;
 
 
   var update_stats = function update_stats() {
-    state.Player.hp = !_.isUndefined(state.Player.hp) ? state.Player.hp : Math.round(state.Player.strength / 2) + 50;
-    state.Player.mp = !_.isUndefined(state.Player.mp) ? state.Player.mp : state.Player.intelligence;
-    state.Player.stamina = !_.isUndefined(state.Player.stamina) ? state.Player.stamina : state.Player.dexterity;
+    state.Player.hp = !!state.Player.hp ? state.Player.hp : Math.round(state.Player.get('strength') / 2) + 50;
+    state.Player.mp = !!state.Player.mp ? state.Player.mp : state.Player.get('intelligence');
+    state.Player.stamina = !!state.Player.stamina ? state.Player.stamina : state.Player.get('dexterity');
 
-    state.Player.maxhp = Math.round(state.Player.strength / 2) + 50;
-    state.Player.maxmp = state.Player.intelligence;
-    state.Player.maxstamina = state.Player.dexterity;
-    state.Player.maxencumbrance = state.Player.strength * 4;
+    state.Player.maxhp = Math.round(state.Player.get('strength') / 2) + 50;
+    state.Player.maxmp = state.Player.get('intelligence');
+    state.Player.maxstamina = state.Player.get('dexterity');
+    state.Player.maxencumbrance = state.Player.get('strength') * 4;
 
     state.Player.status.encumbered = state.Player.encumbrance > state.Player.maxencumbrance;
     state.Player.status.run = state.Player.status.encumbered || state.Player.stamina < 1 ? false : state.Player.status.run;
@@ -33459,10 +33750,12 @@ var Player = function Player() {
     case PLAYER.GET:
       var score = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player.score, payload.score);
       var status = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player.status, payload.status);
+      var effects = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player.effects, payload.effects);
 
       state.Player = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Player, payload);
       state.Player.score = score;
       state.Player.status = status;
+      state.Player.effects = effects;
 
       break;
     case PLAYER.UPDATE:
@@ -33868,14 +34161,10 @@ var MobData = [{
     speed: 2
   },
   stats: {
-    str_min: 19,
-    str_max: 19,
-    dex_min: 25,
-    dex_max: 25,
-    int_min: 5,
-    int_max: 5,
-    hp_min: 12,
-    hp_max: 12
+    str: [19, 19],
+    dex: [25, 25],
+    int: [5, 5],
+    hp: [12, 12]
   },
   wander: true,
   attackable: true,
@@ -33883,9 +34172,9 @@ var MobData = [{
   credits: 0,
   img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png',
   skills: {
-    wrestling: 5,
-    tactics: 6,
-    magic_resistance: 5
+    wrestling: [5, 5],
+    tactics: [6, 6],
+    magic_resistance: [5, 5]
   }
 }, {
   id: 2,
@@ -33895,14 +34184,10 @@ var MobData = [{
   karma: 0,
   fame: 300,
   stats: {
-    str_min: 21,
-    str_max: 51,
-    dex_min: 47,
-    dex_max: 77,
-    int_min: 17,
-    int_max: 47,
-    hp_min: 15,
-    hp_max: 29
+    str: [21, 51],
+    dex: [47, 77],
+    int: [17, 47],
+    hp: [15, 29]
   },
   aggro: false,
   offense: {
@@ -33916,9 +34201,9 @@ var MobData = [{
   credits: 0,
   img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Hind_100.png',
   skills: {
-    wrestling: 26,
-    tactics: 19,
-    magic_resistance: 15
+    wrestling: [26, 26],
+    tactics: [19, 19],
+    magic_resistance: [15, 15]
   }
 }, {
   id: 3,
@@ -33928,14 +34213,10 @@ var MobData = [{
   karma: 0,
   fame: 450,
   stats: {
-    str_min: 76,
-    str_max: 100,
-    dex_min: 56,
-    dex_max: 75,
-    int_min: 11,
-    int_max: 14,
-    hp_min: 46,
-    hp_max: 60
+    str: [76, 100],
+    dex: [56, 75],
+    int: [11, 14],
+    hp: [46, 60]
   },
   aggro: false,
   offense: {
@@ -33949,15 +34230,9 @@ var MobData = [{
   credits: 0,
   img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
   skills: {
-    wrestling: 50,
-    wrestling_min: 40,
-    wrestling_max: 60,
-    tactics: 50,
-    tactics_min: 40,
-    tactics_max: 60,
-    magic_resistance: 30,
-    magic_resistance_min: 20,
-    magic_resistance_max: 40
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [20, 40]
   }
 }];
 
@@ -34324,19 +34599,28 @@ var Inventory = function Inventory() {
       break;
     case INVENTORY.EQUIP:
 
-      var strength = inventoryItem.type === 'armor' || inventoryItem.type === 'weapon' ? inventoryItem[inventoryItem.type].strength : 0;
+      var strength = 0;
+      if (inventoryItem.type === 'armor') {
+        strength = inventoryItem.armor.str_req || 0;
+      }
+
+      if (inventoryItem.type === 'weapons') {
+        strength = inventoryItem.weapon.str_req || 0;
+      }
 
       if (state.Player.strength >= strength) {
         inventoryItem.equip.equipped = true;
         unequip_others(inventoryItem);
       } else {
-        inventoryItem.equip.equipped = false;
         state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.MESSAGES.WARNING, { body: 'You need at least ' + strength + ' strength to equip this.' });
+        inventoryItem.equip.equipped = false;
+        state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, { player_id: state.Player.id }));
       }
+
       break;
     case INVENTORY.UNEQUIP:
       inventoryItem.equip.equipped = false;
-      __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].dispatch(store, __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, { player_id: state.Player.id }));
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Inventory, { player_id: state.Player.id }));
       break;
   }
 
@@ -34917,10 +35201,14 @@ var Mobs = function Mobs() {
 
 
   var update_combat_stats = function update_combat_stats(mob) {
-    mob.strength = mob.strength || _.random(mob.stats.str_min, mob.stats.str_max);
-    mob.intelligence = mob.intelligence || _.random(mob.stats.int_min, mob.stats.int_max);
-    mob.dexterity = mob.dexterity || _.random(mob.stats.dex_min, mob.stats.dex_max);
-    mob.maxhp = mob.maxhp || _.random(mob.stats.hp_min, mob.stats.hp_max);
+    mob.strength = mob.strength || _.random(mob.stats.str[0], mob.stats.str[1]);
+    mob.intelligence = mob.intelligence || _.random(mob.stats.int[0], mob.stats.int[1]);
+    mob.dexterity = mob.dexterity || _.random(mob.stats.dex[0], mob.stats.dex[1]);
+    mob.maxhp = mob.maxhp || _.random(mob.stats.hp[0], mob.stats.hp[1]);
+
+    mob.skills.wrestling = _.random(mob.skills.wrestling[0], mob.skills.wrestling[1]);
+    mob.skills.tactics = _.random(mob.skills.tactics[0], mob.skills.tactics[1]);
+    mob.skills.magic_resistance = _.random(mob.skills.magic_resistance[0], mob.skills.magic_resistance[1]);
 
     mob.hp = mob.hp || mob.maxhp;
     mob.mp = mob.mp || mob.intelligence;
@@ -35015,10 +35303,19 @@ var Effects = function Effects() {
     speed: 2.0
   };
 
+  state.Player.effects.strength = state.Player.strength;
+  state.Player.effects.dexterity = state.Player.dexterity;
+  state.Player.effects.intelligence = state.Player.intelligence;
+
   // Equipment
   _.each(_.union(state.Inventory.weapons, state.Inventory.armor), function (eq) {
     if (eq.type === 'armor' && eq.equip && eq.equip.equipped === true) {
       defense.physical += eq.armor.physical;
+
+      // Stat Penalty/Bonus
+      state.Player.effects.dexterity += !!eq.armor.dexterity ? eq.armor.dexterity : 0;
+      state.Player.effects.intelligence += !!eq.armor.intelligence ? eq.armor.intelligence : 0;
+      state.Player.effects.strength += !!eq.armor.strength ? eq.armor.strength : 0;
     } else if (eq.type === 'weapons' && eq.equip && eq.equip.equipped === true) {
       offense = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].clone(eq.weapon);
     }

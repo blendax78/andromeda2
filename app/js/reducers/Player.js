@@ -35,8 +35,14 @@ const Player = (state = {}, action) => {
       stamina_regen: 0,
       dead: false
     },
+    effects: {
+      dexterity: 0,
+      strength: 0,
+      intelligence: 0
+    },
     defense: {
       physical: 0,
+      dexterity: 0
     },
     offense: {
       speed: 2,
@@ -58,20 +64,24 @@ const Player = (state = {}, action) => {
       crafted: 0,
       deaths: 0,
       timer: 0
-    }
+    },
+  };
+
+  state.Player.get = (stat) => {
+    return (state.Player[stat] !== state.Player.effects[stat]) ? state.Player.effects[stat] : state.Player[stat];
   };
 
   const { type, payload } = action;
 
   let update_stats = () => {
-    state.Player.hp = !_.isUndefined(state.Player.hp) ? state.Player.hp : Math.round(state.Player.strength / 2) + 50;
-    state.Player.mp = !_.isUndefined(state.Player.mp) ? state.Player.mp : state.Player.intelligence;
-    state.Player.stamina = !_.isUndefined(state.Player.stamina) ? state.Player.stamina : state.Player.dexterity;
+    state.Player.hp = (!!state.Player.hp) ? state.Player.hp : Math.round(state.Player.get('strength') / 2) + 50;
+    state.Player.mp = (!!state.Player.mp) ? state.Player.mp : state.Player.get('intelligence');
+    state.Player.stamina = (!!state.Player.stamina) ? state.Player.stamina : state.Player.get('dexterity');
 
-    state.Player.maxhp = Math.round(state.Player.strength / 2) + 50;
-    state.Player.maxmp = state.Player.intelligence;
-    state.Player.maxstamina = state.Player.dexterity;
-    state.Player.maxencumbrance = state.Player.strength * 4;
+    state.Player.maxhp = Math.round(state.Player.get('strength') / 2) + 50;
+    state.Player.maxmp = state.Player.get('intelligence');
+    state.Player.maxstamina = state.Player.get('dexterity');
+    state.Player.maxencumbrance = state.Player.get('strength') * 4;
 
     state.Player.status.encumbered = state.Player.encumbrance > state.Player.maxencumbrance;
     state.Player.status.run = (state.Player.status.encumbered || state.Player.stamina < 1) ? false : state.Player.status.run;
@@ -177,10 +187,12 @@ const Player = (state = {}, action) => {
     case PLAYER.GET:
       let score = { ...state.Player.score, ...payload.score };
       let status = { ...state.Player.status, ...payload.status };
+      let effects = { ...state.Player.effects, ...payload.effects };
 
       state.Player = {...state.Player, ...payload };
       state.Player.score = score;
       state.Player.status = status;
+      state.Player.effects = effects;
 
     break;
     case PLAYER.UPDATE:

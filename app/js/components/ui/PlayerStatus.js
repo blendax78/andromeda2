@@ -36,6 +36,10 @@ class PlayerStatus extends Component {
   render() {
     let player = this.state.player;
     let dead = (player.status.dead) ? <span className="red">(DEAD)</span> : '';
+    let dexterity_text = (player.get('dexterity') === player.dexterity) ? player.dexterity : `${player.get('dexterity')} (${player.dexterity})`;
+    let strength_text = (player.get('strength') === player.strength) ? player.strength : `${player.get('strength')} (${player.strength})`;
+    let intelligence_text = (player.get('intelligence') === player.intelligence) ? player.intelligence : `${player.get('intelligence')} (${player.intelligence})`;
+
     return (
       <div className="player-status nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12">
         <div className="row">
@@ -76,7 +80,7 @@ class PlayerStatus extends Component {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Strength: </span>
-            {player.strength}
+            {strength_text}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Damage: </span>
@@ -87,7 +91,7 @@ class PlayerStatus extends Component {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Dexterity: </span>
-            {player.dexterity}
+            {dexterity_text}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Speed: </span>
@@ -98,7 +102,7 @@ class PlayerStatus extends Component {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">Intelligence: </span>
-            {player.intelligence}
+            {intelligence_text}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span className="bold">AR: </span>

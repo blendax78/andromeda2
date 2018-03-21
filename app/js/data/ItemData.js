@@ -69,7 +69,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 10,
+      str_req: 10,
       hands: 'one',
       skill: 7,
       speed: 2,
@@ -104,7 +104,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 5,
+      str_req: 5,
       hands: 'one',
       skill: 6,
       speed: 2.25,
@@ -212,7 +212,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
+      str_req: 20,
       physical: 3.2
     }
   },
@@ -242,7 +242,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 40,
+      str_req: 40,
       physical: 7
     }
   },
@@ -272,7 +272,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 35,
+      str_req: 35,
       hands: 'two',
       skill: 6,
       speed: 3.00,
@@ -308,7 +308,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 45,
+      str_req: 45,
       hands: 'two',
       skill: 6,
       speed: 3.75,
@@ -344,7 +344,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 35,
+      str_req: 35,
       hands: 'two',
       skill: 6,
       speed: 3.5,
@@ -380,7 +380,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 30,
+      str_req: 30,
       hands: 'one',
       skill: 6,
       speed: 3.25,
@@ -416,7 +416,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 35,
+      str_req: 35,
       hands: 'two',
       skill: 6,
       speed: 3.5,
@@ -452,7 +452,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 10,
+      str_req: 10,
       hands: 'one',
       skill: 6,
       speed: 2.5,
@@ -488,7 +488,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 25,
+      str_req: 25,
       hands: 'one',
       skill: 6,
       speed: 2.5,
@@ -524,7 +524,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 45,
+      str_req: 45,
       hands: 'two',
       skill: 6,
       speed: 3.25,
@@ -560,7 +560,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 40,
+      str_req: 40,
       hands: 'two',
       skill: 6,
       speed: 3.25,
@@ -596,7 +596,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 95,
+      str_req: 95,
       hands: 'two',
       skill: 6,
       speed: 4,
@@ -632,7 +632,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 20,
+      str_req: 20,
       hands: 'two',
       skill: 6,
       speed: 2.75,
@@ -668,7 +668,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 80,
+      str_req: 80,
       hands: 'two',
       skill: 6,
       speed: 3.75,
@@ -704,7 +704,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 25,
+      str_req: 25,
       hands: 'one',
       skill: 6,
       speed: 2.5,
@@ -740,7 +740,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 35,
+      str_req: 35,
       hands: 'one',
       skill: 6,
       speed: 3.5,
@@ -776,7 +776,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 25,
+      str_req: 25,
       hands: 'one',
       skill: 6,
       speed: 3,
@@ -812,7 +812,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 40,
+      str_req: 40,
       hands: 'one',
       skill: 6,
       speed: 3.75,
@@ -878,17 +878,16 @@ export const ItemData = [
       skill: {
         id: 8,
         name: 'bowcraft',
-        min: 30
+        min: 0
       },
       resource: {
         id: 8,
-        min: 7
+        min: 6
       }
     },
     weapon: {
-      requires: 60,
-      strength: 30,
-      hands: 'two',
+      str_req: 30,
+      hands: 'one',
       skill: 10,
       speed: 4.25,
       min: 17,
@@ -923,7 +922,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -953,7 +952,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 15,
+      str_req: 15,
       physical: 1.8
     }
   },
@@ -983,7 +982,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 10,
+      str_req: 10,
       physical: 1.8
     }
   },
@@ -1013,7 +1012,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 10,
+      str_req: 10,
       physical: 0.9
     }
   },
@@ -1043,7 +1042,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 10,
+      str_req: 10,
       physical: 0.9
     }
   },
@@ -1073,7 +1072,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 10,
+      str_req: 10,
       physical: 1.8
     }
   },
@@ -1103,7 +1102,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 15,
+      str_req: 15,
       physical: 5.7
     }
   },
@@ -1133,7 +1132,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1163,7 +1162,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1193,7 +1192,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1223,7 +1222,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1253,7 +1252,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1283,7 +1282,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1313,7 +1312,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1343,7 +1342,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1373,7 +1372,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1403,7 +1402,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1433,7 +1432,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1463,7 +1462,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -1493,7 +1492,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
+      str_req: 20,
       physical: 3.2
     }
   },
@@ -1523,7 +1522,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
+      str_req: 20,
       physical: 10.1
     }
   },
@@ -1553,7 +1552,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
+      str_req: 20,
       physical: 2.8
     }
   },
@@ -1583,7 +1582,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
+      str_req: 20,
       physical: 1.4
     }
   },
@@ -1613,7 +1612,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
+      str_req: 20,
       physical: 2.8
     }
   },
@@ -1643,7 +1642,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 20,
+      str_req: 20,
       physical: 8.8
     }
   },
@@ -1673,7 +1672,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 25,
+      str_req: 25,
       physical: 2.2
     }
   },
@@ -1703,7 +1702,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 35,
+      str_req: 35,
       physical: 7
     }
   },
@@ -1733,7 +1732,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 25,
+      str_req: 25,
       physical: 1.1
     }
   },
@@ -1763,7 +1762,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 25,
+      str_req: 25,
       physical: 1.1
     }
   },
@@ -1793,7 +1792,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 35,
+      str_req: 35,
       physical: 2.2
     }
   },
@@ -1846,7 +1845,7 @@ export const ItemData = [
     },
     weapon: {
       requires: 60,
-      strength: 35,
+      str_req: 35,
       hands: 'two',
       skill: 10,
       speed: 4.5,
@@ -1882,7 +1881,7 @@ export const ItemData = [
       }
     },
     weapon: {
-      strength: 45,
+      str_req: 45,
       hands: 'two',
       skill: 10,
       speed: 4,
@@ -1919,7 +1918,7 @@ export const ItemData = [
     },
     weapon: {
       requires: 60,
-      strength: 80,
+      str_req: 80,
       hands: 'two',
       skill: 10,
       speed: 5,
@@ -1956,7 +1955,7 @@ export const ItemData = [
     },
     weapon: {
       requires: 60,
-      strength: 30,
+      str_req: 30,
       hands: 'two',
       skill: 10,
       speed: 2.75,
@@ -1992,7 +1991,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -2022,7 +2021,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -2052,7 +2051,7 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
     }
   },
@@ -2082,8 +2081,299 @@ export const ItemData = [
       }
     },
     armor: {
-      strength: 0,
+      str_req: 0,
       physical: 0.5
+    }
+  },
+  {
+    id: 69,
+    name: 'kryss',
+    plural: 'krysses',
+    countable: false,
+    description: 'a kryss',
+    value: 8,
+    weight: 1,
+    type: 'weapons',
+    sub_type: 'blade',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 36.7
+      },
+      resource: {
+        id: 7,
+        min: 8
+      }
+    },
+    weapon: {
+      str_req: 10,
+      hands: 'one',
+      skill: 7,
+      speed: 2,
+      min: 10,
+      max: 12,
+      type: 'melee'
+    }
+  },
+  {
+    id: 70,
+    name: 'war fork',
+    plural: 'war forks',
+    countable: false,
+    description: 'a war fork',
+    value: 12,
+    weight: 4,
+    type: 'weapons',
+    sub_type: 'blade',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.RHAND,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 42.9
+      },
+      resource: {
+        id: 7,
+        min: 12
+      }
+    },
+    weapon: {
+      str_req: 45,
+      hands: 'one',
+      skill: 7,
+      speed: 2.5,
+      min: 10,
+      max: 14,
+      type: 'melee'
+    }
+  },
+  {
+    id: 71,
+    name: 'short spear',
+    plural: 'short spears',
+    countable: false,
+    description: 'a short spear',
+    value: 6,
+    weight: 5,
+    type: 'weapons',
+    sub_type: 'blade',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 45.3
+      },
+      resource: {
+        id: 7,
+        min: 6
+      }
+    },
+    weapon: {
+      str_req: 40,
+      hands: 'two',
+      skill: 7,
+      speed: 2,
+      min: 10,
+      max: 13,
+      type: 'melee'
+    }
+  },
+  {
+    id: 72,
+    name: 'platemail tunic',
+    plural: 'platemail tunics',
+    countable: false,
+    description: 'a platemail tunic',
+    value: 25,
+    weight: 10,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BODY,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 75
+      },
+      resource: {
+        id: 7,
+        min: 25
+      }
+    },
+    armor: {
+      str_req: 60,
+      physical: 13.2,
+      dexterity: -5
+    }
+  },
+  {
+    id: 73,
+    name: 'platemail gloves',
+    plural: 'platemail gloves',
+    countable: false,
+    description: 'platemail gloves',
+    value: 10,
+    weight: 5,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.BOTHHANDS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 58.9
+      },
+      resource: {
+        id: 7,
+        min: 10
+      }
+    },
+    armor: {
+      str_req: 30,
+      physical: 2.1,
+      dexterity: -3
+    }
+  },
+  {
+    id: 74,
+    name: 'platemail gorget',
+    plural: 'platemail gorgets',
+    countable: false,
+    description: 'a platemail gorget',
+    value: 10,
+    weight: 2,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.NECK,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 56.4
+      },
+      resource: {
+        id: 7,
+        min: 10
+      }
+    },
+    armor: {
+      str_req: 30,
+      physical: 2.1,
+      dexterity: -1
+    }
+  },
+  {
+    id: 75,
+    name: 'platemail sleeves',
+    plural: 'platemail sleeves',
+    countable: false,
+    description: 'platemail sleeves',
+    value: 18,
+    weight: 5,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.ARMS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 66.3
+      },
+      resource: {
+        id: 7,
+        min: 18
+      }
+    },
+    armor: {
+      str_req: 40,
+      physical: 4.2,
+      dexterity: -2
+    }
+  },
+  {
+    id: 76,
+    name: 'platemail leggings',
+    plural: 'platemail leggings',
+    countable: false,
+    description: 'platemail leggings',
+    value: 20,
+    weight: 7,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.LEGS,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 68.8
+      },
+      resource: {
+        id: 7,
+        min: 20
+      }
+    },
+    armor: {
+      str_req: 60,
+      physical: 4.2,
+      dexterity: -7
+    }
+  },
+  {
+    id: 77,
+    name: 'platemail helmet',
+    plural: 'platemail helmets',
+    countable: false,
+    description: 'a platemail helmet',
+    value: 15,
+    weight: 5,
+    type: 'armor',
+    sub_type: 'metal armor',
+    equip: {
+      equipped: false,
+      location: Config.ACTIONS.INVENTORY.HEAD,
+    },
+    craft: {
+      skill: {
+        id: 5,
+        name: 'blacksmithing',
+        min: 62.6
+      },
+      resource: {
+        id: 7,
+        min: 15
+      }
+    },
+    armor: {
+      str_req: 40,
+      physical: 4.2,
+      dexterity: -1
     }
   },
 ];
@@ -2094,6 +2384,4 @@ export const ItemData = [
 http://www.uoguide.com/Tailoring
 http://www.uoguide.com/Blacksmithy
 http://www.uorenaissance.com/list/Plate/P
-https://uo.stratics.com/database/view.php?db_content=gameitem&id=1680
-http://www.uoguide.com/Fencing
 */
