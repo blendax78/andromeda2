@@ -12,10 +12,14 @@ const Mobs = (state = {}, action) => {
   const { type, payload } = action;
 
   let update_combat_stats = (mob) => {
-    mob.strength = mob.strength || _.random(mob.stats.str_min, mob.stats.str_max);
-    mob.intelligence = mob.intelligence || _.random(mob.stats.int_min, mob.stats.int_max);
-    mob.dexterity = mob.dexterity || _.random(mob.stats.dex_min, mob.stats.dex_max);
-    mob.maxhp = mob.maxhp || _.random(mob.stats.hp_min, mob.stats.hp_max);
+    mob.strength = mob.strength || _.random(mob.stats.str[0], mob.stats.str[1]);
+    mob.intelligence = mob.intelligence || _.random(mob.stats.int[0], mob.stats.int[1]);
+    mob.dexterity = mob.dexterity || _.random(mob.stats.dex[0], mob.stats.dex[1]);
+    mob.maxhp = mob.maxhp || _.random(mob.stats.hp[0], mob.stats.hp[1]);
+
+    mob.skills.wrestling = _.random(mob.skills.wrestling[0], mob.skills.wrestling[1]);
+    mob.skills.tactics = _.random(mob.skills.tactics[0], mob.skills.tactics[1]);
+    mob.skills.magic_resistance = _.random(mob.skills.magic_resistance[0], mob.skills.magic_resistance[1]);
 
     mob.hp = mob.hp || mob.maxhp;
     mob.mp = mob.mp || mob.intelligence;

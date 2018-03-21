@@ -15,14 +15,10 @@ export const MobData = [
       speed: 2
     },
     stats: {
-      str_min: 19,
-      str_max: 19,
-      dex_min: 25,
-      dex_max: 25,
-      int_min: 5,
-      int_max: 5,
-      hp_min: 12,
-      hp_max: 12
+      str: [19,19],
+      dex: [25,25],
+      int: [5,5],
+      hp: [12,12]
     },
     wander: true,
     attackable: true,
@@ -32,9 +28,9 @@ export const MobData = [
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
     skills: {
-        wrestling: 5,
-        tactics: 6,
-        magic_resistance: 5
+        wrestling: [5,5],
+        tactics: [6,6],
+        magic_resistance: [5,5]
     }
   },
   {
@@ -45,14 +41,10 @@ export const MobData = [
     karma: 0,
     fame: 300,
     stats: {
-      str_min: 21,
-      str_max: 51,
-      dex_min: 47,
-      dex_max: 77,
-      int_min: 17,
-      int_max: 47,
-      hp_min: 15,
-      hp_max: 29
+      str: [21,51],
+      dex: [47,77],
+      int: [17,47],
+      hp: [15,29]
     },
     aggro: false,
     offense: {
@@ -68,9 +60,9 @@ export const MobData = [
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Hind_100.png`,
     skills: {
-        wrestling: 26,
-        tactics: 19,
-        magic_resistance: 15
+        wrestling: [26,26],
+        tactics: [19,19],
+        magic_resistance: [15,15]
     }
   },
   {
@@ -81,14 +73,10 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str_min: 76,
-      str_max: 100,
-      dex_min: 56,
-      dex_max: 75,
-      int_min: 11,
-      int_max: 14,
-      hp_min: 46,
-      hp_max: 60
+      str: [76,100],
+      dex: [56,75],
+      int: [11,14],
+      hp: [46,60]
     },
     aggro: false,
     offense: {
@@ -104,15 +92,9 @@ export const MobData = [
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/BlackBear_100.png`,
     skills: {
-        wrestling: 50,
-        wrestling_min: 40,
-        wrestling_max: 60,
-        tactics: 50,
-        tactics_min: 40,
-        tactics_max: 60,
-        magic_resistance: 30,
-        magic_resistance_min: 20,
-        magic_resistance_max: 40,
+        wrestling: [40,60],
+        tactics: [40,60],
+        magic_resistance: [20,40]
     }
   },
 ];
