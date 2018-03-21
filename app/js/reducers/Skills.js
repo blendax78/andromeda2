@@ -100,7 +100,7 @@ const Skills = (state = {}, action) => {
     let random = _.random(1, 100);
     let chance = ((payload.player_skill.current - payload.item.craft.skill.min) * 2) + 50;
     let inventory_item = _.findWhere(state.Inventory.items, { id: payload.item.craft.resource.id });
-    let count = (payload.item.countable === true) ? 10 : 1;
+    let count = (payload.item.countable === true) ? 5 : 1;
 
     if (!inventory_item || inventory_item.count < payload.item.craft.resource.min * count) {
       return;

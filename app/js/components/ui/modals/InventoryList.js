@@ -61,10 +61,16 @@ class InventoryList extends Component {
         'glyphicon-ok-circle': (!!inventory.equip && inventory.equip.equipped !== true)
       });
 
+      let bank = '';
+      if (this.props.bank === true) {
+        bank = <span className="glyphicon glyphicon-download clickable" title="Deposit"></span>;
+      }
+
       return (
         <div className="row" key={`inventoryItem.${inventory.type}.${inventory.key || inventory.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{name}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            {bank}
             <span className={classEquip} onClick={() => { this.toggleEquip(inventory); } } data-id="data" title="Equip/Unequip"></span>
             <span className="glyphicon glyphicon-trash clickable" title="Drop" onClick={() => { this.clickDrop(inventory); } } data-id="data"></span>
           </div>

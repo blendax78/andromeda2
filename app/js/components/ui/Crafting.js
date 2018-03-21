@@ -64,7 +64,7 @@ class Crafting extends Component {
       let resource = _.findWhere(this.state.inventory.items, {id: item.craft.resource.id});
 
       item.craftable = !this.crafting && item.craft.skill.id === skill_id && !!resource && 
-        ((item.countable !== true && resource.count >= item.craft.resource.min) || (item.countable === true && resource.count >= item.craft.resource.min * 10));
+        ((item.countable !== true && resource.count >= item.craft.resource.min) || (item.countable === true && resource.count >= item.craft.resource.min * 5));
       return item;
     });
 
@@ -75,7 +75,7 @@ class Crafting extends Component {
 
   craftItem(item) {
     if ((item.countable === false && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min) ||
-      (item.countable === true && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min * 10) ) {
+      (item.countable === true && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min * 5) ) {
       this.crafting = true;
 
       this.props.store.dispatch({
@@ -110,9 +110,9 @@ class Crafting extends Component {
     let items = _.map(available, (item) => {
       let resource_name = (item.craft.resource.min == 1) ? this.state.resources[item.craft.resource.id].name : this.state.resources[item.craft.resource.id].plural;
       let chance = this.calcChance(item);
-      let description = (item.countable) ? `10 ${item.description}` : item.description;
+      let description = (item.countable) ? `5 ${item.description}` : item.description;
       let craft_link = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{description}</a> : description;
-      let count = (item.countable) ? 10 : 1;
+      let count = (item.countable) ? 5 : 1;
       return (
         <tr key={`crafting.${item.type}.${item.id}`}>
           <td>{craft_link}</td>
