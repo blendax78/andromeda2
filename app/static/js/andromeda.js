@@ -30511,9 +30511,9 @@ var Crafting = function (_Component) {
       // pct = ((skill - req_skill) * 2) + 50
 
       var items = _.map(available, function (item) {
-        var resource_name = item.craft.resource.min == 1 ? _this5.state.resources[item.craft.resource.id].name : _this5.state.resources[item.craft.resource.id].plural;
+        var resource_name = !item.countable && item.craft.resource.min == 1 ? _this5.state.resources[item.craft.resource.id].name : _this5.state.resources[item.craft.resource.id].plural;
         var chance = _this5.calcChance(item);
-        var description = item.countable ? '5 ' + item.description : item.description;
+        var description = item.countable ? '5 ' + item.plural : item.description;
         var craft_link = item.craftable ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'a',
           { href: '#', onClick: function onClick() {

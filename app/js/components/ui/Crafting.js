@@ -108,9 +108,9 @@ class Crafting extends Component {
     // pct = ((skill - req_skill) * 2) + 50
 
     let items = _.map(available, (item) => {
-      let resource_name = (item.craft.resource.min == 1) ? this.state.resources[item.craft.resource.id].name : this.state.resources[item.craft.resource.id].plural;
+      let resource_name = (!item.countable && item.craft.resource.min == 1) ? this.state.resources[item.craft.resource.id].name : this.state.resources[item.craft.resource.id].plural;
       let chance = this.calcChance(item);
-      let description = (item.countable) ? `5 ${item.description}` : item.description;
+      let description = (item.countable) ? `5 ${item.plural}` : item.description;
       let craft_link = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{description}</a> : description;
       let count = (item.countable) ? 5 : 1;
       return (
