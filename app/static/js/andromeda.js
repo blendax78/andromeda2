@@ -3270,7 +3270,7 @@ var ItemData = [{
     skill: {
       id: 8,
       name: 'bowcraft',
-      min: 0
+      min: 30
     },
     resource: {
       id: 8,
@@ -13752,8 +13752,8 @@ var InventoryList = function (_Component) {
         var classEquip = __WEBPACK_IMPORTED_MODULE_7_classnames__({
           glyphicon: true,
           clickable: true,
-          'glyphicon-ok-sign': !!inventory.equip && inventory.equip.equipped === true,
-          'glyphicon-ok-circle': !!inventory.equip && inventory.equip.equipped !== true
+          'glyphicon-ok-sign': !!inventory.equip && inventory.equip.equipped === true && (!!inventory.weapon || !!inventory.armor),
+          'glyphicon-ok-circle': !!inventory.equip && inventory.equip.equipped !== true && (!!inventory.weapon || !!inventory.armor)
         });
 
         var bank = '';
@@ -34713,7 +34713,8 @@ var Skills = function Skills() {
       // For every point above 65% chance, subtract 1 from probability of raise.
       var diff_modifier = chance && 65 - chance < 0 ? 65 - chance : 0;
 
-      if (rand <= 100.0 - state.Skills[skill].current + diff_modifier / (state.Skills[skill].current / 10)) {
+      if (rand <= 100.0 - state.Skills[skill].current + diff_modifier / (state.Skills[skill].current / 10) || rand <= 1) {
+        // minimum 1 in 100 chance
         gain = 0.1;
       }
     }

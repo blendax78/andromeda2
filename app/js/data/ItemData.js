@@ -878,7 +878,7 @@ export const ItemData = [
       skill: {
         id: 8,
         name: 'bowcraft',
-        min: 0
+        min: 30
       },
       resource: {
         id: 8,

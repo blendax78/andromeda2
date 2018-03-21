@@ -59,9 +59,10 @@ const Skills = (state = {}, action) => {
       }
     } else if (state.Skills[skill].current < 100.0) {
       // For every point above 65% chance, subtract 1 from probability of raise.
-      let diff_modifier = (chance && 65 - chance < 0) ? (65 - chance) : 0;
+      let diff_modifier = (chance && 65 - chance < 0) ? 65 - chance : 0;
 
-      if (rand <= (100.0 - state.Skills[skill].current) + diff_modifier / (state.Skills[skill].current / 10)) {
+      if (rand <= (100.0 - state.Skills[skill].current) + diff_modifier / (state.Skills[skill].current / 10) || rand <= 1) {
+        // minimum 1 in 100 chance
         gain = 0.1;
       }
     }

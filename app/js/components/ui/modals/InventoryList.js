@@ -57,8 +57,8 @@ class InventoryList extends Component {
       let classEquip = classNames({
         glyphicon: true,
         clickable: true,
-        'glyphicon-ok-sign': (!!inventory.equip && inventory.equip.equipped === true),
-        'glyphicon-ok-circle': (!!inventory.equip && inventory.equip.equipped !== true)
+        'glyphicon-ok-sign': (!!inventory.equip && inventory.equip.equipped === true && (!!inventory.weapon || !!inventory.armor)),
+        'glyphicon-ok-circle': (!!inventory.equip && inventory.equip.equipped !== true && (!!inventory.weapon || !!inventory.armor))
       });
 
       let bank = '';
