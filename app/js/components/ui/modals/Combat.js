@@ -160,8 +160,9 @@ class Combat extends Component {
 
         // Break this out to playerAttack function
         let chance_to_hit = this.calcChanceToHit(skill.current, mob.skills.wrestling);
-
+        console.log('chance_to_hit',chance_to_hit);
         if (_.random(1, 100) <= chance_to_hit) {
+          console.log('hit');
           let damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
           Config.notifyWarning(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
 

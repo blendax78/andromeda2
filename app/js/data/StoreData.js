@@ -44,7 +44,7 @@ export const StoreData = [
     name: 'A dilapidated inn',
     description: 'A toothless woman looks at you. "Want a room?"',
     cost: 1,
-    heal: 0.1,
+    heal: 0.2,
     craft: [],
     sell: [],
     buy: [],
