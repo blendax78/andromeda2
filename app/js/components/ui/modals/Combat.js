@@ -103,7 +103,7 @@ class Combat extends Component {
     return (damage > 0) ? damage : 1;
   }
 
-  calcChanceToHit(attack, defend, attack_bonus = 0, defend_bonus = 0) {
+  calcChanceToHit(attack = 0, defend = 0, attack_bonus = 0, defend_bonus = 0) {
     /*
       FORMULA:
       Hit Chance% = ( ( [Attacker's Combat Ability + 20] * [100% + Attacker's Hit Chance Increase] ) divided by
@@ -112,6 +112,7 @@ class Combat extends Component {
     */
 
     let chance = 100 * ((attack + 20) * (1 + (attack_bonus / 100))) / ((defend + 20) * (2 + (defend_bonus / 100)));
+
     return (chance > 2) ? chance : 2;;
   }
 
@@ -160,9 +161,8 @@ class Combat extends Component {
 
         // Break this out to playerAttack function
         let chance_to_hit = this.calcChanceToHit(skill.current, mob.skills.wrestling);
-        console.log('chance_to_hit',chance_to_hit);
+
         if (_.random(1, 100) <= chance_to_hit) {
-          console.log('hit');
           let damage = this.calcDamage(player.offense.min, player.offense.max, mob.armor);
           Config.notifyWarning(this.props.store, `You hit the ${mob.name} for ${damage} damage.`);
 
