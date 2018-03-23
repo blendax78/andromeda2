@@ -97,4 +97,104 @@ export const MobData = [
         magic_resistance: [20,40]
     }
   },
+  {
+    id: 4,
+    name: 'brown bear',
+    description: 'A brown bear is wandering around, looking for a snack.',
+    armor: 24,
+    karma: 0,
+    fame: 450,
+    stats: {
+      str: [76,100],
+      dex: [26,45],
+      int: [23,47],
+      hp: [46,60]
+    },
+    aggro: false,
+    offense: {
+      min: 6,
+      max: 12,
+      speed: 2
+    },
+    wander: true,
+    attackable: true,
+    inventory: [
+      { id: 27, count: 12 }
+    ], //item IDs that are found on corpse
+    credits: 0,
+    img: `${Config.URLS.IMAGES}/mobs/BrownBear_100.png`,
+    skills: {
+        wrestling: [40,60],
+        tactics: [40,60],
+        magic_resistance: [25,35]
+    }
+  },
+  {
+    id: 5,
+    name: 'bull',
+    description: 'A bull is here, looking for the herd.',
+    armor: 28,
+    karma: 0,
+    fame: 600,
+    stats: {
+      str: [77,111],
+      dex: [56,75],
+      int: [47,75],
+      hp: [50,64]
+    },
+    aggro: false,
+    offense: {
+      min: 4,
+      max: 9,
+      speed: 2
+    },
+    wander: true,
+    attackable: true,
+    inventory: [
+      { id: 27, count: 15 }
+    ], //item IDs that are found on corpse
+    credits: 0,
+    img: `${Config.URLS.IMAGES}/mobs/Bull_100.png`,
+    skills: {
+        wrestling: [40.1,57.5],
+        tactics: [67.6,85.0],
+        magic_resistance: [17.6,25.0]
+    }
+  },
+  {
+    id: 6,
+    name: 'cow',
+    description: 'A cow is chewing on some grass.',
+    armor: 10,
+    karma: 0,
+    fame: 300,
+    stats: {
+      str: [30,30],
+      dex: [15,15],
+      int: [5,5],
+      hp: [18,18]
+    },
+    aggro: false,
+    offense: {
+      min: 1,
+      max: 4,
+      speed: 2
+    },
+    wander: true,
+    attackable: true,
+    inventory: [
+      { id: 27, count: 12 }
+    ], //item IDs that are found on corpse
+    credits: 0,
+    img: `${Config.URLS.IMAGES}/mobs/Cow_100.png`,
+    skills: {
+        wrestling: [5.5,5.5],
+        tactics: [5.5,5.5],
+        magic_resistance: [5.5,5.5]
+    }
+  },
 ];
+
+// http://www.uoguide.com/Fame
+// http://www.uoguide.com/Brown_Bear
+// http://www.uorenaissance.com/info/BrownBear

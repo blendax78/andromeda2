@@ -25,6 +25,14 @@ export const ZoneData = [
       {
         id: 3,
         chance: 5
+      },
+      {
+        id: 5,
+        chance: 15
+      },
+      {
+        id: 6,
+        chance: 15
       }
     ],
     decorations: [
@@ -56,6 +64,14 @@ export const ZoneData = [
       {
         id: 3,
         chance: 5
+      },
+      {
+        id: 5,
+        chance: 20
+      },
+      {
+        id: 6,
+        chance: 20
       }
     ],
     decorations: [
@@ -91,6 +107,14 @@ export const ZoneData = [
       {
         id: 3,
         chance: 10
+      },
+      {
+        id: 4,
+        chance: 10
+      },
+      {
+        id: 6,
+        chance: 10
       }
     ],
     decorations: [
@@ -125,6 +149,10 @@ export const ZoneData = [
       },
       {
         id: 3,
+        chance: 10
+      },
+      {
+        id: 4,
         chance: 10
       }
     ],

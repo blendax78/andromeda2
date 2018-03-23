@@ -40,7 +40,7 @@ class Navbar extends Component {
       <li key={Config.randomKey('li')}>Banks</li>,
       <li key={Config.randomKey('li')}>Prevent overwriting db with test data!!!!</li>,
       <li key={Config.randomKey('li')}>Running from Combat</li>,
-      <li key={Config.randomKey('li')}>Aggro Mobs</li>,
+      <li key={Config.randomKey('li')}>Aggro Mobs - 0 stamina = no attack</li>,
       <li key={Config.randomKey('li')}>Exceptional Crafting</li>,
       <li key={Config.randomKey('li')}>Magic</li>,
       <li key={Config.randomKey('li')}>Regs</li>,

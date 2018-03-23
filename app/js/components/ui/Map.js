@@ -135,12 +135,11 @@ class Map extends Component {
   }
 
   getMobs(zone) {
-    // Need to keep persistent data of objects/decorations in a Location Store
     if (!zone || !zone.mobs || zone.mobs.length === 0) {
       return [];
     }
 
-    let maxMobs = 1; // Can mobs travel in packs?
+    let maxMobs = 2; // Can mobs travel in packs?
     // check for locations here
     let mobs = [];
 
@@ -169,7 +168,7 @@ class Map extends Component {
             type: 'mob',
             x: this.state.player.x,
             y: this.state.player.y
-          }, _.last(potentialMobs));
+          }, _.sample(potentialMobs)); // _.sample() returns random array element
 
           this.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
 
