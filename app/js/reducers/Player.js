@@ -151,7 +151,7 @@ const Player = (state = {}, action) => {
         }
       break;
       case 'hp':
-        state.Player.partial.hp += (0.2 + state.Player.status.hp_regen);
+        state.Player.partial.hp += (0.1 + state.Player.status.hp_regen);
         if (Math.floor(state.Player.partial.hp) >= 1) {
           state.Player.partial.hp = 0;
           return true;
