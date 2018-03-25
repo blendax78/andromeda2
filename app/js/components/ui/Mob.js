@@ -13,7 +13,7 @@ class Mob extends Component {
     this.state = {
       mob: this.props.data,
       player: this.props.store.getState().Player,
-      showAction: this.props.store.getState().Mobs.showAction,
+      showAction: false,
       showCombat: this.props.store.getState().Mobs.showCombat
     };
 
@@ -22,7 +22,7 @@ class Mob extends Component {
         this.setState({
           mob: this.state.mob,
           player: this.props.store.getState().Player,
-          showAction: this.props.store.getState().Mobs.showAction,
+          showAction: this.state.showAction,
           showCombat: this.props.store.getState().Mobs.showCombat
         });
       }
@@ -39,15 +39,12 @@ class Mob extends Component {
     this.mounted = true;
   }
 
-  setMobAction(e) {
-    e.preventDefault();
-    this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_ACTION, payload: {} });
+  toggleMobAction() {
+    let action = !this.state.showAction;
+    this.setState({ showAction: action });
   }
 
-  toggleCombat(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
+  toggleCombat() {
     this.props.store.dispatch({ type: Config.ACTIONS.MOBS.SHOW_ACTION, payload: {} });
     this.props.store.dispatch({ type: Config.ACTIONS.MOBS.IN_COMBAT, payload: { data: this.state.mob } });
     Config.modal(this.props.store, '', '', 'combat');
@@ -61,7 +58,7 @@ class Mob extends Component {
     let buttons = [];
 
     if (this.state.mob.attackable && !this.state.player.status.dead) {
-      buttons.push(<button key={this.keys.actions} type="button" className="btn btn-default top5" onClick={(e) => this.toggleCombat(e)}>Attack</button>);
+      buttons.push(<button key={this.keys.actions} type="button" className="btn btn-default top5" onClick={(e) => this.toggleCombat()}>Attack</button>);
     }
 
     return (
@@ -81,7 +78,7 @@ class Mob extends Component {
     return (
       <div className="row">
         <div className="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-          <a href="#" onClick={ (e) => this.setMobAction(e) } className={mob_classes}>{this.state.mob.description}</a>
+          <a href="#" onClick={ (e) => this.toggleMobAction() } className={mob_classes}>{this.state.mob.description}</a>
           {this.getMobActions()}
         </div>
       </div>

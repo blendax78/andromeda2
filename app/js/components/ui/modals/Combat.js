@@ -188,7 +188,6 @@ class Combat extends Component {
   }
 
   mobAttack() {
-    // *****Need to check for attack type (melee/ranged/run/none)
     let mob = this.state.mob;
     let player = this.state.player;
 

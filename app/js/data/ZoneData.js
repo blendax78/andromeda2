@@ -51,7 +51,7 @@ export const ZoneData = [
   {
     id: 2,
     name: 'Plains Zone 2',
-    description: 'Trees sparsely populate this area, which is otherwise comrpised of tall grasses.',
+    description: 'Trees sparsely populate this area, which is otherwise comprised of tall grasses.',
     mobs: [
       {
         id: 1,
