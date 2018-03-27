@@ -161,7 +161,9 @@ class Crafting extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span className="bold">Skill:</span> {skill}</div>
           </div>
           {resources}
-          {crafting}
+          <div className="scrollable scrollable-md top5">
+            {crafting}
+          </div>
         </div>
       </div>
     );

@@ -37,6 +37,8 @@ class Navbar extends Component {
 
   showToDos() {
     let todos = [
+      <li key={Config.randomKey('li')}>Clicking on one of multiple mobs opens all options</li>,
+      <li key={Config.randomKey('li')}>add encumbrance to inventoryList</li>,
       <li key={Config.randomKey('li')}>Banks</li>,
       <li key={Config.randomKey('li')}>Prevent overwriting db with test data!!!!</li>,
       <li key={Config.randomKey('li')}>Running from Combat</li>,

@@ -101,6 +101,14 @@
   max-height: 60%;
 }
 
+.scrollable-md {
+  max-height: 40%;
+}
+
+.scrollable-sm {
+  max-height: 25%;
+}
+
 .center {
   text-align: center;
 }

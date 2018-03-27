@@ -288,7 +288,7 @@ class Store extends Component {
 
     return (
       <div className="row">
-        <div className="col-lg-12 col-md-12 col-sm-1 col-xs-12">
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {this.state.data.description}
