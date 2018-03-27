@@ -32,7 +32,7 @@ class PlayerControls extends Component {
       return;
     }
 
-    if (this.state.player.stamina >= 0) {
+    if (this.state.player.stamina <= 0) {
       Config.notifyWarning(this.props.store, 'You are too tired to move.');
       return;
     }

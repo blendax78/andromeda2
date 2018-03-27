@@ -14331,7 +14331,7 @@ var PlayerControls = function (_Component) {
         return;
       }
 
-      if (this.state.player.stamina >= 0) {
+      if (this.state.player.stamina <= 0) {
         __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifyWarning(this.props.store, 'You are too tired to move.');
         return;
       }
@@ -33708,9 +33708,9 @@ var Player = function Player() {
       dead: false
     },
     effects: {
-      dexterity: 0,
-      strength: 0,
-      intelligence: 0
+      dexterity: undefined,
+      strength: undefined,
+      intelligence: undefined
     },
     defense: {
       physical: 0,
@@ -33740,7 +33740,7 @@ var Player = function Player() {
   };
 
   state.Player.get = function (stat) {
-    return state.Player[stat] !== state.Player.effects[stat] ? state.Player.effects[stat] : state.Player[stat];
+    return state.Player[stat] !== state.Player.effects[stat] && !_.isUndefined(state.Player.effects[stat]) ? state.Player.effects[stat] : state.Player[stat];
   };
 
   var type = action.type,
@@ -33748,18 +33748,22 @@ var Player = function Player() {
 
 
   var update_stats = function update_stats() {
-    state.Player.hp = !!state.Player.hp ? state.Player.hp : Math.round(state.Player.get('strength') / 2) + 50;
-    state.Player.mp = !!state.Player.mp ? state.Player.mp : state.Player.get('intelligence');
-    state.Player.stamina = !!state.Player.stamina ? state.Player.stamina : state.Player.get('dexterity');
-
     state.Player.maxhp = Math.round(state.Player.get('strength') / 2) + 50;
     state.Player.maxmp = state.Player.get('intelligence');
     state.Player.maxstamina = state.Player.get('dexterity');
     state.Player.maxencumbrance = state.Player.get('strength') * 4;
 
+    state.Player.hp = !_.isUndefined(state.Player.hp) ? state.Player.hp : Math.round(state.Player.get('strength') / 2) + 50;
+    state.Player.mp = !_.isUndefined(state.Player.mp) ? state.Player.mp : state.Player.get('intelligence');
+    state.Player.stamina = !_.isUndefined(state.Player.stamina) ? state.Player.stamina : state.Player.get('dexterity');
+
     state.Player.status.encumbered = state.Player.encumbrance > state.Player.maxencumbrance;
     state.Player.status.run = state.Player.status.encumbered || state.Player.stamina < 1 ? false : state.Player.status.run;
   };
+
+  if (_.isUndefined(state.Player.hp)) {
+    update_stats();
+  }
 
   var update_stamina = function update_stamina(change) {
     if (state.Player.stamina + change < 0) {
