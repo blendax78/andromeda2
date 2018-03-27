@@ -7,13 +7,17 @@ class InventoryList extends Component {
     super(props);
     
     this.state = {
-      inventory: props.store.getState().Inventory
+      inventory: props.store.getState().Inventory,
+      player: props.store.getState().Player,
+      bank: props.store.getState().Bank
     };
 
     this.unsubscribe = props.store.subscribe(() => {
       if (this.mounted) {
         this.setState({
           inventory: this.props.store.getState().Inventory,
+          player: props.store.getState().Player,
+          bank: props.store.getState().Bank
         });
       }
     });
@@ -63,7 +67,7 @@ class InventoryList extends Component {
 
       let bank = '';
       if (this.props.bank === true) {
-        bank = <span className="glyphicon glyphicon-download clickable" title="Deposit"></span>;
+        bank = <span className="glyphicon glyphicon-download clickable" title="Deposit" onClick={() => { this.deposit() }}></span>;
       }
 
       return (
@@ -78,6 +82,40 @@ class InventoryList extends Component {
         </div>
       );
     });
+  }
+
+  deposit() {
+    console.log('deposit');
+  }
+
+  withdraw() {
+    console.log('withdraw');
+  }
+
+  getBank() {
+    let name = '';
+    let bank = _.map(this.state.bank.items, (item) => {
+      if (item.countable === true) {
+        name = item.count.toString() + ' ';
+        name += (item.count === 1) ? item.name : item.plural;
+      }
+
+      return (
+        <div className="row" key={`equippedItem.${item.type}.${item.key || item.id}`}>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{name}</div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="glyphicon glyphicon-upload clickable" title="Withdraw" onClick={() => { this.withdraw() }}></span>
+          </div>
+        </div>
+      );
+    });
+
+    return (
+      <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <h5 className="bold">Deposited</h5>
+        {bank}
+      </div>
+    );
   }
 
   getEquipped() {
@@ -111,19 +149,27 @@ class InventoryList extends Component {
     let inventoryItems = this.organizeItems(this.state.inventory.items);
     let inventoryArmor = this.organizeItems(this.state.inventory.armor);
     let inventoryWeapons = this.organizeItems(this.state.inventory.weapons);
-    let equipped = this.getEquipped();
-    
+    let rightPanel = (this.props.bank !== true) ? this.getEquipped() : this.getBank();
+
     return (
       <div className="row">
-        <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <h5 className="bold">Weapons</h5>
-          {inventoryWeapons}
-          <h5 className="bold">Armor</h5>
-          {inventoryArmor}
-          <h5 className="bold">Items</h5>
-          {inventoryItems}
+        <div>
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <span className="bold">Encumbrance: </span>
+            <span className="blue">{this.state.player.encumbrance}</span>/{this.state.player.maxencumbrance}
+          </div>
         </div>
-        {equipped}
+        <div className="">
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <h5 className="bold">Weapons</h5>
+            {inventoryWeapons}
+            <h5 className="bold">Armor</h5>
+            {inventoryArmor}
+            <h5 className="bold">Items</h5>
+            {inventoryItems}
+          </div>
+          {rightPanel}
+        </div>
       </div>
     );
   }

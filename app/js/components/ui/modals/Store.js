@@ -16,8 +16,6 @@ class Store extends Component {
     this.keys = {
       buy: Config.randomKey('commerce'),
       sell: Config.randomKey('commerce'),
-      bank_deposit: Config.randomKey('commerce'),
-      bank_withdraw: Config.randomKey('commerce'),
       inn: Config.randomKey('commerce'),
       healer: Config.randomKey('commerce'),
       blacksmithing: Config.randomKey('commerce'),
@@ -34,8 +32,7 @@ class Store extends Component {
       sell: false,
       buy: false,
       inventory: this.props.store.getState().Inventory,
-      player: this.props.store.getState().Player,
-      deposit: false
+      player: this.props.store.getState().Player
     };
 
     this.mounted = true;
@@ -157,10 +154,6 @@ class Store extends Component {
     return '';
   }
 
-  toggleDeposit() {
-    this.setState({ deposit: !this.state.deposit });
-  }
-
   getActionButtons() {
     let buttons = [];
 
@@ -193,8 +186,6 @@ class Store extends Component {
         buttons.push(<button key={this.keys.healer} onClick={ () => this.resurrect() } className={processClasses} disabled={disabled}>Resurrect</button>);
       break;
       case 'bank':
-        buttons.push(<button key={this.keys.bank_deposit} className="btn btn-info" onClick={() => { this.toggleDeposit() } }>Deposit</button>);
-        buttons.push(<button key={this.keys.bank_withdraw} className="btn btn-info">Withdraw</button>);
       break;
       case 'inn':
         let inn_disabled = (this.state.player.credits === 0) ? true : false;
@@ -284,7 +275,7 @@ class Store extends Component {
     let buttons = this.getActionButtons();
     let crafting = (this.state.crafting === '') ? '' : <Crafting type={this.state.crafting} store={this.props.store}/>;
     let trade = this.showTrade();
-    let deposit = (this.state.deposit) ? <InventoryList store={this.props.store} bank={true} /> : '';
+    let bank = (this.props.data.type === 'bank') ? <InventoryList store={this.props.store} bank={true} /> : '';
 
     return (
       <div className="row">
@@ -305,7 +296,7 @@ class Store extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {trade}
               {crafting}
-              {deposit}
+              {bank}
             </div>
           </div>
         </div>

@@ -55,8 +55,7 @@ const Bank = (state = {}, action) => {
     state.Bank = {credits: 15, items: [{'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items'}, {'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items'}]};
     state.Bank = merge_new_data(state.Bank);
   }
-  console.log(state.Bank);
-
+  
   switch (type) {
     case BANK.GET:
       let items = { ...state.Bank.items, ...payload.items };

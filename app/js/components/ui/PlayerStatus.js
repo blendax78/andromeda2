@@ -114,7 +114,7 @@ class PlayerStatus extends Component {
         <div className="row">
           <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <span className="bold">Encumbrance: </span>
-            <span className="blue">{player.encumbrance}</span>/{player.strength * 4}
+            <span className="blue">{player.encumbrance}</span>/{player.maxencumbrance}
           </div>
         </div>
       </div>
