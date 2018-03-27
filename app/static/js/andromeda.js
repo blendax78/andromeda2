@@ -14331,6 +14331,11 @@ var PlayerControls = function (_Component) {
         return;
       }
 
+      if (this.state.player.stamina >= 0) {
+        __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifyWarning(this.props.store, 'You are too tired to move.');
+        return;
+      }
+
       if (this.state.player.status.encumbered === true) {
         __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifyWarning(this.props.store, 'You are too encumbered to move.');
         return;
