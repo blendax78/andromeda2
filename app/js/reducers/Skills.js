@@ -81,16 +81,10 @@ const Skills = (state = {}, action) => {
       notifyGain(payload.action.result.message);
 
       if (payload.action.result.inventory === true) {
-
-        if (state.Player.encumbrance >= state.Player.maxencumbrance) {
-          notify('You cannot carry any more.');
-          return;
-        }
-
         state.Queue.add('actions', Config.ACTIONS.INVENTORY.ADD,
           {
             item: payload.action.result.item,
-            count: 1,
+            count: (!!payload.action.current) ? payload.action.current : 1,
             score: true
         });
       }
@@ -139,9 +133,10 @@ const Skills = (state = {}, action) => {
       }
 
       if (random <= state.Skills[skill].current + state.Skills[skill].modifier) {
-        object.action.current--;
         checkSkillGain(skill);
         checkResultSuccess();
+        object.action.current -= (!!object.action.increment) ? object.action.increment : 1;
+
         return true;
       } else {
         if (state.Skills[skill].current < 20.0) {

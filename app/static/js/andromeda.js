@@ -34163,7 +34163,8 @@ var DecorationData = [{
   action: {
     message: 'You hack at the tree.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.LUMBERJACKING,
-    current: 4,
+    current: 10,
+    increment: 10,
     maxMessage: 'There is no more wood to be harvested.',
     result: {
       message: 'You pick up some logs.',
@@ -34177,7 +34178,8 @@ var DecorationData = [{
   action: {
     message: 'You hack at the tree.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.LUMBERJACKING,
-    current: 6,
+    current: 20,
+    increment: 10,
     maxMessage: 'There is no more wood to be harvested.',
     result: {
       message: 'You pick up some logs.',
@@ -34191,7 +34193,8 @@ var DecorationData = [{
   action: {
     message: 'You hack at the tree.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.LUMBERJACKING,
-    current: 8,
+    current: 30,
+    increment: 10,
     maxMessage: 'There is no more wood to be harvested.',
     result: {
       message: 'You pick up some logs.',
@@ -34206,6 +34209,7 @@ var DecorationData = [{
     message: 'You pick at the rock.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.MINING,
     current: 2,
+    increment: 1,
     maxMessage: 'There is no more ore to be harvested.',
     result: {
       message: 'You pick up some ore.',
@@ -34220,6 +34224,7 @@ var DecorationData = [{
     message: 'You pick at the rocks.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.MINING,
     current: 4,
+    increment: 1,
     maxMessage: 'There is no more ore to be harvested.',
     result: {
       message: 'You pick up some ore.',
@@ -34234,6 +34239,7 @@ var DecorationData = [{
     message: 'You pick at the boulder.',
     skill: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.SKILLS.MINING,
     current: 6,
+    increment: 1,
     maxMessage: 'There is no more ore to be harvested.',
     result: {
       message: 'You pick up some ore.',
@@ -34950,15 +34956,9 @@ var Skills = function Skills() {
       notifyGain(payload.action.result.message);
 
       if (payload.action.result.inventory === true) {
-
-        if (state.Player.encumbrance >= state.Player.maxencumbrance) {
-          notify('You cannot carry any more.');
-          return;
-        }
-
         state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, {
           item: payload.action.result.item,
-          count: 1,
+          count: !!payload.action.current ? payload.action.current : 1,
           score: true
         });
       }
@@ -35006,9 +35006,10 @@ var Skills = function Skills() {
       }
 
       if (random <= state.Skills[skill].current + state.Skills[skill].modifier) {
-        object.action.current--;
         checkSkillGain(skill);
         checkResultSuccess();
+        object.action.current -= !!object.action.increment ? object.action.increment : 1;
+
         return true;
       } else {
         if (state.Skills[skill].current < 20.0) {
