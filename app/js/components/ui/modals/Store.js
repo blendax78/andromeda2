@@ -32,7 +32,8 @@ class Store extends Component {
       sell: false,
       buy: false,
       inventory: this.props.store.getState().Inventory,
-      player: this.props.store.getState().Player
+      player: this.props.store.getState().Player,
+      bank: this.props.store.getState().Bank
     };
 
     this.mounted = true;
@@ -49,6 +50,7 @@ class Store extends Component {
         this.setState({
           inventory: this.props.store.getState().Inventory,
           player: this.props.store.getState().Player,
+          bank: this.props.store.getState().Bank
         });
       }
     });
@@ -275,7 +277,8 @@ class Store extends Component {
     let buttons = this.getActionButtons();
     let crafting = (this.state.crafting === '') ? '' : <Crafting type={this.state.crafting} store={this.props.store}/>;
     let trade = this.showTrade();
-    let bank = (this.props.data.type === 'bank') ? <InventoryList store={this.props.store} bank={true} /> : '';
+
+    let bank = (!!this.props.data && this.props.data.type === 'bank') ? <InventoryList store={this.props.store} bank={true} /> : '';
 
     return (
       <div className="row">

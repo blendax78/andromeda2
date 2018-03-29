@@ -67,7 +67,7 @@ class InventoryList extends Component {
 
       let bank = '';
       if (this.props.bank === true) {
-        bank = <span className="glyphicon glyphicon-download clickable" title="Deposit" onClick={() => { this.deposit() }}></span>;
+        bank = <span className="glyphicon glyphicon-circle-arrow-right clickable" title="Deposit" onClick={() => { this.deposit(inventory) }}></span>;
       }
 
       return (
@@ -84,27 +84,65 @@ class InventoryList extends Component {
     });
   }
 
-  deposit() {
-    console.log('deposit');
+  calculateItemCount(item) {
+    let count = 1;
+
+    if (item.countable && item.count > 100) {
+      count = 25;
+    } else if (item.countable && item.count > 50) {
+      count = 10;
+    } else if (item.countable && item.count > 10) {
+      count = 5
+    }
+
+    return count;
   }
 
-  withdraw() {
-    console.log('withdraw');
+  deposit(item = undefined) {
+    if (!!item) {
+      let count = this.calculateItemCount(item);
+
+      this.props.store.dispatch({ type: Config.ACTIONS.BANK.DEPOSIT, payload: {item: item, count: count}});
+      this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.REMOVE, payload: {item: item.id, key: item.key, count: count}});
+    } else {
+      let credits = (this.state.player.credits > 1000) ? 1000 : this.state.player.credits;
+      this.props.store.dispatch({ type: Config.ACTIONS.BANK.DEPOSIT, payload: {credits: credits}});
+      this.state.player.credits -= credits;
+    }
+  }
+
+  withdraw(item = undefined) {
+    if (!!item) {
+      let count = this.calculateItemCount(item);
+      this.props.store.dispatch({ type: Config.ACTIONS.BANK.WITHDRAW, payload: {item: item, count: count}});
+      this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.ADD, payload: {item: item.id, key: item.key, count: count}});
+    } else {
+      let credits = (this.state.bank.credits > 1000) ? 1000 : this.state.bank.credits;
+      this.props.store.dispatch({ type: Config.ACTIONS.BANK.WITHDRAW, payload: {credits: credits}});
+      this.state.player.credits += credits;
+    }
   }
 
   getBank() {
     let name = '';
-    let bank = _.map(this.state.bank.items, (item) => {
+    let items = _.filter(this.state.bank.items, (item) => {
+      return (item.countable === false || 
+        (item.countable === true && item.count > 0));
+    });
+
+    let bank = _.map(items, (item) => {
       if (item.countable === true) {
         name = item.count.toString() + ' ';
         name += (item.count === 1) ? item.name : item.plural;
+      } else {
+        name = item.description;
       }
 
       return (
         <div className="row" key={`equippedItem.${item.type}.${item.key || item.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{name}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="glyphicon glyphicon-upload clickable" title="Withdraw" onClick={() => { this.withdraw() }}></span>
+            <span className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw" onClick={() => { this.withdraw(item) }}></span>
           </div>
         </div>
       );
@@ -113,6 +151,15 @@ class InventoryList extends Component {
     return (
       <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <h5 className="bold">Deposited</h5>
+        <div className="row">
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span className="bold">Credits:</span> {this.state.bank.credits}</div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw Credits" onClick={() => { this.withdraw() }}></span>
+          </div>
+        </div>
+        <div className="row">
+          <div className="bold col-lg-12 col-md-12 col-sm-12 col-xs-12">Items</div>
+        </div>
         {bank}
       </div>
     );
@@ -149,7 +196,24 @@ class InventoryList extends Component {
     let inventoryItems = this.organizeItems(this.state.inventory.items);
     let inventoryArmor = this.organizeItems(this.state.inventory.armor);
     let inventoryWeapons = this.organizeItems(this.state.inventory.weapons);
-    let rightPanel = (this.props.bank !== true) ? this.getEquipped() : this.getBank();
+    let rightPanel = '';
+    let leftPanel = '';
+
+    if (this.props.bank !== true) {
+      rightPanel = this.getEquipped();
+    } else {
+      rightPanel = this.getBank();
+      leftPanel = (
+        <div className="row">
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span className="bold">Credits:</span> {this.state.player.credits}</div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span className="glyphicon glyphicon-circle-arrow-right clickable" title="Deposit Credits" onClick={() => { this.deposit() }}></span>
+          </div>
+        </div>
+      );
+    }
+
+
 
     return (
       <div className="row">
@@ -161,6 +225,8 @@ class InventoryList extends Component {
         </div>
         <div className="">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <h5 className="bold">Inventory</h5>
+            {leftPanel}
             <h5 className="bold">Weapons</h5>
             {inventoryWeapons}
             <h5 className="bold">Armor</h5>

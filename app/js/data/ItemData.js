@@ -137,12 +137,12 @@ export const ItemData = [
   },
   {
     id: 6,
-    name: 'cloth',
+    name: 'piece of cloth',
     plural: 'pieces of cloth',
     countable: true,
     description: '',
     value: 1,
-    weight: 0.25,
+    weight: 0.2,
     type: 'items',
     sub_type: 'resource',
     craft: {
@@ -1881,6 +1881,7 @@ export const ItemData = [
       }
     },
     weapon: {
+      requires: 60,
       str_req: 45,
       hands: 'two',
       skill: 10,

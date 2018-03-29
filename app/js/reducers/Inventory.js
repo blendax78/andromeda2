@@ -8,17 +8,38 @@ const Inventory = (state = {}, action) => {
 
   const { type, payload } = action;
 
+  let always_overwrite = (item, item_data) => {
+    // Always use ItemData value for these properties
+    let fields = [
+      'countable',
+      'value',
+      'weight',
+      'type',
+      'sub_type'
+    ];
+
+    for (let i in fields) {
+      item[fields[i]] = item_data[fields[i]]
+    }
+
+    return item;
+  };
+
   let merge_new_data = (data) => {
     let item_data = {};
+    let new_item = {};
+
     // Consider rewriting so it loops through properties & sub-objects
     let items = _.map(data.items, (item) => {
       item_data = Config.clone(_.findWhere(ItemData, { id: item.id }));
 
-      return {
+      new_item = {
         ...item_data,
         ...item,
         craft: { ...item_data.craft, ...item.craft },
       };
+
+      return always_overwrite(new_item, item_data);
     });
 
     let weapons = _.map(data.weapons, (weapon) => {
@@ -26,13 +47,15 @@ const Inventory = (state = {}, action) => {
       item_data = Config.clone(_.findWhere(ItemData, { id: weapon.id }));
 
       // Return information saved from player (equipped, key, etc)
-      return {
+      new_item = {
         ...item_data,
         ...weapon,
         equip: { ...weapon.equip },
         craft: { ...item_data.craft, ...weapon.craft },
         weapon: { ...item_data.weapon, ...weapon.weapon }
       };
+
+      return always_overwrite(new_item, item_data);
     });
 
     let armors = _.map(data.armor, (armor) => {
@@ -40,12 +63,14 @@ const Inventory = (state = {}, action) => {
       let item_data = Config.clone(_.findWhere(ItemData, { id: armor.id }));
 
       // Return information saved from player (equipped, key, etc)
-      return {
+      new_item = {
         ...item_data,
         ...armor,
         equip: { ...armor.equip },
         craft: { ...item_data.craft, ...armor.craft }
       };
+
+      return always_overwrite(new_item, item_data);
     });
 
     data.items = items;
@@ -135,7 +160,8 @@ const Inventory = (state = {}, action) => {
         }
       } else {
         if (inventoryItem) {
-          inventoryItem.count -= payload.count;
+          inventoryItem.count -= payload.count || 1;
+          inventoryItem.count = (inventoryItem.count < 0) ? 0 : inventoryItem.count;
         }
       }
     break;

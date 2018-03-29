@@ -2548,12 +2548,12 @@ var ItemData = [{
   }
 }, {
   id: 6,
-  name: 'cloth',
+  name: 'piece of cloth',
   plural: 'pieces of cloth',
   countable: true,
   description: '',
   value: 1,
-  weight: 0.25,
+  weight: 0.2,
   type: 'items',
   sub_type: 'resource',
   craft: {
@@ -4236,6 +4236,7 @@ var ItemData = [{
     }
   },
   weapon: {
+    requires: 60,
     str_req: 45,
     hands: 'two',
     skill: 10,
@@ -13711,13 +13712,17 @@ var InventoryList = function (_Component) {
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (InventoryList.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(InventoryList)).call(this, props));
 
     _this.state = {
-      inventory: props.store.getState().Inventory
+      inventory: props.store.getState().Inventory,
+      player: props.store.getState().Player,
+      bank: props.store.getState().Bank
     };
 
     _this.unsubscribe = props.store.subscribe(function () {
       if (_this.mounted) {
         _this.setState({
-          inventory: _this.props.store.getState().Inventory
+          inventory: _this.props.store.getState().Inventory,
+          player: props.store.getState().Player,
+          bank: props.store.getState().Bank
         });
       }
     });
@@ -13776,7 +13781,9 @@ var InventoryList = function (_Component) {
 
         var bank = '';
         if (_this2.props.bank === true) {
-          bank = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-download clickable', title: 'Deposit' });
+          bank = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-right clickable', title: 'Deposit', onClick: function onClick() {
+              _this2.deposit(inventory);
+            } });
         }
 
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -13801,6 +13808,130 @@ var InventoryList = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('div', { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' })
         );
       });
+    }
+  }, {
+    key: 'calculateItemCount',
+    value: function calculateItemCount(item) {
+      var count = 1;
+
+      if (item.countable && item.count > 100) {
+        count = 25;
+      } else if (item.countable && item.count > 50) {
+        count = 10;
+      } else if (item.countable && item.count > 10) {
+        count = 5;
+      }
+
+      return count;
+    }
+  }, {
+    key: 'deposit',
+    value: function deposit() {
+      var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+      if (!!item) {
+        var count = this.calculateItemCount(item);
+
+        this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.DEPOSIT, payload: { item: item, count: count } });
+        this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, payload: { item: item.id, key: item.key, count: count } });
+      } else {
+        var credits = this.state.player.credits > 1000 ? 1000 : this.state.player.credits;
+        this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.DEPOSIT, payload: { credits: credits } });
+        this.state.player.credits -= credits;
+      }
+    }
+  }, {
+    key: 'withdraw',
+    value: function withdraw() {
+      var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+      if (!!item) {
+        var count = this.calculateItemCount(item);
+        this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.WITHDRAW, payload: { item: item, count: count } });
+        this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.INVENTORY.ADD, payload: { item: item.id, key: item.key, count: count } });
+      } else {
+        var credits = this.state.bank.credits > 1000 ? 1000 : this.state.bank.credits;
+        this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.WITHDRAW, payload: { credits: credits } });
+        this.state.player.credits += credits;
+      }
+    }
+  }, {
+    key: 'getBank',
+    value: function getBank() {
+      var _this3 = this;
+
+      var name = '';
+      var items = _.filter(this.state.bank.items, function (item) {
+        return item.countable === false || item.countable === true && item.count > 0;
+      });
+
+      var bank = _.map(items, function (item) {
+        if (item.countable === true) {
+          name = item.count.toString() + ' ';
+          name += item.count === 1 ? item.name : item.plural;
+        } else {
+          name = item.description;
+        }
+
+        return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row', key: 'equippedItem.' + item.type + '.' + (item.key || item.id) },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            name
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-left clickable', title: 'Withdraw', onClick: function onClick() {
+                _this3.withdraw(item);
+              } })
+          )
+        );
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'div',
+        { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'h5',
+          { className: 'bold' },
+          'Deposited'
+        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold' },
+              'Credits:'
+            ),
+            ' ',
+            this.state.bank.credits
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-left clickable', title: 'Withdraw Credits', onClick: function onClick() {
+                _this3.withdraw();
+              } })
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'bold col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            'Items'
+          )
+        ),
+        bank
+      );
     }
   }, {
     key: 'getEquipped',
@@ -13844,38 +13975,99 @@ var InventoryList = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this4 = this;
+
       // Filter out anything that's 0
       var inventoryItems = this.organizeItems(this.state.inventory.items);
       var inventoryArmor = this.organizeItems(this.state.inventory.armor);
       var inventoryWeapons = this.organizeItems(this.state.inventory.weapons);
-      var equipped = this.getEquipped();
+      var rightPanel = '';
+      var leftPanel = '';
+
+      if (this.props.bank !== true) {
+        rightPanel = this.getEquipped();
+      } else {
+        rightPanel = this.getBank();
+        leftPanel = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold' },
+              'Credits:'
+            ),
+            ' ',
+            this.state.player.credits
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-right clickable', title: 'Deposit Credits', onClick: function onClick() {
+                _this4.deposit();
+              } })
+          )
+        );
+      }
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
         { className: 'row' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
-          { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+          null,
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'h5',
-            { className: 'bold' },
-            'Weapons'
-          ),
-          inventoryWeapons,
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'h5',
-            { className: 'bold' },
-            'Armor'
-          ),
-          inventoryArmor,
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'h5',
-            { className: 'bold' },
-            'Items'
-          ),
-          inventoryItems
+            'div',
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'bold' },
+              'Encumbrance: '
+            ),
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'span',
+              { className: 'blue' },
+              this.state.player.encumbrance
+            ),
+            '/',
+            this.state.player.maxencumbrance
+          )
         ),
-        equipped
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: '' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'h5',
+              { className: 'bold' },
+              'Inventory'
+            ),
+            leftPanel,
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'h5',
+              { className: 'bold' },
+              'Weapons'
+            ),
+            inventoryWeapons,
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'h5',
+              { className: 'bold' },
+              'Armor'
+            ),
+            inventoryArmor,
+            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              'h5',
+              { className: 'bold' },
+              'Items'
+            ),
+            inventoryItems
+          ),
+          rightPanel
+        )
       );
     }
   }]);
@@ -14153,7 +14345,7 @@ var PlayerStatus = function (_Component) {
               player.encumbrance
             ),
             '/',
-            player.strength * 4
+            player.maxencumbrance
           )
         )
       );
@@ -29224,18 +29416,6 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Clicking on one of multiple mobs opens all options'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'add encumbrance to inventoryList'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Banks'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Prevent overwriting db with test data!!!!'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -30319,8 +30499,6 @@ var Store = function (_Component) {
     _this.keys = {
       buy: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
       sell: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
-      bank_deposit: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
-      bank_withdraw: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
       inn: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
       healer: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
       blacksmithing: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('commerce'),
@@ -30338,7 +30516,7 @@ var Store = function (_Component) {
       buy: false,
       inventory: _this.props.store.getState().Inventory,
       player: _this.props.store.getState().Player,
-      deposit: false
+      bank: _this.props.store.getState().Bank
     };
 
     _this.mounted = true;
@@ -30354,7 +30532,8 @@ var Store = function (_Component) {
 
         _this.setState({
           inventory: _this.props.store.getState().Inventory,
-          player: _this.props.store.getState().Player
+          player: _this.props.store.getState().Player,
+          bank: _this.props.store.getState().Bank
         });
       }
     });
@@ -30473,11 +30652,6 @@ var Store = function (_Component) {
       return '';
     }
   }, {
-    key: 'toggleDeposit',
-    value: function toggleDeposit() {
-      this.setState({ deposit: !this.state.deposit });
-    }
-  }, {
     key: 'getActionButtons',
     value: function getActionButtons() {
       var _this2 = this;
@@ -30531,18 +30705,6 @@ var Store = function (_Component) {
           ));
           break;
         case 'bank':
-          buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'button',
-            { key: this.keys.bank_deposit, className: 'btn btn-info', onClick: function onClick() {
-                _this2.toggleDeposit();
-              } },
-            'Deposit'
-          ));
-          buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'button',
-            { key: this.keys.bank_withdraw, className: 'btn btn-info' },
-            'Withdraw'
-          ));
           break;
         case 'inn':
           var inn_disabled = this.state.player.credits === 0 ? true : false;
@@ -30691,7 +30853,8 @@ var Store = function (_Component) {
       var buttons = this.getActionButtons();
       var crafting = this.state.crafting === '' ? '' : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Crafting__["a" /* default */], { type: this.state.crafting, store: this.props.store });
       var trade = this.showTrade();
-      var deposit = this.state.deposit ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__InventoryList__["a" /* default */], { store: this.props.store, bank: true }) : '';
+
+      var bank = !!this.props.data && this.props.data.type === 'bank' ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__InventoryList__["a" /* default */], { store: this.props.store, bank: true }) : '';
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
@@ -30729,7 +30892,7 @@ var Store = function (_Component) {
               { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
               trade,
               crafting,
-              deposit
+              bank
             )
           )
         )
@@ -34707,15 +34870,30 @@ var Inventory = function Inventory() {
       payload = action.payload;
 
 
+  var always_overwrite = function always_overwrite(item, item_data) {
+    // Always use ItemData value for these properties
+    var fields = ['countable', 'value', 'weight', 'type', 'sub_type'];
+
+    for (var i in fields) {
+      item[fields[i]] = item_data[fields[i]];
+    }
+
+    return item;
+  };
+
   var merge_new_data = function merge_new_data(data) {
     var item_data = {};
+    var new_item = {};
+
     // Consider rewriting so it loops through properties & sub-objects
     var items = _.map(data.items, function (item) {
       item_data = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: item.id }));
 
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, item, {
+      new_item = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, item, {
         craft: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data.craft, item.craft)
       });
+
+      return always_overwrite(new_item, item_data);
     });
 
     var weapons = _.map(data.weapons, function (weapon) {
@@ -34723,11 +34901,13 @@ var Inventory = function Inventory() {
       item_data = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: weapon.id }));
 
       // Return information saved from player (equipped, key, etc)
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, weapon, {
+      new_item = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, weapon, {
         equip: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, weapon.equip),
         craft: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data.craft, weapon.craft),
         weapon: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data.weapon, weapon.weapon)
       });
+
+      return always_overwrite(new_item, item_data);
     });
 
     var armors = _.map(data.armor, function (armor) {
@@ -34735,10 +34915,12 @@ var Inventory = function Inventory() {
       var item_data = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].clone(_.findWhere(__WEBPACK_IMPORTED_MODULE_2__data_ItemData__["a" /* ItemData */], { id: armor.id }));
 
       // Return information saved from player (equipped, key, etc)
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, armor, {
+      new_item = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, armor, {
         equip: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, armor.equip),
         craft: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data.craft, armor.craft)
       });
+
+      return always_overwrite(new_item, item_data);
     });
 
     data.items = items;
@@ -34825,7 +35007,8 @@ var Inventory = function Inventory() {
         }
       } else {
         if (inventoryItem) {
-          inventoryItem.count -= payload.count;
+          inventoryItem.count -= payload.count || 1;
+          inventoryItem.count = inventoryItem.count < 0 ? 0 : inventoryItem.count;
         }
       }
       break;
@@ -35662,7 +35845,7 @@ var Queue = function Queue() {
 
 
 
-var BANK = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY;
+var BANK = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.BANK;
 
 var Bank = function Bank() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -35670,6 +35853,17 @@ var Bank = function Bank() {
   var type = action.type,
       payload = action.payload;
 
+
+  var always_overwrite = function always_overwrite(item, item_data) {
+    // Always use ItemData value for these properties
+    var fields = ['countable', 'value', 'weight', 'type', 'sub_type'];
+
+    for (var i in fields) {
+      item[fields[i]] = item_data[fields[i]];
+    }
+
+    return item;
+  };
 
   var merge_new_data = function merge_new_data(data) {
     var item_data = {};
@@ -35685,12 +35879,16 @@ var Bank = function Bank() {
           if (item.craft || item_data.craft) {
             merge.craft = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data.craft, item.craft);
           }
+
+          merge = always_overwrite(merge, item_data);
           return merge;
           break;
         case 'weapons':
           merge = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data, item);
           merge.equip = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item.equip);
           merge.craft = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data.craft, item.craft);
+
+          merge = always_overwrite(merge, item_data);
           return merge;
           break;
         case 'armor':
@@ -35698,6 +35896,8 @@ var Bank = function Bank() {
 
           merge.equip = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item.equip);
           merge.craft = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item_data.craft, item.craft);
+
+          merge = always_overwrite(merge, item_data);
           return merge;
           break;
       }
@@ -35710,47 +35910,59 @@ var Bank = function Bank() {
     state.Bank = { credits: 15, items: [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }] };
     state.Bank = merge_new_data(state.Bank);
   }
-  console.log(state.Bank);
+
+  var bankItem = undefined;
+  if (!!payload && !!payload.item) {
+    if (!!payload.item.key) {
+      bankItem = _.findWhere(state.Bank.items, { key: payload.item.key });
+    } else {
+      bankItem = _.findWhere(state.Bank.items, { id: payload.item.id });
+    }
+  }
 
   switch (type) {
     case BANK.GET:
       var items = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Bank.items, payload.items);
 
       state.Bank = {
-        credits: payload.credits,
+        credits: payload.credits || 0,
         items: items
       };
 
       state.Bank = merge_new_data(state.Bank);
       break;
     case BANK.WITHDRAW:
-      if (!!payload.key) {
-        // check for countable
-        var item = _.findWhere(state.Bank.items, { key: payload.key });
-
-        if (!!item) {
-          state.Inventory[item.type].push(item);
+      if (!!payload.item) {
+        if (bankItem.countable === true) {
+          bankItem.count -= payload.count || 1;
+          bankItem.count = bankItem.count < 0 ? 0 : bankItem.count;
+        } else {
+          state.Bank.items.splice(_.findIndex(state.Bank.items, { key: bankItem.key }), 1);
         }
       }
 
       if (!!payload.credits) {
-        state.Player.credits += credits;
+        state.Bank.credits -= payload.credits;
       }
 
       // Save
-
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.BANK.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Bank, { player_id: state.Player.id }));
       break;
     case BANK.DEPOSIT:
       if (!!payload.item) {
-        state.Bank.items.push(payload.item);
+        if (payload.item.countable === true && !!bankItem) {
+          bankItem.count += payload.count || 1;
+        } else {
+          state.Bank.items.push(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, payload.item, { count: payload.count }));
+        }
       }
 
       if (!!payload.credits) {
-        state.Bank.credits += credits;
+        state.Bank.credits += payload.credits;
       }
 
       // Save
-
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.BANK.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Bank, { player_id: state.Player.id }));
       break;
   }
 
