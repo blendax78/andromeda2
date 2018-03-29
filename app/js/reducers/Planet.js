@@ -55,6 +55,20 @@ const Planet = (state = {}, action) => {
         _.extend(mob, _.findWhere(MobData, { id: mob.id }));
       });
     break;
+    case PLANET.TICK:
+      _.each(_.filter(state.Planet.locations, (location) => {
+        return location.type === 'mob';
+      }), (location) => {
+        location.timer--;
+
+        if (location.timer <= 0) {
+          state.Queue.add('actions', Config.ACTIONS.PLANET.CLEAR_TIMER, { x: location.x, y: location.y });
+        }
+      });
+    break;
+    case PLANET.CLEAR_TIMER:
+      state.Planet.locations.splice(_.findIndex(state.Planet.location, { x: payload.x, y: payload.y, type: 'mob' }), 1);
+    break;
   }
 
   return state.Planet;

@@ -255,6 +255,10 @@ class Combat extends Component {
         type: Config.ACTIONS.APP.MODAL_UPDATE,
         payload: { locked: false }
       });
+
+      this.props.store.dispatch({
+        type: Config.ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
+      });
     } else {
       this.timer += 0.25;
     }

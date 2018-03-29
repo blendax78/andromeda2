@@ -6,7 +6,8 @@ const Mobs = (state = {}, action) => {
     list: {},
     showAction: false,
     showCombat: false,
-    combat: undefined
+    combat: undefined,
+    recent_combat: []
   };
 
   const { type, payload } = action;
@@ -42,7 +43,9 @@ const Mobs = (state = {}, action) => {
 
       if (state.Mobs.combat.hp <= 0) {
         delete state.Mobs.list[payload.key];
-        delete state.Planet.locations[_.findIndex(state.Planet.locations, { key: payload.key })];
+        state.Planet.locations.splice(
+          _.findIndex(state.Planet.locations, { key: payload.key }), 1
+        );
       }
     break;
     case MOBS.SHOW_ACTION:
@@ -60,7 +63,20 @@ const Mobs = (state = {}, action) => {
       update_combat_stats(payload.mob);
     break;
     case MOBS.CLEAR_COMBAT:
+      // Potentially use this for corpses.
+      let old_combat = {
+        key: state.Mobs.combat.key,
+        x: state.Mobs.combat.x,
+        y: state.Mobs.combat.y,
+        timer: 30
+      };
+
+      state.Mobs.recent_combat.push(old_combat);
+      console.log('state.Mobs.recent_combat', state.Mobs.recent_combat);
       state.Mobs.combat = undefined;
+    break;
+    case MOBS.CLEAR_TIMER:
+      state.Mobs.recent_combat.splice(_.findIndex(state.Mobs.recent_combat, { key: payload.key }), 1);
     break;
     case MOBS.IN_COMBAT:
       state.Mobs.combat = payload.data;
@@ -77,6 +93,14 @@ const Mobs = (state = {}, action) => {
             mob.hp++;
             mob.partial = 0;
           }
+        }
+      });
+
+      _.each(state.Mobs.recent_combat, (mob) => {
+        mob.timer--;
+
+        if (mob.timer <= 0) {
+          state.Queue.add('actions', Config.ACTIONS.MOBS.CLEAR_TIMER, { key: mob.key });
         }
       });
     break;

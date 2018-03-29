@@ -9,6 +9,7 @@ class CombatStatus extends Component {
     this.state = {
       player: props.store.getState().Player,
       mob: props.store.getState().Mobs.combat,
+      original_mob: props.store.getState().Mobs.combat,
       inventory: props.store.getState().Inventory
     };
 
@@ -66,6 +67,12 @@ class CombatStatus extends Component {
   render() {
     let player = this.state.player;
     let mob = this.state.mob;
+    
+    if (mob === undefined) {
+      this.unsubscribe();
+      mob = { ...this.state.original_mob, hp: 0, stamina: 0, mp: 0 };
+    }
+
     let ammo = this.calcAmmo();
     let ammo_section = (!!ammo) ? (
       <div className="row">

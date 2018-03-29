@@ -26,6 +26,7 @@ class App extends Component {
     let tick_handler = () => {
       Config.dispatch(this.props.store, Config.ACTIONS.PLAYER.TICK, {});
       Config.dispatch(this.props.store, Config.ACTIONS.MOBS.TICK, {});
+      Config.dispatch(this.props.store, Config.ACTIONS.PLANET.TICK, {});
 
       if (this.timer % 30 === 0 && this.timer !== 0) {
         if (Config.ENV === 'prod') {

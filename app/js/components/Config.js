@@ -49,7 +49,9 @@ const Config = {
       SUCCESS: 'MSGS.SUCCESS'
     },
     PLANET: {
-      GET: 'PLANET.GET'
+      GET: 'PLANET.GET',
+      TICK: 'PLANET.TICK',
+      CLEAR_TIMER: 'PLANET.CLEAR_TIMER',
     },
     ITEM: {
       USE: 'ITEM.USE'
@@ -99,6 +101,7 @@ const Config = {
     MOBS: {
       CREATE: 'MOBS.CREATE',
       CLEAR_COMBAT: 'MOBS.CLEAR_COMBAT',
+      CLEAR_TIMER: 'MOBS.CLEAR_TIMER',
       IN_COMBAT: 'MOBS.IN_COMBAT',
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
       SHOW_COMBAT: 'MOBS.SHOW_COMBAT',

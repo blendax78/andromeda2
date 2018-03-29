@@ -150,7 +150,9 @@ class Map extends Component {
       type: 'mob'
     });
 
-    if (locations && locations.length === 0) {
+    let recent_combat = _.where(this.state.mobs.recent_combat, { x: this.state.player.x, y: this.state.player.y });
+
+    if (locations && locations.length === 0 && (!recent_combat || recent_combat.length === 0)) {
       let potentialMobs = [];
 
       // Check the chance in this loop.
@@ -192,7 +194,8 @@ class Map extends Component {
     if (mobs.length === 0) {
       // Still empty
       // Populate an empty location so locations can be empty
-      this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y, type: 'mob' });
+      // This data is cleared every 30 seconds.
+      this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y, type: 'mob', timer: 30 });
     }
 
     return this.getMobResults(mobs);
