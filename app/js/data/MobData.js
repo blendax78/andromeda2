@@ -14,6 +14,7 @@ export const MobData = [
       max: 2,
       speed: 2
     },
+    move: 1,
     mob_type: 'animal',
     stats: {
       str: [19,19],
@@ -53,6 +54,7 @@ export const MobData = [
       max: 4,
       speed: 2
     },
+    move: 2,
     mob_type: 'animal',
     wander: true,
     attackable: true,
@@ -86,6 +88,7 @@ export const MobData = [
       max: 16,
       speed: 2
     },
+    move: 2,
     wander: true,
     attackable: true,
     inventory: [
@@ -118,6 +121,7 @@ export const MobData = [
       max: 12,
       speed: 2
     },
+    move: 2,
     mob_type: 'animal',
     wander: true,
     attackable: true,
@@ -151,6 +155,7 @@ export const MobData = [
       max: 9,
       speed: 2
     },
+    move: 2,
     wander: true,
     attackable: true,
     inventory: [
@@ -183,6 +188,7 @@ export const MobData = [
       max: 4,
       speed: 2
     },
+    move: 1,
     mob_type: 'animal',
     wander: true,
     attackable: true,
@@ -216,6 +222,7 @@ export const MobData = [
       max: 0,
       speed: 2000
     },
+    move: 0,
     mob_type: 'training',
     wander: false,
     attackable: true,

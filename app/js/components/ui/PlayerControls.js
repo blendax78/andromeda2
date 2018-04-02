@@ -151,15 +151,21 @@ class PlayerControls extends Component {
         break;
         case 82:
           // R
-          this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
+          if (!this.state.app.modal.open) {
+            this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN);
+          }
         break;
         case 72:
           // H
-          this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE);
+          if (!this.state.app.modal.open) {
+            this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE);
+          }
         break;
         case 77:
           // M
-          this.meditate();
+          if (!this.state.app.modal.open) {
+            this.meditate();
+          }
         break;
         default:
           // console.log(e.keyCode);

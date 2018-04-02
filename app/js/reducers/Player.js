@@ -22,6 +22,7 @@ const Player = (state = {}, action) => {
     user_id: 1,
     credits: 15,
     encumbrance: 0,
+    move: 1,
     status: {
       inn: false,
       meditate: false,
@@ -63,7 +64,8 @@ const Player = (state = {}, action) => {
       ore: 0,
       crafted: 0,
       deaths: 0,
-      timer: 0
+      timer: 0,
+      flee: 0
     },
   };
 

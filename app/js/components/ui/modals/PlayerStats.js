@@ -57,18 +57,25 @@ class PlayerStats extends Component {
 
   render() {
     let title = this.getTitle();
+    let stats = _.map([
+      { name: 'Title', value: `${this.state.player.name}, the ${title}`},
+      { name: 'Time in World', value: this.calcTime()},
+      { name: 'Walking Steps', value: this.state.player.score.walked},
+      { name: 'Running Steps', value: this.state.player.score.run},
+      { name: 'Kills', value: this.state.player.score.kills},
+      { name: 'Deaths', value: this.state.player.score.deaths},
+      { name: 'Times Fled from Battle', value: this.state.player.score.flee},
+      { name: 'Logs Found', value: this.state.player.score.log},
+      { name: 'Ore Found', value: this.state.player.score.ore},
+      { name: 'Items Crafted', value: this.state.player.score.crafted},
+    ], (stats) => {
+      return <p key={stat.name}><span className="bold">{stat.name}: </span>{stat.value}</p>;
+    });
+
     return (
       <div className="row">
         <div className="col-lg-12 col-md-12 col-sm-12">
-          <p><span className="bold">Title: </span>{this.state.player.name}, the {title}</p>
-          <p><span className="bold">Time in World: </span>{this.calcTime()}</p>
-          <p><span className="bold">Walking Steps: </span>{this.state.player.score.walked}</p>
-          <p><span className="bold">Running Steps: </span>{this.state.player.score.run}</p>
-          <p><span className="bold">Kills: </span>{this.state.player.score.kills}</p>
-          <p><span className="bold">Deaths: </span>{this.state.player.score.deaths}</p>
-          <p><span className="bold">Logs Found: </span>{this.state.player.score.log}</p>
-          <p><span className="bold">Ore Found: </span>{this.state.player.score.ore}</p>
-          <p><span className="bold">Items Crafted: </span>{this.state.player.score.crafted}</p>
+          {stats}
         </div>
       </div>
     );

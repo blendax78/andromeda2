@@ -27,6 +27,7 @@ class Combat extends Component {
         ranged: equipped.weapon && equipped.weapon.weapon.type === 'ranged',
         run: false
       },
+      fled: false,
       equipped: equipped
     };
 
@@ -117,12 +118,40 @@ class Combat extends Component {
   }
 
   playerRun() {
-    // if ranged weapon, player can still attack while running.
-    // base on stamina and/or speed
-    // Upon running, toggle mob aggro
-    let mob = this.state.mob;
-    let player = this.state.player;
-    console.log('run!');
+    // if ranged weapon, player can still attack while running?
+
+    if (this.timer % 1 === 0) {
+      let mob = this.state.mob;
+      let player = this.state.player;
+      // Base chance = 50% + (difference between player & mob movement * 10) * current stamina percentage
+      let chance = Math.round((50 + (player.move - mob.move) * 10) * (player.stamina / player.maxstamina))
+
+      if (_.random(1, 100) <= chance) {
+        Config.notifyWarning(this.props.store, 'You flee from battle.');
+    
+        let score = this.state.player.score;
+        score.flee++;
+
+        this.props.store.dispatch({
+          type: Config.ACTIONS.PLAYER.UPDATE,
+          payload: {
+            score: score
+          }
+        });
+
+        this.props.store.dispatch({
+          type: Config.ACTIONS.PLAYER.SAVE,
+          payload: this.props.store.getState().Player
+        });
+
+        mob.aggro = (mob.mob_type !== 'training') ? true : false;
+        Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob);
+
+        this.setState({ fled: true });
+      } else {
+        Config.notifyWarning(this.props.store, 'You are unable to escape.');
+      }
+    }
   }
 
   calcAmmo(weapon) {
@@ -169,7 +198,6 @@ class Combat extends Component {
           mob.hp -= (mob.hp - damage >= 0) ? damage : mob.hp;
           mob.stamina -= (mob.stamina - Math.ceil(damage / 2) >= 0) ? Math.ceil(damage / 2) : mob.stamina;
 
-          // No need to update store (for now?)
           Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob);
           if (this.state.mob.mob_type !== 'training') {
             Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
@@ -188,7 +216,7 @@ class Combat extends Component {
             Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
           }
 
-          if (this.state.skills.tactics.current < 20) {
+          if (this.state.skills.tactics.current < 20 && this.state.mob.mob_type !== 'training') {
             Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: 'tactics' });
           }
         }
@@ -226,10 +254,6 @@ class Combat extends Component {
     // Main combat loop
     this.timer = this.timer || 0;
 
-    if (this.state.combat.run === true) {
-      this.playerRun();
-    }
-
     if (this.state.combat.melee === true || this.state.combat.ranged === true) {
       // Need to offer some kind of ranged effect.
       // Player attack
@@ -249,13 +273,20 @@ class Combat extends Component {
       this.mobAttack();
     }
 
-    if (this.state.player.hp <= 0 || this.state.mob.hp <= 0) {
+    if (this.state.combat.run === true) {
+      if (this.state.player.status.run !== true) {
+        this.setState({ player: { ...this.state.player, status: { ...this.state.player.status, run: true } } });
+      }
+      this.playerRun();
+    }
+
+    if (this.state.player.hp <= 0 || this.state.mob.hp <= 0 || this.state.fled === true) {
       clearInterval(this.tick);
 
       if (this.state.mob.hp <= 0) {
         // Player wins
         this.playerWin();
-      } else {
+      } else if (this.state.mob.hp <= 0) {
         // Mob wins
         this.mobWin();
       }

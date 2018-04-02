@@ -68,11 +68,11 @@ const Mobs = (state = {}, action) => {
         key: state.Mobs.combat.key,
         x: state.Mobs.combat.x,
         y: state.Mobs.combat.y,
-        timer: 30
+        timer: 5
       };
 
       state.Mobs.recent_combat.push(old_combat);
-      console.log('state.Mobs.recent_combat', state.Mobs.recent_combat);
+
       state.Mobs.combat = undefined;
     break;
     case MOBS.CLEAR_TIMER:
