@@ -14,6 +14,7 @@ export const MobData = [
       max: 2,
       speed: 2
     },
+    mob_type: 'animal',
     stats: {
       str: [19,19],
       dex: [25,25],
@@ -52,6 +53,7 @@ export const MobData = [
       max: 4,
       speed: 2
     },
+    mob_type: 'animal',
     wander: true,
     attackable: true,
     inventory: [
@@ -116,6 +118,7 @@ export const MobData = [
       max: 12,
       speed: 2
     },
+    mob_type: 'animal',
     wander: true,
     attackable: true,
     inventory: [
@@ -180,6 +183,7 @@ export const MobData = [
       max: 4,
       speed: 2
     },
+    mob_type: 'animal',
     wander: true,
     attackable: true,
     inventory: [
@@ -191,6 +195,37 @@ export const MobData = [
         wrestling: [5.5,5.5],
         tactics: [5.5,5.5],
         magic_resistance: [5.5,5.5]
+    }
+  },
+  {
+    id: 7,
+    name: 'training dummy',
+    description: 'A training dummy stands here. There is a bright red target painted on it.',
+    armor: 100,
+    karma: 0,
+    fame: 0,
+    stats: {
+      str: [0,0],
+      dex: [0,0],
+      int: [0,0],
+      hp: [500,500]
+    },
+    aggro: false,
+    offense: {
+      min: 0,
+      max: 0,
+      speed: 2000
+    },
+    mob_type: 'training',
+    wander: false,
+    attackable: true,
+    inventory: [],
+    credits: 0,
+    img: `${Config.URLS.IMAGES}/misc/training_dummy.png`,
+    skills: {
+        wrestling: [0,0],
+        tactics: [0,0],
+        magic_resistance: [0,0]
     }
   },
 ];

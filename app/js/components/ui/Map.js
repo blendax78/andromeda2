@@ -134,6 +134,32 @@ class Map extends Component {
     }
   }
 
+  getTownMobs() {
+    if (!!this.state.town.mobs && this.state.town.mobs.length > 0) {
+      let mobs = [];
+      _.each(this.state.town.mobs, (mob) => {
+        // Extends object by value, not reference
+        let found = $.extend(true, {
+          key: `town_mob_${mob.id}`,
+          type: 'mob',
+          x: this.state.town.x,
+          y: this.state.town.y
+        }, mob);
+
+        if (!_.findWhere(this.state.planet.locations, { type: 'mob', key: `town_mob_${mob.id}`, x: this.state.town.x, y: this.state.town.y })) {
+          this.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
+          Config.dispatch(this.props.store, Config.ACTIONS.MOBS.CREATE, { mob: found });
+        }
+
+        mobs.push(found);
+      });
+
+      return this.getMobResults(mobs);
+    } else {
+      return '';
+    }
+  }
+
   getMobs(zone) {
     if (!zone || !zone.mobs || zone.mobs.length === 0) {
       return [];
@@ -164,7 +190,7 @@ class Map extends Component {
         });
 
         if (potentialMobs.length > 0) {
-          // Extends decoration object by value, not reference
+          // Extends object by value, not reference
           let found = $.extend(true, {
             key: Config.randomKey('mob'),
             type: 'mob',
@@ -218,7 +244,7 @@ class Map extends Component {
     let planet = this.state.planet;
     let zone = this.getZone();
     let decorations = this.getDecorations(zone);
-    let mobs = (!this.state.town) ? this.getMobs(zone) : '';
+    let mobs = (!this.state.town) ? this.getMobs(zone) : this.getTownMobs();
     let town_name = (!!this.state.town) ? ` - ${this.state.town.name}` : '';
     return (
         <div>

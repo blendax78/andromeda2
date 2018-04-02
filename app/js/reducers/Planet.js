@@ -43,6 +43,12 @@ const Planet = (state = {}, action) => {
         _.each(town.stores, (store) => {
           _.extend(store, _.findWhere(StoreData, { id: store.id }));
         });
+
+        if (town.mobs) {
+          _.each(town.mobs, (mob) => {
+            _.extend(mob, _.findWhere(MobData, { id: mob.id }));
+          });
+        }
       }); 
 
       state.Planet.defaultZone = _.findWhere(ZoneData, { id: state.Planet.defaultZone });
