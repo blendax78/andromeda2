@@ -68,7 +68,7 @@ class PlayerStats extends Component {
       { name: 'Logs Found', value: this.state.player.score.log},
       { name: 'Ore Found', value: this.state.player.score.ore},
       { name: 'Items Crafted', value: this.state.player.score.crafted},
-    ], (stats) => {
+    ], (stat) => {
       return <p key={stat.name}><span className="bold">{stat.name}: </span>{stat.value}</p>;
     });
 

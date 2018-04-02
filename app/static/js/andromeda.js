@@ -328,7 +328,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -442,7 +442,9 @@ var Config = {
       SUCCESS: 'MSGS.SUCCESS'
     },
     PLANET: {
-      GET: 'PLANET.GET'
+      GET: 'PLANET.GET',
+      TICK: 'PLANET.TICK',
+      CLEAR_TIMER: 'PLANET.CLEAR_TIMER'
     },
     ITEM: {
       USE: 'ITEM.USE'
@@ -492,6 +494,7 @@ var Config = {
     MOBS: {
       CREATE: 'MOBS.CREATE',
       CLEAR_COMBAT: 'MOBS.CLEAR_COMBAT',
+      CLEAR_TIMER: 'MOBS.CLEAR_TIMER',
       IN_COMBAT: 'MOBS.IN_COMBAT',
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
       SHOW_COMBAT: 'MOBS.SHOW_COMBAT',
@@ -1546,6 +1549,35 @@ module.exports = { debugTool: debugTool };
 "use strict";
 
 
+exports.__esModule = true;
+
+var _assign = __webpack_require__(319);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _assign2.default || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -1580,35 +1612,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _assign = __webpack_require__(319);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _assign2.default || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
 
 /***/ }),
 /* 18 */
@@ -1930,7 +1933,7 @@ var _assign = __webpack_require__(11);
 
 var PooledClass = __webpack_require__(26);
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var warning = __webpack_require__(2);
 
 var didWarnForAddedNewProperty = false;
@@ -9165,7 +9168,7 @@ module.exports = ReactUpdateQueue;
 
 var _assign = __webpack_require__(11);
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var warning = __webpack_require__(2);
 
 var validateDOMNesting = emptyFunction;
@@ -12561,7 +12564,7 @@ module.exports = traverseAllChildren;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -13781,9 +13784,15 @@ var InventoryList = function (_Component) {
 
         var bank = '';
         if (_this2.props.bank === true) {
-          bank = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-right clickable', title: 'Deposit', onClick: function onClick() {
+          bank = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'bank_deposit', className: 'glyphicon glyphicon-circle-arrow-right clickable', title: 'Deposit', onClick: function onClick() {
               _this2.deposit(inventory);
-            } });
+            } })];
+
+          if (inventory.countable === true && inventory.count > 1) {
+            bank.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'bank_deposit_all', className: 'glyphicon glyphicon-circle-arrow-right clickable green', title: 'Deposit All', onClick: function onClick() {
+                _this2.deposit(inventory, true);
+              } }));
+          }
         }
 
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -13810,16 +13819,24 @@ var InventoryList = function (_Component) {
       });
     }
   }, {
-    key: 'calculateItemCount',
-    value: function calculateItemCount(item) {
+    key: 'calculateCount',
+    value: function calculateCount(item, all) {
+      if (all === true) {
+        return item.count || 1;
+      }
+
       var count = 1;
 
-      if (item.countable && item.count > 100) {
+      if (item.countable && item.count > 1000) {
+        count = 100;
+      } else if (item.countable && item.count > 100) {
         count = 25;
       } else if (item.countable && item.count > 50) {
         count = 10;
       } else if (item.countable && item.count > 10) {
         count = 5;
+      } else if (item.count === 0) {
+        count = 0;
       }
 
       return count;
@@ -13828,14 +13845,16 @@ var InventoryList = function (_Component) {
     key: 'deposit',
     value: function deposit() {
       var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+      var all = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       if (!!item) {
-        var count = this.calculateItemCount(item);
+        var count = this.calculateCount(item, all);
 
         this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.DEPOSIT, payload: { item: item, count: count } });
         this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, payload: { item: item.id, key: item.key, count: count } });
       } else {
-        var credits = this.state.player.credits > 1000 ? 1000 : this.state.player.credits;
+        var credits = this.calculateCount({ countable: true, count: this.state.player.credits }, all);
+
         this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.DEPOSIT, payload: { credits: credits } });
         this.state.player.credits -= credits;
       }
@@ -13844,13 +13863,16 @@ var InventoryList = function (_Component) {
     key: 'withdraw',
     value: function withdraw() {
       var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+      var all = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       if (!!item) {
-        var count = this.calculateItemCount(item);
+        var count = this.calculateCount(item, all);
+
         this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.WITHDRAW, payload: { item: item, count: count } });
         this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.INVENTORY.ADD, payload: { item: item.id, key: item.key, count: count } });
       } else {
-        var credits = this.state.bank.credits > 1000 ? 1000 : this.state.bank.credits;
+        var credits = this.calculateCount({ countable: true, count: this.state.bank.credits }, all);
+
         this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.BANK.WITHDRAW, payload: { credits: credits } });
         this.state.player.credits += credits;
       }
@@ -13873,6 +13895,16 @@ var InventoryList = function (_Component) {
           name = item.description;
         }
 
+        var bank_button = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'bank_withdraw', className: 'glyphicon glyphicon-circle-arrow-left clickable', title: 'Withdraw', onClick: function onClick() {
+            _this3.withdraw(item);
+          } })];
+
+        if (item.countable === true && item.count > 1) {
+          bank_button.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'bank_withdraw_all', className: 'glyphicon glyphicon-circle-arrow-left clickable green', title: 'Withdraw All', onClick: function onClick() {
+              _this3.withdraw(item, true);
+            } }));
+        }
+
         return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'row', key: 'equippedItem.' + item.type + '.' + (item.key || item.id) },
@@ -13884,12 +13916,23 @@ var InventoryList = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-left clickable', title: 'Withdraw', onClick: function onClick() {
-                _this3.withdraw(item);
-              } })
+            bank_button
           )
         );
       });
+
+      var credits = [];
+
+      if (this.state.bank.credits > 0) {
+        credits.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'withdraw_credits', className: 'glyphicon glyphicon-circle-arrow-left clickable', title: 'Withdraw Credits', onClick: function onClick() {
+            _this3.withdraw();
+          } }));
+      }
+      if (this.state.bank.credits > 1) {
+        credits.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'withdraw_all_credits', className: 'glyphicon glyphicon-circle-arrow-left clickable green', title: 'Withdraw All Credits', onClick: function onClick() {
+            _this3.withdraw(undefined, true);
+          } }));
+      }
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
@@ -13916,9 +13959,7 @@ var InventoryList = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-left clickable', title: 'Withdraw Credits', onClick: function onClick() {
-                _this3.withdraw();
-              } })
+            credits
           )
         ),
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -13988,6 +14029,19 @@ var InventoryList = function (_Component) {
         rightPanel = this.getEquipped();
       } else {
         rightPanel = this.getBank();
+        var credits = [];
+
+        if (this.state.player.credits > 0) {
+          credits.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'deposit_credits', className: 'glyphicon glyphicon-circle-arrow-right clickable', title: 'Deposit Credits', onClick: function onClick() {
+              _this4.deposit();
+            } }));
+        }
+        if (this.state.player.credits > 1) {
+          credits.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { key: 'deposit_all_credits', className: 'glyphicon glyphicon-circle-arrow-right clickable green', title: 'Deposit All Credits', onClick: function onClick() {
+              _this4.deposit(undefined, true);
+            } }));
+        }
+
         leftPanel = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'row' },
@@ -14005,9 +14059,7 @@ var InventoryList = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('span', { className: 'glyphicon glyphicon-circle-arrow-right clickable', title: 'Deposit Credits', onClick: function onClick() {
-                _this4.deposit();
-              } })
+            credits
           )
         );
       }
@@ -14645,15 +14697,21 @@ var PlayerControls = function (_Component) {
             break;
           case 82:
             // R
-            _this2.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.RUN);
+            if (!_this2.state.app.modal.open) {
+              _this2.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.RUN);
+            }
             break;
           case 72:
             // H
-            _this2.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE);
+            if (!_this2.state.app.modal.open) {
+              _this2.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE);
+            }
             break;
           case 77:
             // M
-            _this2.meditate();
+            if (!_this2.state.app.modal.open) {
+              _this2.meditate();
+            }
             break;
           default:
             // console.log(e.keyCode);
@@ -15000,7 +15058,7 @@ __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 var PooledClass = __webpack_require__(148);
 var ReactElement = __webpack_require__(25);
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var traverseAllChildren = __webpack_require__(149);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -15899,7 +15957,7 @@ module.exports = factory(isValidElement);
 
 
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 var assign = __webpack_require__(11);
@@ -20441,7 +20499,7 @@ var DOMLazyTree = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(13);
 
 var createNodesFromMarkup = __webpack_require__(198);
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var invariant = __webpack_require__(1);
 
 var Danger = {
@@ -20867,7 +20925,7 @@ var ReactInstrumentation = __webpack_require__(15);
 var ReactMultiChild = __webpack_require__(217);
 var ReactServerRenderingTransaction = __webpack_require__(226);
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var escapeTextContentForBrowser = __webpack_require__(52);
 var invariant = __webpack_require__(1);
 var isEventSupported = __webpack_require__(63);
@@ -23154,7 +23212,7 @@ var ReactCurrentOwner = __webpack_require__(18);
 var ReactReconciler = __webpack_require__(33);
 var ReactChildReconciler = __webpack_require__(218);
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var flattenChildren = __webpack_require__(225);
 var invariant = __webpack_require__(1);
 
@@ -25585,7 +25643,7 @@ var _assign = __webpack_require__(11);
 var ReactUpdates = __webpack_require__(19);
 var Transaction = __webpack_require__(49);
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -26991,7 +27049,7 @@ var SyntheticTransitionEvent = __webpack_require__(251);
 var SyntheticUIEvent = __webpack_require__(42);
 var SyntheticWheelEvent = __webpack_require__(252);
 
-var emptyFunction = __webpack_require__(16);
+var emptyFunction = __webpack_require__(17);
 var getEventCharCode = __webpack_require__(75);
 var invariant = __webpack_require__(1);
 
@@ -28474,6 +28532,7 @@ var App = function (_Component) {
     var tick_handler = function tick_handler() {
       __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.PLAYER.TICK, {});
       __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.MOBS.TICK, {});
+      __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].dispatch(_this.props.store, __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.PLANET.TICK, {});
 
       if (_this.timer % 30 === 0 && _this.timer !== 0) {
         if (__WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ENV === 'prod') {
@@ -29416,14 +29475,6 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Prevent overwriting db with test data!!!!'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Running from Combat'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Aggro Mobs - 0 stamina = no attack'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -29440,15 +29491,7 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Wandering Mobs'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Dungeons as minimaps or single spaces'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Work on player effects (including armor/weapons)'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -29464,6 +29507,10 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'Wandering Mobs'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Corpses'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -29472,11 +29519,15 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        '(Eventually) Autogenerated worlds (python job that generates js?)'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         '(Eventually) Consider redoing database'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        '(Eventually) Autogenerated worlds'
+        'Prevent overwriting db with test data!!!!'
       )];
 
       __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].modal(this.props.store, __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
@@ -30338,104 +30389,27 @@ var PlayerStats = function (_Component) {
     key: 'render',
     value: function render() {
       var title = this.getTitle();
+      var stats = _.map([{ name: 'Title', value: this.state.player.name + ', the ' + title }, { name: 'Time in World', value: this.calcTime() }, { name: 'Walking Steps', value: this.state.player.score.walked }, { name: 'Running Steps', value: this.state.player.score.run }, { name: 'Kills', value: this.state.player.score.kills }, { name: 'Deaths', value: this.state.player.score.deaths }, { name: 'Times Fled from Battle', value: this.state.player.score.flee }, { name: 'Logs Found', value: this.state.player.score.log }, { name: 'Ore Found', value: this.state.player.score.ore }, { name: 'Items Crafted', value: this.state.player.score.crafted }], function (stat) {
+        return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'p',
+          { key: stat.name },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'span',
+            { className: 'bold' },
+            stat.name,
+            ': '
+          ),
+          stat.value
+        );
+      });
+
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
         { className: 'row' },
         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'div',
           { className: 'col-lg-12 col-md-12 col-sm-12' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Title: '
-            ),
-            this.state.player.name,
-            ', the ',
-            title
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Time in World: '
-            ),
-            this.calcTime()
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Walking Steps: '
-            ),
-            this.state.player.score.walked
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Running Steps: '
-            ),
-            this.state.player.score.run
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Kills: '
-            ),
-            this.state.player.score.kills
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Deaths: '
-            ),
-            this.state.player.score.deaths
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Logs Found: '
-            ),
-            this.state.player.score.log
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Ore Found: '
-            ),
-            this.state.player.score.ore
-          ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'p',
-            null,
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-              'span',
-              { className: 'bold' },
-              'Items Crafted: '
-            ),
-            this.state.player.score.crafted
-          )
+          stats
         )
       );
     }
@@ -31740,7 +31714,7 @@ var ContainerActions = function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
@@ -31799,6 +31773,7 @@ var Combat = function (_Component) {
         ranged: equipped.weapon && equipped.weapon.weapon.type === 'ranged',
         run: false
       },
+      fled: false,
       equipped: equipped
     };
 
@@ -31881,7 +31856,7 @@ var Combat = function (_Component) {
       // FORMULA: Damage Absorbed= Random value between of 1/2 AR to full AR of Hit Location's piece of armor.
       var damage = _.random(min, max);
       damage = Math.round(damage - _.random(Math.round(defense / 2), defense));
-      return damage > 0 ? damage : 1;
+      return damage > 0 ? damage : 0;
     }
   }, {
     key: 'calcChanceToHit',
@@ -31905,12 +31880,40 @@ var Combat = function (_Component) {
   }, {
     key: 'playerRun',
     value: function playerRun() {
-      // if ranged weapon, player can still attack while running.
-      // base on stamina and/or speed
-      // Upon running, toggle mob aggro
-      var mob = this.state.mob;
-      var player = this.state.player;
-      console.log('run!');
+      // if ranged weapon, player can still attack while running?
+
+      if (this.timer % 1 === 0) {
+        var mob = this.state.mob;
+        var player = this.state.player;
+        // Base chance = 50% + (difference between player & mob movement * 10) * current stamina percentage
+        var chance = Math.round((50 + (player.move - mob.move) * 10) * (player.stamina / player.maxstamina));
+
+        if (_.random(1, 100) <= chance) {
+          __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifyWarning(this.props.store, 'You flee from battle.');
+
+          var score = this.state.player.score;
+          score.flee++;
+
+          this.props.store.dispatch({
+            type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.PLAYER.UPDATE,
+            payload: {
+              score: score
+            }
+          });
+
+          this.props.store.dispatch({
+            type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.PLAYER.SAVE,
+            payload: this.props.store.getState().Player
+          });
+
+          mob.aggro = mob.mob_type !== 'training' ? true : false;
+          __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.MOBS.UPDATE, mob);
+
+          this.setState({ fled: true });
+        } else {
+          __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notifyWarning(this.props.store, 'You are unable to escape.');
+        }
+      }
     }
   }, {
     key: 'calcAmmo',
@@ -31959,17 +31962,24 @@ var Combat = function (_Component) {
             mob.hp -= mob.hp - damage >= 0 ? damage : mob.hp;
             mob.stamina -= mob.stamina - Math.ceil(damage / 2) >= 0 ? Math.ceil(damage / 2) : mob.stamina;
 
-            // No need to update store (for now?)
             __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.MOBS.UPDATE, mob);
-            __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
-            __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: 'tactics' });
+            if (this.state.mob.mob_type !== 'training') {
+              __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
+              __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: 'tactics' });
+            } else {
+              if (skill.current < 25.0) {
+                __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
+              } else {
+                __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notify(this.props.store, 'You can learn a lot from a dummy, but you cannot learn any more from this one.');
+              }
+            }
           } else {
             __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].notify(this.props.store, 'You miss the ' + mob.name + '.');
             if (skill.current < 20) {
               __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
             }
 
-            if (this.state.skills.tactics.current < 20) {
+            if (this.state.skills.tactics.current < 20 && this.state.mob.mob_type !== 'training') {
               __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].dispatch(this.props.store, __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.SKILLS.GAIN, { name: 'tactics' });
             }
           }
@@ -32008,10 +32018,6 @@ var Combat = function (_Component) {
       // Main combat loop
       this.timer = this.timer || 0;
 
-      if (this.state.combat.run === true) {
-        this.playerRun();
-      }
-
       if (this.state.combat.melee === true || this.state.combat.ranged === true) {
         // Need to offer some kind of ranged effect.
         // Player attack
@@ -32031,13 +32037,20 @@ var Combat = function (_Component) {
         this.mobAttack();
       }
 
-      if (this.state.player.hp <= 0 || this.state.mob.hp <= 0) {
+      if (this.state.combat.run === true) {
+        if (this.state.player.status.run !== true) {
+          this.setState({ player: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, this.state.player, { status: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, this.state.player.status, { run: true }) }) });
+        }
+        this.playerRun();
+      }
+
+      if (this.state.player.hp <= 0 || this.state.mob.hp <= 0 || this.state.fled === true) {
         clearInterval(this.tick);
 
         if (this.state.mob.hp <= 0) {
           // Player wins
           this.playerWin();
-        } else {
+        } else if (this.state.mob.hp <= 0) {
           // Mob wins
           this.mobWin();
         }
@@ -32045,6 +32058,10 @@ var Combat = function (_Component) {
         this.props.store.dispatch({
           type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.APP.MODAL_UPDATE,
           payload: { locked: false }
+        });
+
+        this.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
         });
       } else {
         this.timer += 0.25;
@@ -32394,20 +32411,23 @@ module.exports = !$assign || __webpack_require__(37)(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__data_ItemData__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(3);
+
 
 
 
@@ -32418,16 +32438,17 @@ module.exports = !$assign || __webpack_require__(37)(function () {
 
 
 var CombatStatus = function (_Component) {
-  __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(CombatStatus, _Component);
+  __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(CombatStatus, _Component);
 
   function CombatStatus(props) {
-    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, CombatStatus);
+    __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default()(this, CombatStatus);
 
-    var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (CombatStatus.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(CombatStatus)).call(this, props));
+    var _this = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (CombatStatus.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(CombatStatus)).call(this, props));
 
     _this.state = {
       player: props.store.getState().Player,
       mob: props.store.getState().Mobs.combat,
+      original_mob: props.store.getState().Mobs.combat,
       inventory: props.store.getState().Inventory
     };
 
@@ -32443,7 +32464,7 @@ var CombatStatus = function (_Component) {
     return _this;
   }
 
-  __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(CombatStatus, [{
+  __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(CombatStatus, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -32468,7 +32489,7 @@ var CombatStatus = function (_Component) {
   }, {
     key: 'calcAmmo',
     value: function calcAmmo() {
-      var equipped = __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].getEquipped(this.state.inventory);
+      var equipped = __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].getEquipped(this.state.inventory);
       var weapon = !!equipped && !!equipped.weapon ? equipped.weapon : {};
       var count = undefined;
 
@@ -32476,13 +32497,13 @@ var CombatStatus = function (_Component) {
         var ammo = _.findWhere(this.state.inventory.items, { id: weapon.weapon.requires });
 
         if (!ammo) {
-          ammo = _.findWhere(__WEBPACK_IMPORTED_MODULE_6__data_ItemData__["a" /* ItemData */], { id: weapon.weapon.requires });
+          ammo = _.findWhere(__WEBPACK_IMPORTED_MODULE_7__data_ItemData__["a" /* ItemData */], { id: weapon.weapon.requires });
         }
 
         count = ammo.count === 1 ? '1 ' + ammo.name : ammo.count + ' ' + ammo.plural;
 
         if (ammo.count < 5) {
-          count = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          count = __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'span',
             { className: 'red' },
             count
@@ -32497,19 +32518,25 @@ var CombatStatus = function (_Component) {
     value: function render() {
       var player = this.state.player;
       var mob = this.state.mob;
+
+      if (mob === undefined) {
+        this.unsubscribe();
+        mob = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, this.state.original_mob, { hp: 0, stamina: 0, mp: 0 });
+      }
+
       var ammo = this.calcAmmo();
-      var ammo_section = !!ammo ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      var ammo_section = !!ammo ? __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         'div',
         { className: 'row' },
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'span',
             { className: 'bold' },
             'Ammo: '
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             null,
             ammo
@@ -32517,33 +32544,33 @@ var CombatStatus = function (_Component) {
         )
       ) : '';
 
-      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+      return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         'div',
         { className: 'player-status nav-panel table-bordered right-panel col-lg-12 col-md-12 col-sm-12' },
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'bold col-lg-12 col-md-12 col-sm-12 col-xs-12' },
             player.name
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'HP: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
-              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'span',
                 { className: 'blue' },
                 player.hp
@@ -32552,15 +32579,15 @@ var CombatStatus = function (_Component) {
               player.maxhp
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'Damage: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
               player.offense.min,
@@ -32569,21 +32596,21 @@ var CombatStatus = function (_Component) {
             )
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'MP: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
-              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'span',
                 { className: 'blue' },
                 player.mp
@@ -32592,36 +32619,36 @@ var CombatStatus = function (_Component) {
               player.maxmp
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'Speed: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
               player.offense.speed
             )
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'Stamina: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
-              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'span',
                 { className: 'blue' },
                 player.stamina
@@ -32630,15 +32657,15 @@ var CombatStatus = function (_Component) {
               player.maxstamina
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'AR: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
               player.defense.physical
@@ -32646,31 +32673,31 @@ var CombatStatus = function (_Component) {
           )
         ),
         ammo_section,
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('div', { className: 'empty-row' }),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('div', { className: 'empty-row' }),
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'bold col-lg-12 col-md-12 col-sm-12 col-xs-12' },
-            __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].upperCase(mob.name)
+            __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].upperCase(mob.name)
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'HP: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
-              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'span',
                 { className: 'blue' },
                 mob.hp
@@ -32679,15 +32706,15 @@ var CombatStatus = function (_Component) {
               mob.maxhp
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'Damage: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
               mob.offense.min,
@@ -32696,21 +32723,21 @@ var CombatStatus = function (_Component) {
             )
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'MP: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
-              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'span',
                 { className: 'blue' },
                 mob.mp
@@ -32719,36 +32746,36 @@ var CombatStatus = function (_Component) {
               mob.intelligence
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'Speed: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
               mob.offense.speed
             )
           )
         ),
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
           'div',
           { className: 'row' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'Stamina: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
-              __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'span',
                 { className: 'blue' },
                 mob.stamina
@@ -32757,15 +32784,15 @@ var CombatStatus = function (_Component) {
               mob.dexterity
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'span',
               { className: 'bold' },
               'AR: '
             ),
-            __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
               'div',
               null,
               mob.armor
@@ -32777,7 +32804,7 @@ var CombatStatus = function (_Component) {
   }]);
 
   return CombatStatus;
-}(__WEBPACK_IMPORTED_MODULE_5_react__["Component"]);
+}(__WEBPACK_IMPORTED_MODULE_6_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (CombatStatus);
 
@@ -32928,7 +32955,7 @@ var MainPanel = function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
@@ -33107,9 +33134,38 @@ var Map = function (_Component) {
       }
     }
   }, {
+    key: 'getTownMobs',
+    value: function getTownMobs() {
+      var _this4 = this;
+
+      if (!!this.state.town.mobs && this.state.town.mobs.length > 0) {
+        var mobs = [];
+        _.each(this.state.town.mobs, function (mob) {
+          // Extends object by value, not reference
+          var found = $.extend(true, {
+            key: 'town_mob_' + mob.id,
+            type: 'mob',
+            x: _this4.state.town.x,
+            y: _this4.state.town.y
+          }, mob);
+
+          if (!_.findWhere(_this4.state.planet.locations, { type: 'mob', key: 'town_mob_' + mob.id, x: _this4.state.town.x, y: _this4.state.town.y })) {
+            _this4.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
+            __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this4.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
+          }
+
+          mobs.push(found);
+        });
+
+        return this.getMobResults(mobs);
+      } else {
+        return '';
+      }
+    }
+  }, {
     key: 'getMobs',
     value: function getMobs(zone) {
-      var _this4 = this;
+      var _this5 = this;
 
       if (!zone || !zone.mobs || zone.mobs.length === 0) {
         return [];
@@ -33126,7 +33182,9 @@ var Map = function (_Component) {
         type: 'mob'
       });
 
-      if (locations && locations.length === 0) {
+      var recent_combat = _.where(this.state.mobs.recent_combat, { x: this.state.player.x, y: this.state.player.y });
+
+      if (locations && locations.length === 0 && (!recent_combat || recent_combat.length === 0)) {
         var potentialMobs = [];
 
         // Check the chance in this loop.
@@ -33139,19 +33197,19 @@ var Map = function (_Component) {
           });
 
           if (potentialMobs.length > 0) {
-            // Extends decoration object by value, not reference
+            // Extends object by value, not reference
             var found = $.extend(true, {
               key: __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].randomKey('mob'),
               type: 'mob',
-              x: _this4.state.player.x,
-              y: _this4.state.player.y
+              x: _this5.state.player.x,
+              y: _this5.state.player.y
             }, _.sample(potentialMobs)); // _.sample() returns random array element
 
-            _this4.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
+            _this5.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
 
             mobs.push(found);
 
-            __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this4.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
+            __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this5.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
           }
         };
 
@@ -33161,8 +33219,8 @@ var Map = function (_Component) {
       } else {
         // go through locations and get state.mobs by key
         mobs = _.map(locations, function (location) {
-          if (location.key && _this4.state.mobs.list[location.key]) {
-            return _this4.state.mobs.list[location.key];
+          if (location.key && _this5.state.mobs.list[location.key]) {
+            return _this5.state.mobs.list[location.key];
           } else {
             return location;
           }
@@ -33172,7 +33230,8 @@ var Map = function (_Component) {
       if (mobs.length === 0) {
         // Still empty
         // Populate an empty location so locations can be empty
-        this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y, type: 'mob' });
+        // This data is cleared every 30 seconds.
+        this.state.planet.locations.push({ x: this.state.player.x, y: this.state.player.y, type: 'mob', timer: 30 });
       }
 
       return this.getMobResults(mobs);
@@ -33180,13 +33239,13 @@ var Map = function (_Component) {
   }, {
     key: 'getMobResults',
     value: function getMobResults(mobs) {
-      var _this5 = this;
+      var _this6 = this;
 
       if (mobs.length > 0) {
         return _.map(mobs, function (mob) {
           // type isn't set if the room contains an empty location record.
           if (mob.type === 'mob' && mob.key) {
-            return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__Mob__["a" /* default */], { key: mob.key, data: mob, store: _this5.props.store });
+            return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__Mob__["a" /* default */], { key: mob.key, data: mob, store: _this6.props.store });
           }
         });
       } else {
@@ -33199,7 +33258,7 @@ var Map = function (_Component) {
       var planet = this.state.planet;
       var zone = this.getZone();
       var decorations = this.getDecorations(zone);
-      var mobs = !this.state.town ? this.getMobs(zone) : '';
+      var mobs = !this.state.town ? this.getMobs(zone) : this.getTownMobs();
       var town_name = !!this.state.town ? ' - ' + this.state.town.name : '';
       return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
         'div',
@@ -33674,7 +33733,7 @@ var BottomPanel = function (_Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__User__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player__ = __webpack_require__(334);
@@ -33789,7 +33848,7 @@ var Reducers = function Reducers() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 
@@ -33826,7 +33885,7 @@ var User = function User() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 
@@ -33857,6 +33916,7 @@ var Player = function Player() {
     user_id: 1,
     credits: 15,
     encumbrance: 0,
+    move: 1,
     status: {
       inn: false,
       meditate: false,
@@ -33898,7 +33958,8 @@ var Player = function Player() {
       ore: 0,
       crafted: 0,
       deaths: 0,
-      timer: 0
+      timer: 0,
+      flee: 0
     }
   };
 
@@ -34176,7 +34237,7 @@ var Messages = function Messages() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_PlanetData__ = __webpack_require__(337);
@@ -34235,6 +34296,12 @@ var Planet = function Planet() {
         _.each(town.stores, function (store) {
           _.extend(store, _.findWhere(__WEBPACK_IMPORTED_MODULE_7__data_StoreData__["a" /* StoreData */], { id: store.id }));
         });
+
+        if (town.mobs) {
+          _.each(town.mobs, function (mob) {
+            _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], { id: mob.id }));
+          });
+        }
       });
 
       state.Planet.defaultZone = _.findWhere(__WEBPACK_IMPORTED_MODULE_5__data_ZoneData__["a" /* ZoneData */], { id: state.Planet.defaultZone });
@@ -34246,6 +34313,20 @@ var Planet = function Planet() {
       _.each(state.Planet.defaultZone.mobs, function (mob) {
         _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], { id: mob.id }));
       });
+      break;
+    case PLANET.TICK:
+      _.each(_.filter(state.Planet.locations, function (location) {
+        return location.type === 'mob';
+      }), function (location) {
+        location.timer--;
+
+        if (location.timer <= 0) {
+          state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLANET.CLEAR_TIMER, { x: location.x, y: location.y });
+        }
+      });
+      break;
+    case PLANET.CLEAR_TIMER:
+      state.Planet.locations.splice(_.findIndex(state.Planet.location, { x: payload.x, y: payload.y, type: 'mob' }), 1);
       break;
   }
 
@@ -34443,6 +34524,8 @@ var MobData = [{
     max: 2,
     speed: 2
   },
+  move: 1,
+  mob_type: 'animal',
   stats: {
     str: [19, 19],
     dex: [25, 25],
@@ -34478,6 +34561,8 @@ var MobData = [{
     max: 4,
     speed: 2
   },
+  move: 2,
+  mob_type: 'animal',
   wander: true,
   attackable: true,
   inventory: [{ id: 27, count: 8 }], //item IDs that are found on corpse
@@ -34507,6 +34592,7 @@ var MobData = [{
     max: 16,
     speed: 2
   },
+  move: 2,
   wander: true,
   attackable: true,
   inventory: [{ id: 27, count: 12 }], //item IDs that are found on corpse
@@ -34536,6 +34622,8 @@ var MobData = [{
     max: 12,
     speed: 2
   },
+  move: 2,
+  mob_type: 'animal',
   wander: true,
   attackable: true,
   inventory: [{ id: 27, count: 12 }], //item IDs that are found on corpse
@@ -34565,6 +34653,7 @@ var MobData = [{
     max: 9,
     speed: 2
   },
+  move: 2,
   wander: true,
   attackable: true,
   inventory: [{ id: 27, count: 15 }], //item IDs that are found on corpse
@@ -34594,6 +34683,8 @@ var MobData = [{
     max: 4,
     speed: 2
   },
+  move: 1,
+  mob_type: 'animal',
   wander: true,
   attackable: true,
   inventory: [{ id: 27, count: 12 }], //item IDs that are found on corpse
@@ -34603,6 +34694,37 @@ var MobData = [{
     wrestling: [5.5, 5.5],
     tactics: [5.5, 5.5],
     magic_resistance: [5.5, 5.5]
+  }
+}, {
+  id: 7,
+  name: 'training dummy',
+  description: 'A training dummy stands here. There is a bright red target painted on it.',
+  armor: 100,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [0, 0],
+    dex: [0, 0],
+    int: [0, 0],
+    hp: [500, 500]
+  },
+  aggro: false,
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2000
+  },
+  move: 0,
+  mob_type: 'training',
+  wander: false,
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/misc/training_dummy.png',
+  skills: {
+    wrestling: [0, 0],
+    tactics: [0, 0],
+    magic_resistance: [0, 0]
   }
 }];
 
@@ -34773,12 +34895,14 @@ var TownData = [{
   id: 1,
   name: 'Yew',
   description: 'The small town of Yew lies here. Barely a town, it seems more like a large outpost. A handful of people mill around the dirt streets.',
-  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 5 }, { id: 4 }]
+  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 5 }, { id: 4 }],
+  mobs: [{ id: 7 }]
 }, {
   id: 2,
   name: 'Skara Brae',
   description: 'The city of Skara Brae seems to pop out of the woods. People cart goods back and forth along the cobblestone streets.',
-  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 6 }]
+  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 6 }],
+  mobs: [{ id: 7 }]
 }];
 
 /***/ }),
@@ -34852,7 +34976,7 @@ var StoreData = [{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(24);
@@ -34931,7 +35055,7 @@ var Inventory = function Inventory() {
   };
 
   if (!state.Inventory) {
-    state.Inventory = { 'armor': [], 'items': [{ 'value': 1, 'count': 5, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 5, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': false, 'location': 'right hand' } }, { 'weapon': { 'type': 'melee', 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand' } }] };
+    state.Inventory = { 'armor': [], 'items': [{ 'value': 1, 'count': 2, 'weight': 5, 'countable': true, 'description': '', 'plural': 'ore', 'id': 2, 'name': 'ore', 'sub_type': 'resource', 'type': 'items' }, { 'value': 1, 'count': 2, 'weight': 2, 'countable': true, 'description': '', 'plural': 'logs', 'id': 1, 'name': 'log', 'sub_type': 'resource', 'type': 'items' }], 'weapons': [{ 'weapon': { 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf24', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': false, 'location': 'right hand' } }, { 'weapon': { 'type': 'melee', 'strength': 5, 'speed': 2.25, 'skill': 6, 'max': 13, 'min': 10, 'hands': 'one' }, 'key': 'inventoryItem1474069f-b0f8-4d0f-9603-033bc2f0bf25', 'countable': false, 'description': 'a butcher knife', 'id': 4, 'type': 'weapons', 'craft': { 'resource': { 'id': 2, 'min': 3 }, 'skill': { 'min': 20, 'id': 5, 'name': 'blacksmithing' } }, 'count': 1, 'weight': 1, 'plural': 'butcher knife', 'name': 'butcher knife', 'value': 5, 'equip': { 'equipped': true, 'location': 'right hand' } }] };
     state.Inventory = merge_new_data(state.Inventory);
   }
 
@@ -35052,7 +35176,7 @@ var Inventory = function Inventory() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_SkillData__ = __webpack_require__(345);
@@ -35589,7 +35713,7 @@ Veterinary  Veterinarian
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__);
@@ -35607,7 +35731,8 @@ var Mobs = function Mobs() {
     list: {},
     showAction: false,
     showCombat: false,
-    combat: undefined
+    combat: undefined,
+    recent_combat: []
   };
 
   var type = action.type,
@@ -35645,7 +35770,7 @@ var Mobs = function Mobs() {
 
       if (state.Mobs.combat.hp <= 0) {
         delete state.Mobs.list[payload.key];
-        delete state.Planet.locations[_.findIndex(state.Planet.locations, { key: payload.key })];
+        state.Planet.locations.splice(_.findIndex(state.Planet.locations, { key: payload.key }), 1);
       }
       break;
     case MOBS.SHOW_ACTION:
@@ -35663,7 +35788,20 @@ var Mobs = function Mobs() {
       update_combat_stats(payload.mob);
       break;
     case MOBS.CLEAR_COMBAT:
+      // Potentially use this for corpses.
+      var old_combat = {
+        key: state.Mobs.combat.key,
+        x: state.Mobs.combat.x,
+        y: state.Mobs.combat.y,
+        timer: 5
+      };
+
+      state.Mobs.recent_combat.push(old_combat);
+
       state.Mobs.combat = undefined;
+      break;
+    case MOBS.CLEAR_TIMER:
+      state.Mobs.recent_combat.splice(_.findIndex(state.Mobs.recent_combat, { key: payload.key }), 1);
       break;
     case MOBS.IN_COMBAT:
       state.Mobs.combat = payload.data;
@@ -35680,6 +35818,14 @@ var Mobs = function Mobs() {
             mob.hp++;
             mob.partial = 0;
           }
+        }
+      });
+
+      _.each(state.Mobs.recent_combat, function (mob) {
+        mob.timer--;
+
+        if (mob.timer <= 0) {
+          state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_2__components_Config__["a" /* default */].ACTIONS.MOBS.CLEAR_TIMER, { key: mob.key });
         }
       });
       break;
@@ -35741,6 +35887,12 @@ var Effects = function Effects() {
 
   var speed = ((offense.speed * 4 - Math.floor(state.Player.stamina / 30)) / 4).toFixed(2);
   offense.speed = parseFloat(speed < 1.25 ? 1.25 : speed);
+
+  if (state.Player.status.run === true) {
+    state.Player.move = 2;
+  } else {
+    state.Player.move = 1;
+  }
 
   var strength_mod = 1 + state.Player.strength * 0.3 / 100;
   // Strength + tactics
@@ -35837,7 +35989,7 @@ var Queue = function Queue() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(24);
@@ -35977,7 +36129,7 @@ var Bank = function Bank() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__ = __webpack_require__(351);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__);
