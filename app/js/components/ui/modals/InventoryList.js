@@ -67,7 +67,13 @@ class InventoryList extends Component {
 
       let bank = '';
       if (this.props.bank === true) {
-        bank = <span className="glyphicon glyphicon-circle-arrow-right clickable" title="Deposit" onClick={() => { this.deposit(inventory) }}></span>;
+        bank = [
+          <span key="bank_deposit" className="glyphicon glyphicon-circle-arrow-right clickable" title="Deposit" onClick={() => { this.deposit(inventory) }}></span>
+        ];
+
+        if (inventory.countable === true && inventory.count > 1) {
+          bank.push(<span key="bank_deposit_all" className="glyphicon glyphicon-circle-arrow-right clickable green" title="Deposit All" onClick={() => { this.deposit(inventory, true) }}></span>);
+        }
       }
 
       return (
@@ -84,40 +90,51 @@ class InventoryList extends Component {
     });
   }
 
-  calculateItemCount(item) {
+  calculateCount(item, all) {
+    if (all === true) {
+      return item.count || 1;
+    }
+
     let count = 1;
 
-    if (item.countable && item.count > 100) {
+    if (item.countable && item.count > 1000) {
+      count = 100;
+    } else if (item.countable && item.count > 100) {
       count = 25;
     } else if (item.countable && item.count > 50) {
       count = 10;
     } else if (item.countable && item.count > 10) {
       count = 5
+    } else if (item.count === 0) {
+      count = 0;
     }
 
     return count;
   }
 
-  deposit(item = undefined) {
+  deposit(item = undefined, all = false) {
     if (!!item) {
-      let count = this.calculateItemCount(item);
+      let count = this.calculateCount(item, all);
 
       this.props.store.dispatch({ type: Config.ACTIONS.BANK.DEPOSIT, payload: {item: item, count: count}});
       this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.REMOVE, payload: {item: item.id, key: item.key, count: count}});
     } else {
-      let credits = (this.state.player.credits > 1000) ? 1000 : this.state.player.credits;
+      let credits = this.calculateCount({ countable: true, count: this.state.player.credits }, all);
+
       this.props.store.dispatch({ type: Config.ACTIONS.BANK.DEPOSIT, payload: {credits: credits}});
       this.state.player.credits -= credits;
     }
   }
 
-  withdraw(item = undefined) {
+  withdraw(item = undefined, all = false) {
     if (!!item) {
-      let count = this.calculateItemCount(item);
+      let count = this.calculateCount(item, all);
+
       this.props.store.dispatch({ type: Config.ACTIONS.BANK.WITHDRAW, payload: {item: item, count: count}});
       this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.ADD, payload: {item: item.id, key: item.key, count: count}});
     } else {
-      let credits = (this.state.bank.credits > 1000) ? 1000 : this.state.bank.credits;
+      let credits = this.calculateCount({ countable: true, count: this.state.bank.credits }, all);
+
       this.props.store.dispatch({ type: Config.ACTIONS.BANK.WITHDRAW, payload: {credits: credits}});
       this.state.player.credits += credits;
     }
@@ -138,15 +155,32 @@ class InventoryList extends Component {
         name = item.description;
       }
 
+        let bank_button = [
+          <span key="bank_withdraw" className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw" onClick={() => { this.withdraw(item) }}></span>
+        ];
+
+        if (item.countable === true && item.count > 1) {
+          bank_button.push(<span key="bank_withdraw_all" className="glyphicon glyphicon-circle-arrow-left clickable green" title="Withdraw All" onClick={() => { this.withdraw(item, true) }}></span>);
+        }
+
       return (
         <div className="row" key={`equippedItem.${item.type}.${item.key || item.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{name}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw" onClick={() => { this.withdraw(item) }}></span>
+            {bank_button}
           </div>
         </div>
       );
     });
+
+    let credits = [];
+
+    if (this.state.bank.credits > 0) {
+      credits.push(<span key="withdraw_credits" className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw Credits" onClick={() => { this.withdraw() }}></span>);
+    }
+    if (this.state.bank.credits > 1) {
+      credits.push(<span key="withdraw_all_credits" className="glyphicon glyphicon-circle-arrow-left clickable green" title="Withdraw All Credits" onClick={() => { this.withdraw(undefined, true) }}></span>);
+    }
 
     return (
       <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -154,7 +188,7 @@ class InventoryList extends Component {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span className="bold">Credits:</span> {this.state.bank.credits}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw Credits" onClick={() => { this.withdraw() }}></span>
+            {credits}            
           </div>
         </div>
         <div className="row">
@@ -203,11 +237,20 @@ class InventoryList extends Component {
       rightPanel = this.getEquipped();
     } else {
       rightPanel = this.getBank();
+      let credits = [];
+
+      if (this.state.player.credits > 0) {
+        credits.push(<span key="deposit_credits" className="glyphicon glyphicon-circle-arrow-right clickable" title="Deposit Credits" onClick={() => { this.deposit() }}></span>);
+      }
+      if (this.state.player.credits > 1) {
+        credits.push(<span key="deposit_all_credits" className="glyphicon glyphicon-circle-arrow-right clickable green" title="Deposit All Credits" onClick={() => { this.deposit(undefined, true) }}></span>);
+      }
+
       leftPanel = (
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span className="bold">Credits:</span> {this.state.player.credits}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <span className="glyphicon glyphicon-circle-arrow-right clickable" title="Deposit Credits" onClick={() => { this.deposit() }}></span>
+            {credits}            
           </div>
         </div>
       );
