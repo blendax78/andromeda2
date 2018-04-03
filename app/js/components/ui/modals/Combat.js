@@ -493,7 +493,7 @@ class Combat extends Component {
               </div>
             </div>
           <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5">
               <img src={img} />
             </div>
           </div>

@@ -140,13 +140,13 @@ class Map extends Component {
       _.each(this.state.town.mobs, (mob) => {
         // Extends object by value, not reference
         let found = $.extend(true, {
-          key: `town_mob_${mob.id}`,
+          key: `town_mob_${this.state.town.x}_${this.state.town.y}_${mob.id}`,
           type: 'mob',
           x: this.state.town.x,
           y: this.state.town.y
         }, mob);
 
-        if (!_.findWhere(this.state.planet.locations, { type: 'mob', key: `town_mob_${mob.id}`, x: this.state.town.x, y: this.state.town.y })) {
+        if (!_.findWhere(this.state.planet.locations, { type: 'mob', key: `town_mob_${this.state.town.x}_${this.state.town.y}_${mob.id}`, x: this.state.town.x, y: this.state.town.y })) {
           this.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
           Config.dispatch(this.props.store, Config.ACTIONS.MOBS.CREATE, { mob: found });
         }
@@ -177,8 +177,9 @@ class Map extends Component {
     });
 
     let recent_combat = _.where(this.state.mobs.recent_combat, { x: this.state.player.x, y: this.state.player.y });
-
-    if (locations && locations.length === 0 && (!recent_combat || recent_combat.length === 0)) {
+    console.log(!locations, locations.length, !recent_combat, recent_combat.length, (!recent_combat || recent_combat.length === 0));
+    if ((!locations || locations.length === 0) && (!recent_combat || recent_combat.length === 0)) {
+      // Generates new mobs
       let potentialMobs = [];
 
       // Check the chance in this loop.
@@ -207,12 +208,14 @@ class Map extends Component {
         }
       }
     } else {
+      // Generates existing mobs.
       // go through locations and get state.mobs by key
-      mobs = _.map(locations, (location) => {
-        if (location.key && this.state.mobs.list[location.key]) {
-          return this.state.mobs.list[location.key];
+      mobs = _.map(locations, (loc) => {
+
+        if (loc.key && this.state.mobs.list[loc.key]) {
+          return this.state.mobs.list[loc.key];
         } else {
-          return location;
+          return loc;
         }
       });
     }

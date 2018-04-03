@@ -32300,7 +32300,7 @@ var Combat = function (_Component) {
               { className: 'row' },
               __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                 'div',
-                { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12 center' },
+                { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5' },
                 __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement('img', { src: img })
               )
             )

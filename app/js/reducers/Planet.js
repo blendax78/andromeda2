@@ -63,7 +63,7 @@ const Planet = (state = {}, action) => {
     break;
     case PLANET.TICK:
       _.each(_.filter(state.Planet.locations, (location) => {
-        return location.type === 'mob';
+        return location.type === 'mob' && _.isNumber(location.timer) && !location.key;
       }), (location) => {
         location.timer--;
 
@@ -73,7 +73,11 @@ const Planet = (state = {}, action) => {
       });
     break;
     case PLANET.CLEAR_TIMER:
-      state.Planet.locations.splice(_.findIndex(state.Planet.location, { x: payload.x, y: payload.y, type: 'mob' }), 1);
+      let index = _.findIndex(state.Planet.locations, { x: payload.x, y: payload.y, type: 'mob' });
+
+      if (_.isNumber(index) && index > 0) {
+        state.Planet.locations.splice(index, 1);
+      }
     break;
   }
 
