@@ -103,11 +103,15 @@ const Skills = (state = {}, action) => {
 
     if (random < chance) {
       // success
-      notifyGain(`You craft ${payload.item.description}.`);
+      if (!!payload.exceptional) {
+        notifyGain(`You craft ${payload.item.description} (${payload.exceptional.title}).`);
+      } else {
+        notifyGain(`You craft ${payload.item.description}.`);
+      }
 
       checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
-      state.Queue.add('actions', Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: count, craft: true, score: true });
+      state.Queue.add('actions', Config.ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: count, craft: true, score: true, exceptional: payload.exceptional });
       state.Queue.add('actions', Config.ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min * count });
     } else {
       // failure

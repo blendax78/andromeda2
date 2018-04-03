@@ -29475,10 +29475,6 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Aggro Mobs - 0 stamina = no attack'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Exceptional Crafting'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
@@ -31811,6 +31807,14 @@ var Combat = function (_Component) {
 
       this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.APP.MODAL_UPDATE, payload: { locked: true } });
       this.mounted = true;
+
+      this.modalEvent = $('#modal-container').one('hide.bs.modal', function () {
+        // Remove mob from combat when modal closes.
+        _this2.props.store.dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
+        });
+      });
+
       this.tick = this.tick || setInterval(function () {
         if (!!_this2.state.mob && !!_this2.state.player && !!_this2.state.inventory && !!_this2.state.skills) {
           _this2.combatTickHandler();
@@ -31854,9 +31858,13 @@ var Combat = function (_Component) {
         * Damage Increase is capped at 100%.
       */
       // FORMULA: Damage Absorbed= Random value between of 1/2 AR to full AR of Hit Location's piece of armor.
+      if (max <= 0) {
+        return 0;
+      }
+
       var damage = _.random(min, max);
       damage = Math.round(damage - _.random(Math.round(defense / 2), defense));
-      return damage > 0 ? damage : 0;
+      return damage > 0 ? damage : 1;
     }
   }, {
     key: 'calcChanceToHit',
@@ -32060,9 +32068,9 @@ var Combat = function (_Component) {
           payload: { locked: false }
         });
 
-        this.props.store.dispatch({
-          type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
-        });
+        // this.props.store.dispatch({
+        //   type: Config.ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
+        // });
       } else {
         this.timer += 0.25;
       }
@@ -33183,7 +33191,7 @@ var Map = function (_Component) {
       });
 
       var recent_combat = _.where(this.state.mobs.recent_combat, { x: this.state.player.x, y: this.state.player.y });
-      console.log(!locations, locations.length, !recent_combat, recent_combat.length, !recent_combat || recent_combat.length === 0);
+
       if ((!locations || locations.length === 0) && (!recent_combat || recent_combat.length === 0)) {
         // Generates new mobs
         var potentialMobs = [];
@@ -33513,8 +33521,9 @@ var Mob = function (_Component) {
 
     _this.unsubscribe = props.store.subscribe(function () {
       if (_this.mounted) {
+        var mob = _this.props.store.getState().Mobs.list[_this.props.data.key] || _this.props.data;
         _this.setState({
-          mob: _this.state.mob,
+          mob: mob,
           player: _this.props.store.getState().Player,
           showAction: _this.state.showAction,
           showCombat: _this.props.store.getState().Mobs.showCombat
@@ -33530,11 +33539,26 @@ var Mob = function (_Component) {
       // Make sure to unsubscribe!
       this.unsubscribe();
       this.mounted = false;
+      clearInterval(this.check_aggro);
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.mounted = true;
+      this.check_aggro = this.check_aggro || setInterval(function () {
+        _this2.checkAggro();
+      }, 1000);
+      this.checkAggro();
+    }
+  }, {
+    key: 'checkAggro',
+    value: function checkAggro() {
+      if (this.state.mob.aggro && !store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0) {
+        // Aggro mob attack!
+        this.toggleCombat();
+      }
     }
   }, {
     key: 'toggleMobAction',
@@ -33552,7 +33576,7 @@ var Mob = function (_Component) {
   }, {
     key: 'getMobActions',
     value: function getMobActions() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!this.state.showAction) {
         return '';
@@ -33564,7 +33588,7 @@ var Mob = function (_Component) {
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
           { key: this.keys.actions, type: 'button', className: 'btn btn-default top5', onClick: function onClick(e) {
-              return _this2.toggleCombat();
+              return _this3.toggleCombat();
             } },
           'Attack'
         ));
@@ -33583,7 +33607,7 @@ var Mob = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var mob_classes = __WEBPACK_IMPORTED_MODULE_7_classnames__({
         red: this.state.mob.aggro
@@ -33598,7 +33622,7 @@ var Mob = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'a',
             { href: '#', onClick: function onClick(e) {
-                return _this3.toggleMobAction();
+                return _this4.toggleMobAction();
               }, className: mob_classes },
             this.state.mob.description
           ),
@@ -35764,8 +35788,9 @@ var Mobs = function Mobs() {
 
     // let speed = ((mob.offense.speed * 4  - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
     // mob.offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
-
-    state.Mobs.combat = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, mob);
+    if (!_.isUndefined(state.Mobs.combat) && state.Mobs.combat.key === mob.key) {
+      state.Mobs.combat = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, mob);
+    }
   };
 
   switch (type) {
@@ -35817,13 +35842,23 @@ var Mobs = function Mobs() {
       break;
     case MOBS.TICK:
       _.each(state.Mobs.list, function (mob) {
-        if (mob.hp && mob.hp !== mob.maxhp) {
-          mob.partial = mob.partial || 0;
-          mob.partial += 0.2;
+        if (mob.hp && mob.hp !== mob.maxhp && mob.hp > 0) {
+          mob.partialhp = mob.partialhp || 0;
+          mob.partialhp += 0.1;
 
-          if (mob.partial % 1 === 0) {
+          if (mob.partialhp % 1 === 0) {
             mob.hp++;
-            mob.partial = 0;
+            mob.partialhp = 0;
+          }
+        }
+
+        if (mob.stamina && mob.stamina !== mob.maxstamina && mob.hp > 0) {
+          mob.partialstamina = mob.partialstamina || 0;
+          mob.partialstamina += 0.2;
+
+          if (mob.partialstamina % 1 === 0) {
+            mob.hp++;
+            mob.partialstamina = 0;
           }
         }
       });

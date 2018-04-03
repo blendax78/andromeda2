@@ -78,13 +78,42 @@ class Crafting extends Component {
       (item.countable === true && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min * 5) ) {
       this.crafting = true;
 
+      let chance = this.calcChance(item);
+      let exceptional = (_.random(0,100) <= parseFloat(this.calcExceptional(item)) && item.countable !== true) ? this.getExceptionalBonus(item) : undefined;
+
+      console.log('exc', exceptional);
       this.props.store.dispatch({
         type: Config.ACTIONS.SKILLS.CRAFT,
-        payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item) }
+        payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item), exceptional: exceptional }
       });
 
       // Prevent rapid-fire crafting and possibility of negatives
       setTimeout(() => { this.crafting = false; }, 250);
+    }
+  }
+
+  getExceptionalBonus(item) {
+    let exceptional = {};
+    switch (item.type) {
+      case 'weapons':
+        if (this.player_skill.current === 0) {
+          return { bonus: 4, title: 'GM'};
+        } else {
+          return { bonus: _.random(1,3), title: 'E'};
+        }
+      break;
+    }
+
+  }
+
+  calcExceptional(item) {
+    let chance = ((this.player_skill.current - item.craft.skill.min) * 2) + 50;
+    if (chance - 75 > 100) {
+      return 100;
+    } else if (chance - 75 > 0) {
+      return (chance - 75).toFixed(1);
+    } else {
+      return 0;
     }
   }
 
@@ -110,6 +139,7 @@ class Crafting extends Component {
     let items = _.map(available, (item) => {
       let resource_name = (!item.countable && item.craft.resource.min == 1) ? this.state.resources[item.craft.resource.id].name : this.state.resources[item.craft.resource.id].plural;
       let chance = this.calcChance(item);
+      let exceptional = (this.calcExceptional(item) > 0 && item.countable !== true) ? ` / ${this.calcExceptional(item)}%` : '';
       let description = (item.countable) ? `5 ${item.plural}` : item.description;
       let craft_link = (item.craftable) ? <a href="#" onClick={() => this.craftItem(item)}>{description}</a> : description;
       let count = (item.countable) ? 5 : 1;
@@ -117,7 +147,7 @@ class Crafting extends Component {
         <tr key={`crafting.${item.type}.${item.id}`}>
           <td>{craft_link}</td>
           <td>{count * item.craft.resource.min} {resource_name}</td>
-          <td>{item.craft.skill.min} ({chance.toFixed(1)}%)</td>
+          <td>{item.craft.skill.min} ({chance.toFixed(1)}%{exceptional})</td>
         </tr>
       );
     });
@@ -128,7 +158,7 @@ class Crafting extends Component {
           <tr>
             <th>Item</th>
             <th>Resources</th>
-            <th>Skill Required</th>
+            <th>Skill (Chance)</th>
           </tr>
         </thead>
         <tbody>
@@ -176,6 +206,9 @@ export default Crafting;
 /*
 
 Exceptional = 1% for every 1% above min skill
-Exceptionally crafted Weapons get a 35% Damage Increase bonus as a free Item Property.
 An exceptionally made piece of Armor will gain a 15% bonus that is distributed randomly among the base resistances of that item. For example, an exceptionally made Platemail Tunic could have 5% applied to Physical, 6% to Fire, and 2% to each Cold and Poison. Or, and this would be extremely rare, all 15% could be added to Physical.
+*/
+
+/*
+http://uorforum.com/threads/magical-item-properties.3003/
 */

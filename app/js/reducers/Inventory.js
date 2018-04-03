@@ -133,7 +133,14 @@ const Inventory = (state = {}, action) => {
         item.key = Config.randomKey('inventoryItem');
       }
 
-        if (item.countable === true && !!inventoryItem) {
+      if (payload.exceptional) {
+        item.exceptional = payload.exceptional;
+        // item.description += ` (${payload.exceptional.title})`;
+        // item.weapon.min += payload.exceptional.bonus;
+        // item.weapon.max += payload.exceptional.bonus;
+      }
+
+      if (item.countable === true && !!inventoryItem) {
         inventoryItem.count += payload.count || 1;
       } else {
         item.count = payload.count;
