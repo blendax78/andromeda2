@@ -177,7 +177,7 @@ class Map extends Component {
     });
 
     let recent_combat = _.where(this.state.mobs.recent_combat, { x: this.state.player.x, y: this.state.player.y });
-    console.log(!locations, locations.length, !recent_combat, recent_combat.length, (!recent_combat || recent_combat.length === 0));
+
     if ((!locations || locations.length === 0) && (!recent_combat || recent_combat.length === 0)) {
       // Generates new mobs
       let potentialMobs = [];
@@ -204,7 +204,6 @@ class Map extends Component {
           mobs.push(found);
 
           Config.dispatch(this.props.store, Config.ACTIONS.MOBS.CREATE, { mob: found });
-
         }
       }
     } else {

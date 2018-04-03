@@ -30,8 +30,9 @@ const Mobs = (state = {}, action) => {
 
     // let speed = ((mob.offense.speed * 4  - Math.floor(mob.stamina / 30)) / 4).toFixed(2);
     // mob.offense.speed = parseFloat((speed < 1.25) ? 1.25 : speed);
-
-    state.Mobs.combat = { ...mob };
+    if (!_.isUndefined(state.Mobs.combat) && state.Mobs.combat.key === mob.key) {
+      state.Mobs.combat = { ...mob };
+    }
   };
 
   switch (type) {
@@ -85,13 +86,23 @@ const Mobs = (state = {}, action) => {
     break;
     case MOBS.TICK:
       _.each(state.Mobs.list, (mob) => {
-        if (mob.hp && mob.hp !== mob.maxhp) {
-          mob.partial = mob.partial || 0;
-          mob.partial += 0.2;
+        if (mob.hp && mob.hp !== mob.maxhp && mob.hp > 0) {
+          mob.partialhp = mob.partialhp || 0;
+          mob.partialhp += 0.1;
 
-          if (mob.partial % 1 === 0) {
+          if (mob.partialhp % 1 === 0) {
             mob.hp++;
-            mob.partial = 0;
+            mob.partialhp = 0;
+          }
+        }
+
+        if (mob.stamina && mob.stamina !== mob.maxstamina && mob.hp > 0) {
+          mob.partialstamina = mob.partialstamina || 0;
+          mob.partialstamina += 0.2;
+
+          if (mob.partialstamina % 1 === 0) {
+            mob.hp++;
+            mob.partialstamina = 0;
           }
         }
       });

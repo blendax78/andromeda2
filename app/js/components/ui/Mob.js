@@ -19,8 +19,9 @@ class Mob extends Component {
 
     this.unsubscribe = props.store.subscribe(() => {
       if (this.mounted) {
+        let mob = this.props.store.getState().Mobs.list[this.props.data.key] || this.props.data;
         this.setState({
-          mob: this.state.mob,
+          mob: mob,
           player: this.props.store.getState().Player,
           showAction: this.state.showAction,
           showCombat: this.props.store.getState().Mobs.showCombat
@@ -33,10 +34,23 @@ class Mob extends Component {
     // Make sure to unsubscribe!
     this.unsubscribe();
     this.mounted = false;
+    clearInterval(this.check_aggro);
   }
 
   componentDidMount() {
     this.mounted = true;
+    this.check_aggro = this.check_aggro || setInterval(() => {
+      this.checkAggro();
+    }, 1000);
+    this.checkAggro();
+  }
+
+  checkAggro() {
+    if (this.state.mob.aggro && !store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && 
+      _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0) {
+      // Aggro mob attack!
+      this.toggleCombat();
+    }
   }
 
   toggleMobAction() {

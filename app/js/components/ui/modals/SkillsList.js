@@ -31,7 +31,7 @@ class SkillsList extends Component {
       <div className="row scrollable">
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div className="row">
-            <h5 className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold">Total: {total}</h5>
+            <h5 className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold">Total: {total.toFixed(1)}</h5>
           </div>
           {skills}
         </div>

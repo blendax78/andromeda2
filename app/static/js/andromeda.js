@@ -30207,7 +30207,7 @@ var SkillsList = function (_Component) {
               'h5',
               { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12 bold' },
               'Total: ',
-              total
+              total.toFixed(1)
             )
           ),
           skills
@@ -33143,13 +33143,13 @@ var Map = function (_Component) {
         _.each(this.state.town.mobs, function (mob) {
           // Extends object by value, not reference
           var found = $.extend(true, {
-            key: 'town_mob_' + mob.id,
+            key: 'town_mob_' + _this4.state.town.x + '_' + _this4.state.town.y + '_' + mob.id,
             type: 'mob',
             x: _this4.state.town.x,
             y: _this4.state.town.y
           }, mob);
 
-          if (!_.findWhere(_this4.state.planet.locations, { type: 'mob', key: 'town_mob_' + mob.id, x: _this4.state.town.x, y: _this4.state.town.y })) {
+          if (!_.findWhere(_this4.state.planet.locations, { type: 'mob', key: 'town_mob_' + _this4.state.town.x + '_' + _this4.state.town.y + '_' + mob.id, x: _this4.state.town.x, y: _this4.state.town.y })) {
             _this4.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
             __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this4.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
           }
@@ -33183,8 +33183,9 @@ var Map = function (_Component) {
       });
 
       var recent_combat = _.where(this.state.mobs.recent_combat, { x: this.state.player.x, y: this.state.player.y });
-
-      if (locations && locations.length === 0 && (!recent_combat || recent_combat.length === 0)) {
+      console.log(!locations, locations.length, !recent_combat, recent_combat.length, !recent_combat || recent_combat.length === 0);
+      if ((!locations || locations.length === 0) && (!recent_combat || recent_combat.length === 0)) {
+        // Generates new mobs
         var potentialMobs = [];
 
         // Check the chance in this loop.
@@ -33217,12 +33218,14 @@ var Map = function (_Component) {
           _loop2(i);
         }
       } else {
+        // Generates existing mobs.
         // go through locations and get state.mobs by key
-        mobs = _.map(locations, function (location) {
-          if (location.key && _this5.state.mobs.list[location.key]) {
-            return _this5.state.mobs.list[location.key];
+        mobs = _.map(locations, function (loc) {
+
+          if (loc.key && _this5.state.mobs.list[loc.key]) {
+            return _this5.state.mobs.list[loc.key];
           } else {
-            return location;
+            return loc;
           }
         });
       }
@@ -34316,7 +34319,7 @@ var Planet = function Planet() {
       break;
     case PLANET.TICK:
       _.each(_.filter(state.Planet.locations, function (location) {
-        return location.type === 'mob';
+        return location.type === 'mob' && _.isNumber(location.timer) && !location.key;
       }), function (location) {
         location.timer--;
 
@@ -34326,7 +34329,11 @@ var Planet = function Planet() {
       });
       break;
     case PLANET.CLEAR_TIMER:
-      state.Planet.locations.splice(_.findIndex(state.Planet.location, { x: payload.x, y: payload.y, type: 'mob' }), 1);
+      var index = _.findIndex(state.Planet.locations, { x: payload.x, y: payload.y, type: 'mob' });
+
+      if (_.isNumber(index) && index > 0) {
+        state.Planet.locations.splice(index, 1);
+      }
       break;
   }
 

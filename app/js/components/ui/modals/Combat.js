@@ -57,6 +57,14 @@ class Combat extends Component {
   componentDidMount() {
     this.props.store.dispatch({ type: Config.ACTIONS.APP.MODAL_UPDATE, payload: { locked: true } });
     this.mounted = true;
+
+    this.modalEvent = $('#modal-container').one('hide.bs.modal', () => {
+      // Remove mob from combat when modal closes.
+      this.props.store.dispatch({
+        type: Config.ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
+      });
+    });
+
     this.tick = this.tick || setInterval(() => {
       if (!!this.state.mob && !!this.state.player && !!this.state.inventory && !!this.state.skills) {
         this.combatTickHandler();
@@ -99,9 +107,13 @@ class Combat extends Component {
       * Damage Increase is capped at 100%.
     */
     // FORMULA: Damage Absorbed= Random value between of 1/2 AR to full AR of Hit Location's piece of armor.
+    if (max <= 0) {
+      return 0;
+    }
+
     let damage = _.random(min, max);
     damage = Math.round(damage - _.random(Math.round(defense / 2), defense));
-    return (damage > 0) ? damage : 0;
+    return (damage > 0) ? damage : 1;
   }
 
   calcChanceToHit(attack = 0, defend = 0, attack_bonus = 0, defend_bonus = 0) {
@@ -296,9 +308,9 @@ class Combat extends Component {
         payload: { locked: false }
       });
 
-      this.props.store.dispatch({
-        type: Config.ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
-      });
+      // this.props.store.dispatch({
+      //   type: Config.ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
+      // });
     } else {
       this.timer += 0.25;
     }
