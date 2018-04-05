@@ -131,7 +131,14 @@ class InventoryList extends Component {
       let count = this.calculateCount(item, all);
 
       this.props.store.dispatch({ type: Config.ACTIONS.BANK.WITHDRAW, payload: {item: item, count: count}});
-      this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.ADD, payload: {item: item.id, key: item.key, count: count}});
+      this.props.store.dispatch({ type: Config.ACTIONS.INVENTORY.ADD, payload: {
+        item: item.id,
+        key: item.key,
+        count: count,
+        data: {
+          exceptional: item.exceptional
+        }
+      }});
     } else {
       let credits = this.calculateCount({ countable: true, count: this.state.bank.credits }, all);
 
