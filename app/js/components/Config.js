@@ -208,6 +208,109 @@ const Config = {
     return new_object;
   },
 
+  Item: (item) => {
+    let get = undefined;
+
+    if (!_.isUndefined(item)) {
+      get = (prop) => {
+        switch (prop) {
+          case 'description':
+            let description = '';
+
+            if (item.countable === true) {
+              description = `${item.count.toString()} ${(item.count === 1) ? item.name : item.plural}`;
+            } else {
+              description = (!!item.description && item.description.length > 0) ? item.description : item.name;
+
+              if (!!item.exceptional) {
+                if (description.indexOf('an ') === 0 && !!item.exceptional.title) {
+                  description = `${item.exceptional.title} ${description.slice(3)}`.trim();
+                } else if (description.indexOf('a ') === 0 && !!item.exceptional.title) {
+                  description = `${item.exceptional.title} ${description.slice(2)}`.trim();
+                }
+
+                description = ('aeiou'.includes(description[0].toLowerCase())) ? `an ${description}` : `a ${description}`;
+              }
+            }
+
+            return description;
+          break;
+            case 'weapon':
+              return {
+                ...item.weapon,
+                min: (!!item.exceptional && !!item.exceptional.bonus) ? item.weapon.min + item.exceptional.bonus : item.weapon.min,
+                max: (!!item.exceptional && !!item.exceptional.bonus) ? item.weapon.max + item.exceptional.bonus : item.weapon.max
+              };
+            break;
+            case 'armor':
+              return {
+                ...item.armor,
+                physical: (!!item.exceptional && !!item.exceptional.bonus) ? item.armor.physical + item.exceptional.bonus : item.armor.physical
+              };
+            break;
+          default:
+            return (!_.isUndefined(item[prop])) ? item[prop] : undefined;
+          break;
+        }
+      };
+    } else {
+      get = (prop) => {
+        return '';
+      }
+    }
+    return {
+      get: get
+    };
+  },
+
+  Player: (player) => {
+    let get = undefined;
+
+    if (_.isUndefined(player)) {
+      get = (prop) => {
+        switch (prop) {
+          case 'title':
+            // return karma title?
+          break;
+          default:
+            return (!_.isUndefined(player[prop])) ? player[prop] : undefined;
+          break;
+        }
+      };
+    } else {
+      get = (prop) => {
+        return '';
+      }
+    }
+    return {
+      get: get
+    };
+  },
+
+  Skills: (skills) => {
+    let get = undefined;
+
+    if (!_.isUndefined(skills)) {
+      get = (prop) => {
+        switch (prop) {
+          case 'title':
+            // return skill title?
+          break;
+          default:
+            return (!_.isUndefined(skills[prop])) ? skills[prop] : undefined;
+          break;
+        }
+      };
+    } else {
+      get = (prop) => {
+        return '';
+      }
+    }
+    return {
+      get: get
+    };
+  }
+
 }
 
 export default Config;

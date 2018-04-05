@@ -29475,7 +29475,7 @@ var Navbar = function (_Component) {
       var todos = [__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Exceptional Crafting'
+        'Exceptional Crafting - loses values in bank'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -29491,7 +29491,7 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'Mounts'
+        'Mounts/Pets'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -30993,15 +30993,45 @@ var Crafting = function (_Component) {
       if (item.countable === false && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min || item.countable === true && this.state.resources[item.craft.resource.id].count >= item.craft.resource.min * 5) {
         this.crafting = true;
 
+        var chance = this.calcChance(item);
+        var exceptional = _.random(0, 100) <= parseFloat(this.calcExceptional(item)) && item.countable !== true ? this.getExceptionalBonus(item) : undefined;
+
+        console.log('exc', exceptional);
         this.props.store.dispatch({
           type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.CRAFT,
-          payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item) }
+          payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item), exceptional: exceptional }
         });
 
         // Prevent rapid-fire crafting and possibility of negatives
         setTimeout(function () {
           _this4.crafting = false;
         }, 250);
+      }
+    }
+  }, {
+    key: 'getExceptionalBonus',
+    value: function getExceptionalBonus(item) {
+      var exceptional = {};
+      switch (item.type) {
+        case 'weapons':
+          if (this.player_skill.current === 0) {
+            return { bonus: 4, title: 'GM' };
+          } else {
+            return { bonus: _.random(1, 3), title: 'E' };
+          }
+          break;
+      }
+    }
+  }, {
+    key: 'calcExceptional',
+    value: function calcExceptional(item) {
+      var chance = (this.player_skill.current - item.craft.skill.min) * 2 + 50;
+      if (chance - 75 > 100) {
+        return 100;
+      } else if (chance - 75 > 0) {
+        return (chance - 75).toFixed(1);
+      } else {
+        return 0;
       }
     }
   }, {
@@ -31031,6 +31061,7 @@ var Crafting = function (_Component) {
       var items = _.map(available, function (item) {
         var resource_name = !item.countable && item.craft.resource.min == 1 ? _this5.state.resources[item.craft.resource.id].name : _this5.state.resources[item.craft.resource.id].plural;
         var chance = _this5.calcChance(item);
+        var exceptional = _this5.calcExceptional(item) > 0 && item.countable !== true ? ' / ' + _this5.calcExceptional(item) + '%' : '';
         var description = item.countable ? '5 ' + item.plural : item.description;
         var craft_link = item.craftable ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'a',
@@ -31061,7 +31092,9 @@ var Crafting = function (_Component) {
             item.craft.skill.min,
             ' (',
             chance.toFixed(1),
-            '%)'
+            '%',
+            exceptional,
+            ')'
           )
         );
       });
@@ -31088,7 +31121,7 @@ var Crafting = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
               'th',
               null,
-              'Skill Required'
+              'Skill (Chance)'
             )
           )
         ),
@@ -31174,8 +31207,11 @@ var Crafting = function (_Component) {
 /*
 
 Exceptional = 1% for every 1% above min skill
-Exceptionally crafted Weapons get a 35% Damage Increase bonus as a free Item Property.
 An exceptionally made piece of Armor will gain a 15% bonus that is distributed randomly among the base resistances of that item. For example, an exceptionally made Platemail Tunic could have 5% applied to Physical, 6% to Fire, and 2% to each Cold and Poison. Or, and this would be extremely rare, all 15% could be added to Physical.
+*/
+
+/*
+http://uorforum.com/threads/magical-item-properties.3003/
 */
 
 /***/ }),
@@ -35135,6 +35171,13 @@ var Inventory = function Inventory() {
         item.key = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].randomKey('inventoryItem');
       }
 
+      if (payload.exceptional) {
+        item.exceptional = payload.exceptional;
+        // item.description += ` (${payload.exceptional.title})`;
+        // item.weapon.min += payload.exceptional.bonus;
+        // item.weapon.max += payload.exceptional.bonus;
+      }
+
       if (item.countable === true && !!inventoryItem) {
         inventoryItem.count += payload.count || 1;
       } else {
@@ -35324,11 +35367,15 @@ var Skills = function Skills() {
 
     if (random < chance) {
       // success
-      notifyGain('You craft ' + payload.item.description + '.');
+      if (!!payload.exceptional) {
+        notifyGain('You craft ' + payload.item.description + ' (' + payload.exceptional.title + ').');
+      } else {
+        notifyGain('You craft ' + payload.item.description + '.');
+      }
 
       checkSkillGain(payload.player_skill.name.toLowerCase(), payload.chance);
 
-      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: count, craft: true, score: true });
+      state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.ADD, { item: payload.item.id, count: count, craft: true, score: true, exceptional: payload.exceptional });
       state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.INVENTORY.REMOVE, { item: payload.item.craft.resource.id, count: payload.item.craft.resource.min * count });
     } else {
       // failure

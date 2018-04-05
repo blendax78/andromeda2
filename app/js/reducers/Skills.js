@@ -104,7 +104,7 @@ const Skills = (state = {}, action) => {
     if (random < chance) {
       // success
       if (!!payload.exceptional) {
-        notifyGain(`You craft ${payload.item.description} (${payload.exceptional.title}).`);
+        notifyGain(`You craft ${payload.item.description} of ${payload.exceptional.title} quality.`);
       } else {
         notifyGain(`You craft ${payload.item.description}.`);
       }

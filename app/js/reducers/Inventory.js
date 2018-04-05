@@ -135,9 +135,6 @@ const Inventory = (state = {}, action) => {
 
       if (payload.exceptional) {
         item.exceptional = payload.exceptional;
-        // item.description += ` (${payload.exceptional.title})`;
-        // item.weapon.min += payload.exceptional.bonus;
-        // item.weapon.max += payload.exceptional.bonus;
       }
 
       if (item.countable === true && !!inventoryItem) {
