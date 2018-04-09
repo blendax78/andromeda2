@@ -493,29 +493,64 @@ class Combat extends Component {
     // extra options like potions / scrolls / wands / spells
   }
 
-  renderCorpseUI() {
-
+  take() {
+    // take item from corpse
   }
 
-  renderCombatUI() {
-    let mob = this.state.mob || {};
-    let img = mob.img || '';
-    let sub_actions = this.getSubActions();
+  renderCorpse() {
+    let items = '';
+    if (!!this.state.mob && !!this.state.mob.inventory && this.state.mob.inventory.length > 0) {
+      items = _.map(this.state.mob.inventory, (inventory) => {
+        let item_data = Config.clone(_.findWhere(ItemData, { id: inventory.id }));
+        item_data.count = inventory.count;
+
+        return (
+          <div className="row" key={`mob_inv_${item_data.id}`}>
+            <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{Config.Item(item_data).get('description')}</div>
+            <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <span key="take_button" className="glyphicon glyphicon-circle-arrow-left clickable" title="Take" onClick={() => { this.take(item) }}></span>
+            </div>
+          </div>
+        );
+      });
+    }
+
     return (
-      <div className="row">
+      <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <h5 className="bold">Corpse Inventory</h5>
+        {items}
+      </div>
+    );
+  }
+
+  renderUI() {
+    let ui = '';
+
+    if (!!this.state.corpse && this.state.corpse === true) {
+      ui = this.renderCorpse();
+    } else {
+      let mob = this.state.mob || {};
+      let img = mob.img || '';
+      ui = (
         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
           {this.getCombatActions()}
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              {sub_actions}
+              {this.getSubActions()}
             </div>
           </div>
-        <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5">
-            <img src={img} />
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5">
+              <img src={img} />
+            </div>
           </div>
         </div>
-        </div>
+      );
+    }
+
+    return (
+      <div className="row">
+        {ui}
         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
           <CombatStatus store={this.props.store} />
         </div>
@@ -524,7 +559,7 @@ class Combat extends Component {
   }
 
   render() {
-    let ui = (!!this.state.corpse && this.state.corpse === true) ? 'hello' : this.renderCombatUI();
+    let ui = this.renderUI();
 
     return (
       <div>
