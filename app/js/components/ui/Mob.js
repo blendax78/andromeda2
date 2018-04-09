@@ -46,7 +46,7 @@ class Mob extends Component {
   }
 
   checkAggro() {
-    if (this.state.mob.aggro && !store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && 
+    if (this.state.mob.aggro && !this.props.store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && 
       _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0) {
       // Aggro mob attack!
       this.toggleCombat();

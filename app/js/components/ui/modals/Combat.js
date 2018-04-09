@@ -498,10 +498,12 @@ class Combat extends Component {
     Config.notifySuccess(this.props.store, `You take ${Config.Item(item).get('description')}.`);
   }
 
-  renderCorpse() {
+  renderCorpse(mob) {
     let items = '';
-    if (!!this.state.mob && !!this.state.mob.inventory && this.state.mob.inventory.length > 0) {
-      items = _.map(this.state.mob.inventory, (inventory) => {
+    let img = (!!mob && !!mob.img) ? mob.img : '';
+
+    if (!!mob && !!mob.inventory && mob.inventory.length > 0) {
+      items = _.map(mob.inventory, (inventory) => {
         let item_data = {..._.findWhere(ItemData, { id: inventory.id }), ...inventory};
         return (
           <div className="row" key={`mob_inv_${item_data.id}`}>
@@ -518,18 +520,20 @@ class Combat extends Component {
       <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <h5 className="bold">Corpse Inventory</h5>
         {items}
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5">
+          <img src={img} />
+        </div>
       </div>
     );
   }
 
-  renderUI() {
+  renderUI(mob) {
     let ui = '';
 
     if (!!this.state.corpse && this.state.corpse === true) {
-      ui = this.renderCorpse();
+      ui = this.renderCorpse(mob);
     } else {
-      let mob = this.state.mob || {};
-      let img = mob.img || '';
+      let img = (!!mob && !!mob.img) ? mob.img : '';
       ui = (
         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
           {this.getCombatActions()}
@@ -558,7 +562,7 @@ class Combat extends Component {
   }
 
   render() {
-    let ui = this.renderUI();
+    let ui = this.renderUI(this.state.mob);
 
     return (
       <div>

@@ -32507,12 +32507,14 @@ var Combat = function (_Component) {
     }
   }, {
     key: 'renderCorpse',
-    value: function renderCorpse() {
+    value: function renderCorpse(mob) {
       var _this4 = this;
 
       var items = '';
-      if (!!this.state.mob && !!this.state.mob.inventory && this.state.mob.inventory.length > 0) {
-        items = _.map(this.state.mob.inventory, function (inventory) {
+      var img = !!mob && !!mob.img ? mob.img : '';
+
+      if (!!mob && !!mob.inventory && mob.inventory.length > 0) {
+        items = _.map(mob.inventory, function (inventory) {
           var item_data = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, _.findWhere(__WEBPACK_IMPORTED_MODULE_12__data_ItemData__["a" /* ItemData */], { id: inventory.id }), inventory);
           return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
             'div',
@@ -32541,19 +32543,23 @@ var Combat = function (_Component) {
           { className: 'bold' },
           'Corpse Inventory'
         ),
-        items
+        items,
+        __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
+          'div',
+          { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5' },
+          __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement('img', { src: img })
+        )
       );
     }
   }, {
     key: 'renderUI',
-    value: function renderUI() {
+    value: function renderUI(mob) {
       var ui = '';
 
       if (!!this.state.corpse && this.state.corpse === true) {
-        ui = this.renderCorpse();
+        ui = this.renderCorpse(mob);
       } else {
-        var mob = this.state.mob || {};
-        var img = mob.img || '';
+        var img = !!mob && !!mob.img ? mob.img : '';
         ui = __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
           'div',
           { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6' },
@@ -32593,7 +32599,7 @@ var Combat = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var ui = this.renderUI();
+      var ui = this.renderUI(this.state.mob);
 
       return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
         'div',
@@ -33770,7 +33776,7 @@ var Mob = function (_Component) {
   }, {
     key: 'checkAggro',
     value: function checkAggro() {
-      if (this.state.mob.aggro && !store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0) {
+      if (this.state.mob.aggro && !this.props.store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0) {
         // Aggro mob attack!
         this.toggleCombat();
       }

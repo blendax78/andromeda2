@@ -260,7 +260,7 @@ export const MobData = [
     attackable: true,
     inventory: [{ id: 27, count: 6 }],
     credits: [1,25],
-    img: `${Config.URLS.IMAGES}/mobs/GiantRat.png`,
+    img: `${Config.URLS.IMAGES}/mobs/GiantRat_100.png`,
     skills: {
         wrestling: [29.3,44.0],
         tactics: [29.3,44.0],
