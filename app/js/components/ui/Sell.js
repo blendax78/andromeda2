@@ -25,7 +25,7 @@ class Sell extends Component {
   }
 
   sellItem(item) {
-    let description = (item.countable) ? item.name : item.description;
+    let description = Config.Item(item).get('description');
 
     if (confirm(`Sell ${description} for ${item.value} credits?`)) {
       let credits = this.state.player.credits + (item.value);
@@ -92,12 +92,8 @@ class Sell extends Component {
 
   getSellTable(available) {
     let items = _.map(this.getSellables(), (item) => {
-      let description = item.description;
       let equipped = (!!item.equip && item.equip.equipped === true) ? <span title="Equipped" className="glyphicon glyphicon-ok-sign"></span> : '';
-
-      if (item.countable) {
-        description = (item.count > 1) ? `${item.count} ${item.plural}` : `${item.count} ${item.name}`;
-      }
+      let description = Config.Item(item).get('description');
       let link = <a href="#" onClick={() => { this.sellItem(item); }}>{description} {equipped}</a>;
 
       return (

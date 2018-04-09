@@ -28,7 +28,8 @@ class Combat extends Component {
         run: false
       },
       fled: false,
-      equipped: equipped
+      equipped: equipped,
+      corpse: false
     };
 
     this.mounted = true;
@@ -399,6 +400,9 @@ class Combat extends Component {
       payload: this.props.store.getState().Player
     });
 
+    this.setState({
+      corpse: true
+    });
   }
 
   switchOffActions(current) {
@@ -486,34 +490,45 @@ class Combat extends Component {
   }
 
   getSubActions() {
-    // show ammunition counts
+    // extra options like potions / scrolls / wands / spells
   }
 
-  render() {
+  renderCorpseUI() {
+
+  }
+
+  renderCombatUI() {
     let mob = this.state.mob || {};
     let img = mob.img || '';
     let sub_actions = this.getSubActions();
+    return (
+      <div className="row">
+        <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          {this.getCombatActions()}
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              {sub_actions}
+            </div>
+          </div>
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5">
+            <img src={img} />
+          </div>
+        </div>
+        </div>
+        <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <CombatStatus store={this.props.store} />
+        </div>
+    </div>
+    );
+  }
+
+  render() {
+    let ui = (!!this.state.corpse && this.state.corpse === true) ? 'hello' : this.renderCombatUI();
 
     return (
       <div>
-        <div className="row">
-          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            {this.getCombatActions()}
-            <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                {sub_actions}
-              </div>
-            </div>
-          <div className="row">
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 center top5">
-              <img src={img} />
-            </div>
-          </div>
-          </div>
-          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <CombatStatus store={this.props.store} />
-          </div>
-        </div>
+        {ui}
         <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bottom-panel modal-messages">
             <MessageList store={this.props.store} />

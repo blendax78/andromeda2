@@ -309,6 +309,14 @@ const Config = {
     return {
       get: get
     };
+  },
+
+  dev: () => {
+    // store should be accessible in dev mode
+    // quick access to debugging settings
+    store.getState().Skills.swordsmanship.current = 100;
+    store.getState().Skills.tactics.current=100;
+    store.getState().Player.strength=100;
   }
 
 }

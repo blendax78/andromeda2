@@ -51,12 +51,7 @@ class InventoryList extends Component {
     return _.filter(items, (inventory) => {
       return (inventory.countable === true && inventory.count > 0) || inventory.countable === false;
     }).map((inventory, index) => {
-      let name = inventory.description;
-
-      if (inventory.countable === true) {
-        name = inventory.count.toString() + ' ';
-        name += (inventory.count === 1) ? inventory.name : inventory.plural;
-      }
+      let name = Config.Item(inventory).get('description');
 
       let classEquip = classNames({
         glyphicon: true,
@@ -155,23 +150,18 @@ class InventoryList extends Component {
     });
 
     let bank = _.map(items, (item) => {
-      if (item.countable === true) {
-        name = item.count.toString() + ' ';
-        name += (item.count === 1) ? item.name : item.plural;
-      } else {
-        name = item.description;
+      name = Config.Item(item).get('description');
+
+      let bank_button = [
+        <span key="bank_withdraw" className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw" onClick={() => { this.withdraw(item) }}></span>
+      ];
+
+      if (item.countable === true && item.count > 1) {
+        bank_button.push(<span key="bank_withdraw_all" className="glyphicon glyphicon-circle-arrow-left clickable green" title="Withdraw All" onClick={() => { this.withdraw(item, true) }}></span>);
       }
 
-        let bank_button = [
-          <span key="bank_withdraw" className="glyphicon glyphicon-circle-arrow-left clickable" title="Withdraw" onClick={() => { this.withdraw(item) }}></span>
-        ];
-
-        if (item.countable === true && item.count > 1) {
-          bank_button.push(<span key="bank_withdraw_all" className="glyphicon glyphicon-circle-arrow-left clickable green" title="Withdraw All" onClick={() => { this.withdraw(item, true) }}></span>);
-        }
-
       return (
-        <div className="row" key={`equippedItem.${item.type}.${item.key || item.id}`}>
+        <div className="row" key={`bankItem.${item.type}.${item.key || item.id}`}>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{name}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             {bank_button}
@@ -218,7 +208,7 @@ class InventoryList extends Component {
     let equipped = _.map(_.union(weapons, armor), (item) => {
       return (
         <div className="row" key={`equippedItem.${item.type}.${item.key || item.id}`}>
-          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{item.description}</div>
+          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{Config.Item(item).get('description')}</div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{item.equip.location}</div>
         </div>
       );
@@ -240,9 +230,7 @@ class InventoryList extends Component {
     let rightPanel = '';
     let leftPanel = '';
 
-    if (this.props.bank !== true) {
-      rightPanel = this.getEquipped();
-    } else {
+    if (this.props.bank === true) {
       rightPanel = this.getBank();
       let credits = [];
 
@@ -261,9 +249,9 @@ class InventoryList extends Component {
           </div>
         </div>
       );
+    } else {
+      rightPanel = this.getEquipped();
     }
-
-
 
     return (
       <div className="row">
