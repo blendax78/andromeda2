@@ -1,5 +1,5 @@
 import os
-# import logging
+import logging
 
 class Config(object):
 
@@ -11,9 +11,19 @@ class Config(object):
     self.config_file = '/home/blendax/www/lib/digitalocean.ini'
     self.auth_url = 'https://auth.vintimilla.org/login';
     self.site_url = 'https://andromeda.vintimilla.org'
+    logging.basicConfig(
+      format='%(asctime)s: %(message)s',
+      datefmt='%m/%d/%Y %I:%M:%S %p',
+      filename=self.log_file,
+      level=logging.DEBUG
+    )
 
-  def log(self, subject, message):
-    print(subject, message)
+  def log(self, message):
+    logging.debug(message)
+    return True
+
+  def error(self, message):
+    logging.error(message)
     return True
 
   def get_db_config():

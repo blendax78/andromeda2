@@ -1,10 +1,7 @@
 from app import app, Config, render_response, unauthorized
 from flask import request, Response, json, render_template, redirect
 
-from app.controllers.logger import Log as Logger
-
 import app.controllers.main as controller
-import logging
 import os
 import sys
 
@@ -71,6 +68,9 @@ def bank_set(player_id=None):
 @app.before_request
 def before_request():
   # print(request.cookies.get('auth.token'))
+  #This is handled by flask automatically in debug mode
+  # Config.log(request.url_rule.rule)
+
   if 'auth.token' not in request.cookies:
     if request.method == 'GET':
       return redirect('%s?r=%s' % (Config.auth_url, Config.site_url) )
