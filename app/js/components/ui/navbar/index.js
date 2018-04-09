@@ -38,7 +38,6 @@ class Navbar extends Component {
   showToDos() {
     let todos = [
       <li key={Config.randomKey('li')}>More MOBs & zones</li>,
-      <li key={Config.randomKey('li')}>After battles - bank-type interface where user can select items on corpse</li>,
       <li key={Config.randomKey('li')}>Magic</li>,
       <li key={Config.randomKey('li')}>Regs</li>,
       <li key={Config.randomKey('li')}>Dungeons as minimaps or single spaces</li>,

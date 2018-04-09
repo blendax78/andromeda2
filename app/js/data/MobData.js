@@ -235,6 +235,38 @@ export const MobData = [
         magic_resistance: [0,0]
     }
   },
+  {
+    id: 8,
+    name: 'giant rat',
+    description: 'A giant rat is looking for a meal.',
+    armor: 18,
+    karma: -300,
+    fame: 300,
+    stats: {
+      str: [32,74],
+      dex: [46,65],
+      int: [16,30],
+      hp: [26,39]
+    },
+    aggro: true,
+    offense: {
+      min: 4,
+      max: 8,
+      speed: 2
+    },
+    move: 0,
+    mob_type: 'animal',
+    wander: false,
+    attackable: true,
+    inventory: [{ id: 27, count: 6 }],
+    credits: [1,25],
+    img: `${Config.URLS.IMAGES}/mobs/GiantRat.png`,
+    skills: {
+        wrestling: [29.3,44.0],
+        tactics: [29.3,44.0],
+        magic_resistance: [25.1,30.0]
+    }
+  },
 ];
 
 // http://www.uoguide.com/Fame

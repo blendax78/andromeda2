@@ -334,7 +334,7 @@ class Combat extends Component {
   mobWin() {
     let score = this.state.player.score;
     let status = this.state.player.status;
-    let credits = Math.ceil(this.state.player.credits * 0.75);
+    let credits = Math.ceil(this.state.player.credits * 0.5);
 
     score.deaths++;
     status.dead = true;
@@ -362,26 +362,16 @@ class Combat extends Component {
 
     let credits = this.state.player.credits;
 
-    if (!!this.state.mob.credits && this.state.mob.credits > 0) {
-      Config.notifySuccess(this.props.store, `You found ${this.state.mob.credits} credits.`);
-      credits += this.state.mob.credits;
-    }
+    if (!!this.state.mob.credits) {
+      let mob_credits = 0;
+      if (typeof this.state.mob.credits === 'object') {
+        mob_credits = _.random(this.state.mob.credits[0], this.state.mob.credits[1]);
+      } else {
+        mob_credits = this.state.mob.credits || 0;
+      }
 
-    if (!!this.state.mob.inventory && this.state.mob.inventory.length > 0) {
-      _.each(this.state.mob.inventory, (inventory) => {
-        let found = { ..._.findWhere(ItemData, { id: inventory.id } ), ...inventory };
-        let count = found.count || 1;
-        let desc = (count > 1) ? `${count} ${found.plural}` : found.name;
-
-        this.props.store.dispatch({
-          type: Config.ACTIONS.INVENTORY.ADD,
-          payload: {
-            item: found.id,
-            count: count
-          }
-        });
-        Config.notifySuccess(this.props.store, `You found ${desc}.`);
-      });
+      Config.notifySuccess(this.props.store, `You found ${mob_credits} credits.`);
+      credits += mob_credits;
     }
     
     let score = this.state.player.score;
@@ -493,22 +483,31 @@ class Combat extends Component {
     // extra options like potions / scrolls / wands / spells
   }
 
-  take() {
+  take(item) {
     // take item from corpse
+    this.state.mob.inventory.splice(_.findIndex(this.state.mob.inventory, { id: item.id }, 1), 1);
+
+    this.props.store.dispatch({
+      type: Config.ACTIONS.INVENTORY.ADD,
+      payload: {
+        item: item.id,
+        count: item.count
+      }
+    });
+
+    Config.notifySuccess(this.props.store, `You take ${Config.Item(item).get('description')}.`);
   }
 
   renderCorpse() {
     let items = '';
     if (!!this.state.mob && !!this.state.mob.inventory && this.state.mob.inventory.length > 0) {
       items = _.map(this.state.mob.inventory, (inventory) => {
-        let item_data = Config.clone(_.findWhere(ItemData, { id: inventory.id }));
-        item_data.count = inventory.count;
-
+        let item_data = {..._.findWhere(ItemData, { id: inventory.id }), ...inventory};
         return (
           <div className="row" key={`mob_inv_${item_data.id}`}>
             <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">{Config.Item(item_data).get('description')}</div>
             <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <span key="take_button" className="glyphicon glyphicon-circle-arrow-left clickable" title="Take" onClick={() => { this.take(item) }}></span>
+              <span key="take_button" className="glyphicon glyphicon-circle-arrow-left clickable" title="Take" onClick={() => { this.take(item_data) }}></span>
             </div>
           </div>
         );
