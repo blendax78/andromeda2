@@ -1,1 +1,1933 @@
-[{"minimum taming": "N/A", "tactics": ["90.1 ", " 100.0"], "meditation": ["100.1", "101.0"], "sub types": "Undead", "special": ["150", "170 Necromancy Reagents, 2 Medium level Scrolls, Level 5 Treasure Map"], "healing": "", "pack instinct": "none", "stamina": ["96 ", " 115"], "keywords": "Ancient Lich", "slayer vulnerability": "undead, mage slayer", "url": "http://www.uorenaissance.com/info/AncientLich", "w/ a slayer instrument": "114", "first seen": "the discovery of khaldun", "base type": "Creature", "necromancy": "", "resisting spells": ["175.2", "200.0"], "gold": ["1500 ", " 1700"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "none", "detecting hidden": "", "parrying": "", "wrestling": ["75.1 ", " 87.6"], "special abilities": "immune to level 5 poison and below. immune to provocation. tendency to spawn lesser undead and polymorph to match their type for purposes of disguise", "fame": "level 5 (23000)", "damage": ["15", "27"], "barding difficulty": "142", "mana": ["966 ", " 1045"], "spirit speak": "", "inventory": {"chance": ["1", "100"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["96", "115"], "strength": ["206", "305"], "effective super slayer": "Silver", "hit points": ["560", "595"], "mysticism": "", "intelligence": ["966", "1,045"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["120.1", "130.0"], "chivalry": "", "spellweaving": "", "anatomy": "0.0", "w/ a gm instrument": "128", "name": "Ancient Lich", "armor": "60", "cut up": "none", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["15 ", " 27"], "control slots": "N/A", "magery": ["120.1", "130.0"], "karma": "level 5 (-23000)"}, {"minimum taming": "N/A", "url": "http://www.uorenaissance.com/info/AnimatedZombie", "control slots": "N/A", "armor": "18", "sub types": "Undead", "primary type": "Humanoid", "name": "Animated Zombie", "base type": "Creature", "monster type": "Melee", "inventory": {"chance": ["1", "1"], "description": "Random Potion"}, "keywords": "Animated Zombie"}, {"dexterity": ["76", "95"], "minimum taming": "N/A", "strength": ["76", "100"], "name": "Bogle", "armor": "28", "sub types": "Undead", "hit points": ["46", "60"], "primary type": "Humanoid", "effective super slayer": "Silver", "base type": "Creature", "monster type": "Magic", "keywords": "Bogle", "url": "http://www.uorenaissance.com/info/Bogle", "w/ a slayer instrument": "51", "intelligence": ["36", "60"], "damage": ["7", "11"], "w/ a gm instrument": "58", "barding difficulty": "64", "control slots": "N/A", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}}, {"minimum taming": "N/A", "tactics": ["95.1 ", " 100.0"], "meditation": "none", "sub types": "Undead", "special": "bones, platemail armor", "healing": "", "pack instinct": "none", "stamina": ["76 ", " 95"], "keywords": "Bone Knight", "slayer vulnerability": "undead slayer", "url": "http://www.uorenaissance.com/info/BoneKnight", "w/ a slayer instrument": "49", "first seen": "initial release of uo", "base type": "Creature", "necromancy": "", "resisting spells": ["65.1 ", " 80.0"], "gold": ["175 ", " 275"], "monster type": "Melee", "taming difficulty": "n/a", "poisoning": "none", "detecting hidden": "", "parrying": "", "wrestling": ["85.1 ", " 95.0"], "special abilities": "none", "fame": "level 3 (3000)", "damage": ["8", "18"], "barding difficulty": "61", "mana": ["36 ", " 60"], "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "WoodenShield"}, "ninjitsu": "", "dexterity": ["76", "95"], "strength": ["195", "250"], "effective super slayer": "Silver", "hit points": ["118", "150"], "mysticism": "", "intelligence": ["36", "60"], "primary type": "Humanoid", "alignment": "evil", "magic items": "rarely", "bushido": "", "evaluating intelligence": "none", "chivalry": "", "spellweaving": "", "anatomy": "0.0", "w/ a gm instrument": "55", "name": "Bone Knight", "armor": "40", "cut up": "none", "dropped slayer": "Repond", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["8 ", " 18"], "control slots": "N/A", "magery": "none", "karma": "level 3 (-3000)"}, {"minimum taming": "N/A", "tactics": ["45.1 ", " 60.0"], "meditation": "0.0", "sub types": "Undead", "special": ["3", "10 Necromancy Reagents, 3 Magery Reagents"], "healing": "", "pack instinct": "none", "stamina": ["56 ", " 75"], "keywords": "Bone Magi", "slayer vulnerability": "undead, mage slayer", "url": "http://www.uorenaissance.com/info/BoneMagi", "w/ a slayer instrument": "65", "first seen": "initial release of uo", "base type": "Creature", "necromancy": "", "resisting spells": ["55.1 ", " 70.0"], "gold": ["125 ", " 150"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "none", "detecting hidden": "", "parrying": "", "wrestling": ["45.1 ", " 55.0"], "special abilities": "immune to level 2 poison and below.", "fame": "level 3 (3000)", "damage": ["3", "7"], "barding difficulty": "81", "mana": ["186 ", " 210"], "spirit speak": "", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["56", "75"], "strength": ["76", "100"], "effective super slayer": "Silver", "hit points": ["46", "60"], "mysticism": "", "intelligence": ["186", "210"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["60.1 ", " 70.0"], "chivalry": "", "spellweaving": "", "anatomy": "0.0", "w/ a gm instrument": "73", "name": "Bone Magi", "armor": "38", "cut up": "none", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["3 ", " 7"], "control slots": "N/A", "magery": ["60.1 ", " 70.0"], "karma": "level 3 (-3000)"}, {"dexterity": ["146", "185"], "minimum taming": "N/A", "strength": ["770", "830"], "name": "Dark One", "armor": "65", "sub types": "Undead , Bosses", "hit points": ["1,700", "1,800"], "primary type": "Humanoid", "effective super slayer": "Silver", "dropped slayer": "Repond", "base type": "Creature", "monster type": "Magic", "keywords": "Dark One", "url": "http://www.uorenaissance.com/info/DarkOne", "w/ a slayer instrument": "194", "intelligence": ["1,100", "1,200"], "damage": ["14", "18"], "w/ a gm instrument": "219", "barding difficulty": "243", "control slots": "N/A", "inventory": {"chance": ["1", "4"], "description": "Peculiar Meat (Carve)"}}, {"minimum taming": "N/A", "tactics": ["45.1 ", " 60.0"], "meditation": "none", "sub types": "Undead", "special": "none", "healing": "", "pack instinct": "none", "stamina": ["76 ", " 95"], "keywords": "Ghoul", "slayer vulnerability": "undead", "url": "http://www.uorenaissance.com/info/Ghoul", "w/ a slayer instrument": "36", "first seen": "initial release of uo", "base type": "Creature", "necromancy": "", "resisting spells": ["45.1 ", " 60.0"], "gold": ["50 ", " 100"], "monster type": "Melee", "taming difficulty": "n/a", "poisoning": "none", "detecting hidden": "", "parrying": "", "wrestling": ["45.1 ", " 55.0"], "special abilities": "immune to level 2 poison and below.", "fame": "level 3 (2500)", "damage": ["7", "9"], "barding difficulty": "45", "mana": "0", "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "Random Weapon"}, "ninjitsu": "", "dexterity": ["76", "95"], "strength": ["76", "100"], "effective super slayer": "Silver", "hit points": ["46", "60"], "mysticism": "", "intelligence": ["36", "60"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": "none", "chivalry": "", "spellweaving": "", "anatomy": "0.0", "w/ a gm instrument": "41", "name": "Ghoul", "armor": "28", "cut up": "none", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["7 ", " 9"], "control slots": "N/A", "magery": "none", "karma": "level 3 (-2500)"}, {"minimum taming": "N/A", "tactics": ["70.1 ", " 90.0"], "meditation": ["85.1 ", " 95.0"], "sub types": "Undead", "special": ["2 Medium Scrolls15", "25 Necromancy Reagents"], "healing": "", "pack instinct": "none", "stamina": ["126 ", " 145"], "keywords": "Lich", "slayer vulnerability": "undead slayer, mage slayer", "url": "http://www.uorenaissance.com/info/Lich", "w/ a slayer instrument": "74", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["80.1 ", " 100.0"], "gold": ["275", "324"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": "0", "special abilities": "level 5 poison immunity", "fame": "8000", "damage": ["24", "26"], "barding difficulty": "92", "mana": ["276 ", " 305"], "spirit speak": "", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["126", "145"], "strength": ["171", "200"], "effective super slayer": "Silver", "hit points": ["103", "120"], "mysticism": "", "intelligence": ["276", "305"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": "100.0", "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "83", "name": "Lich", "armor": "50", "cut up": "none", "dropped slayer": "Repond", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["24 ", " 26"], "control slots": "N/A", "magery": ["70.1 ", " 80.0"], "karma": ["", "8000"]}, {"minimum taming": "N/A", "tactics": ["50.1", "70.0"], "meditation": "0", "sub types": "Undead", "special": ["2 Medium Level Scrolls, Level 4 Treasure Map, 50", "80 Necromancy Reagents"], "healing": "", "pack instinct": "none", "stamina": ["146", "165"], "keywords": "Lich Lord", "slayer vulnerability": "undead", "url": "http://www.uorenaissance.com/info/LichLord", "w/ a slayer instrument": "87", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["150.5", "200.0"], "gold": ["450", "600"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": ["60.1", "80.0"], "special abilities": "immune to level 5 poison and below", "fame": "18000", "damage": ["11", "13"], "barding difficulty": "109", "mana": ["566", "655"], "spirit speak": "", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["146", "165"], "strength": ["416", "505"], "effective super slayer": "Silver", "hit points": ["250", "303"], "mysticism": "", "intelligence": ["566", "655"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["90.1", "100.0"], "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "98", "name": "Lich Lord", "armor": "50", "cut up": "none", "dropped slayer": "Repond", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["24", "26"], "control slots": "N/A", "magery": ["90.1", "100.0"], "karma": ["", "18000"]}, {"minimum taming": "N/A", "tactics": ["35.1", "50.0"], "meditation": "0", "sub types": "Undead", "special": "10 bandages, 5 garlic, 1 potion, level 1 treasure map, peculiar seed, fragrant seed", "healing": "", "pack instinct": "none", "stamina": ["71", "90"], "keywords": "Mummy", "slayer vulnerability": "undead slayer", "url": "http://www.uorenaissance.com/info/Mummy", "w/ a slayer instrument": "56", "first seen": "the second age", "base type": "Creature", "necromancy": "", "resisting spells": ["15.1", "40.0"], "gold": ["305", "315"], "monster type": "Melee", "taming difficulty": "n/a", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": ["35.1", "50.0"], "special abilities": "immune to level 1 poison", "fame": "4000", "damage": ["13", "23"], "barding difficulty": "70", "mana": ["26", "40"], "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "Random Bones"}, "ninjitsu": "", "dexterity": ["71", "90"], "strength": ["346", "370"], "effective super slayer": "Silver", "hit points": ["208", "222"], "mysticism": "", "intelligence": ["26", "40"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": "0", "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "63", "name": "Mummy", "armor": "50", "cut up": "none", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["13", "23"], "control slots": "N/A", "magery": "0", "karma": ["", "4000"]}, {"minimum taming": "N/A", "tactics": ["20.1 ", " 30.0"], "meditation": ["", "", "", ""], "sub types": "Undead", "special": "level 2 treasure map", "healing": "", "pack instinct": "none", "stamina": ["26 ", " 40"], "keywords": "Restless Soul", "slayer vulnerability": "", "preferred foods": "n/a", "parrying": "", "first seen": "age of shadows", "base type": "Creature", "resisting spells": ["20.1 ", " 30.0"], "gold": "", "monster type": "Melee", "taming difficulty": "n/a", "poisoning": "", "detecting hidden": "", "wrestling": ["20.1 ", " 30.0"], "special abilities": "", "fame": "500", "barding difficulty": "19.0", "necromancy": "", "spirit speak": "", "ninjitsu": "", "dexterity": ["26 ", " 40"], "strength": ["26 ", " 40"], "hit points": ["16 ", " 24"], "mysticism": "", "intelligence": ["26 ", " 40"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["", "", "", ""], "chivalry": "", "spellweaving": "", "anatomy": "0.0", "name": "Restless Soul", "armor": "6", "cut up": "", "mana": ["26 ", " 40"], "discordance": "", "url": "http://www.uorenaissance.com/info/RestlessSoul", "focus": "", "hiding": "", "base damage": ["1 ", " 10"], "control slots": "N/A", "magery": ["", "", "", ""], "karma": ["", "500"]}, {"minimum taming": "N/A", "tactics": ["90 ", " 100"], "meditation": ["", "", "", ""], "sub types": "Undead , MiniBosses", "special": "none", "healing": "", "pack instinct": "", "stamina": ["242 ", " 280"], "keywords": "Revenant", "slayer vulnerability": "undead slayer", "url": "http://www.uorenaissance.com/info/RevenantBoss", "w/ a slayer instrument": "82", "first seen": "age of shadows", "base type": "Creature", "necromancy": "", "resisting spells": ["100 ", " 150"], "gold": "none", "monster type": "Melee", "taming difficulty": ["", "", "", ""], "poisoning": ["", "", "", ""], "detecting hidden": "", "parrying": "", "wrestling": ["90 ", " 100"], "special abilities": "teleports to prey, immune to level 5 poison and below, immune to barding abilities", "fame": "", "damage": ["7", "24"], "barding difficulty": "103", "mana": ["101 ", " 200"], "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "Various Bones"}, "ninjitsu": "", "dexterity": ["110", "120"], "strength": ["196", "250"], "effective super slayer": "Silver", "hit points": ["500", "550"], "mysticism": "", "intelligence": ["128", "138"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["", "", "", ""], "chivalry": "", "spellweaving": "", "anatomy": ["", "", "", ""], "w/ a gm instrument": "93", "name": "Revenant", "armor": "62", "cut up": "none", "dropped slayer": "Repond", "hiding": "", "discordance": "", "preferred foods": "n/a", "focus": "", "base damage": ["20", "30"], "control slots": "N/A", "magery": ["", "", "", ""], "karma": ""}, {"minimum taming": "N/A", "tactics": "100.0", "meditation": "0", "sub types": "Undead", "special": "level 5 treasure map", "healing": "", "pack instinct": "none", "stamina": "150", "keywords": "Rotting Corpse", "slayer vulnerability": "undead slayer", "url": "http://www.uorenaissance.com/info/RottingCorpse", "w/ a slayer instrument": "100", "first seen": "trinsic invasion", "base type": "Creature", "necromancy": "", "resisting spells": "250.0", "gold": ["1050", "1279"], "monster type": "Melee, Lethal Poison", "taming difficulty": "n/a", "poisoning": ["100.0 ", " 120.0"], "detecting hidden": "", "parrying": "", "wrestling": ["90.1 ", " 100.0"], "special abilities": "immune to level 5 poison and below, can inflict level 5 poison", "fame": "12500", "damage": ["8", "10"], "barding difficulty": "125", "mana": "0", "spirit speak": "", "inventory": {"chance": ["1", "100"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["75", "75"], "strength": ["301", "350"], "effective super slayer": "Silver", "hit points": ["1,200", "1,200"], "mysticism": "", "intelligence": ["151", "200"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": "0", "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "113", "name": "Rotting Corpse", "armor": "40", "cut up": "none", "dropped slayer": "Repond", "hiding": "", "discordance": "", "preferred foods": "", "focus": "", "base damage": ["8 ", " 10"], "control slots": "N/A", "magery": "0", "karma": ["", "12500"]}, {"minimum taming": "N/A", "tactics": ["45.1 ", " 60.0"], "meditation": "0", "sub types": "Undead", "special": "10 reagents", "healing": "", "pack instinct": "none", "stamina": ["76 ", " 95"], "keywords": "Shade", "slayer vulnerability": "undead", "url": "http://www.uorenaissance.com/info/Shade", "w/ a slayer instrument": "52", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["45.1 ", " 60.0"], "gold": ["50", "100"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": ["45.1 ", " 55.0"], "special abilities": "", "fame": "4000", "damage": ["7", "11"], "barding difficulty": "65", "mana": ["36 ", " 60"], "spirit speak": "", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["76", "95"], "strength": ["76", "100"], "effective super slayer": "Silver", "hit points": ["46", "60"], "mysticism": "", "intelligence": ["36", "60"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["55.1 ", " 70.0"], "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "59", "name": "Shade", "armor": "28", "cut up": "", "hiding": "", "discordance": "", "preferred foods": "", "focus": "", "base damage": ["7 ", " 11"], "control slots": "N/A", "magery": ["55.1 ", " 70.0"], "karma": ["", "4000"]}, {"minimum taming": "N/A", "tactics": ["95.1 ", " 100.0"], "meditation": "none", "sub types": "Undead", "special": "bones", "healing": "", "pack instinct": "none", "stamina": ["76 ", " 95"], "keywords": "Skeletal Knight", "slayer vulnerability": "undead slayer", "url": "http://www.uorenaissance.com/info/SkeletalKnight", "w/ a slayer instrument": "49", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["65.1 ", " 80.0"], "gold": ["175 ", " 275"], "monster type": "Melee", "taming difficulty": "n/a", "poisoning": "none", "detecting hidden": "", "parrying": "", "wrestling": ["85.1 ", " 95.0"], "special abilities": "none", "fame": "level 3 (3000)", "damage": ["8", "18"], "barding difficulty": "61", "mana": ["36 ", " 60"], "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "WoodenShield"}, "ninjitsu": "", "dexterity": ["76", "95"], "strength": ["196", "250"], "effective super slayer": "Silver", "hit points": ["118", "150"], "mysticism": "", "intelligence": ["36", "60"], "primary type": "Humanoid", "alignment": "evil", "magic items": "rarely", "bushido": "", "evaluating intelligence": "none", "chivalry": "", "spellweaving": "", "anatomy": "0.0", "w/ a gm instrument": "55", "name": "Skeletal Knight", "armor": "40", "cut up": "none", "hiding": "", "discordance": "", "preferred foods": "n/a", "focus": "", "base damage": ["8", "18"], "control slots": "N/A", "magery": "none", "karma": "level 3 (-3000)"}, {"minimum taming": "N/A", "tactics": ["45.1 ", " 60.0"], "meditation": "0.0", "sub types": "Undead", "special": "3 necro regs, 3 magery regs, 1 medium level scroll.", "healing": "", "pack instinct": "none", "stamina": ["56 ", " 75"], "keywords": "Skeletal Mage", "slayer vulnerability": "undead slayer", "url": "http://www.uorenaissance.com/info/SkeletalMage", "w/ a slayer instrument": "62", "first seen": "initial release of uo", "base type": "Creature", "necromancy": "", "resisting spells": ["55.1 ", " 70.0"], "gold": ["125 ", " 150"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "none", "detecting hidden": "", "parrying": "", "wrestling": ["45.1 ", " 55.0"], "special abilities": "immune to level 2 poison and below", "fame": "level 3 (3000)", "damage": ["3", "7"], "barding difficulty": "77", "mana": ["186 ", " 210"], "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "Random Potion"}, "ninjitsu": "", "dexterity": ["56", "75"], "strength": ["76", "100"], "effective super slayer": "Silver", "hit points": ["46", "60"], "mysticism": "", "intelligence": ["186", "210"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["60.1 ", " 70.0"], "chivalry": "", "spellweaving": "", "anatomy": "0.0", "w/ a gm instrument": "69", "name": "Skeletal Mage", "armor": "38", "cut up": "none", "hiding": "", "discordance": "", "preferred foods": "none", "focus": "", "base damage": ["4 ", " 11"], "control slots": "N/A", "magery": ["60.1 ", " 70.0"], "karma": "level 3 (-3000)"}, {"minimum taming": "N/A", "tactics": ["45.1 ", " 60.0"], "meditation": "0", "sub types": "Undead", "special": "", "healing": "", "pack instinct": "none", "stamina": ["56 ", " 75"], "keywords": "Skeleton", "slayer vulnerability": "undead slayer", "url": "http://www.uorenaissance.com/info/Skeleton", "w/ a slayer instrument": "29", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["45.1 ", " 60.0"], "gold": ["25", "50"], "monster type": "Melee", "taming difficulty": "not tameable", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": ["45.1 ", " 55.0"], "special abilities": "immune to level 1 poison", "fame": "450", "damage": ["3", "7"], "barding difficulty": "36", "mana": ["16 ", " 40"], "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "Random Bones"}, "ninjitsu": "", "dexterity": ["56", "75"], "strength": ["56", "80"], "effective super slayer": "Silver", "hit points": ["34", "48"], "mysticism": "", "intelligence": ["16", "40"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": "0", "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "32", "name": "Skeleton", "armor": "16", "cut up": "", "hiding": "", "discordance": "", "preferred foods": "", "focus": "", "base damage": ["3 ", " 7"], "control slots": "N/A", "magery": "0", "karma": ["", "450"]}, {"minimum taming": "N/A", "tactics": ["45.1 ", " 60.0"], "meditation": "0", "sub types": "Undead", "special": "10 reagents", "healing": "", "pack instinct": "none", "stamina": ["76 ", " 95"], "keywords": "Spectre", "slayer vulnerability": "undead", "url": "http://www.uorenaissance.com/info/Spectre", "w/ a slayer instrument": "50", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["45.1 ", " 60.0"], "gold": ["50", "100"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": ["45.1 ", " 55.0"], "special abilities": "", "fame": "4000", "damage": ["7", "11"], "barding difficulty": "62", "mana": ["36 ", " 60"], "spirit speak": "", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["76", "95"], "strength": ["76", "100"], "effective super slayer": "Silver", "hit points": ["46", "60"], "mysticism": "", "intelligence": ["36", "60"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["55.1 ", " 70.0"], "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "56", "name": "Spectre", "armor": "28", "cut up": "none", "hiding": "", "discordance": "", "preferred foods": "", "focus": "", "base damage": ["7 ", " 11"], "control slots": "N/A", "magery": ["55.1 ", " 70.0"], "karma": ["", "4000"]}, {"minimum taming": "N/A", "tactics": ["45.1 ", " 60.0"], "meditation": "0", "sub types": "Undead", "special": "10 reagents", "healing": "", "pack instinct": "none", "stamina": ["76 ", " 95"], "keywords": "Wraith", "slayer vulnerability": "undead", "url": "http://www.uorenaissance.com/info/Wraith", "w/ a slayer instrument": "54", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["45.1 ", " 60.0"], "gold": ["50", "100"], "monster type": "Magic", "taming difficulty": "n/a", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": ["45.1 ", " 55.0"], "special abilities": "", "fame": "4000", "damage": ["7", "11"], "barding difficulty": "67", "mana": ["36 ", " 60"], "spirit speak": "", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "ninjitsu": "", "dexterity": ["76", "95"], "strength": ["76", "100"], "effective super slayer": "Silver", "hit points": ["46", "60"], "mysticism": "", "intelligence": ["36", "60"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": ["55.1 ", " 70.0"], "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "60", "name": "Wraith", "armor": "28", "cut up": "", "hiding": "", "discordance": "", "preferred foods": "", "focus": "", "base damage": ["7 ", " 11"], "control slots": "N/A", "magery": ["55.1 ", " 70.0"], "karma": ["", "4000"]}, {"minimum taming": "N/A", "tactics": ["35.1 ", " 50.0"], "meditation": "0", "sub types": "Undead", "special": "body parts, bones", "healing": "", "pack instinct": "none", "stamina": ["31 ", " 50"], "keywords": "Zombie", "slayer vulnerability": "undead", "url": "http://www.uorenaissance.com/info/Zombie", "w/ a slayer instrument": "26", "first seen": "day one", "base type": "Creature", "necromancy": "", "resisting spells": ["15.1 ", " 40.0"], "gold": ["50", "100"], "monster type": "Melee", "taming difficulty": "n/a", "poisoning": "0", "detecting hidden": "", "parrying": "", "wrestling": ["35.1 ", " 50.0"], "special abilities": "level 2 poison immunity", "fame": "600", "damage": ["3", "7"], "barding difficulty": "33", "mana": ["26 ", " 40"], "spirit speak": "", "inventory": {"chance": ["1", "1"], "description": "Random Body Part or Bone"}, "ninjitsu": "", "dexterity": ["31", "50"], "strength": ["46", "70"], "effective super slayer": "Silver", "hit points": ["28", "42"], "mysticism": "", "intelligence": ["26", "40"], "primary type": "Humanoid", "alignment": "evil", "magic items": "", "bushido": "", "evaluating intelligence": "0", "chivalry": "", "spellweaving": "", "anatomy": "0", "w/ a gm instrument": "30", "name": "Zombie", "armor": "18", "cut up": "", "hiding": "", "discordance": "", "preferred foods": "", "focus": "", "base damage": ["3 ", " 7"], "control slots": "N/A", "magery": "0", "karma": ["", "600"]}]
+[
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "meditation": [
+            "100.1",
+            "101.0"
+        ],
+        "sub types": "Undead",
+        "special": [
+            "150",
+            "170 Necromancy Reagents, 2 Medium level Scrolls, Level 5 Treasure Map"
+        ],
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "96 ",
+            " 115"
+        ],
+        "keywords": "Ancient Lich",
+        "slayer vulnerability": "undead, mage slayer",
+        "url": "http://www.uorenaissance.com/info/AncientLich",
+        "w/ a slayer instrument": "114",
+        "first seen": "the discovery of khaldun",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "175.2",
+            "200.0"
+        ],
+        "gold": [
+            "1500 ",
+            " 1700"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "none",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "75.1 ",
+            " 87.6"
+        ],
+        "special abilities": "immune to level 5 poison and below. immune to provocation. tendency to spawn lesser undead and polymorph to match their type for purposes of disguise",
+        "fame": "level 5 (23000)",
+        "damage": [
+            "15",
+            "27"
+        ],
+        "barding difficulty": "142",
+        "mana": [
+            "966 ",
+            " 1045"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "96",
+            "115"
+        ],
+        "strength": [
+            "206",
+            "305"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "560",
+            "595"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "966",
+            "1,045"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "120.1",
+            "130.0"
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0.0",
+        "w/ a gm instrument": "128",
+        "name": "Ancient Lich",
+        "armor": "60",
+        "cut up": "none",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "15 ",
+            " 27"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "120.1",
+            "130.0"
+        ],
+        "karma": "level 5 (-23000)"
+    },
+    {
+        "minimum taming": "N/A",
+        "url": "http://www.uorenaissance.com/info/AnimatedZombie",
+        "control slots": "N/A",
+        "armor": "18",
+        "sub types": "Undead",
+        "primary type": "Humanoid",
+        "name": "Animated Zombie",
+        "base type": "Creature",
+        "monster type": "Melee",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Random Potion"
+        },
+        "keywords": "Animated Zombie"
+    },
+    {
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "minimum taming": "N/A",
+        "strength": [
+            "76",
+            "100"
+        ],
+        "name": "Bogle",
+        "armor": "28",
+        "sub types": "Undead",
+        "hit points": [
+            "46",
+            "60"
+        ],
+        "primary type": "Humanoid",
+        "effective super slayer": "Silver",
+        "base type": "Creature",
+        "monster type": "Magic",
+        "keywords": "Bogle",
+        "url": "http://www.uorenaissance.com/info/Bogle",
+        "w/ a slayer instrument": "51",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "damage": [
+            "7",
+            "11"
+        ],
+        "w/ a gm instrument": "58",
+        "barding difficulty": "64",
+        "control slots": "N/A",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        }
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "95.1 ",
+            " 100.0"
+        ],
+        "meditation": "none",
+        "sub types": "Undead",
+        "special": "bones, platemail armor",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "76 ",
+            " 95"
+        ],
+        "keywords": "Bone Knight",
+        "slayer vulnerability": "undead slayer",
+        "url": "http://www.uorenaissance.com/info/BoneKnight",
+        "w/ a slayer instrument": "49",
+        "first seen": "initial release of uo",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "65.1 ",
+            " 80.0"
+        ],
+        "gold": [
+            "175 ",
+            " 275"
+        ],
+        "monster type": "Melee",
+        "taming difficulty": "n/a",
+        "poisoning": "none",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "85.1 ",
+            " 95.0"
+        ],
+        "special abilities": "none",
+        "fame": "level 3 (3000)",
+        "damage": [
+            "8",
+            "18"
+        ],
+        "barding difficulty": "61",
+        "mana": [
+            "36 ",
+            " 60"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "WoodenShield"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "strength": [
+            "195",
+            "250"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "118",
+            "150"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "rarely",
+        "bushido": "",
+        "evaluating intelligence": "none",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0.0",
+        "w/ a gm instrument": "55",
+        "name": "Bone Knight",
+        "armor": "40",
+        "cut up": "none",
+        "dropped slayer": "Repond",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "8 ",
+            " 18"
+        ],
+        "control slots": "N/A",
+        "magery": "none",
+        "karma": "level 3 (-3000)"
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "meditation": "0.0",
+        "sub types": "Undead",
+        "special": [
+            "3",
+            "10 Necromancy Reagents, 3 Magery Reagents"
+        ],
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "56 ",
+            " 75"
+        ],
+        "keywords": "Bone Magi",
+        "slayer vulnerability": "undead, mage slayer",
+        "url": "http://www.uorenaissance.com/info/BoneMagi",
+        "w/ a slayer instrument": "65",
+        "first seen": "initial release of uo",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "gold": [
+            "125 ",
+            " 150"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "none",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "45.1 ",
+            " 55.0"
+        ],
+        "special abilities": "immune to level 2 poison and below.",
+        "fame": "level 3 (3000)",
+        "damage": [
+            "3",
+            "7"
+        ],
+        "barding difficulty": "81",
+        "mana": [
+            "186 ",
+            " 210"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "56",
+            "75"
+        ],
+        "strength": [
+            "76",
+            "100"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "46",
+            "60"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "186",
+            "210"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0.0",
+        "w/ a gm instrument": "73",
+        "name": "Bone Magi",
+        "armor": "38",
+        "cut up": "none",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "3 ",
+            " 7"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "karma": "level 3 (-3000)"
+    },
+    {
+        "dexterity": [
+            "146",
+            "185"
+        ],
+        "minimum taming": "N/A",
+        "strength": [
+            "770",
+            "830"
+        ],
+        "name": "Dark One",
+        "armor": "65",
+        "sub types": "Undead , Bosses",
+        "hit points": [
+            "1,700",
+            "1,800"
+        ],
+        "primary type": "Humanoid",
+        "effective super slayer": "Silver",
+        "dropped slayer": "Repond",
+        "base type": "Creature",
+        "monster type": "Magic",
+        "keywords": "Dark One",
+        "url": "http://www.uorenaissance.com/info/DarkOne",
+        "w/ a slayer instrument": "194",
+        "intelligence": [
+            "1,100",
+            "1,200"
+        ],
+        "damage": [
+            "14",
+            "18"
+        ],
+        "w/ a gm instrument": "219",
+        "barding difficulty": "243",
+        "control slots": "N/A",
+        "inventory": {
+            "chance": [
+                "1",
+                "4"
+            ],
+            "description": "Peculiar Meat (Carve)"
+        }
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "meditation": "none",
+        "sub types": "Undead",
+        "special": "none",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "76 ",
+            " 95"
+        ],
+        "keywords": "Ghoul",
+        "slayer vulnerability": "undead",
+        "url": "http://www.uorenaissance.com/info/Ghoul",
+        "w/ a slayer instrument": "36",
+        "first seen": "initial release of uo",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "gold": [
+            "50 ",
+            " 100"
+        ],
+        "monster type": "Melee",
+        "taming difficulty": "n/a",
+        "poisoning": "none",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "45.1 ",
+            " 55.0"
+        ],
+        "special abilities": "immune to level 2 poison and below.",
+        "fame": "level 3 (2500)",
+        "damage": [
+            "7",
+            "9"
+        ],
+        "barding difficulty": "45",
+        "mana": "0",
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Random Weapon"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "strength": [
+            "76",
+            "100"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "46",
+            "60"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": "none",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0.0",
+        "w/ a gm instrument": "41",
+        "name": "Ghoul",
+        "armor": "28",
+        "cut up": "none",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "7 ",
+            " 9"
+        ],
+        "control slots": "N/A",
+        "magery": "none",
+        "karma": "level 3 (-2500)"
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "70.1 ",
+            " 90.0"
+        ],
+        "meditation": [
+            "85.1 ",
+            " 95.0"
+        ],
+        "sub types": "Undead",
+        "special": [
+            "2 Medium Scrolls15",
+            "25 Necromancy Reagents"
+        ],
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "126 ",
+            " 145"
+        ],
+        "keywords": "Lich",
+        "slayer vulnerability": "undead slayer, mage slayer",
+        "url": "http://www.uorenaissance.com/info/Lich",
+        "w/ a slayer instrument": "74",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "80.1 ",
+            " 100.0"
+        ],
+        "gold": [
+            "275",
+            "324"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": "0",
+        "special abilities": "level 5 poison immunity",
+        "fame": "8000",
+        "damage": [
+            "24",
+            "26"
+        ],
+        "barding difficulty": "92",
+        "mana": [
+            "276 ",
+            " 305"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "126",
+            "145"
+        ],
+        "strength": [
+            "171",
+            "200"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "103",
+            "120"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "276",
+            "305"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": "100.0",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "83",
+        "name": "Lich",
+        "armor": "50",
+        "cut up": "none",
+        "dropped slayer": "Repond",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "24 ",
+            " 26"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "karma": [
+            "",
+            "8000"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "50.1",
+            "70.0"
+        ],
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": [
+            "2 Medium Level Scrolls, Level 4 Treasure Map, 50",
+            "80 Necromancy Reagents"
+        ],
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "146",
+            "165"
+        ],
+        "keywords": "Lich Lord",
+        "slayer vulnerability": "undead",
+        "url": "http://www.uorenaissance.com/info/LichLord",
+        "w/ a slayer instrument": "87",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "150.5",
+            "200.0"
+        ],
+        "gold": [
+            "450",
+            "600"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "60.1",
+            "80.0"
+        ],
+        "special abilities": "immune to level 5 poison and below",
+        "fame": "18000",
+        "damage": [
+            "11",
+            "13"
+        ],
+        "barding difficulty": "109",
+        "mana": [
+            "566",
+            "655"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "146",
+            "165"
+        ],
+        "strength": [
+            "416",
+            "505"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "250",
+            "303"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "566",
+            "655"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "90.1",
+            "100.0"
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "98",
+        "name": "Lich Lord",
+        "armor": "50",
+        "cut up": "none",
+        "dropped slayer": "Repond",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "24",
+            "26"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "90.1",
+            "100.0"
+        ],
+        "karma": [
+            "",
+            "18000"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "35.1",
+            "50.0"
+        ],
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": "10 bandages, 5 garlic, 1 potion, level 1 treasure map, peculiar seed, fragrant seed",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "71",
+            "90"
+        ],
+        "keywords": "Mummy",
+        "slayer vulnerability": "undead slayer",
+        "url": "http://www.uorenaissance.com/info/Mummy",
+        "w/ a slayer instrument": "56",
+        "first seen": "the second age",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "15.1",
+            "40.0"
+        ],
+        "gold": [
+            "305",
+            "315"
+        ],
+        "monster type": "Melee",
+        "taming difficulty": "n/a",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "35.1",
+            "50.0"
+        ],
+        "special abilities": "immune to level 1 poison",
+        "fame": "4000",
+        "damage": [
+            "13",
+            "23"
+        ],
+        "barding difficulty": "70",
+        "mana": [
+            "26",
+            "40"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Random Bones"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "71",
+            "90"
+        ],
+        "strength": [
+            "346",
+            "370"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "208",
+            "222"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "26",
+            "40"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": "0",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "63",
+        "name": "Mummy",
+        "armor": "50",
+        "cut up": "none",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "13",
+            "23"
+        ],
+        "control slots": "N/A",
+        "magery": "0",
+        "karma": [
+            "",
+            "4000"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "20.1 ",
+            " 30.0"
+        ],
+        "meditation": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "sub types": "Undead",
+        "special": "level 2 treasure map",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "26 ",
+            " 40"
+        ],
+        "keywords": "Restless Soul",
+        "slayer vulnerability": "",
+        "preferred foods": "n/a",
+        "parrying": "",
+        "first seen": "age of shadows",
+        "base type": "Creature",
+        "resisting spells": [
+            "20.1 ",
+            " 30.0"
+        ],
+        "gold": "",
+        "monster type": "Melee",
+        "taming difficulty": "n/a",
+        "poisoning": "",
+        "detecting hidden": "",
+        "wrestling": [
+            "20.1 ",
+            " 30.0"
+        ],
+        "special abilities": "",
+        "fame": "500",
+        "barding difficulty": "19.0",
+        "necromancy": "",
+        "spirit speak": "",
+        "ninjitsu": "",
+        "dexterity": [
+            "26 ",
+            " 40"
+        ],
+        "strength": [
+            "26 ",
+            " 40"
+        ],
+        "hit points": [
+            "16 ",
+            " 24"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "26 ",
+            " 40"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0.0",
+        "name": "Restless Soul",
+        "armor": "6",
+        "cut up": "",
+        "mana": [
+            "26 ",
+            " 40"
+        ],
+        "discordance": "",
+        "url": "http://www.uorenaissance.com/info/RestlessSoul",
+        "focus": "",
+        "hiding": "",
+        "base damage": [
+            "1 ",
+            " 10"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "karma": [
+            "",
+            "500"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "90 ",
+            " 100"
+        ],
+        "meditation": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "sub types": "Undead , MiniBosses",
+        "special": "none",
+        "healing": "",
+        "pack instinct": "",
+        "stamina": [
+            "242 ",
+            " 280"
+        ],
+        "keywords": "Revenant",
+        "slayer vulnerability": "undead slayer",
+        "url": "http://www.uorenaissance.com/info/RevenantBoss",
+        "w/ a slayer instrument": "82",
+        "first seen": "age of shadows",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "100 ",
+            " 150"
+        ],
+        "gold": "none",
+        "monster type": "Melee",
+        "taming difficulty": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "poisoning": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "90 ",
+            " 100"
+        ],
+        "special abilities": "teleports to prey, immune to level 5 poison and below, immune to barding abilities",
+        "fame": "",
+        "damage": [
+            "7",
+            "24"
+        ],
+        "barding difficulty": "103",
+        "mana": [
+            "101 ",
+            " 200"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Various Bones"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "110",
+            "120"
+        ],
+        "strength": [
+            "196",
+            "250"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "500",
+            "550"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "128",
+            "138"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "w/ a gm instrument": "93",
+        "name": "Revenant",
+        "armor": "62",
+        "cut up": "none",
+        "dropped slayer": "Repond",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "n/a",
+        "focus": "",
+        "base damage": [
+            "20",
+            "30"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "karma": ""
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": "100.0",
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": "level 5 treasure map",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": "150",
+        "keywords": "Rotting Corpse",
+        "slayer vulnerability": "undead slayer",
+        "url": "http://www.uorenaissance.com/info/RottingCorpse",
+        "w/ a slayer instrument": "100",
+        "first seen": "trinsic invasion",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": "250.0",
+        "gold": [
+            "1050",
+            "1279"
+        ],
+        "monster type": "Melee, Lethal Poison",
+        "taming difficulty": "n/a",
+        "poisoning": [
+            "100.0 ",
+            " 120.0"
+        ],
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "special abilities": "immune to level 5 poison and below, can inflict level 5 poison",
+        "fame": "12500",
+        "damage": [
+            "8",
+            "10"
+        ],
+        "barding difficulty": "125",
+        "mana": "0",
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "75",
+            "75"
+        ],
+        "strength": [
+            "301",
+            "350"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "1,200",
+            "1,200"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "151",
+            "200"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": "0",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "113",
+        "name": "Rotting Corpse",
+        "armor": "40",
+        "cut up": "none",
+        "dropped slayer": "Repond",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "",
+        "focus": "",
+        "base damage": [
+            "8 ",
+            " 10"
+        ],
+        "control slots": "N/A",
+        "magery": "0",
+        "karma": [
+            "",
+            "12500"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": "10 reagents",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "76 ",
+            " 95"
+        ],
+        "keywords": "Shade",
+        "slayer vulnerability": "undead",
+        "url": "http://www.uorenaissance.com/info/Shade",
+        "w/ a slayer instrument": "52",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "gold": [
+            "50",
+            "100"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "45.1 ",
+            " 55.0"
+        ],
+        "special abilities": "",
+        "fame": "4000",
+        "damage": [
+            "7",
+            "11"
+        ],
+        "barding difficulty": "65",
+        "mana": [
+            "36 ",
+            " 60"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "strength": [
+            "76",
+            "100"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "46",
+            "60"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "59",
+        "name": "Shade",
+        "armor": "28",
+        "cut up": "",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "",
+        "focus": "",
+        "base damage": [
+            "7 ",
+            " 11"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "karma": [
+            "",
+            "4000"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "95.1 ",
+            " 100.0"
+        ],
+        "meditation": "none",
+        "sub types": "Undead",
+        "special": "bones",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "76 ",
+            " 95"
+        ],
+        "keywords": "Skeletal Knight",
+        "slayer vulnerability": "undead slayer",
+        "url": "http://www.uorenaissance.com/info/SkeletalKnight",
+        "w/ a slayer instrument": "49",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "65.1 ",
+            " 80.0"
+        ],
+        "gold": [
+            "175 ",
+            " 275"
+        ],
+        "monster type": "Melee",
+        "taming difficulty": "n/a",
+        "poisoning": "none",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "85.1 ",
+            " 95.0"
+        ],
+        "special abilities": "none",
+        "fame": "level 3 (3000)",
+        "damage": [
+            "8",
+            "18"
+        ],
+        "barding difficulty": "61",
+        "mana": [
+            "36 ",
+            " 60"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "WoodenShield"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "strength": [
+            "196",
+            "250"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "118",
+            "150"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "rarely",
+        "bushido": "",
+        "evaluating intelligence": "none",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0.0",
+        "w/ a gm instrument": "55",
+        "name": "Skeletal Knight",
+        "armor": "40",
+        "cut up": "none",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "n/a",
+        "focus": "",
+        "base damage": [
+            "8",
+            "18"
+        ],
+        "control slots": "N/A",
+        "magery": "none",
+        "karma": "level 3 (-3000)"
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "meditation": "0.0",
+        "sub types": "Undead",
+        "special": "3 necro regs, 3 magery regs, 1 medium level scroll.",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "56 ",
+            " 75"
+        ],
+        "keywords": "Skeletal Mage",
+        "slayer vulnerability": "undead slayer",
+        "url": "http://www.uorenaissance.com/info/SkeletalMage",
+        "w/ a slayer instrument": "62",
+        "first seen": "initial release of uo",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "gold": [
+            "125 ",
+            " 150"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "none",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "45.1 ",
+            " 55.0"
+        ],
+        "special abilities": "immune to level 2 poison and below",
+        "fame": "level 3 (3000)",
+        "damage": [
+            "3",
+            "7"
+        ],
+        "barding difficulty": "77",
+        "mana": [
+            "186 ",
+            " 210"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Random Potion"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "56",
+            "75"
+        ],
+        "strength": [
+            "76",
+            "100"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "46",
+            "60"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "186",
+            "210"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0.0",
+        "w/ a gm instrument": "69",
+        "name": "Skeletal Mage",
+        "armor": "38",
+        "cut up": "none",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "none",
+        "focus": "",
+        "base damage": [
+            "4 ",
+            " 11"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "karma": "level 3 (-3000)"
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": "",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "56 ",
+            " 75"
+        ],
+        "keywords": "Skeleton",
+        "slayer vulnerability": "undead slayer",
+        "url": "http://www.uorenaissance.com/info/Skeleton",
+        "w/ a slayer instrument": "29",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "gold": [
+            "25",
+            "50"
+        ],
+        "monster type": "Melee",
+        "taming difficulty": "not tameable",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "45.1 ",
+            " 55.0"
+        ],
+        "special abilities": "immune to level 1 poison",
+        "fame": "450",
+        "damage": [
+            "3",
+            "7"
+        ],
+        "barding difficulty": "36",
+        "mana": [
+            "16 ",
+            " 40"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Random Bones"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "56",
+            "75"
+        ],
+        "strength": [
+            "56",
+            "80"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "34",
+            "48"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "16",
+            "40"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": "0",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "32",
+        "name": "Skeleton",
+        "armor": "16",
+        "cut up": "",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "",
+        "focus": "",
+        "base damage": [
+            "3 ",
+            " 7"
+        ],
+        "control slots": "N/A",
+        "magery": "0",
+        "karma": [
+            "",
+            "450"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": "10 reagents",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "76 ",
+            " 95"
+        ],
+        "keywords": "Spectre",
+        "slayer vulnerability": "undead",
+        "url": "http://www.uorenaissance.com/info/Spectre",
+        "w/ a slayer instrument": "50",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "gold": [
+            "50",
+            "100"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "45.1 ",
+            " 55.0"
+        ],
+        "special abilities": "",
+        "fame": "4000",
+        "damage": [
+            "7",
+            "11"
+        ],
+        "barding difficulty": "62",
+        "mana": [
+            "36 ",
+            " 60"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "strength": [
+            "76",
+            "100"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "46",
+            "60"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "56",
+        "name": "Spectre",
+        "armor": "28",
+        "cut up": "none",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "",
+        "focus": "",
+        "base damage": [
+            "7 ",
+            " 11"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "karma": [
+            "",
+            "4000"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": "10 reagents",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "76 ",
+            " 95"
+        ],
+        "keywords": "Wraith",
+        "slayer vulnerability": "undead",
+        "url": "http://www.uorenaissance.com/info/Wraith",
+        "w/ a slayer instrument": "54",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "45.1 ",
+            " 60.0"
+        ],
+        "gold": [
+            "50",
+            "100"
+        ],
+        "monster type": "Magic",
+        "taming difficulty": "n/a",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "45.1 ",
+            " 55.0"
+        ],
+        "special abilities": "",
+        "fame": "4000",
+        "damage": [
+            "7",
+            "11"
+        ],
+        "barding difficulty": "67",
+        "mana": [
+            "36 ",
+            " 60"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "strength": [
+            "76",
+            "100"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "46",
+            "60"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "60",
+        "name": "Wraith",
+        "armor": "28",
+        "cut up": "",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "",
+        "focus": "",
+        "base damage": [
+            "7 ",
+            " 11"
+        ],
+        "control slots": "N/A",
+        "magery": [
+            "55.1 ",
+            " 70.0"
+        ],
+        "karma": [
+            "",
+            "4000"
+        ]
+    },
+    {
+        "minimum taming": "N/A",
+        "tactics": [
+            "35.1 ",
+            " 50.0"
+        ],
+        "meditation": "0",
+        "sub types": "Undead",
+        "special": "body parts, bones",
+        "healing": "",
+        "pack instinct": "none",
+        "stamina": [
+            "31 ",
+            " 50"
+        ],
+        "keywords": "Zombie",
+        "slayer vulnerability": "undead",
+        "url": "http://www.uorenaissance.com/info/Zombie",
+        "w/ a slayer instrument": "26",
+        "first seen": "day one",
+        "base type": "Creature",
+        "necromancy": "",
+        "resisting spells": [
+            "15.1 ",
+            " 40.0"
+        ],
+        "gold": [
+            "50",
+            "100"
+        ],
+        "monster type": "Melee",
+        "taming difficulty": "n/a",
+        "poisoning": "0",
+        "detecting hidden": "",
+        "parrying": "",
+        "wrestling": [
+            "35.1 ",
+            " 50.0"
+        ],
+        "special abilities": "level 2 poison immunity",
+        "fame": "600",
+        "damage": [
+            "3",
+            "7"
+        ],
+        "barding difficulty": "33",
+        "mana": [
+            "26 ",
+            " 40"
+        ],
+        "spirit speak": "",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Random Body Part or Bone"
+        },
+        "ninjitsu": "",
+        "dexterity": [
+            "31",
+            "50"
+        ],
+        "strength": [
+            "46",
+            "70"
+        ],
+        "effective super slayer": "Silver",
+        "hit points": [
+            "28",
+            "42"
+        ],
+        "mysticism": "",
+        "intelligence": [
+            "26",
+            "40"
+        ],
+        "primary type": "Humanoid",
+        "alignment": "evil",
+        "magic items": "",
+        "bushido": "",
+        "evaluating intelligence": "0",
+        "chivalry": "",
+        "spellweaving": "",
+        "anatomy": "0",
+        "w/ a gm instrument": "30",
+        "name": "Zombie",
+        "armor": "18",
+        "cut up": "",
+        "hiding": "",
+        "discordance": "",
+        "preferred foods": "",
+        "focus": "",
+        "base damage": [
+            "3 ",
+            " 7"
+        ],
+        "control slots": "N/A",
+        "magery": "0",
+        "karma": [
+            "",
+            "600"
+        ]
+    }
+]

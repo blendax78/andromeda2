@@ -1,1 +1,1935 @@
-[{"w/ a slayer instrument": "151", "monster type": "Melee", "armor": "55", "strength": ["1,075", "1,125"], "sub types": "Bosses", "inventory": {"chance": ["1", "1"], "description": "Platinum Coin"}, "dexterity": ["153", "172"], "primary type": "Reptiles", "base type": "Creature", "damage": ["12", "24"], "control slots": "N/A", "name": "Anaconda", "keywords": "Anaconda", "url": "http://www.uorenaissance.com/info/Anaconda", "barding difficulty": "189", "hit points": ["1,650", "1,925"], "intelligence": ["300", "400"], "minimum taming": "N/A", "w/ a gm instrument": "170"}, {"taming difficulty": "cannot be tamed", "alignment": "evil", "dropped slayer": "Arachnid", "bushido": "", "control slots": "N/A", "special abilities": "immune to level 2 poison and below, can breathe fire", "fame": "level 5 (22500)", "tactics": ["127+/", ""], "spirit speak": "", "barding difficulty": "149", "stamina": ["86 ", " 175"], "karma": "level 5 (-22500)", "hit points": ["658", "711"], "armor": "70", "dexterity": ["86", "175"], "detecting hidden": "", "gold": ["1600 ", " 1800"], "pack instinct": "none", "first seen": "initial release of uo", "wrestling": ["110+/", ""], "focus": "", "healing": "", "magery": ["109.7+/", ""], "preferred foods": "cannot be tamed", "name": "Ancient Wyrm", "inventory": {"chance": ["1", "100"], "description": "Platinum Coin"}, "monster type": "Magic", "resisting spells": ["100.5 ", " 150.0"], "mana": ["847+/", ""], "anatomy": "0.0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": ["52.5 ", " 75.0"], "w/ a slayer instrument": "119", "ninjitsu": "", "poisoning": "none", "base damage": ["29 ", " 35"], "slayer vulnerability": "dragon slayer, reptile slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["686", "775"], "special": "level 5 treasure map", "parrying": "", "strength": ["1,096", "1,185"], "discordance": "", "primary type": "Reptiles", "damage": ["29", "35"], "keywords": "Ancient Wyrm", "url": "http://www.uorenaissance.com/info/AncientWyrm", "cut up": "12 scales, 40 barbed hides,19 raw ribs", "evaluating intelligence": ["109+/", ""], "base type": "Creature", "magic items": "", "w/ a gm instrument": "134", "effective slayer": "Dragon Slaying"}, {"w/ a slayer instrument": "191", "dropped slayer": "Arachnid", "sub types": "Bosses", "control slots": "N/A", "minimum taming": "N/A", "barding difficulty": "239", "hit points": ["3,500", "3,750"], "armor": "80", "dexterity": ["120", "130"], "intelligence": ["770", "820"], "url": "http://www.uorenaissance.com/info/AzureDragon", "effective super slayer": "Reptilian Death", "strength": ["1,070", "1,120"], "primary type": "Reptiles", "damage": ["20", "29"], "keywords": "Azure Dragon", "name": "Azure Dragon", "inventory": {"chance": ["1", "1"], "description": "PlatinumCoin"}, "monster type": "Magic, Breath Attack", "base type": "Creature", "w/ a gm instrument": "215", "effective slayer": "Dragon Slaying"}, {"taming difficulty": "n/a", "alignment": "neutral", "bushido": "", "control slots": "N/A", "special abilities": "fire breath", "fame": "level 4 (6000)", "tactics": ["60.1 ", " 70.0"], "spirit speak": "", "barding difficulty": "74", "stamina": ["87 ", " 135"], "karma": "level 4 (-6000)", "hit points": ["151", "255"], "armor": "60", "dexterity": ["87", "135"], "detecting hidden": "", "gold": ["50 ", " 100"], "pack instinct": "none", "first seen": "initial release of uo", "wrestling": ["60.1 ", " 70.0"], "focus": "", "healing": "", "magery": "0.0", "preferred foods": "meat", "name": "Deep Sea Serpent", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "monster type": "Magic, Breath Attack", "resisting spells": ["60.1 ", " 75.0"], "mana": ["87 ", " 155"], "anatomy": "0.0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "0.0", "w/ a slayer instrument": "59", "ninjitsu": "", "poisoning": "none", "base damage": ["6 ", " 14"], "slayer vulnerability": "reptile slayer, snake slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["87", "155"], "special": "4 black pearl, level 2 treasure map, message in a bottle, special fishing net, 4 sulfurous ash", "parrying": "", "strength": ["251", "425"], "discordance": "", "primary type": "Reptiles", "damage": ["6", "14"], "keywords": "Deep Sea Serpent", "url": "http://www.uorenaissance.com/info/DeepSeaSerpent", "cut up": "10 horned hides, 10 raw ribs, 8 sea serpent scales", "evaluating intelligence": "0.0", "base type": "Creature", "magic items": "", "w/ a gm instrument": "67", "effective slayer": "Snakes Bane"}, {"taming difficulty": "93.9", "alignment": "evil", "dropped slayer": "Arachnid", "bushido": "", "control slots": "N/A", "special abilities": "fire breath", "fame": "level 5 (15000)", "tactics": ["97.6 ", " 100.0"], "spirit speak": "", "barding difficulty": "112", "stamina": ["86 ", " 105"], "karma": "level 5 (-15000)", "hit points": ["478", "495"], "armor": "60", "dexterity": ["86", "105"], "detecting hidden": "", "gold": ["1000 ", " 1200"], "pack instinct": "none", "first seen": "initial release of uo", "wrestling": ["90.1 ", " 92.5"], "focus": "", "healing": "", "magery": ["30.1 ", " 40.0"], "preferred foods": "meat", "name": "Dragon", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "monster type": "Magic, Breath Attack", "resisting spells": ["99.1 ", " 100.0"], "mana": ["436 ", " 475"], "anatomy": "0.0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "0.0", "w/ a slayer instrument": "90", "ninjitsu": "", "poisoning": "none", "base damage": ["16 ", " 22"], "slayer vulnerability": "dragon, reptile", "necromancy": "", "minimum taming": "93.9", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["436", "475"], "special": "8 gems, level 4 treasure map", "parrying": "", "strength": ["796", "825"], "discordance": "", "primary type": "Reptiles", "damage": ["16", "22"], "keywords": "Dragon", "url": "http://www.uorenaissance.com/info/Dragon", "cut up": "20 barbed hides, 7 red or yellow dragon scales, 19 raw ribs, 8 dragon's blood", "evaluating intelligence": ["30.1 ", " 40.0"], "base type": "Creature", "magic items": "", "w/ a gm instrument": "101", "effective slayer": "Dragon Slaying"}, {"taming difficulty": "84.3", "alignment": "evil", "dropped slayer": "Arachnid", "bushido": "", "control slots": "2", "special abilities": "fire breath", "fame": "level 4 (5500)", "tactics": ["65.1 ", " 90.0"], "spirit speak": "", "barding difficulty": "79", "stamina": ["133 ", " 152"], "karma": "level 4 (-5500)", "hit points": ["241", "258"], "armor": "46", "dexterity": ["133", "152"], "detecting hidden": "", "gold": ["275 ", " 325"], "pack instinct": "none", "first seen": "initial release of uo", "wrestling": ["65.1 ", " 80.0"], "focus": "", "healing": "", "magery": "none", "preferred foods": "fish", "name": "Drake", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "monster type": "Melee, Breath Attack", "resisting spells": ["65.1 ", " 80.0"], "mana": ["101 ", " 140"], "anatomy": "0.0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "none", "w/ a slayer instrument": "63", "ninjitsu": "", "poisoning": "none", "base damage": ["11 ", " 17"], "slayer vulnerability": "dragon, reptile", "necromancy": "", "minimum taming": "84.3", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["101", "140"], "special": "level 2 treasure map, 3 magery reagents", "parrying": "", "strength": ["401", "430"], "discordance": "", "primary type": "Reptiles", "damage": ["11", "17"], "keywords": "Drake", "url": "http://www.uorenaissance.com/info/Drake", "cut up": "2 red or yellow scales, 20 horned hides, 10 raw ribs, 8 dragon's blood", "evaluating intelligence": "none", "base type": "Creature", "magic items": "", "w/ a gm instrument": "71", "effective slayer": "Dragon Slaying"}, {"w/ a slayer instrument": "292", "dropped slayer": "Arachnid", "sub types": "Bosses", "control slots": "N/A", "minimum taming": "N/A", "barding difficulty": "365", "hit points": ["5,300", "5,600"], "armor": "90", "dexterity": ["125", "145"], "intelligence": ["1,286", "1,325"], "url": "http://www.uorenaissance.com/info/ElderWyrm", "effective super slayer": "Reptilian Death", "strength": ["1,410", "1,450"], "primary type": "Reptiles", "damage": ["29", "36"], "keywords": "Elder Wyrm", "name": "Elder Wyrm", "inventory": {"chance": ["1", "4"], "description": "Peculiar Meat (Carve)"}, "monster type": "Magic, Breath Attack", "base type": "Creature", "w/ a gm instrument": "329", "effective slayer": "Dragon Slaying"}, {"taming difficulty": "n/a", "alignment": "evil", "bushido": "", "control slots": "N/A", "special abilities": "", "fame": "11000", "tactics": ["45.1", "60.0"], "spirit speak": "", "barding difficulty": "89", "stamina": ["226", "245"], "karma": ["", "11000"], "hit points": ["250", "275"], "armor": "50", "dexterity": ["90", "110"], "gold": ["275", "325"], "pack instinct": "none", "first seen": "the second age", "wrestling": ["45.1", "60.0"], "focus": "", "healing": "", "magery": "", "preferred foods": "none", "name": "Kraken", "inventory": {"chance": ["1", "10"], "description": "Special Fishing Net"}, "monster type": "Melee, Breath Attack", "resisting spells": ["15.1", "20.0"], "mana": "0", "anatomy": "", "spellweaving": "", "meditation": "", "w/ a slayer instrument": "71", "ninjitsu": "", "poisoning": "", "base damage": ["19", "33"], "slayer vulnerability": "", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["26", "40"], "special": "rope, message in a bottle (fishing)level 4 treasure map", "parrying": "", "strength": ["250", "275"], "discordance": "", "primary type": "Reptiles", "damage": ["15", "25"], "keywords": "Kraken", "url": "http://www.uorenaissance.com/info/Kraken", "cut up": "none", "evaluating intelligence": "", "base type": "Creature", "magic items": "", "w/ a gm instrument": "80", "detecting hidden": ""}, {"url": "http://www.uorenaissance.com/info/Leviathan", "monster type": "Magic", "base type": "Creature", "primary type": "Reptiles", "armor": "??", "minimum taming": "??", "control slots": "N/A", "name": "Leviathan", "keywords": "Leviathan"}, {"taming difficulty": "n/a", "alignment": "evil", "bushido": "", "control slots": "N/A", "special abilities": "", "fame": "1500", "tactics": ["55.1", "80.0"], "spirit speak": "", "barding difficulty": "46", "stamina": ["86", "105"], "karma": ["", "1500"], "hit points": ["58", "72"], "armor": "28", "dexterity": ["86", "105"], "detecting hidden": "", "gold": ["50", "75"], "pack instinct": "none", "first seen": "day one", "wrestling": ["50.1", "70.0"], "focus": "", "healing": "", "magery": "0", "preferred foods": "none", "name": "Lizardman", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "monster type": "Melee", "resisting spells": ["35.1", "60.0"], "mana": ["36", "60"], "anatomy": "0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "0", "w/ a slayer instrument": "37", "ninjitsu": "", "poisoning": "0", "base damage": ["5", "7"], "slayer vulnerability": "lizardman slayer, reptile slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["36", "60"], "special": "level 1 treasure map", "parrying": "", "strength": ["96", "120"], "discordance": "", "primary type": "Reptiles", "damage": ["5", "7"], "keywords": "Lizardman", "url": "http://www.uorenaissance.com/info/Lizardman", "cut up": "12 spined hides, 1 raw rib", "evaluating intelligence": "0", "base type": "Creature", "magic items": "", "w/ a gm instrument": "41", "effective slayer": "Lizardman Slaughter"}, {"w/ a slayer instrument": "74", "monster type": "Magic, Breath Attack", "armor": "60", "strength": ["756", "780"], "inventory": {"chance": ["1", "10"], "description": "Random Fishing Net Piece"}, "dexterity": ["226", "245"], "primary type": "Reptiles", "base type": "Creature", "damage": ["19", "33"], "control slots": "N/A", "name": "Lock Lake Monster", "keywords": "Lock Lake Monster", "url": "http://www.uorenaissance.com/info/Nessie", "barding difficulty": "93", "hit points": ["750", "800"], "intelligence": ["100", "200"], "minimum taming": "N/A", "w/ a gm instrument": "84"}, {"w/ a slayer instrument": "61", "monster type": "Magic", "armor": "44", "strength": ["281", "305"], "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "dexterity": ["191", "215"], "primary type": "Reptiles", "base type": "Creature", "damage": ["36", "45"], "control slots": "N/A", "name": "Ophidian Archmage", "keywords": "Ophidian Archmage", "url": "http://www.uorenaissance.com/info/OphidianArchmage", "dropped slayer": "Arachnid", "barding difficulty": "76", "effective super slayer": "Reptilian Death", "hit points": ["169", "183"], "intelligence": ["226", "250"], "minimum taming": "N/A", "w/ a gm instrument": "68", "effective slayer": "Ophidian"}, {"w/ a slayer instrument": "62", "monster type": "Melee", "armor": "40", "strength": ["417", "595"], "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "dexterity": ["166", "175"], "primary type": "Reptiles", "base type": "Creature", "damage": ["16", "19"], "control slots": "N/A", "name": "Ophidian Knight", "keywords": "Ophidian Knight", "url": "http://www.uorenaissance.com/info/OphidianKnight", "dropped slayer": "Arachnid", "barding difficulty": "78", "effective super slayer": "Reptilian Death", "hit points": ["266", "342"], "intelligence": ["46", "70"], "minimum taming": "N/A", "w/ a gm instrument": "70", "effective slayer": "Ophidian"}, {"w/ a slayer instrument": "61", "monster type": "Magic", "armor": "30", "strength": ["181", "205"], "inventory": {"chance": ["1", "1"], "description": "Random Potion"}, "dexterity": ["191", "215"], "primary type": "Reptiles", "base type": "Creature", "damage": ["5", "10"], "control slots": "N/A", "name": "Ophidian Mage", "keywords": "Ophidian Mage", "url": "http://www.uorenaissance.com/info/OphidianMage", "dropped slayer": "Arachnid", "barding difficulty": "76", "effective super slayer": "Reptilian Death", "hit points": ["109", "123"], "intelligence": ["96", "120"], "minimum taming": "N/A", "w/ a gm instrument": "68", "effective slayer": "Ophidian"}, {"taming difficulty": "n/a", "alignment": "evil", "dropped slayer": "Arachnid", "bushido": "", "control slots": "N/A", "special abilities": "", "fame": "16000", "tactics": ["50.1 ", " 70.0"], "spirit speak": "", "barding difficulty": "98", "stamina": ["96 ", " 115"], "karma": ["", "16000"], "hit points": ["250", "303"], "armor": "50", "dexterity": ["96", "115"], "detecting hidden": "", "gold": ["550", "650"], "pack instinct": "none", "first seen": "uo:t2a", "wrestling": ["60.1 ", " 80.0"], "focus": "", "healing": "", "magery": ["90.1 ", " 100.0"], "preferred foods": "", "name": "Ophidian Matriarch", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "monster type": "Magic", "resisting spells": ["90.1 ", " 100.0"], "mana": ["366 ", " 455"], "anatomy": "0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": ["5.4 ", " 25.0"], "w/ a slayer instrument": "78", "ninjitsu": "", "poisoning": "0", "base damage": ["11 ", " 13"], "slayer vulnerability": "ophidian slayer, reptile slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["366", "455"], "special": "level 4 treasure map, 1 potion, 1 medium level scroll", "parrying": "", "strength": ["416", "505"], "discordance": "", "primary type": "Reptiles", "damage": ["11", "13"], "keywords": "Ophidian Matriarch", "url": "http://www.uorenaissance.com/info/OphidianMatriarch", "cut up": "", "evaluating intelligence": ["90.1 ", " 100.0"], "base type": "Creature", "magic items": "", "w/ a gm instrument": "88", "effective slayer": "Ophidian"}, {"w/ a slayer instrument": "138", "monster type": "Magic", "armor": "78", "strength": ["810", "910"], "sub types": "ZookeepersQuest , Bosses", "inventory": {"chance": ["1", "1"], "description": "Platinum Coin"}, "dexterity": ["125", "135"], "primary type": "Reptiles", "base type": "Creature", "damage": ["18", "26"], "control slots": "N/A", "name": "Ophidian Queen", "keywords": "OphidianQueen", "url": "http://www.uorenaissance.com/info/OphidianQueen", "barding difficulty": "172", "hit points": ["1,900", "2,100"], "intelligence": ["420", "475"], "minimum taming": "N/A", "w/ a gm instrument": "155"}, {"taming difficulty": "n/a", "alignment": "evil", "dropped slayer": "Arachnid", "bushido": "", "control slots": "N/A", "special abilities": "", "fame": "4500", "tactics": ["75.1 ", " 90.0"], "spirit speak": "", "barding difficulty": "65", "stamina": ["94 ", " 190"], "karma": ["", "4500"], "hit points": ["128", "155"], "armor": "36", "dexterity": ["94", "190"], "detecting hidden": "", "gold": ["175", "225"], "pack instinct": "none", "first seen": "uo:t2a", "wrestling": "0", "focus": "", "healing": "", "magery": "", "preferred foods": "", "name": "Ophidian Warrior", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "monster type": "Melee", "resisting spells": ["70.1 ", " 85.0"], "mana": "0", "anatomy": "", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "", "w/ a slayer instrument": "52", "ninjitsu": "", "poisoning": "", "base damage": ["5 ", " 11"], "slayer vulnerability": "ophidian slayer, reptile slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["64", "160"], "special": "level 1treasure map", "parrying": "", "strength": ["150", "320"], "discordance": "", "primary type": "Reptiles", "damage": ["5", "11"], "keywords": "Ophidian Warrior", "url": "http://www.uorenaissance.com/info/OphidianWarrior", "cut up": "1 raw rib", "evaluating intelligence": "", "base type": "Creature", "magic items": "", "w/ a gm instrument": "59", "effective slayer": "Ophidian"}, {"taming difficulty": "n/a", "alignment": "evil", "bushido": "", "control slots": "N/A", "special abilities": "fire breath", "fame": "6000", "tactics": ["60.1 ", " 70.0"], "spirit speak": "", "barding difficulty": "64", "stamina": ["58 ", " 85"], "karma": ["", "6000"], "hit points": ["110", "127"], "armor": "30", "dexterity": ["58", "85"], "detecting hidden": "", "gold": ["50", "100"], "pack instinct": "none", "first seen": "day one", "wrestling": ["60.1 ", " 70.0"], "focus": "", "healing": "", "magery": "", "preferred foods": "", "name": "Sea Serpent", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "monster type": "Magic, Breath Attack", "resisting spells": ["60.1 ", " 75.0"], "mana": ["53 ", " 95"], "anatomy": "", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "", "w/ a slayer instrument": "51", "ninjitsu": "", "poisoning": "", "base damage": ["7 ", " 13"], "slayer vulnerability": "reptile slayer, snake slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["53", "95"], "special": "message in a bottle, special fishing net, level 1 or 2 treasure map", "parrying": "", "strength": ["168", "225"], "discordance": "", "primary type": "Reptiles", "damage": ["7", "13"], "keywords": "Sea Serpent", "url": "http://www.uorenaissance.com/info/SeaSerpent", "cut up": "8 blue sea serpent scales, 10 horned leather, 1 fish steak", "evaluating intelligence": "", "base type": "Creature", "magic items": "", "w/ a gm instrument": "58", "effective slayer": "Snakes Bane"}, {"taming difficulty": "n/a", "alignment": "good", "dropped slayer": "Arachnid", "bushido": "", "control slots": "N/A", "special abilities": "fire breath, chance to do triple damage against pets.", "fame": "15000", "tactics": ["50.1 ", " 60.0"], "spirit speak": "", "barding difficulty": "130", "stamina": ["201 ", " 220"], "karma": "15000", "hit points": ["480", "480"], "armor": "36", "dexterity": ["201", "220"], "detecting hidden": "", "gold": ["900", "1100"], "pack instinct": "none", "first seen": "third dawn", "wrestling": ["30.1 ", " 100.0"], "focus": "", "healing": "", "magery": ["110.1 ", " 120.0"], "preferred foods": "", "name": "Serpentine Dragon", "inventory": {"chance": ["1", "100"], "description": "Level 4 Treasure Map"}, "monster type": "Magic, Breath Attack", "resisting spells": "100.0", "mana": ["1001 ", " 1040"], "anatomy": "0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "100.0", "w/ a slayer instrument": "104", "ninjitsu": "", "poisoning": "0", "base damage": ["5 ", " 12"], "slayer vulnerability": "dragon slayer, reptile slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["1,001", "1,040"], "special": ["2 Gems, Level", "4 Treasure Map, Peculiar Seed, Fragrant Seed"], "parrying": "", "strength": ["111", "140"], "discordance": "", "primary type": "Reptiles", "damage": ["5", "12"], "keywords": "Serpentine Dragon", "url": "http://www.uorenaissance.com/info/SerpentineDragon", "cut up": "dragon scales, 20 barbed hides, 19 raw ribs", "evaluating intelligence": ["100.1 ", " 110.0"], "base type": "Creature", "magic items": "", "w/ a gm instrument": "117", "effective slayer": "Dragon Slaying"}, {"taming difficulty": "n/a", "alignment": "evil", "dropped slayer": "Arachnid", "bushido": "", "control slots": "N/A", "special abilities": "fire breath, immune to level 4 poison and below, small chance to inflict level 4 poison", "fame": "22500", "tactics": ["97.6 ", " 100.0"], "spirit speak": "", "barding difficulty": "141", "stamina": ["68 ", " 200"], "karma": ["", "22500"], "hit points": ["558", "599"], "armor": "70", "dexterity": ["68", "200"], "detecting hidden": "", "gold": ["1550", "1800"], "pack instinct": "none", "first seen": "middle 2000", "wrestling": ["97.6 ", " 100.0"], "focus": "", "healing": "", "magery": ["80.1 ", " 100.0"], "preferred foods": "", "name": "Shadow Wyrm", "inventory": {"chance": ["1", "100"], "description": "Platinum Coin"}, "monster type": "Magic, Breath Attack", "resisting spells": ["100.3 ", " 130.0"], "mana": ["488 ", " 620"], "anatomy": "0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": ["52.5 ", " 75.0"], "w/ a slayer instrument": "113", "ninjitsu": "", "poisoning": "0", "base damage": ["29 ", " 35"], "slayer vulnerability": "reptile, dragon slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["488", "620"], "special": ["5 Gems, Level", "5 Treasure Map"], "parrying": "", "strength": ["898", "1,030"], "discordance": "", "primary type": "Reptiles", "damage": ["29", "35"], "keywords": "Shadow Wyrm", "url": "http://www.uorenaissance.com/info/ShadowWyrm", "cut up": "20 barbed hides, 19 raw ribs, dragon scales", "evaluating intelligence": ["80.1 ", " 100.0"], "base type": "Creature", "magic items": "", "w/ a gm instrument": "127", "effective slayer": "Dragon Slaying"}, {"w/ a slayer instrument": "59", "monster type": "Melee", "armor": "40", "strength": ["250", "275"], "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "dexterity": ["90", "110"], "primary type": "Reptiles", "base type": "Creature", "damage": ["15", "25"], "control slots": "N/A", "name": "Shipwreck Kraken", "keywords": "Shipwreck Kraken", "url": "http://www.uorenaissance.com/info/ShipwreckKraken", "barding difficulty": "74", "hit points": ["250", "275"], "intelligence": ["26", "40"], "minimum taming": "N/A", "w/ a gm instrument": "67"}, {"taming difficulty": "n/a", "alignment": "evil", "bushido": "", "control slots": "N/A", "fame": "22500", "tactics": ["97.6 ", " 100.0"], "spirit speak": "", "barding difficulty": ["118.3", "127"], "stamina": ["68 ", " 200"], "karma": ["", "22500"], "hit points": ["558 ", " 599"], "armor": "80", "dexterity": ["68 ", " 200"], "gold": ["1600", "1800"], "pack instinct": "none", "first seen": "uo:3d", "wrestling": ["97.6 ", " 100.0"], "focus": "", "healing": "", "magery": ["80.1 ", " 100.0"], "preferred foods": "", "name": "Skeletal Dragon", "monster type": "Magic, Breath Attack", "resisting spells": ["100.3 ", " 130.0"], "mana": ["488 ", " 620"], "anatomy": "0", "spellweaving": "", "meditation": "0", "ninjitsu": "", "poisoning": "0", "base damage": ["29", "35"], "slayer vulnerability": "dragon, reptile", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["488 ", " 620"], "special": "level 5 treasure map, 5 gems,", "base type": "Creature", "strength": ["898 ", " 1030"], "discordance": "", "primary type": "Reptiles", "keywords": "Skeletal Dragon", "url": "http://www.uorenaissance.com/info/SkeletalDragon", "cut up": "20 barbed hides, 19 raw ribs", "evaluating intelligence": ["80.1 ", " 100.0"], "parrying": "", "magic items": "", "special abilities": "fire breath, immune to level 5 poison and below, immune to the provocation skill, chance to do triple damage against pets", "detecting hidden": ""}, {"taming difficulty": "96.3", "alignment": "evil", "dropped slayer": "Arachnid", "bushido": "", "control slots": "3", "special abilities": "", "fame": "18000", "tactics": ["97.6 ", " 100.0"], "spirit speak": "", "barding difficulty": "103", "stamina": ["101 ", " 130"], "karma": ["", "18000"], "hit points": ["433", "456"], "armor": "64", "dexterity": ["101", "130"], "detecting hidden": "", "gold": ["1200 ", " 1400"], "pack instinct": "none", "first seen": "second age", "wrestling": ["90.1 ", " 100.0"], "focus": "", "healing": "", "magery": ["99.1 ", " 100.0"], "preferred foods": "meatalso accepts gold", "name": "White Wyrm", "inventory": {"chance": ["1", "100"], "description": "Platinum Coin"}, "monster type": "Magic", "resisting spells": ["99.1 ", " 100.0"], "mana": ["386 ", " 425"], "anatomy": "0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "0", "w/ a slayer instrument": "82", "ninjitsu": "", "poisoning": "0", "base damage": ["17 ", " 25"], "slayer vulnerability": "reptile slayer, dragon slayer", "necromancy": "", "minimum taming": "96.3", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["386", "425"], "special": ["1", "5 Gems, Level 4 Treasure Map"], "parrying": "", "strength": ["721", "760"], "discordance": "", "primary type": "Reptiles", "damage": ["17", "25"], "keywords": "White Wyrm", "url": "http://www.uorenaissance.com/info/WhiteWyrm", "cut up": "9 scales, 20 barbed hides, 19 raw ribs, 8 dragon's blood", "evaluating intelligence": ["99.1 ", " 100.0"], "base type": "Creature", "magic items": "", "w/ a gm instrument": "93", "effective slayer": "Dragon Slaying"}, {"taming difficulty": "not tameable", "alignment": "evil", "bushido": "", "control slots": "N/A", "special abilities": ["Can inflict level", "4 poison, Immune to level 4 poison and below"], "fame": "4000", "tactics": ["65.1 ", " 90.0"], "spirit speak": "", "barding difficulty": "79", "stamina": ["153 ", " 172"], "karma": ["", "4000"], "hit points": ["125", "141"], "armor": "40", "dexterity": ["153", "172"], "detecting hidden": "", "gold": ["175", "225"], "pack instinct": "none", "first seen": "t2a", "wrestling": ["65.1 ", " 80.0"], "focus": "", "healing": "", "magery": "0", "preferred foods": "meat", "name": "Wyvern", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "monster type": "Melee", "resisting spells": ["65.1 ", " 80.0"], "mana": ["51 ", " 90"], "anatomy": "0", "effective super slayer": "Reptilian Death", "spellweaving": "", "meditation": "0", "w/ a slayer instrument": "63", "ninjitsu": "", "poisoning": ["60.1 ", " 80.0"], "base damage": ["8 ", " 19"], "slayer vulnerability": "reptile, dragon slayer", "necromancy": "", "minimum taming": "N/A", "mysticism": "", "chivalry": "", "hiding": "", "intelligence": ["51", "90"], "special": "lesser poison potion, 1 medium level scroll, level 2 treasure map", "parrying": "", "strength": ["202", "240"], "discordance": "", "primary type": "Reptiles", "damage": ["8", "19"], "keywords": "Wyvern", "url": "http://www.uorenaissance.com/info/Wyvern", "cut up": "20 horned hides", "evaluating intelligence": "0", "base type": "Creature", "magic items": "", "w/ a gm instrument": "71", "effective slayer": "Dragon Slaying"}, {"w/ a slayer instrument": "100", "dropped slayer": "Arachnid", "sub types": "Bosses", "control slots": "N/A", "minimum taming": "N/A", "barding difficulty": "125", "hit points": ["650", "725"], "armor": "55", "dexterity": ["153", "172"], "intelligence": ["300", "400"], "url": "http://www.uorenaissance.com/info/WyvernMonarch", "effective super slayer": "Reptilian Death", "strength": ["1,075", "1,125"], "primary type": "Reptiles", "damage": ["12", "24"], "keywords": "Wyvern Monarch", "name": "Wyvern Monarch", "inventory": {"chance": ["1", "250"], "description": "Wyvern Monarch Statuette"}, "monster type": "Melee", "base type": "Creature", "w/ a gm instrument": "113", "effective slayer": "Dragon Slaying"}]
+[
+    {
+        "w/ a slayer instrument": "151",
+        "monster type": "Melee",
+        "armor": "55",
+        "strength": [
+            "1,075",
+            "1,125"
+        ],
+        "sub types": "Bosses",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Platinum Coin"
+        },
+        "dexterity": [
+            "153",
+            "172"
+        ],
+        "primary type": "Reptiles",
+        "base type": "Creature",
+        "damage": [
+            "12",
+            "24"
+        ],
+        "control slots": "N/A",
+        "name": "Anaconda",
+        "keywords": "Anaconda",
+        "url": "http://www.uorenaissance.com/info/Anaconda",
+        "barding difficulty": "189",
+        "hit points": [
+            "1,650",
+            "1,925"
+        ],
+        "intelligence": [
+            "300",
+            "400"
+        ],
+        "minimum taming": "N/A",
+        "w/ a gm instrument": "170"
+    },
+    {
+        "taming difficulty": "cannot be tamed",
+        "alignment": "evil",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "immune to level 2 poison and below, can breathe fire",
+        "fame": "level 5 (22500)",
+        "tactics": [
+            "127+/",
+            ""
+        ],
+        "spirit speak": "",
+        "barding difficulty": "149",
+        "stamina": [
+            "86 ",
+            " 175"
+        ],
+        "karma": "level 5 (-22500)",
+        "hit points": [
+            "658",
+            "711"
+        ],
+        "armor": "70",
+        "dexterity": [
+            "86",
+            "175"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "1600 ",
+            " 1800"
+        ],
+        "pack instinct": "none",
+        "first seen": "initial release of uo",
+        "wrestling": [
+            "110+/",
+            ""
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": [
+            "109.7+/",
+            ""
+        ],
+        "preferred foods": "cannot be tamed",
+        "name": "Ancient Wyrm",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic",
+        "resisting spells": [
+            "100.5 ",
+            " 150.0"
+        ],
+        "mana": [
+            "847+/",
+            ""
+        ],
+        "anatomy": "0.0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": [
+            "52.5 ",
+            " 75.0"
+        ],
+        "w/ a slayer instrument": "119",
+        "ninjitsu": "",
+        "poisoning": "none",
+        "base damage": [
+            "29 ",
+            " 35"
+        ],
+        "slayer vulnerability": "dragon slayer, reptile slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "686",
+            "775"
+        ],
+        "special": "level 5 treasure map",
+        "parrying": "",
+        "strength": [
+            "1,096",
+            "1,185"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "29",
+            "35"
+        ],
+        "keywords": "Ancient Wyrm",
+        "url": "http://www.uorenaissance.com/info/AncientWyrm",
+        "cut up": "12 scales, 40 barbed hides,19 raw ribs",
+        "evaluating intelligence": [
+            "109+/",
+            ""
+        ],
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "134",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "w/ a slayer instrument": "191",
+        "dropped slayer": "Arachnid",
+        "sub types": "Bosses",
+        "control slots": "N/A",
+        "minimum taming": "N/A",
+        "barding difficulty": "239",
+        "hit points": [
+            "3,500",
+            "3,750"
+        ],
+        "armor": "80",
+        "dexterity": [
+            "120",
+            "130"
+        ],
+        "intelligence": [
+            "770",
+            "820"
+        ],
+        "url": "http://www.uorenaissance.com/info/AzureDragon",
+        "effective super slayer": "Reptilian Death",
+        "strength": [
+            "1,070",
+            "1,120"
+        ],
+        "primary type": "Reptiles",
+        "damage": [
+            "20",
+            "29"
+        ],
+        "keywords": "Azure Dragon",
+        "name": "Azure Dragon",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "PlatinumCoin"
+        },
+        "monster type": "Magic, Breath Attack",
+        "base type": "Creature",
+        "w/ a gm instrument": "215",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "neutral",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "fire breath",
+        "fame": "level 4 (6000)",
+        "tactics": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "74",
+        "stamina": [
+            "87 ",
+            " 135"
+        ],
+        "karma": "level 4 (-6000)",
+        "hit points": [
+            "151",
+            "255"
+        ],
+        "armor": "60",
+        "dexterity": [
+            "87",
+            "135"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "50 ",
+            " 100"
+        ],
+        "pack instinct": "none",
+        "first seen": "initial release of uo",
+        "wrestling": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": "0.0",
+        "preferred foods": "meat",
+        "name": "Deep Sea Serpent",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic, Breath Attack",
+        "resisting spells": [
+            "60.1 ",
+            " 75.0"
+        ],
+        "mana": [
+            "87 ",
+            " 155"
+        ],
+        "anatomy": "0.0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "0.0",
+        "w/ a slayer instrument": "59",
+        "ninjitsu": "",
+        "poisoning": "none",
+        "base damage": [
+            "6 ",
+            " 14"
+        ],
+        "slayer vulnerability": "reptile slayer, snake slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "87",
+            "155"
+        ],
+        "special": "4 black pearl, level 2 treasure map, message in a bottle, special fishing net, 4 sulfurous ash",
+        "parrying": "",
+        "strength": [
+            "251",
+            "425"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "6",
+            "14"
+        ],
+        "keywords": "Deep Sea Serpent",
+        "url": "http://www.uorenaissance.com/info/DeepSeaSerpent",
+        "cut up": "10 horned hides, 10 raw ribs, 8 sea serpent scales",
+        "evaluating intelligence": "0.0",
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "67",
+        "effective slayer": "Snakes Bane"
+    },
+    {
+        "taming difficulty": "93.9",
+        "alignment": "evil",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "fire breath",
+        "fame": "level 5 (15000)",
+        "tactics": [
+            "97.6 ",
+            " 100.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "112",
+        "stamina": [
+            "86 ",
+            " 105"
+        ],
+        "karma": "level 5 (-15000)",
+        "hit points": [
+            "478",
+            "495"
+        ],
+        "armor": "60",
+        "dexterity": [
+            "86",
+            "105"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "1000 ",
+            " 1200"
+        ],
+        "pack instinct": "none",
+        "first seen": "initial release of uo",
+        "wrestling": [
+            "90.1 ",
+            " 92.5"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": [
+            "30.1 ",
+            " 40.0"
+        ],
+        "preferred foods": "meat",
+        "name": "Dragon",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic, Breath Attack",
+        "resisting spells": [
+            "99.1 ",
+            " 100.0"
+        ],
+        "mana": [
+            "436 ",
+            " 475"
+        ],
+        "anatomy": "0.0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "0.0",
+        "w/ a slayer instrument": "90",
+        "ninjitsu": "",
+        "poisoning": "none",
+        "base damage": [
+            "16 ",
+            " 22"
+        ],
+        "slayer vulnerability": "dragon, reptile",
+        "necromancy": "",
+        "minimum taming": "93.9",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "436",
+            "475"
+        ],
+        "special": "8 gems, level 4 treasure map",
+        "parrying": "",
+        "strength": [
+            "796",
+            "825"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "16",
+            "22"
+        ],
+        "keywords": "Dragon",
+        "url": "http://www.uorenaissance.com/info/Dragon",
+        "cut up": "20 barbed hides, 7 red or yellow dragon scales, 19 raw ribs, 8 dragon's blood",
+        "evaluating intelligence": [
+            "30.1 ",
+            " 40.0"
+        ],
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "101",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "taming difficulty": "84.3",
+        "alignment": "evil",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "2",
+        "special abilities": "fire breath",
+        "fame": "level 4 (5500)",
+        "tactics": [
+            "65.1 ",
+            " 90.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "79",
+        "stamina": [
+            "133 ",
+            " 152"
+        ],
+        "karma": "level 4 (-5500)",
+        "hit points": [
+            "241",
+            "258"
+        ],
+        "armor": "46",
+        "dexterity": [
+            "133",
+            "152"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "275 ",
+            " 325"
+        ],
+        "pack instinct": "none",
+        "first seen": "initial release of uo",
+        "wrestling": [
+            "65.1 ",
+            " 80.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": "none",
+        "preferred foods": "fish",
+        "name": "Drake",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Melee, Breath Attack",
+        "resisting spells": [
+            "65.1 ",
+            " 80.0"
+        ],
+        "mana": [
+            "101 ",
+            " 140"
+        ],
+        "anatomy": "0.0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "none",
+        "w/ a slayer instrument": "63",
+        "ninjitsu": "",
+        "poisoning": "none",
+        "base damage": [
+            "11 ",
+            " 17"
+        ],
+        "slayer vulnerability": "dragon, reptile",
+        "necromancy": "",
+        "minimum taming": "84.3",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "101",
+            "140"
+        ],
+        "special": "level 2 treasure map, 3 magery reagents",
+        "parrying": "",
+        "strength": [
+            "401",
+            "430"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "11",
+            "17"
+        ],
+        "keywords": "Drake",
+        "url": "http://www.uorenaissance.com/info/Drake",
+        "cut up": "2 red or yellow scales, 20 horned hides, 10 raw ribs, 8 dragon's blood",
+        "evaluating intelligence": "none",
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "71",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "w/ a slayer instrument": "292",
+        "dropped slayer": "Arachnid",
+        "sub types": "Bosses",
+        "control slots": "N/A",
+        "minimum taming": "N/A",
+        "barding difficulty": "365",
+        "hit points": [
+            "5,300",
+            "5,600"
+        ],
+        "armor": "90",
+        "dexterity": [
+            "125",
+            "145"
+        ],
+        "intelligence": [
+            "1,286",
+            "1,325"
+        ],
+        "url": "http://www.uorenaissance.com/info/ElderWyrm",
+        "effective super slayer": "Reptilian Death",
+        "strength": [
+            "1,410",
+            "1,450"
+        ],
+        "primary type": "Reptiles",
+        "damage": [
+            "29",
+            "36"
+        ],
+        "keywords": "Elder Wyrm",
+        "name": "Elder Wyrm",
+        "inventory": {
+            "chance": [
+                "1",
+                "4"
+            ],
+            "description": "Peculiar Meat (Carve)"
+        },
+        "monster type": "Magic, Breath Attack",
+        "base type": "Creature",
+        "w/ a gm instrument": "329",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "evil",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "",
+        "fame": "11000",
+        "tactics": [
+            "45.1",
+            "60.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "89",
+        "stamina": [
+            "226",
+            "245"
+        ],
+        "karma": [
+            "",
+            "11000"
+        ],
+        "hit points": [
+            "250",
+            "275"
+        ],
+        "armor": "50",
+        "dexterity": [
+            "90",
+            "110"
+        ],
+        "gold": [
+            "275",
+            "325"
+        ],
+        "pack instinct": "none",
+        "first seen": "the second age",
+        "wrestling": [
+            "45.1",
+            "60.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": "",
+        "preferred foods": "none",
+        "name": "Kraken",
+        "inventory": {
+            "chance": [
+                "1",
+                "10"
+            ],
+            "description": "Special Fishing Net"
+        },
+        "monster type": "Melee, Breath Attack",
+        "resisting spells": [
+            "15.1",
+            "20.0"
+        ],
+        "mana": "0",
+        "anatomy": "",
+        "spellweaving": "",
+        "meditation": "",
+        "w/ a slayer instrument": "71",
+        "ninjitsu": "",
+        "poisoning": "",
+        "base damage": [
+            "19",
+            "33"
+        ],
+        "slayer vulnerability": "",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "26",
+            "40"
+        ],
+        "special": "rope, message in a bottle (fishing)level 4 treasure map",
+        "parrying": "",
+        "strength": [
+            "250",
+            "275"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "15",
+            "25"
+        ],
+        "keywords": "Kraken",
+        "url": "http://www.uorenaissance.com/info/Kraken",
+        "cut up": "none",
+        "evaluating intelligence": "",
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "80",
+        "detecting hidden": ""
+    },
+    {
+        "url": "http://www.uorenaissance.com/info/Leviathan",
+        "monster type": "Magic",
+        "base type": "Creature",
+        "primary type": "Reptiles",
+        "armor": "??",
+        "minimum taming": "??",
+        "control slots": "N/A",
+        "name": "Leviathan",
+        "keywords": "Leviathan"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "evil",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "",
+        "fame": "1500",
+        "tactics": [
+            "55.1",
+            "80.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "46",
+        "stamina": [
+            "86",
+            "105"
+        ],
+        "karma": [
+            "",
+            "1500"
+        ],
+        "hit points": [
+            "58",
+            "72"
+        ],
+        "armor": "28",
+        "dexterity": [
+            "86",
+            "105"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "50",
+            "75"
+        ],
+        "pack instinct": "none",
+        "first seen": "day one",
+        "wrestling": [
+            "50.1",
+            "70.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": "0",
+        "preferred foods": "none",
+        "name": "Lizardman",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Melee",
+        "resisting spells": [
+            "35.1",
+            "60.0"
+        ],
+        "mana": [
+            "36",
+            "60"
+        ],
+        "anatomy": "0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "0",
+        "w/ a slayer instrument": "37",
+        "ninjitsu": "",
+        "poisoning": "0",
+        "base damage": [
+            "5",
+            "7"
+        ],
+        "slayer vulnerability": "lizardman slayer, reptile slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "special": "level 1 treasure map",
+        "parrying": "",
+        "strength": [
+            "96",
+            "120"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "5",
+            "7"
+        ],
+        "keywords": "Lizardman",
+        "url": "http://www.uorenaissance.com/info/Lizardman",
+        "cut up": "12 spined hides, 1 raw rib",
+        "evaluating intelligence": "0",
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "41",
+        "effective slayer": "Lizardman Slaughter"
+    },
+    {
+        "w/ a slayer instrument": "74",
+        "monster type": "Magic, Breath Attack",
+        "armor": "60",
+        "strength": [
+            "756",
+            "780"
+        ],
+        "inventory": {
+            "chance": [
+                "1",
+                "10"
+            ],
+            "description": "Random Fishing Net Piece"
+        },
+        "dexterity": [
+            "226",
+            "245"
+        ],
+        "primary type": "Reptiles",
+        "base type": "Creature",
+        "damage": [
+            "19",
+            "33"
+        ],
+        "control slots": "N/A",
+        "name": "Lock Lake Monster",
+        "keywords": "Lock Lake Monster",
+        "url": "http://www.uorenaissance.com/info/Nessie",
+        "barding difficulty": "93",
+        "hit points": [
+            "750",
+            "800"
+        ],
+        "intelligence": [
+            "100",
+            "200"
+        ],
+        "minimum taming": "N/A",
+        "w/ a gm instrument": "84"
+    },
+    {
+        "w/ a slayer instrument": "61",
+        "monster type": "Magic",
+        "armor": "44",
+        "strength": [
+            "281",
+            "305"
+        ],
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "dexterity": [
+            "191",
+            "215"
+        ],
+        "primary type": "Reptiles",
+        "base type": "Creature",
+        "damage": [
+            "36",
+            "45"
+        ],
+        "control slots": "N/A",
+        "name": "Ophidian Archmage",
+        "keywords": "Ophidian Archmage",
+        "url": "http://www.uorenaissance.com/info/OphidianArchmage",
+        "dropped slayer": "Arachnid",
+        "barding difficulty": "76",
+        "effective super slayer": "Reptilian Death",
+        "hit points": [
+            "169",
+            "183"
+        ],
+        "intelligence": [
+            "226",
+            "250"
+        ],
+        "minimum taming": "N/A",
+        "w/ a gm instrument": "68",
+        "effective slayer": "Ophidian"
+    },
+    {
+        "w/ a slayer instrument": "62",
+        "monster type": "Melee",
+        "armor": "40",
+        "strength": [
+            "417",
+            "595"
+        ],
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "dexterity": [
+            "166",
+            "175"
+        ],
+        "primary type": "Reptiles",
+        "base type": "Creature",
+        "damage": [
+            "16",
+            "19"
+        ],
+        "control slots": "N/A",
+        "name": "Ophidian Knight",
+        "keywords": "Ophidian Knight",
+        "url": "http://www.uorenaissance.com/info/OphidianKnight",
+        "dropped slayer": "Arachnid",
+        "barding difficulty": "78",
+        "effective super slayer": "Reptilian Death",
+        "hit points": [
+            "266",
+            "342"
+        ],
+        "intelligence": [
+            "46",
+            "70"
+        ],
+        "minimum taming": "N/A",
+        "w/ a gm instrument": "70",
+        "effective slayer": "Ophidian"
+    },
+    {
+        "w/ a slayer instrument": "61",
+        "monster type": "Magic",
+        "armor": "30",
+        "strength": [
+            "181",
+            "205"
+        ],
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Random Potion"
+        },
+        "dexterity": [
+            "191",
+            "215"
+        ],
+        "primary type": "Reptiles",
+        "base type": "Creature",
+        "damage": [
+            "5",
+            "10"
+        ],
+        "control slots": "N/A",
+        "name": "Ophidian Mage",
+        "keywords": "Ophidian Mage",
+        "url": "http://www.uorenaissance.com/info/OphidianMage",
+        "dropped slayer": "Arachnid",
+        "barding difficulty": "76",
+        "effective super slayer": "Reptilian Death",
+        "hit points": [
+            "109",
+            "123"
+        ],
+        "intelligence": [
+            "96",
+            "120"
+        ],
+        "minimum taming": "N/A",
+        "w/ a gm instrument": "68",
+        "effective slayer": "Ophidian"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "evil",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "",
+        "fame": "16000",
+        "tactics": [
+            "50.1 ",
+            " 70.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "98",
+        "stamina": [
+            "96 ",
+            " 115"
+        ],
+        "karma": [
+            "",
+            "16000"
+        ],
+        "hit points": [
+            "250",
+            "303"
+        ],
+        "armor": "50",
+        "dexterity": [
+            "96",
+            "115"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "550",
+            "650"
+        ],
+        "pack instinct": "none",
+        "first seen": "uo:t2a",
+        "wrestling": [
+            "60.1 ",
+            " 80.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "preferred foods": "",
+        "name": "Ophidian Matriarch",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic",
+        "resisting spells": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "mana": [
+            "366 ",
+            " 455"
+        ],
+        "anatomy": "0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": [
+            "5.4 ",
+            " 25.0"
+        ],
+        "w/ a slayer instrument": "78",
+        "ninjitsu": "",
+        "poisoning": "0",
+        "base damage": [
+            "11 ",
+            " 13"
+        ],
+        "slayer vulnerability": "ophidian slayer, reptile slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "366",
+            "455"
+        ],
+        "special": "level 4 treasure map, 1 potion, 1 medium level scroll",
+        "parrying": "",
+        "strength": [
+            "416",
+            "505"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "11",
+            "13"
+        ],
+        "keywords": "Ophidian Matriarch",
+        "url": "http://www.uorenaissance.com/info/OphidianMatriarch",
+        "cut up": "",
+        "evaluating intelligence": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "88",
+        "effective slayer": "Ophidian"
+    },
+    {
+        "w/ a slayer instrument": "138",
+        "monster type": "Magic",
+        "armor": "78",
+        "strength": [
+            "810",
+            "910"
+        ],
+        "sub types": "ZookeepersQuest , Bosses",
+        "inventory": {
+            "chance": [
+                "1",
+                "1"
+            ],
+            "description": "Platinum Coin"
+        },
+        "dexterity": [
+            "125",
+            "135"
+        ],
+        "primary type": "Reptiles",
+        "base type": "Creature",
+        "damage": [
+            "18",
+            "26"
+        ],
+        "control slots": "N/A",
+        "name": "Ophidian Queen",
+        "keywords": "OphidianQueen",
+        "url": "http://www.uorenaissance.com/info/OphidianQueen",
+        "barding difficulty": "172",
+        "hit points": [
+            "1,900",
+            "2,100"
+        ],
+        "intelligence": [
+            "420",
+            "475"
+        ],
+        "minimum taming": "N/A",
+        "w/ a gm instrument": "155"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "evil",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "",
+        "fame": "4500",
+        "tactics": [
+            "75.1 ",
+            " 90.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "65",
+        "stamina": [
+            "94 ",
+            " 190"
+        ],
+        "karma": [
+            "",
+            "4500"
+        ],
+        "hit points": [
+            "128",
+            "155"
+        ],
+        "armor": "36",
+        "dexterity": [
+            "94",
+            "190"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "175",
+            "225"
+        ],
+        "pack instinct": "none",
+        "first seen": "uo:t2a",
+        "wrestling": "0",
+        "focus": "",
+        "healing": "",
+        "magery": "",
+        "preferred foods": "",
+        "name": "Ophidian Warrior",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Melee",
+        "resisting spells": [
+            "70.1 ",
+            " 85.0"
+        ],
+        "mana": "0",
+        "anatomy": "",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "",
+        "w/ a slayer instrument": "52",
+        "ninjitsu": "",
+        "poisoning": "",
+        "base damage": [
+            "5 ",
+            " 11"
+        ],
+        "slayer vulnerability": "ophidian slayer, reptile slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "64",
+            "160"
+        ],
+        "special": "level 1treasure map",
+        "parrying": "",
+        "strength": [
+            "150",
+            "320"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "5",
+            "11"
+        ],
+        "keywords": "Ophidian Warrior",
+        "url": "http://www.uorenaissance.com/info/OphidianWarrior",
+        "cut up": "1 raw rib",
+        "evaluating intelligence": "",
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "59",
+        "effective slayer": "Ophidian"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "evil",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "fire breath",
+        "fame": "6000",
+        "tactics": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "64",
+        "stamina": [
+            "58 ",
+            " 85"
+        ],
+        "karma": [
+            "",
+            "6000"
+        ],
+        "hit points": [
+            "110",
+            "127"
+        ],
+        "armor": "30",
+        "dexterity": [
+            "58",
+            "85"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "50",
+            "100"
+        ],
+        "pack instinct": "none",
+        "first seen": "day one",
+        "wrestling": [
+            "60.1 ",
+            " 70.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": "",
+        "preferred foods": "",
+        "name": "Sea Serpent",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic, Breath Attack",
+        "resisting spells": [
+            "60.1 ",
+            " 75.0"
+        ],
+        "mana": [
+            "53 ",
+            " 95"
+        ],
+        "anatomy": "",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "",
+        "w/ a slayer instrument": "51",
+        "ninjitsu": "",
+        "poisoning": "",
+        "base damage": [
+            "7 ",
+            " 13"
+        ],
+        "slayer vulnerability": "reptile slayer, snake slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "53",
+            "95"
+        ],
+        "special": "message in a bottle, special fishing net, level 1 or 2 treasure map",
+        "parrying": "",
+        "strength": [
+            "168",
+            "225"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "7",
+            "13"
+        ],
+        "keywords": "Sea Serpent",
+        "url": "http://www.uorenaissance.com/info/SeaSerpent",
+        "cut up": "8 blue sea serpent scales, 10 horned leather, 1 fish steak",
+        "evaluating intelligence": "",
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "58",
+        "effective slayer": "Snakes Bane"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "good",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "fire breath, chance to do triple damage against pets.",
+        "fame": "15000",
+        "tactics": [
+            "50.1 ",
+            " 60.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "130",
+        "stamina": [
+            "201 ",
+            " 220"
+        ],
+        "karma": "15000",
+        "hit points": [
+            "480",
+            "480"
+        ],
+        "armor": "36",
+        "dexterity": [
+            "201",
+            "220"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "900",
+            "1100"
+        ],
+        "pack instinct": "none",
+        "first seen": "third dawn",
+        "wrestling": [
+            "30.1 ",
+            " 100.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": [
+            "110.1 ",
+            " 120.0"
+        ],
+        "preferred foods": "",
+        "name": "Serpentine Dragon",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Level 4 Treasure Map"
+        },
+        "monster type": "Magic, Breath Attack",
+        "resisting spells": "100.0",
+        "mana": [
+            "1001 ",
+            " 1040"
+        ],
+        "anatomy": "0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "100.0",
+        "w/ a slayer instrument": "104",
+        "ninjitsu": "",
+        "poisoning": "0",
+        "base damage": [
+            "5 ",
+            " 12"
+        ],
+        "slayer vulnerability": "dragon slayer, reptile slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "1,001",
+            "1,040"
+        ],
+        "special": [
+            "2 Gems, Level",
+            "4 Treasure Map, Peculiar Seed, Fragrant Seed"
+        ],
+        "parrying": "",
+        "strength": [
+            "111",
+            "140"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "5",
+            "12"
+        ],
+        "keywords": "Serpentine Dragon",
+        "url": "http://www.uorenaissance.com/info/SerpentineDragon",
+        "cut up": "dragon scales, 20 barbed hides, 19 raw ribs",
+        "evaluating intelligence": [
+            "100.1 ",
+            " 110.0"
+        ],
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "117",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "evil",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": "fire breath, immune to level 4 poison and below, small chance to inflict level 4 poison",
+        "fame": "22500",
+        "tactics": [
+            "97.6 ",
+            " 100.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "141",
+        "stamina": [
+            "68 ",
+            " 200"
+        ],
+        "karma": [
+            "",
+            "22500"
+        ],
+        "hit points": [
+            "558",
+            "599"
+        ],
+        "armor": "70",
+        "dexterity": [
+            "68",
+            "200"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "1550",
+            "1800"
+        ],
+        "pack instinct": "none",
+        "first seen": "middle 2000",
+        "wrestling": [
+            "97.6 ",
+            " 100.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": [
+            "80.1 ",
+            " 100.0"
+        ],
+        "preferred foods": "",
+        "name": "Shadow Wyrm",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic, Breath Attack",
+        "resisting spells": [
+            "100.3 ",
+            " 130.0"
+        ],
+        "mana": [
+            "488 ",
+            " 620"
+        ],
+        "anatomy": "0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": [
+            "52.5 ",
+            " 75.0"
+        ],
+        "w/ a slayer instrument": "113",
+        "ninjitsu": "",
+        "poisoning": "0",
+        "base damage": [
+            "29 ",
+            " 35"
+        ],
+        "slayer vulnerability": "reptile, dragon slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "488",
+            "620"
+        ],
+        "special": [
+            "5 Gems, Level",
+            "5 Treasure Map"
+        ],
+        "parrying": "",
+        "strength": [
+            "898",
+            "1,030"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "29",
+            "35"
+        ],
+        "keywords": "Shadow Wyrm",
+        "url": "http://www.uorenaissance.com/info/ShadowWyrm",
+        "cut up": "20 barbed hides, 19 raw ribs, dragon scales",
+        "evaluating intelligence": [
+            "80.1 ",
+            " 100.0"
+        ],
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "127",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "w/ a slayer instrument": "59",
+        "monster type": "Melee",
+        "armor": "40",
+        "strength": [
+            "250",
+            "275"
+        ],
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "dexterity": [
+            "90",
+            "110"
+        ],
+        "primary type": "Reptiles",
+        "base type": "Creature",
+        "damage": [
+            "15",
+            "25"
+        ],
+        "control slots": "N/A",
+        "name": "Shipwreck Kraken",
+        "keywords": "Shipwreck Kraken",
+        "url": "http://www.uorenaissance.com/info/ShipwreckKraken",
+        "barding difficulty": "74",
+        "hit points": [
+            "250",
+            "275"
+        ],
+        "intelligence": [
+            "26",
+            "40"
+        ],
+        "minimum taming": "N/A",
+        "w/ a gm instrument": "67"
+    },
+    {
+        "taming difficulty": "n/a",
+        "alignment": "evil",
+        "bushido": "",
+        "control slots": "N/A",
+        "fame": "22500",
+        "tactics": [
+            "97.6 ",
+            " 100.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": [
+            "118.3",
+            "127"
+        ],
+        "stamina": [
+            "68 ",
+            " 200"
+        ],
+        "karma": [
+            "",
+            "22500"
+        ],
+        "hit points": [
+            "558 ",
+            " 599"
+        ],
+        "armor": "80",
+        "dexterity": [
+            "68 ",
+            " 200"
+        ],
+        "gold": [
+            "1600",
+            "1800"
+        ],
+        "pack instinct": "none",
+        "first seen": "uo:3d",
+        "wrestling": [
+            "97.6 ",
+            " 100.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": [
+            "80.1 ",
+            " 100.0"
+        ],
+        "preferred foods": "",
+        "name": "Skeletal Dragon",
+        "monster type": "Magic, Breath Attack",
+        "resisting spells": [
+            "100.3 ",
+            " 130.0"
+        ],
+        "mana": [
+            "488 ",
+            " 620"
+        ],
+        "anatomy": "0",
+        "spellweaving": "",
+        "meditation": "0",
+        "ninjitsu": "",
+        "poisoning": "0",
+        "base damage": [
+            "29",
+            "35"
+        ],
+        "slayer vulnerability": "dragon, reptile",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "488 ",
+            " 620"
+        ],
+        "special": "level 5 treasure map, 5 gems,",
+        "base type": "Creature",
+        "strength": [
+            "898 ",
+            " 1030"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "keywords": "Skeletal Dragon",
+        "url": "http://www.uorenaissance.com/info/SkeletalDragon",
+        "cut up": "20 barbed hides, 19 raw ribs",
+        "evaluating intelligence": [
+            "80.1 ",
+            " 100.0"
+        ],
+        "parrying": "",
+        "magic items": "",
+        "special abilities": "fire breath, immune to level 5 poison and below, immune to the provocation skill, chance to do triple damage against pets",
+        "detecting hidden": ""
+    },
+    {
+        "taming difficulty": "96.3",
+        "alignment": "evil",
+        "dropped slayer": "Arachnid",
+        "bushido": "",
+        "control slots": "3",
+        "special abilities": "",
+        "fame": "18000",
+        "tactics": [
+            "97.6 ",
+            " 100.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "103",
+        "stamina": [
+            "101 ",
+            " 130"
+        ],
+        "karma": [
+            "",
+            "18000"
+        ],
+        "hit points": [
+            "433",
+            "456"
+        ],
+        "armor": "64",
+        "dexterity": [
+            "101",
+            "130"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "1200 ",
+            " 1400"
+        ],
+        "pack instinct": "none",
+        "first seen": "second age",
+        "wrestling": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": [
+            "99.1 ",
+            " 100.0"
+        ],
+        "preferred foods": "meatalso accepts gold",
+        "name": "White Wyrm",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic",
+        "resisting spells": [
+            "99.1 ",
+            " 100.0"
+        ],
+        "mana": [
+            "386 ",
+            " 425"
+        ],
+        "anatomy": "0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "0",
+        "w/ a slayer instrument": "82",
+        "ninjitsu": "",
+        "poisoning": "0",
+        "base damage": [
+            "17 ",
+            " 25"
+        ],
+        "slayer vulnerability": "reptile slayer, dragon slayer",
+        "necromancy": "",
+        "minimum taming": "96.3",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "386",
+            "425"
+        ],
+        "special": [
+            "1",
+            "5 Gems, Level 4 Treasure Map"
+        ],
+        "parrying": "",
+        "strength": [
+            "721",
+            "760"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "17",
+            "25"
+        ],
+        "keywords": "White Wyrm",
+        "url": "http://www.uorenaissance.com/info/WhiteWyrm",
+        "cut up": "9 scales, 20 barbed hides, 19 raw ribs, 8 dragon's blood",
+        "evaluating intelligence": [
+            "99.1 ",
+            " 100.0"
+        ],
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "93",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "taming difficulty": "not tameable",
+        "alignment": "evil",
+        "bushido": "",
+        "control slots": "N/A",
+        "special abilities": [
+            "Can inflict level",
+            "4 poison, Immune to level 4 poison and below"
+        ],
+        "fame": "4000",
+        "tactics": [
+            "65.1 ",
+            " 90.0"
+        ],
+        "spirit speak": "",
+        "barding difficulty": "79",
+        "stamina": [
+            "153 ",
+            " 172"
+        ],
+        "karma": [
+            "",
+            "4000"
+        ],
+        "hit points": [
+            "125",
+            "141"
+        ],
+        "armor": "40",
+        "dexterity": [
+            "153",
+            "172"
+        ],
+        "detecting hidden": "",
+        "gold": [
+            "175",
+            "225"
+        ],
+        "pack instinct": "none",
+        "first seen": "t2a",
+        "wrestling": [
+            "65.1 ",
+            " 80.0"
+        ],
+        "focus": "",
+        "healing": "",
+        "magery": "0",
+        "preferred foods": "meat",
+        "name": "Wyvern",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Melee",
+        "resisting spells": [
+            "65.1 ",
+            " 80.0"
+        ],
+        "mana": [
+            "51 ",
+            " 90"
+        ],
+        "anatomy": "0",
+        "effective super slayer": "Reptilian Death",
+        "spellweaving": "",
+        "meditation": "0",
+        "w/ a slayer instrument": "63",
+        "ninjitsu": "",
+        "poisoning": [
+            "60.1 ",
+            " 80.0"
+        ],
+        "base damage": [
+            "8 ",
+            " 19"
+        ],
+        "slayer vulnerability": "reptile, dragon slayer",
+        "necromancy": "",
+        "minimum taming": "N/A",
+        "mysticism": "",
+        "chivalry": "",
+        "hiding": "",
+        "intelligence": [
+            "51",
+            "90"
+        ],
+        "special": "lesser poison potion, 1 medium level scroll, level 2 treasure map",
+        "parrying": "",
+        "strength": [
+            "202",
+            "240"
+        ],
+        "discordance": "",
+        "primary type": "Reptiles",
+        "damage": [
+            "8",
+            "19"
+        ],
+        "keywords": "Wyvern",
+        "url": "http://www.uorenaissance.com/info/Wyvern",
+        "cut up": "20 horned hides",
+        "evaluating intelligence": "0",
+        "base type": "Creature",
+        "magic items": "",
+        "w/ a gm instrument": "71",
+        "effective slayer": "Dragon Slaying"
+    },
+    {
+        "w/ a slayer instrument": "100",
+        "dropped slayer": "Arachnid",
+        "sub types": "Bosses",
+        "control slots": "N/A",
+        "minimum taming": "N/A",
+        "barding difficulty": "125",
+        "hit points": [
+            "650",
+            "725"
+        ],
+        "armor": "55",
+        "dexterity": [
+            "153",
+            "172"
+        ],
+        "intelligence": [
+            "300",
+            "400"
+        ],
+        "url": "http://www.uorenaissance.com/info/WyvernMonarch",
+        "effective super slayer": "Reptilian Death",
+        "strength": [
+            "1,075",
+            "1,125"
+        ],
+        "primary type": "Reptiles",
+        "damage": [
+            "12",
+            "24"
+        ],
+        "keywords": "Wyvern Monarch",
+        "name": "Wyvern Monarch",
+        "inventory": {
+            "chance": [
+                "1",
+                "250"
+            ],
+            "description": "Wyvern Monarch Statuette"
+        },
+        "monster type": "Melee",
+        "base type": "Creature",
+        "w/ a gm instrument": "113",
+        "effective slayer": "Dragon Slaying"
+    }
+]

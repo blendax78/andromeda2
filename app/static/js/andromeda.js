@@ -32541,7 +32541,7 @@ var Combat = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
           'h5',
           { className: 'bold' },
-          'Corpse Inventory'
+          'Items on Corpse'
         ),
         items,
         __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
@@ -35003,7 +35003,7 @@ var MobData = [{
   attackable: true,
   inventory: [{ id: 27, count: 6 }],
   credits: [1, 25],
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/GiantRat.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/GiantRat_100.png',
   skills: {
     wrestling: [29.3, 44.0],
     tactics: [29.3, 44.0],

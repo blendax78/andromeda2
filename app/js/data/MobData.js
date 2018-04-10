@@ -6,7 +6,7 @@ export const MobData = [
     name: 'sheep',
     description: 'A little sheep is wandering around here.',
     armor: 6,
-    karma: 0,
+    karma: -300,
     fame: 300,
     aggro: false,
     offense: {
@@ -20,7 +20,9 @@ export const MobData = [
       str: [19,19],
       dex: [25,25],
       int: [5,5],
-      hp: [12,12]
+      hp: [12,12],
+      taming: 11.1,
+      barding: 7
     },
     wander: true,
     attackable: true,
@@ -46,7 +48,9 @@ export const MobData = [
       str: [21,51],
       dex: [47,77],
       int: [17,47],
-      hp: [15,29]
+      hp: [15,29],
+      barding: 17,
+      taming: 13.1
     },
     aggro: false,
     offense: {
@@ -80,7 +84,9 @@ export const MobData = [
       str: [76,100],
       dex: [56,75],
       int: [11,14],
-      hp: [46,60]
+      hp: [46,60],
+      taming: 35.1,
+      barding: 33
     },
     aggro: false,
     offense: {
@@ -113,7 +119,9 @@ export const MobData = [
       str: [76,100],
       dex: [26,45],
       int: [23,47],
-      hp: [46,60]
+      hp: [46,60],
+      taming: 41.1,
+      barding: 30
     },
     aggro: false,
     offense: {
@@ -147,7 +155,9 @@ export const MobData = [
       str: [77,111],
       dex: [56,75],
       int: [47,75],
-      hp: [50,64]
+      hp: [50,64],
+      barding: 30,
+      taming: 71.1
     },
     aggro: false,
     offense: {
@@ -186,7 +196,9 @@ export const MobData = [
     offense: {
       min: 1,
       max: 4,
-      speed: 2
+      speed: 2,
+      taming: 29.1,
+      barding: 7
     },
     move: 1,
     mob_type: 'animal',
@@ -246,7 +258,9 @@ export const MobData = [
       str: [32,74],
       dex: [46,65],
       int: [16,30],
-      hp: [26,39]
+      hp: [26,39],
+      taming: 29.1,
+      barding: 24
     },
     aggro: true,
     offense: {
@@ -254,7 +268,7 @@ export const MobData = [
       max: 8,
       speed: 2
     },
-    move: 0,
+    move: 1,
     mob_type: 'animal',
     wander: false,
     attackable: true,

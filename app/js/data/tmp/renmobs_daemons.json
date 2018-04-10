@@ -1,1 +1,667 @@
-[{"control slots": "N/A", "slayer vulnerability": "abyss slayer", "mysticism": "", "gold": ["250 ", " 300"], "monster type": "Magic", "keywords": "Arcane Daemon", "pack instinct": "none", "base type": "Creature", "fame": "level 4 (7000)", "magery": ["80.1 ", " 90.0"], "chivalry": "", "hiding": "", "url": "http://www.uorenaissance.com/info/ArcaneDaemon", "primary type": "Daemons", "armor": "55", "resisting spells": ["85.1 ", " 95.0"], "intelligence": ["301 ", " 350"], "spellweaving": "", "karma": "level 5 (-10000)", "cut up": "none", "special": "none", "healing": "", "necromancy": "", "meditation": ["70.1 ", " 80.0"], "evaluating intelligence": ["70.1 ", " 80.0"], "first seen": "age of shadows", "barding difficulty": "88.0", "focus": "", "bushido": "", "parrying": "", "dexterity": ["126 ", " 145"], "base damage": ["12 ", " 16"], "ninjitsu": "", "taming difficulty": "n/a", "discordance": "", "poisoning": ["", "", ""], "mana": ["301 ", " 350"], "stamina": ["126 ", " 145"], "preferred foods": "none", "tactics": ["70.1 ", " 80.0"], "hit points": ["101 ", " 115"], "minimum taming": "N/A", "spirit speak": "", "wrestling": ["60.1 ", " 80.0"], "magic items": "", "alignment": "evil", "name": "Arcane Daemon", "special abilities": ["", "", ""], "strength": ["131 ", " 150"], "anatomy": ["", "", ""], "detecting hidden": ""}, {"control slots": "N/A", "meditation": ["25.1 ", " 50.0"], "slayer vulnerability": "demon slayer", "inventory": {"chance": ["1", "100"], "description": "Platinum Coin"}, "monster type": "Magic", "keywords": "Balron", "w/ a gm instrument": "113", "pack instinct": "none", "base type": "Creature", "effective slayer": "Balron Damnation", "fame": "level 5 (24000)", "magery": ["95.5 ", " 100.0"], "chivalry": "", "hiding": "", "url": "http://www.uorenaissance.com/info/Balron", "primary type": "Daemons", "armor": "90", "resisting spells": ["100.5 ", " 150.0"], "intelligence": ["151", "250"], "spellweaving": "", "mysticism": "", "karma": "level 5 (-24000)", "damage": ["22", "29"], "effective super slayer": "Exorcism", "evaluating intelligence": ["90.1 ", " 100.0"], "special": "level 5 treasure map, 2 scrolls", "healing": "", "necromancy": "", "w/ a slayer instrument": "100", "dropped slayer": "Elemental", "first seen": "", "barding difficulty": "125", "focus": "", "bushido": "", "tactics": ["90.1 ", " 100.0"], "parrying": "", "dexterity": ["177", "255"], "base damage": ["22 ", " 29"], "ninjitsu": "", "taming difficulty": "n/a", "discordance": "", "anatomy": ["25.1 ", " 50.0"], "mana": ["151 ", " 250"], "stamina": ["177 ", " 255"], "preferred foods": "none", "gold": ["1200 ", " 1650"], "hit points": ["592", "711"], "wrestling": ["90.1 ", " 100.0"], "spirit speak": "", "minimum taming": "N/A", "magic items": "", "alignment": "evil", "name": "Balron", "special abilities": "none", "strength": ["969", "1,185"], "cut up": "1 raw rib", "detecting hidden": "", "poisoning": "none"}, {"control slots": "N/A", "slayer vulnerability": "demon", "mysticism": "", "gold": ["175 ", " 225"], "monster type": "Melee", "keywords": "Chaos Daemon", "pack instinct": "none", "base type": "Creature", "fame": "level 3 (3000)", "magery": "none", "chivalry": "", "hiding": "", "url": "http://www.uorenaissance.com/info/ChaosDaemon", "primary type": "Daemons", "armor": "15", "resisting spells": ["85.1 ", " 95.0"], "intelligence": ["56 ", " 80"], "spellweaving": "", "karma": "level 3 (-3000)", "cut up": "", "special": "", "healing": "", "necromancy": "", "meditation": "none", "evaluating intelligence": "none", "first seen": "uo:aos", "barding difficulty": "71.5", "focus": "", "bushido": "", "parrying": "", "dexterity": ["171 ", " 200"], "base damage": ["12 ", " 17"], "ninjitsu": "", "taming difficulty": "n/a", "discordance": "", "poisoning": "none", "mana": ["56 ", " 80"], "stamina": ["171 ", " 200"], "preferred foods": "meat", "tactics": ["70.1 ", " 80.0"], "hit points": ["91 ", " 110"], "minimum taming": "N/A", "spirit speak": "", "wrestling": ["95.1 ", " 100.0"], "magic items": "", "alignment": "evil", "name": "Chaos Daemon", "special abilities": "crushing blow", "strength": ["106 ", " 130"], "anatomy": "0.0", "detecting hidden": ""}, {"control slots": "4", "meditation": "0.0", "slayer vulnerability": "demon slayer", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "monster type": "Magic", "keywords": "Daemon", "w/ a gm instrument": ["---"], "pack instinct": "none", "base type": "Creature", "effective slayer": "Daemon Dismissal", "fame": "level 5 (15000)", "magery": ["70.1 ", " 80.0"], "chivalry": "", "hiding": "", "url": "http://www.uorenaissance.com/info/Daemon", "primary type": "Daemons", "armor": "58", "resisting spells": ["85.1 ", " 95.0"], "intelligence": ["301", "325"], "spellweaving": "", "mysticism": "", "karma": "level 5 (-15000)", "damage": ["7", "14"], "effective super slayer": "Exorcism", "evaluating intelligence": ["70.1 ", " 80.0"], "special": "2 scrolls per of either magery spells circles 4 through 7, or certain necromancy spells. level 4 treasure map (uncommon).", "healing": "", "necromancy": "", "w/ a slayer instrument": ["---"], "dropped slayer": "Elemental", "first seen": "initial release of uo", "barding difficulty": ["---"], "focus": "", "bushido": "", "tactics": ["70.1 ", " 80.0"], "parrying": "", "dexterity": ["76", "95"], "base damage": ["7 ", " 14"], "ninjitsu": "", "taming difficulty": "n/a", "discordance": "", "anatomy": "0.0", "mana": ["301 ", " 325"], "stamina": ["76 ", " 95"], "preferred foods": "n/a", "gold": ["550 ", " 650"], "hit points": ["286", "303"], "wrestling": ["60.1 ", " 80.0"], "spirit speak": "", "minimum taming": "N/A", "magic items": "", "alignment": "evil", "name": "Daemon", "special abilities": "immune to level 2 poison and below.", "strength": ["476", "505"], "cut up": "1 raw rib", "detecting hidden": "", "poisoning": "none"}, {"control slots": "N/A", "meditation": "0", "slayer vulnerability": "abyss, demon slayer, ice slayer", "inventory": {"chance": ["1", "100"], "description": "Platinum Coin"}, "monster type": "Magic", "keywords": "Ice Fiend", "w/ a gm instrument": ["---"], "pack instinct": "none", "base type": "Creature", "effective slayer": "Daemon Dismissal", "fame": "lvl 5 (18000)", "magery": ["80.1 ", " 90.0"], "chivalry": "", "hiding": "", "url": "http://www.uorenaissance.com/info/IceFiend", "primary type": "Daemons", "armor": "60", "resisting spells": ["75.1 ", " 85.0"], "intelligence": ["201", "225"], "spellweaving": "", "mysticism": "", "karma": "lvl 5 (-18000)", "damage": ["8", "19"], "effective super slayer": "Exorcism", "cut up": "1 raw rib", "special": "2 medium level scrolls, level 4 treasure map", "healing": "", "necromancy": "", "w/ a slayer instrument": ["---"], "evaluating intelligence": ["80.1 ", " 90.0"], "first seen": "uo:t2a", "barding difficulty": ["---"], "focus": "", "bushido": "", "tactics": ["80.1 ", " 90.0"], "parrying": "", "dexterity": ["176", "195"], "base damage": ["8 ", " 19"], "ninjitsu": "", "taming difficulty": "n/a", "discordance": "", "anatomy": "0", "mana": ["201 ", " 225"], "stamina": ["176 ", " 195"], "preferred foods": "characters", "gold": ["650 ", " 800"], "hit points": ["226", "243"], "wrestling": ["80.1 ", " 100.0"], "spirit speak": "", "minimum taming": "N/A", "magic items": "", "alignment": "evil", "name": "Ice Fiend", "special abilities": "cold aura", "strength": ["376", "405"], "detecting hidden": "", "poisoning": "n/a"}, {"control slots": "N/A", "slayer vulnerability": "demon slayer", "mysticism": "", "gold": ["300 ", " 350"], "monster type": "Melee", "keywords": "Moloch", "pack instinct": "none", "base type": "Creature", "fame": "lvl 4 (7500)", "magery": "n/a", "chivalry": "", "hiding": "", "url": "http://www.uorenaissance.com/info/Moloch", "primary type": "Daemons", "armor": "32", "resisting spells": ["65.1 ", " 75.0"], "intelligence": ["41 ", " 65"], "spellweaving": "", "karma": "lvl 4 (-7500)", "cut up": "none", "special": "", "healing": "", "necromancy": "", "meditation": "n/a", "evaluating intelligence": "n/a", "first seen": "uo:aos", "barding difficulty": "72.5", "focus": "", "bushido": "", "parrying": "", "dexterity": ["66 ", " 85"], "base damage": ["15", "23"], "ninjitsu": "", "taming difficulty": "n/a", "discordance": "", "poisoning": "n/a", "mana": ["41 ", " 65"], "stamina": ["66 ", " 85"], "preferred foods": "none", "tactics": ["75.1 ", " 90.0"], "hit points": ["171 ", " 200"], "minimum taming": "N/A", "spirit speak": "", "wrestling": ["70.1 ", " 90.0"], "magic items": "", "alignment": "evil", "name": "Moloch", "special abilities": "", "strength": ["331 ", " 360"], "anatomy": "0", "detecting hidden": ""}, {"control slots": "N/A", "w/ a slayer instrument": "239", "dropped slayer": "Elemental", "inventory": {"chance": ["1", "250"], "description": "Purveyor of Darkness Statuette"}, "barding difficulty": "299", "monster type": "Magic", "keywords": "Purveyor of Darkness", "dexterity": ["225", "255"], "w/ a gm instrument": "269", "sub types": "Bosses", "effective super slayer": "Exorcism", "url": "http://www.uorenaissance.com/info/PurveyorOfDarkness", "primary type": "Daemons", "armor": "100", "hit points": ["4,250", "4,750"], "intelligence": ["600", "700"], "minimum taming": "N/A", "damage": ["27", "34"], "effective slayer": "Balron Damnation", "name": "Purveyor of Darkness", "strength": ["1,370", "1,400"], "base type": "Creature"}]
+[
+    {
+        "control slots": "N/A",
+        "slayer vulnerability": "abyss slayer",
+        "mysticism": "",
+        "gold": [
+            "250 ",
+            " 300"
+        ],
+        "monster type": "Magic",
+        "keywords": "Arcane Daemon",
+        "pack instinct": "none",
+        "base type": "Creature",
+        "fame": "level 4 (7000)",
+        "magery": [
+            "80.1 ",
+            " 90.0"
+        ],
+        "chivalry": "",
+        "hiding": "",
+        "url": "http://www.uorenaissance.com/info/ArcaneDaemon",
+        "primary type": "Daemons",
+        "armor": "55",
+        "resisting spells": [
+            "85.1 ",
+            " 95.0"
+        ],
+        "intelligence": [
+            "301 ",
+            " 350"
+        ],
+        "spellweaving": "",
+        "karma": "level 5 (-10000)",
+        "cut up": "none",
+        "special": "none",
+        "healing": "",
+        "necromancy": "",
+        "meditation": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "evaluating intelligence": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "first seen": "age of shadows",
+        "barding difficulty": "88.0",
+        "focus": "",
+        "bushido": "",
+        "parrying": "",
+        "dexterity": [
+            "126 ",
+            " 145"
+        ],
+        "base damage": [
+            "12 ",
+            " 16"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "discordance": "",
+        "poisoning": [
+            "",
+            "",
+            ""
+        ],
+        "mana": [
+            "301 ",
+            " 350"
+        ],
+        "stamina": [
+            "126 ",
+            " 145"
+        ],
+        "preferred foods": "none",
+        "tactics": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "hit points": [
+            "101 ",
+            " 115"
+        ],
+        "minimum taming": "N/A",
+        "spirit speak": "",
+        "wrestling": [
+            "60.1 ",
+            " 80.0"
+        ],
+        "magic items": "",
+        "alignment": "evil",
+        "name": "Arcane Daemon",
+        "special abilities": [
+            "",
+            "",
+            ""
+        ],
+        "strength": [
+            "131 ",
+            " 150"
+        ],
+        "anatomy": [
+            "",
+            "",
+            ""
+        ],
+        "detecting hidden": ""
+    },
+    {
+        "control slots": "N/A",
+        "meditation": [
+            "25.1 ",
+            " 50.0"
+        ],
+        "slayer vulnerability": "demon slayer",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic",
+        "keywords": "Balron",
+        "w/ a gm instrument": "113",
+        "pack instinct": "none",
+        "base type": "Creature",
+        "effective slayer": "Balron Damnation",
+        "fame": "level 5 (24000)",
+        "magery": [
+            "95.5 ",
+            " 100.0"
+        ],
+        "chivalry": "",
+        "hiding": "",
+        "url": "http://www.uorenaissance.com/info/Balron",
+        "primary type": "Daemons",
+        "armor": "90",
+        "resisting spells": [
+            "100.5 ",
+            " 150.0"
+        ],
+        "intelligence": [
+            "151",
+            "250"
+        ],
+        "spellweaving": "",
+        "mysticism": "",
+        "karma": "level 5 (-24000)",
+        "damage": [
+            "22",
+            "29"
+        ],
+        "effective super slayer": "Exorcism",
+        "evaluating intelligence": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "special": "level 5 treasure map, 2 scrolls",
+        "healing": "",
+        "necromancy": "",
+        "w/ a slayer instrument": "100",
+        "dropped slayer": "Elemental",
+        "first seen": "",
+        "barding difficulty": "125",
+        "focus": "",
+        "bushido": "",
+        "tactics": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "parrying": "",
+        "dexterity": [
+            "177",
+            "255"
+        ],
+        "base damage": [
+            "22 ",
+            " 29"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "discordance": "",
+        "anatomy": [
+            "25.1 ",
+            " 50.0"
+        ],
+        "mana": [
+            "151 ",
+            " 250"
+        ],
+        "stamina": [
+            "177 ",
+            " 255"
+        ],
+        "preferred foods": "none",
+        "gold": [
+            "1200 ",
+            " 1650"
+        ],
+        "hit points": [
+            "592",
+            "711"
+        ],
+        "wrestling": [
+            "90.1 ",
+            " 100.0"
+        ],
+        "spirit speak": "",
+        "minimum taming": "N/A",
+        "magic items": "",
+        "alignment": "evil",
+        "name": "Balron",
+        "special abilities": "none",
+        "strength": [
+            "969",
+            "1,185"
+        ],
+        "cut up": "1 raw rib",
+        "detecting hidden": "",
+        "poisoning": "none"
+    },
+    {
+        "control slots": "N/A",
+        "slayer vulnerability": "demon",
+        "mysticism": "",
+        "gold": [
+            "175 ",
+            " 225"
+        ],
+        "monster type": "Melee",
+        "keywords": "Chaos Daemon",
+        "pack instinct": "none",
+        "base type": "Creature",
+        "fame": "level 3 (3000)",
+        "magery": "none",
+        "chivalry": "",
+        "hiding": "",
+        "url": "http://www.uorenaissance.com/info/ChaosDaemon",
+        "primary type": "Daemons",
+        "armor": "15",
+        "resisting spells": [
+            "85.1 ",
+            " 95.0"
+        ],
+        "intelligence": [
+            "56 ",
+            " 80"
+        ],
+        "spellweaving": "",
+        "karma": "level 3 (-3000)",
+        "cut up": "",
+        "special": "",
+        "healing": "",
+        "necromancy": "",
+        "meditation": "none",
+        "evaluating intelligence": "none",
+        "first seen": "uo:aos",
+        "barding difficulty": "71.5",
+        "focus": "",
+        "bushido": "",
+        "parrying": "",
+        "dexterity": [
+            "171 ",
+            " 200"
+        ],
+        "base damage": [
+            "12 ",
+            " 17"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "discordance": "",
+        "poisoning": "none",
+        "mana": [
+            "56 ",
+            " 80"
+        ],
+        "stamina": [
+            "171 ",
+            " 200"
+        ],
+        "preferred foods": "meat",
+        "tactics": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "hit points": [
+            "91 ",
+            " 110"
+        ],
+        "minimum taming": "N/A",
+        "spirit speak": "",
+        "wrestling": [
+            "95.1 ",
+            " 100.0"
+        ],
+        "magic items": "",
+        "alignment": "evil",
+        "name": "Chaos Daemon",
+        "special abilities": "crushing blow",
+        "strength": [
+            "106 ",
+            " 130"
+        ],
+        "anatomy": "0.0",
+        "detecting hidden": ""
+    },
+    {
+        "control slots": "4",
+        "meditation": "0.0",
+        "slayer vulnerability": "demon slayer",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic",
+        "keywords": "Daemon",
+        "w/ a gm instrument": [
+            "---"
+        ],
+        "pack instinct": "none",
+        "base type": "Creature",
+        "effective slayer": "Daemon Dismissal",
+        "fame": "level 5 (15000)",
+        "magery": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "chivalry": "",
+        "hiding": "",
+        "url": "http://www.uorenaissance.com/info/Daemon",
+        "primary type": "Daemons",
+        "armor": "58",
+        "resisting spells": [
+            "85.1 ",
+            " 95.0"
+        ],
+        "intelligence": [
+            "301",
+            "325"
+        ],
+        "spellweaving": "",
+        "mysticism": "",
+        "karma": "level 5 (-15000)",
+        "damage": [
+            "7",
+            "14"
+        ],
+        "effective super slayer": "Exorcism",
+        "evaluating intelligence": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "special": "2 scrolls per of either magery spells circles 4 through 7, or certain necromancy spells. level 4 treasure map (uncommon).",
+        "healing": "",
+        "necromancy": "",
+        "w/ a slayer instrument": [
+            "---"
+        ],
+        "dropped slayer": "Elemental",
+        "first seen": "initial release of uo",
+        "barding difficulty": [
+            "---"
+        ],
+        "focus": "",
+        "bushido": "",
+        "tactics": [
+            "70.1 ",
+            " 80.0"
+        ],
+        "parrying": "",
+        "dexterity": [
+            "76",
+            "95"
+        ],
+        "base damage": [
+            "7 ",
+            " 14"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "discordance": "",
+        "anatomy": "0.0",
+        "mana": [
+            "301 ",
+            " 325"
+        ],
+        "stamina": [
+            "76 ",
+            " 95"
+        ],
+        "preferred foods": "n/a",
+        "gold": [
+            "550 ",
+            " 650"
+        ],
+        "hit points": [
+            "286",
+            "303"
+        ],
+        "wrestling": [
+            "60.1 ",
+            " 80.0"
+        ],
+        "spirit speak": "",
+        "minimum taming": "N/A",
+        "magic items": "",
+        "alignment": "evil",
+        "name": "Daemon",
+        "special abilities": "immune to level 2 poison and below.",
+        "strength": [
+            "476",
+            "505"
+        ],
+        "cut up": "1 raw rib",
+        "detecting hidden": "",
+        "poisoning": "none"
+    },
+    {
+        "control slots": "N/A",
+        "meditation": "0",
+        "slayer vulnerability": "abyss, demon slayer, ice slayer",
+        "inventory": {
+            "chance": [
+                "1",
+                "100"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic",
+        "keywords": "Ice Fiend",
+        "w/ a gm instrument": [
+            "---"
+        ],
+        "pack instinct": "none",
+        "base type": "Creature",
+        "effective slayer": "Daemon Dismissal",
+        "fame": "lvl 5 (18000)",
+        "magery": [
+            "80.1 ",
+            " 90.0"
+        ],
+        "chivalry": "",
+        "hiding": "",
+        "url": "http://www.uorenaissance.com/info/IceFiend",
+        "primary type": "Daemons",
+        "armor": "60",
+        "resisting spells": [
+            "75.1 ",
+            " 85.0"
+        ],
+        "intelligence": [
+            "201",
+            "225"
+        ],
+        "spellweaving": "",
+        "mysticism": "",
+        "karma": "lvl 5 (-18000)",
+        "damage": [
+            "8",
+            "19"
+        ],
+        "effective super slayer": "Exorcism",
+        "cut up": "1 raw rib",
+        "special": "2 medium level scrolls, level 4 treasure map",
+        "healing": "",
+        "necromancy": "",
+        "w/ a slayer instrument": [
+            "---"
+        ],
+        "evaluating intelligence": [
+            "80.1 ",
+            " 90.0"
+        ],
+        "first seen": "uo:t2a",
+        "barding difficulty": [
+            "---"
+        ],
+        "focus": "",
+        "bushido": "",
+        "tactics": [
+            "80.1 ",
+            " 90.0"
+        ],
+        "parrying": "",
+        "dexterity": [
+            "176",
+            "195"
+        ],
+        "base damage": [
+            "8 ",
+            " 19"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "discordance": "",
+        "anatomy": "0",
+        "mana": [
+            "201 ",
+            " 225"
+        ],
+        "stamina": [
+            "176 ",
+            " 195"
+        ],
+        "preferred foods": "characters",
+        "gold": [
+            "650 ",
+            " 800"
+        ],
+        "hit points": [
+            "226",
+            "243"
+        ],
+        "wrestling": [
+            "80.1 ",
+            " 100.0"
+        ],
+        "spirit speak": "",
+        "minimum taming": "N/A",
+        "magic items": "",
+        "alignment": "evil",
+        "name": "Ice Fiend",
+        "special abilities": "cold aura",
+        "strength": [
+            "376",
+            "405"
+        ],
+        "detecting hidden": "",
+        "poisoning": "n/a"
+    },
+    {
+        "control slots": "N/A",
+        "slayer vulnerability": "demon slayer",
+        "mysticism": "",
+        "gold": [
+            "300 ",
+            " 350"
+        ],
+        "monster type": "Melee",
+        "keywords": "Moloch",
+        "pack instinct": "none",
+        "base type": "Creature",
+        "fame": "lvl 4 (7500)",
+        "magery": "n/a",
+        "chivalry": "",
+        "hiding": "",
+        "url": "http://www.uorenaissance.com/info/Moloch",
+        "primary type": "Daemons",
+        "armor": "32",
+        "resisting spells": [
+            "65.1 ",
+            " 75.0"
+        ],
+        "intelligence": [
+            "41 ",
+            " 65"
+        ],
+        "spellweaving": "",
+        "karma": "lvl 4 (-7500)",
+        "cut up": "none",
+        "special": "",
+        "healing": "",
+        "necromancy": "",
+        "meditation": "n/a",
+        "evaluating intelligence": "n/a",
+        "first seen": "uo:aos",
+        "barding difficulty": "72.5",
+        "focus": "",
+        "bushido": "",
+        "parrying": "",
+        "dexterity": [
+            "66 ",
+            " 85"
+        ],
+        "base damage": [
+            "15",
+            "23"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "discordance": "",
+        "poisoning": "n/a",
+        "mana": [
+            "41 ",
+            " 65"
+        ],
+        "stamina": [
+            "66 ",
+            " 85"
+        ],
+        "preferred foods": "none",
+        "tactics": [
+            "75.1 ",
+            " 90.0"
+        ],
+        "hit points": [
+            "171 ",
+            " 200"
+        ],
+        "minimum taming": "N/A",
+        "spirit speak": "",
+        "wrestling": [
+            "70.1 ",
+            " 90.0"
+        ],
+        "magic items": "",
+        "alignment": "evil",
+        "name": "Moloch",
+        "special abilities": "",
+        "strength": [
+            "331 ",
+            " 360"
+        ],
+        "anatomy": "0",
+        "detecting hidden": ""
+    },
+    {
+        "control slots": "N/A",
+        "w/ a slayer instrument": "239",
+        "dropped slayer": "Elemental",
+        "inventory": {
+            "chance": [
+                "1",
+                "250"
+            ],
+            "description": "Purveyor of Darkness Statuette"
+        },
+        "barding difficulty": "299",
+        "monster type": "Magic",
+        "keywords": "Purveyor of Darkness",
+        "dexterity": [
+            "225",
+            "255"
+        ],
+        "w/ a gm instrument": "269",
+        "sub types": "Bosses",
+        "effective super slayer": "Exorcism",
+        "url": "http://www.uorenaissance.com/info/PurveyorOfDarkness",
+        "primary type": "Daemons",
+        "armor": "100",
+        "hit points": [
+            "4,250",
+            "4,750"
+        ],
+        "intelligence": [
+            "600",
+            "700"
+        ],
+        "minimum taming": "N/A",
+        "damage": [
+            "27",
+            "34"
+        ],
+        "effective slayer": "Balron Damnation",
+        "name": "Purveyor of Darkness",
+        "strength": [
+            "1,370",
+            "1,400"
+        ],
+        "base type": "Creature"
+    }
+]

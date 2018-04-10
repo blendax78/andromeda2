@@ -1,1 +1,467 @@
-[{"effective slayer": "Troll Slaughter", "necromancy": "", "bushido": "", "wrestling": ["81.5 ", " 104.5"], "sub types": "MiniBosses", "pack instinct": "none", "alignment": "evil", "w/ a slayer instrument": "97", "w/ a gm instrument": "109", "base damage": ["15 ", " 17"], "parrying": "", "dexterity": ["75", "85"], "armor": "40", "dropped slayer": "Silver", "detecting hidden": "", "first seen": "publish 73", "healing": "", "chivalry": "", "hit points": ["725", "875"], "focus": "", "base type": "Creature", "karma": "level 3 (-3500)", "spirit speak": "", "special abilities": "armor ignore", "barding difficulty": "121", "taming difficulty": "n/a", "control slots": "N/A", "mysticism": "", "special": "crystal of shame, 1 to 5 potash, charcoal, saltpeter and black powder, 1 gem", "inventory": {"description": "Platinum Coin", "chance": ["1", "10"]}, "minimum taming": "N/A", "url": "http://www.uorenaissance.com/info/CaveTroll", "ninjitsu": "", "mana": "150", "evaluating intelligence": ["", "", "", ""], "resisting spells": ["71.7 ", " 82.9"], "meditation": ["", "", "", ""], "name": "Cave Troll", "cut up": "2 cut of raw ribs", "monster type": "Magic", "anatomy": "0.0", "fame": "level 3 (3500)", "damage": ["14", "19"], "slayer vulnerability": "repond slayer, troll slayer", "preferred foods": "meat", "stamina": "150", "poisoning": ["", "", "", ""], "magery": ["", "", "", ""], "gold": ["314 ", " 486"], "magic items": ["3+/", ""], "strength": ["475", "525"], "effective super slayer": "Repond", "hiding": "", "spellweaving": "", "keywords": "Cave Troll", "intelligence": ["250", "350"], "tactics": ["87.9 ", " 101.6"], "discordance": "", "primary type": "Misc_Monsters"}, {"effective slayer": "Troll Slaughter", "inventory": {"description": "Platinum Coin", "chance": ["1", "10"]}, "minimum taming": "N/A", "url": "http://www.uorenaissance.com/info/ForestTroll", "sub types": "MiniBosses", "name": "Forest Troll", "w/ a slayer instrument": "88", "w/ a gm instrument": "99", "monster type": "Melee", "damage": ["17", "25"], "dexterity": ["75", "85"], "armor": "40", "dropped slayer": "Silver", "strength": ["750", "800"], "effective super slayer": "Repond", "keywords": "Forest Troll", "hit points": ["700", "825"], "intelligence": ["250", "350"], "barding difficulty": "110", "base type": "Creature", "control slots": "N/A", "primary type": "Misc_Monsters"}, {"inventory": {"description": "Platinum Coin", "chance": ["1", "10"]}, "w/ a slayer instrument": "84", "armor": "38", "url": "http://www.uorenaissance.com/info/Gamayun", "sub types": "MiniBosses", "strength": ["320", "340"], "primary type": "Misc_Monsters", "minimum taming": "N/A", "name": "Gamayun", "hit points": ["400", "550"], "w/ a gm instrument": "95", "intelligence": ["500", "700"], "monster type": "Melee", "keywords": "Gamayun", "damage": ["9", "31"], "barding difficulty": "105", "base type": "Creature", "control slots": "N/A", "dexterity": ["100", "110"]}, {"effective slayer": "Troll Slaughter", "inventory": {"description": "Platinum Coin", "chance": ["1", "10"]}, "minimum taming": "N/A", "url": "http://www.uorenaissance.com/info/MountainTroll", "sub types": "MiniBosses", "name": "Mountain Troll", "w/ a slayer instrument": "90", "w/ a gm instrument": "102", "monster type": "Magic", "damage": ["9", "15"], "dexterity": ["75", "85"], "armor": "40", "dropped slayer": "Silver", "strength": ["475", "525"], "effective super slayer": "Repond", "keywords": "Mountain Troll", "hit points": ["600", "625"], "intelligence": ["250", "350"], "barding difficulty": "113", "base type": "Creature", "control slots": "N/A", "primary type": "Misc_Monsters"}, {"inventory": {"description": "Platinum Coin", "chance": ["1", "1"]}, "w/ a slayer instrument": "151", "armor": "48", "url": "http://www.uorenaissance.com/info/ObsidianGargoyle", "sub types": "ZookeepersQuest , MiniBosses", "strength": ["900", "1,050"], "primary type": "Gargoyles", "minimum taming": "N/A", "name": "Obsidian Gargoyle", "hit points": ["2,400", "2,900"], "w/ a gm instrument": "170", "intelligence": ["1,000", "1,100"], "monster type": "Magic", "keywords": "Obsidian Gargoyle", "damage": ["16", "20"], "barding difficulty": "189", "base type": "Creature", "control slots": "N/A", "dexterity": ["114", "155"]}, {"necromancy": "", "bushido": "", "wrestling": ["90 ", " 100"], "sub types": "Undead , MiniBosses", "pack instinct": "", "alignment": "evil", "w/ a slayer instrument": "82", "w/ a gm instrument": "93", "base damage": ["20", "30"], "parrying": "", "dexterity": ["110", "120"], "armor": "62", "dropped slayer": "Repond", "detecting hidden": "", "first seen": "age of shadows", "healing": "", "chivalry": "", "hit points": ["500", "550"], "focus": "", "base type": "Creature", "karma": "", "spirit speak": "", "special abilities": "teleports to prey, immune to level 5 poison and below, immune to barding abilities", "barding difficulty": "103", "taming difficulty": ["", "", "", ""], "control slots": "N/A", "mysticism": "", "special": "none", "inventory": {"description": "Various Bones", "chance": ["1", "1"]}, "minimum taming": "N/A", "url": "http://www.uorenaissance.com/info/RevenantBoss", "ninjitsu": "", "mana": ["101 ", " 200"], "evaluating intelligence": ["", "", "", ""], "resisting spells": ["100 ", " 150"], "meditation": ["", "", "", ""], "name": "Revenant", "cut up": "none", "monster type": "Melee", "anatomy": ["", "", "", ""], "fame": "", "damage": ["7", "24"], "slayer vulnerability": "undead slayer", "preferred foods": "n/a", "stamina": ["242 ", " 280"], "poisoning": ["", "", "", ""], "magery": ["", "", "", ""], "gold": "none", "magic items": "", "strength": ["196", "250"], "effective super slayer": "Silver", "hiding": "", "spellweaving": "", "keywords": "Revenant", "intelligence": ["128", "138"], "tactics": ["90 ", " 100"], "discordance": "", "primary type": "Humanoid"}, {"inventory": {"description": "Platinum Coin", "chance": ["1", "10"]}, "w/ a slayer instrument": "88", "armor": "40", "url": "http://www.uorenaissance.com/info/SpectralRabbit", "sub types": "ZookeepersQuest , MiniBosses", "strength": ["401", "650"], "primary type": "Misc_Monsters", "minimum taming": "N/A", "name": "Spectral Rabbit", "hit points": ["650", "950"], "w/ a gm instrument": "99", "intelligence": ["500", "600"], "monster type": "Melee", "keywords": "Spectral Rabbit", "damage": ["15", "21"], "barding difficulty": "110", "base type": "Creature", "control slots": "N/A", "dexterity": ["160", "180"]}]
+[
+    {
+        "effective slayer": "Troll Slaughter",
+        "necromancy": "",
+        "bushido": "",
+        "wrestling": [
+            "81.5 ",
+            " 104.5"
+        ],
+        "sub types": "MiniBosses",
+        "pack instinct": "none",
+        "alignment": "evil",
+        "w/ a slayer instrument": "97",
+        "w/ a gm instrument": "109",
+        "base damage": [
+            "15 ",
+            " 17"
+        ],
+        "parrying": "",
+        "dexterity": [
+            "75",
+            "85"
+        ],
+        "armor": "40",
+        "dropped slayer": "Silver",
+        "detecting hidden": "",
+        "first seen": "publish 73",
+        "healing": "",
+        "chivalry": "",
+        "hit points": [
+            "725",
+            "875"
+        ],
+        "focus": "",
+        "base type": "Creature",
+        "karma": "level 3 (-3500)",
+        "spirit speak": "",
+        "special abilities": "armor ignore",
+        "barding difficulty": "121",
+        "taming difficulty": "n/a",
+        "control slots": "N/A",
+        "mysticism": "",
+        "special": "crystal of shame, 1 to 5 potash, charcoal, saltpeter and black powder, 1 gem",
+        "inventory": {
+            "description": "Platinum Coin",
+            "chance": [
+                "1",
+                "10"
+            ]
+        },
+        "minimum taming": "N/A",
+        "url": "http://www.uorenaissance.com/info/CaveTroll",
+        "ninjitsu": "",
+        "mana": "150",
+        "evaluating intelligence": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "resisting spells": [
+            "71.7 ",
+            " 82.9"
+        ],
+        "meditation": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "name": "Cave Troll",
+        "cut up": "2 cut of raw ribs",
+        "monster type": "Magic",
+        "anatomy": "0.0",
+        "fame": "level 3 (3500)",
+        "damage": [
+            "14",
+            "19"
+        ],
+        "slayer vulnerability": "repond slayer, troll slayer",
+        "preferred foods": "meat",
+        "stamina": "150",
+        "poisoning": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "magery": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "gold": [
+            "314 ",
+            " 486"
+        ],
+        "magic items": [
+            "3+/",
+            ""
+        ],
+        "strength": [
+            "475",
+            "525"
+        ],
+        "effective super slayer": "Repond",
+        "hiding": "",
+        "spellweaving": "",
+        "keywords": "Cave Troll",
+        "intelligence": [
+            "250",
+            "350"
+        ],
+        "tactics": [
+            "87.9 ",
+            " 101.6"
+        ],
+        "discordance": "",
+        "primary type": "Misc_Monsters"
+    },
+    {
+        "effective slayer": "Troll Slaughter",
+        "inventory": {
+            "description": "Platinum Coin",
+            "chance": [
+                "1",
+                "10"
+            ]
+        },
+        "minimum taming": "N/A",
+        "url": "http://www.uorenaissance.com/info/ForestTroll",
+        "sub types": "MiniBosses",
+        "name": "Forest Troll",
+        "w/ a slayer instrument": "88",
+        "w/ a gm instrument": "99",
+        "monster type": "Melee",
+        "damage": [
+            "17",
+            "25"
+        ],
+        "dexterity": [
+            "75",
+            "85"
+        ],
+        "armor": "40",
+        "dropped slayer": "Silver",
+        "strength": [
+            "750",
+            "800"
+        ],
+        "effective super slayer": "Repond",
+        "keywords": "Forest Troll",
+        "hit points": [
+            "700",
+            "825"
+        ],
+        "intelligence": [
+            "250",
+            "350"
+        ],
+        "barding difficulty": "110",
+        "base type": "Creature",
+        "control slots": "N/A",
+        "primary type": "Misc_Monsters"
+    },
+    {
+        "inventory": {
+            "description": "Platinum Coin",
+            "chance": [
+                "1",
+                "10"
+            ]
+        },
+        "w/ a slayer instrument": "84",
+        "armor": "38",
+        "url": "http://www.uorenaissance.com/info/Gamayun",
+        "sub types": "MiniBosses",
+        "strength": [
+            "320",
+            "340"
+        ],
+        "primary type": "Misc_Monsters",
+        "minimum taming": "N/A",
+        "name": "Gamayun",
+        "hit points": [
+            "400",
+            "550"
+        ],
+        "w/ a gm instrument": "95",
+        "intelligence": [
+            "500",
+            "700"
+        ],
+        "monster type": "Melee",
+        "keywords": "Gamayun",
+        "damage": [
+            "9",
+            "31"
+        ],
+        "barding difficulty": "105",
+        "base type": "Creature",
+        "control slots": "N/A",
+        "dexterity": [
+            "100",
+            "110"
+        ]
+    },
+    {
+        "effective slayer": "Troll Slaughter",
+        "inventory": {
+            "description": "Platinum Coin",
+            "chance": [
+                "1",
+                "10"
+            ]
+        },
+        "minimum taming": "N/A",
+        "url": "http://www.uorenaissance.com/info/MountainTroll",
+        "sub types": "MiniBosses",
+        "name": "Mountain Troll",
+        "w/ a slayer instrument": "90",
+        "w/ a gm instrument": "102",
+        "monster type": "Magic",
+        "damage": [
+            "9",
+            "15"
+        ],
+        "dexterity": [
+            "75",
+            "85"
+        ],
+        "armor": "40",
+        "dropped slayer": "Silver",
+        "strength": [
+            "475",
+            "525"
+        ],
+        "effective super slayer": "Repond",
+        "keywords": "Mountain Troll",
+        "hit points": [
+            "600",
+            "625"
+        ],
+        "intelligence": [
+            "250",
+            "350"
+        ],
+        "barding difficulty": "113",
+        "base type": "Creature",
+        "control slots": "N/A",
+        "primary type": "Misc_Monsters"
+    },
+    {
+        "inventory": {
+            "description": "Platinum Coin",
+            "chance": [
+                "1",
+                "1"
+            ]
+        },
+        "w/ a slayer instrument": "151",
+        "armor": "48",
+        "url": "http://www.uorenaissance.com/info/ObsidianGargoyle",
+        "sub types": "ZookeepersQuest , MiniBosses",
+        "strength": [
+            "900",
+            "1,050"
+        ],
+        "primary type": "Gargoyles",
+        "minimum taming": "N/A",
+        "name": "Obsidian Gargoyle",
+        "hit points": [
+            "2,400",
+            "2,900"
+        ],
+        "w/ a gm instrument": "170",
+        "intelligence": [
+            "1,000",
+            "1,100"
+        ],
+        "monster type": "Magic",
+        "keywords": "Obsidian Gargoyle",
+        "damage": [
+            "16",
+            "20"
+        ],
+        "barding difficulty": "189",
+        "base type": "Creature",
+        "control slots": "N/A",
+        "dexterity": [
+            "114",
+            "155"
+        ]
+    },
+    {
+        "necromancy": "",
+        "bushido": "",
+        "wrestling": [
+            "90 ",
+            " 100"
+        ],
+        "sub types": "Undead , MiniBosses",
+        "pack instinct": "",
+        "alignment": "evil",
+        "w/ a slayer instrument": "82",
+        "w/ a gm instrument": "93",
+        "base damage": [
+            "20",
+            "30"
+        ],
+        "parrying": "",
+        "dexterity": [
+            "110",
+            "120"
+        ],
+        "armor": "62",
+        "dropped slayer": "Repond",
+        "detecting hidden": "",
+        "first seen": "age of shadows",
+        "healing": "",
+        "chivalry": "",
+        "hit points": [
+            "500",
+            "550"
+        ],
+        "focus": "",
+        "base type": "Creature",
+        "karma": "",
+        "spirit speak": "",
+        "special abilities": "teleports to prey, immune to level 5 poison and below, immune to barding abilities",
+        "barding difficulty": "103",
+        "taming difficulty": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "control slots": "N/A",
+        "mysticism": "",
+        "special": "none",
+        "inventory": {
+            "description": "Various Bones",
+            "chance": [
+                "1",
+                "1"
+            ]
+        },
+        "minimum taming": "N/A",
+        "url": "http://www.uorenaissance.com/info/RevenantBoss",
+        "ninjitsu": "",
+        "mana": [
+            "101 ",
+            " 200"
+        ],
+        "evaluating intelligence": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "resisting spells": [
+            "100 ",
+            " 150"
+        ],
+        "meditation": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "name": "Revenant",
+        "cut up": "none",
+        "monster type": "Melee",
+        "anatomy": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "fame": "",
+        "damage": [
+            "7",
+            "24"
+        ],
+        "slayer vulnerability": "undead slayer",
+        "preferred foods": "n/a",
+        "stamina": [
+            "242 ",
+            " 280"
+        ],
+        "poisoning": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "magery": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "gold": "none",
+        "magic items": "",
+        "strength": [
+            "196",
+            "250"
+        ],
+        "effective super slayer": "Silver",
+        "hiding": "",
+        "spellweaving": "",
+        "keywords": "Revenant",
+        "intelligence": [
+            "128",
+            "138"
+        ],
+        "tactics": [
+            "90 ",
+            " 100"
+        ],
+        "discordance": "",
+        "primary type": "Humanoid"
+    },
+    {
+        "inventory": {
+            "description": "Platinum Coin",
+            "chance": [
+                "1",
+                "10"
+            ]
+        },
+        "w/ a slayer instrument": "88",
+        "armor": "40",
+        "url": "http://www.uorenaissance.com/info/SpectralRabbit",
+        "sub types": "ZookeepersQuest , MiniBosses",
+        "strength": [
+            "401",
+            "650"
+        ],
+        "primary type": "Misc_Monsters",
+        "minimum taming": "N/A",
+        "name": "Spectral Rabbit",
+        "hit points": [
+            "650",
+            "950"
+        ],
+        "w/ a gm instrument": "99",
+        "intelligence": [
+            "500",
+            "600"
+        ],
+        "monster type": "Melee",
+        "keywords": "Spectral Rabbit",
+        "damage": [
+            "15",
+            "21"
+        ],
+        "barding difficulty": "110",
+        "base type": "Creature",
+        "control slots": "N/A",
+        "dexterity": [
+            "160",
+            "180"
+        ]
+    }
+]

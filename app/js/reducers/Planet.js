@@ -8,6 +8,65 @@ import { StoreData } from '../data/StoreData';
 
 let PLANET = Config.ACTIONS.PLANET;
 
+Config.mobs = {
+  animals: require('../data/tmp/renmobs_animals.json'),
+  arachnids: require('../data/tmp/renmobs_arachnids.json'),
+  bosses: require('../data/tmp/renmobs_bosses.json'),
+  champions: require('../data/tmp/renmobs_champions.json'),
+  daemons: require('../data/tmp/renmobs_daemons.json'),
+  elementals: require('../data/tmp/renmobs_elementals.json'),
+  gargoyles: require('../data/tmp/renmobs_gargoyles.json'),
+  humanoid: require('../data/tmp/renmobs_humanoid.json'),
+  minibosses: require('../data/tmp/renmobs_minibosses.json'),
+  misc: require('../data/tmp/renmobs_misc.json'),
+  orcs: require('../data/tmp/renmobs_orcs.json'),
+  plants: require('../data/tmp/renmobs_plants.json'),
+  ratmen: require('../data/tmp/renmobs_ratmen.json'),
+  reptiles: require('../data/tmp/renmobs_reptiles.json'),
+  slimes: require('../data/tmp/renmobs_slimes.json'),
+  special: require('../data/tmp/renmobs_special.json'),
+  summons: require('../data/tmp/renmobs_summons.json'),
+  undead: require('../data/tmp/renmobs_undead.json'),
+  MobData: MobData,
+};
+
+Config.mobs.clone = (mob) => {
+ return {
+    id: _.last(Config.mobs.MobData).id + 1,
+    name: mob.name.toLowerCase(),
+    description: mob.name.toLowerCase(),
+    armor: parseInt(mob.armor),
+    karma: (!!mob.karma && typeof mob.karma === 'string') ? mob.karma.replace('level 0','').replace('level 1','').replace('level 2','').replace('level 3','').replace('level 4','').replace('level 5','').replace('(','').replace(')','').trim() : mob.karma,
+    fame: (!!mob.fame && typeof mob.fame === 'string') ? mob.fame.replace('level 0','').replace('level 1','').replace('level 2','').replace('level 3','').replace('level 4','').replace('level 5','').replace('(','').replace(')','').trim() : mob.fame,
+    stats: {
+      str: (!!mob.strength && typeof mob.strength === 'object') ? [parseInt(mob.strength[0]),parseInt(mob.strength[1])] : mob.strength,
+      dex: (!!mob.dexterity && typeof mob.dexterity === 'object') ? [parseInt(mob.dexterity[0]),parseInt(mob.dexterity[1])] : mob.dexterity,
+      int: (!!mob.intelligence && typeof mob.intelligence === 'object') ? [parseInt(mob.intelligence[0]),parseInt(mob.intelligence[1])] : mob.intelligence,
+      hp: (!!mob['hit points'] && typeof mob['hit points'] === 'object') ? [parseInt(mob['hit points'][0]),parseInt(mob['hit points'][1])] : mob['hit points'],
+      taming: parseFloat(mob['minimum taming']),
+      barding: parseFloat(mob['barding difficulty'])
+    },
+    aggro: undefined,
+    offense: {
+      min: (!!mob.damage && typeof mob.damage === 'object') ? parseInt(mob.damage[0]) : mob.damage,
+      max: (!!mob.damage && typeof mob.damage === 'object') ? parseInt(mob.damage[1]) : mob.damage,
+      speed: 2
+    },
+    move: 1,
+    mob_type: mob['primary type'].toLowerCase(),
+    wander: undefined,
+    attackable: true,
+    inventory: [mob.inventory],
+    credits: (typeof mob.gold === 'object') ? [parseInt(mob.gold[0]), parseInt(mob.gold[1])] : 0,
+    img: undefined,
+    skills: {
+        wrestling: (!!mob.wrestling && typeof mob.wrestling === 'object') ? [parseInt(mob.wrestling[0]), parseInt(mob.wrestling[1])] : mob.wrestling,
+        tactics: (!!mob.tactics && typeof mob.tactics === 'object') ? [parseInt(mob.tactics[0]), parseInt(mob.tactics[1])] : mob.tactics,
+        magic_resistance: (!!mob['resisting spells'] && typeof mob['resisting spells'] === 'object') ? [parseInt(mob['resisting spells'][0]), parseInt(mob['resisting spells'][1])] : mob['resisting spells'],
+    }
+  };
+}
+for (i in Config.mobs.animals) { Config.mobs.MobData.push(Config.mobs.clone(Config.mobs.animals[i]))}
 const Planet = (state = {}, action) => {
   const { type, payload } = action;
   state.Planet = state.Planet || {

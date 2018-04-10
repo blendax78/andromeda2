@@ -1,1 +1,535 @@
-[{"url": "http://www.uorenaissance.com/info/Orc", "armor": "28", "effective slayer": "Orc Slaying", "damage": ["5", "7"], "primary type": "Orcs", "keywords": "Orc", "base type": "Creature", "dexterity": ["81", "105"], "effective super slayer": "Repond", "intelligence": ["36", "60"], "hit points": ["58", "72"], "w/ a gm instrument": "38", "strength": ["96", "120"], "name": "Orc", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "monster type": "Melee", "control slots": "N/A", "barding difficulty": "42", "minimum taming": "N/A", "w/ a slayer instrument": "34"}, {"url": "http://www.uorenaissance.com/info/OrcBomber", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "primary type": "Orcs", "discordance": "", "base type": "Creature", "effective super slayer": "Repond", "first seen": "the savage empire 2001", "alignment": "evil", "strength": ["147", "215"], "preferred foods": "", "evaluating intelligence": "0", "parrying": "", "armor": "30", "stamina": ["91", "115"], "damage": ["1", "8"], "gold": ["175", "225"], "mysticism": "", "karma": ["", "2500"], "w/ a slayer instrument": "49", "magery": "0", "necromancy": "", "bushido": "", "mana": ["61", "85"], "control slots": "N/A", "detecting hidden": "", "pack instinct": "none", "barding difficulty": "61", "special abilities": "throw exploding oil flasks", "monster type": "Melee", "magic items": "", "dexterity": ["91", "115"], "chivalry": "", "tactics": ["75.1 ", " 90.0"], "healing": "", "cut up": "", "keywords": "Orc Bomber", "special": ["Bola Ball, 1 Lesser Explosion Potion, 6", "10 Sulfurous Ash, 6", "10 Black Pearl, 6", "10 Mandrake Root, Mortar and Pestle"], "poisoning": "0", "intelligence": ["61", "85"], "name": "Orc Bomber", "focus": "", "spirit speak": "", "minimum taming": "N/A", "fame": "2500", "effective slayer": "Orc Slaying", "base damage": ["1 ", " 8"], "ninjitsu": "", "taming difficulty": "n/a", "spellweaving": "", "w/ a gm instrument": "55", "hiding": "", "slayer vulnerability": "orc slayer, repond slayer", "meditation": "0", "resisting spells": ["70.1 ", " 85.0"], "wrestling": ["60.1 ", " 85.0"], "hit points": ["95", "123"], "anatomy": "0"}, {"url": "http://www.uorenaissance.com/info/OrcBrute", "preferred foods": "", "primary type": "Orcs", "discordance": "", "base type": "Creature", "pack instinct": "none", "first seen": "the savage empire 2001", "alignment": "evil", "strength": ["767 ", " 945"], "bushido": "", "evaluating intelligence": "0", "karma": ["", "15000"], "armor": "50", "stamina": ["66", "75"], "barding difficulty": "94.3", "gold": ["750", "950"], "parrying": "", "magery": "0", "necromancy": "", "chivalry": "", "mana": ["46 ", " 70"], "control slots": "N/A", "detecting hidden": "", "special abilities": "immunity to level 5 poison and below, throws other orcs at you:)", "monster type": "Melee", "magic items": "", "dexterity": ["66 ", " 75"], "tactics": ["90.1", "100"], "healing": "", "cut up": "2 raw ribs", "keywords": "Orc Brute", "special": "25 shadow iron ore, 10 ingots,", "poisoning": "0", "intelligence": ["46 ", " 70"], "name": "Orc Brute", "focus": "", "spirit speak": "", "minimum taming": "N/A", "fame": "15000", "mysticism": "", "base damage": ["20 ", " 25"], "ninjitsu": "", "taming difficulty": "n/a", "spellweaving": "", "hiding": "", "slayer vulnerability": "orc slayer, repond slayer", "meditation": "0", "resisting spells": ["125.1 ", " 140.0"], "wrestling": ["90.1", "100"], "hit points": ["476 ", " 552"], "anatomy": "0"}, {"url": "http://www.uorenaissance.com/info/OrcCaptain", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "primary type": "Orcs", "discordance": "", "base type": "Creature", "effective super slayer": "Repond", "first seen": "day one", "alignment": "evil", "strength": ["111", "145"], "preferred foods": "", "evaluating intelligence": "0", "parrying": "", "armor": "34", "stamina": ["101 ", " 135"], "damage": ["5", "15"], "gold": ["100", "150"], "mysticism": "", "karma": ["", "2500"], "w/ a slayer instrument": "48", "magery": "0", "necromancy": "", "bushido": "", "mana": ["86 ", " 110"], "control slots": "N/A", "detecting hidden": "", "pack instinct": "none", "barding difficulty": "60", "special abilities": "", "monster type": "Melee", "magic items": "", "dexterity": ["101", "135"], "chivalry": "", "tactics": ["85.1 ", " 100.0"], "healing": "", "cut up": "1 raw rib", "keywords": "Orc Captain", "special": "", "poisoning": "0", "intelligence": ["86", "110"], "name": "Orc Captain", "focus": "", "spirit speak": "", "minimum taming": "N/A", "fame": "2500", "effective slayer": "Orc Slaying", "base damage": ["5 ", " 15"], "ninjitsu": "", "taming difficulty": "n/a", "spellweaving": "", "w/ a gm instrument": "54", "hiding": "", "slayer vulnerability": "orc slayer, repond slayer", "meditation": "0", "resisting spells": ["70.1 ", " 85.0"], "wrestling": "0", "hit points": ["67", "87"], "anatomy": "0"}, {"url": "http://www.uorenaissance.com/info/OrcScout", "inventory": {"chance": ["1", "200"], "description": "Platinum Coin"}, "primary type": "Orcs", "discordance": "", "base type": "Creature", "effective super slayer": "Repond", "first seen": "spring 2001", "alignment": "evil", "strength": ["96", "120"], "preferred foods": "", "evaluating intelligence": "0", "parrying": "", "armor": "??", "stamina": ["101 ", " 130"], "damage": ["15", "24"], "gold": ["125", "175"], "mysticism": "", "karma": ["", "1500"], "w/ a slayer instrument": "57", "magery": "0", "necromancy": "", "bushido": "", "mana": ["36 ", " 60"], "control slots": "N/A", "detecting hidden": "", "pack instinct": "none", "barding difficulty": "71", "special abilities": "teleports when damaged, stealths when hidden", "monster type": "Melee", "magic items": "", "dexterity": ["101", "130"], "chivalry": "", "tactics": ["55.1 ", " 80.0"], "healing": "", "cut up": "", "keywords": "Orc Scout", "special": ["clean 1", "15 Bandages,  50", "70 Arrows,  Orcish Bow, Apples"], "poisoning": "0", "intelligence": ["36", "60"], "name": "Orc Scout", "focus": "", "spirit speak": "", "minimum taming": "N/A", "fame": "1500", "effective slayer": "Orc Slaying", "base damage": ["5 ", " 7"], "ninjitsu": "", "taming difficulty": "n/a", "spellweaving": "", "w/ a gm instrument": "64", "hiding": "", "slayer vulnerability": "orc slayer, repond slayer", "meditation": "0", "resisting spells": ["50.1 ", " 75.0"], "wrestling": "0", "hit points": ["58", "72"], "anatomy": "0"}, {"url": "http://www.uorenaissance.com/info/OrcishLord", "armor": "0", "effective slayer": "Orc Slaying", "damage": ["4", "14"], "primary type": "Orcs", "keywords": "Orcish Lord", "base type": "Creature", "dexterity": ["91", "115"], "effective super slayer": "Repond", "intelligence": ["61", "85"], "hit points": ["95", "123"], "w/ a gm instrument": "55", "strength": ["147", "215"], "name": "Orcish Lord", "inventory": {"chance": ["1", "3"], "description": "Random Reagent"}, "monster type": "Melee", "control slots": "N/A", "barding difficulty": "61", "minimum taming": "N/A", "w/ a slayer instrument": "49"}, {"url": "http://www.uorenaissance.com/info/OrcishMage", "armor": "30", "effective slayer": "Orc Slaying", "damage": ["4", "17"], "primary type": "Orcs", "keywords": "Orcish Mage", "base type": "Creature", "dexterity": ["91", "115"], "effective super slayer": "Repond", "intelligence": ["161", "185"], "hit points": ["70", "90"], "w/ a gm instrument": "64", "strength": ["116", "150"], "name": "Orcish Mage", "inventory": {"chance": ["1", "400"], "description": "Platinum Coin"}, "monster type": "Magic", "control slots": "N/A", "barding difficulty": "71", "minimum taming": "N/A", "w/ a slayer instrument": "57"}]
+[
+    {
+        "url": "http://www.uorenaissance.com/info/Orc",
+        "armor": "28",
+        "effective slayer": "Orc Slaying",
+        "damage": [
+            "5",
+            "7"
+        ],
+        "primary type": "Orcs",
+        "keywords": "Orc",
+        "base type": "Creature",
+        "dexterity": [
+            "81",
+            "105"
+        ],
+        "effective super slayer": "Repond",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "hit points": [
+            "58",
+            "72"
+        ],
+        "w/ a gm instrument": "38",
+        "strength": [
+            "96",
+            "120"
+        ],
+        "name": "Orc",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Melee",
+        "control slots": "N/A",
+        "barding difficulty": "42",
+        "minimum taming": "N/A",
+        "w/ a slayer instrument": "34"
+    },
+    {
+        "url": "http://www.uorenaissance.com/info/OrcBomber",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "primary type": "Orcs",
+        "discordance": "",
+        "base type": "Creature",
+        "effective super slayer": "Repond",
+        "first seen": "the savage empire 2001",
+        "alignment": "evil",
+        "strength": [
+            "147",
+            "215"
+        ],
+        "preferred foods": "",
+        "evaluating intelligence": "0",
+        "parrying": "",
+        "armor": "30",
+        "stamina": [
+            "91",
+            "115"
+        ],
+        "damage": [
+            "1",
+            "8"
+        ],
+        "gold": [
+            "175",
+            "225"
+        ],
+        "mysticism": "",
+        "karma": [
+            "",
+            "2500"
+        ],
+        "w/ a slayer instrument": "49",
+        "magery": "0",
+        "necromancy": "",
+        "bushido": "",
+        "mana": [
+            "61",
+            "85"
+        ],
+        "control slots": "N/A",
+        "detecting hidden": "",
+        "pack instinct": "none",
+        "barding difficulty": "61",
+        "special abilities": "throw exploding oil flasks",
+        "monster type": "Melee",
+        "magic items": "",
+        "dexterity": [
+            "91",
+            "115"
+        ],
+        "chivalry": "",
+        "tactics": [
+            "75.1 ",
+            " 90.0"
+        ],
+        "healing": "",
+        "cut up": "",
+        "keywords": "Orc Bomber",
+        "special": [
+            "Bola Ball, 1 Lesser Explosion Potion, 6",
+            "10 Sulfurous Ash, 6",
+            "10 Black Pearl, 6",
+            "10 Mandrake Root, Mortar and Pestle"
+        ],
+        "poisoning": "0",
+        "intelligence": [
+            "61",
+            "85"
+        ],
+        "name": "Orc Bomber",
+        "focus": "",
+        "spirit speak": "",
+        "minimum taming": "N/A",
+        "fame": "2500",
+        "effective slayer": "Orc Slaying",
+        "base damage": [
+            "1 ",
+            " 8"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "spellweaving": "",
+        "w/ a gm instrument": "55",
+        "hiding": "",
+        "slayer vulnerability": "orc slayer, repond slayer",
+        "meditation": "0",
+        "resisting spells": [
+            "70.1 ",
+            " 85.0"
+        ],
+        "wrestling": [
+            "60.1 ",
+            " 85.0"
+        ],
+        "hit points": [
+            "95",
+            "123"
+        ],
+        "anatomy": "0"
+    },
+    {
+        "url": "http://www.uorenaissance.com/info/OrcBrute",
+        "preferred foods": "",
+        "primary type": "Orcs",
+        "discordance": "",
+        "base type": "Creature",
+        "pack instinct": "none",
+        "first seen": "the savage empire 2001",
+        "alignment": "evil",
+        "strength": [
+            "767 ",
+            " 945"
+        ],
+        "bushido": "",
+        "evaluating intelligence": "0",
+        "karma": [
+            "",
+            "15000"
+        ],
+        "armor": "50",
+        "stamina": [
+            "66",
+            "75"
+        ],
+        "barding difficulty": "94.3",
+        "gold": [
+            "750",
+            "950"
+        ],
+        "parrying": "",
+        "magery": "0",
+        "necromancy": "",
+        "chivalry": "",
+        "mana": [
+            "46 ",
+            " 70"
+        ],
+        "control slots": "N/A",
+        "detecting hidden": "",
+        "special abilities": "immunity to level 5 poison and below, throws other orcs at you:)",
+        "monster type": "Melee",
+        "magic items": "",
+        "dexterity": [
+            "66 ",
+            " 75"
+        ],
+        "tactics": [
+            "90.1",
+            "100"
+        ],
+        "healing": "",
+        "cut up": "2 raw ribs",
+        "keywords": "Orc Brute",
+        "special": "25 shadow iron ore, 10 ingots,",
+        "poisoning": "0",
+        "intelligence": [
+            "46 ",
+            " 70"
+        ],
+        "name": "Orc Brute",
+        "focus": "",
+        "spirit speak": "",
+        "minimum taming": "N/A",
+        "fame": "15000",
+        "mysticism": "",
+        "base damage": [
+            "20 ",
+            " 25"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "spellweaving": "",
+        "hiding": "",
+        "slayer vulnerability": "orc slayer, repond slayer",
+        "meditation": "0",
+        "resisting spells": [
+            "125.1 ",
+            " 140.0"
+        ],
+        "wrestling": [
+            "90.1",
+            "100"
+        ],
+        "hit points": [
+            "476 ",
+            " 552"
+        ],
+        "anatomy": "0"
+    },
+    {
+        "url": "http://www.uorenaissance.com/info/OrcCaptain",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "primary type": "Orcs",
+        "discordance": "",
+        "base type": "Creature",
+        "effective super slayer": "Repond",
+        "first seen": "day one",
+        "alignment": "evil",
+        "strength": [
+            "111",
+            "145"
+        ],
+        "preferred foods": "",
+        "evaluating intelligence": "0",
+        "parrying": "",
+        "armor": "34",
+        "stamina": [
+            "101 ",
+            " 135"
+        ],
+        "damage": [
+            "5",
+            "15"
+        ],
+        "gold": [
+            "100",
+            "150"
+        ],
+        "mysticism": "",
+        "karma": [
+            "",
+            "2500"
+        ],
+        "w/ a slayer instrument": "48",
+        "magery": "0",
+        "necromancy": "",
+        "bushido": "",
+        "mana": [
+            "86 ",
+            " 110"
+        ],
+        "control slots": "N/A",
+        "detecting hidden": "",
+        "pack instinct": "none",
+        "barding difficulty": "60",
+        "special abilities": "",
+        "monster type": "Melee",
+        "magic items": "",
+        "dexterity": [
+            "101",
+            "135"
+        ],
+        "chivalry": "",
+        "tactics": [
+            "85.1 ",
+            " 100.0"
+        ],
+        "healing": "",
+        "cut up": "1 raw rib",
+        "keywords": "Orc Captain",
+        "special": "",
+        "poisoning": "0",
+        "intelligence": [
+            "86",
+            "110"
+        ],
+        "name": "Orc Captain",
+        "focus": "",
+        "spirit speak": "",
+        "minimum taming": "N/A",
+        "fame": "2500",
+        "effective slayer": "Orc Slaying",
+        "base damage": [
+            "5 ",
+            " 15"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "spellweaving": "",
+        "w/ a gm instrument": "54",
+        "hiding": "",
+        "slayer vulnerability": "orc slayer, repond slayer",
+        "meditation": "0",
+        "resisting spells": [
+            "70.1 ",
+            " 85.0"
+        ],
+        "wrestling": "0",
+        "hit points": [
+            "67",
+            "87"
+        ],
+        "anatomy": "0"
+    },
+    {
+        "url": "http://www.uorenaissance.com/info/OrcScout",
+        "inventory": {
+            "chance": [
+                "1",
+                "200"
+            ],
+            "description": "Platinum Coin"
+        },
+        "primary type": "Orcs",
+        "discordance": "",
+        "base type": "Creature",
+        "effective super slayer": "Repond",
+        "first seen": "spring 2001",
+        "alignment": "evil",
+        "strength": [
+            "96",
+            "120"
+        ],
+        "preferred foods": "",
+        "evaluating intelligence": "0",
+        "parrying": "",
+        "armor": "??",
+        "stamina": [
+            "101 ",
+            " 130"
+        ],
+        "damage": [
+            "15",
+            "24"
+        ],
+        "gold": [
+            "125",
+            "175"
+        ],
+        "mysticism": "",
+        "karma": [
+            "",
+            "1500"
+        ],
+        "w/ a slayer instrument": "57",
+        "magery": "0",
+        "necromancy": "",
+        "bushido": "",
+        "mana": [
+            "36 ",
+            " 60"
+        ],
+        "control slots": "N/A",
+        "detecting hidden": "",
+        "pack instinct": "none",
+        "barding difficulty": "71",
+        "special abilities": "teleports when damaged, stealths when hidden",
+        "monster type": "Melee",
+        "magic items": "",
+        "dexterity": [
+            "101",
+            "130"
+        ],
+        "chivalry": "",
+        "tactics": [
+            "55.1 ",
+            " 80.0"
+        ],
+        "healing": "",
+        "cut up": "",
+        "keywords": "Orc Scout",
+        "special": [
+            "clean 1",
+            "15 Bandages,  50",
+            "70 Arrows,  Orcish Bow, Apples"
+        ],
+        "poisoning": "0",
+        "intelligence": [
+            "36",
+            "60"
+        ],
+        "name": "Orc Scout",
+        "focus": "",
+        "spirit speak": "",
+        "minimum taming": "N/A",
+        "fame": "1500",
+        "effective slayer": "Orc Slaying",
+        "base damage": [
+            "5 ",
+            " 7"
+        ],
+        "ninjitsu": "",
+        "taming difficulty": "n/a",
+        "spellweaving": "",
+        "w/ a gm instrument": "64",
+        "hiding": "",
+        "slayer vulnerability": "orc slayer, repond slayer",
+        "meditation": "0",
+        "resisting spells": [
+            "50.1 ",
+            " 75.0"
+        ],
+        "wrestling": "0",
+        "hit points": [
+            "58",
+            "72"
+        ],
+        "anatomy": "0"
+    },
+    {
+        "url": "http://www.uorenaissance.com/info/OrcishLord",
+        "armor": "0",
+        "effective slayer": "Orc Slaying",
+        "damage": [
+            "4",
+            "14"
+        ],
+        "primary type": "Orcs",
+        "keywords": "Orcish Lord",
+        "base type": "Creature",
+        "dexterity": [
+            "91",
+            "115"
+        ],
+        "effective super slayer": "Repond",
+        "intelligence": [
+            "61",
+            "85"
+        ],
+        "hit points": [
+            "95",
+            "123"
+        ],
+        "w/ a gm instrument": "55",
+        "strength": [
+            "147",
+            "215"
+        ],
+        "name": "Orcish Lord",
+        "inventory": {
+            "chance": [
+                "1",
+                "3"
+            ],
+            "description": "Random Reagent"
+        },
+        "monster type": "Melee",
+        "control slots": "N/A",
+        "barding difficulty": "61",
+        "minimum taming": "N/A",
+        "w/ a slayer instrument": "49"
+    },
+    {
+        "url": "http://www.uorenaissance.com/info/OrcishMage",
+        "armor": "30",
+        "effective slayer": "Orc Slaying",
+        "damage": [
+            "4",
+            "17"
+        ],
+        "primary type": "Orcs",
+        "keywords": "Orcish Mage",
+        "base type": "Creature",
+        "dexterity": [
+            "91",
+            "115"
+        ],
+        "effective super slayer": "Repond",
+        "intelligence": [
+            "161",
+            "185"
+        ],
+        "hit points": [
+            "70",
+            "90"
+        ],
+        "w/ a gm instrument": "64",
+        "strength": [
+            "116",
+            "150"
+        ],
+        "name": "Orcish Mage",
+        "inventory": {
+            "chance": [
+                "1",
+                "400"
+            ],
+            "description": "Platinum Coin"
+        },
+        "monster type": "Magic",
+        "control slots": "N/A",
+        "barding difficulty": "71",
+        "minimum taming": "N/A",
+        "w/ a slayer instrument": "57"
+    }
+]
