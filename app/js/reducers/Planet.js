@@ -31,6 +31,9 @@ Config.mobs = {
 };
 
 Config.mobs.clone = (mob) => {
+  if (!mob) {
+    return undefined;
+  }
  return {
     id: _.last(Config.mobs.MobData).id + 1,
     name: mob.name.toLowerCase(),
@@ -66,7 +69,20 @@ Config.mobs.clone = (mob) => {
     }
   };
 }
-for (i in Config.mobs.animals) { Config.mobs.MobData.push(Config.mobs.clone(Config.mobs.animals[i]))}
+
+_.each(Config.mobs, (mob, index) => {
+  if (index !== 'MobData') {
+    _.each(mob, (m, i) => {
+      console.log(m,i);
+      let clone = Config.mobs.clone(m);
+      if (clone !== undefined) {
+        Config.mobs.MobData.push(clone)
+      }
+    });
+  }
+});
+// for (let i in Config.mobs.animals) { Config.mobs.MobData.push(Config.mobs.clone(Config.mobs.animals[i]))}
+
 const Planet = (state = {}, action) => {
   const { type, payload } = action;
   state.Planet = state.Planet || {
