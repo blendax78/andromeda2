@@ -299,7 +299,7 @@ class Combat extends Component {
       if (this.state.mob.hp <= 0) {
         // Player wins
         this.playerWin();
-      } else if (this.state.mob.hp <= 0) {
+      } else {
         // Mob wins
         this.mobWin();
       }
@@ -338,7 +338,7 @@ class Combat extends Component {
 
     score.deaths++;
     status.dead = true;
-
+console.log('mobwin');
     Config.notifyError(this.props.store, `The ${this.state.mob.name} has defeated you.`);
     Config.notifyError(this.props.store, `You lost ${this.state.player.credits - credits} credits.`);
 
