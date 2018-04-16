@@ -1339,7 +1339,7 @@ export const MobData = [
     credits: 0,
     skills: {
       wrestling: 100.0,
-      tactics: 100.0,
+      tactics: [100, 100],
       magic_resistance: [
         100,
         120
@@ -6144,7 +6144,7 @@ export const MobData = [
         118,
         123
       ],
-      tactics: '100.0,
+      tactics: [100, 100],
       magic_resistance: [
         140,
         160
@@ -10994,7 +10994,7 @@ export const MobData = [
       324
     ],
     skills: {
-      wrestling: 0',
+      wrestling: [0,0],
       tactics: [
         70,
         90
@@ -12254,7 +12254,7 @@ export const MobData = [
         90,
         100
       ],
-      tactics: '100.0,
+      tactics: 100.0,
       magic_resistance: '250.0'
     }
   },
@@ -12751,7 +12751,7 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: 0',
+      wrestling: [0,0],
       tactics: [
         82,
         100
@@ -15731,7 +15731,7 @@ export const MobData = [
       150
     ],
     skills: {
-      wrestling: 0',
+      wrestling: [0,0],
       tactics: [
         85,
         100
@@ -15794,7 +15794,7 @@ export const MobData = [
       175
     ],
     skills: {
-      wrestling: 0',
+      wrestling: [0,0],
       tactics: [
         55,
         80
@@ -17343,7 +17343,7 @@ export const MobData = [
       225
     ],
     skills: {
-      wrestling: 0',
+      wrestling: [0,0],
       tactics: [
         75,
         90
@@ -17955,7 +17955,7 @@ export const MobData = [
     ],
     skills: {
       wrestling: 100.0,
-      tactics: 100.0,
+      tactics: [100, 100],
       magic_resistance: '35.0'
     }
   },
@@ -24295,7 +24295,7 @@ export const MobData = [
       324
     ],
     skills: {
-      wrestling: 0',
+      wrestling: [0,0],
       tactics: [
         70,
         90
@@ -24603,7 +24603,7 @@ export const MobData = [
         90,
         100
       ],
-      tactics: '100.0,
+      tactics: 100.0,
       magic_resistance: '250.0'
     }
   },

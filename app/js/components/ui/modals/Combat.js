@@ -214,7 +214,8 @@ class Combat extends Component {
           Config.dispatch(this.props.store, Config.ACTIONS.MOBS.UPDATE, mob);
           if (this.state.mob.mob_type !== 'training') {
             Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });
-            Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: 'tactics' });            
+            Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: 'tactics' });
+            Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: 'anatomy' });
           } else {
              if (skill.current < 25.0) {
               Config.dispatch(this.props.store, Config.ACTIONS.SKILLS.GAIN, { name: skill.name.toLowerCase() });

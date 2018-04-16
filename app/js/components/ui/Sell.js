@@ -26,9 +26,9 @@ class Sell extends Component {
 
   sellItem(item) {
     let description = Config.Item(item).get('description');
-
-    if (confirm(`Sell ${description} for ${item.value} credits?`)) {
-      let credits = this.state.player.credits + (item.value);
+    let value = (!!item.exceptional && !!item.exceptional.bonus) ? item.value + Math.round(item.value * (item.exceptional.bonus / 10)) : item.value;
+    if (confirm(`Sell ${description} for ${value} credits?`)) {
+      let credits = this.state.player.credits + value;
       
       this.props.store.dispatch({
         type: Config.ACTIONS.PLAYER.UPDATE,
@@ -51,7 +51,7 @@ class Sell extends Component {
         payload: this.state.player
       });
       
-      Config.notify(this.props.store, `You sold ${description} for ${item.value} credits.`);
+      Config.notify(this.props.store, `You sold ${description} for ${value} credits.`);
     }
   }
 
@@ -95,11 +95,12 @@ class Sell extends Component {
       let equipped = (!!item.equip && item.equip.equipped === true) ? <span title="Equipped" className="glyphicon glyphicon-ok-sign"></span> : '';
       let description = Config.Item(item).get('description');
       let link = <a href="#" onClick={() => { this.sellItem(item); }}>{description} {equipped}</a>;
+      let value = (!!item.exceptional && !!item.exceptional.bonus) ? item.value + Math.round(item.value * (item.exceptional.bonus / 10)) : item.value;
 
       return (
         <tr key={`sell.${item.id}.${item.key}`}>
           <td>{link}</td>
-          <td>{item.value}</td>
+          <td>{value}</td>
         </tr>
       );
     });

@@ -16,6 +16,8 @@ const Effects = (state = {}, action) => {
     speed: 2.0
   };
 
+  let exceptional = {};
+
   state.Player.effects.strength = state.Player.strength;
   state.Player.effects.dexterity = state.Player.dexterity;
   state.Player.effects.intelligence = state.Player.intelligence;
@@ -32,6 +34,7 @@ const Effects = (state = {}, action) => {
 
     } else if (eq.type === 'weapons' && eq.equip && eq.equip.equipped === true) {
       offense = Config.clone(eq.weapon);
+      exceptional = Config.clone(eq.exceptional);
     }      
   });
 
@@ -46,20 +49,36 @@ const Effects = (state = {}, action) => {
     state.Player.move = 1;
   }
 
-  let strength_mod = 1 + ((state.Player.strength * 0.3) / 100);
-  // Strength + tactics
-  offense.min = Math.round((offense.min - Math.round(offense.min * ((50 - state.Skills.tactics.current) / 100))) * strength_mod);
-  offense.min = (offense.min === 0) ? 1 : offense.min;
-  offense.max = Math.round((offense.max - Math.round(offense.max * ((50 - state.Skills.tactics.current) / 100))) * strength_mod);
+  let strength_mod = ((state.Player.strength * 0.3) / 100);
+  let base = { min: offense.min, max: offense.max };
+
+  if (!!exceptional && !!exceptional.bonus) {
+    base.min += exceptional.bonus;
+    base.max += exceptional.bonus;
+  }
+
+  // Tactics
+  let tactics_mod = (state.Skills.tactics.current - 50) / 100;
+  offense.min += Math.round(base.min * tactics_mod);
+  offense.max += Math.round(base.min * tactics_mod);
+
+  // Anatomy
+  offense.min += Math.round(base.min * (state.Skills.anatomy.current / 200));
+  offense.max += Math.round(base.max * (state.Skills.anatomy.current / 200));
 
   // Lumberjacking
-  // Lumberjack Damage Bonus% = Lumberjack ÷ 5 (Add 10% if Lumberjacking >= 100)
-
   if (offense.type === 'melee' && offense.sub_type === 'axe') {
-    let lumberjack_bonus = (state.Skills.lumberjacking.current < 100) ? Math.round(state.Skills.lumberjacking.current / 5) : 30;
-    offense.min += lumberjack_bonus
-    offense.max += lumberjack_bonus;
+    let lumberjack_bonus = (state.Skills.lumberjacking.current < 100) ? Math.round(state.Skills.lumberjacking.current / 500) : 0.30;
+    offense.min += Math.round(lumberjack_bonus * base.min);
+    offense.max += Math.round(lumberjack_bonus * base.max);
   }
+
+  // Strength
+  offense.min += Math.round(base.min * strength_mod);
+  offense.max += Math.round(base.max * strength_mod);
+
+  offense.min = (offense.min <= 0) ? 1 : Math.round(offense.min);
+  offense.max = (offense.max <= 0) ? 1 : Math.round(offense.max);
 
   state.Player.defense = defense;
   state.Player.offense = offense;

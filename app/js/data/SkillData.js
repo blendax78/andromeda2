@@ -139,6 +139,16 @@ export const SkillData = {
     secondary: 'intelligence',
     title: 'Shade'
   },
+  anatomy: {
+    id: 15,
+    name: 'Anatomy',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'intelligence',
+    secondary: 'strength',
+    title: 'Biologist'
+  },
 };
 
 

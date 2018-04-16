@@ -81,7 +81,6 @@ class Crafting extends Component {
       let chance = this.calcChance(item);
       let exceptional = (_.random(0,100) <= parseFloat(this.calcExceptional(item)) && item.countable !== true) ? this.getExceptionalBonus(item) : undefined;
 
-      console.log('exc', exceptional, this.calcExceptional(item));
       this.props.store.dispatch({
         type: Config.ACTIONS.SKILLS.CRAFT,
         payload: { item: item, player_skill: this.player_skill, difficulty: item.craft.skill.min, chance: this.calcChance(item), exceptional: exceptional }
@@ -96,11 +95,13 @@ class Crafting extends Component {
     let exceptional = {};
     switch (item.type) {
       case 'weapons':
+      case 'armor':
         if (this.player_skill.current >= 100) {
           return { bonus: 4, title: 'grandmaster'};
         } else {
           return { bonus: _.random(1,3), title: 'exceptional'};
         }
+      break;
       break;
     }
 
