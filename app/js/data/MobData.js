@@ -17,22 +17,10 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     stats: {
-      str: [
-        19,
-        19
-      ],
-      dex: [
-        25,
-        25
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        12,
-        12
-      ],
+      str: [19, 19],
+      dex: [25, 25],
+      int: [5,5],
+      hp: [12,12],
       taming: 11.1,
       barding: 7
     },
@@ -45,18 +33,13 @@ export const MobData = [
       }
     ],
     credits: 0,
-    img: 'https://andromeda.vintimilla.org/static/images/mobs/Sheep_100.png',
+    img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
     skills: {
-      wrestling: [
-        5,
-        5
-      ],
-      tactics: [
-        6,
-        6
-      ],
-      magic_resistance: [
-        5,
+      wrestling: [5,
+        5],
+      tactics: [6,
+        6],
+      magic_resistance: [5,
         5
       ]
     }
@@ -69,22 +52,10 @@ export const MobData = [
     karma: 0,
     fame: 300,
     stats: {
-      str: [
-        21,
-        51
-      ],
-      dex: [
-        47,
-        77
-      ],
-      int: [
-        17,
-        47
-      ],
-      hp: [
-        15,
-        29
-      ],
+      str: [21,51],
+      dex: [47,77],
+      int: [17,47],
+      hp: [15,29],
       barding: 17,
       taming: 13.1
     },
@@ -105,18 +76,13 @@ export const MobData = [
       }
     ],
     credits: 0,
-    img: 'https://andromeda.vintimilla.org/static/images/mobs/Hind_100.png',
+    img: `${Config.URLS.IMAGES}/mobs/Hind_100.png`,
     skills: {
-      wrestling: [
-        26,
-        26
-      ],
-      tactics: [
-        19,
-        19
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [26,
+        26],
+      tactics: [19,
+        19],
+      magic_resistance: [15,
         15
       ]
     }
@@ -129,22 +95,14 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        11,
-        14
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [56,
+        75],
+      int: [11,
+        14],
+      hp: [46,
+        60],
       taming: 35.1,
       barding: 33
     },
@@ -164,18 +122,13 @@ export const MobData = [
       }
     ],
     credits: 0,
-    img: 'https://andromeda.vintimilla.org/static/images/mobs/BlackBear_100.png',
+    img: `${Config.URLS.IMAGES}/mobs/BlackBear_100.png`,
     skills: {
-      wrestling: [
-        40,
-        60
-      ],
-      tactics: [
-        40,
-        60
-      ],
-      magic_resistance: [
-        20,
+      wrestling: [40,
+        60],
+      tactics: [40,
+        60],
+      magic_resistance: [20,
         40
       ]
     }
@@ -188,22 +141,14 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        26,
-        45
-      ],
-      int: [
-        23,
-        47
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [26,
+        45],
+      int: [23,
+        47],
+      hp: [46,
+        60],
       taming: 41.1,
       barding: 30
     },
@@ -224,18 +169,13 @@ export const MobData = [
       }
     ],
     credits: 0,
-    img: 'https://andromeda.vintimilla.org/static/images/mobs/BrownBear_100.png',
+    img: `${Config.URLS.IMAGES}/mobs/BrownBear_100.png`,
     skills: {
-      wrestling: [
-        40,
-        60
-      ],
-      tactics: [
-        40,
-        60
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [40,
+        60],
+      tactics: [40,
+        60],
+      magic_resistance: [25,
         35
       ]
     }
@@ -248,20 +188,13 @@ export const MobData = [
     karma: 0,
     fame: 600,
     stats: {
-      str: [
-        77,
-        111
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        47,
-        75
-      ],
-      hp: [
-        50,
+      str: [77,
+        111],
+      dex: [56,
+        75],
+      int: [47,
+        75],
+      hp: [50,
         64
       ],
       barding: 30,
@@ -283,18 +216,13 @@ export const MobData = [
       }
     ],
     credits: 0,
-    img: 'https://andromeda.vintimilla.org/static/images/mobs/Bull_100.png',
+    img: `${Config.URLS.IMAGES}/mobs/Bull_100.png`,
     skills: {
-      wrestling: [
-        40.1,
-        57.5
-      ],
-      tactics: [
-        67.6,
-        85
-      ],
-      magic_resistance: [
-        17.6,
+      wrestling: [40.1,
+        57.5],
+      tactics: [67.6,
+        85],
+      magic_resistance: [17.6,
         25
       ]
     }
@@ -307,20 +235,13 @@ export const MobData = [
     karma: 0,
     fame: 300,
     stats: {
-      str: [
-        30,
-        30
-      ],
-      dex: [
-        15,
-        15
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        18,
+      str: [30,
+        30],
+      dex: [15,
+        15],
+      int: [5,
+        5],
+      hp: [18,
         18
       ]
     },
@@ -343,18 +264,13 @@ export const MobData = [
       }
     ],
     credits: 0,
-    img: 'https://andromeda.vintimilla.org/static/images/mobs/Cow_100.png',
+    img: `${Config.URLS.IMAGES}/mobs/Cow_100.png`,
     skills: {
-      wrestling: [
-        5.5,
-        5.5
-      ],
-      tactics: [
-        5.5,
-        5.5
-      ],
-      magic_resistance: [
-        5.5,
+      wrestling: [5.5,
+        5.5],
+      tactics: [5.5,
+        5.5],
+      magic_resistance: [5.5,
         5.5
       ]
     }
@@ -367,20 +283,13 @@ export const MobData = [
     karma: 0,
     fame: 0,
     stats: {
-      str: [
-        0,
-        0
-      ],
-      dex: [
-        0,
-        0
-      ],
-      int: [
-        0,
-        0
-      ],
-      hp: [
-        500,
+      str: [0,
+        0],
+      dex: [0,
+        0],
+      int: [0,
+        0],
+      hp: [500,
         500
       ]
     },
@@ -398,18 +307,13 @@ export const MobData = [
 
     ],
     credits: 0,
-    img: 'https://andromeda.vintimilla.org/static/images/misc/training_dummy.png',
+    img: `${Config.URLS.IMAGES}/misc/training_dummy.png`,
     skills: {
-      wrestling: [
-        0,
-        0
-      ],
-      tactics: [
-        0,
-        0
-      ],
-      magic_resistance: [
-        0,
+      wrestling: [0,
+        0],
+      tactics: [0,
+        0],
+      magic_resistance: [0,
         0
       ]
     }
@@ -422,22 +326,14 @@ export const MobData = [
     karma: -300,
     fame: 300,
     stats: {
-      str: [
-        32,
-        74
-      ],
-      dex: [
-        46,
-        65
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        26,
-        39
-      ],
+      str: [32,
+        74],
+      dex: [46,
+        65],
+      int: [16,
+        30],
+      hp: [26,
+        39],
       taming: 29.1,
       barding: 24
     },
@@ -457,22 +353,16 @@ export const MobData = [
         count: 6
       }
     ],
-    credits: [
-      1,
+    credits: [1,
       25
     ],
-    img: 'https://andromeda.vintimilla.org/static/images/mobs/GiantRat_100.png',
+    img: `${Config.URLS.IMAGES}/mobs/GiantRat_100.png`,
     skills: {
-      wrestling: [
-        29.3,
-        44
-      ],
-      tactics: [
-        29.3,
-        44
-      ],
-      magic_resistance: [
-        25.1,
+      wrestling: [29.3,
+        44],
+      tactics: [29.3,
+        44],
+      magic_resistance: [25.1,
         30
       ]
     }
@@ -485,22 +375,14 @@ export const MobData = [
     karma: '-600',
     fame: '600',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        6,
-        25
-      ],
-      int: [
-        11,
-        20
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [6,
+        25],
+      int: [11,
+        20],
+      hp: [46,
+        60],
       taming: 47.1,
       barding: 29
     },
@@ -520,16 +402,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        40,
-        60
-      ],
-      tactics: [
-        40,
-        60
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [40,
+        60],
+      tactics: [40,
+        60],
+      magic_resistance: [25,
         40
       ]
     }
@@ -542,22 +419,14 @@ export const MobData = [
     karma: 0,
     fame: '150',
     stats: {
-      str: [
-        10,
-        10
-      ],
-      dex: [
-        25,
-        35
-      ],
-      int: [
-        10,
-        10
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [10,
+        10],
+      dex: [25,
+        35],
+      int: [10,
+        10],
+      hp: [0,
+        0],
       taming: 0,
       barding: 7
     },
@@ -588,22 +457,14 @@ export const MobData = [
     description: 'bull frog',
     armor: 6,
     stats: {
-      str: [
-        46,
-        70
-      ],
-      dex: [
-        6,
-        25
-      ],
-      int: [
-        11,
-        20
-      ],
-      hp: [
-        28,
-        42
-      ],
+      str: [46,
+        70],
+      dex: [6,
+        25],
+      int: [11,
+        20],
+      hp: [28,
+        42],
       taming: 23.1,
       barding: 21
     },
@@ -634,22 +495,14 @@ export const MobData = [
     karma: '-150',
     fame: 0,
     stats: {
-      str: [
-        9,
-        9
-      ],
-      dex: [
-        35,
-        35
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        6,
-        6
-      ],
+      str: [9,
+        9],
+      dex: [35,
+        35],
+      int: [5,
+        5],
+      hp: [6,
+        6],
       taming: 0,
       barding: 6
     },
@@ -682,22 +535,14 @@ export const MobData = [
     karma: 0,
     fame: '150',
     stats: {
-      str: [
-        5,
-        5
-      ],
-      dex: [
-        15,
-        15
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        3,
-        3
-      ],
+      str: [5,
+        5],
+      dex: [15,
+        15],
+      int: [5,
+        5],
+      hp: [3,
+        3],
       taming: 0.9,
       barding: 4
     },
@@ -730,22 +575,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        26,
-        50
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [66,
+        85],
+      int: [26,
+        50],
+      hp: [34,
+        48],
       taming: 41.1,
       barding: 27
     },
@@ -765,16 +602,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        45,
-        60
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [45,
+        60],
+      tactics: [45,
+        60],
+      magic_resistance: [15,
         30
       ]
     }
@@ -787,22 +619,14 @@ export const MobData = [
     karma: 0,
     fame: '300',
     stats: {
-      str: [
-        30,
-        30
-      ],
-      dex: [
-        15,
-        15
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        18,
-        18
-      ],
+      str: [30,
+        30],
+      dex: [15,
+        15],
+      int: [5,
+        5],
+      hp: [18,
+        18],
       taming: 11.1,
       barding: 7
     },
@@ -835,22 +659,14 @@ export const MobData = [
     karma: 'negative',
     fame: 'none',
     stats: {
-      str: [
-        25,
-        35
-      ],
-      dex: [
-        15,
-        25
-      ],
-      int: [
-        10,
-        15
-      ],
-      hp: [
-        25,
-        35
-      ],
+      str: [25,
+        35],
+      dex: [15,
+        25],
+      int: [10,
+        15],
+      hp: [25,
+        35],
       taming: null,
       barding: 9.2
     },
@@ -865,16 +681,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        10,
-        11
-      ],
-      tactics: [
-        10,
-        11
-      ],
-      magic_resistance: [
-        4,
+      wrestling: [10,
+        11],
+      tactics: [10,
+        11],
+      magic_resistance: [4,
         5
       ]
     }
@@ -887,22 +698,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        94,
-        170
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        71,
-        88
-      ],
+      str: [94,
+        170],
+      dex: [56,
+        75],
+      int: [6,
+        10],
+      hp: [71,
+        88],
       taming: 29.1,
       barding: 33
     },
@@ -922,16 +725,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        29,
-        44
-      ],
-      tactics: [
-        25,
-        40
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [29,
+        44],
+      tactics: [25,
+        40],
+      magic_resistance: [25,
         30
       ]
     }
@@ -944,22 +742,14 @@ export const MobData = [
     karma: '-2500',
     fame: '2500',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [81,
+        105],
+      int: [36,
+        60],
+      hp: [58,
+        72],
       taming: 83.1,
       barding: 43
     },
@@ -979,16 +769,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        57,
+      wrestling: [60,
+        80],
+      tactics: [50,
+        70],
+      magic_resistance: [57,
         75
       ]
     }
@@ -1001,22 +786,14 @@ export const MobData = [
     karma: '-300',
     fame: 0,
     stats: {
-      str: [
-        27,
-        37
-      ],
-      dex: [
-        28,
-        43
-      ],
-      int: [
-        29,
-        37
-      ],
-      hp: [
-        17,
-        22
-      ],
+      str: [27,
+        37],
+      dex: [28,
+        43],
+      int: [29,
+        37],
+      hp: [17,
+        22],
       taming: 0,
       barding: 17
     },
@@ -1036,16 +813,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        19,
-        31
-      ],
-      tactics: [
-        19,
-        31
-      ],
-      magic_resistance: [
-        22,
+      wrestling: [19,
+        31],
+      tactics: [19,
+        31],
+      magic_resistance: [22,
         47
       ]
     }
@@ -1058,22 +830,14 @@ export const MobData = [
     karma: '-2000',
     fame: '500',
     stats: {
-      str: [
-        21,
-        49
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        96,
-        110
-      ],
-      hp: [
-        15,
-        27
-      ],
+      str: [21,
+        49],
+      dex: [66,
+        85],
+      int: [96,
+        110],
+      hp: [15,
+        27],
       taming: null,
       barding: 26
     },
@@ -1093,16 +857,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        19,
-        29
-      ],
-      tactics: [
-        19,
-        29
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [19,
+        29],
+      tactics: [19,
+        29],
+      magic_resistance: [15,
         20
       ]
     }
@@ -1115,22 +874,14 @@ export const MobData = [
     karma: 0,
     fame: '300',
     stats: {
-      str: [
-        31,
-        47
-      ],
-      dex: [
-        36,
-        60
-      ],
-      int: [
-        8,
-        20
-      ],
-      hp: [
-        20,
-        27
-      ],
+      str: [31,
+        47],
+      dex: [36,
+        60],
+      int: [8,
+        20],
+      hp: [20,
+        27],
       taming: 17.1,
       barding: 18
     },
@@ -1148,21 +899,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        20,
-        30
-      ],
-      tactics: [
-        18,
-        37
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [20,
+        30],
+      tactics: [18,
+        37],
+      magic_resistance: [15,
         30
       ]
     }
@@ -1173,22 +917,14 @@ export const MobData = [
     description: 'faction war horse',
     armor: null,
     stats: {
-      str: [
-        400,
-        400
-      ],
-      dex: [
-        125,
-        125
-      ],
-      int: [
-        51,
-        55
-      ],
-      hp: [
-        240,
-        240
-      ],
+      str: [400,
+        400],
+      dex: [125,
+        125],
+      int: [51,
+        55],
+      hp: [240,
+        240],
       taming: 11.1,
       barding: 65
     },
@@ -1308,22 +1044,14 @@ export const MobData = [
     karma: '-20000',
     fame: '20000',
     stats: {
-      str: [
-        376,
-        400
-      ],
-      dex: [
-        91,
-        120
-      ],
-      int: [
-        291,
-        300
-      ],
-      hp: [
-        226,
-        240
-      ],
+      str: [376,
+        400],
+      dex: [91,
+        120],
+      int: [291,
+        300],
+      hp: [226,
+        240],
       taming: 106,
       barding: 83.6
     },
@@ -1340,8 +1068,7 @@ export const MobData = [
     skills: {
       wrestling: 100.0,
       tactics: [100, 100],
-      magic_resistance: [
-        100,
+      magic_resistance: [100,
         120
       ]
     }
@@ -1354,22 +1081,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        94,
-        170
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        71,
-        88
-      ],
+      str: [94,
+        170],
+      dex: [56,
+        75],
+      int: [6,
+        10],
+      hp: [71,
+        88],
       taming: null,
       barding: 30
     },
@@ -1389,16 +1108,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        29,
-        44
-      ],
-      tactics: [
-        29,
-        44
-      ],
-      magic_resistance: [
-        27,
+      wrestling: [29,
+        44],
+      tactics: [29,
+        44],
+      magic_resistance: [27,
         32
       ]
     }
@@ -1411,22 +1125,14 @@ export const MobData = [
     karma: '-1500',
     fame: '1500',
     stats: {
-      str: [
-        94,
-        170
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        71,
-        110
-      ],
+      str: [94,
+        170],
+      dex: [96,
+        115],
+      int: [6,
+        10],
+      hp: [71,
+        110],
       taming: 77.1,
       barding: 55
     },
@@ -1446,16 +1152,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        79,
-        94
-      ],
-      tactics: [
-        79,
-        94
-      ],
-      magic_resistance: [
-        75,
+      wrestling: [79,
+        94],
+      tactics: [79,
+        94],
+      magic_resistance: [75,
         80
       ]
     }
@@ -1468,22 +1169,14 @@ export const MobData = [
     karma: '-2500',
     fame: '2500',
     stats: {
-      str: [
-        186,
-        215
-      ],
-      dex: [
-        56,
-        80
-      ],
-      int: [
-        66,
-        85
-      ],
-      hp: [
-        112,
-        129
-      ],
+      str: [186,
+        215],
+      dex: [56,
+        80],
+      int: [66,
+        85],
+      hp: [112,
+        129],
       taming: null,
       barding: 73
     },
@@ -1504,21 +1197,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        65,
-        70
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [60,
+        80],
+      tactics: [65,
+        70],
+      magic_resistance: [25,
         40
       ]
     }
@@ -1531,22 +1217,14 @@ export const MobData = [
     karma: '-750',
     fame: '750',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        6,
-        25
-      ],
-      int: [
-        11,
-        20
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [6,
+        25],
+      int: [11,
+        20],
+      hp: [46,
+        60],
       taming: 77.1,
       barding: 27
     },
@@ -1564,21 +1242,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        40,
-        60
-      ],
-      tactics: [
-        40,
-        60
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [40,
+        60],
+      tactics: [40,
+        60],
+      magic_resistance: [25,
         40
       ]
     }
@@ -1591,22 +1262,14 @@ export const MobData = [
     karma: 0,
     fame: '150',
     stats: {
-      str: [
-        19,
-        19
-      ],
-      dex: [
-        15,
-        15
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        12,
-        12
-      ],
+      str: [19,
+        19],
+      dex: [15,
+        15],
+      int: [5,
+        5],
+      hp: [12,
+        12],
       taming: 11.1,
       barding: 6
     },
@@ -1639,22 +1302,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        53,
-        95
-      ],
-      dex: [
-        36,
-        55
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        38,
-        51
-      ],
+      str: [53,
+        95],
+      dex: [36,
+        55],
+      int: [36,
+        60],
+      hp: [38,
+        51],
       taming: 18.9,
       barding: 29
     },
@@ -1674,16 +1329,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        43,
-        58
-      ],
-      tactics: [
-        43,
-        58
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [43,
+        58],
+      tactics: [43,
+        58],
+      magic_resistance: [45,
         60
       ]
     }
@@ -1696,22 +1346,14 @@ export const MobData = [
     karma: 0,
     fame: '300',
     stats: {
-      str: [
-        41,
-        71
-      ],
-      dex: [
-        47,
-        77
-      ],
-      int: [
-        27,
-        57
-      ],
-      hp: [
-        27,
-        41
-      ],
+      str: [41,
+        71],
+      dex: [47,
+        77],
+      int: [27,
+        57],
+      hp: [27,
+        41],
       taming: 59.1,
       barding: 25
     },
@@ -1731,16 +1373,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        29,
-        47
-      ],
-      tactics: [
-        29,
-        47
-      ],
-      magic_resistance: [
-        26,
+      wrestling: [29,
+        47],
+      tactics: [29,
+        47],
+      magic_resistance: [26,
         44
       ]
     }
@@ -1753,22 +1390,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        31,
-        55
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [56,
+        75],
+      int: [31,
+        55],
+      hp: [34,
+        48],
       taming: 53.1,
       barding: 28
     },
@@ -1788,16 +1417,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        45,
-        60
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        20,
+      wrestling: [45,
+        60],
+      tactics: [45,
+        60],
+      magic_resistance: [20,
         35
       ]
     }
@@ -1810,22 +1434,14 @@ export const MobData = [
     karma: 0,
     fame: '1000',
     stats: {
-      str: [
-        126,
-        155
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        16,
-        40
-      ],
-      hp: [
-        76,
-        93
-      ],
+      str: [126,
+        155],
+      dex: [81,
+        105],
+      int: [16,
+        40],
+      hp: [76,
+        93],
       taming: 59.1,
       barding: 44
     },
@@ -1845,16 +1461,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        45,
-        70
-      ],
-      tactics: [
-        70,
-        100
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [45,
+        70],
+      tactics: [70,
+        100],
+      magic_resistance: [25,
         40
       ]
     }
@@ -1865,22 +1476,14 @@ export const MobData = [
     description: 'hell cat',
     armor: 30,
     stats: {
-      str: [
-        51,
-        100
-      ],
-      dex: [
-        52,
-        150
-      ],
-      int: [
-        13,
-        85
-      ],
-      hp: [
-        48,
-        67
-      ],
+      str: [51,
+        100],
+      dex: [52,
+        150],
+      int: [13,
+        85],
+      hp: [48,
+        67],
       taming: 71.1,
       barding: 41
     },
@@ -1914,22 +1517,14 @@ export const MobData = [
     karma: '-300',
     fame: '300',
     stats: {
-      str: [
-        22,
-        98
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        28,
-        45
-      ],
+      str: [22,
+        98],
+      dex: [56,
+        75],
+      int: [6,
+        10],
+      hp: [28,
+        45],
       taming: 11.1,
       barding: 22
     },
@@ -1949,16 +1544,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        29,
-        44
-      ],
-      tactics: [
-        29,
-        44
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [29,
+        44],
+      tactics: [29,
+        44],
+      magic_resistance: [25,
         30
       ]
     }
@@ -1969,22 +1559,14 @@ export const MobData = [
     description: 'ice serpent',
     armor: 32,
     stats: {
-      str: [
-        216,
-        245
-      ],
-      dex: [
-        26,
-        50
-      ],
-      int: [
-        66,
-        85
-      ],
-      hp: [
-        130,
-        147
-      ],
+      str: [216,
+        245],
+      dex: [26,
+        50],
+      int: [66,
+        85],
+      hp: [130,
+        147],
       taming: null,
       barding: 59
     },
@@ -2015,22 +1597,14 @@ export const MobData = [
     karma: '-900',
     fame: '900',
     stats: {
-      str: [
-        42,
-        54
-      ],
-      dex: [
-        36,
-        45
-      ],
-      int: [
-        26,
-        30
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [42,
+        54],
+      dex: [36,
+        45],
+      int: [26,
+        30],
+      hp: [0,
+        0],
       taming: null,
       barding: 21
     },
@@ -2051,21 +1625,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        39,
-        54
-      ],
-      tactics: [
-        39,
-        54
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [39,
+        54],
+      tactics: [39,
+        54],
+      magic_resistance: [15,
         20
       ]
     }
@@ -2078,22 +1645,14 @@ export const MobData = [
     karma: 0,
     fame: '150',
     stats: {
-      str: [
-        15,
-        15
-      ],
-      dex: [
-        25,
-        25
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        9,
-        9
-      ],
+      str: [15,
+        15],
+      dex: [25,
+        25],
+      int: [5,
+        5],
+      hp: [9,
+        9],
       taming: 0,
       barding: 6
     },
@@ -2129,22 +1688,14 @@ export const MobData = [
     ],
     fame: '3000',
     stats: {
-      str: [
-        126,
-        150
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        11,
-        20
-      ],
-      hp: [
-        76,
-        90
-      ],
+      str: [126,
+        150],
+      dex: [56,
+        75],
+      int: [11,
+        20],
+      hp: [76,
+        90],
       taming: 80.7,
       barding: 54
     },
@@ -2165,21 +1716,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        60,
-        80
-      ],
-      magic_resistance: [
-        55,
+      wrestling: [60,
+        80],
+      tactics: [60,
+        80],
+      magic_resistance: [55,
         70
       ]
     }
@@ -2192,22 +1736,14 @@ export const MobData = [
     karma: '-4500',
     fame: '4500',
     stats: {
-      str: [
-        386,
-        415
-      ],
-      dex: [
-        56,
-        80
-      ],
-      int: [
-        66,
-        85
-      ],
-      hp: [
-        232,
-        249
-      ],
+      str: [386,
+        415],
+      dex: [56,
+        80],
+      int: [66,
+        85],
+      hp: [232,
+        249],
       taming: null,
       barding: 75
     },
@@ -2228,21 +1764,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      200,
-      250
-    ],
+    credits: [200,
+      250],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        65,
-        70
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [60,
+        80],
+      tactics: [65,
+        70],
+      magic_resistance: [25,
         70
       ]
     }
@@ -2255,22 +1784,14 @@ export const MobData = [
     karma: '-600',
     fame: '600',
     stats: {
-      str: [
-        43,
-        55
-      ],
-      dex: [
-        16,
-        25
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        28,
-        32
-      ],
+      str: [43,
+        55],
+      dex: [16,
+        25],
+      int: [6,
+        10],
+      hp: [28,
+        32],
       taming: null,
       barding: 23
     },
@@ -2291,21 +1812,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        19,
-        34
-      ],
-      tactics: [
-        19,
-        34
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [19,
+        34],
+      tactics: [19,
+        34],
+      magic_resistance: [15,
         20
       ]
     }
@@ -2318,22 +1832,14 @@ export const MobData = [
     karma: 0,
     fame: '300',
     stats: {
-      str: [
-        21,
-        49
-      ],
-      dex: [
-        36,
-        55
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        15,
-        27
-      ],
+      str: [21,
+        49],
+      dex: [36,
+        55],
+      int: [16,
+        30],
+      hp: [15,
+        27],
       taming: 35.1,
       barding: 15
     },
@@ -2353,16 +1859,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        19,
-        29
-      ],
-      tactics: [
-        19,
-        29
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [19,
+        29],
+      tactics: [19,
+        29],
+      magic_resistance: [15,
         20
       ]
     }
@@ -2375,22 +1876,14 @@ export const MobData = [
     karma: 0,
     fame: '300',
     stats: {
-      str: [
-        22,
-        64
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        20,
-        33
-      ],
+      str: [22,
+        64],
+      dex: [56,
+        75],
+      int: [16,
+        30],
+      hp: [20,
+        33],
       taming: 0,
       barding: 26
     },
@@ -2405,16 +1898,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        29,
-        44
-      ],
-      tactics: [
-        29,
-        44
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [29,
+        44],
+      tactics: [29,
+        44],
+      magic_resistance: [25,
         30
       ]
     }
@@ -2430,22 +1918,14 @@ export const MobData = [
     ],
     fame: '14000',
     stats: {
-      str: [
-        496,
-        525
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        86,
-        125
-      ],
-      hp: [
-        298,
-        315
-      ],
+      str: [496,
+        525],
+      dex: [86,
+        105],
+      int: [86,
+        125],
+      hp: [298,
+        315],
       taming: 95.1,
       barding: 92
     },
@@ -2463,21 +1943,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      400,
-      500
-    ],
+    credits: [400,
+      500],
     skills: {
-      wrestling: [
-        80,
-        92
-      ],
-      tactics: [
-        97,
-        100
-      ],
-      magic_resistance: [
-        85,
+      wrestling: [80,
+        92],
+      tactics: [97,
+        100],
+      magic_resistance: [85,
         100
       ]
     }
@@ -2490,22 +1963,14 @@ export const MobData = [
     karma: '-200',
     fame: 0,
     stats: {
-      str: [
-        44,
-        120
-      ],
-      dex: [
-        36,
-        55
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        61,
-        80
-      ],
+      str: [44,
+        120],
+      dex: [36,
+        55],
+      int: [6,
+        10],
+      hp: [61,
+        80],
       taming: 11.1,
       barding: 30
     },
@@ -2525,16 +1990,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        29,
-        44
-      ],
-      tactics: [
-        29,
-        44
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [29,
+        44],
+      tactics: [29,
+        44],
+      magic_resistance: [25,
         30
       ]
     }
@@ -2547,22 +2007,14 @@ export const MobData = [
     karma: '-200',
     fame: 0,
     stats: {
-      str: [
-        52,
-        80
-      ],
-      dex: [
-        36,
-        55
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        50,
-        50
-      ],
+      str: [52,
+        80],
+      dex: [36,
+        55],
+      int: [16,
+        30],
+      hp: [50,
+        50],
       taming: 11.1,
       barding: 27
     },
@@ -2582,16 +2034,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        19,
-        29
-      ],
-      tactics: [
-        19,
-        29
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [19,
+        29],
+      tactics: [19,
+        29],
+      magic_resistance: [15,
         20
       ]
     }
@@ -2604,22 +2051,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        61,
-        85
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        26,
-        50
-      ],
-      hp: [
-        37,
-        51
-      ],
+      str: [61,
+        85],
+      dex: [86,
+        105],
+      int: [26,
+        50],
+      hp: [37,
+        51],
       taming: 53.1,
       barding: 32
     },
@@ -2639,16 +2078,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        50,
-        65
-      ],
-      tactics: [
-        50,
-        65
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [50,
+        65],
+      tactics: [50,
+        65],
+      magic_resistance: [15,
         30
       ]
     }
@@ -2659,22 +2093,14 @@ export const MobData = [
     description: 'phoenix',
     armor: 60,
     stats: {
-      str: [
-        504,
-        700
-      ],
-      dex: [
-        202,
-        300
-      ],
-      int: [
-        504,
-        700
-      ],
-      hp: [
-        340,
-        383
-      ],
+      str: [504,
+        700],
+      dex: [202,
+        300],
+      int: [504,
+        700],
+      hp: [340,
+        383],
       taming: null,
       barding: 108
     },
@@ -2708,22 +2134,14 @@ export const MobData = [
     karma: 0,
     fame: '150',
     stats: {
-      str: [
-        20,
-        20
-      ],
-      dex: [
-        20,
-        20
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        12,
-        12
-      ],
+      str: [20,
+        20],
+      dex: [20,
+        20],
+      int: [5,
+        5],
+      hp: [12,
+        12],
       taming: 11.1,
       barding: 6
     },
@@ -2756,22 +2174,14 @@ export const MobData = [
     karma: 0,
     fame: '1500',
     stats: {
-      str: [
-        116,
-        140
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        26,
-        50
-      ],
-      hp: [
-        70,
-        84
-      ],
+      str: [116,
+        140],
+      dex: [81,
+        105],
+      int: [26,
+        50],
+      hp: [70,
+        84],
       taming: 35.1,
       barding: 46
     },
@@ -2791,16 +2201,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        45,
-        70
-      ],
-      tactics: [
-        60,
-        90
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        70],
+      tactics: [60,
+        90],
+      magic_resistance: [45,
         60
       ]
     }
@@ -2811,22 +2216,14 @@ export const MobData = [
     description: 'predator hell cat',
     armor: 30,
     stats: {
-      str: [
-        161,
-        185
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        76,
-        100
-      ],
-      hp: [
-        97,
-        131
-      ],
+      str: [161,
+        185],
+      dex: [96,
+        115],
+      int: [76,
+        100],
+      hp: [97,
+        131],
       taming: 89.1,
       barding: 67
     },
@@ -2860,22 +2257,14 @@ export const MobData = [
     karma: 0,
     fame: '150',
     stats: {
-      str: [
-        6,
-        10
-      ],
-      dex: [
-        26,
-        38
-      ],
-      int: [
-        6,
-        14
-      ],
-      hp: [
-        4,
-        6
-      ],
+      str: [6,
+        10],
+      dex: [26,
+        38],
+      int: [6,
+        14],
+      hp: [4,
+        6],
       taming: 0,
       barding: 6
     },
@@ -2911,22 +2300,14 @@ export const MobData = [
     ],
     fame: '10,000',
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        801,
-        1
-      ],
-      int: [
-        151,
-        400
-      ],
-      hp: [
-        751,
-        930
-      ],
+      str: [1,
+        1],
+      dex: [801,
+        1],
+      int: [151,
+        400],
+      hp: [751,
+        930],
       taming: 59.1,
       barding: 127
     },
@@ -2946,16 +2327,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        73,
-        88
-      ],
-      tactics: [
-        73,
-        110
-      ],
-      magic_resistance: [
-        32,
+      wrestling: [73,
+        88],
+      tactics: [73,
+        110],
+      magic_resistance: [32,
         54
       ]
     }
@@ -2968,22 +2344,14 @@ export const MobData = [
     karma: '-150',
     fame: '150',
     stats: {
-      str: [
-        9,
-        9
-      ],
-      dex: [
-        35,
-        35
-      ],
-      int: [
-        5,
-        5
-      ],
-      hp: [
-        6,
-        6
-      ],
+      str: [9,
+        9],
+      dex: [35,
+        35],
+      int: [5,
+        5],
+      hp: [6,
+        6],
       taming: 0,
       barding: 6
     },
@@ -3004,10 +2372,8 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
       wrestling: 4.0,
       tactics: 4.0,
@@ -3020,22 +2386,14 @@ export const MobData = [
     description: 'ridable llama',
     armor: 0,
     stats: {
-      str: [
-        21,
-        49
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        15,
-        27
-      ],
+      str: [21,
+        49],
+      dex: [56,
+        75],
+      int: [16,
+        30],
+      hp: [15,
+        27],
       taming: 29.1,
       barding: 18
     },
@@ -3086,22 +2444,14 @@ export const MobData = [
     karma: '-300',
     fame: '300',
     stats: {
-      str: [
-        9,
-        9
-      ],
-      dex: [
-        25,
-        25
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        6,
-        6
-      ],
+      str: [9,
+        9],
+      dex: [25,
+        25],
+      int: [6,
+        10],
+      hp: [6,
+        6],
       taming: -0.09,
       barding: 6
     },
@@ -3122,10 +2472,8 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
@@ -3140,22 +2488,14 @@ export const MobData = [
     karma: '-7000',
     fame: '7000',
     stats: {
-      str: [
-        161,
-        360
-      ],
-      dex: [
-        151,
-        300
-      ],
-      int: [
-        21,
-        40
-      ],
-      hp: [
-        97,
-        216
-      ],
+      str: [161,
+        360],
+      dex: [151,
+        300],
+      int: [21,
+        40],
+      hp: [97,
+        216],
       taming: null,
       barding: 85
     },
@@ -3176,21 +2516,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      250,
-      300
-    ],
+    credits: [250,
+      300],
     skills: {
-      wrestling: [
-        85,
-        100
-      ],
-      tactics: [
-        80,
-        95
-      ],
-      magic_resistance: [
-        95,
+      wrestling: [85,
+        100],
+      tactics: [80,
+        95],
+      magic_resistance: [95,
         100
       ]
     }
@@ -3203,16 +2536,12 @@ export const MobData = [
     karma: 'unknown negative',
     fame: 0,
     stats: {
-      str: [
-        78,
-        80
-      ],
+      str: [78,
+        80],
       dex: '53',
       int: '10',
-      hp: [
-        78,
-        80
-      ],
+      hp: [78,
+        80],
       taming: 103.1,
       barding: 30
     },
@@ -3263,22 +2592,14 @@ export const MobData = [
     karma: '-300',
     fame: '300',
     stats: {
-      str: [
-        22,
-        34
-      ],
-      dex: [
-        16,
-        25
-      ],
-      int: [
-        6,
-        10
-      ],
-      hp: [
-        15,
-        19
-      ],
+      str: [22,
+        34],
+      dex: [16,
+        25],
+      int: [6,
+        10],
+      hp: [15,
+        19],
       taming: 59.1,
       barding: 29
     },
@@ -3301,16 +2622,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        19,
-        34
-      ],
-      tactics: [
-        19,
-        34
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [19,
+        34],
+      tactics: [19,
+        34],
+      magic_resistance: [15,
         20
       ]
     }
@@ -3323,22 +2639,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        26,
-        50
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [66,
+        85],
+      int: [26,
+        50],
+      hp: [34,
+        48],
       taming: 53.1,
       barding: 29
     },
@@ -3358,16 +2666,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        40,
-        50
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [40,
+        50],
+      tactics: [45,
+        60],
+      magic_resistance: [25,
         35
       ]
     }
@@ -3380,22 +2683,14 @@ export const MobData = [
     karma: '-2000',
     fame: '2000',
     stats: {
-      str: [
-        201,
-        300
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        61,
-        100
-      ],
-      hp: [
-        121,
-        180
-      ],
+      str: [201,
+        300],
+      dex: [66,
+        85],
+      int: [61,
+        100],
+      hp: [121,
+        180],
       taming: 93.9,
       barding: 59
     },
@@ -3410,16 +2705,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        55
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        55],
+      magic_resistance: [45,
         55
       ]
     }
@@ -3432,22 +2722,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        11,
-        25
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [56,
+        75],
+      int: [11,
+        25],
+      hp: [34,
+        48],
       taming: 23.1,
       barding: 28
     },
@@ -3467,16 +2749,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        40,
-        60
-      ],
-      tactics: [
-        30,
-        50
-      ],
-      magic_resistance: [
-        27,
+      wrestling: [40,
+        60],
+      tactics: [30,
+        50],
+      magic_resistance: [27,
         45
       ]
     }
@@ -3487,22 +2764,14 @@ export const MobData = [
     description: 'tropical bird',
     armor: 2,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: 0,
       barding: 7
     },
@@ -3533,22 +2802,14 @@ export const MobData = [
     karma: '9000',
     fame: '9000',
     stats: {
-      str: [
-        296,
-        325
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        186,
-        225
-      ],
-      hp: [
-        191,
-        210
-      ],
+      str: [296,
+        325],
+      dex: [96,
+        115],
+      int: [186,
+        225],
+      hp: [191,
+        210],
       taming: 95.1,
       barding: 89
     },
@@ -3569,21 +2830,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      300,
-      350
-    ],
+    credits: [300,
+      350],
     skills: {
-      wrestling: [
-        80,
-        92
-      ],
-      tactics: [
-        20,
-        22
-      ],
-      magic_resistance: [
-        75,
+      wrestling: [80,
+        92],
+      tactics: [20,
+        22],
+      magic_resistance: [75,
         90
       ]
     }
@@ -3596,22 +2850,14 @@ export const MobData = [
     karma: 0,
     fame: '150',
     stats: {
-      str: [
-        21,
-        29
-      ],
-      dex: [
-        46,
-        55
-      ],
-      int: [
-        16,
-        20
-      ],
-      hp: [
-        14,
-        17
-      ],
+      str: [21,
+        29],
+      dex: [46,
+        55],
+      int: [16,
+        20],
+      hp: [14,
+        17],
       taming: 35.1,
       barding: 15
     },
@@ -3631,16 +2877,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        19,
-        29
-      ],
-      tactics: [
-        19,
-        29
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [19,
+        29],
+      tactics: [19,
+        29],
+      magic_resistance: [15,
         20
       ]
     }
@@ -3653,22 +2894,14 @@ export const MobData = [
     karma: 0,
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        31,
-        55
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [56,
+        75],
+      int: [31,
+        55],
+      hp: [34,
+        48],
       taming: 65.1,
       barding: 27
     },
@@ -3688,16 +2921,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        45,
-        60
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        20,
+      wrestling: [45,
+        60],
+      tactics: [45,
+        60],
+      magic_resistance: [20,
         35
       ]
     }
@@ -3708,22 +2936,14 @@ export const MobData = [
     description: 'arachnid enforcer',
     armor: 50,
     stats: {
-      str: [
-        750,
-        850
-      ],
-      dex: [
-        105,
-        115
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        900,
-        1
-      ],
+      str: [750,
+        850],
+      dex: [105,
+        115],
+      int: [420,
+        475],
+      hp: [900,
+        1],
       taming: null,
       barding: null
     },
@@ -3866,22 +3086,14 @@ export const MobData = [
     karma: '-5000',
     fame: '5000',
     stats: {
-      str: [
-        196,
-        220
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        286,
-        310
-      ],
-      hp: [
-        118,
-        132
-      ],
+      str: [196,
+        220],
+      dex: [126,
+        145],
+      int: [286,
+        310],
+      hp: [118,
+        132],
       taming: null,
       barding: 95
     },
@@ -3902,21 +3114,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      450,
-      650
-    ],
+    credits: [450,
+      650],
     skills: {
-      wrestling: [
-        87,
-        96
-      ],
-      tactics: [
-        85,
-        97
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [87,
+        96],
+      tactics: [85,
+        97],
+      magic_resistance: [45,
         55
       ]
     }
@@ -3927,22 +3132,14 @@ export const MobData = [
     description: 'drone mage',
     armor: 20,
     stats: {
-      str: [
-        250,
-        300
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        250,
-        275
-      ],
+      str: [250,
+        300],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [250,
+        275],
       taming: null,
       barding: 119
     },
@@ -3968,22 +3165,14 @@ export const MobData = [
     description: 'drone sentry',
     armor: 20,
     stats: {
-      str: [
-        200,
-        225
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        175,
-        250
-      ],
+      str: [200,
+        225],
+      dex: [110,
+        120],
+      int: [1,
+        1],
+      hp: [175,
+        250],
       taming: null,
       barding: 121
     },
@@ -4009,22 +3198,14 @@ export const MobData = [
     description: 'drone spitter',
     armor: 25,
     stats: {
-      str: [
-        325,
-        350
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        325,
-        350
-      ],
+      str: [325,
+        350],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [325,
+        350],
       taming: null,
       barding: 118
     },
@@ -4050,22 +3231,14 @@ export const MobData = [
     description: 'drone warrior',
     armor: 30,
     stats: {
-      str: [
-        425,
-        475
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        425,
-        475
-      ],
+      str: [425,
+        475],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [425,
+        475],
       taming: null,
       barding: 124
     },
@@ -4091,22 +3264,14 @@ export const MobData = [
     description: 'drone worker',
     armor: 15,
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        70,
-        95
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        175,
-        250
-      ],
+      str: [86,
+        100],
+      dex: [70,
+        95],
+      int: [1,
+        1],
+      hp: [175,
+        250],
       taming: null,
       barding: 111
     },
@@ -4134,22 +3299,14 @@ export const MobData = [
     karma: '-775',
     fame: '775',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [126,
+        145],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: 75.7,
       barding: 40
     },
@@ -4170,21 +3327,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      75,
-      125
-    ],
+    credits: [75,
+      125],
     skills: {
-      wrestling: [
-        50,
-        65
-      ],
-      tactics: [
-        35,
-        50
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [50,
+        65],
+      tactics: [35,
+        50],
+      magic_resistance: [25,
         40
       ]
     }
@@ -4197,22 +3347,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [96,
+        115],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 70.6
     },
@@ -4225,21 +3367,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        70,
-        85
-      ],
-      tactics: [
-        65,
-        80
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [70,
+        85],
+      tactics: [65,
+        80],
+      magic_resistance: [45,
         60
       ]
     }
@@ -4252,22 +3387,14 @@ export const MobData = [
     karma: '-600',
     fame: '600',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: 59.1,
       barding: 53
     },
@@ -4288,21 +3415,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        50,
-        65
-      ],
-      tactics: [
-        35,
-        50
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [50,
+        65],
+      tactics: [35,
+        50],
+      magic_resistance: [25,
         40
       ]
     }
@@ -4313,22 +3433,14 @@ export const MobData = [
     description: 'ilyxia the arachnid queen',
     armor: 60,
     stats: {
-      str: [
-        819,
-        910
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [819,
+        910],
+      dex: [125,
+        135],
+      int: [420,
+        475],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -4474,22 +3586,14 @@ export const MobData = [
     ],
     fame: '15000',
     stats: {
-      str: [
-        467,
-        645
-      ],
-      dex: [
-        77,
-        95
-      ],
-      int: [
-        126,
-        150
-      ],
-      hp: [
-        296,
-        372
-      ],
+      str: [467,
+        645],
+      dex: [77,
+        95],
+      int: [126,
+        150],
+      hp: [296,
+        372],
       taming: null,
       barding: 104
     },
@@ -4510,21 +3614,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      550,
-      600
-    ],
+    credits: [550,
+      600],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [65,
         80
       ]
     }
@@ -4540,22 +3637,14 @@ export const MobData = [
     ],
     fame: '2000',
     stats: {
-      str: [
-        36,
-        65
-      ],
-      dex: [
-        96,
-        145
-      ],
-      int: [
-        21,
-        45
-      ],
-      hp: [
-        22,
-        39
-      ],
+      str: [36,
+        65],
+      dex: [96,
+        145],
+      int: [21,
+        45],
+      hp: [22,
+        39],
       taming: null,
       barding: 32
     },
@@ -4576,21 +3665,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        40,
-        50
-      ],
-      tactics: [
-        30,
-        50
-      ],
-      magic_resistance: [
-        30,
+      wrestling: [40,
+        50],
+      tactics: [30,
+        50],
+      magic_resistance: [30,
         45
       ]
     }
@@ -4601,22 +3683,14 @@ export const MobData = [
     description: 'terathan infiltrator',
     armor: 70,
     stats: {
-      str: [
-        810,
-        910
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [810,
+        910],
+      dex: [125,
+        135],
+      int: [420,
+        475],
+      hp: [1,
+        1],
       taming: null,
       barding: 151
     },
@@ -4653,22 +3727,14 @@ export const MobData = [
     ],
     fame: '10000',
     stats: {
-      str: [
-        316,
-        405
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        366,
-        455
-      ],
-      hp: [
-        190,
-        243
-      ],
+      str: [316,
+        405],
+      dex: [96,
+        115],
+      int: [366,
+        455],
+      hp: [190,
+        243],
       taming: null,
       barding: 87
     },
@@ -4686,21 +3752,14 @@ export const MobData = [
         description: 'Random Potions'
       }
     ],
-    credits: [
-      570,
-      605
-    ],
+    credits: [570,
+      605],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        90,
+      wrestling: [60,
+        80],
+      tactics: [50,
+        70],
+      magic_resistance: [90,
         100
       ]
     }
@@ -4716,22 +3775,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        166,
-        215
-      ],
-      dex: [
-        96,
-        145
-      ],
-      int: [
-        41,
-        65
-      ],
-      hp: [
-        100,
-        129
-      ],
+      str: [166,
+        215],
+      dex: [96,
+        145],
+      int: [41,
+        65],
+      hp: [100,
+        129],
       taming: null,
       barding: 61
     },
@@ -4752,21 +3803,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        80,
-        90
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        60,
+      wrestling: [80,
+        90],
+      tactics: [80,
+        100],
+      magic_resistance: [60,
         75
       ]
     }
@@ -4777,22 +3821,14 @@ export const MobData = [
     description: 'anaconda',
     armor: 55,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        153,
-        172
-      ],
-      int: [
-        300,
-        400
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [1,
+        1],
+      dex: [153,
+        172],
+      int: [300,
+        400],
+      hp: [1,
+        1],
       taming: null,
       barding: 189
     },
@@ -4821,22 +3857,14 @@ export const MobData = [
     description: 'arctic ogre mage',
     armor: 65,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        82,
-        95
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [1,
+        1],
+      dex: [82,
+        95],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 184
     },
@@ -4865,22 +3893,14 @@ export const MobData = [
     description: 'azure dragon',
     armor: 80,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        120,
-        130
-      ],
-      int: [
-        770,
-        820
-      ],
-      hp: [
-        3,
-        3
-      ],
+      str: [1,
+        1],
+      dex: [120,
+        130],
+      int: [770,
+        820],
+      hp: [3,
+        3],
       taming: null,
       barding: 239
     },
@@ -4909,22 +3929,14 @@ export const MobData = [
     description: 'beast tamer',
     armor: 60,
     stats: {
-      str: [
-        605,
-        725
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        8,
-        9
-      ],
+      str: [605,
+        725],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [8,
+        9],
       taming: null,
       barding: 413
     },
@@ -4956,22 +3968,14 @@ export const MobData = [
     description: 'beholder',
     armor: 65,
     stats: {
-      str: [
-        630,
-        730
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        910,
-        950
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [630,
+        730],
+      dex: [86,
+        105],
+      int: [910,
+        950],
+      hp: [1,
+        1],
       taming: null,
       barding: 184
     },
@@ -5000,22 +4004,14 @@ export const MobData = [
     description: 'colossus',
     armor: 78,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [900,
+        1],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        3],
       taming: null,
       barding: 208
     },
@@ -5044,22 +4040,14 @@ export const MobData = [
     description: 'dark one',
     armor: 65,
     stats: {
-      str: [
-        770,
-        830
-      ],
-      dex: [
-        146,
-        185
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [770,
+        830],
+      dex: [146,
+        185],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 243
     },
@@ -5096,22 +4084,14 @@ export const MobData = [
     ],
     fame: '8500',
     stats: {
-      str: [
-        880,
-        950
-      ],
-      dex: [
-        95,
-        105
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        2
-      ],
+      str: [880,
+        950],
+      dex: [95,
+        105],
+      int: [1,
+        1],
+      hp: [1,
+        2],
       taming: null,
       barding: 213
     },
@@ -5129,21 +4109,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      651,
-      744
-    ],
+    credits: [651,
+      744],
     skills: {
-      wrestling: [
-        123,
-        138
-      ],
-      tactics: [
-        130,
-        137
-      ],
-      magic_resistance: [
-        116,
+      wrestling: [123,
+        138],
+      tactics: [130,
+        137],
+      magic_resistance: [116,
         125
       ]
     }
@@ -5154,22 +4127,14 @@ export const MobData = [
     description: 'efreet sultan',
     armor: 70,
     stats: {
-      str: [
-        810,
-        855
-      ],
-      dex: [
-        266,
-        285
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [810,
+        855],
+      dex: [266,
+        285],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 143
     },
@@ -5198,22 +4163,14 @@ export const MobData = [
     description: 'elder wyrm',
     armor: 90,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        125,
-        145
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        5,
-        5
-      ],
+      str: [1,
+        1],
+      dex: [125,
+        145],
+      int: [1,
+        1],
+      hp: [5,
+        5],
       taming: null,
       barding: 365
     },
@@ -5245,22 +4202,14 @@ export const MobData = [
     description: 'grand visor of chaos',
     armor: 70,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        230,
-        275
-      ],
-      int: [
-        205,
-        225
-      ],
-      hp: [
-        2,
-        2
-      ],
+      str: [1,
+        1],
+      dex: [230,
+        275],
+      int: [205,
+        225],
+      hp: [2,
+        2],
       taming: null,
       barding: 152
     },
@@ -5289,22 +4238,14 @@ export const MobData = [
     description: 'jungle titan',
     armor: 48,
     stats: {
-      str: [
-        600,
-        750
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        2
-      ],
+      str: [600,
+        750],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        2],
       taming: null,
       barding: 185
     },
@@ -5333,22 +4274,14 @@ export const MobData = [
     description: 'ogre mage',
     armor: 65,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        90,
-        99
-      ],
-      int: [
-        720,
-        770
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [1,
+        1],
+      dex: [90,
+        99],
+      int: [720,
+        770],
+      hp: [1,
+        1],
       taming: null,
       barding: 180
     },
@@ -5377,22 +4310,14 @@ export const MobData = [
     description: 'ophidian queen',
     armor: 78,
     stats: {
-      str: [
-        810,
-        910
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        1,
-        2
-      ],
+      str: [810,
+        910],
+      dex: [125,
+        135],
+      int: [420,
+        475],
+      hp: [1,
+        2],
       taming: null,
       barding: 172
     },
@@ -5421,22 +4346,14 @@ export const MobData = [
     description: 'purveyor of darkness',
     armor: 100,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        225,
-        255
-      ],
-      int: [
-        600,
-        700
-      ],
-      hp: [
-        4,
-        4
-      ],
+      str: [1,
+        1],
+      dex: [225,
+        255],
+      int: [600,
+        700],
+      hp: [4,
+        4],
       taming: null,
       barding: 299
     },
@@ -5468,22 +4385,14 @@ export const MobData = [
     description: 'rabbit of caerbannog',
     armor: 60,
     stats: {
-      str: [
-        605,
-        805
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        9,
-        10
-      ],
+      str: [605,
+        805],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [9,
+        10],
       taming: null,
       barding: null
     },
@@ -5515,22 +4424,14 @@ export const MobData = [
     description: 'reptile tamer',
     armor: 60,
     stats: {
-      str: [
-        605,
-        725
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        8,
-        9
-      ],
+      str: [605,
+        725],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [8,
+        9],
       taming: null,
       barding: 413
     },
@@ -5559,22 +4460,14 @@ export const MobData = [
     description: 'terathan infiltrator',
     armor: 70,
     stats: {
-      str: [
-        810,
-        910
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [810,
+        910],
+      dex: [125,
+        135],
+      int: [420,
+        475],
+      hp: [1,
+        1],
       taming: null,
       barding: 151
     },
@@ -5606,22 +4499,14 @@ export const MobData = [
     description: 'two headed behemoth',
     armor: 78,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        115,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [900,
+        1],
+      dex: [115,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        3],
       taming: null,
       barding: 188
     },
@@ -5653,22 +4538,14 @@ export const MobData = [
     description: 'wyvern monarch',
     armor: 55,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        153,
-        172
-      ],
-      int: [
-        300,
-        400
-      ],
-      hp: [
-        650,
-        725
-      ],
+      str: [1,
+        1],
+      dex: [153,
+        172],
+      int: [300,
+        400],
+      hp: [650,
+        725],
       taming: null,
       barding: 125
     },
@@ -5700,22 +4577,14 @@ export const MobData = [
     description: 'bad santa',
     armor: 55,
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        676,
-        905
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [250,
+        275],
+      dex: [126,
+        145],
+      int: [676,
+        905],
+      hp: [2,
+        3],
       taming: null,
       barding: null
     },
@@ -5752,22 +4621,14 @@ export const MobData = [
     ],
     fame: '22500',
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        72,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        4,
-        4
-      ],
+      str: [305,
+        425],
+      dex: [72,
+        150],
+      int: [505,
+        750],
+      hp: [4,
+        4],
       taming: null,
       barding: 237
     },
@@ -5785,19 +4646,13 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      4000,
-      6000
-    ],
+    credits: [4000,
+      6000],
     skills: {
-      wrestling: [
-        118,
-        122
-      ],
-      tactics: [
-        118,
-        120
-      ],
+      wrestling: [118,
+        122],
+      tactics: [118,
+        120],
       magic_resistance: '100.0'
     }
   },
@@ -5807,22 +4662,14 @@ export const MobData = [
     description: 'cupid',
     armor: 55,
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        676,
-        905
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [250,
+        275],
+      dex: [126,
+        145],
+      int: [676,
+        905],
+      hp: [4,
+        5],
       taming: null,
       barding: null
     },
@@ -5859,22 +4706,14 @@ export const MobData = [
     ],
     fame: '25,000',
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [900,
+        1],
+      dex: [125,
+        135],
+      int: [1,
+        1],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -5897,16 +4736,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        115,
-        120
-      ],
-      tactics: [
-        115,
-        120
-      ],
-      magic_resistance: [
-        115,
+      wrestling: [115,
+        120],
+      tactics: [115,
+        120],
+      magic_resistance: [115,
         160
       ]
     }
@@ -5919,22 +4753,14 @@ export const MobData = [
     karma: '22500',
     fame: '22500',
     stats: {
-      str: [
-        403,
-        850
-      ],
-      dex: [
-        101,
-        150
-      ],
-      int: [
-        503,
-        800
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [403,
+        850],
+      dex: [101,
+        150],
+      int: [503,
+        800],
+      hp: [4,
+        5],
       taming: null,
       barding: 272
     },
@@ -5952,21 +4778,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      3500,
-      6000
-    ],
+    credits: [3500,
+      6000],
     skills: {
-      wrestling: [
-        115,
-        null
-      ],
-      tactics: [
-        119,
-        null
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [115,
+        null],
+      tactics: [119,
+        null],
+      magic_resistance: [100,
         150
       ]
     }
@@ -5982,22 +4801,14 @@ export const MobData = [
     ],
     fame: '22500',
     stats: {
-      str: [
-        505,
-        1
-      ],
-      dex: [
-        102,
-        300
-      ],
-      int: [
-        402,
-        600
-      ],
-      hp: [
-        5,
-        7
-      ],
+      str: [505,
+        1],
+      dex: [102,
+        300],
+      int: [402,
+        600],
+      hp: [5,
+        7],
       taming: null,
       barding: 352
     },
@@ -6015,21 +4826,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      2500,
-      3000
-    ],
+    credits: [2500,
+      3000],
     skills: {
-      wrestling: [
-        123,
-        126
-      ],
-      tactics: [
-        118,
-        120
-      ],
-      magic_resistance: [
-        104,
+      wrestling: [123,
+        126],
+      tactics: [118,
+        120],
+      magic_resistance: [104,
         112
       ]
     }
@@ -6042,22 +4846,14 @@ export const MobData = [
     karma: 0,
     fame: 0,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        72,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        6,
-        8
-      ],
+      str: [305,
+        425],
+      dex: [72,
+        150],
+      int: [505,
+        750],
+      hp: [6,
+        8],
       taming: null,
       barding: 399
     },
@@ -6075,19 +4871,13 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      2500,
-      3000
-    ],
+    credits: [2500,
+      3000],
     skills: {
-      wrestling: [
-        97,
-        100
-      ],
-      tactics: [
-        97,
-        100
-      ],
+      wrestling: [97,
+        100],
+      tactics: [97,
+        100],
       magic_resistance: '150.0'
     }
   },
@@ -6102,22 +4892,14 @@ export const MobData = [
     ],
     fame: '22500',
     stats: {
-      str: [
-        701,
-        900
-      ],
-      dex: [
-        201,
-        350
-      ],
-      int: [
-        51,
-        100
-      ],
-      hp: [
-        6,
-        9
-      ],
+      str: [701,
+        900],
+      dex: [201,
+        350],
+      int: [51,
+        100],
+      hp: [6,
+        9],
       taming: null,
       barding: 358
     },
@@ -6135,18 +4917,13 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      4000,
-      5000
-    ],
+    credits: [4000,
+      5000],
     skills: {
-      wrestling: [
-        118,
-        123
-      ],
+      wrestling: [118,
+        123],
       tactics: [100, 100],
-      magic_resistance: [
-        140,
+      magic_resistance: [140,
         160
       ]
     }
@@ -6162,22 +4939,14 @@ export const MobData = [
     ],
     fame: '24000',
     stats: {
-      str: [
-        502,
-        600
-      ],
-      dex: [
-        102,
-        200
-      ],
-      int: [
-        601,
-        750
-      ],
-      hp: [
-        2,
-        4
-      ],
+      str: [502,
+        600],
+      dex: [102,
+        200],
+      int: [601,
+        750],
+      hp: [2,
+        4],
       taming: null,
       barding: 243
     },
@@ -6195,21 +4964,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      6000,
-      6500
-    ],
+    credits: [6000,
+      6500],
     skills: {
-      wrestling: [
-        117,
-        123
-      ],
-      tactics: [
-        129,
-        131
-      ],
-      magic_resistance: [
-        120,
+      wrestling: [117,
+        123],
+      tactics: [129,
+        131],
+      magic_resistance: [120,
         140
       ]
     }
@@ -6222,22 +4984,14 @@ export const MobData = [
     karma: 0,
     fame: 0,
     stats: {
-      str: [
-        253,
-        400
-      ],
-      dex: [
-        157,
-        850
-      ],
-      int: [
-        503,
-        800
-      ],
-      hp: [
-        600,
-        600
-      ],
+      str: [253,
+        400],
+      dex: [157,
+        850],
+      int: [503,
+        800],
+      hp: [600,
+        600],
       taming: null,
       barding: 142
     },
@@ -6258,21 +5012,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      2000,
-      3000
-    ],
+    credits: [2000,
+      3000],
     skills: {
-      wrestling: [
-        97,
-        100
-      ],
-      tactics: [
-        97,
-        100
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [97,
+        100],
+      tactics: [97,
+        100],
+      magic_resistance: [100,
         150
       ]
     }
@@ -6288,22 +5035,14 @@ export const MobData = [
     ],
     fame: '25,000',
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [900,
+        1],
+      dex: [125,
+        135],
+      int: [1,
+        1],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -6326,16 +5065,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        115,
-        120
-      ],
-      tactics: [
-        115,
-        120
-      ],
-      magic_resistance: [
-        115,
+      wrestling: [115,
+        120],
+      tactics: [115,
+        120],
+      magic_resistance: [115,
         160
       ]
     }
@@ -6348,22 +5082,14 @@ export const MobData = [
     karma: '-10000',
     fame: '7000',
     stats: {
-      str: [
-        131,
-        150
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        301,
-        350
-      ],
-      hp: [
-        101,
-        115
-      ],
+      str: [131,
+        150],
+      dex: [126,
+        145],
+      int: [301,
+        350],
+      hp: [101,
+        115],
       taming: null,
       barding: 88
     },
@@ -6376,21 +5102,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      250,
-      300
-    ],
+    credits: [250,
+      300],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        70,
-        80
-      ],
-      magic_resistance: [
-        85,
+      wrestling: [60,
+        80],
+      tactics: [70,
+        80],
+      magic_resistance: [85,
         95
       ]
     }
@@ -6403,22 +5122,14 @@ export const MobData = [
     karma: '-24000',
     fame: '24000',
     stats: {
-      str: [
-        969,
-        1
-      ],
-      dex: [
-        177,
-        255
-      ],
-      int: [
-        151,
-        250
-      ],
-      hp: [
-        592,
-        711
-      ],
+      str: [969,
+        1],
+      dex: [177,
+        255],
+      int: [151,
+        250],
+      hp: [592,
+        711],
       taming: null,
       barding: 125
     },
@@ -6439,21 +5150,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1200,
-      1650
-    ],
+    credits: [1200,
+      1650],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [100,
         150
       ]
     }
@@ -6466,22 +5170,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        106,
-        130
-      ],
-      dex: [
-        171,
-        200
-      ],
-      int: [
-        56,
-        80
-      ],
-      hp: [
-        91,
-        110
-      ],
+      str: [106,
+        130],
+      dex: [171,
+        200],
+      int: [56,
+        80],
+      hp: [91,
+        110],
       taming: null,
       barding: 71.5
     },
@@ -6494,21 +5190,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        95,
-        100
-      ],
-      tactics: [
-        70,
-        80
-      ],
-      magic_resistance: [
-        85,
+      wrestling: [95,
+        100],
+      tactics: [70,
+        80],
+      magic_resistance: [85,
         95
       ]
     }
@@ -6521,22 +5210,14 @@ export const MobData = [
     karma: '-15000',
     fame: '15000',
     stats: {
-      str: [
-        476,
-        505
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        301,
-        325
-      ],
-      hp: [
-        286,
-        303
-      ],
+      str: [476,
+        505],
+      dex: [76,
+        95],
+      int: [301,
+        325],
+      hp: [286,
+        303],
       taming: null,
       barding: null
     },
@@ -6557,21 +5238,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      550,
-      650
-    ],
+    credits: [550,
+      650],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        70,
-        80
-      ],
-      magic_resistance: [
-        85,
+      wrestling: [60,
+        80],
+      tactics: [70,
+        80],
+      magic_resistance: [85,
         95
       ]
     }
@@ -6584,22 +5258,14 @@ export const MobData = [
     karma: 'lvl 5 -18000',
     fame: 'lvl 5 18000',
     stats: {
-      str: [
-        376,
-        405
-      ],
-      dex: [
-        176,
-        195
-      ],
-      int: [
-        201,
-        225
-      ],
-      hp: [
-        226,
-        243
-      ],
+      str: [376,
+        405],
+      dex: [176,
+        195],
+      int: [201,
+        225],
+      hp: [226,
+        243],
       taming: null,
       barding: null
     },
@@ -6620,21 +5286,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      650,
-      800
-    ],
+    credits: [650,
+      800],
     skills: {
-      wrestling: [
-        80,
-        100
-      ],
-      tactics: [
-        80,
-        90
-      ],
-      magic_resistance: [
-        75,
+      wrestling: [80,
+        100],
+      tactics: [80,
+        90],
+      magic_resistance: [75,
         85
       ]
     }
@@ -6647,22 +5306,14 @@ export const MobData = [
     karma: 'lvl 4 -7500',
     fame: 'lvl 4 7500',
     stats: {
-      str: [
-        331,
-        360
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        41,
-        65
-      ],
-      hp: [
-        171,
-        200
-      ],
+      str: [331,
+        360],
+      dex: [66,
+        85],
+      int: [41,
+        65],
+      hp: [171,
+        200],
       taming: null,
       barding: 72.5
     },
@@ -6675,21 +5326,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      300,
-      350
-    ],
+    credits: [300,
+      350],
     skills: {
-      wrestling: [
-        70,
-        90
-      ],
-      tactics: [
-        75,
-        90
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [70,
+        90],
+      tactics: [75,
+        90],
+      magic_resistance: [65,
         75
       ]
     }
@@ -6700,22 +5344,14 @@ export const MobData = [
     description: 'purveyor of darkness',
     armor: 100,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        225,
-        255
-      ],
-      int: [
-        600,
-        700
-      ],
-      hp: [
-        4,
-        4
-      ],
+      str: [1,
+        1],
+      dex: [225,
+        255],
+      int: [600,
+        700],
+      hp: [4,
+        4],
       taming: null,
       barding: 299
     },
@@ -6749,22 +5385,14 @@ export const MobData = [
     karma: '-10,000',
     fame: '10,000',
     stats: {
-      str: [
-        326,
-        355
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        271,
-        295
-      ],
-      hp: [
-        196,
-        213
-      ],
+      str: [326,
+        355],
+      dex: [66,
+        85],
+      int: [271,
+        295],
+      hp: [196,
+        213],
       taming: null,
       barding: 100
     },
@@ -6785,21 +5413,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      400,
-      500
-    ],
+    credits: [400,
+      500],
     skills: {
-      wrestling: [
-        70,
-        90
-      ],
-      tactics: [
-        80,
-        90
-      ],
-      magic_resistance: [
-        60,
+      wrestling: [70,
+        90],
+      tactics: [80,
+        90],
+      magic_resistance: [60,
         75
       ]
     }
@@ -6812,22 +5433,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 63
     },
@@ -6848,21 +5461,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -6875,22 +5481,14 @@ export const MobData = [
     karma: '-4500',
     fame: '4500',
     stats: {
-      str: [
-        126,
-        155
-      ],
-      dex: [
-        166,
-        185
-      ],
-      int: [
-        101,
-        125
-      ],
-      hp: [
-        76,
-        93
-      ],
+      str: [126,
+        155],
+      dex: [166,
+        185],
+      int: [101,
+        125],
+      hp: [76,
+        93],
       taming: null,
       barding: 71
     },
@@ -6911,21 +5509,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        60,
-        80
-      ],
-      magic_resistance: [
-        60,
+      wrestling: [60,
+        80],
+      tactics: [60,
+        80],
+      magic_resistance: [60,
         75
       ]
     }
@@ -6936,22 +5527,14 @@ export const MobData = [
     description: 'amber golem',
     armor: 35,
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        70,
-        95
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        200,
-        275
-      ],
+      str: [86,
+        100],
+      dex: [70,
+        95],
+      int: [1,
+        1],
+      hp: [200,
+        275],
       taming: null,
       barding: 120
     },
@@ -6977,22 +5560,14 @@ export const MobData = [
     description: 'amethyst golem',
     armor: 38,
     stats: {
-      str: [
-        200,
-        225
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        200,
-        225
-      ],
+      str: [200,
+        225],
+      dex: [110,
+        120],
+      int: [1,
+        1],
+      hp: [200,
+        225],
       taming: null,
       barding: 123
     },
@@ -7020,22 +5595,14 @@ export const MobData = [
     karma: '-12500',
     fame: '12500',
     stats: {
-      str: [
-        526,
-        615
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        226,
-        350
-      ],
-      hp: [
-        316,
-        369
-      ],
+      str: [526,
+        615],
+      dex: [66,
+        85],
+      int: [226,
+        350],
+      hp: [316,
+        369],
       taming: null,
       barding: 93
     },
@@ -7056,21 +5623,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      700,
-      900
-    ],
+    credits: [700,
+      900],
     skills: {
-      wrestling: [
-        80,
-        100
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        80,
+      wrestling: [80,
+        100],
+      tactics: [80,
+        100],
+      magic_resistance: [80,
         95
       ]
     }
@@ -7083,22 +5643,14 @@ export const MobData = [
     karma: '-5000',
     fame: '5000',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 62
     },
@@ -7119,21 +5671,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -7144,22 +5689,14 @@ export const MobData = [
     description: 'citrine golem',
     armor: 41,
     stats: {
-      str: [
-        325,
-        350
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        325,
-        350
-      ],
+      str: [325,
+        350],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [325,
+        350],
       taming: null,
       barding: 111
     },
@@ -7187,22 +5724,14 @@ export const MobData = [
     karma: '-4800',
     fame: '4800',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 63
     },
@@ -7223,21 +5752,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -7248,22 +5770,14 @@ export const MobData = [
     description: 'diamond golem',
     armor: 50,
     stats: {
-      str: [
-        750,
-        850
-      ],
-      dex: [
-        50,
-        65
-      ],
-      int: [
-        25,
-        35
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [750,
+        850],
+      dex: [50,
+        65],
+      int: [25,
+        35],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -7294,22 +5808,14 @@ export const MobData = [
     ],
     fame: '8500',
     stats: {
-      str: [
-        880,
-        950
-      ],
-      dex: [
-        95,
-        105
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        2
-      ],
+      str: [880,
+        950],
+      dex: [95,
+        105],
+      int: [1,
+        1],
+      hp: [1,
+        2],
       taming: null,
       barding: 213
     },
@@ -7327,21 +5833,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      651,
-      744
-    ],
+    credits: [651,
+      744],
     skills: {
-      wrestling: [
-        123,
-        138
-      ],
-      tactics: [
-        130,
-        137
-      ],
-      magic_resistance: [
-        116,
+      wrestling: [123,
+        138],
+      tactics: [130,
+        137],
+      magic_resistance: [116,
         125
       ]
     }
@@ -7354,22 +5853,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 63
     },
@@ -7390,21 +5881,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -7417,22 +5901,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        126,
-        155
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        76,
-        93
-      ],
+      str: [126,
+        155],
+      dex: [66,
+        85],
+      int: [71,
+        92],
+      hp: [76,
+        93],
       taming: null,
       barding: 51
     },
@@ -7453,21 +5929,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -7480,22 +5949,14 @@ export const MobData = [
     karma: '-10000',
     fame: '10000',
     stats: {
-      str: [
-        326,
-        355
-      ],
-      dex: [
-        266,
-        285
-      ],
-      int: [
-        171,
-        195
-      ],
-      hp: [
-        196,
-        213
-      ],
+      str: [326,
+        355],
+      dex: [266,
+        285],
+      int: [171,
+        195],
+      hp: [196,
+        213],
       taming: null,
       barding: 83
     },
@@ -7516,21 +5977,14 @@ export const MobData = [
         description: 'Random Daemon Bone Armor Piece'
       }
     ],
-    credits: [
-      400,
-      500
-    ],
+    credits: [400,
+      500],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        60,
-        80
-      ],
-      magic_resistance: [
-        60,
+      wrestling: [60,
+        80],
+      tactics: [60,
+        80],
+      magic_resistance: [60,
         75
       ]
     }
@@ -7541,22 +5995,14 @@ export const MobData = [
     description: 'efreet sultan',
     armor: 70,
     stats: {
-      str: [
-        810,
-        855
-      ],
-      dex: [
-        266,
-        285
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [810,
+        855],
+      dex: [266,
+        285],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 143
     },
@@ -7585,22 +6031,14 @@ export const MobData = [
     description: 'emerald golem',
     armor: 41,
     stats: {
-      str: [
-        325,
-        350
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        325,
-        350
-      ],
+      str: [325,
+        350],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [325,
+        350],
       taming: null,
       barding: 108
     },
@@ -7628,22 +6066,14 @@ export const MobData = [
     karma: '-4500',
     fame: '4500',
     stats: {
-      str: [
-        126,
-        155
-      ],
-      dex: [
-        166,
-        185
-      ],
-      int: [
-        101,
-        125
-      ],
-      hp: [
-        76,
-        93
-      ],
+      str: [126,
+        155],
+      dex: [166,
+        185],
+      int: [101,
+        125],
+      hp: [76,
+        93],
       taming: null,
       barding: 72
     },
@@ -7661,21 +6091,14 @@ export const MobData = [
         description: 'Random Lightsource'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        70,
-        100
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        75,
+      wrestling: [70,
+        100],
+      tactics: [80,
+        100],
+      magic_resistance: [75,
         105
       ]
     }
@@ -7688,22 +6111,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 63
     },
@@ -7724,21 +6139,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -7751,22 +6159,14 @@ export const MobData = [
     karma: '-4000',
     fame: '4000',
     stats: {
-      str: [
-        156,
-        185
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        171,
-        192
-      ],
-      hp: [
-        94,
-        111
-      ],
+      str: [156,
+        185],
+      dex: [96,
+        115],
+      int: [171,
+        192],
+      hp: [94,
+        111],
       taming: null,
       barding: 73
     },
@@ -7787,21 +6187,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      275,
-      325
-    ],
+    credits: [275,
+      325],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        70,
-        100
-      ],
-      magic_resistance: [
-        30,
+      wrestling: [60,
+        100],
+      tactics: [70,
+        100],
+      magic_resistance: [30,
         80
       ]
     }
@@ -7812,22 +6205,14 @@ export const MobData = [
     description: 'marble elemental',
     armor: 38,
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 63
     },
@@ -7859,22 +6244,14 @@ export const MobData = [
     description: 'ore golem',
     armor: 38,
     stats: {
-      str: [
-        201,
-        225
-      ],
-      dex: [
-        106,
-        115
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        115,
-        135
-      ],
+      str: [201,
+        225],
+      dex: [106,
+        115],
+      int: [71,
+        92],
+      hp: [115,
+        135],
       taming: null,
       barding: 61
     },
@@ -7903,22 +6280,14 @@ export const MobData = [
     description: 'ore golem lord',
     armor: 38,
     stats: {
-      str: [
-        235,
-        265
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        156,
-        183
-      ],
+      str: [235,
+        265],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [156,
+        183],
       taming: null,
       barding: 64
     },
@@ -7952,22 +6321,14 @@ export const MobData = [
     karma: '-12500',
     fame: '12500',
     stats: {
-      str: [
-        426,
-        515
-      ],
-      dex: [
-        166,
-        185
-      ],
-      int: [
-        361,
-        435
-      ],
-      hp: [
-        256,
-        309
-      ],
+      str: [426,
+        515],
+      dex: [166,
+        185],
+      int: [361,
+        435],
+      hp: [256,
+        309],
       taming: null,
       barding: 115
     },
@@ -7988,21 +6349,14 @@ export const MobData = [
         description: 'Level 5 Treasure Map'
       }
     ],
-    credits: [
-      750,
-      950
-    ],
+    credits: [750,
+      950],
     skills: {
-      wrestling: [
-        70,
-        90
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        85,
+      wrestling: [70,
+        90],
+      tactics: [80,
+        100],
+      magic_resistance: [85,
         115
       ]
     }
@@ -8013,22 +6367,14 @@ export const MobData = [
     description: 'ruby golem',
     armor: 40,
     stats: {
-      str: [
-        750,
-        850
-      ],
-      dex: [
-        50,
-        65
-      ],
-      int: [
-        25,
-        35
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [750,
+        850],
+      dex: [50,
+        65],
+      int: [25,
+        35],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -8059,22 +6405,14 @@ export const MobData = [
     ],
     fame: '4500',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        171,
-        195
-      ],
-      int: [
-        76,
-        100
-      ],
-      hp: [
-        51,
-        62
-      ],
+      str: [96,
+        120],
+      dex: [171,
+        195],
+      int: [76,
+        100],
+      hp: [51,
+        62],
       taming: null,
       barding: 75.6
     },
@@ -8087,10 +6425,8 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      100,
-      150
-    ],
+    credits: [100,
+      150],
     skills: {
       wrestling: 80.0,
       tactics: 70.0,
@@ -8103,22 +6439,14 @@ export const MobData = [
     description: 'sandstone elemental',
     armor: 60,
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 62
     },
@@ -8150,22 +6478,14 @@ export const MobData = [
     description: 'sapphire golem',
     armor: 34,
     stats: {
-      str: [
-        425,
-        475
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        425,
-        475
-      ],
+      str: [425,
+        475],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [425,
+        475],
       taming: null,
       barding: 129
     },
@@ -8196,22 +6516,14 @@ export const MobData = [
     ],
     fame: '3500',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 71
     },
@@ -8232,21 +6544,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -8259,22 +6564,14 @@ export const MobData = [
     karma: '-5000',
     fame: '5000',
     stats: {
-      str: [
-        326,
-        355
-      ],
-      dex: [
-        166,
-        185
-      ],
-      int: [
-        71,
-        95
-      ],
-      hp: [
-        196,
-        213
-      ],
+      str: [326,
+        355],
+      dex: [166,
+        185],
+      int: [71,
+        95],
+      hp: [196,
+        213],
       taming: null,
       barding: 67
     },
@@ -8295,21 +6592,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      250,
-      350
-    ],
+    credits: [250,
+      350],
     skills: {
-      wrestling: [
-        80,
-        100
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [80,
+        100],
+      tactics: [80,
+        100],
+      magic_resistance: [50,
         65
       ]
     }
@@ -8322,22 +6612,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 62
     },
@@ -8358,19 +6640,13 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      400,
-      500
-    ],
+    credits: [400,
+      500],
     skills: {
-      wrestling: [
-        85,
-        95
-      ],
-      tactics: [
-        85,
-        95
-      ],
+      wrestling: [85,
+        95],
+      tactics: [85,
+        95],
       magic_resistance: '100.0'
     }
   },
@@ -8380,22 +6656,14 @@ export const MobData = [
     description: 'tourmaline golem',
     armor: 34,
     stats: {
-      str: [
-        425,
-        475
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        425,
-        475
-      ],
+      str: [425,
+        475],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [425,
+        475],
       taming: null,
       barding: 129
     },
@@ -8426,22 +6694,14 @@ export const MobData = [
     ],
     fame: '3500',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        153
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        153],
       taming: null,
       barding: 62
     },
@@ -8462,21 +6722,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      450,
-      650
-    ],
+    credits: [450,
+      650],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -8492,22 +6745,14 @@ export const MobData = [
     ],
     fame: '3500',
     stats: {
-      str: [
-        226,
-        255
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        71,
-        92
-      ],
-      hp: [
-        136,
-        163
-      ],
+      str: [226,
+        255],
+      dex: [126,
+        145],
+      int: [71,
+        92],
+      hp: [136,
+        163],
       taming: null,
       barding: 62
     },
@@ -8528,21 +6773,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        60,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        100],
+      tactics: [60,
+        100],
+      magic_resistance: [50,
         95
       ]
     }
@@ -8555,22 +6793,14 @@ export const MobData = [
     karma: '-4500',
     fame: '4500',
     stats: {
-      str: [
-        126,
-        155
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        101,
-        125
-      ],
-      hp: [
-        76,
-        93
-      ],
+      str: [126,
+        155],
+      dex: [66,
+        85],
+      int: [101,
+        125],
+      hp: [76,
+        93],
       taming: null,
       barding: 70
     },
@@ -8588,21 +6818,14 @@ export const MobData = [
         description: 'Random Potion'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        50,
-        70
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [50,
+        70],
+      tactics: [50,
+        70],
+      magic_resistance: [100,
         115
       ]
     }
@@ -8615,22 +6838,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        302,
-        360
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        81,
-        105
-      ],
-      hp: [
-        186,
-        212
-      ],
+      str: [302,
+        360],
+      dex: [76,
+        95],
+      int: [81,
+        105],
+      hp: [186,
+        212],
       taming: null,
       barding: 70.8
     },
@@ -8643,21 +6858,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      250,
-      300
-    ],
+    credits: [250,
+      300],
     skills: {
-      wrestling: [
-        40,
-        80
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        70,
+      wrestling: [40,
+        80],
+      tactics: [50,
+        70],
+      magic_resistance: [70,
         85
       ]
     }
@@ -8670,22 +6878,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        351,
-        400
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        226,
-        250
-      ],
-      hp: [
-        211,
-        240
-      ],
+      str: [351,
+        400],
+      dex: [126,
+        145],
+      int: [226,
+        250],
+      hp: [211,
+        240],
       taming: null,
       barding: 97
     },
@@ -8706,21 +6906,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      275,
-      325
-    ],
+    credits: [275,
+      325],
     skills: {
-      wrestling: [
-        40,
-        80
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        90,
+      wrestling: [40,
+        80],
+      tactics: [80,
+        100],
+      magic_resistance: [90,
         105
       ]
     }
@@ -8731,22 +6924,14 @@ export const MobData = [
     description: 'gargoyle',
     armor: 32,
     stats: {
-      str: [
-        146,
-        175
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        81,
-        105
-      ],
-      hp: [
-        88,
-        105
-      ],
+      str: [146,
+        175],
+      dex: [76,
+        95],
+      int: [81,
+        105],
+      hp: [88,
+        105],
       taming: null,
       barding: 70
     },
@@ -8780,22 +6965,14 @@ export const MobData = [
     karma: '-10000',
     fame: '10000',
     stats: {
-      str: [
-        760,
-        850
-      ],
-      dex: [
-        102,
-        150
-      ],
-      int: [
-        152,
-        200
-      ],
-      hp: [
-        482,
-        485
-      ],
+      str: [760,
+        850],
+      dex: [102,
+        150],
+      int: [152,
+        200],
+      hp: [482,
+        485],
       taming: null,
       barding: 110.8
     },
@@ -8808,21 +6985,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      750,
-      950
-    ],
+    credits: [750,
+      950],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        120,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [120,
         160
       ]
     }
@@ -8835,22 +7005,14 @@ export const MobData = [
     karma: '-5000',
     fame: '5000',
     stats: {
-      str: [
-        260,
-        350
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        101,
-        125
-      ],
-      hp: [
-        182,
-        185
-      ],
+      str: [260,
+        350],
+      dex: [76,
+        95],
+      int: [101,
+        125],
+      hp: [182,
+        185],
       taming: null,
       barding: 88
     },
@@ -8863,21 +7025,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      275,
-      325
-    ],
+    credits: [275,
+      325],
     skills: {
-      wrestling: [
-        80,
-        90
-      ],
-      tactics: [
-        70,
-        80
-      ],
-      magic_resistance: [
-        120,
+      wrestling: [80,
+        90],
+      tactics: [70,
+        80],
+      magic_resistance: [120,
         130
       ]
     }
@@ -8888,22 +7043,14 @@ export const MobData = [
     description: 'obsidian gargoyle',
     armor: 48,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        2
-      ],
+      str: [900,
+        1],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        2],
       taming: null,
       barding: 189
     },
@@ -8934,22 +7081,14 @@ export const MobData = [
     karma: '4000',
     fame: '4000',
     stats: {
-      str: [
-        246,
-        275
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        81,
-        105
-      ],
-      hp: [
-        148,
-        165
-      ],
+      str: [246,
+        275],
+      dex: [76,
+        95],
+      int: [81,
+        105],
+      hp: [148,
+        165],
       taming: null,
       barding: 63
     },
@@ -8967,21 +7106,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      250,
-      325
-    ],
+    credits: [250,
+      325],
     skills: {
-      wrestling: [
-        60,
-        100
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        85,
+      wrestling: [60,
+        100],
+      tactics: [80,
+        100],
+      magic_resistance: [85,
         100
       ]
     }
@@ -8992,22 +7124,14 @@ export const MobData = [
     description: 'actor',
     armor: null,
     stats: {
-      str: [
-        31,
-        31
-      ],
-      dex: [
-        41,
-        41
-      ],
-      int: [
-        51,
-        51
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [31,
+        31],
+      dex: [41,
+        41],
+      int: [51,
+        51],
+      hp: [0,
+        0],
       taming: null,
       barding: 12
     },
@@ -9033,22 +7157,14 @@ export const MobData = [
     description: 'alchemist',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -9076,22 +7192,14 @@ export const MobData = [
     karma: '-23000',
     fame: '23000',
     stats: {
-      str: [
-        206,
-        305
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        966,
-        1
-      ],
-      hp: [
-        560,
-        595
-      ],
+      str: [206,
+        305],
+      dex: [96,
+        115],
+      int: [966,
+        1],
+      hp: [560,
+        595],
       taming: null,
       barding: 142
     },
@@ -9112,21 +7220,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      1500,
-      1700
-    ],
+    credits: [1500,
+      1700],
     skills: {
-      wrestling: [
-        75,
-        87
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        175,
+      wrestling: [75,
+        87],
+      tactics: [90,
+        100],
+      magic_resistance: [175,
         200
       ]
     }
@@ -9163,22 +7264,14 @@ export const MobData = [
     description: 'artist',
     armor: null,
     stats: {
-      str: [
-        31,
-        31
-      ],
-      dex: [
-        41,
-        41
-      ],
-      int: [
-        51,
-        51
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [31,
+        31],
+      dex: [41,
+        41],
+      int: [51,
+        51],
+      hp: [0,
+        0],
       taming: null,
       barding: 16
     },
@@ -9204,22 +7297,14 @@ export const MobData = [
     description: 'barkeeper',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -9245,22 +7330,14 @@ export const MobData = [
     description: 'beast tamer',
     armor: 60,
     stats: {
-      str: [
-        605,
-        725
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        8,
-        9
-      ],
+      str: [605,
+        725],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [8,
+        9],
       taming: null,
       barding: 413
     },
@@ -9294,22 +7371,14 @@ export const MobData = [
     karma: '-15000',
     fame: '15000',
     stats: {
-      str: [
-        401,
-        500
-      ],
-      dex: [
-        81,
-        100
-      ],
-      int: [
-        151,
-        200
-      ],
-      hp: [
-        241,
-        300
-      ],
+      str: [401,
+        500],
+      dex: [81,
+        100],
+      int: [151,
+        200],
+      hp: [241,
+        300],
       taming: null,
       barding: 96.5
     },
@@ -9322,21 +7391,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      750,
-      900
-    ],
+    credits: [750,
+      900],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        120,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [120,
         130
       ]
     }
@@ -9347,22 +7409,14 @@ export const MobData = [
     description: 'blacksmith',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -9388,22 +7442,14 @@ export const MobData = [
     description: 'bogle',
     armor: 28,
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 64
     },
@@ -9437,22 +7483,14 @@ export const MobData = [
     karma: '-450',
     fame: '450',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        91,
-        115
-      ],
-      int: [
-        21,
-        45
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [91,
+        115],
+      int: [21,
+        45],
+      hp: [58,
+        72],
       taming: null,
       barding: 61.5
     },
@@ -9465,21 +7503,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        55,
-        75
-      ],
-      tactics: [
-        55,
-        80
-      ],
-      magic_resistance: [
-        75,
+      wrestling: [55,
+        75],
+      tactics: [55,
+        80],
+      magic_resistance: [75,
         100
       ]
     }
@@ -9492,22 +7523,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        195,
-        250
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        118,
-        150
-      ],
+      str: [195,
+        250],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [118,
+        150],
       taming: null,
       barding: 61
     },
@@ -9525,21 +7548,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      175,
-      275
-    ],
+    credits: [175,
+      275],
     skills: {
-      wrestling: [
-        85,
-        95
-      ],
-      tactics: [
-        95,
-        100
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [85,
+        95],
+      tactics: [95,
+        100],
+      magic_resistance: [65,
         80
       ]
     }
@@ -9552,22 +7568,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        186,
-        210
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [56,
+        75],
+      int: [186,
+        210],
+      hp: [46,
+        60],
       taming: null,
       barding: 81
     },
@@ -9588,21 +7596,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        55,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [55,
         70
       ]
     }
@@ -9613,22 +7614,14 @@ export const MobData = [
     description: 'bridegroom',
     armor: null,
     stats: {
-      str: [
-        90,
-        100
-      ],
-      dex: [
-        90,
-        100
-      ],
-      int: [
-        15,
-        25
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [90,
+        100],
+      dex: [90,
+        100],
+      int: [15,
+        25],
+      hp: [0,
+        0],
       taming: null,
       barding: 33
     },
@@ -9662,22 +7655,14 @@ export const MobData = [
     ],
     fame: '1000',
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        81,
-        95
-      ],
-      int: [
-        61,
-        75
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [86,
+        100],
+      dex: [81,
+        95],
+      int: [61,
+        75],
+      hp: [0,
+        0],
       taming: null,
       barding: 56
     },
@@ -9698,21 +7683,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      50,
-      150
-    ],
+    credits: [50,
+      150],
     skills: {
-      wrestling: [
-        15,
-        37
-      ],
-      tactics: [
-        65,
-        87
-      ],
-      magic_resistance: [
-        25,
+      wrestling: [15,
+        37],
+      tactics: [65,
+        87],
+      magic_resistance: [25,
         47
       ]
     }
@@ -9723,22 +7701,14 @@ export const MobData = [
     description: 'brigand archer',
     armor: 0,
     stats: {
-      str: [
-        125,
-        150
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        500,
-        750
-      ],
-      hp: [
-        150,
-        200
-      ],
+      str: [125,
+        150],
+      dex: [125,
+        150],
+      int: [500,
+        750],
+      hp: [150,
+        200],
       taming: null,
       barding: 78
     },
@@ -9770,22 +7740,14 @@ export const MobData = [
     description: 'brigand strong',
     armor: 0,
     stats: {
-      str: [
-        125,
-        150
-      ],
-      dex: [
-        81,
-        95
-      ],
-      int: [
-        500,
-        750
-      ],
-      hp: [
-        150,
-        175
-      ],
+      str: [125,
+        150],
+      dex: [81,
+        95],
+      int: [500,
+        750],
+      hp: [150,
+        175],
       taming: null,
       barding: 87
     },
@@ -9817,22 +7779,14 @@ export const MobData = [
     description: 'carpenter',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -9858,22 +7812,14 @@ export const MobData = [
     description: 'cobbler',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -9899,22 +7845,14 @@ export const MobData = [
     description: 'cook',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -9940,22 +7878,14 @@ export const MobData = [
     description: 'dark one',
     armor: 65,
     stats: {
-      str: [
-        770,
-        830
-      ],
-      dex: [
-        146,
-        185
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [770,
+        830],
+      dex: [146,
+        185],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 243
     },
@@ -9987,22 +7917,14 @@ export const MobData = [
     description: 'escortable mage',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: 60
     },
@@ -10036,22 +7958,14 @@ export const MobData = [
     ],
     fame: '2500',
     stats: {
-      str: [
-        81,
-        105
-      ],
-      dex: [
-        91,
-        115
-      ],
-      int: [
-        96,
-        120
-      ],
-      hp: [
-        49,
-        63
-      ],
+      str: [81,
+        105],
+      dex: [91,
+        115],
+      int: [96,
+        120],
+      hp: [49,
+        63],
       taming: null,
       barding: 69
     },
@@ -10072,21 +7986,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        20,
-        60
-      ],
-      tactics: [
-        65,
-        87
-      ],
-      magic_resistance: [
-        75,
+      wrestling: [20,
+        60],
+      tactics: [65,
+        87],
+      magic_resistance: [75,
         97
       ]
     }
@@ -10105,22 +8012,14 @@ export const MobData = [
       '10500'
     ],
     stats: {
-      str: [
-        81,
-        105
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        126,
-        150
-      ],
-      hp: [
-        49,
-        63
-      ],
+      str: [81,
+        105],
+      dex: [191,
+        215],
+      int: [126,
+        150],
+      hp: [49,
+        63],
       taming: null,
       barding: 74
     },
@@ -10141,21 +8040,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        20,
-        80
-      ],
-      tactics: [
-        65,
-        87
-      ],
-      magic_resistance: [
-        77,
+      wrestling: [20,
+        80],
+      tactics: [65,
+        87],
+      magic_resistance: [77,
         100
       ]
     }
@@ -10171,22 +8063,14 @@ export const MobData = [
       '5000'
     ],
     stats: {
-      str: [
-        386,
-        400
-      ],
-      dex: [
-        151,
-        165
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        386,
-        400
-      ],
+      str: [386,
+        400],
+      dex: [151,
+        165],
+      int: [1,
+        1],
+      hp: [386,
+        400],
       taming: null,
       barding: 115
     },
@@ -10207,15 +8091,12 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      500,
-      650
-    ],
+    credits: [500,
+      650],
     skills: {
       wrestling: 0,
       tactics: 125.0,
-      magic_resistance: [
-        77,
+      magic_resistance: [77,
         100
       ]
     }
@@ -10226,22 +8107,14 @@ export const MobData = [
     description: 'faction deathknight',
     armor: 0,
     stats: {
-      str: [
-        126,
-        150
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        81,
-        95
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [126,
+        150],
+      dex: [61,
+        85],
+      int: [81,
+        95],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10267,22 +8140,14 @@ export const MobData = [
     description: 'faction henchman',
     armor: 0,
     stats: {
-      str: [
-        91,
-        115
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        81,
-        95
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [91,
+        115],
+      dex: [61,
+        85],
+      int: [81,
+        95],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10308,22 +8173,14 @@ export const MobData = [
     description: 'faction knight',
     armor: 0,
     stats: {
-      str: [
-        126,
-        150
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        81,
-        95
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [126,
+        150],
+      dex: [61,
+        85],
+      int: [81,
+        95],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10349,22 +8206,14 @@ export const MobData = [
     description: 'faction mercenary',
     armor: 0,
     stats: {
-      str: [
-        116,
-        125
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        81,
-        95
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [116,
+        125],
+      dex: [61,
+        85],
+      int: [81,
+        95],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10390,22 +8239,14 @@ export const MobData = [
     description: 'faction necromancer',
     armor: null,
     stats: {
-      str: [
-        151,
-        175
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        81,
-        95
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [151,
+        175],
+      dex: [61,
+        85],
+      int: [81,
+        95],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10431,22 +8272,14 @@ export const MobData = [
     description: 'faction paladin',
     armor: null,
     stats: {
-      str: [
-        151,
-        175
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        81,
-        95
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [151,
+        175],
+      dex: [61,
+        85],
+      int: [81,
+        95],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10472,22 +8305,14 @@ export const MobData = [
     description: 'faction sorceress',
     armor: null,
     stats: {
-      str: [
-        126,
-        150
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        126,
-        150
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [126,
+        150],
+      dex: [61,
+        85],
+      int: [126,
+        150],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10513,22 +8338,14 @@ export const MobData = [
     description: 'faction wizard',
     armor: null,
     stats: {
-      str: [
-        151,
-        175
-      ],
-      dex: [
-        61,
-        85
-      ],
-      int: [
-        151,
-        175
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [151,
+        175],
+      dex: [61,
+        85],
+      int: [151,
+        175],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10554,22 +8371,14 @@ export const MobData = [
     description: 'farmer',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10595,22 +8404,14 @@ export const MobData = [
     description: 'fisherman',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10636,22 +8437,14 @@ export const MobData = [
     description: 'furtrader',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10679,22 +8472,14 @@ export const MobData = [
     karma: '-2500',
     fame: '2500',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 45
     },
@@ -10712,21 +8497,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -10737,22 +8515,14 @@ export const MobData = [
     description: 'grand visor of chaos',
     armor: 70,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        230,
-        275
-      ],
-      int: [
-        205,
-        225
-      ],
-      hp: [
-        2,
-        2
-      ],
+      str: [1,
+        1],
+      dex: [230,
+        275],
+      int: [205,
+        225],
+      hp: [2,
+        2],
       taming: null,
       barding: 152
     },
@@ -10781,22 +8551,14 @@ export const MobData = [
     description: 'gypsy',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10822,22 +8584,14 @@ export const MobData = [
     description: 'hairstylist',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -10863,22 +8617,14 @@ export const MobData = [
     description: 'human brigand',
     armor: 0,
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        81,
-        95
-      ],
-      int: [
-        61,
-        75
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [86,
+        100],
+      dex: [81,
+        95],
+      int: [61,
+        75],
+      hp: [0,
+        0],
       taming: null,
       barding: 40
     },
@@ -10907,22 +8653,14 @@ export const MobData = [
     description: 'knight of ni',
     armor: 35,
     stats: {
-      str: [
-        250,
-        375
-      ],
-      dex: [
-        81,
-        95
-      ],
-      int: [
-        500,
-        750
-      ],
-      hp: [
-        150,
-        175
-      ],
+      str: [250,
+        375],
+      dex: [81,
+        95],
+      int: [500,
+        750],
+      hp: [150,
+        175],
       taming: null,
       barding: 83
     },
@@ -10953,22 +8691,14 @@ export const MobData = [
     ],
     fame: '8000',
     stats: {
-      str: [
-        171,
-        200
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        276,
-        305
-      ],
-      hp: [
-        103,
-        120
-      ],
+      str: [171,
+        200],
+      dex: [126,
+        145],
+      int: [276,
+        305],
+      hp: [103,
+        120],
       taming: null,
       barding: 92
     },
@@ -10989,18 +8719,13 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      275,
-      324
-    ],
+    credits: [275,
+      324],
     skills: {
       wrestling: [0,0],
-      tactics: [
-        70,
-        90
-      ],
-      magic_resistance: [
-        80,
+      tactics: [70,
+        90],
+      magic_resistance: [80,
         100
       ]
     }
@@ -11016,22 +8741,14 @@ export const MobData = [
     ],
     fame: '18000',
     stats: {
-      str: [
-        416,
-        505
-      ],
-      dex: [
-        146,
-        165
-      ],
-      int: [
-        566,
-        655
-      ],
-      hp: [
-        250,
-        303
-      ],
+      str: [416,
+        505],
+      dex: [146,
+        165],
+      int: [566,
+        655],
+      hp: [250,
+        303],
       taming: null,
       barding: 109
     },
@@ -11052,21 +8769,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      450,
-      600
-    ],
+    credits: [450,
+      600],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        150,
+      wrestling: [60,
+        80],
+      tactics: [50,
+        70],
+      magic_resistance: [150,
         200
       ]
     }
@@ -11077,22 +8787,14 @@ export const MobData = [
     description: 'lord fenix',
     armor: 0,
     stats: {
-      str: [
-        381,
-        405
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        726,
-        1
-      ],
-      hp: [
-        650,
-        863
-      ],
+      str: [381,
+        405],
+      dex: [191,
+        215],
+      int: [726,
+        1],
+      hp: [650,
+        863],
       taming: null,
       barding: 122
     },
@@ -11118,22 +8820,14 @@ export const MobData = [
     description: 'lord jamkul shieldheart',
     armor: 0,
     stats: {
-      str: [
-        381,
-        405
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        726,
-        1
-      ],
-      hp: [
-        650,
-        863
-      ],
+      str: [381,
+        405],
+      dex: [191,
+        215],
+      int: [726,
+        1],
+      hp: [650,
+        863],
       taming: null,
       barding: 122
     },
@@ -11159,22 +8853,14 @@ export const MobData = [
     description: 'lord kronos the elemental mage',
     armor: 30,
     stats: {
-      str: [
-        450,
-        550
-      ],
-      dex: [
-        75,
-        85
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [450,
+        550],
+      dex: [75,
+        85],
+      int: [420,
+        475],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -11200,22 +8886,14 @@ export const MobData = [
     description: 'lord xerxes',
     armor: 0,
     stats: {
-      str: [
-        381,
-        405
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        726,
-        1
-      ],
-      hp: [
-        650,
-        863
-      ],
+      str: [381,
+        405],
+      dex: [191,
+        215],
+      int: [726,
+        1],
+      hp: [650,
+        863],
       taming: null,
       barding: 122
     },
@@ -11241,22 +8919,14 @@ export const MobData = [
     description: 'merchant',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -11285,22 +8955,14 @@ export const MobData = [
     description: 'messenger',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: 30
     },
@@ -11334,22 +8996,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        346,
-        370
-      ],
-      dex: [
-        71,
-        90
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        208,
-        222
-      ],
+      str: [346,
+        370],
+      dex: [71,
+        90],
+      int: [26,
+        40],
+      hp: [208,
+        222],
       taming: null,
       barding: 70
     },
@@ -11367,21 +9021,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      305,
-      315
-    ],
+    credits: [305,
+      315],
     skills: {
-      wrestling: [
-        35,
-        50
-      ],
-      tactics: [
-        35,
-        50
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [35,
+        50],
+      tactics: [35,
+        50],
+      magic_resistance: [15,
         40
       ]
     }
@@ -11392,22 +9039,14 @@ export const MobData = [
     description: 'noble',
     armor: null,
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: 30
     },
@@ -11436,22 +9075,14 @@ export const MobData = [
     description: 'pirate bartender',
     armor: 0,
     stats: {
-      str: [
-        650,
-        750
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        2,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [650,
+        750],
+      dex: [110,
+        120],
+      int: [2,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 166
     },
@@ -11480,22 +9111,14 @@ export const MobData = [
     description: 'pirate boatswain',
     armor: 0,
     stats: {
-      str: [
-        200,
-        225
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [200,
+        225],
+      dex: [110,
+        120],
+      int: [1,
+        1],
+      hp: [0,
+        0],
       taming: null,
       barding: 110
     },
@@ -11527,22 +9150,14 @@ export const MobData = [
     description: 'pirate captain',
     armor: 0,
     stats: {
-      str: [
-        650,
-        750
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        2,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [650,
+        750],
+      dex: [110,
+        120],
+      int: [2,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 171
     },
@@ -11571,22 +9186,14 @@ export const MobData = [
     description: 'pirate captain ghost',
     armor: 0,
     stats: {
-      str: [
-        650,
-        750
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        2,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [650,
+        750],
+      dex: [110,
+        120],
+      int: [2,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 143
     },
@@ -11618,22 +9225,14 @@ export const MobData = [
     description: 'pirate digger',
     armor: 0,
     stats: {
-      str: [
-        325,
-        375
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        2,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [325,
+        375],
+      dex: [90,
+        120],
+      int: [2,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 166
     },
@@ -11662,22 +9261,14 @@ export const MobData = [
     description: 'pirate ghost',
     armor: 0,
     stats: {
-      str: [
-        81,
-        105
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        125,
-        175
-      ],
+      str: [81,
+        105],
+      dex: [191,
+        215],
+      int: [1,
+        1],
+      hp: [125,
+        175],
       taming: null,
       barding: 105
     },
@@ -11709,22 +9300,14 @@ export const MobData = [
     description: 'pirate navigator',
     armor: 0,
     stats: {
-      str: [
-        325,
-        375
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [325,
+        375],
+      dex: [110,
+        120],
+      int: [1,
+        1],
+      hp: [0,
+        0],
       taming: null,
       barding: 116
     },
@@ -11756,22 +9339,14 @@ export const MobData = [
     description: 'pirate quartermaster',
     armor: 0,
     stats: {
-      str: [
-        375,
-        425
-      ],
-      dex: [
-        90,
-        120
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        375,
-        425
-      ],
+      str: [375,
+        425],
+      dex: [90,
+        120],
+      int: [1,
+        1],
+      hp: [375,
+        425],
       taming: null,
       barding: 123
     },
@@ -11803,22 +9378,14 @@ export const MobData = [
     description: 'pirate sailor',
     armor: 0,
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        70,
-        95
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [86,
+        100],
+      dex: [70,
+        95],
+      int: [1,
+        1],
+      hp: [0,
+        0],
       taming: null,
       barding: 104
     },
@@ -11855,22 +9422,14 @@ export const MobData = [
     ],
     fame: '1500',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        81,
-        100
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [81,
+        100],
+      int: [36,
+        60],
+      hp: [58,
+        72],
       taming: null,
       barding: 38
     },
@@ -11891,21 +9450,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        50,
-        75
-      ],
-      tactics: [
-        50,
-        75
-      ],
-      magic_resistance: [
-        35,
+      wrestling: [50,
+        75],
+      tactics: [50,
+        75],
+      magic_resistance: [35,
         60
       ]
     }
@@ -11921,22 +9473,14 @@ export const MobData = [
     ],
     fame: '6500',
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        101,
-        130
-      ],
-      int: [
-        116,
-        140
-      ],
-      hp: [
-        88,
-        108
-      ],
+      str: [146,
+        180],
+      dex: [101,
+        130],
+      int: [116,
+        140],
+      hp: [88,
+        108],
       taming: null,
       barding: 74
     },
@@ -11957,21 +9501,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      300,
-      350
-    ],
+    credits: [300,
+      350],
     skills: {
-      wrestling: [
-        50,
-        75
-      ],
-      tactics: [
-        50,
-        75
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [50,
+        75],
+      tactics: [50,
+        75],
+      magic_resistance: [65,
         90
       ]
     }
@@ -11987,22 +9524,14 @@ export const MobData = [
     ],
     fame: '7500',
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        101,
-        130
-      ],
-      int: [
-        186,
-        210
-      ],
-      hp: [
-        88,
-        108
-      ],
+      str: [146,
+        180],
+      dex: [101,
+        130],
+      int: [186,
+        210],
+      hp: [88,
+        108],
       taming: null,
       barding: 64
     },
@@ -12023,21 +9552,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      275,
-      352
-    ],
+    credits: [275,
+      352],
     skills: {
-      wrestling: [
-        50,
-        75
-      ],
-      tactics: [
-        50,
-        75
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [50,
+        75],
+      tactics: [50,
+        75],
+      magic_resistance: [65,
         90
       ]
     }
@@ -12048,22 +9570,14 @@ export const MobData = [
     description: 'reptile tamer',
     armor: 60,
     stats: {
-      str: [
-        605,
-        725
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        8,
-        9
-      ],
+      str: [605,
+        725],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [8,
+        9],
       taming: null,
       barding: 413
     },
@@ -12097,22 +9611,14 @@ export const MobData = [
     ],
     fame: '500',
     stats: {
-      str: [
-        26,
-        40
-      ],
-      dex: [
-        26,
-        40
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        16,
-        24
-      ],
+      str: [26,
+        40],
+      dex: [26,
+        40],
+      int: [26,
+        40],
+      hp: [16,
+        24],
       taming: null,
       barding: 19
     },
@@ -12127,16 +9633,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        20,
-        30
-      ],
-      tactics: [
-        20,
-        30
-      ],
-      magic_resistance: [
-        20,
+      wrestling: [20,
+        30],
+      tactics: [20,
+        30],
+      magic_resistance: [20,
         30
       ]
     }
@@ -12149,22 +9650,14 @@ export const MobData = [
     karma: 0,
     fame: 0,
     stats: {
-      str: [
-        196,
-        250
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        128,
-        138
-      ],
-      hp: [
-        500,
-        550
-      ],
+      str: [196,
+        250],
+      dex: [110,
+        120],
+      int: [128,
+        138],
+      hp: [500,
+        550],
       taming: null,
       barding: 103
     },
@@ -12184,16 +9677,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [100,
         150
       ]
     }
@@ -12209,22 +9697,14 @@ export const MobData = [
     ],
     fame: '12500',
     stats: {
-      str: [
-        301,
-        350
-      ],
-      dex: [
-        75,
-        75
-      ],
-      int: [
-        151,
-        200
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [301,
+        350],
+      dex: [75,
+        75],
+      int: [151,
+        200],
+      hp: [1,
+        1],
       taming: null,
       barding: 125
     },
@@ -12245,15 +9725,11 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      1050,
-      1279
-    ],
+    credits: [1050,
+      1279],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
+      wrestling: [90,
+        100],
       tactics: 100.0,
       magic_resistance: '250.0'
     }
@@ -12269,22 +9745,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 65
     },
@@ -12305,21 +9773,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -12332,22 +9793,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        196,
-        250
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        118,
-        150
-      ],
+      str: [196,
+        250],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [118,
+        150],
       taming: null,
       barding: 61
     },
@@ -12365,21 +9818,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      175,
-      275
-    ],
+    credits: [175,
+      275],
     skills: {
-      wrestling: [
-        85,
-        95
-      ],
-      tactics: [
-        95,
-        100
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [85,
+        95],
+      tactics: [95,
+        100],
+      magic_resistance: [65,
         80
       ]
     }
@@ -12392,22 +9838,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        186,
-        210
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [56,
+        75],
+      int: [186,
+        210],
+      hp: [46,
+        60],
       taming: null,
       barding: 77
     },
@@ -12425,21 +9863,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        55,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [55,
         70
       ]
     }
@@ -12455,22 +9886,14 @@ export const MobData = [
     ],
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        16,
-        40
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [56,
+        75],
+      int: [16,
+        40],
+      hp: [34,
+        48],
       taming: null,
       barding: 36
     },
@@ -12488,21 +9911,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -12518,22 +9934,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 62
     },
@@ -12554,21 +9962,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -12579,22 +9980,14 @@ export const MobData = [
     description: 'undead parrot',
     armor: 0,
     stats: {
-      str: [
-        85,
-        110
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [85,
+        110],
+      dex: [125,
+        150],
+      int: [1,
+        1],
+      hp: [0,
+        0],
       taming: null,
       barding: 113
     },
@@ -12626,22 +10019,14 @@ export const MobData = [
     description: 'undead pirate captain',
     armor: 0,
     stats: {
-      str: [
-        650,
-        750
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        2,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [650,
+        750],
+      dex: [110,
+        120],
+      int: [2,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 171
     },
@@ -12670,22 +10055,14 @@ export const MobData = [
     description: 'undead pirate sailor',
     armor: 0,
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        70,
-        95
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [86,
+        100],
+      dex: [70,
+        95],
+      int: [1,
+        1],
+      hp: [0,
+        0],
       taming: null,
       barding: 103
     },
@@ -12719,22 +10096,14 @@ export const MobData = [
     karma: '10000',
     fame: '1000',
     stats: {
-      str: [
-        0,
-        null
-      ],
-      dex: [
-        0,
-        null
-      ],
-      int: [
-        0,
-        null
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [0,
+        null],
+      dex: [0,
+        null],
+      int: [0,
+        null],
+      hp: [0,
+        0],
       taming: null,
       barding: null
     },
@@ -12752,12 +10121,9 @@ export const MobData = [
     credits: 0,
     skills: {
       wrestling: [0,0],
-      tactics: [
-        82,
-        100
-      ],
-      magic_resistance: [
-        82,
+      tactics: [82,
+        100],
+      magic_resistance: [82,
         100
       ]
     }
@@ -12773,22 +10139,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 67
     },
@@ -12809,21 +10167,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -12839,22 +10190,14 @@ export const MobData = [
     ],
     fame: '600',
     stats: {
-      str: [
-        46,
-        70
-      ],
-      dex: [
-        31,
-        50
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        28,
-        42
-      ],
+      str: [46,
+        70],
+      dex: [31,
+        50],
+      int: [26,
+        40],
+      hp: [28,
+        42],
       taming: null,
       barding: 33
     },
@@ -12872,21 +10215,14 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        35,
-        50
-      ],
-      tactics: [
-        35,
-        50
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [35,
+        50],
+      tactics: [35,
+        50],
+      magic_resistance: [15,
         40
       ]
     }
@@ -12899,22 +10235,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        475,
-        525
-      ],
-      dex: [
-        75,
-        85
-      ],
-      int: [
-        250,
-        350
-      ],
-      hp: [
-        725,
-        875
-      ],
+      str: [475,
+        525],
+      dex: [75,
+        85],
+      int: [250,
+        350],
+      hp: [725,
+        875],
       taming: null,
       barding: 121
     },
@@ -12935,21 +10263,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      314,
-      486
-    ],
+    credits: [314,
+      486],
     skills: {
-      wrestling: [
-        81,
-        104
-      ],
-      tactics: [
-        87,
-        101
-      ],
-      magic_resistance: [
-        71,
+      wrestling: [81,
+        104],
+      tactics: [87,
+        101],
+      magic_resistance: [71,
         82
       ]
     }
@@ -12960,22 +10281,14 @@ export const MobData = [
     description: 'forest troll',
     armor: 40,
     stats: {
-      str: [
-        750,
-        800
-      ],
-      dex: [
-        75,
-        85
-      ],
-      int: [
-        250,
-        350
-      ],
-      hp: [
-        700,
-        825
-      ],
+      str: [750,
+        800],
+      dex: [75,
+        85],
+      int: [250,
+        350],
+      hp: [700,
+        825],
       taming: null,
       barding: 110
     },
@@ -13007,22 +10320,14 @@ export const MobData = [
     description: 'gamayun',
     armor: 38,
     stats: {
-      str: [
-        320,
-        340
-      ],
-      dex: [
-        100,
-        110
-      ],
-      int: [
-        500,
-        700
-      ],
-      hp: [
-        400,
-        550
-      ],
+      str: [320,
+        340],
+      dex: [100,
+        110],
+      int: [500,
+        700],
+      hp: [400,
+        550],
       taming: null,
       barding: 105
     },
@@ -13054,22 +10359,14 @@ export const MobData = [
     description: 'mountain troll',
     armor: 40,
     stats: {
-      str: [
-        475,
-        525
-      ],
-      dex: [
-        75,
-        85
-      ],
-      int: [
-        250,
-        350
-      ],
-      hp: [
-        600,
-        625
-      ],
+      str: [475,
+        525],
+      dex: [75,
+        85],
+      int: [250,
+        350],
+      hp: [600,
+        625],
       taming: null,
       barding: 113
     },
@@ -13101,22 +10398,14 @@ export const MobData = [
     description: 'obsidian gargoyle',
     armor: 48,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        2
-      ],
+      str: [900,
+        1],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        2],
       taming: null,
       barding: 189
     },
@@ -13147,22 +10436,14 @@ export const MobData = [
     karma: 0,
     fame: 0,
     stats: {
-      str: [
-        196,
-        250
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        128,
-        138
-      ],
-      hp: [
-        500,
-        550
-      ],
+      str: [196,
+        250],
+      dex: [110,
+        120],
+      int: [128,
+        138],
+      hp: [500,
+        550],
       taming: null,
       barding: 103
     },
@@ -13182,16 +10463,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [100,
         150
       ]
     }
@@ -13202,22 +10478,14 @@ export const MobData = [
     description: 'spectral rabbit',
     armor: 40,
     stats: {
-      str: [
-        401,
-        650
-      ],
-      dex: [
-        160,
-        180
-      ],
-      int: [
-        500,
-        600
-      ],
-      hp: [
-        650,
-        950
-      ],
+      str: [401,
+        650],
+      dex: [160,
+        180],
+      int: [500,
+        600],
+      hp: [650,
+        950],
       taming: null,
       barding: 110
     },
@@ -13251,22 +10519,14 @@ export const MobData = [
     karma: '-15,000',
     fame: '15,000',
     stats: {
-      str: [
-        767,
-        945
-      ],
-      dex: [
-        66,
-        75
-      ],
-      int: [
-        46,
-        70
-      ],
-      hp: [
-        476,
-        552
-      ],
+      str: [767,
+        945],
+      dex: [66,
+        75],
+      int: [46,
+        70],
+      hp: [476,
+        552],
       taming: null,
       barding: 96
     },
@@ -13284,21 +10544,14 @@ export const MobData = [
         description: 'RawRibs'
       }
     ],
-    credits: [
-      750,
-      950
-    ],
+    credits: [750,
+      950],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        125,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [125,
         140
       ]
     }
@@ -13309,22 +10562,14 @@ export const MobData = [
     description: 'arctic ogre mage',
     armor: 65,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        82,
-        95
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [1,
+        1],
+      dex: [82,
+        95],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 184
     },
@@ -13353,22 +10598,14 @@ export const MobData = [
     description: 'beholder',
     armor: 65,
     stats: {
-      str: [
-        630,
-        730
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        910,
-        950
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [630,
+        730],
+      dex: [86,
+        105],
+      int: [910,
+        950],
+      hp: [1,
+        1],
       taming: null,
       barding: 184
     },
@@ -13399,22 +10636,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        475,
-        525
-      ],
-      dex: [
-        75,
-        85
-      ],
-      int: [
-        250,
-        350
-      ],
-      hp: [
-        725,
-        875
-      ],
+      str: [475,
+        525],
+      dex: [75,
+        85],
+      int: [250,
+        350],
+      hp: [725,
+        875],
       taming: null,
       barding: 121
     },
@@ -13435,21 +10664,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      314,
-      486
-    ],
+    credits: [314,
+      486],
     skills: {
-      wrestling: [
-        81,
-        104
-      ],
-      tactics: [
-        87,
-        101
-      ],
-      magic_resistance: [
-        71,
+      wrestling: [81,
+        104],
+      tactics: [87,
+        101],
+      magic_resistance: [71,
         82
       ]
     }
@@ -13462,22 +10684,14 @@ export const MobData = [
     karma: '0',
     fame: '6500',
     stats: {
-      str: [
-        202,
-        300
-      ],
-      dex: [
-        104,
-        260
-      ],
-      int: [
-        91,
-        100
-      ],
-      hp: [
-        130,
-        172
-      ],
+      str: [202,
+        300],
+      dex: [104,
+        260],
+      int: [91,
+        100],
+      hp: [130,
+        172],
       taming: null,
       barding: 72
     },
@@ -13498,21 +10712,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      275,
-      325
-    ],
+    credits: [275,
+      325],
     skills: {
-      wrestling: [
-        95,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [95,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [50,
         80
       ]
     }
@@ -13523,22 +10730,14 @@ export const MobData = [
     description: 'colossus',
     armor: 78,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [900,
+        1],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        3],
       taming: null,
       barding: 208
     },
@@ -13569,22 +10768,14 @@ export const MobData = [
     karma: '-4500',
     fame: '4500',
     stats: {
-      str: [
-        336,
-        385
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        31,
-        55
-      ],
-      hp: [
-        202,
-        231
-      ],
+      str: [336,
+        385],
+      dex: [96,
+        115],
+      int: [31,
+        55],
+      hp: [202,
+        231],
       taming: null,
       barding: 65
     },
@@ -13605,21 +10796,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      400,
-      500
-    ],
+    credits: [400,
+      500],
     skills: {
-      wrestling: [
-        80,
-        90
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        60,
+      wrestling: [80,
+        90],
+      tactics: [80,
+        100],
+      magic_resistance: [60,
         105
       ]
     }
@@ -13635,22 +10819,14 @@ export const MobData = [
     ],
     fame: '15000',
     stats: {
-      str: [
-        196,
-        225
-      ],
-      dex: [
-        196,
-        225
-      ],
-      int: [
-        196,
-        225
-      ],
-      hp: [
-        118,
-        135
-      ],
+      str: [196,
+        225],
+      dex: [196,
+        225],
+      int: [196,
+        225],
+      hp: [118,
+        135],
       taming: null,
       barding: 60
     },
@@ -13663,15 +10839,12 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      400,
-      500
-    ],
+    credits: [400,
+      500],
     skills: {
       wrestling: 50.0,
       tactics: 80.0,
-      magic_resistance: [
-        80,
+      magic_resistance: [80,
         90
       ]
     }
@@ -13684,22 +10857,14 @@ export const MobData = [
     karma: '-12500',
     fame: '12500',
     stats: {
-      str: [
-        296,
-        325
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        291,
-        385
-      ],
-      hp: [
-        178,
-        195
-      ],
+      str: [296,
+        325],
+      dex: [86,
+        105],
+      int: [291,
+        385],
+      hp: [178,
+        195],
       taming: null,
       barding: 87
     },
@@ -13720,21 +10885,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      400,
-      600
-    ],
+    credits: [400,
+      600],
     skills: {
-      wrestling: [
-        80,
-        100
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        115,
+      wrestling: [80,
+        100],
+      tactics: [80,
+        100],
+      magic_resistance: [115,
         130
       ]
     }
@@ -13747,22 +10905,14 @@ export const MobData = [
     karma: '7000',
     fame: '7000',
     stats: {
-      str: [
-        586,
-        785
-      ],
-      dex: [
-        177,
-        255
-      ],
-      int: [
-        351,
-        450
-      ],
-      hp: [
-        352,
-        471
-      ],
+      str: [586,
+        785],
+      dex: [177,
+        255],
+      int: [351,
+        450],
+      hp: [352,
+        471],
       taming: null,
       barding: 108
     },
@@ -13783,21 +10933,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      900,
-      1200
-    ],
+    credits: [900,
+      1200],
     skills: {
-      wrestling: [
-        97,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        90,
+      wrestling: [97,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [90,
         100
       ]
     }
@@ -13810,22 +10953,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        136,
-        165
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        31,
-        55
-      ],
-      hp: [
-        82,
-        99
-      ],
+      str: [136,
+        165],
+      dex: [56,
+        75],
+      int: [31,
+        55],
+      hp: [82,
+        99],
       taming: null,
       barding: 42
     },
@@ -13843,21 +10978,14 @@ export const MobData = [
         description: 'Random Potion'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        50,
-        60
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        40,
+      wrestling: [50,
+        60],
+      tactics: [50,
+        70],
+      magic_resistance: [40,
         55
       ]
     }
@@ -13868,22 +10996,14 @@ export const MobData = [
     description: 'forest troll',
     armor: 40,
     stats: {
-      str: [
-        750,
-        800
-      ],
-      dex: [
-        75,
-        85
-      ],
-      int: [
-        250,
-        350
-      ],
-      hp: [
-        700,
-        825
-      ],
+      str: [750,
+        800],
+      dex: [75,
+        85],
+      int: [250,
+        350],
+      hp: [700,
+        825],
       taming: null,
       barding: 110
     },
@@ -13917,22 +11037,14 @@ export const MobData = [
     karma: '-4000',
     fame: '4000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [126,
+        145],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 62
     },
@@ -13953,21 +11065,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        80,
-        100
-      ],
-      tactics: [
-        80,
-        100
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [80,
+        100],
+      tactics: [80,
+        100],
+      magic_resistance: [65,
         80
       ]
     }
@@ -13978,22 +11083,14 @@ export const MobData = [
     description: 'gamayun',
     armor: 38,
     stats: {
-      str: [
-        320,
-        340
-      ],
-      dex: [
-        100,
-        110
-      ],
-      int: [
-        500,
-        700
-      ],
-      hp: [
-        400,
-        550
-      ],
+      str: [320,
+        340],
+      dex: [100,
+        110],
+      int: [500,
+        700],
+      hp: [400,
+        550],
       taming: null,
       barding: 105
     },
@@ -14027,22 +11124,14 @@ export const MobData = [
     karma: '-3500',
     fame: '3500',
     stats: {
-      str: [
-        96,
-        125
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        141,
-        165
-      ],
-      hp: [
-        58,
-        75
-      ],
+      str: [96,
+        125],
+      dex: [86,
+        105],
+      int: [141,
+        165],
+      hp: [58,
+        75],
       taming: null,
       barding: 68
     },
@@ -14060,21 +11149,14 @@ export const MobData = [
         description: 'Random Potion'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        50,
-        70
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [50,
+        70],
+      tactics: [50,
+        70],
+      magic_resistance: [50,
         70
       ]
     }
@@ -14087,22 +11169,14 @@ export const MobData = [
     karma: '-900',
     fame: '900',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        51,
-        75
-      ],
-      int: [
-        56,
-        80
-      ],
-      hp: [
-        36,
-        47
-      ],
+      str: [76,
+        100],
+      dex: [51,
+        75],
+      int: [56,
+        80],
+      hp: [36,
+        47],
       taming: null,
       barding: 56.7
     },
@@ -14115,10 +11189,8 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
       wrestling: 70.0,
       tactics: 70.0,
@@ -14136,22 +11208,14 @@ export const MobData = [
     ],
     fame: '2500',
     stats: {
-      str: [
-        86,
-        120
-      ],
-      dex: [
-        86,
-        110
-      ],
-      int: [
-        51,
-        75
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [86,
+        120],
+      dex: [86,
+        110],
+      int: [51,
+        75],
+      hp: [58,
+        72],
       taming: null,
       barding: 47
     },
@@ -14172,21 +11236,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        60,
-        90
-      ],
-      tactics: [
-        70,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [60,
+        90],
+      tactics: [70,
+        100],
+      magic_resistance: [50,
         65
       ]
     }
@@ -14197,22 +11254,14 @@ export const MobData = [
     description: 'headlessone',
     armor: 18,
     stats: {
-      str: [
-        26,
-        50
-      ],
-      dex: [
-        36,
-        55
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        16,
-        30
-      ],
+      str: [26,
+        50],
+      dex: [36,
+        55],
+      int: [16,
+        30],
+      hp: [16,
+        30],
       taming: null,
       barding: 19
     },
@@ -14249,22 +11298,14 @@ export const MobData = [
     ],
     fame: '3400',
     stats: {
-      str: [
-        102,
-        150
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        66,
-        125
-      ],
+      str: [102,
+        150],
+      dex: [81,
+        105],
+      int: [36,
+        60],
+      hp: [66,
+        125],
       taming: 85.5,
       barding: 39
     },
@@ -14285,21 +11326,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        57,
+      wrestling: [60,
+        80],
+      tactics: [50,
+        70],
+      magic_resistance: [57,
         75
       ]
     }
@@ -14315,22 +11349,14 @@ export const MobData = [
     ],
     fame: '500',
     stats: {
-      str: [
-        16,
-        40
-      ],
-      dex: [
-        31,
-        60
-      ],
-      int: [
-        11,
-        25
-      ],
-      hp: [
-        10,
-        24
-      ],
+      str: [16,
+        40],
+      dex: [31,
+        60],
+      int: [11,
+        25],
+      hp: [10,
+        24],
       taming: null,
       barding: 26.6
     },
@@ -14345,16 +11371,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        25,
-        40
-      ],
-      tactics: [
-        0,
-        15
-      ],
-      magic_resistance: [
-        null,
+      wrestling: [25,
+        40],
+      tactics: [0,
+        15],
+      magic_resistance: [null,
         null
       ]
     }
@@ -14370,22 +11391,14 @@ export const MobData = [
     ],
     fame: '2500',
     stats: {
-      str: [
-        91,
-        115
-      ],
-      dex: [
-        61,
-        80
-      ],
-      int: [
-        86,
-        105
-      ],
-      hp: [
-        55,
-        70
-      ],
+      str: [91,
+        115],
+      dex: [61,
+        80],
+      int: [86,
+        105],
+      hp: [55,
+        70],
       taming: 83.1,
       barding: 56
     },
@@ -14406,21 +11419,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        40,
-        44
-      ],
-      tactics: [
-        42,
-        50
-      ],
-      magic_resistance: [
-        30,
+      wrestling: [40,
+        44],
+      tactics: [42,
+        50],
+      magic_resistance: [30,
         50
       ]
     }
@@ -14431,22 +11437,14 @@ export const MobData = [
     description: 'jungle titan',
     armor: 48,
     stats: {
-      str: [
-        600,
-        750
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        2
-      ],
+      str: [600,
+        750],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        2],
       taming: null,
       barding: 185
     },
@@ -14475,22 +11473,14 @@ export const MobData = [
     description: 'kirin',
     armor: 0,
     stats: {
-      str: [
-        286,
-        325
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        186,
-        225
-      ],
-      hp: [
-        191,
-        210
-      ],
+      str: [286,
+        325],
+      dex: [86,
+        105],
+      int: [186,
+        225],
+      hp: [191,
+        210],
       taming: null,
       barding: 82
     },
@@ -14524,22 +11514,14 @@ export const MobData = [
     ],
     fame: '150',
     stats: {
-      str: [
-        6,
-        10
-      ],
-      dex: [
-        26,
-        38
-      ],
-      int: [
-        6,
-        14
-      ],
-      hp: [
-        4,
-        6
-      ],
+      str: [6,
+        10],
+      dex: [26,
+        38],
+      int: [6,
+        14],
+      hp: [4,
+        6],
       taming: 18.9,
       barding: 7
     },
@@ -14560,21 +11542,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        5,
-        10
-      ],
-      tactics: [
-        5,
-        10
-      ],
-      magic_resistance: [
-        5,
+      wrestling: [5,
+        10],
+      tactics: [5,
+        10],
+      magic_resistance: [5,
         14
       ]
     }
@@ -14585,22 +11560,14 @@ export const MobData = [
     description: 'mountain troll',
     armor: 40,
     stats: {
-      str: [
-        475,
-        525
-      ],
-      dex: [
-        75,
-        85
-      ],
-      int: [
-        250,
-        350
-      ],
-      hp: [
-        600,
-        625
-      ],
+      str: [475,
+        525],
+      dex: [75,
+        85],
+      int: [250,
+        350],
+      hp: [600,
+        625],
       taming: null,
       barding: 113
     },
@@ -14637,22 +11604,14 @@ export const MobData = [
     ],
     fame: '3000',
     stats: {
-      str: [
-        166,
-        195
-      ],
-      dex: [
-        46,
-        65
-      ],
-      int: [
-        46,
-        70
-      ],
-      hp: [
-        100,
-        117
-      ],
+      str: [166,
+        195],
+      dex: [46,
+        65],
+      int: [46,
+        70],
+      hp: [100,
+        117],
       taming: null,
       barding: 53
     },
@@ -14670,21 +11629,14 @@ export const MobData = [
         description: 'Random Potion'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        70,
-        80
-      ],
-      tactics: [
-        60,
-        70
-      ],
-      magic_resistance: [
-        55,
+      wrestling: [70,
+        80],
+      tactics: [60,
+        70],
+      magic_resistance: [55,
         70
       ]
     }
@@ -14700,22 +11652,14 @@ export const MobData = [
     ],
     fame: '15000',
     stats: {
-      str: [
-        767,
-        945
-      ],
-      dex: [
-        66,
-        75
-      ],
-      int: [
-        46,
-        70
-      ],
-      hp: [
-        476,
-        552
-      ],
+      str: [767,
+        945],
+      dex: [66,
+        75],
+      int: [46,
+        70],
+      hp: [476,
+        552],
       taming: null,
       barding: 96
     },
@@ -14736,21 +11680,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      600,
-      650
-    ],
+    credits: [600,
+      650],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        125,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [125,
         140
       ]
     }
@@ -14761,22 +11698,14 @@ export const MobData = [
     description: 'ogre mage',
     armor: 65,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        90,
-        99
-      ],
-      int: [
-        720,
-        770
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [1,
+        1],
+      dex: [90,
+        99],
+      int: [720,
+        770],
+      hp: [1,
+        1],
       taming: null,
       barding: 180
     },
@@ -14807,22 +11736,14 @@ export const MobData = [
     karma: '7000',
     fame: '7000',
     stats: {
-      str: [
-        21,
-        30
-      ],
-      dex: [
-        301,
-        400
-      ],
-      int: [
-        201,
-        250
-      ],
-      hp: [
-        13,
-        18
-      ],
+      str: [21,
+        30],
+      dex: [301,
+        400],
+      int: [201,
+        250],
+      hp: [13,
+        18],
       taming: null,
       barding: 76
     },
@@ -14845,16 +11766,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        10,
-        12
-      ],
-      tactics: [
-        10,
-        20
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [10,
+        12],
+      tactics: [10,
+        20],
+      magic_resistance: [100,
         150
       ]
     }
@@ -14865,22 +11781,14 @@ export const MobData = [
     description: 'rabbit of caerbannog',
     armor: 60,
     stats: {
-      str: [
-        605,
-        805
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        9,
-        10
-      ],
+      str: [605,
+        805],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [9,
+        10],
       taming: null,
       barding: null
     },
@@ -14917,22 +11825,14 @@ export const MobData = [
     ],
     fame: '2000',
     stats: {
-      str: [
-        73,
-        115
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        50,
-        63
-      ],
+      str: [73,
+        115],
+      dex: [76,
+        95],
+      int: [16,
+        30],
+      hp: [50,
+        63],
       taming: 47.1,
       barding: 55
     },
@@ -14953,21 +11853,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        50,
-        65
-      ],
-      tactics: [
-        60,
-        75
-      ],
-      magic_resistance: [
-        30,
+      wrestling: [50,
+        65],
+      tactics: [60,
+        75],
+      magic_resistance: [30,
         35
       ]
     }
@@ -15006,22 +11899,14 @@ export const MobData = [
     ],
     fame: '500',
     stats: {
-      str: [
-        50,
-        50
-      ],
-      dex: [
-        60,
-        60
-      ],
-      int: [
-        100,
-        100
-      ],
-      hp: [
-        50,
-        50
-      ],
+      str: [50,
+        50],
+      dex: [60,
+        60],
+      int: [100,
+        100],
+      hp: [50,
+        50],
       taming: null,
       barding: 30
     },
@@ -15044,14 +11929,10 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        25,
-        40
-      ],
-      tactics: [
-        0,
-        15
-      ],
+      wrestling: [25,
+        40],
+      tactics: [0,
+        15],
       magic_resistance: '10.0'
     }
   },
@@ -15061,22 +11942,14 @@ export const MobData = [
     description: 'spectral rabbit',
     armor: 40,
     stats: {
-      str: [
-        401,
-        650
-      ],
-      dex: [
-        160,
-        180
-      ],
-      int: [
-        500,
-        600
-      ],
-      hp: [
-        650,
-        950
-      ],
+      str: [401,
+        650],
+      dex: [160,
+        180],
+      int: [500,
+        600],
+      hp: [650,
+        950],
       taming: null,
       barding: 110
     },
@@ -15113,22 +11986,14 @@ export const MobData = [
     ],
     fame: '4500',
     stats: {
-      str: [
-        296,
-        320
-      ],
-      dex: [
-        86,
-        110
-      ],
-      int: [
-        51,
-        75
-      ],
-      hp: [
-        178,
-        192
-      ],
+      str: [296,
+        320],
+      dex: [86,
+        110],
+      int: [51,
+        75],
+      hp: [178,
+        192],
       taming: null,
       barding: 63
     },
@@ -15149,21 +12014,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      290,
-      325
-    ],
+    credits: [290,
+      325],
     skills: {
-      wrestling: [
-        70,
-        100
-      ],
-      tactics: [
-        70,
-        100
-      ],
-      magic_resistance: [
-        50,
+      wrestling: [70,
+        100],
+      tactics: [70,
+        100],
+      magic_resistance: [50,
         65
       ]
     }
@@ -15174,22 +12032,14 @@ export const MobData = [
     description: 'strong mongbat',
     armor: 10,
     stats: {
-      str: [
-        6,
-        10
-      ],
-      dex: [
-        26,
-        38
-      ],
-      int: [
-        6,
-        14
-      ],
-      hp: [
-        4,
-        6
-      ],
+      str: [6,
+        10],
+      dex: [26,
+        38],
+      int: [6,
+        14],
+      hp: [4,
+        6],
       taming: 71.1,
       barding: 14
     },
@@ -15223,22 +12073,14 @@ export const MobData = [
     karma: 'lvl 5 -24000',
     fame: 'lvl 5 24000',
     stats: {
-      str: [
-        488,
-        620
-      ],
-      dex: [
-        121,
-        170
-      ],
-      int: [
-        498,
-        657
-      ],
-      hp: [
-        312,
-        353
-      ],
+      str: [488,
+        620],
+      dex: [121,
+        170],
+      int: [498,
+        657],
+      hp: [312,
+        353],
       taming: null,
       barding: 103
     },
@@ -15259,21 +12101,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1000,
-      1200
-    ],
+    credits: [1000,
+      1200],
     skills: {
-      wrestling: [
-        80,
-        90
-      ],
-      tactics: [
-        80,
-        90
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [80,
+        90],
+      tactics: [80,
+        90],
+      magic_resistance: [100,
         150
       ]
     }
@@ -15289,22 +12124,14 @@ export const MobData = [
     ],
     fame: '11500',
     stats: {
-      str: [
-        536,
-        585
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        281,
-        305
-      ],
-      hp: [
-        322,
-        351
-      ],
+      str: [536,
+        585],
+      dex: [126,
+        145],
+      int: [281,
+        305],
+      hp: [322,
+        351],
       taming: null,
       barding: 100
     },
@@ -15325,21 +12152,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      600,
-      800
-    ],
+    credits: [600,
+      800],
     skills: {
-      wrestling: [
-        40,
-        50
-      ],
-      tactics: [
-        60,
-        80
-      ],
-      magic_resistance: [
-        85,
+      wrestling: [40,
+        50],
+      tactics: [60,
+        80],
+      magic_resistance: [85,
         100
       ]
     }
@@ -15355,22 +12175,14 @@ export const MobData = [
     ],
     fame: '3500',
     stats: {
-      str: [
-        176,
-        205
-      ],
-      dex: [
-        46,
-        65
-      ],
-      int: [
-        46,
-        70
-      ],
-      hp: [
-        106,
-        123
-      ],
+      str: [176,
+        205],
+      dex: [46,
+        65],
+      int: [46,
+        70],
+      hp: [106,
+        123],
       taming: null,
       barding: 50
     },
@@ -15391,21 +12203,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        50,
-        70
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [50,
+        70],
+      tactics: [50,
+        70],
+      magic_resistance: [45,
         60
       ]
     }
@@ -15416,22 +12221,14 @@ export const MobData = [
     description: 'two headed behemoth',
     armor: 78,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        115,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [900,
+        1],
+      dex: [115,
+        155],
+      int: [1,
+        1],
+      hp: [2,
+        3],
       taming: null,
       barding: 188
     },
@@ -15465,22 +12262,14 @@ export const MobData = [
     karma: '0',
     fame: '4000',
     stats: {
-      str: [
-        196,
-        225
-      ],
-      dex: [
-        196,
-        225
-      ],
-      int: [
-        196,
-        225
-      ],
-      hp: [
-        118,
-        135
-      ],
+      str: [196,
+        225],
+      dex: [196,
+        225],
+      int: [196,
+        225],
+      hp: [118,
+        135],
       taming: null,
       barding: 78
     },
@@ -15498,10 +12287,8 @@ export const MobData = [
         description: 'Random Light Source'
       }
     ],
-    credits: [
-      400,
-      500
-    ],
+    credits: [400,
+      500],
     skills: {
       wrestling: 80.0,
       tactics: 80.0,
@@ -15514,22 +12301,14 @@ export const MobData = [
     description: 'orc',
     armor: 28,
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [81,
+        105],
+      int: [36,
+        60],
+      hp: [58,
+        72],
       taming: null,
       barding: 42
     },
@@ -15566,22 +12345,14 @@ export const MobData = [
     ],
     fame: '2500',
     stats: {
-      str: [
-        147,
-        215
-      ],
-      dex: [
-        91,
-        115
-      ],
-      int: [
-        61,
-        85
-      ],
-      hp: [
-        95,
-        123
-      ],
+      str: [147,
+        215],
+      dex: [91,
+        115],
+      int: [61,
+        85],
+      hp: [95,
+        123],
       taming: null,
       barding: 61
     },
@@ -15602,21 +12373,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        60,
-        85
-      ],
-      tactics: [
-        75,
-        90
-      ],
-      magic_resistance: [
-        70,
+      wrestling: [60,
+        85],
+      tactics: [75,
+        90],
+      magic_resistance: [70,
         85
       ]
     }
@@ -15632,22 +12396,14 @@ export const MobData = [
     ],
     fame: '15000',
     stats: {
-      str: [
-        767,
-        945
-      ],
-      dex: [
-        66,
-        75
-      ],
-      int: [
-        46,
-        70
-      ],
-      hp: [
-        476,
-        552
-      ],
+      str: [767,
+        945],
+      dex: [66,
+        75],
+      int: [46,
+        70],
+      hp: [476,
+        552],
       taming: null,
       barding: 94.3
     },
@@ -15660,21 +12416,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      750,
-      950
-    ],
+    credits: [750,
+      950],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        125,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [125,
         140
       ]
     }
@@ -15690,22 +12439,14 @@ export const MobData = [
     ],
     fame: '2500',
     stats: {
-      str: [
-        111,
-        145
-      ],
-      dex: [
-        101,
-        135
-      ],
-      int: [
-        86,
-        110
-      ],
-      hp: [
-        67,
-        87
-      ],
+      str: [111,
+        145],
+      dex: [101,
+        135],
+      int: [86,
+        110],
+      hp: [67,
+        87],
       taming: null,
       barding: 60
     },
@@ -15726,18 +12467,13 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      100,
-      150
-    ],
+    credits: [100,
+      150],
     skills: {
       wrestling: [0,0],
-      tactics: [
-        85,
-        100
-      ],
-      magic_resistance: [
-        70,
+      tactics: [85,
+        100],
+      magic_resistance: [70,
         85
       ]
     }
@@ -15753,22 +12489,14 @@ export const MobData = [
     ],
     fame: '1500',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        101,
-        130
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [101,
+        130],
+      int: [36,
+        60],
+      hp: [58,
+        72],
       taming: null,
       barding: 71
     },
@@ -15789,18 +12517,13 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
       wrestling: [0,0],
-      tactics: [
-        55,
-        80
-      ],
-      magic_resistance: [
-        50,
+      tactics: [55,
+        80],
+      magic_resistance: [50,
         75
       ]
     }
@@ -15811,22 +12534,14 @@ export const MobData = [
     description: 'orcish lord',
     armor: 0,
     stats: {
-      str: [
-        147,
-        215
-      ],
-      dex: [
-        91,
-        115
-      ],
-      int: [
-        61,
-        85
-      ],
-      hp: [
-        95,
-        123
-      ],
+      str: [147,
+        215],
+      dex: [91,
+        115],
+      int: [61,
+        85],
+      hp: [95,
+        123],
       taming: null,
       barding: 61
     },
@@ -15858,22 +12573,14 @@ export const MobData = [
     description: 'orcish mage',
     armor: 30,
     stats: {
-      str: [
-        116,
-        150
-      ],
-      dex: [
-        91,
-        115
-      ],
-      int: [
-        161,
-        185
-      ],
-      hp: [
-        70,
-        90
-      ],
+      str: [116,
+        150],
+      dex: [91,
+        115],
+      int: [161,
+        185],
+      hp: [70,
+        90],
       taming: null,
       barding: 71
     },
@@ -15907,22 +12614,14 @@ export const MobData = [
     karma: '-8000',
     fame: '8000',
     stats: {
-      str: [
-        801,
-        900
-      ],
-      dex: [
-        46,
-        65
-      ],
-      int: [
-        36,
-        50
-      ],
-      hp: [
-        481,
-        540
-      ],
+      str: [801,
+        900],
+      dex: [46,
+        65],
+      int: [36,
+        50],
+      hp: [481,
+        540],
       taming: null,
       barding: 86.1
     },
@@ -15935,21 +12634,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      275,
-      325
-    ],
+    credits: [275,
+      325],
     skills: {
-      wrestling: [
-        65,
-        80
-      ],
-      tactics: [
-        70,
-        85
-      ],
-      magic_resistance: [
-        90,
+      wrestling: [65,
+        80],
+      tactics: [70,
+        85],
+      magic_resistance: [90,
         95
       ]
     }
@@ -15962,22 +12654,14 @@ export const MobData = [
     karma: '-1000',
     fame: '1000',
     stats: {
-      str: [
-        156,
-        180
-      ],
-      dex: [
-        26,
-        45
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        94,
-        108
-      ],
+      str: [156,
+        180],
+      dex: [26,
+        45],
+      int: [26,
+        40],
+      hp: [94,
+        108],
       taming: null,
       barding: 46
     },
@@ -15998,21 +12682,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        60
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [45,
+        60],
+      tactics: [45,
+        60],
+      magic_resistance: [15,
         20
       ]
     }
@@ -16028,22 +12705,14 @@ export const MobData = [
     ],
     fame: '1500',
     stats: {
-      str: [
-        101,
-        130
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        31,
-        55
-      ],
-      hp: [
-        91,
-        105
-      ],
+      str: [101,
+        130],
+      dex: [66,
+        85],
+      int: [31,
+        55],
+      hp: [91,
+        105],
       taming: null,
       barding: 71
     },
@@ -16056,21 +12725,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        50,
-        60
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [60,
+        80],
+      tactics: [50,
+        60],
+      magic_resistance: [65,
         75
       ]
     }
@@ -16086,22 +12748,14 @@ export const MobData = [
     ],
     fame: '3500',
     stats: {
-      str: [
-        66,
-        215
-      ],
-      dex: [
-        66,
-        75
-      ],
-      int: [
-        101,
-        250
-      ],
-      hp: [
-        40,
-        129
-      ],
+      str: [66,
+        215],
+      dex: [66,
+        75],
+      int: [101,
+        250],
+      hp: [40,
+        129],
       taming: null,
       barding: 81
     },
@@ -16122,21 +12776,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        50,
-        60
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [50,
+        60],
+      tactics: [45,
+        60],
+      magic_resistance: [100,
         125
       ]
     }
@@ -16152,22 +12799,14 @@ export const MobData = [
     ],
     fame: '3000',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        66,
-        85
-      ],
-      int: [
-        16,
-        30
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [66,
+        85],
+      int: [16,
+        30],
+      hp: [58,
+        72],
       taming: null,
       barding: 44
     },
@@ -16188,21 +12827,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      175
-    ],
+    credits: [125,
+      175],
     skills: {
-      wrestling: [
-        65,
-        80
-      ],
-      tactics: [
-        65,
-        80
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [65,
+        80],
+      tactics: [65,
+        80],
+      magic_resistance: [15,
         20
       ]
     }
@@ -16218,22 +12850,14 @@ export const MobData = [
     ],
     fame: '1000',
     stats: {
-      str: [
-        251,
-        300
-      ],
-      dex: [
-        76,
-        100
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        251,
-        300
-      ],
+      str: [251,
+        300],
+      dex: [76,
+        100],
+      int: [26,
+        40],
+      hp: [251,
+        300],
       taming: null,
       barding: 76.6
     },
@@ -16246,10 +12870,8 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      null,
-      null
-    ],
+    credits: [null,
+      null],
     skills: {
       wrestling: 70.0,
       tactics: 70.0,
@@ -16267,22 +12889,14 @@ export const MobData = [
     ],
     fame: '1500',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        81,
-        100
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [81,
+        100],
+      int: [36,
+        60],
+      hp: [58,
+        72],
       taming: null,
       barding: 38
     },
@@ -16303,21 +12917,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        50,
-        75
-      ],
-      tactics: [
-        50,
-        75
-      ],
-      magic_resistance: [
-        35,
+      wrestling: [50,
+        75],
+      tactics: [50,
+        75],
+      magic_resistance: [35,
         60
       ]
     }
@@ -16333,22 +12940,14 @@ export const MobData = [
     ],
     fame: '6500',
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        101,
-        130
-      ],
-      int: [
-        116,
-        140
-      ],
-      hp: [
-        88,
-        108
-      ],
+      str: [146,
+        180],
+      dex: [101,
+        130],
+      int: [116,
+        140],
+      hp: [88,
+        108],
       taming: null,
       barding: 74
     },
@@ -16369,21 +12968,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      300,
-      350
-    ],
+    credits: [300,
+      350],
     skills: {
-      wrestling: [
-        50,
-        75
-      ],
-      tactics: [
-        50,
-        75
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [50,
+        75],
+      tactics: [50,
+        75],
+      magic_resistance: [65,
         90
       ]
     }
@@ -16399,22 +12991,14 @@ export const MobData = [
     ],
     fame: '7500',
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        101,
-        130
-      ],
-      int: [
-        186,
-        210
-      ],
-      hp: [
-        88,
-        108
-      ],
+      str: [146,
+        180],
+      dex: [101,
+        130],
+      int: [186,
+        210],
+      hp: [88,
+        108],
       taming: null,
       barding: 64
     },
@@ -16435,21 +13019,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      275,
-      352
-    ],
+    credits: [275,
+      352],
     skills: {
-      wrestling: [
-        50,
-        75
-      ],
-      tactics: [
-        50,
-        75
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [50,
+        75],
+      tactics: [50,
+        75],
+      magic_resistance: [65,
         90
       ]
     }
@@ -16460,22 +13037,14 @@ export const MobData = [
     description: 'anaconda',
     armor: 55,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        153,
-        172
-      ],
-      int: [
-        300,
-        400
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [1,
+        1],
+      dex: [153,
+        172],
+      int: [300,
+        400],
+      hp: [1,
+        1],
       taming: null,
       barding: 189
     },
@@ -16506,22 +13075,14 @@ export const MobData = [
     karma: '-22500',
     fame: '22500',
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        86,
-        175
-      ],
-      int: [
-        686,
-        775
-      ],
-      hp: [
-        658,
-        711
-      ],
+      str: [1,
+        1],
+      dex: [86,
+        175],
+      int: [686,
+        775],
+      hp: [658,
+        711],
       taming: null,
       barding: 149
     },
@@ -16542,21 +13103,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1600,
-      1800
-    ],
+    credits: [1600,
+      1800],
     skills: {
-      wrestling: [
-        110,
-        null
-      ],
-      tactics: [
-        127,
-        null
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [110,
+        null],
+      tactics: [127,
+        null],
+      magic_resistance: [100,
         150
       ]
     }
@@ -16567,22 +13121,14 @@ export const MobData = [
     description: 'azure dragon',
     armor: 80,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        120,
-        130
-      ],
-      int: [
-        770,
-        820
-      ],
-      hp: [
-        3,
-        3
-      ],
+      str: [1,
+        1],
+      dex: [120,
+        130],
+      int: [770,
+        820],
+      hp: [3,
+        3],
       taming: null,
       barding: 239
     },
@@ -16613,22 +13159,14 @@ export const MobData = [
     karma: '-6000',
     fame: '6000',
     stats: {
-      str: [
-        251,
-        425
-      ],
-      dex: [
-        87,
-        135
-      ],
-      int: [
-        87,
-        155
-      ],
-      hp: [
-        151,
-        255
-      ],
+      str: [251,
+        425],
+      dex: [87,
+        135],
+      int: [87,
+        155],
+      hp: [151,
+        255],
       taming: null,
       barding: 74
     },
@@ -16649,21 +13187,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        60,
-        70
-      ],
-      tactics: [
-        60,
-        70
-      ],
-      magic_resistance: [
-        60,
+      wrestling: [60,
+        70],
+      tactics: [60,
+        70],
+      magic_resistance: [60,
         75
       ]
     }
@@ -16676,22 +13207,14 @@ export const MobData = [
     karma: '-15000',
     fame: '15000',
     stats: {
-      str: [
-        796,
-        825
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        436,
-        475
-      ],
-      hp: [
-        478,
-        495
-      ],
+      str: [796,
+        825],
+      dex: [86,
+        105],
+      int: [436,
+        475],
+      hp: [478,
+        495],
       taming: 93.9,
       barding: 112
     },
@@ -16712,21 +13235,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1000,
-      1200
-    ],
+    credits: [1000,
+      1200],
     skills: {
-      wrestling: [
-        90,
-        92
-      ],
-      tactics: [
-        97,
-        100
-      ],
-      magic_resistance: [
-        99,
+      wrestling: [90,
+        92],
+      tactics: [97,
+        100],
+      magic_resistance: [99,
         100
       ]
     }
@@ -16739,22 +13255,14 @@ export const MobData = [
     karma: '-5500',
     fame: '5500',
     stats: {
-      str: [
-        401,
-        430
-      ],
-      dex: [
-        133,
-        152
-      ],
-      int: [
-        101,
-        140
-      ],
-      hp: [
-        241,
-        258
-      ],
+      str: [401,
+        430],
+      dex: [133,
+        152],
+      int: [101,
+        140],
+      hp: [241,
+        258],
       taming: 84.3,
       barding: 79
     },
@@ -16775,21 +13283,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      275,
-      325
-    ],
+    credits: [275,
+      325],
     skills: {
-      wrestling: [
-        65,
-        80
-      ],
-      tactics: [
-        65,
-        90
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [65,
+        80],
+      tactics: [65,
+        90],
+      magic_resistance: [65,
         80
       ]
     }
@@ -16800,22 +13301,14 @@ export const MobData = [
     description: 'elder wyrm',
     armor: 90,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        125,
-        145
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        5,
-        5
-      ],
+      str: [1,
+        1],
+      dex: [125,
+        145],
+      int: [1,
+        1],
+      hp: [5,
+        5],
       taming: null,
       barding: 365
     },
@@ -16852,22 +13345,14 @@ export const MobData = [
     ],
     fame: '11000',
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        90,
-        110
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        250,
-        275
-      ],
+      str: [250,
+        275],
+      dex: [90,
+        110],
+      int: [26,
+        40],
+      hp: [250,
+        275],
       taming: null,
       barding: 89
     },
@@ -16888,21 +13373,14 @@ export const MobData = [
         description: 'Special Fishing Net'
       }
     ],
-    credits: [
-      275,
-      325
-    ],
+    credits: [275,
+      325],
     skills: {
-      wrestling: [
-        45,
-        60
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [45,
+        60],
+      tactics: [45,
+        60],
+      magic_resistance: [15,
         20
       ]
     }
@@ -16941,22 +13419,14 @@ export const MobData = [
     ],
     fame: '1500',
     stats: {
-      str: [
-        96,
-        120
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [96,
+        120],
+      dex: [86,
+        105],
+      int: [36,
+        60],
+      hp: [58,
+        72],
       taming: null,
       barding: 46
     },
@@ -16977,21 +13447,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      75
-    ],
+    credits: [50,
+      75],
     skills: {
-      wrestling: [
-        50,
-        70
-      ],
-      tactics: [
-        55,
-        80
-      ],
-      magic_resistance: [
-        35,
+      wrestling: [50,
+        70],
+      tactics: [55,
+        80],
+      magic_resistance: [35,
         60
       ]
     }
@@ -17002,22 +13465,14 @@ export const MobData = [
     description: 'lock lake monster',
     armor: 60,
     stats: {
-      str: [
-        756,
-        780
-      ],
-      dex: [
-        226,
-        245
-      ],
-      int: [
-        100,
-        200
-      ],
-      hp: [
-        750,
-        800
-      ],
+      str: [756,
+        780],
+      dex: [226,
+        245],
+      int: [100,
+        200],
+      hp: [750,
+        800],
       taming: null,
       barding: 93
     },
@@ -17049,22 +13504,14 @@ export const MobData = [
     description: 'ophidian archmage',
     armor: 44,
     stats: {
-      str: [
-        281,
-        305
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        226,
-        250
-      ],
-      hp: [
-        169,
-        183
-      ],
+      str: [281,
+        305],
+      dex: [191,
+        215],
+      int: [226,
+        250],
+      hp: [169,
+        183],
       taming: null,
       barding: 76
     },
@@ -17096,22 +13543,14 @@ export const MobData = [
     description: 'ophidian knight',
     armor: 40,
     stats: {
-      str: [
-        417,
-        595
-      ],
-      dex: [
-        166,
-        175
-      ],
-      int: [
-        46,
-        70
-      ],
-      hp: [
-        266,
-        342
-      ],
+      str: [417,
+        595],
+      dex: [166,
+        175],
+      int: [46,
+        70],
+      hp: [266,
+        342],
       taming: null,
       barding: 78
     },
@@ -17143,22 +13582,14 @@ export const MobData = [
     description: 'ophidian mage',
     armor: 30,
     stats: {
-      str: [
-        181,
-        205
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        96,
-        120
-      ],
-      hp: [
-        109,
-        123
-      ],
+      str: [181,
+        205],
+      dex: [191,
+        215],
+      int: [96,
+        120],
+      hp: [109,
+        123],
       taming: null,
       barding: 76
     },
@@ -17192,22 +13623,14 @@ export const MobData = [
     ],
     fame: '16000',
     stats: {
-      str: [
-        416,
-        505
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        366,
-        455
-      ],
-      hp: [
-        250,
-        303
-      ],
+      str: [416,
+        505],
+      dex: [96,
+        115],
+      int: [366,
+        455],
+      hp: [250,
+        303],
       taming: null,
       barding: 98
     },
@@ -17228,21 +13651,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      550,
-      650
-    ],
+    credits: [550,
+      650],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        90,
+      wrestling: [60,
+        80],
+      tactics: [50,
+        70],
+      magic_resistance: [90,
         100
       ]
     }
@@ -17253,22 +13669,14 @@ export const MobData = [
     description: 'ophidian queen',
     armor: 78,
     stats: {
-      str: [
-        810,
-        910
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        1,
-        2
-      ],
+      str: [810,
+        910],
+      dex: [125,
+        135],
+      int: [420,
+        475],
+      hp: [1,
+        2],
       taming: null,
       barding: 172
     },
@@ -17302,22 +13710,14 @@ export const MobData = [
     ],
     fame: '4500',
     stats: {
-      str: [
-        150,
-        320
-      ],
-      dex: [
-        94,
-        190
-      ],
-      int: [
-        64,
-        160
-      ],
-      hp: [
-        128,
-        155
-      ],
+      str: [150,
+        320],
+      dex: [94,
+        190],
+      int: [64,
+        160],
+      hp: [128,
+        155],
       taming: null,
       barding: 65
     },
@@ -17338,18 +13738,13 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
       wrestling: [0,0],
-      tactics: [
-        75,
-        90
-      ],
-      magic_resistance: [
-        70,
+      tactics: [75,
+        90],
+      magic_resistance: [70,
         85
       ]
     }
@@ -17365,22 +13760,14 @@ export const MobData = [
     ],
     fame: '6000',
     stats: {
-      str: [
-        168,
-        225
-      ],
-      dex: [
-        58,
-        85
-      ],
-      int: [
-        53,
-        95
-      ],
-      hp: [
-        110,
-        127
-      ],
+      str: [168,
+        225],
+      dex: [58,
+        85],
+      int: [53,
+        95],
+      hp: [110,
+        127],
       taming: null,
       barding: 64
     },
@@ -17401,21 +13788,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        60,
-        70
-      ],
-      tactics: [
-        60,
-        70
-      ],
-      magic_resistance: [
-        60,
+      wrestling: [60,
+        70],
+      tactics: [60,
+        70],
+      magic_resistance: [60,
         75
       ]
     }
@@ -17428,22 +13808,14 @@ export const MobData = [
     karma: '15000',
     fame: '15000',
     stats: {
-      str: [
-        111,
-        140
-      ],
-      dex: [
-        201,
-        220
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        480,
-        480
-      ],
+      str: [111,
+        140],
+      dex: [201,
+        220],
+      int: [1,
+        1],
+      hp: [480,
+        480],
       taming: null,
       barding: 130
     },
@@ -17464,19 +13836,13 @@ export const MobData = [
         description: 'Level 4 Treasure Map'
       }
     ],
-    credits: [
-      900,
-      1100
-    ],
+    credits: [900,
+      1100],
     skills: {
-      wrestling: [
-        30,
-        100
-      ],
-      tactics: [
-        50,
-        60
-      ],
+      wrestling: [30,
+        100],
+      tactics: [50,
+        60],
       magic_resistance: '100.0'
     }
   },
@@ -17491,22 +13857,14 @@ export const MobData = [
     ],
     fame: '22500',
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        200
-      ],
-      int: [
-        488,
-        620
-      ],
-      hp: [
-        558,
-        599
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        200],
+      int: [488,
+        620],
+      hp: [558,
+        599],
       taming: null,
       barding: 141
     },
@@ -17527,21 +13885,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1550,
-      1800
-    ],
+    credits: [1550,
+      1800],
     skills: {
-      wrestling: [
-        97,
-        100
-      ],
-      tactics: [
-        97,
-        100
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [97,
+        100],
+      tactics: [97,
+        100],
+      magic_resistance: [100,
         130
       ]
     }
@@ -17552,22 +13903,14 @@ export const MobData = [
     description: 'shipwreck kraken',
     armor: 40,
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        90,
-        110
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        250,
-        275
-      ],
+      str: [250,
+        275],
+      dex: [90,
+        110],
+      int: [26,
+        40],
+      hp: [250,
+        275],
       taming: null,
       barding: 74
     },
@@ -17604,22 +13947,14 @@ export const MobData = [
     ],
     fame: '22500',
     stats: {
-      str: [
-        898,
-        1030
-      ],
-      dex: [
-        68,
-        200
-      ],
-      int: [
-        488,
-        620
-      ],
-      hp: [
-        558,
-        599
-      ],
+      str: [898,
+        1030],
+      dex: [68,
+        200],
+      int: [488,
+        620],
+      hp: [558,
+        599],
       taming: null,
       barding: 118.3
     },
@@ -17632,21 +13967,14 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      1600,
-      1800
-    ],
+    credits: [1600,
+      1800],
     skills: {
-      wrestling: [
-        97,
-        100
-      ],
-      tactics: [
-        97,
-        100
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [97,
+        100],
+      tactics: [97,
+        100],
+      magic_resistance: [100,
         130
       ]
     }
@@ -17662,22 +13990,14 @@ export const MobData = [
     ],
     fame: '18000',
     stats: {
-      str: [
-        721,
-        760
-      ],
-      dex: [
-        101,
-        130
-      ],
-      int: [
-        386,
-        425
-      ],
-      hp: [
-        433,
-        456
-      ],
+      str: [721,
+        760],
+      dex: [101,
+        130],
+      int: [386,
+        425],
+      hp: [433,
+        456],
       taming: 96.3,
       barding: 103
     },
@@ -17698,21 +14018,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1200,
-      1400
-    ],
+    credits: [1200,
+      1400],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        97,
-        100
-      ],
-      magic_resistance: [
-        99,
+      wrestling: [90,
+        100],
+      tactics: [97,
+        100],
+      magic_resistance: [99,
         100
       ]
     }
@@ -17728,22 +14041,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        202,
-        240
-      ],
-      dex: [
-        153,
-        172
-      ],
-      int: [
-        51,
-        90
-      ],
-      hp: [
-        125,
-        141
-      ],
+      str: [202,
+        240],
+      dex: [153,
+        172],
+      int: [51,
+        90],
+      hp: [125,
+        141],
       taming: null,
       barding: 79
     },
@@ -17764,21 +14069,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      175,
-      225
-    ],
+    credits: [175,
+      225],
     skills: {
-      wrestling: [
-        65,
-        80
-      ],
-      tactics: [
-        65,
-        90
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [65,
+        80],
+      tactics: [65,
+        90],
+      magic_resistance: [65,
         80
       ]
     }
@@ -17789,22 +14087,14 @@ export const MobData = [
     description: 'wyvern monarch',
     armor: 55,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        153,
-        172
-      ],
-      int: [
-        300,
-        400
-      ],
-      hp: [
-        650,
-        725
-      ],
+      str: [1,
+        1],
+      dex: [153,
+        172],
+      int: [300,
+        400],
+      hp: [650,
+        725],
       taming: null,
       barding: 125
     },
@@ -17838,22 +14128,14 @@ export const MobData = [
     karma: '-450',
     fame: '450',
     stats: {
-      str: [
-        18,
-        30
-      ],
-      dex: [
-        16,
-        21
-      ],
-      int: [
-        16,
-        20
-      ],
-      hp: [
-        13,
-        17
-      ],
+      str: [18,
+        30],
+      dex: [16,
+        21],
+      int: [16,
+        20],
+      hp: [13,
+        17],
       taming: null,
       barding: 11
     },
@@ -17876,16 +14158,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        25,
-        40
-      ],
-      tactics: [
-        19,
-        34
-      ],
-      magic_resistance: [
-        5,
+      wrestling: [25,
+        40],
+      tactics: [19,
+        34],
+      magic_resistance: [5,
         10
       ]
     }
@@ -17924,19 +14201,13 @@ export const MobData = [
     ],
     fame: '13000',
     stats: {
-      str: [
-        302,
-        500
-      ],
+      str: [302,
+        500],
       dex: '80',
-      int: [
-        16,
-        20
-      ],
-      hp: [
-        318,
-        404
-      ],
+      int: [16,
+        20],
+      hp: [318,
+        404],
       taming: null,
       barding: 81.5
     },
@@ -17949,10 +14220,8 @@ export const MobData = [
     inventory: [
       null
     ],
-    credits: [
-      450,
-      600
-    ],
+    credits: [450,
+      600],
     skills: {
       wrestling: 100.0,
       tactics: [100, 100],
@@ -17970,22 +14239,14 @@ export const MobData = [
     ],
     fame: '300',
     stats: {
-      str: [
-        22,
-        34
-      ],
-      dex: [
-        16,
-        21
-      ],
-      int: [
-        16,
-        20
-      ],
-      hp: [
-        15,
-        19
-      ],
+      str: [22,
+        34],
+      dex: [16,
+        21],
+      int: [16,
+        20],
+      hp: [15,
+        19],
       taming: 23.1,
       barding: 27
     },
@@ -18006,21 +14267,14 @@ export const MobData = [
         ]
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        19,
-        34
-      ],
-      tactics: [
-        19,
-        34
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [19,
+        34],
+      tactics: [19,
+        34],
+      magic_resistance: [15,
         20
       ]
     }
@@ -18031,22 +14285,14 @@ export const MobData = [
     description: 'abominable snowman',
     armor: 35,
     stats: {
-      str: [
-        446,
-        515
-      ],
-      dex: [
-        126,
-        155
-      ],
-      int: [
-        281,
-        305
-      ],
-      hp: [
-        700,
-        900
-      ],
+      str: [446,
+        515],
+      dex: [126,
+        155],
+      int: [281,
+        305],
+      hp: [700,
+        900],
       taming: null,
       barding: 123
     },
@@ -18078,22 +14324,14 @@ export const MobData = [
     description: 'acolyte of death',
     armor: 36,
     stats: {
-      str: [
-        351,
-        400
-      ],
-      dex: [
-        101,
-        150
-      ],
-      int: [
-        502,
-        700
-      ],
-      hp: [
-        750,
-        100
-      ],
+      str: [351,
+        400],
+      dex: [101,
+        150],
+      int: [502,
+        700],
+      hp: [750,
+        100],
       taming: null,
       barding: null
     },
@@ -18125,22 +14363,14 @@ export const MobData = [
     description: 'avarice',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 158
     },
@@ -18172,22 +14402,14 @@ export const MobData = [
     description: 'balam the daemon knight',
     armor: 40,
     stats: {
-      str: [
-        550,
-        575
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        676,
-        905
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [550,
+        575],
+      dex: [126,
+        145],
+      int: [676,
+        905],
+      hp: [4,
+        5],
       taming: null,
       barding: null
     },
@@ -18219,22 +14441,14 @@ export const MobData = [
     description: 'black knight',
     armor: 40,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        72,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        3,
-        4
-      ],
+      str: [305,
+        425],
+      dex: [72,
+        150],
+      int: [505,
+        750],
+      hp: [3,
+        4],
       taming: null,
       barding: null
     },
@@ -18266,22 +14480,14 @@ export const MobData = [
     description: 'blitzen',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 160
     },
@@ -18313,22 +14519,14 @@ export const MobData = [
     description: 'bloated zombie',
     armor: 30,
     stats: {
-      str: [
-        485,
-        545
-      ],
-      dex: [
-        81,
-        120
-      ],
-      int: [
-        375,
-        425
-      ],
-      hp: [
-        455,
-        525
-      ],
+      str: [485,
+        545],
+      dex: [81,
+        120],
+      int: [375,
+        425],
+      hp: [455,
+        525],
       taming: null,
       barding: 102
     },
@@ -18357,22 +14555,14 @@ export const MobData = [
     description: 'blood necromancer',
     armor: 50,
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        676,
-        905
-      ],
-      hp: [
-        903,
-        1
-      ],
+      str: [250,
+        275],
+      dex: [126,
+        145],
+      int: [676,
+        905],
+      hp: [903,
+        1],
       taming: null,
       barding: 156
     },
@@ -18404,22 +14594,14 @@ export const MobData = [
     description: 'bloodthirsty turkey',
     armor: 40,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        235,
-        250
-      ],
-      int: [
-        301,
-        325
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [1,
+        1],
+      dex: [235,
+        250],
+      int: [301,
+        325],
+      hp: [1,
+        1],
       taming: null,
       barding: 123
     },
@@ -18451,22 +14633,14 @@ export const MobData = [
     description: 'comet',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        200
-      ],
-      int: [
-        750,
-        1
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        200],
+      int: [750,
+        1],
+      hp: [850,
+        1],
       taming: null,
       barding: 134
     },
@@ -18498,22 +14672,14 @@ export const MobData = [
     description: 'corrupt soul',
     armor: 28,
     stats: {
-      str: [
-        75,
-        80
-      ],
-      dex: [
-        16,
-        45
-      ],
-      int: [
-        111,
-        125
-      ],
-      hp: [
-        100,
-        175
-      ],
+      str: [75,
+        80],
+      dex: [16,
+        45],
+      int: [111,
+        125],
+      hp: [100,
+        175],
       taming: null,
       barding: 72
     },
@@ -18545,22 +14711,14 @@ export const MobData = [
     description: 'crystal ogre',
     armor: 32,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [900,
+        1],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 134
     },
@@ -18592,22 +14750,14 @@ export const MobData = [
     description: 'crystal wolf',
     armor: 22,
     stats: {
-      str: [
-        125,
-        150
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        58,
-        72
-      ],
+      str: [125,
+        150],
+      dex: [81,
+        105],
+      int: [36,
+        60],
+      hp: [58,
+        72],
       taming: null,
       barding: 50
     },
@@ -18639,22 +14789,14 @@ export const MobData = [
     description: 'cuckold',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 146
     },
@@ -18686,22 +14828,14 @@ export const MobData = [
     description: 'cupid',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 151
     },
@@ -18733,22 +14867,14 @@ export const MobData = [
     description: 'cupids apprentice archer',
     armor: 15,
     stats: {
-      str: [
-        106,
-        116
-      ],
-      dex: [
-        91,
-        115
-      ],
-      int: [
-        100,
-        200
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [106,
+        116],
+      dex: [91,
+        115],
+      int: [100,
+        200],
+      hp: [0,
+        0],
       taming: null,
       barding: 69
     },
@@ -18777,22 +14903,14 @@ export const MobData = [
     description: 'cupids archer',
     armor: 20,
     stats: {
-      str: [
-        110,
-        125
-      ],
-      dex: [
-        100,
-        110
-      ],
-      int: [
-        100,
-        200
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [110,
+        125],
+      dex: [100,
+        110],
+      int: [100,
+        200],
+      hp: [0,
+        0],
       taming: null,
       barding: 70
     },
@@ -18821,22 +14939,14 @@ export const MobData = [
     description: 'cupids rookie archer',
     armor: 10,
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        81,
-        95
-      ],
-      int: [
-        100,
-        200
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [86,
+        100],
+      dex: [81,
+        95],
+      int: [100,
+        200],
+      hp: [0,
+        0],
       taming: null,
       barding: 68
     },
@@ -18865,22 +14975,14 @@ export const MobData = [
     description: 'cupids veteran archer',
     armor: 25,
     stats: {
-      str: [
-        110,
-        130
-      ],
-      dex: [
-        110,
-        130
-      ],
-      int: [
-        100,
-        200
-      ],
-      hp: [
-        0,
-        0
-      ],
+      str: [110,
+        130],
+      dex: [110,
+        130],
+      int: [100,
+        200],
+      hp: [0,
+        0],
       taming: null,
       barding: 71
     },
@@ -18909,22 +15011,14 @@ export const MobData = [
     description: 'dancer',
     armor: 38,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 155
     },
@@ -18956,22 +15050,14 @@ export const MobData = [
     description: 'dark elf archer',
     armor: 35,
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        180,
-        205
-      ],
-      int: [
-        800,
-        1
-      ],
-      hp: [
-        288,
-        308
-      ],
+      str: [146,
+        180],
+      dex: [180,
+        205],
+      int: [800,
+        1],
+      hp: [288,
+        308],
       taming: null,
       barding: 88
     },
@@ -19003,22 +15089,14 @@ export const MobData = [
     description: 'dark elf axer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        705,
-        950
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [705,
+        950],
+      hp: [325,
+        500],
       taming: null,
       barding: 106
     },
@@ -19050,22 +15128,14 @@ export const MobData = [
     description: 'dark elf battle mage',
     armor: 50,
     stats: {
-      str: [
-        416,
-        505
-      ],
-      dex: [
-        146,
-        165
-      ],
-      int: [
-        566,
-        655
-      ],
-      hp: [
-        450,
-        750
-      ],
+      str: [416,
+        505],
+      dex: [146,
+        165],
+      int: [566,
+        655],
+      hp: [450,
+        750],
       taming: null,
       barding: null
     },
@@ -19097,22 +15167,14 @@ export const MobData = [
     description: 'dark elf commander',
     armor: 60,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        72,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        3,
-        3
-      ],
+      str: [305,
+        425],
+      dex: [72,
+        150],
+      int: [505,
+        750],
+      hp: [3,
+        3],
       taming: null,
       barding: null
     },
@@ -19144,22 +15206,14 @@ export const MobData = [
     description: 'dark elf fencer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        705,
-        950
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [705,
+        950],
+      hp: [325,
+        500],
       taming: null,
       barding: 115
     },
@@ -19191,22 +15245,14 @@ export const MobData = [
     description: 'dark elf knight',
     armor: 90,
     stats: {
-      str: [
-        425,
-        525
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [425,
+        525],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -19238,22 +15284,14 @@ export const MobData = [
     description: 'dark elf macer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        705,
-        950
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [705,
+        950],
+      hp: [325,
+        500],
       taming: null,
       barding: 103
     },
@@ -19285,22 +15323,14 @@ export const MobData = [
     description: 'dark elf mage',
     armor: 35,
     stats: {
-      str: [
-        171,
-        200
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        705,
-        950
-      ],
-      hp: [
-        103,
-        120
-      ],
+      str: [171,
+        200],
+      dex: [126,
+        145],
+      int: [705,
+        950],
+      hp: [103,
+        120],
       taming: null,
       barding: 88
     },
@@ -19332,22 +15362,14 @@ export const MobData = [
     description: 'dark elf ranger',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        150,
-        175
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [305,
+        425],
+      dex: [150,
+        175],
+      int: [505,
+        750],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -19379,22 +15401,14 @@ export const MobData = [
     description: 'dark elf spirit',
     armor: 45,
     stats: {
-      str: [
-        650,
-        750
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        2,
-        2
-      ],
-      hp: [
-        12,
-        15
-      ],
+      str: [650,
+        750],
+      dex: [110,
+        120],
+      int: [2,
+        2],
+      hp: [12,
+        15],
       taming: null,
       barding: null
     },
@@ -19426,22 +15440,14 @@ export const MobData = [
     description: 'dasher',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 157
     },
@@ -19473,22 +15479,14 @@ export const MobData = [
     description: 'defiled zombie',
     armor: 27,
     stats: {
-      str: [
-        445,
-        505
-      ],
-      dex: [
-        61,
-        100
-      ],
-      int: [
-        375,
-        425
-      ],
-      hp: [
-        415,
-        485
-      ],
+      str: [445,
+        505],
+      dex: [61,
+        100],
+      int: [375,
+        425],
+      hp: [415,
+        485],
       taming: null,
       barding: 96
     },
@@ -19517,22 +15515,14 @@ export const MobData = [
     description: 'despair',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 162
     },
@@ -19564,22 +15554,14 @@ export const MobData = [
     description: 'donner',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 152
     },
@@ -19611,22 +15593,14 @@ export const MobData = [
     description: 'easter bunny',
     armor: 40,
     stats: {
-      str: [
-        350,
-        350
-      ],
-      dex: [
-        205,
-        205
-      ],
-      int: [
-        50,
-        50
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [350,
+        350],
+      dex: [205,
+        205],
+      int: [50,
+        50],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -19658,22 +15632,14 @@ export const MobData = [
     description: 'elf archer',
     armor: 35,
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        180,
-        205
-      ],
-      int: [
-        705,
-        940
-      ],
-      hp: [
-        288,
-        308
-      ],
+      str: [146,
+        180],
+      dex: [180,
+        205],
+      int: [705,
+        940],
+      hp: [288,
+        308],
       taming: null,
       barding: 105
     },
@@ -19705,22 +15671,14 @@ export const MobData = [
     description: 'elf axer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        705,
-        1
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [705,
+        1],
+      hp: [325,
+        500],
       taming: null,
       barding: 112
     },
@@ -19752,22 +15710,14 @@ export const MobData = [
     description: 'elf battle mage',
     armor: 50,
     stats: {
-      str: [
-        416,
-        505
-      ],
-      dex: [
-        146,
-        165
-      ],
-      int: [
-        566,
-        655
-      ],
-      hp: [
-        450,
-        750
-      ],
+      str: [416,
+        505],
+      dex: [146,
+        165],
+      int: [566,
+        655],
+      hp: [450,
+        750],
       taming: null,
       barding: null
     },
@@ -19799,22 +15749,14 @@ export const MobData = [
     description: 'elf fencer',
     armor: 45,
     stats: {
-      str: [
-        205,
-        325
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [205,
+        325],
+      dex: [75,
+        100],
+      int: [505,
+        750],
+      hp: [325,
+        500],
       taming: null,
       barding: 110
     },
@@ -19846,22 +15788,14 @@ export const MobData = [
     description: 'elf knight',
     armor: 90,
     stats: {
-      str: [
-        425,
-        525
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [425,
+        525],
+      dex: [125,
+        150],
+      int: [505,
+        750],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -19893,22 +15827,14 @@ export const MobData = [
     description: 'elf macer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [505,
+        750],
+      hp: [325,
+        500],
       taming: null,
       barding: 111
     },
@@ -19940,22 +15866,14 @@ export const MobData = [
     description: 'elf mage',
     armor: 35,
     stats: {
-      str: [
-        171,
-        200
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        276,
-        305
-      ],
-      hp: [
-        250,
-        320
-      ],
+      str: [171,
+        200],
+      dex: [126,
+        145],
+      int: [276,
+        305],
+      hp: [250,
+        320],
       taming: null,
       barding: 87
     },
@@ -19987,22 +15905,14 @@ export const MobData = [
     description: 'elf ranger',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        150,
-        175
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [305,
+        425],
+      dex: [150,
+        175],
+      int: [505,
+        750],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -20034,22 +15944,14 @@ export const MobData = [
     description: 'evil polar bear',
     armor: 18,
     stats: {
-      str: [
-        150,
-        450
-      ],
-      dex: [
-        80,
-        140
-      ],
-      int: [
-        50,
-        500
-      ],
-      hp: [
-        250,
-        750
-      ],
+      str: [150,
+        450],
+      dex: [80,
+        140],
+      int: [50,
+        500],
+      hp: [250,
+        750],
       taming: null,
       barding: 100
     },
@@ -20081,22 +15983,14 @@ export const MobData = [
     description: 'fire reaper',
     armor: 40,
     stats: {
-      str: [
-        215,
-        315
-      ],
-      dex: [
-        66,
-        75
-      ],
-      int: [
-        750,
-        1
-      ],
-      hp: [
-        250,
-        500
-      ],
+      str: [215,
+        315],
+      dex: [66,
+        75],
+      int: [750,
+        1],
+      hp: [250,
+        500],
       taming: null,
       barding: 110
     },
@@ -20128,22 +16022,14 @@ export const MobData = [
     description: 'flame archer',
     armor: 35,
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        180,
-        205
-      ],
-      int: [
-        716,
-        940
-      ],
-      hp: [
-        288,
-        308
-      ],
+      str: [146,
+        180],
+      dex: [180,
+        205],
+      int: [716,
+        940],
+      hp: [288,
+        308],
       taming: null,
       barding: 109
     },
@@ -20175,22 +16061,14 @@ export const MobData = [
     description: 'flame axer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        750,
-        1
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [750,
+        1],
+      hp: [325,
+        500],
       taming: null,
       barding: 115
     },
@@ -20222,22 +16100,14 @@ export const MobData = [
     description: 'flame battle mage',
     armor: 50,
     stats: {
-      str: [
-        416,
-        505
-      ],
-      dex: [
-        146,
-        165
-      ],
-      int: [
-        3,
-        4
-      ],
-      hp: [
-        450,
-        750
-      ],
+      str: [416,
+        505],
+      dex: [146,
+        165],
+      int: [3,
+        4],
+      hp: [450,
+        750],
       taming: null,
       barding: null
     },
@@ -20269,22 +16139,14 @@ export const MobData = [
     description: 'flame fencer',
     armor: 45,
     stats: {
-      str: [
-        205,
-        325
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [205,
+        325],
+      dex: [75,
+        100],
+      int: [505,
+        750],
+      hp: [325,
+        500],
       taming: null,
       barding: 107
     },
@@ -20316,22 +16178,14 @@ export const MobData = [
     description: 'flame ghoul',
     armor: 50,
     stats: {
-      str: [
-        345,
-        370
-      ],
-      dex: [
-        71,
-        90
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        208,
-        222
-      ],
+      str: [345,
+        370],
+      dex: [71,
+        90],
+      int: [26,
+        40],
+      hp: [208,
+        222],
       taming: null,
       barding: 70
     },
@@ -20363,22 +16217,14 @@ export const MobData = [
     description: 'flame knight',
     armor: 90,
     stats: {
-      str: [
-        425,
-        525
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        3,
-        4
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [425,
+        525],
+      dex: [125,
+        150],
+      int: [3,
+        4],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -20410,22 +16256,14 @@ export const MobData = [
     description: 'flame macer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [505,
+        750],
+      hp: [325,
+        500],
       taming: null,
       barding: 101
     },
@@ -20457,22 +16295,14 @@ export const MobData = [
     description: 'flame mage',
     armor: 35,
     stats: {
-      str: [
-        205,
-        325
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [205,
+        325],
+      dex: [75,
+        100],
+      int: [505,
+        750],
+      hp: [325,
+        500],
       taming: null,
       barding: 108
     },
@@ -20504,22 +16334,14 @@ export const MobData = [
     description: 'flame ranger',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        150,
-        175
-      ],
-      int: [
-        3,
-        4
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [305,
+        425],
+      dex: [150,
+        175],
+      int: [3,
+        4],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -20551,22 +16373,14 @@ export const MobData = [
     description: 'fluffy',
     armor: 70,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        180,
-        190
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        2,
-        2
-      ],
+      str: [1,
+        1],
+      dex: [180,
+        190],
+      int: [1,
+        1],
+      hp: [2,
+        2],
       taming: null,
       barding: 186
     },
@@ -20598,22 +16412,14 @@ export const MobData = [
     description: 'frankensteins monster',
     armor: 78,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [900,
+        1],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [4,
+        5],
       taming: null,
       barding: null
     },
@@ -20642,22 +16448,14 @@ export const MobData = [
     description: 'frost archer',
     armor: 35,
     stats: {
-      str: [
-        146,
-        180
-      ],
-      dex: [
-        180,
-        205
-      ],
-      int: [
-        716,
-        940
-      ],
-      hp: [
-        288,
-        308
-      ],
+      str: [146,
+        180],
+      dex: [180,
+        205],
+      int: [716,
+        940],
+      hp: [288,
+        308],
       taming: null,
       barding: 110
     },
@@ -20689,22 +16487,14 @@ export const MobData = [
     description: 'frost axer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        750,
-        1
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [750,
+        1],
+      hp: [325,
+        500],
       taming: null,
       barding: 116
     },
@@ -20736,22 +16526,14 @@ export const MobData = [
     description: 'frost battle mage',
     armor: 50,
     stats: {
-      str: [
-        415,
-        505
-      ],
-      dex: [
-        146,
-        165
-      ],
-      int: [
-        3,
-        4
-      ],
-      hp: [
-        450,
-        750
-      ],
+      str: [415,
+        505],
+      dex: [146,
+        165],
+      int: [3,
+        4],
+      hp: [450,
+        750],
       taming: null,
       barding: null
     },
@@ -20783,22 +16565,14 @@ export const MobData = [
     description: 'frost fencer',
     armor: 45,
     stats: {
-      str: [
-        205,
-        325
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [205,
+        325],
+      dex: [75,
+        100],
+      int: [505,
+        750],
+      hp: [325,
+        500],
       taming: null,
       barding: 110
     },
@@ -20830,22 +16604,14 @@ export const MobData = [
     description: 'frost knight',
     armor: 90,
     stats: {
-      str: [
-        425,
-        525
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        3,
-        4
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [425,
+        525],
+      dex: [125,
+        150],
+      int: [3,
+        4],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -20877,22 +16643,14 @@ export const MobData = [
     description: 'frost macer',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        325,
-        500
-      ],
+      str: [305,
+        425],
+      dex: [75,
+        100],
+      int: [505,
+        750],
+      hp: [325,
+        500],
       taming: null,
       barding: 101
     },
@@ -20924,22 +16682,14 @@ export const MobData = [
     description: 'frost mage',
     armor: 35,
     stats: {
-      str: [
-        171,
-        200
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        700,
-        950
-      ],
-      hp: [
-        250,
-        320
-      ],
+      str: [171,
+        200],
+      dex: [126,
+        145],
+      int: [700,
+        950],
+      hp: [250,
+        320],
       taming: null,
       barding: 110
     },
@@ -20971,22 +16721,14 @@ export const MobData = [
     description: 'frost ranger',
     armor: 45,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        125,
-        135
-      ],
-      int: [
-        3,
-        4
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [305,
+        425],
+      dex: [125,
+        135],
+      int: [3,
+        4],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -21018,22 +16760,14 @@ export const MobData = [
     description: 'gluttony',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 162
     },
@@ -21065,22 +16799,14 @@ export const MobData = [
     description: 'goblin',
     armor: 32,
     stats: {
-      str: [
-        175,
-        200
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        650,
-        710
-      ],
-      hp: [
-        275,
-        325
-      ],
+      str: [175,
+        200],
+      dex: [81,
+        105],
+      int: [650,
+        710],
+      hp: [275,
+        325],
       taming: null,
       barding: 94
     },
@@ -21112,22 +16838,14 @@ export const MobData = [
     description: 'good polar bear',
     armor: 0,
     stats: {
-      str: [
-        125,
-        175
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        26,
-        50
-      ],
-      hp: [
-        125,
-        250
-      ],
+      str: [125,
+        175],
+      dex: [81,
+        105],
+      int: [26,
+        50],
+      hp: [125,
+        250],
       taming: 80.1,
       barding: 70
     },
@@ -21153,22 +16871,14 @@ export const MobData = [
     description: 'grave necromancer',
     armor: 40,
     stats: {
-      str: [
-        216,
-        305
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        966,
-        1
-      ],
-      hp: [
-        3,
-        3
-      ],
+      str: [216,
+        305],
+      dex: [96,
+        115],
+      int: [966,
+        1],
+      hp: [3,
+        3],
       taming: null,
       barding: 210
     },
@@ -21200,22 +16910,14 @@ export const MobData = [
     description: 'greed',
     armor: 60,
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        676,
-        905
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [250,
+        275],
+      dex: [126,
+        145],
+      int: [676,
+        905],
+      hp: [2,
+        3],
       taming: null,
       barding: null
     },
@@ -21241,22 +16943,14 @@ export const MobData = [
     description: 'grinch',
     armor: 120,
     stats: {
-      str: [
-        586,
-        785
-      ],
-      dex: [
-        177,
-        255
-      ],
-      int: [
-        351,
-        450
-      ],
-      hp: [
-        5,
-        6
-      ],
+      str: [586,
+        785],
+      dex: [177,
+        255],
+      int: [351,
+        450],
+      hp: [5,
+        6],
       taming: null,
       barding: null
     },
@@ -21285,22 +16979,14 @@ export const MobData = [
     description: 'headlesshorseless',
     armor: 36,
     stats: {
-      str: [
-        428,
-        480
-      ],
-      dex: [
-        136,
-        155
-      ],
-      int: [
-        86,
-        130
-      ],
-      hp: [
-        550,
-        750
-      ],
+      str: [428,
+        480],
+      dex: [136,
+        155],
+      int: [86,
+        130],
+      hp: [550,
+        750],
       taming: null,
       barding: 122
     },
@@ -21332,22 +17018,14 @@ export const MobData = [
     description: 'holiday elf (beefy)',
     armor: null,
     stats: {
-      str: [
-        150,
-        175
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        200,
-        250
-      ],
-      hp: [
-        180,
-        250
-      ],
+      str: [150,
+        175],
+      dex: [110,
+        120],
+      int: [200,
+        250],
+      hp: [180,
+        250],
       taming: null,
       barding: 86
     },
@@ -21376,22 +17054,14 @@ export const MobData = [
     description: 'holiday elf (rough)',
     armor: null,
     stats: {
-      str: [
-        125,
-        150
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        200,
-        250
-      ],
-      hp: [
-        130,
-        190
-      ],
+      str: [125,
+        150],
+      dex: [110,
+        120],
+      int: [200,
+        250],
+      hp: [130,
+        190],
       taming: null,
       barding: 81
     },
@@ -21420,22 +17090,14 @@ export const MobData = [
     description: 'holiday elf (wimpy)',
     armor: null,
     stats: {
-      str: [
-        86,
-        100
-      ],
-      dex: [
-        81,
-        95
-      ],
-      int: [
-        200,
-        250
-      ],
-      hp: [
-        75,
-        125
-      ],
+      str: [86,
+        100],
+      dex: [81,
+        95],
+      int: [200,
+        250],
+      hp: [75,
+        125],
       taming: null,
       barding: 76
     },
@@ -21464,22 +17126,14 @@ export const MobData = [
     description: 'holiday reindeer',
     armor: 38,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 171
     },
@@ -21511,22 +17165,14 @@ export const MobData = [
     description: 'hubris',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 174
     },
@@ -21558,22 +17204,14 @@ export const MobData = [
     description: 'ice ghoul',
     armor: 50,
     stats: {
-      str: [
-        345,
-        370
-      ],
-      dex: [
-        71,
-        90
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        208,
-        222
-      ],
+      str: [345,
+        370],
+      dex: [71,
+        90],
+      int: [26,
+        40],
+      hp: [208,
+        222],
       taming: null,
       barding: 70
     },
@@ -21605,22 +17243,14 @@ export const MobData = [
     description: 'ice golem',
     armor: 40,
     stats: {
-      str: [
-        156,
-        185
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        171,
-        192
-      ],
-      hp: [
-        225,
-        425
-      ],
+      str: [156,
+        185],
+      dex: [96,
+        115],
+      int: [171,
+        192],
+      hp: [225,
+        425],
       taming: null,
       barding: 81
     },
@@ -21652,22 +17282,14 @@ export const MobData = [
     description: 'ice reaper',
     armor: 40,
     stats: {
-      str: [
-        215,
-        315
-      ],
-      dex: [
-        66,
-        75
-      ],
-      int: [
-        750,
-        1
-      ],
-      hp: [
-        250,
-        500
-      ],
+      str: [215,
+        315],
+      dex: [66,
+        75],
+      int: [750,
+        1],
+      hp: [250,
+        500],
       taming: null,
       barding: 110
     },
@@ -21699,22 +17321,14 @@ export const MobData = [
     description: 'krampus',
     armor: 55,
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        676,
-        905
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [250,
+        275],
+      dex: [126,
+        145],
+      int: [676,
+        905],
+      hp: [2,
+        3],
       taming: null,
       barding: null
     },
@@ -21746,22 +17360,14 @@ export const MobData = [
     description: 'leprechaun',
     armor: null,
     stats: {
-      str: [
-        81,
-        105
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        126,
-        150
-      ],
-      hp: [
-        175,
-        325
-      ],
+      str: [81,
+        105],
+      dex: [191,
+        215],
+      int: [126,
+        150],
+      hp: [175,
+        325],
       taming: null,
       barding: 73
     },
@@ -21793,22 +17399,14 @@ export const MobData = [
     description: 'leprechaun jockey',
     armor: null,
     stats: {
-      str: [
-        161,
-        205
-      ],
-      dex: [
-        75,
-        100
-      ],
-      int: [
-        126,
-        150
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [161,
+        205],
+      dex: [75,
+        100],
+      int: [126,
+        150],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -21840,22 +17438,14 @@ export const MobData = [
     description: 'lust',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 161
     },
@@ -21887,22 +17477,14 @@ export const MobData = [
     description: 'mini daemon',
     armor: 58,
     stats: {
-      str: [
-        476,
-        505
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        301,
-        325
-      ],
-      hp: [
-        286,
-        303
-      ],
+      str: [476,
+        505],
+      dex: [76,
+        95],
+      int: [301,
+        325],
+      hp: [286,
+        303],
       taming: null,
       barding: 98
     },
@@ -21934,22 +17516,14 @@ export const MobData = [
     description: 'minion of cupid',
     armor: 10,
     stats: {
-      str: [
-        75,
-        100
-      ],
-      dex: [
-        46,
-        58
-      ],
-      int: [
-        16,
-        24
-      ],
-      hp: [
-        25,
-        50
-      ],
+      str: [75,
+        100],
+      dex: [46,
+        58],
+      int: [16,
+        24],
+      hp: [25,
+        50],
       taming: null,
       barding: 33
     },
@@ -21978,22 +17552,14 @@ export const MobData = [
     description: 'mutant fluffy',
     armor: 60,
     stats: {
-      str: [
-        696,
-        775
-      ],
-      dex: [
-        86,
-        105
-      ],
-      int: [
-        436,
-        475
-      ],
-      hp: [
-        578,
-        595
-      ],
+      str: [696,
+        775],
+      dex: [86,
+        105],
+      int: [436,
+        475],
+      hp: [578,
+        595],
       taming: null,
       barding: 117
     },
@@ -22025,22 +17591,14 @@ export const MobData = [
     description: 'plague zombie',
     armor: 24,
     stats: {
-      str: [
-        415,
-        465
-      ],
-      dex: [
-        51,
-        85
-      ],
-      int: [
-        375,
-        450
-      ],
-      hp: [
-        385,
-        445
-      ],
+      str: [415,
+        465],
+      dex: [51,
+        85],
+      int: [375,
+        450],
+      hp: [385,
+        445],
       taming: null,
       barding: 97
     },
@@ -22069,22 +17627,14 @@ export const MobData = [
     description: 'polar bear boss',
     armor: 50,
     stats: {
-      str: [
-        900,
-        1
-      ],
-      dex: [
-        114,
-        155
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [900,
+        1],
+      dex: [114,
+        155],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: null
     },
@@ -22113,22 +17663,14 @@ export const MobData = [
     description: 'poltergeist',
     armor: 34,
     stats: {
-      str: [
-        166,
-        210
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        325,
-        375
-      ],
-      hp: [
-        146,
-        190
-      ],
+      str: [166,
+        210],
+      dex: [96,
+        115],
+      int: [325,
+        375],
+      hp: [146,
+        190],
       taming: null,
       barding: 92
     },
@@ -22157,22 +17699,14 @@ export const MobData = [
     description: 'prancer',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 167
     },
@@ -22204,22 +17738,14 @@ export const MobData = [
     description: 'queen of the damned',
     armor: 40,
     stats: {
-      str: [
-        750,
-        850
-      ],
-      dex: [
-        105,
-        115
-      ],
-      int: [
-        420,
-        475
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [750,
+        850],
+      dex: [105,
+        115],
+      int: [420,
+        475],
+      hp: [4,
+        5],
       taming: null,
       barding: null
     },
@@ -22248,22 +17774,14 @@ export const MobData = [
     description: 'ridable polar bear',
     armor: 18,
     stats: {
-      str: [
-        116,
-        140
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        26,
-        50
-      ],
-      hp: [
-        70,
-        84
-      ],
+      str: [116,
+        140],
+      dex: [81,
+        105],
+      int: [26,
+        50],
+      hp: [70,
+        84],
       taming: 11.1,
       barding: 44
     },
@@ -22289,22 +17807,14 @@ export const MobData = [
     description: 'royal mummy',
     armor: 40,
     stats: {
-      str: [
-        625,
-        725
-      ],
-      dex: [
-        150,
-        170
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [625,
+        725],
+      dex: [150,
+        170],
+      int: [26,
+        40],
+      hp: [4,
+        5],
       taming: null,
       barding: 157
     },
@@ -22333,22 +17843,14 @@ export const MobData = [
     description: 'rudolph',
     armor: 38,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 171
     },
@@ -22380,22 +17882,14 @@ export const MobData = [
     description: 'savage turkey',
     armor: 30,
     stats: {
-      str: [
-        605,
-        625
-      ],
-      dex: [
-        140,
-        150
-      ],
-      int: [
-        301,
-        325
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [605,
+        625],
+      dex: [140,
+        150],
+      int: [301,
+        325],
+      hp: [1,
+        1],
       taming: null,
       barding: 97
     },
@@ -22427,22 +17921,14 @@ export const MobData = [
     description: 'servant of cupid',
     armor: 15,
     stats: {
-      str: [
-        96,
-        115
-      ],
-      dex: [
-        56,
-        68
-      ],
-      int: [
-        16,
-        24
-      ],
-      hp: [
-        50,
-        75
-      ],
+      str: [96,
+        115],
+      dex: [56,
+        68],
+      int: [16,
+        24],
+      hp: [50,
+        75],
       taming: null,
       barding: 44
     },
@@ -22471,22 +17957,14 @@ export const MobData = [
     description: 'skeletal blood knight',
     armor: 35,
     stats: {
-      str: [
-        496,
-        650
-      ],
-      dex: [
-        96,
-        135
-      ],
-      int: [
-        636,
-        690
-      ],
-      hp: [
-        518,
-        750
-      ],
+      str: [496,
+        650],
+      dex: [96,
+        135],
+      int: [636,
+        690],
+      hp: [518,
+        750],
       taming: null,
       barding: 116
     },
@@ -22515,22 +17993,14 @@ export const MobData = [
     description: 'skeletal blood mage',
     armor: 44,
     stats: {
-      str: [
-        166,
-        210
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        386,
-        410
-      ],
-      hp: [
-        850,
-        950
-      ],
+      str: [166,
+        210],
+      dex: [56,
+        75],
+      int: [386,
+        410],
+      hp: [850,
+        950],
       taming: null,
       barding: 140
     },
@@ -22564,22 +18034,14 @@ export const MobData = [
     ],
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        216,
-        240
-      ],
-      hp: [
-        75,
-        125
-      ],
+      str: [56,
+        80],
+      dex: [56,
+        75],
+      int: [216,
+        240],
+      hp: [75,
+        125],
       taming: null,
       barding: 67
     },
@@ -22600,21 +18062,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -22630,22 +18085,14 @@ export const MobData = [
     ],
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        16,
-        40
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [56,
+        75],
+      int: [16,
+        40],
+      hp: [34,
+        48],
       taming: null,
       barding: 38.9
     },
@@ -22664,21 +18111,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -22694,22 +18134,14 @@ export const MobData = [
     ],
     fame: '450',
     stats: {
-      str: [
-        225,
-        250
-      ],
-      dex: [
-        90,
-        105
-      ],
-      int: [
-        475,
-        515
-      ],
-      hp: [
-        375,
-        400
-      ],
+      str: [225,
+        250],
+      dex: [90,
+        105],
+      int: [475,
+        515],
+      hp: [375,
+        400],
       taming: null,
       barding: 94
     },
@@ -22730,21 +18162,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -22755,22 +18180,14 @@ export const MobData = [
     description: 'sloth',
     armor: 38,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 168
     },
@@ -22802,22 +18219,14 @@ export const MobData = [
     description: 'snow vortex',
     armor: 50,
     stats: {
-      str: [
-        326,
-        355
-      ],
-      dex: [
-        166,
-        185
-      ],
-      int: [
-        71,
-        95
-      ],
-      hp: [
-        296,
-        413
-      ],
+      str: [326,
+        355],
+      dex: [166,
+        185],
+      int: [71,
+        95],
+      hp: [296,
+        413],
       taming: null,
       barding: 78
     },
@@ -22849,22 +18258,14 @@ export const MobData = [
     description: 'sorcerer of cupid',
     armor: 25,
     stats: {
-      str: [
-        50,
-        75
-      ],
-      dex: [
-        26,
-        38
-      ],
-      int: [
-        125,
-        150
-      ],
-      hp: [
-        75,
-        100
-      ],
+      str: [50,
+        75],
+      dex: [26,
+        38],
+      int: [125,
+        150],
+      hp: [75,
+        100],
       taming: null,
       barding: 70
     },
@@ -22893,22 +18294,14 @@ export const MobData = [
     description: 'succubus concubine',
     armor: 25,
     stats: {
-      str: [
-        225,
-        275
-      ],
-      dex: [
-        75,
-        150
-      ],
-      int: [
-        325,
-        400
-      ],
-      hp: [
-        1,
-        2
-      ],
+      str: [225,
+        275],
+      dex: [75,
+        150],
+      int: [325,
+        400],
+      hp: [1,
+        2],
       taming: null,
       barding: 163
     },
@@ -22940,22 +18333,14 @@ export const MobData = [
     description: 'turkey archer',
     armor: 35,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        150,
-        175
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [305,
+        425],
+      dex: [150,
+        175],
+      int: [505,
+        750],
+      hp: [1,
+        1],
       taming: null,
       barding: 138
     },
@@ -22987,22 +18372,14 @@ export const MobData = [
     description: 'turkey fencer',
     armor: 35,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        150,
-        175
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [305,
+        425],
+      dex: [150,
+        175],
+      int: [505,
+        750],
+      hp: [1,
+        1],
       taming: null,
       barding: 138
     },
@@ -23034,22 +18411,14 @@ export const MobData = [
     description: 'turkey knight',
     armor: 35,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        72,
-        150
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [305,
+        425],
+      dex: [72,
+        150],
+      int: [505,
+        750],
+      hp: [4,
+        5],
       taming: null,
       barding: null
     },
@@ -23081,22 +18450,14 @@ export const MobData = [
     description: 'turkey macer',
     armor: 35,
     stats: {
-      str: [
-        305,
-        425
-      ],
-      dex: [
-        150,
-        175
-      ],
-      int: [
-        505,
-        750
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [305,
+        425],
+      dex: [150,
+        175],
+      int: [505,
+        750],
+      hp: [1,
+        1],
       taming: null,
       barding: 138
     },
@@ -23128,22 +18489,14 @@ export const MobData = [
     description: 'turkinator',
     armor: 40,
     stats: {
-      str: [
-        1,
-        1
-      ],
-      dex: [
-        125,
-        150
-      ],
-      int: [
-        301,
-        325
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [1,
+        1],
+      dex: [125,
+        150],
+      int: [301,
+        325],
+      hp: [4,
+        5],
       taming: null,
       barding: 256
     },
@@ -23172,22 +18525,14 @@ export const MobData = [
     description: 'undead captain johne',
     armor: 40,
     stats: {
-      str: [
-        625,
-        725
-      ],
-      dex: [
-        150,
-        170
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [625,
+        725],
+      dex: [150,
+        170],
+      int: [26,
+        40],
+      hp: [4,
+        5],
       taming: null,
       barding: null
     },
@@ -23219,22 +18564,14 @@ export const MobData = [
     description: 'undead cat',
     armor: 30,
     stats: {
-      str: [
-        102,
-        150
-      ],
-      dex: [
-        81,
-        105
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        35,
-        65
-      ],
+      str: [102,
+        150],
+      dex: [81,
+        105],
+      int: [36,
+        60],
+      hp: [35,
+        65],
       taming: null,
       barding: 50
     },
@@ -23266,22 +18603,14 @@ export const MobData = [
     description: 'undead cat lady',
     armor: 0,
     stats: {
-      str: [
-        650,
-        750
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        2,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [650,
+        750],
+      dex: [110,
+        120],
+      int: [2,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 176
     },
@@ -23313,22 +18642,14 @@ export const MobData = [
     description: 'undead dragon',
     armor: 40,
     stats: {
-      str: [
-        750,
-        900
-      ],
-      dex: [
-        68,
-        125
-      ],
-      int: [
-        488,
-        620
-      ],
-      hp: [
-        3,
-        4
-      ],
+      str: [750,
+        900],
+      dex: [68,
+        125],
+      int: [488,
+        620],
+      hp: [3,
+        4],
       taming: null,
       barding: 220
     },
@@ -23360,22 +18681,14 @@ export const MobData = [
     description: 'vampire',
     armor: 35,
     stats: {
-      str: [
-        446,
-        515
-      ],
-      dex: [
-        126,
-        155
-      ],
-      int: [
-        281,
-        305
-      ],
-      hp: [
-        700,
-        800
-      ],
+      str: [446,
+        515],
+      dex: [126,
+        155],
+      int: [281,
+        305],
+      hp: [700,
+        800],
       taming: null,
       barding: 132
     },
@@ -23407,22 +18720,14 @@ export const MobData = [
     description: 'vampire lord',
     armor: 30,
     stats: {
-      str: [
-        450,
-        500
-      ],
-      dex: [
-        191,
-        215
-      ],
-      int: [
-        800,
-        1
-      ],
-      hp: [
-        4,
-        5
-      ],
+      str: [450,
+        500],
+      dex: [191,
+        215],
+      int: [800,
+        1],
+      hp: [4,
+        5],
       taming: null,
       barding: 207
     },
@@ -23451,22 +18756,14 @@ export const MobData = [
     description: 'vampire mistress',
     armor: 20,
     stats: {
-      str: [
-        225,
-        75
-      ],
-      dex: [
-        75,
-        150
-      ],
-      int: [
-        325,
-        400
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [225,
+        75],
+      dex: [75,
+        150],
+      int: [325,
+        400],
+      hp: [1,
+        1],
       taming: null,
       barding: 182
     },
@@ -23498,22 +18795,14 @@ export const MobData = [
     description: 'vanity',
     armor: 38,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        850,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [850,
+        1],
       taming: null,
       barding: 172
     },
@@ -23545,22 +18834,14 @@ export const MobData = [
     description: 'vixen',
     armor: 40,
     stats: {
-      str: [
-        898,
-        1
-      ],
-      dex: [
-        68,
-        100
-      ],
-      int: [
-        1,
-        2
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [898,
+        1],
+      dex: [68,
+        100],
+      int: [1,
+        2],
+      hp: [1,
+        1],
       taming: null,
       barding: 146
     },
@@ -23592,22 +18873,14 @@ export const MobData = [
     description: 'walking dead',
     armor: 21,
     stats: {
-      str: [
-        145,
-        175
-      ],
-      dex: [
-        41,
-        70
-      ],
-      int: [
-        375,
-        450
-      ],
-      hp: [
-        225,
-        250
-      ],
+      str: [145,
+        175],
+      dex: [41,
+        70],
+      int: [375,
+        450],
+      hp: [225,
+        250],
       taming: null,
       barding: 84
     },
@@ -23636,22 +18909,14 @@ export const MobData = [
     description: 'warrior of cupid',
     armor: 20,
     stats: {
-      str: [
-        105,
-        125
-      ],
-      dex: [
-        66,
-        88
-      ],
-      int: [
-        16,
-        24
-      ],
-      hp: [
-        75,
-        100
-      ],
+      str: [105,
+        125],
+      dex: [66,
+        88],
+      int: [16,
+        24],
+      hp: [75,
+        100],
       taming: null,
       barding: 53
     },
@@ -23680,22 +18945,14 @@ export const MobData = [
     description: 'white witch',
     armor: 55,
     stats: {
-      str: [
-        250,
-        275
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        676,
-        905
-      ],
-      hp: [
-        2,
-        3
-      ],
+      str: [250,
+        275],
+      dex: [126,
+        145],
+      int: [676,
+        905],
+      hp: [2,
+        3],
       taming: null,
       barding: null
     },
@@ -23727,22 +18984,14 @@ export const MobData = [
     description: 'wild turkey',
     armor: 20,
     stats: {
-      str: [
-        505,
-        525
-      ],
-      dex: [
-        100,
-        120
-      ],
-      int: [
-        301,
-        325
-      ],
-      hp: [
-        475,
-        525
-      ],
+      str: [505,
+        525],
+      dex: [100,
+        120],
+      int: [301,
+        325],
+      hp: [475,
+        525],
       taming: null,
       barding: 75
     },
@@ -23779,22 +19028,14 @@ export const MobData = [
     ],
     fame: '600',
     stats: {
-      str: [
-        125,
-        135
-      ],
-      dex: [
-        31,
-        50
-      ],
-      int: [
-        375,
-        425
-      ],
-      hp: [
-        75,
-        125
-      ],
+      str: [125,
+        135],
+      dex: [31,
+        50],
+      int: [375,
+        425],
+      hp: [75,
+        125],
       taming: null,
       barding: 73
     },
@@ -23812,21 +19053,14 @@ export const MobData = [
         description: 'Random Potions'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        35,
-        50
-      ],
-      tactics: [
-        35,
-        50
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [35,
+        50],
+      tactics: [35,
+        50],
+      magic_resistance: [15,
         40
       ]
     }
@@ -23885,22 +19119,14 @@ export const MobData = [
     karma: '-23000',
     fame: '23000',
     stats: {
-      str: [
-        206,
-        305
-      ],
-      dex: [
-        96,
-        115
-      ],
-      int: [
-        966,
-        1
-      ],
-      hp: [
-        560,
-        595
-      ],
+      str: [206,
+        305],
+      dex: [96,
+        115],
+      int: [966,
+        1],
+      hp: [560,
+        595],
       taming: null,
       barding: 142
     },
@@ -23921,21 +19147,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1500,
-      1700
-    ],
+    credits: [1500,
+      1700],
     skills: {
-      wrestling: [
-        75,
-        87
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        175,
+      wrestling: [75,
+        87],
+      tactics: [90,
+        100],
+      magic_resistance: [175,
         200
       ]
     }
@@ -23972,22 +19191,14 @@ export const MobData = [
     description: 'bogle',
     armor: 28,
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 64
     },
@@ -24021,22 +19232,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        195,
-        250
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        118,
-        150
-      ],
+      str: [195,
+        250],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [118,
+        150],
       taming: null,
       barding: 61
     },
@@ -24054,21 +19257,14 @@ export const MobData = [
         description: 'WoodenShield'
       }
     ],
-    credits: [
-      175,
-      275
-    ],
+    credits: [175,
+      275],
     skills: {
-      wrestling: [
-        85,
-        95
-      ],
-      tactics: [
-        95,
-        100
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [85,
+        95],
+      tactics: [95,
+        100],
+      magic_resistance: [65,
         80
       ]
     }
@@ -24081,22 +19277,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        186,
-        210
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [56,
+        75],
+      int: [186,
+        210],
+      hp: [46,
+        60],
       taming: null,
       barding: 81
     },
@@ -24117,21 +19305,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        55,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [55,
         70
       ]
     }
@@ -24142,22 +19323,14 @@ export const MobData = [
     description: 'dark one',
     armor: 65,
     stats: {
-      str: [
-        770,
-        830
-      ],
-      dex: [
-        146,
-        185
-      ],
-      int: [
-        1,
-        1
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [770,
+        830],
+      dex: [146,
+        185],
+      int: [1,
+        1],
+      hp: [1,
+        1],
       taming: null,
       barding: 243
     },
@@ -24191,22 +19364,14 @@ export const MobData = [
     karma: '-2500',
     fame: '2500',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 45
     },
@@ -24224,21 +19389,14 @@ export const MobData = [
         description: 'Random Weapon'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -24254,22 +19412,14 @@ export const MobData = [
     ],
     fame: '8000',
     stats: {
-      str: [
-        171,
-        200
-      ],
-      dex: [
-        126,
-        145
-      ],
-      int: [
-        276,
-        305
-      ],
-      hp: [
-        103,
-        120
-      ],
+      str: [171,
+        200],
+      dex: [126,
+        145],
+      int: [276,
+        305],
+      hp: [103,
+        120],
       taming: null,
       barding: 92
     },
@@ -24290,18 +19440,13 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      275,
-      324
-    ],
+    credits: [275,
+      324],
     skills: {
       wrestling: [0,0],
-      tactics: [
-        70,
-        90
-      ],
-      magic_resistance: [
-        80,
+      tactics: [70,
+        90],
+      magic_resistance: [80,
         100
       ]
     }
@@ -24317,22 +19462,14 @@ export const MobData = [
     ],
     fame: '18000',
     stats: {
-      str: [
-        416,
-        505
-      ],
-      dex: [
-        146,
-        165
-      ],
-      int: [
-        566,
-        655
-      ],
-      hp: [
-        250,
-        303
-      ],
+      str: [416,
+        505],
+      dex: [146,
+        165],
+      int: [566,
+        655],
+      hp: [250,
+        303],
       taming: null,
       barding: 109
     },
@@ -24353,21 +19490,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      450,
-      600
-    ],
+    credits: [450,
+      600],
     skills: {
-      wrestling: [
-        60,
-        80
-      ],
-      tactics: [
-        50,
-        70
-      ],
-      magic_resistance: [
-        150,
+      wrestling: [60,
+        80],
+      tactics: [50,
+        70],
+      magic_resistance: [150,
         200
       ]
     }
@@ -24383,22 +19513,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        346,
-        370
-      ],
-      dex: [
-        71,
-        90
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        208,
-        222
-      ],
+      str: [346,
+        370],
+      dex: [71,
+        90],
+      int: [26,
+        40],
+      hp: [208,
+        222],
       taming: null,
       barding: 70
     },
@@ -24416,21 +19538,14 @@ export const MobData = [
         description: 'Random Bones'
       }
     ],
-    credits: [
-      305,
-      315
-    ],
+    credits: [305,
+      315],
     skills: {
-      wrestling: [
-        35,
-        50
-      ],
-      tactics: [
-        35,
-        50
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [35,
+        50],
+      tactics: [35,
+        50],
+      magic_resistance: [15,
         40
       ]
     }
@@ -24446,22 +19561,14 @@ export const MobData = [
     ],
     fame: '500',
     stats: {
-      str: [
-        26,
-        40
-      ],
-      dex: [
-        26,
-        40
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        16,
-        24
-      ],
+      str: [26,
+        40],
+      dex: [26,
+        40],
+      int: [26,
+        40],
+      hp: [16,
+        24],
       taming: null,
       barding: 19
     },
@@ -24476,16 +19583,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        20,
-        30
-      ],
-      tactics: [
-        20,
-        30
-      ],
-      magic_resistance: [
-        20,
+      wrestling: [20,
+        30],
+      tactics: [20,
+        30],
+      magic_resistance: [20,
         30
       ]
     }
@@ -24498,22 +19600,14 @@ export const MobData = [
     karma: 0,
     fame: 0,
     stats: {
-      str: [
-        196,
-        250
-      ],
-      dex: [
-        110,
-        120
-      ],
-      int: [
-        128,
-        138
-      ],
-      hp: [
-        500,
-        550
-      ],
+      str: [196,
+        250],
+      dex: [110,
+        120],
+      int: [128,
+        138],
+      hp: [500,
+        550],
       taming: null,
       barding: 103
     },
@@ -24533,16 +19627,11 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
-      tactics: [
-        90,
-        100
-      ],
-      magic_resistance: [
-        100,
+      wrestling: [90,
+        100],
+      tactics: [90,
+        100],
+      magic_resistance: [100,
         150
       ]
     }
@@ -24558,22 +19647,14 @@ export const MobData = [
     ],
     fame: '12500',
     stats: {
-      str: [
-        301,
-        350
-      ],
-      dex: [
-        75,
-        75
-      ],
-      int: [
-        151,
-        200
-      ],
-      hp: [
-        1,
-        1
-      ],
+      str: [301,
+        350],
+      dex: [75,
+        75],
+      int: [151,
+        200],
+      hp: [1,
+        1],
       taming: null,
       barding: 125
     },
@@ -24594,15 +19675,11 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      1050,
-      1279
-    ],
+    credits: [1050,
+      1279],
     skills: {
-      wrestling: [
-        90,
-        100
-      ],
+      wrestling: [90,
+        100],
       tactics: 100.0,
       magic_resistance: '250.0'
     }
@@ -24618,22 +19695,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 65
     },
@@ -24654,21 +19723,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -24681,22 +19743,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        196,
-        250
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        118,
-        150
-      ],
+      str: [196,
+        250],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [118,
+        150],
       taming: null,
       barding: 61
     },
@@ -24714,21 +19768,14 @@ export const MobData = [
         description: 'WoodenShield'
       }
     ],
-    credits: [
-      175,
-      275
-    ],
+    credits: [175,
+      275],
     skills: {
-      wrestling: [
-        85,
-        95
-      ],
-      tactics: [
-        95,
-        100
-      ],
-      magic_resistance: [
-        65,
+      wrestling: [85,
+        95],
+      tactics: [95,
+        100],
+      magic_resistance: [65,
         80
       ]
     }
@@ -24741,22 +19788,14 @@ export const MobData = [
     karma: '-3000',
     fame: '3000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        186,
-        210
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [56,
+        75],
+      int: [186,
+        210],
+      hp: [46,
+        60],
       taming: null,
       barding: 77
     },
@@ -24774,21 +19813,14 @@ export const MobData = [
         description: 'Random Potion'
       }
     ],
-    credits: [
-      125,
-      150
-    ],
+    credits: [125,
+      150],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        55,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [55,
         70
       ]
     }
@@ -24804,22 +19836,14 @@ export const MobData = [
     ],
     fame: '450',
     stats: {
-      str: [
-        56,
-        80
-      ],
-      dex: [
-        56,
-        75
-      ],
-      int: [
-        16,
-        40
-      ],
-      hp: [
-        34,
-        48
-      ],
+      str: [56,
+        80],
+      dex: [56,
+        75],
+      int: [16,
+        40],
+      hp: [34,
+        48],
       taming: null,
       barding: 36
     },
@@ -24837,21 +19861,14 @@ export const MobData = [
         description: 'Random Bones'
       }
     ],
-    credits: [
-      25,
-      50
-    ],
+    credits: [25,
+      50],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -24867,22 +19884,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 62
     },
@@ -24903,21 +19912,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -24933,22 +19935,14 @@ export const MobData = [
     ],
     fame: '4000',
     stats: {
-      str: [
-        76,
-        100
-      ],
-      dex: [
-        76,
-        95
-      ],
-      int: [
-        36,
-        60
-      ],
-      hp: [
-        46,
-        60
-      ],
+      str: [76,
+        100],
+      dex: [76,
+        95],
+      int: [36,
+        60],
+      hp: [46,
+        60],
       taming: null,
       barding: 67
     },
@@ -24969,21 +19963,14 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        45,
-        55
-      ],
-      tactics: [
-        45,
-        60
-      ],
-      magic_resistance: [
-        45,
+      wrestling: [45,
+        55],
+      tactics: [45,
+        60],
+      magic_resistance: [45,
         60
       ]
     }
@@ -24999,22 +19986,14 @@ export const MobData = [
     ],
     fame: '600',
     stats: {
-      str: [
-        46,
-        70
-      ],
-      dex: [
-        31,
-        50
-      ],
-      int: [
-        26,
-        40
-      ],
-      hp: [
-        28,
-        42
-      ],
+      str: [46,
+        70],
+      dex: [31,
+        50],
+      int: [26,
+        40],
+      hp: [28,
+        42],
       taming: null,
       barding: 33
     },
@@ -25032,21 +20011,14 @@ export const MobData = [
         description: 'Random Body Part or Bone'
       }
     ],
-    credits: [
-      50,
-      100
-    ],
+    credits: [50,
+      100],
     skills: {
-      wrestling: [
-        35,
-        50
-      ],
-      tactics: [
-        35,
-        50
-      ],
-      magic_resistance: [
-        15,
+      wrestling: [35,
+        50],
+      tactics: [35,
+        50],
+      magic_resistance: [15,
         40
       ]
     }

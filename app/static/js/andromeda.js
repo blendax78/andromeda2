@@ -34800,7 +34800,7 @@ var MobData = [{
     count: 3
   }],
   credits: 0,
-  img: 'https://andromeda.vintimilla.org/static/images/mobs/Sheep_100.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png',
   skills: {
     wrestling: [5, 5],
     tactics: [6, 6],
@@ -34836,7 +34836,7 @@ var MobData = [{
     count: 8
   }],
   credits: 0,
-  img: 'https://andromeda.vintimilla.org/static/images/mobs/Hind_100.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Hind_100.png',
   skills: {
     wrestling: [26, 26],
     tactics: [19, 19],
@@ -34871,7 +34871,7 @@ var MobData = [{
     count: 12
   }],
   credits: 0,
-  img: 'https://andromeda.vintimilla.org/static/images/mobs/BlackBear_100.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
   skills: {
     wrestling: [40, 60],
     tactics: [40, 60],
@@ -34907,7 +34907,7 @@ var MobData = [{
     count: 12
   }],
   credits: 0,
-  img: 'https://andromeda.vintimilla.org/static/images/mobs/BrownBear_100.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BrownBear_100.png',
   skills: {
     wrestling: [40, 60],
     tactics: [40, 60],
@@ -34942,7 +34942,7 @@ var MobData = [{
     count: 15
   }],
   credits: 0,
-  img: 'https://andromeda.vintimilla.org/static/images/mobs/Bull_100.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Bull_100.png',
   skills: {
     wrestling: [40.1, 57.5],
     tactics: [67.6, 85],
@@ -34978,7 +34978,7 @@ var MobData = [{
     count: 12
   }],
   credits: 0,
-  img: 'https://andromeda.vintimilla.org/static/images/mobs/Cow_100.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Cow_100.png',
   skills: {
     wrestling: [5.5, 5.5],
     tactics: [5.5, 5.5],
@@ -35009,7 +35009,7 @@ var MobData = [{
   attackable: true,
   inventory: [],
   credits: 0,
-  img: 'https://andromeda.vintimilla.org/static/images/misc/training_dummy.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/misc/training_dummy.png',
   skills: {
     wrestling: [0, 0],
     tactics: [0, 0],
@@ -35045,7 +35045,7 @@ var MobData = [{
     count: 6
   }],
   credits: [1, 25],
-  img: 'https://andromeda.vintimilla.org/static/images/mobs/GiantRat_100.png',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/GiantRat_100.png',
   skills: {
     wrestling: [29.3, 44],
     tactics: [29.3, 44],
