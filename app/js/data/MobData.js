@@ -1425,10 +1425,7 @@ export const MobData = [
     name: 'lava lizard',
     description: 'lava lizard',
     armor: 40,
-    karma: [
-      '',
-      '3000'
-    ],
+    karma: 3000,
     fame: 3000,
     stats: {
       str: [126,
@@ -1653,10 +1650,7 @@ export const MobData = [
     name: 'nightmare',
     description: 'nightmare',
     armor: 60,
-    karma: [
-      '',
-      '14000'
-    ],
+    karma: 14000,
     fame: 14000,
     stats: {
       str: [496,
@@ -3272,10 +3266,7 @@ export const MobData = [
     name: 'terathan avenger',
     description: 'terathan avenger',
     armor: 50,
-    karma: [
-      '',
-      '15000'
-    ],
+    karma: 15000,
     fame: 15000,
     stats: {
       str: [467,
@@ -3323,10 +3314,7 @@ export const MobData = [
     name: 'terathan drone',
     description: 'terathan drone',
     armor: 24,
-    karma: [
-      '',
-      '2000'
-    ],
+    karma: 2000,
     fame: 2000,
     stats: {
       str: [36,
@@ -3413,10 +3401,7 @@ export const MobData = [
     name: 'terathan matriarch',
     description: 'terathan matriarch',
     armor: 0,
-    karma: [
-      '',
-      '10000'
-    ],
+    karma: 10000,
     fame: 10000,
     stats: {
       str: [316,
@@ -3461,10 +3446,7 @@ export const MobData = [
     name: 'terathan warrior',
     description: 'terathan warrior',
     armor: 30,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [166,
@@ -3770,10 +3752,7 @@ export const MobData = [
     name: 'diseased blood elemental',
     description: 'diseased blood elemental',
     armor: 80,
-    karma: [
-      '',
-      '8500'
-    ],
+    karma: 8500,
     fame: 8500,
     stats: {
       str: [880,
@@ -4307,10 +4286,7 @@ export const MobData = [
     name: 'barracoon',
     description: 'barracoon',
     armor: 70,
-    karma: [
-      '',
-      '22500'
-    ],
+    karma: 22500,
     fame: 22500,
     stats: {
       str: [305,
@@ -4484,10 +4460,7 @@ export const MobData = [
     name: 'mephitis',
     description: 'mephitis',
     armor: 80,
-    karma: [
-      '',
-      '22500'
-    ],
+    karma: 22500,
     fame: 22500,
     stats: {
       str: [505,
@@ -4575,10 +4548,7 @@ export const MobData = [
     name: 'rikktor',
     description: 'rikktor',
     armor: 130,
-    karma: [
-      '',
-      '22500'
-    ],
+    karma: 22500,
     fame: 22500,
     stats: {
       str: [701,
@@ -4622,10 +4592,7 @@ export const MobData = [
     name: 'semidar',
     description: 'semidar',
     armor: 20,
-    karma: [
-      '',
-      '24000'
-    ],
+    karma: 24000,
     fame: 24000,
     stats: {
       str: [502,
@@ -5474,10 +5441,7 @@ export const MobData = [
     name: 'diseased blood elemental',
     description: 'diseased blood elemental',
     armor: 80,
-    karma: [
-      '',
-      '8500'
-    ],
+    karma: 8500,
     fame: 8500,
     stats: {
       str: [880,
@@ -6067,10 +6031,7 @@ export const MobData = [
     name: 'sand vortex',
     description: 'sand vortex',
     armor: 28,
-    karma: [
-      '',
-      '4500'
-    ],
+    karma: 4500,
     fame: 4500,
     stats: {
       str: [96,
@@ -6174,10 +6135,7 @@ export const MobData = [
     name: 'shadow iron elemental',
     description: 'shadow iron elemental',
     armor: 23,
-    karma: [
-      '',
-      '3500'
-    ],
+    karma: 3500,
     fame: 3500,
     stats: {
       str: [226,
@@ -6350,10 +6308,7 @@ export const MobData = [
     name: 'valorite elemental',
     description: 'valorite elemental',
     armor: 38,
-    karma: [
-      '',
-      '3500'
-    ],
+    karma: 3500,
     fame: 3500,
     stats: {
       str: [226,
@@ -6401,10 +6356,7 @@ export const MobData = [
     name: 'verite elemental',
     description: 'verite elemental',
     armor: 35,
-    karma: [
-      '',
-      '3500'
-    ],
+    karma: 3500,
     fame: 3500,
     stats: {
       str: [226,
@@ -7291,10 +7243,7 @@ export const MobData = [
     name: 'brigand',
     description: 'brigand',
     armor: 0,
-    karma: [
-      '',
-      '1000'
-    ],
+    karma: 1000,
     fame: 1000,
     stats: {
       str: [86,
@@ -7588,10 +7537,7 @@ export const MobData = [
     name: 'evil mage',
     description: 'evil mage',
     armor: 16,
-    karma: [
-      '',
-      '2500'
-    ],
+    karma: 2500,
     fame: 2500,
     stats: {
       str: [81,
@@ -7639,10 +7585,7 @@ export const MobData = [
     name: 'evil mage lord',
     description: 'evil mage lord',
     armor: 16,
-    karma: [
-      '',
-      '10500'
-    ],
+    karma: 10500,
     fame: [
       '',
       '10500'
@@ -8293,10 +8236,7 @@ export const MobData = [
     name: 'lich',
     description: 'lich',
     armor: 50,
-    karma: [
-      '',
-      '8000'
-    ],
+    karma: 8000,
     fame: 8000,
     stats: {
       str: [171,
@@ -8343,10 +8283,7 @@ export const MobData = [
     name: 'lich lord',
     description: 'lich lord',
     armor: 50,
-    karma: [
-      '',
-      '18000'
-    ],
+    karma: 18000,
     fame: 18000,
     stats: {
       str: [416,
@@ -8590,10 +8527,7 @@ export const MobData = [
     name: 'mummy',
     description: 'mummy',
     armor: 50,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [346,
@@ -9016,10 +8950,7 @@ export const MobData = [
     name: 'ratman',
     description: 'ratman',
     armor: 28,
-    karma: [
-      '',
-      '1500'
-    ],
+    karma: 1500,
     fame: 1500,
     stats: {
       str: [96,
@@ -9067,10 +8998,7 @@ export const MobData = [
     name: 'ratman archer',
     description: 'ratman archer',
     armor: 56,
-    karma: [
-      '',
-      '6500'
-    ],
+    karma: 6500,
     fame: 6500,
     stats: {
       str: [146,
@@ -9118,10 +9046,7 @@ export const MobData = [
     name: 'ratman mage',
     description: 'ratman mage',
     armor: 44,
-    karma: [
-      '',
-      '7500'
-    ],
+    karma: 7500,
     fame: 7500,
     stats: {
       str: [146,
@@ -9205,10 +9130,7 @@ export const MobData = [
     name: 'restless soul',
     description: 'restless soul',
     armor: 6,
-    karma: [
-      '',
-      '500'
-    ],
+    karma: 500,
     fame: 500,
     stats: {
       str: [26,
@@ -9289,10 +9211,7 @@ export const MobData = [
     name: 'rotting corpse',
     description: 'rotting corpse',
     armor: 40,
-    karma: [
-      '',
-      '12500'
-    ],
+    karma: 12500,
     fame: 12500,
     stats: {
       str: [301,
@@ -9337,10 +9256,7 @@ export const MobData = [
     name: 'shade',
     description: 'shade',
     armor: 28,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [76,
@@ -9478,10 +9394,7 @@ export const MobData = [
     name: 'skeleton',
     description: 'skeleton',
     armor: 16,
-    karma: [
-      '',
-      '450'
-    ],
+    karma: 450,
     fame: 450,
     stats: {
       str: [56,
@@ -9526,10 +9439,7 @@ export const MobData = [
     name: 'spectre',
     description: 'spectre',
     armor: 28,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [76,
@@ -9729,10 +9639,7 @@ export const MobData = [
     name: 'wraith',
     description: 'wraith',
     armor: 28,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [76,
@@ -9780,10 +9687,7 @@ export const MobData = [
     name: 'zombie',
     description: 'zombie',
     armor: 18,
-    karma: [
-      '',
-      '600'
-    ],
+    karma: 600,
     fame: 600,
     stats: {
       str: [46,
@@ -10409,10 +10313,7 @@ export const MobData = [
     name: 'dark wisp',
     description: 'dark wisp',
     armor: 40,
-    karma: [
-      '',
-      '10000'
-    ],
+    karma: 10000,
     fame: 15000,
     stats: {
       str: [196,
@@ -10794,10 +10695,7 @@ export const MobData = [
     name: 'harpy',
     description: 'harpy',
     armor: 28,
-    karma: [
-      '',
-      '2500'
-    ],
+    karma: 2500,
     fame: 2500,
     stats: {
       str: [86,
@@ -10884,10 +10782,7 @@ export const MobData = [
     name: 'hell hound',
     description: 'hell hound',
     armor: 30,
-    karma: [
-      '',
-      '3400'
-    ],
+    karma: 3400,
     fame: 3400,
     stats: {
       str: [102,
@@ -10935,10 +10830,7 @@ export const MobData = [
     name: 'horde minion',
     description: 'horde minion',
     armor: 18,
-    karma: [
-      '',
-      '500'
-    ],
+    karma: 500,
     fame: 500,
     stats: {
       str: [16,
@@ -10975,10 +10867,7 @@ export const MobData = [
     name: 'imp',
     description: 'imp',
     armor: 30,
-    karma: [
-      '',
-      '2500'
-    ],
+    karma: 2500,
     fame: 2500,
     stats: {
       str: [91,
@@ -11098,10 +10987,7 @@ export const MobData = [
     name: 'mongbat',
     description: 'mongbat',
     armor: 10,
-    karma: [
-      '',
-      '150'
-    ],
+    karma: 150,
     fame: 150,
     stats: {
       str: [6,
@@ -11188,10 +11074,7 @@ export const MobData = [
     name: 'ogre',
     description: 'ogre',
     armor: 32,
-    karma: [
-      '',
-      '3000'
-    ],
+    karma: 3000,
     fame: 3000,
     stats: {
       str: [166,
@@ -11236,10 +11119,7 @@ export const MobData = [
     name: 'ogre lord',
     description: 'ogre lord',
     armor: 50,
-    karma: [
-      '',
-      '15000'
-    ],
+    karma: 15000,
     fame: 15000,
     stats: {
       str: [767,
@@ -11409,10 +11289,7 @@ export const MobData = [
     name: 'scorpion',
     description: 'scorpion',
     armor: 28,
-    karma: [
-      '',
-      '2000'
-    ],
+    karma: 2000,
     fame: 2000,
     stats: {
       str: [73,
@@ -11481,10 +11358,7 @@ export const MobData = [
     name: 'shadow wisp',
     description: 'shadow wisp',
     armor: 18,
-    karma: [
-      '',
-      '500'
-    ],
+    karma: 500,
     fame: 500,
     stats: {
       str: [50,
@@ -11568,10 +11442,7 @@ export const MobData = [
     name: 'stone harpy',
     description: 'stone harpy',
     armor: 50,
-    karma: [
-      '',
-      '4500'
-    ],
+    karma: 4500,
     fame: 4500,
     stats: {
       str: [296,
@@ -11754,10 +11625,7 @@ export const MobData = [
     name: 'troll',
     description: 'troll',
     armor: 40,
-    karma: [
-      '',
-      '3500'
-    ],
+    karma: 3500,
     fame: 3500,
     stats: {
       str: [176,
@@ -11924,10 +11792,7 @@ export const MobData = [
     name: 'orc bomber',
     description: 'orc bomber',
     armor: 30,
-    karma: [
-      '',
-      '2500'
-    ],
+    karma: 2500,
     fame: 2500,
     stats: {
       str: [147,
@@ -11975,10 +11840,7 @@ export const MobData = [
     name: 'orc brute',
     description: 'orc brute',
     armor: 50,
-    karma: [
-      '',
-      '15000'
-    ],
+    karma: 15000,
     fame: 15000,
     stats: {
       str: [767,
@@ -12016,10 +11878,7 @@ export const MobData = [
     name: 'orc captain',
     description: 'orc captain',
     armor: 34,
-    karma: [
-      '',
-      '2500'
-    ],
+    karma: 2500,
     fame: 2500,
     stats: {
       str: [111,
@@ -12066,10 +11925,7 @@ export const MobData = [
     name: 'orc scout',
     description: 'orc scout',
     armor: null,
-    karma: [
-      '',
-      '1500'
-    ],
+    karma: 1500,
     fame: 1500,
     stats: {
       str: [96,
@@ -12280,10 +12136,7 @@ export const MobData = [
     name: 'quagmire',
     description: 'quagmire',
     armor: 32,
-    karma: [
-      '',
-      '1500'
-    ],
+    karma: 1500,
     fame: 1500,
     stats: {
       str: [101,
@@ -12321,10 +12174,7 @@ export const MobData = [
     name: 'reaper',
     description: 'reaper',
     armor: 40,
-    karma: [
-      '',
-      '3500'
-    ],
+    karma: 3500,
     fame: 3500,
     stats: {
       str: [66,
@@ -12372,10 +12222,7 @@ export const MobData = [
     name: 'swamp tentacle',
     description: 'swamp tentacle',
     armor: 28,
-    karma: [
-      '',
-      '3000'
-    ],
+    karma: 3000,
     fame: 3000,
     stats: {
       str: [96,
@@ -12423,10 +12270,7 @@ export const MobData = [
     name: 'whipping vine',
     description: 'whipping vine',
     armor: 45,
-    karma: [
-      '',
-      '1000'
-    ],
+    karma: 1000,
     fame: 1000,
     stats: {
       str: [251,
@@ -12460,10 +12304,7 @@ export const MobData = [
     name: 'ratman',
     description: 'ratman',
     armor: 28,
-    karma: [
-      '',
-      '1500'
-    ],
+    karma: 1500,
     fame: 1500,
     stats: {
       str: [96,
@@ -12511,10 +12352,7 @@ export const MobData = [
     name: 'ratman archer',
     description: 'ratman archer',
     armor: 56,
-    karma: [
-      '',
-      '6500'
-    ],
+    karma: 6500,
     fame: 6500,
     stats: {
       str: [146,
@@ -12562,10 +12400,7 @@ export const MobData = [
     name: 'ratman mage',
     description: 'ratman mage',
     armor: 44,
-    karma: [
-      '',
-      '7500'
-    ],
+    karma: 7500,
     fame: 7500,
     stats: {
       str: [146,
@@ -12916,10 +12751,7 @@ export const MobData = [
     name: 'kraken',
     description: 'kraken',
     armor: 50,
-    karma: [
-      '',
-      '11000'
-    ],
+    karma: 11000,
     fame: 11000,
     stats: {
       str: [250,
@@ -12988,10 +12820,7 @@ export const MobData = [
     name: 'lizardman',
     description: 'lizardman',
     armor: 28,
-    karma: [
-      '',
-      '1500'
-    ],
+    karma: 1500,
     fame: 1500,
     stats: {
       str: [96,
@@ -13192,10 +13021,7 @@ export const MobData = [
     name: 'ophidian matriarch',
     description: 'ophidian matriarch',
     armor: 50,
-    karma: [
-      '',
-      '16000'
-    ],
+    karma: 16000,
     fame: 16000,
     stats: {
       str: [416,
@@ -13279,10 +13105,7 @@ export const MobData = [
     name: 'ophidian warrior',
     description: 'ophidian warrior',
     armor: 36,
-    karma: [
-      '',
-      '4500'
-    ],
+    karma: 4500,
     fame: 4500,
     stats: {
       str: [150,
@@ -13329,10 +13152,7 @@ export const MobData = [
     name: 'sea serpent',
     description: 'sea serpent',
     armor: 30,
-    karma: [
-      '',
-      '6000'
-    ],
+    karma: 6000,
     fame: 6000,
     stats: {
       str: [168,
@@ -13426,10 +13246,7 @@ export const MobData = [
     name: 'shadow wyrm',
     description: 'shadow wyrm',
     armor: 70,
-    karma: [
-      '',
-      '22500'
-    ],
+    karma: 22500,
     fame: 22500,
     stats: {
       str: [898,
@@ -13516,10 +13333,7 @@ export const MobData = [
     name: 'skeletal dragon',
     description: 'skeletal dragon',
     armor: 80,
-    karma: [
-      '',
-      '22500'
-    ],
+    karma: 22500,
     fame: 22500,
     stats: {
       str: [898,
@@ -13557,10 +13371,7 @@ export const MobData = [
     name: 'white wyrm',
     description: 'white wyrm',
     armor: 64,
-    karma: [
-      '',
-      '18000'
-    ],
+    karma: 18000,
     fame: 18000,
     stats: {
       str: [721,
@@ -13608,10 +13419,7 @@ export const MobData = [
     name: 'wyvern',
     description: 'wyvern',
     armor: 40,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [202,
@@ -13766,10 +13574,7 @@ export const MobData = [
     name: 'plague beast',
     description: 'plague beast',
     armor: 30,
-    karma: [
-      '',
-      '13000'
-    ],
+    karma: 13000,
     fame: 13000,
     stats: {
       str: [302,
@@ -13802,10 +13607,7 @@ export const MobData = [
     name: 'slime',
     description: 'slime',
     armor: 8,
-    karma: [
-      '',
-      '300'
-    ],
+    karma: 300,
     fame: 300,
     stats: {
       str: [22,
@@ -17591,10 +17393,7 @@ export const MobData = [
     name: 'skeleton',
     description: 'skeleton',
     armor: 16,
-    karma: [
-      '',
-      '450'
-    ],
+    karma: 450,
     fame: 450,
     stats: {
       str: [56,
@@ -17642,10 +17441,7 @@ export const MobData = [
     name: 'skeleton',
     description: 'skeleton',
     armor: 20,
-    karma: [
-      '',
-      '450'
-    ],
+    karma: 450,
     fame: 450,
     stats: {
       str: [56,
@@ -17691,10 +17487,7 @@ export const MobData = [
     name: 'skeleton',
     description: 'skeleton',
     armor: 30,
-    karma: [
-      '',
-      '450'
-    ],
+    karma: 450,
     fame: 450,
     stats: {
       str: [225,
@@ -18585,10 +18378,7 @@ export const MobData = [
     name: 'zombie',
     description: 'zombie',
     armor: 18,
-    karma: [
-      '',
-      '600'
-    ],
+    karma: 600,
     fame: 600,
     stats: {
       str: [125,
@@ -18965,10 +18755,7 @@ export const MobData = [
     name: 'lich',
     description: 'lich',
     armor: 50,
-    karma: [
-      '',
-      '8000'
-    ],
+    karma: 8000,
     fame: 8000,
     stats: {
       str: [171,
@@ -19015,10 +18802,7 @@ export const MobData = [
     name: 'lich lord',
     description: 'lich lord',
     armor: 50,
-    karma: [
-      '',
-      '18000'
-    ],
+    karma: 18000,
     fame: 18000,
     stats: {
       str: [416,
@@ -19066,10 +18850,7 @@ export const MobData = [
     name: 'mummy',
     description: 'mummy',
     armor: 50,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [346,
@@ -19114,10 +18895,7 @@ export const MobData = [
     name: 'restless soul',
     description: 'restless soul',
     armor: 6,
-    karma: [
-      '',
-      '500'
-    ],
+    karma: 500,
     fame: 500,
     stats: {
       str: [26,
@@ -19198,10 +18976,7 @@ export const MobData = [
     name: 'rotting corpse',
     description: 'rotting corpse',
     armor: 40,
-    karma: [
-      '',
-      '12500'
-    ],
+    karma: 12500,
     fame: 12500,
     stats: {
       str: [301,
@@ -19246,10 +19021,7 @@ export const MobData = [
     name: 'shade',
     description: 'shade',
     armor: 28,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [76,
@@ -19387,10 +19159,7 @@ export const MobData = [
     name: 'skeleton',
     description: 'skeleton',
     armor: 16,
-    karma: [
-      '',
-      '450'
-    ],
+    karma: 450,
     fame: 450,
     stats: {
       str: [56,
@@ -19435,10 +19204,7 @@ export const MobData = [
     name: 'spectre',
     description: 'spectre',
     armor: 28,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [76,
@@ -19486,10 +19252,7 @@ export const MobData = [
     name: 'wraith',
     description: 'wraith',
     armor: 28,
-    karma: [
-      '',
-      '4000'
-    ],
+    karma: 4000,
     fame: 4000,
     stats: {
       str: [76,
