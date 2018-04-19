@@ -1,5 +1,6 @@
 import Config from '../components/Config';
 
+// Finished fixing ID 22.
 export const MobData = [
   {
     id: 1,
@@ -29,19 +30,16 @@ export const MobData = [
     inventory: [
       {
         id: 5,
-        count: 3
+        count: 3,
+        chance: [1,1]
       }
     ],
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Sheep_100.png`,
     skills: {
-      wrestling: [5,
-        5],
-      tactics: [6,
-        6],
-      magic_resistance: [5,
-        5
-      ]
+      wrestling: [5,5],
+      tactics: [6,6],
+      magic_resistance: [5,5]
     }
   },
   {
@@ -72,19 +70,16 @@ export const MobData = [
     inventory: [
       {
         id: 27,
-        count: 8
+        count: 8,
+        chance: [1,1]
       }
     ],
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Hind_100.png`,
     skills: {
-      wrestling: [26,
-        26],
-      tactics: [19,
-        19],
-      magic_resistance: [15,
-        15
-      ]
+      wrestling: [26,26],
+      tactics: [19,19],
+      magic_resistance: [15,15]
     }
   },
   {
@@ -95,14 +90,10 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [76,
-        100],
-      dex: [56,
-        75],
-      int: [11,
-        14],
-      hp: [46,
-        60],
+      str: [76,100],
+      dex: [56,75],
+      int: [11,14],
+      hp: [46,60],
       taming: 35.1,
       barding: 33
     },
@@ -118,19 +109,16 @@ export const MobData = [
     inventory: [
       {
         id: 27,
-        count: 12
+        count: 12,
+        chance: [1,1]
       }
     ],
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/BlackBear_100.png`,
     skills: {
-      wrestling: [40,
-        60],
-      tactics: [40,
-        60],
-      magic_resistance: [20,
-        40
-      ]
+      wrestling: [40,60],
+      tactics: [40,60],
+      magic_resistance: [20,40]
     }
   },
   {
@@ -141,14 +129,10 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [76,
-        100],
-      dex: [26,
-        45],
-      int: [23,
-        47],
-      hp: [46,
-        60],
+      str: [76,100],
+      dex: [26,45],
+      int: [23,47],
+      hp: [46,60],
       taming: 41.1,
       barding: 30
     },
@@ -165,19 +149,16 @@ export const MobData = [
     inventory: [
       {
         id: 27,
-        count: 12
+        count: 12,
+        chance: [1,1]
       }
     ],
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/BrownBear_100.png`,
     skills: {
-      wrestling: [40,
-        60],
-      tactics: [40,
-        60],
-      magic_resistance: [25,
-        35
-      ]
+      wrestling: [40,60],
+      tactics: [40,60],
+      magic_resistance: [25,35]
     }
   },
   {
@@ -188,15 +169,10 @@ export const MobData = [
     karma: 0,
     fame: 600,
     stats: {
-      str: [77,
-        111],
-      dex: [56,
-        75],
-      int: [47,
-        75],
-      hp: [50,
-        64
-      ],
+      str: [77,111],
+      dex: [56,75],
+      int: [47,75],
+      hp: [50,64],
       barding: 30,
       taming: 71.1
     },
@@ -212,19 +188,16 @@ export const MobData = [
     inventory: [
       {
         id: 27,
-        count: 15
+        count: 15,
+        chance: [1,1]
       }
     ],
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Bull_100.png`,
     skills: {
-      wrestling: [40.1,
-        57.5],
-      tactics: [67.6,
-        85],
-      magic_resistance: [17.6,
-        25
-      ]
+      wrestling: [40.1,57.5],
+      tactics: [67.6,85],
+      magic_resistance: [17.6,25]
     }
   },
   {
@@ -235,15 +208,10 @@ export const MobData = [
     karma: 0,
     fame: 300,
     stats: {
-      str: [30,
-        30],
-      dex: [15,
-        15],
-      int: [5,
-        5],
-      hp: [18,
-        18
-      ]
+      str: [30,30],
+      dex: [15,15],
+      int: [5,5],
+      hp: [18,18]
     },
     aggro: false,
     offense: {
@@ -260,19 +228,16 @@ export const MobData = [
     inventory: [
       {
         id: 27,
-        count: 12
+        count: 12,
+        chance: [1,1]
       }
     ],
     credits: 0,
     img: `${Config.URLS.IMAGES}/mobs/Cow_100.png`,
     skills: {
-      wrestling: [5.5,
-        5.5],
-      tactics: [5.5,
-        5.5],
-      magic_resistance: [5.5,
-        5.5
-      ]
+      wrestling: [5.5,5.5],
+      tactics: [5.5,5.5],
+      magic_resistance: [5.5,5.5]
     }
   },
   {
@@ -283,15 +248,10 @@ export const MobData = [
     karma: 0,
     fame: 0,
     stats: {
-      str: [0,
-        0],
-      dex: [0,
-        0],
-      int: [0,
-        0],
-      hp: [500,
-        500
-      ]
+      str: [0,0],
+      dex: [0,0],
+      int: [0,0],
+      hp: [500,500]
     },
     aggro: false,
     offense: {
@@ -309,13 +269,9 @@ export const MobData = [
     credits: 0,
     img: `${Config.URLS.IMAGES}/misc/training_dummy.png`,
     skills: {
-      wrestling: [0,
-        0],
-      tactics: [0,
-        0],
-      magic_resistance: [0,
-        0
-      ]
+      wrestling: [0,0],
+      tactics: [0,0],
+      magic_resistance: [0,0]
     }
   },
   {
@@ -326,14 +282,10 @@ export const MobData = [
     karma: -300,
     fame: 300,
     stats: {
-      str: [32,
-        74],
-      dex: [46,
-        65],
-      int: [16,
-        30],
-      hp: [26,
-        39],
+      str: [32,74],
+      dex: [46,65],
+      int: [16,30],
+      hp: [26,39],
       taming: 29.1,
       barding: 24
     },
@@ -350,7 +302,8 @@ export const MobData = [
     inventory: [
       {
         id: 27,
-        count: 6
+        count: 6,
+        chance: [1,1]
       }
     ],
     credits: [1,
@@ -358,31 +311,23 @@ export const MobData = [
     ],
     img: `${Config.URLS.IMAGES}/mobs/GiantRat_100.png`,
     skills: {
-      wrestling: [29.3,
-        44],
-      tactics: [29.3,
-        44],
-      magic_resistance: [25.1,
-        30
-      ]
+      wrestling: [29.3,44],
+      tactics: [29.3,44],
+      magic_resistance: [25.1,30]
     }
   },
   {
     id: 9,
     name: 'alligator',
-    description: 'alligator',
+    description: 'An alligator is stalking its prey.',
     armor: 30,
-    karma: '-600',
-    fame: '600',
+    karma: -600,
+    fame: 600,
     stats: {
-      str: [76,
-        100],
-      dex: [6,
-        25],
-      int: [11,
-        20],
-      hp: [46,
-        60],
+      str: [76,100],
+      dex: [6,25],
+      int: [11,20],
+      hp: [46,60],
       taming: 47.1,
       barding: 29
     },
@@ -392,41 +337,36 @@ export const MobData = [
       speed: 2
     },
     move: 1,
+    aggro: true,
     mob_type: 'animal',
     attackable: true,
     inventory: [
       {
-        description: '12 Spined Hides (Carve)',
+        id: 27,
+        count: 12,
         chance: [1, 1]
       }
     ],
     credits: 0,
+    img: `${Config.URLS.IMAGES}/mobs/Alligator_100.png`,
     skills: {
-      wrestling: [40,
-        60],
-      tactics: [40,
-        60],
-      magic_resistance: [25,
-        40
-      ]
+      wrestling: [40,60],
+      tactics: [40,60],
+      magic_resistance: [25,40]
     }
   },
   {
     id: 10,
     name: 'bird',
-    description: 'bird',
+    description: 'A bird is flying nearby.',
     armor: 2,
     karma: 0,
-    fame: '150',
+    fame: 150,
     stats: {
-      str: [10,
-        10],
-      dex: [25,
-        35],
-      int: [10,
-        10],
-      hp: [0,
-        0],
+      str: [10,10],
+      dex: [25,35],
+      int: [10,10],
+      hp: [0,0],
       taming: 0,
       barding: 7
     },
@@ -445,6 +385,7 @@ export const MobData = [
       }
     ],
     credits: 0,
+    img: `${Config.URLS.IMAGES}/mobs/Bird_100.png`,
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
@@ -457,14 +398,10 @@ export const MobData = [
     description: 'bull frog',
     armor: 6,
     stats: {
-      str: [46,
-        70],
-      dex: [6,
-        25],
-      int: [11,
-        20],
-      hp: [28,
-        42],
+      str: [46,70],
+      dex: [6,25],
+      int: [11,20],
+      hp: [28,42],
       taming: 23.1,
       barding: 21
     },
@@ -478,7 +415,8 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '4 Leather Hides (Carve)',
+        id: 27,
+        count: 4,
         chance: [1, 1]
       }
     ],
@@ -490,19 +428,15 @@ export const MobData = [
   {
     id: 12,
     name: 'cat',
-    description: 'cat',
+    description: 'A cat licks itself while it watches you lazily.',
     armor: 8,
-    karma: '-150',
+    karma: -150,
     fame: 0,
     stats: {
-      str: [9,
-        9],
-      dex: [35,
-        35],
-      int: [5,
-        5],
-      hp: [6,
-        6],
+      str: [9,9],
+      dex: [35,35],
+      int: [5,5],
+      hp: [6,6],
       taming: 0,
       barding: 6
     },
@@ -514,6 +448,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
+    img: `${Config.URLS.IMAGES}/mobs/Cat_100.png`,
     inventory: [
       {
         description: '1 Raw Rib (Carve)',
@@ -524,25 +459,21 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 4.0,
-      magic_resistance: '5.0'
+      magic_resistance: 5.0
     }
   },
   {
     id: 13,
     name: 'chicken',
-    description: 'chicken',
+    description: 'A chicken runs around like a chicken with its head cut off.',
     armor: 2,
     karma: 0,
-    fame: '150',
+    fame: 150,
     stats: {
-      str: [5,
-        5],
-      dex: [15,
-        15],
-      int: [5,
-        5],
-      hp: [3,
-        3],
+      str: [5,5],
+      dex: [15,15],
+      int: [5,5],
+      hp: [3,3],
       taming: 0.9,
       barding: 4
     },
@@ -554,6 +485,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
+    img: `${Config.URLS.IMAGES}/mobs/Chicken_100.png`,
     inventory: [
       {
         description: '25 Feathers (Carve)',
@@ -564,25 +496,21 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
-      magic_resistance: '4.0'
+      magic_resistance: 4.0
     }
   },
   {
     id: 14,
     name: 'cougar',
-    description: 'cougar',
+    description: 'A cougar stalks some game.',
     armor: 16,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
-      str: [56,
-        80],
-      dex: [66,
-        85],
-      int: [26,
-        50],
-      hp: [34,
-        48],
+      str: [56,80],
+      dex: [66,85],
+      int: [26,50],
+      hp: [34,48],
       taming: 41.1,
       barding: 27
     },
@@ -596,116 +524,62 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '10 Leather Hides (Carve)',
+        id: 27,
+        count: 10,
         chance: [1, 1]
       }
     ],
     credits: 0,
     skills: {
-      wrestling: [45,
-        60],
-      tactics: [45,
-        60],
-      magic_resistance: [15,
-        30
-      ]
-    }
-  },
-  {
-    id: 15,
-    name: 'cow',
-    description: 'cow',
-    armor: 10,
-    karma: 0,
-    fame: '300',
-    stats: {
-      str: [30,
-        30],
-      dex: [15,
-        15],
-      int: [5,
-        5],
-      hp: [18,
-        18],
-      taming: 11.1,
-      barding: 7
-    },
-    offense: {
-      min: 1,
-      max: 4,
-      speed: 2
-    },
-    move: 1,
-    mob_type: 'animal',
-    attackable: true,
-    inventory: [
-      {
-        description: '8 Raw Ribs (Carve)',
-        chance: [1, 1]
-      }
-    ],
-    credits: 0,
-    skills: {
-      wrestling: 5.5,
-      tactics: 5.5,
-      magic_resistance: '5.5'
+      wrestling: [45,60],
+      tactics: [45,60],
+      magic_resistance: [15,30]
     }
   },
   {
     id: 16,
     name: 'crane',
-    description: 'crane',
+    description: 'A crane squawks loudly.',
     armor: 5,
-    karma: 'negative',
-    fame: 'none',
+    karma: 0,
+    fame: 0,
     stats: {
-      str: [25,
-        35],
-      dex: [15,
-        25],
-      int: [10,
-        15],
-      hp: [25,
-        35],
+      str: [25,35],
+      dex: [15,25],
+      int: [10,15],
+      hp: [25,35],
       taming: null,
       barding: 9.2
     },
     offense: {
-      speed: 2
+      speed: 2,
+      min: 1,
+      max: 1
     },
     move: 1,
+    img: `${Config.URLS.IMAGES}/mobs/Crane_100.png`,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
-      wrestling: [10,
-        11],
-      tactics: [10,
-        11],
-      magic_resistance: [4,
-        5
-      ]
+      wrestling: [10,11],
+      tactics: [10,11],
+      magic_resistance: [4,5]
     }
   },
   {
     id: 17,
     name: 'desert ostard',
-    description: 'desert ostard',
+    description: 'A desert ostard is running around here.',
     armor: 0,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
-      str: [94,
-        170],
-      dex: [56,
-        75],
-      int: [6,
-        10],
-      hp: [71,
-        88],
+      str: [94,170],
+      dex: [56,75],
+      int: [6,10],
+      hp: [71,88],
       taming: 29.1,
       barding: 33
     },
@@ -724,32 +598,25 @@ export const MobData = [
       }
     ],
     credits: 0,
+    img: `${Config.URLS.IMAGES}/mobs/DesertOstard_100.png`,
     skills: {
-      wrestling: [29,
-        44],
-      tactics: [25,
-        40],
-      magic_resistance: [25,
-        30
-      ]
+      wrestling: [29,44],
+      tactics: [25,40],
+      magic_resistance: [25,30]
     }
   },
   {
     id: 18,
     name: 'dire wolf',
-    description: 'dire wolf',
+    description: 'A dire wolf snarls at you.',
     armor: 22,
-    karma: '-2500',
-    fame: '2500',
+    karma: -2500,
+    fame: 2500,
     stats: {
-      str: [96,
-        120],
-      dex: [81,
-        105],
-      int: [36,
-        60],
-      hp: [58,
-        72],
+      str: [96,120],
+      dex: [81,105],
+      int: [36,60],
+      hp: [58,72],
       taming: 83.1,
       barding: 43
     },
@@ -759,41 +626,36 @@ export const MobData = [
       speed: 2
     },
     move: 1,
+    aggro:true,
     mob_type: 'animal',
     attackable: true,
+    img: `${Config.URLS.IMAGES}/mobs/DireWolf_100.png`,
     inventory: [
       {
-        description: '7 Spined Hides (Carve)',
+        id: 27,
+        count: 7,
         chance: [1, 1]
       }
     ],
     credits: 0,
     skills: {
-      wrestling: [60,
-        80],
-      tactics: [50,
-        70],
-      magic_resistance: [57,
-        75
-      ]
+      wrestling: [60,80],
+      tactics: [50,70],
+      magic_resistance: [57,75]
     }
   },
   {
     id: 19,
     name: 'dog',
-    description: 'dog',
+    description: 'A dog begs you for a treat.',
     armor: 12,
-    karma: '-300',
+    karma: -300,
     fame: 0,
     stats: {
-      str: [27,
-        37],
-      dex: [28,
-        43],
-      int: [29,
-        37],
-      hp: [17,
-        22],
+      str: [27,37],
+      dex: [28,43],
+      int: [29,37],
+      hp: [17,22],
       taming: 0,
       barding: 17
     },
@@ -804,6 +666,7 @@ export const MobData = [
     },
     move: 1,
     mob_type: 'animal',
+    img: `${Config.URLS.IMAGES}/mobs/Dog_100.png`,
     attackable: true,
     inventory: [
       {
@@ -813,31 +676,23 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [19,
-        31],
-      tactics: [19,
-        31],
-      magic_resistance: [22,
-        47
-      ]
+      wrestling: [19,31],
+      tactics: [19,31],
+      magic_resistance: [22,47]
     }
   },
   {
     id: 20,
     name: 'dolphin',
-    description: 'dolphin',
+    description: 'A dolphin swims around playfully.',
     armor: 16,
-    karma: '-2000',
-    fame: '500',
+    karma: -2000,
+    fame: 500,
     stats: {
-      str: [21,
-        49],
-      dex: [66,
-        85],
-      int: [96,
-        110],
-      hp: [15,
-        27],
+      str: [21,49],
+      dex: [66,85],
+      int: [96,110],
+      hp: [15,27],
       taming: null,
       barding: 26
     },
@@ -846,7 +701,7 @@ export const MobData = [
       max: 6,
       speed: 2
     },
-    move: 1,
+    move: 2,
     mob_type: 'animal',
     attackable: true,
     inventory: [
@@ -857,31 +712,23 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [19,
-        29],
-      tactics: [19,
-        29],
-      magic_resistance: [15,
-        20
-      ]
+      wrestling: [19,29],
+      tactics: [19,29],
+      magic_resistance: [15,20]
     }
   },
   {
     id: 21,
     name: 'eagle',
-    description: 'eagle',
+    description: 'A majestic eagle is perched here.',
     armor: 22,
     karma: 0,
-    fame: '300',
+    fame: 300,
     stats: {
-      str: [31,
-        47],
-      dex: [36,
-        60],
-      int: [8,
-        20],
-      hp: [20,
-        27],
+      str: [31,47],
+      dex: [36,60],
+      int: [8,20],
+      hp: [20,27],
       taming: 17.1,
       barding: 18
     },
@@ -890,7 +737,8 @@ export const MobData = [
       max: 10,
       speed: 2
     },
-    move: 1,
+    move: 2,
+    img: `${Config.URLS.IMAGES}/mobs/Eagle_100.png`,
     mob_type: 'animal',
     attackable: true,
     inventory: [
@@ -899,16 +747,11 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [50,
-      100],
+    credits: [50,100],
     skills: {
-      wrestling: [20,
-        30],
-      tactics: [18,
-        37],
-      magic_resistance: [15,
-        30
-      ]
+      wrestling: [20,30],
+      tactics: [18,37],
+      magic_resistance: [15,30]
     }
   },
   {
@@ -917,14 +760,10 @@ export const MobData = [
     description: 'faction war horse',
     armor: null,
     stats: {
-      str: [400,
-        400],
-      dex: [125,
-        125],
-      int: [51,
-        55],
-      hp: [240,
-        240],
+      str: [400,400],
+      dex: [125,125],
+      int: [51,55],
+      hp: [240,240],
       taming: 11.1,
       barding: 65
     },
@@ -936,104 +775,10 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    img: `${Config.URLS.IMAGES}/mobs/FactionWarHorse_100.png`,
+    inventory: [],
     credits: 0,
     skills: {
-
-    }
-  },
-  {
-    id: 23,
-    name: 'faction war horse council of mages',
-    description: 'faction war horse council of mages',
-    armor: null,
-    stats: {
-      taming: null,
-      barding: null
-    },
-    offense: {
-      speed: 2
-    },
-    move: 1,
-    mob_type: 'animal',
-    attackable: true,
-    inventory: [
-      null
-    ],
-    credits: 0,
-    skills: {
-
-    }
-  },
-  {
-    id: 24,
-    name: 'faction war horse minax',
-    description: 'faction war horse minax',
-    armor: null,
-    stats: {
-      taming: null,
-      barding: null
-    },
-    offense: {
-      speed: 2
-    },
-    move: 1,
-    mob_type: 'animal',
-    attackable: true,
-    inventory: [
-      null
-    ],
-    credits: 0,
-    skills: {
-
-    }
-  },
-  {
-    id: 25,
-    name: 'faction war horse shadowlords',
-    description: 'faction war horse shadowlords',
-    armor: null,
-    stats: {
-      taming: null,
-      barding: null
-    },
-    offense: {
-      speed: 2
-    },
-    move: 1,
-    mob_type: 'animal',
-    attackable: true,
-    inventory: [
-      null
-    ],
-    credits: 0,
-    skills: {
-
-    }
-  },
-  {
-    id: 26,
-    name: 'faction war horse true britannians',
-    description: 'faction war horse true britannians',
-    armor: null,
-    stats: {
-      taming: null,
-      barding: null
-    },
-    offense: {
-      speed: 2
-    },
-    move: 1,
-    mob_type: 'animal',
-    attackable: true,
-    inventory: [
-      null
-    ],
-    credits: 0,
-    skills: {
-
     }
   },
   {
@@ -1041,8 +786,8 @@ export const MobData = [
     name: 'fire steed',
     description: 'fire steed',
     armor: 0,
-    karma: '-20000',
-    fame: '20000',
+    karma: -20000,
+    fame: 20000,
     stats: {
       str: [376,
         400],
@@ -1061,9 +806,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: 100.0,
@@ -1079,7 +822,7 @@ export const MobData = [
     description: 'forest ostard',
     armor: null,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
       str: [94,
         170],
@@ -1122,8 +865,8 @@ export const MobData = [
     name: 'frenzied ostard',
     description: 'frenzied ostard',
     armor: 0,
-    karma: '-1500',
-    fame: '1500',
+    karma: -1500,
+    fame: 1500,
     stats: {
       str: [94,
         170],
@@ -1166,8 +909,8 @@ export const MobData = [
     name: 'giant serpent',
     description: 'giant serpent',
     armor: 32,
-    karma: '-2500',
-    fame: '2500',
+    karma: -2500,
+    fame: 2500,
     stats: {
       str: [186,
         215],
@@ -1214,8 +957,8 @@ export const MobData = [
     name: 'giant toad',
     description: 'giant toad',
     armor: 24,
-    karma: '-750',
-    fame: '750',
+    karma: -750,
+    fame: 750,
     stats: {
       str: [76,
         100],
@@ -1260,7 +1003,7 @@ export const MobData = [
     description: 'goat',
     armor: 10,
     karma: 0,
-    fame: '150',
+    fame: 150,
     stats: {
       str: [19,
         19],
@@ -1300,7 +1043,7 @@ export const MobData = [
     description: 'gorilla',
     armor: 20,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
       str: [53,
         95],
@@ -1344,7 +1087,7 @@ export const MobData = [
     description: 'great hart',
     armor: 24,
     karma: 0,
-    fame: '300',
+    fame: 300,
     stats: {
       str: [41,
         71],
@@ -1388,7 +1131,7 @@ export const MobData = [
     description: 'grey wolf',
     armor: 16,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -1432,7 +1175,7 @@ export const MobData = [
     description: 'grizzly bear',
     armor: 24,
     karma: 0,
-    fame: '1000',
+    fame: 1000,
     stats: {
       str: [126,
         155],
@@ -1514,8 +1257,8 @@ export const MobData = [
     name: 'horse',
     description: 'horse',
     armor: null,
-    karma: '-300',
-    fame: '300',
+    karma: -300,
+    fame: 300,
     stats: {
       str: [22,
         98],
@@ -1594,8 +1337,8 @@ export const MobData = [
     name: 'ice snake',
     description: 'ice snake',
     armor: 30,
-    karma: '-900',
-    fame: '900',
+    karma: -900,
+    fame: 900,
     stats: {
       str: [42,
         54],
@@ -1643,7 +1386,7 @@ export const MobData = [
     description: 'jack rabbit',
     armor: 4,
     karma: 0,
-    fame: '150',
+    fame: 150,
     stats: {
       str: [15,
         15],
@@ -1686,7 +1429,7 @@ export const MobData = [
       '',
       '3000'
     ],
-    fame: '3000',
+    fame: 3000,
     stats: {
       str: [126,
         150],
@@ -1733,8 +1476,8 @@ export const MobData = [
     name: 'lava serpent',
     description: 'lava serpent',
     armor: 40,
-    karma: '-4500',
-    fame: '4500',
+    karma: -4500,
+    fame: 4500,
     stats: {
       str: [386,
         415],
@@ -1781,8 +1524,8 @@ export const MobData = [
     name: 'lava snake',
     description: 'lava snake',
     armor: 24,
-    karma: '-600',
-    fame: '600',
+    karma: -600,
+    fame: 600,
     stats: {
       str: [43,
         55],
@@ -1830,7 +1573,7 @@ export const MobData = [
     description: 'llama',
     armor: 16,
     karma: 0,
-    fame: '300',
+    fame: 300,
     stats: {
       str: [21,
         49],
@@ -1874,7 +1617,7 @@ export const MobData = [
     description: 'mountain goat',
     armor: 10,
     karma: 0,
-    fame: '300',
+    fame: 300,
     stats: {
       str: [22,
         64],
@@ -1893,9 +1636,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: [29,
@@ -1916,7 +1657,7 @@ export const MobData = [
       '',
       '14000'
     ],
-    fame: '14000',
+    fame: 14000,
     stats: {
       str: [496,
         525],
@@ -1960,7 +1701,7 @@ export const MobData = [
     name: 'pack horse',
     description: 'pack horse',
     armor: 16,
-    karma: '-200',
+    karma: -200,
     fame: 0,
     stats: {
       str: [44,
@@ -2004,7 +1745,7 @@ export const MobData = [
     name: 'pack llama',
     description: 'pack llama',
     armor: 16,
-    karma: '-200',
+    karma: -200,
     fame: 0,
     stats: {
       str: [52,
@@ -2049,7 +1790,7 @@ export const MobData = [
     description: 'panther',
     armor: 16,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
       str: [61,
         85],
@@ -2132,7 +1873,7 @@ export const MobData = [
     description: 'pig',
     armor: 12,
     karma: 0,
-    fame: '150',
+    fame: 150,
     stats: {
       str: [20,
         20],
@@ -2172,7 +1913,7 @@ export const MobData = [
     description: 'polar bear',
     armor: 18,
     karma: 0,
-    fame: '1500',
+    fame: 1500,
     stats: {
       str: [116,
         140],
@@ -2255,7 +1996,7 @@ export const MobData = [
     description: 'rabbit',
     armor: 6,
     karma: 0,
-    fame: '150',
+    fame: 150,
     stats: {
       str: [6,
         10],
@@ -2294,11 +2035,8 @@ export const MobData = [
     name: 'raging grizzly bear',
     description: 'raging grizzly bear',
     armor: 24,
-    karma: [
-      '',
-      '10,000'
-    ],
-    fame: '10,000',
+    karma: 10000,
+    fame: 10000,
     stats: {
       str: [1,
         1],
@@ -2341,8 +2079,8 @@ export const MobData = [
     name: 'rat',
     description: 'rat',
     armor: 6,
-    karma: '-150',
-    fame: '150',
+    karma: -150,
+    fame: 150,
     stats: {
       str: [9,
         9],
@@ -2405,9 +2143,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -2428,9 +2164,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -2441,8 +2175,8 @@ export const MobData = [
     name: 'sewer rat',
     description: 'sewer rat',
     armor: 6,
-    karma: '-300',
-    fame: '300',
+    karma: -300,
+    fame: 300,
     stats: {
       str: [9,
         9],
@@ -2485,8 +2219,8 @@ export const MobData = [
     name: 'silver serpent',
     description: 'silver serpent',
     armor: 40,
-    karma: '-7000',
-    fame: '7000',
+    karma: -7000,
+    fame: 7000,
     stats: {
       str: [161,
         360],
@@ -2533,7 +2267,7 @@ export const MobData = [
     name: 'silver steed',
     description: 'silver steed',
     armor: null,
-    karma: 'unknown negative',
+    karma: 0,
     fame: 0,
     stats: {
       str: [78,
@@ -2551,9 +2285,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: 39,
@@ -2576,9 +2308,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -2589,8 +2319,8 @@ export const MobData = [
     name: 'snake',
     description: 'snake',
     armor: 16,
-    karma: '-300',
-    fame: '300',
+    karma: -300,
+    fame: 300,
     stats: {
       str: [22,
         34],
@@ -2637,7 +2367,7 @@ export const MobData = [
     description: 'snow leopard',
     armor: 24,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -2680,8 +2410,8 @@ export const MobData = [
     name: 'swamp dragon',
     description: 'swamp dragon',
     armor: 0,
-    karma: '-2000',
-    fame: '2000',
+    karma: -2000,
+    fame: 2000,
     stats: {
       str: [201,
         300],
@@ -2700,9 +2430,7 @@ export const MobData = [
     move: 1,
     mob_type: 'animal',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: [45,
@@ -2720,7 +2448,7 @@ export const MobData = [
     description: 'timber wolf',
     armor: 16,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -2799,8 +2527,8 @@ export const MobData = [
     name: 'unicorn',
     description: 'unicorn',
     armor: 0,
-    karma: '9000',
-    fame: '9000',
+    karma: 9000,
+    fame: 9000,
     stats: {
       str: [296,
         325],
@@ -2848,7 +2576,7 @@ export const MobData = [
     description: 'walrus',
     armor: 18,
     karma: 0,
-    fame: '150',
+    fame: 150,
     stats: {
       str: [21,
         29],
@@ -2892,7 +2620,7 @@ export const MobData = [
     description: 'white wolf',
     armor: 16,
     karma: 0,
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -2955,9 +2683,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -2978,9 +2704,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3001,9 +2725,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3024,9 +2746,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3047,9 +2767,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3070,9 +2788,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3083,8 +2799,8 @@ export const MobData = [
     name: 'dread spider',
     description: 'dread spider',
     armor: 36,
-    karma: '-5000',
-    fame: '5000',
+    karma: -5000,
+    fame: 5000,
     stats: {
       str: [196,
         220],
@@ -3151,9 +2867,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3184,9 +2898,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3217,9 +2929,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3250,9 +2960,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3283,9 +2991,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3296,8 +3002,8 @@ export const MobData = [
     name: 'frost spider',
     description: 'frost spider',
     armor: 28,
-    karma: '-775',
-    fame: '775',
+    karma: -775,
+    fame: 775,
     stats: {
       str: [76,
         100],
@@ -3344,8 +3050,8 @@ export const MobData = [
     name: 'giant black widow',
     description: 'giant black widow',
     armor: 24,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [76,
         100],
@@ -3364,9 +3070,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [125,
       175],
     skills: {
@@ -3384,8 +3088,8 @@ export const MobData = [
     name: 'giant spider',
     description: 'giant spider',
     armor: 16,
-    karma: '-600',
-    fame: '600',
+    karma: -600,
+    fame: 600,
     stats: {
       str: [76,
         100],
@@ -3452,9 +3156,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3475,9 +3177,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3498,9 +3198,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3521,9 +3219,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3544,9 +3240,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3567,9 +3261,7 @@ export const MobData = [
     move: 1,
     mob_type: 'arachnids',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -3584,7 +3276,7 @@ export const MobData = [
       '',
       '15000'
     ],
-    fame: '15000',
+    fame: 15000,
     stats: {
       str: [467,
         645],
@@ -3635,7 +3327,7 @@ export const MobData = [
       '',
       '2000'
     ],
-    fame: '2000',
+    fame: 2000,
     stats: {
       str: [36,
         65],
@@ -3725,7 +3417,7 @@ export const MobData = [
       '',
       '10000'
     ],
-    fame: '10000',
+    fame: 10000,
     stats: {
       str: [316,
         405],
@@ -3773,7 +3465,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [166,
         215],
@@ -4082,7 +3774,7 @@ export const MobData = [
       '',
       '8500'
     ],
-    fame: '8500',
+    fame: 8500,
     stats: {
       str: [880,
         950],
@@ -4619,7 +4311,7 @@ export const MobData = [
       '',
       '22500'
     ],
-    fame: '22500',
+    fame: 22500,
     stats: {
       str: [305,
         425],
@@ -4700,11 +4392,8 @@ export const MobData = [
     name: 'harrower',
     description: 'harrower',
     armor: 60,
-    karma: [
-      '',
-      '25,000'
-    ],
-    fame: '25,000',
+    karma: 25000,
+    fame: 25000,
     stats: {
       str: [900,
         1],
@@ -4750,8 +4439,8 @@ export const MobData = [
     name: 'lord oaks',
     description: 'lord oaks',
     armor: 100,
-    karma: '22500',
-    fame: '22500',
+    karma: 22500,
+    fame: 22500,
     stats: {
       str: [403,
         850],
@@ -4799,7 +4488,7 @@ export const MobData = [
       '',
       '22500'
     ],
-    fame: '22500',
+    fame: 22500,
     stats: {
       str: [505,
         1],
@@ -4890,7 +4579,7 @@ export const MobData = [
       '',
       '22500'
     ],
-    fame: '22500',
+    fame: 22500,
     stats: {
       str: [701,
         900],
@@ -4937,7 +4626,7 @@ export const MobData = [
       '',
       '24000'
     ],
-    fame: '24000',
+    fame: 24000,
     stats: {
       str: [502,
         600],
@@ -5029,11 +4718,8 @@ export const MobData = [
     name: 'the true harrower',
     description: 'the true harrower',
     armor: 60,
-    karma: [
-      '',
-      '25,000'
-    ],
-    fame: '25,000',
+    karma: 25000,
+    fame: 25000,
     stats: {
       str: [900,
         1],
@@ -5079,8 +4765,8 @@ export const MobData = [
     name: 'arcane daemon',
     description: 'arcane daemon',
     armor: 55,
-    karma: '-10000',
-    fame: '7000',
+    karma: -10000,
+    fame: 7000,
     stats: {
       str: [131,
         150],
@@ -5099,9 +4785,7 @@ export const MobData = [
     move: 1,
     mob_type: 'daemons',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [250,
       300],
     skills: {
@@ -5119,8 +4803,8 @@ export const MobData = [
     name: 'balron',
     description: 'balron',
     armor: 90,
-    karma: '-24000',
-    fame: '24000',
+    karma: -24000,
+    fame: 24000,
     stats: {
       str: [969,
         1],
@@ -5167,8 +4851,8 @@ export const MobData = [
     name: 'chaos daemon',
     description: 'chaos daemon',
     armor: 15,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [106,
         130],
@@ -5187,9 +4871,7 @@ export const MobData = [
     move: 1,
     mob_type: 'daemons',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [175,
       225],
     skills: {
@@ -5207,8 +4889,8 @@ export const MobData = [
     name: 'daemon',
     description: 'daemon',
     armor: 58,
-    karma: '-15000',
-    fame: '15000',
+    karma: -15000,
+    fame: 15000,
     stats: {
       str: [476,
         505],
@@ -5255,8 +4937,8 @@ export const MobData = [
     name: 'ice fiend',
     description: 'ice fiend',
     armor: 60,
-    karma: 'lvl 5 -18000',
-    fame: 'lvl 5 18000',
+    karma: -18000,
+    fame: 18000,
     stats: {
       str: [376,
         405],
@@ -5303,8 +4985,8 @@ export const MobData = [
     name: 'moloch',
     description: 'moloch',
     armor: 32,
-    karma: 'lvl 4 -7500',
-    fame: 'lvl 4 7500',
+    karma: -7500,
+    fame: 7500,
     stats: {
       str: [331,
         360],
@@ -5323,9 +5005,7 @@ export const MobData = [
     move: 1,
     mob_type: 'daemons',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [300,
       350],
     skills: {
@@ -5382,8 +5062,8 @@ export const MobData = [
     name: 'acid elemental',
     description: 'acid elemental',
     armor: 40,
-    karma: '-10,000',
-    fame: '10,000',
+    karma: -10000,
+    fame: 10000,
     stats: {
       str: [326,
         355],
@@ -5430,8 +5110,8 @@ export const MobData = [
     name: 'agapite elemental',
     description: 'agapite elemental',
     armor: 32,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [226,
         255],
@@ -5478,8 +5158,8 @@ export const MobData = [
     name: 'air elemental',
     description: 'air elemental',
     armor: 40,
-    karma: '-4500',
-    fame: '4500',
+    karma: -4500,
+    fame: 4500,
     stats: {
       str: [126,
         155],
@@ -5546,9 +5226,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -5579,9 +5257,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -5592,8 +5268,8 @@ export const MobData = [
     name: 'blood elemental',
     description: 'blood elemental',
     armor: 60,
-    karma: '-12500',
-    fame: '12500',
+    karma: -12500,
+    fame: 12500,
     stats: {
       str: [526,
         615],
@@ -5640,8 +5316,8 @@ export const MobData = [
     name: 'bronze elemental',
     description: 'bronze elemental',
     armor: 29,
-    karma: '-5000',
-    fame: '5000',
+    karma: -5000,
+    fame: 5000,
     stats: {
       str: [226,
         255],
@@ -5708,9 +5384,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -5721,8 +5395,8 @@ export const MobData = [
     name: 'copper elemental',
     description: 'copper elemental',
     armor: 26,
-    karma: '-4800',
-    fame: '4800',
+    karma: -4800,
+    fame: 4800,
     stats: {
       str: [226,
         255],
@@ -5789,9 +5463,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -5806,7 +5478,7 @@ export const MobData = [
       '',
       '8500'
     ],
-    fame: '8500',
+    fame: 8500,
     stats: {
       str: [880,
         950],
@@ -5850,8 +5522,8 @@ export const MobData = [
     name: 'dull copper elemental',
     description: 'dull copper elemental',
     armor: 20,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [226,
         255],
@@ -5898,8 +5570,8 @@ export const MobData = [
     name: 'earth elemental',
     description: 'earth elemental',
     armor: 34,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [126,
         155],
@@ -5946,8 +5618,8 @@ export const MobData = [
     name: 'efreet',
     description: 'efreet',
     armor: 98,
-    karma: '-10000',
-    fame: '10000',
+    karma: -10000,
+    fame: 10000,
     stats: {
       str: [326,
         355],
@@ -6050,9 +5722,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -6063,8 +5733,8 @@ export const MobData = [
     name: 'fire elemental',
     description: 'fire elemental',
     armor: 40,
-    karma: '-4500',
-    fame: '4500',
+    karma: -4500,
+    fame: 4500,
     stats: {
       str: [126,
         155],
@@ -6108,8 +5778,8 @@ export const MobData = [
     name: 'golden elemental',
     description: 'golden elemental',
     armor: 60,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [226,
         255],
@@ -6156,8 +5826,8 @@ export const MobData = [
     name: 'ice elemental',
     description: 'ice elemental',
     armor: 40,
-    karma: '-4000',
-    fame: '4000',
+    karma: -4000,
+    fame: 4000,
     stats: {
       str: [156,
         185],
@@ -6318,8 +5988,8 @@ export const MobData = [
     name: 'poison elemental',
     description: 'poison elemental',
     armor: 70,
-    karma: '-12500',
-    fame: '12500',
+    karma: -12500,
+    fame: 12500,
     stats: {
       str: [426,
         515],
@@ -6386,9 +6056,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -6403,7 +6071,7 @@ export const MobData = [
       '',
       '4500'
     ],
-    fame: '4500',
+    fame: 4500,
     stats: {
       str: [96,
         120],
@@ -6422,9 +6090,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [100,
       150],
     skills: {
@@ -6497,9 +6163,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -6514,7 +6178,7 @@ export const MobData = [
       '',
       '3500'
     ],
-    fame: '3500',
+    fame: 3500,
     stats: {
       str: [226,
         255],
@@ -6561,8 +6225,8 @@ export const MobData = [
     name: 'snow elemental',
     description: 'snow elemental',
     armor: 50,
-    karma: '-5000',
-    fame: '5000',
+    karma: -5000,
+    fame: 5000,
     stats: {
       str: [326,
         355],
@@ -6609,8 +6273,8 @@ export const MobData = [
     name: 'stone elemental',
     description: 'stone elemental',
     armor: 26,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [226,
         255],
@@ -6675,9 +6339,7 @@ export const MobData = [
     move: 1,
     mob_type: 'elementals',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -6692,7 +6354,7 @@ export const MobData = [
       '',
       '3500'
     ],
-    fame: '3500',
+    fame: 3500,
     stats: {
       str: [226,
         255],
@@ -6743,7 +6405,7 @@ export const MobData = [
       '',
       '3500'
     ],
-    fame: '3500',
+    fame: 3500,
     stats: {
       str: [226,
         255],
@@ -6790,8 +6452,8 @@ export const MobData = [
     name: 'water elemental',
     description: 'water elemental',
     armor: 40,
-    karma: '-4500',
-    fame: '4500',
+    karma: -4500,
+    fame: 4500,
     stats: {
       str: [126,
         155],
@@ -6835,8 +6497,8 @@ export const MobData = [
     name: 'enslaved gargoyle',
     description: 'enslaved gargoyle',
     armor: 35,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [302,
         360],
@@ -6855,9 +6517,7 @@ export const MobData = [
     move: 1,
     mob_type: 'gargoyles',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [250,
       300],
     skills: {
@@ -6875,8 +6535,8 @@ export const MobData = [
     name: 'fire gargoyle',
     description: 'fire gargoyle',
     armor: 32,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [351,
         400],
@@ -6962,8 +6622,8 @@ export const MobData = [
     name: 'gargoyle destroyer',
     description: 'gargoyle destroyer',
     armor: 50,
-    karma: '-10000',
-    fame: '10000',
+    karma: -10000,
+    fame: 10000,
     stats: {
       str: [760,
         850],
@@ -6982,9 +6642,7 @@ export const MobData = [
     move: 1,
     mob_type: 'gargoyles',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [750,
       950],
     skills: {
@@ -7002,8 +6660,8 @@ export const MobData = [
     name: 'gargoyle enforcer',
     description: 'gargoyle enforcer',
     armor: 50,
-    karma: '-5000',
-    fame: '5000',
+    karma: -5000,
+    fame: 5000,
     stats: {
       str: [260,
         350],
@@ -7022,9 +6680,7 @@ export const MobData = [
     move: 1,
     mob_type: 'gargoyles',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [275,
       325],
     skills: {
@@ -7078,8 +6734,8 @@ export const MobData = [
     name: 'stone gargoyle',
     description: 'stone gargoyle',
     armor: 50,
-    karma: '4000',
-    fame: '4000',
+    karma: 4000,
+    fame: 4000,
     stats: {
       str: [246,
         275],
@@ -7143,9 +6799,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7176,9 +6830,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7189,8 +6841,8 @@ export const MobData = [
     name: 'ancient lich',
     description: 'ancient lich',
     armor: 60,
-    karma: '-23000',
-    fame: '23000',
+    karma: -23000,
+    fame: 23000,
     stats: {
       str: [206,
         305],
@@ -7283,9 +6935,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7316,9 +6966,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7368,8 +7016,8 @@ export const MobData = [
     name: 'betrayer',
     description: 'betrayer',
     armor: 65,
-    karma: '-15000',
-    fame: '15000',
+    karma: -15000,
+    fame: 15000,
     stats: {
       str: [401,
         500],
@@ -7388,9 +7036,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [750,
       900],
     skills: {
@@ -7428,9 +7074,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7480,8 +7124,8 @@ export const MobData = [
     name: 'bogling',
     description: 'bogling',
     armor: 28,
-    karma: '-450',
-    fame: '450',
+    karma: -450,
+    fame: 450,
     stats: {
       str: [96,
         120],
@@ -7500,9 +7144,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [50,
       100],
     skills: {
@@ -7520,8 +7162,8 @@ export const MobData = [
     name: 'bone knight',
     description: 'bone knight',
     armor: 40,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [195,
         250],
@@ -7565,8 +7207,8 @@ export const MobData = [
     name: 'bone magi',
     description: 'bone magi',
     armor: 38,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [76,
         100],
@@ -7653,7 +7295,7 @@ export const MobData = [
       '',
       '1000'
     ],
-    fame: '1000',
+    fame: 1000,
     stats: {
       str: [86,
         100],
@@ -7798,9 +7440,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7831,9 +7471,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7864,9 +7502,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -7956,7 +7592,7 @@ export const MobData = [
       '',
       '2500'
     ],
-    fame: '2500',
+    fame: 2500,
     stats: {
       str: [81,
         105],
@@ -8057,7 +7693,7 @@ export const MobData = [
     name: 'executioner',
     description: 'executioner',
     armor: null,
-    karma: '5000',
+    karma: 5000,
     fame: [
       '',
       '5000'
@@ -8126,9 +7762,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8159,9 +7793,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8192,9 +7824,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8225,9 +7855,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8258,9 +7886,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8291,9 +7917,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8324,9 +7948,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8357,9 +7979,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8390,9 +8010,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8423,9 +8041,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8456,9 +8072,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8469,8 +8083,8 @@ export const MobData = [
     name: 'ghoul',
     description: 'ghoul',
     armor: 28,
-    karma: '-2500',
-    fame: '2500',
+    karma: -2500,
+    fame: 2500,
     stats: {
       str: [76,
         100],
@@ -8570,9 +8184,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8603,9 +8215,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8672,9 +8282,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8689,7 +8297,7 @@ export const MobData = [
       '',
       '8000'
     ],
-    fame: '8000',
+    fame: 8000,
     stats: {
       str: [171,
         200],
@@ -8739,7 +8347,7 @@ export const MobData = [
       '',
       '18000'
     ],
-    fame: '18000',
+    fame: 18000,
     stats: {
       str: [416,
         505],
@@ -8806,9 +8414,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8839,9 +8445,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8872,9 +8476,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8905,9 +8507,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -8994,7 +8594,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [346,
         370],
@@ -9420,7 +9020,7 @@ export const MobData = [
       '',
       '1500'
     ],
-    fame: '1500',
+    fame: 1500,
     stats: {
       str: [96,
         120],
@@ -9471,7 +9071,7 @@ export const MobData = [
       '',
       '6500'
     ],
-    fame: '6500',
+    fame: 6500,
     stats: {
       str: [146,
         180],
@@ -9522,7 +9122,7 @@ export const MobData = [
       '',
       '7500'
     ],
-    fame: '7500',
+    fame: 7500,
     stats: {
       str: [146,
         180],
@@ -9609,7 +9209,7 @@ export const MobData = [
       '',
       '500'
     ],
-    fame: '500',
+    fame: 500,
     stats: {
       str: [26,
         40],
@@ -9628,9 +9228,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: [20,
@@ -9695,7 +9293,7 @@ export const MobData = [
       '',
       '12500'
     ],
-    fame: '12500',
+    fame: 12500,
     stats: {
       str: [301,
         350],
@@ -9743,7 +9341,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [76,
         100],
@@ -9790,8 +9388,8 @@ export const MobData = [
     name: 'skeletal knight',
     description: 'skeletal knight',
     armor: 40,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [196,
         250],
@@ -9835,8 +9433,8 @@ export const MobData = [
     name: 'skeletal mage',
     description: 'skeletal mage',
     armor: 38,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [76,
         100],
@@ -9884,7 +9482,7 @@ export const MobData = [
       '',
       '450'
     ],
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -9932,7 +9530,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [76,
         100],
@@ -10093,8 +9691,8 @@ export const MobData = [
     name: 'wandering healer',
     description: 'wandering healer',
     armor: null,
-    karma: '10000',
-    fame: '1000',
+    karma: 10000,
+    fame: 1000,
     stats: {
       str: [0,
         null],
@@ -10115,9 +9713,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: [0,0],
@@ -10137,7 +9733,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [76,
         100],
@@ -10188,7 +9784,7 @@ export const MobData = [
       '',
       '600'
     ],
-    fame: '600',
+    fame: 600,
     stats: {
       str: [46,
         70],
@@ -10232,8 +9828,8 @@ export const MobData = [
     name: 'cave troll',
     description: 'cave troll',
     armor: 40,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [475,
         525],
@@ -10516,8 +10112,8 @@ export const MobData = [
     name: 'arctic ogre lord',
     description: 'arctic ogre lord',
     armor: 50,
-    karma: '-15,000',
-    fame: '15,000',
+    karma: -15000,
+    fame: 15000,
     stats: {
       str: [767,
         945],
@@ -10633,8 +10229,8 @@ export const MobData = [
     name: 'cave troll',
     description: 'cave troll',
     armor: 40,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [475,
         525],
@@ -10681,8 +10277,8 @@ export const MobData = [
     name: 'centaur',
     description: 'centaur',
     armor: 50,
-    karma: '0',
-    fame: '6500',
+    karma: 0,
+    fame: 6500,
     stats: {
       str: [202,
         300],
@@ -10765,8 +10361,8 @@ export const MobData = [
     name: 'cyclops',
     description: 'cyclops',
     armor: 48,
-    karma: '-4500',
-    fame: '4500',
+    karma: -4500,
+    fame: 4500,
     stats: {
       str: [336,
         385],
@@ -10817,7 +10413,7 @@ export const MobData = [
       '',
       '10000'
     ],
-    fame: '15000',
+    fame: 15000,
     stats: {
       str: [196,
         225],
@@ -10836,9 +10432,7 @@ export const MobData = [
     move: 1,
     mob_type: 'misc_monsters',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [400,
       500],
     skills: {
@@ -10854,8 +10448,8 @@ export const MobData = [
     name: 'elder gazer',
     description: 'elder gazer',
     armor: 50,
-    karma: '-12500',
-    fame: '12500',
+    karma: -12500,
+    fame: 12500,
     stats: {
       str: [296,
         325],
@@ -10902,8 +10496,8 @@ export const MobData = [
     name: 'ethereal warrior',
     description: 'ethereal warrior',
     armor: 120,
-    karma: '7000',
-    fame: '7000',
+    karma: 7000,
+    fame: 7000,
     stats: {
       str: [586,
         785],
@@ -10950,8 +10544,8 @@ export const MobData = [
     name: 'ettin',
     description: 'ettin',
     armor: 38,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [136,
         165],
@@ -11034,8 +10628,8 @@ export const MobData = [
     name: 'frost troll',
     description: 'frost troll',
     armor: 50,
-    karma: '-4000',
-    fame: '4000',
+    karma: -4000,
+    fame: 4000,
     stats: {
       str: [76,
         100],
@@ -11121,8 +10715,8 @@ export const MobData = [
     name: 'gazer',
     description: 'gazer',
     armor: 36,
-    karma: '-3500',
-    fame: '3500',
+    karma: -3500,
+    fame: 3500,
     stats: {
       str: [96,
         125],
@@ -11166,8 +10760,8 @@ export const MobData = [
     name: 'gazer larva',
     description: 'gazer larva',
     armor: 25,
-    karma: '-900',
-    fame: '900',
+    karma: -900,
+    fame: 900,
     stats: {
       str: [76,
         100],
@@ -11186,9 +10780,7 @@ export const MobData = [
     move: 1,
     mob_type: 'misc_monsters',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [25,
       50],
     skills: {
@@ -11206,7 +10798,7 @@ export const MobData = [
       '',
       '2500'
     ],
-    fame: '2500',
+    fame: 2500,
     stats: {
       str: [86,
         120],
@@ -11296,7 +10888,7 @@ export const MobData = [
       '',
       '3400'
     ],
-    fame: '3400',
+    fame: 3400,
     stats: {
       str: [102,
         150],
@@ -11347,7 +10939,7 @@ export const MobData = [
       '',
       '500'
     ],
-    fame: '500',
+    fame: 500,
     stats: {
       str: [16,
         40],
@@ -11366,9 +10958,7 @@ export const MobData = [
     move: 1,
     mob_type: 'misc_monsters',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: [25,
@@ -11389,7 +10979,7 @@ export const MobData = [
       '',
       '2500'
     ],
-    fame: '2500',
+    fame: 2500,
     stats: {
       str: [91,
         115],
@@ -11512,7 +11102,7 @@ export const MobData = [
       '',
       '150'
     ],
-    fame: '150',
+    fame: 150,
     stats: {
       str: [6,
         10],
@@ -11602,7 +11192,7 @@ export const MobData = [
       '',
       '3000'
     ],
-    fame: '3000',
+    fame: 3000,
     stats: {
       str: [166,
         195],
@@ -11650,7 +11240,7 @@ export const MobData = [
       '',
       '15000'
     ],
-    fame: '15000',
+    fame: 15000,
     stats: {
       str: [767,
         945],
@@ -11733,8 +11323,8 @@ export const MobData = [
     name: 'pixie',
     description: 'pixie',
     armor: 100,
-    karma: '7000',
-    fame: '7000',
+    karma: 7000,
+    fame: 7000,
     stats: {
       str: [21,
         30],
@@ -11823,7 +11413,7 @@ export const MobData = [
       '',
       '2000'
     ],
-    fame: '2000',
+    fame: 2000,
     stats: {
       str: [73,
         115],
@@ -11880,9 +11470,7 @@ export const MobData = [
     move: 1,
     mob_type: 'misc_monsters',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -11897,7 +11485,7 @@ export const MobData = [
       '',
       '500'
     ],
-    fame: '500',
+    fame: 500,
     stats: {
       str: [50,
         50],
@@ -11984,7 +11572,7 @@ export const MobData = [
       '',
       '4500'
     ],
-    fame: '4500',
+    fame: 4500,
     stats: {
       str: [296,
         320],
@@ -12070,8 +11658,8 @@ export const MobData = [
     name: 'succubus',
     description: 'succubus',
     armor: 80,
-    karma: 'lvl 5 -24000',
-    fame: 'lvl 5 24000',
+    karma: -24000,
+    fame: 24000,
     stats: {
       str: [488,
         620],
@@ -12118,11 +11706,8 @@ export const MobData = [
     name: 'titan',
     description: 'titan',
     armor: 40,
-    karma: [
-      '',
-      '11500'
-    ],
-    fame: '11500',
+    karma: 11500,
+    fame: 11500,
     stats: {
       str: [536,
         585],
@@ -12173,7 +11758,7 @@ export const MobData = [
       '',
       '3500'
     ],
-    fame: '3500',
+    fame: 3500,
     stats: {
       str: [176,
         205],
@@ -12259,8 +11844,8 @@ export const MobData = [
     name: 'wisp',
     description: 'wisp',
     armor: 40,
-    karma: '0',
-    fame: '4000',
+    karma: 0,
+    fame: 4000,
     stats: {
       str: [196,
         225],
@@ -12343,7 +11928,7 @@ export const MobData = [
       '',
       '2500'
     ],
-    fame: '2500',
+    fame: 2500,
     stats: {
       str: [147,
         215],
@@ -12394,7 +11979,7 @@ export const MobData = [
       '',
       '15000'
     ],
-    fame: '15000',
+    fame: 15000,
     stats: {
       str: [767,
         945],
@@ -12413,9 +11998,7 @@ export const MobData = [
     move: 1,
     mob_type: 'orcs',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [750,
       950],
     skills: {
@@ -12437,7 +12020,7 @@ export const MobData = [
       '',
       '2500'
     ],
-    fame: '2500',
+    fame: 2500,
     stats: {
       str: [111,
         145],
@@ -12487,7 +12070,7 @@ export const MobData = [
       '',
       '1500'
     ],
-    fame: '1500',
+    fame: 1500,
     stats: {
       str: [96,
         120],
@@ -12611,8 +12194,8 @@ export const MobData = [
     name: 'bog thing',
     description: 'bog thing',
     armor: 28,
-    karma: '-8000',
-    fame: '8000',
+    karma: -8000,
+    fame: 8000,
     stats: {
       str: [801,
         900],
@@ -12631,9 +12214,7 @@ export const MobData = [
     move: 1,
     mob_type: 'plants',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [275,
       325],
     skills: {
@@ -12651,8 +12232,8 @@ export const MobData = [
     name: 'corpser',
     description: 'corpser',
     armor: 18,
-    karma: '-1000',
-    fame: '1000',
+    karma: -1000,
+    fame: 1000,
     stats: {
       str: [156,
         180],
@@ -12703,7 +12284,7 @@ export const MobData = [
       '',
       '1500'
     ],
-    fame: '1500',
+    fame: 1500,
     stats: {
       str: [101,
         130],
@@ -12722,9 +12303,7 @@ export const MobData = [
     move: 1,
     mob_type: 'plants',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [125,
       175],
     skills: {
@@ -12746,7 +12325,7 @@ export const MobData = [
       '',
       '3500'
     ],
-    fame: '3500',
+    fame: 3500,
     stats: {
       str: [66,
         215],
@@ -12797,7 +12376,7 @@ export const MobData = [
       '',
       '3000'
     ],
-    fame: '3000',
+    fame: 3000,
     stats: {
       str: [96,
         120],
@@ -12848,7 +12427,7 @@ export const MobData = [
       '',
       '1000'
     ],
-    fame: '1000',
+    fame: 1000,
     stats: {
       str: [251,
         300],
@@ -12867,9 +12446,7 @@ export const MobData = [
     move: 1,
     mob_type: 'plants',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [null,
       null],
     skills: {
@@ -12887,7 +12464,7 @@ export const MobData = [
       '',
       '1500'
     ],
-    fame: '1500',
+    fame: 1500,
     stats: {
       str: [96,
         120],
@@ -12938,7 +12515,7 @@ export const MobData = [
       '',
       '6500'
     ],
-    fame: '6500',
+    fame: 6500,
     stats: {
       str: [146,
         180],
@@ -12989,7 +12566,7 @@ export const MobData = [
       '',
       '7500'
     ],
-    fame: '7500',
+    fame: 7500,
     stats: {
       str: [146,
         180],
@@ -13072,8 +12649,8 @@ export const MobData = [
     name: 'ancient wyrm',
     description: 'ancient wyrm',
     armor: 70,
-    karma: '-22500',
-    fame: '22500',
+    karma: -22500,
+    fame: 22500,
     stats: {
       str: [1,
         1],
@@ -13156,8 +12733,8 @@ export const MobData = [
     name: 'deep sea serpent',
     description: 'deep sea serpent',
     armor: 60,
-    karma: '-6000',
-    fame: '6000',
+    karma: -6000,
+    fame: 6000,
     stats: {
       str: [251,
         425],
@@ -13204,8 +12781,8 @@ export const MobData = [
     name: 'dragon',
     description: 'dragon',
     armor: 60,
-    karma: '-15000',
-    fame: '15000',
+    karma: -15000,
+    fame: 15000,
     stats: {
       str: [796,
         825],
@@ -13252,8 +12829,8 @@ export const MobData = [
     name: 'drake',
     description: 'drake',
     armor: 46,
-    karma: '-5500',
-    fame: '5500',
+    karma: -5500,
+    fame: 5500,
     stats: {
       str: [401,
         430],
@@ -13343,7 +12920,7 @@ export const MobData = [
       '',
       '11000'
     ],
-    fame: '11000',
+    fame: 11000,
     stats: {
       str: [250,
         275],
@@ -13400,9 +12977,7 @@ export const MobData = [
     move: 1,
     mob_type: 'reptiles',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -13417,7 +12992,7 @@ export const MobData = [
       '',
       '1500'
     ],
-    fame: '1500',
+    fame: 1500,
     stats: {
       str: [96,
         120],
@@ -13621,7 +13196,7 @@ export const MobData = [
       '',
       '16000'
     ],
-    fame: '16000',
+    fame: 16000,
     stats: {
       str: [416,
         505],
@@ -13708,7 +13283,7 @@ export const MobData = [
       '',
       '4500'
     ],
-    fame: '4500',
+    fame: 4500,
     stats: {
       str: [150,
         320],
@@ -13758,7 +13333,7 @@ export const MobData = [
       '',
       '6000'
     ],
-    fame: '6000',
+    fame: 6000,
     stats: {
       str: [168,
         225],
@@ -13805,8 +13380,8 @@ export const MobData = [
     name: 'serpentine dragon',
     description: 'serpentine dragon',
     armor: 36,
-    karma: '15000',
-    fame: '15000',
+    karma: 15000,
+    fame: 15000,
     stats: {
       str: [111,
         140],
@@ -13855,7 +13430,7 @@ export const MobData = [
       '',
       '22500'
     ],
-    fame: '22500',
+    fame: 22500,
     stats: {
       str: [898,
         1],
@@ -13945,7 +13520,7 @@ export const MobData = [
       '',
       '22500'
     ],
-    fame: '22500',
+    fame: 22500,
     stats: {
       str: [898,
         1030],
@@ -13964,9 +13539,7 @@ export const MobData = [
     move: 1,
     mob_type: 'reptiles',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [1600,
       1800],
     skills: {
@@ -13988,7 +13561,7 @@ export const MobData = [
       '',
       '18000'
     ],
-    fame: '18000',
+    fame: 18000,
     stats: {
       str: [721,
         760],
@@ -14039,7 +13612,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [202,
         240],
@@ -14125,8 +13698,8 @@ export const MobData = [
     name: 'frost ooze',
     description: 'frost ooze',
     armor: 38,
-    karma: '-450',
-    fame: '450',
+    karma: -450,
+    fame: 450,
     stats: {
       str: [18,
         30],
@@ -14182,9 +13755,7 @@ export const MobData = [
     move: 1,
     mob_type: 'slimes',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -14199,7 +13770,7 @@ export const MobData = [
       '',
       '13000'
     ],
-    fame: '13000',
+    fame: 13000,
     stats: {
       str: [302,
         500],
@@ -14217,9 +13788,7 @@ export const MobData = [
     move: 1,
     mob_type: 'slimes',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: [450,
       600],
     skills: {
@@ -14237,7 +13806,7 @@ export const MobData = [
       '',
       '300'
     ],
-    fame: '300',
+    fame: 300,
     stats: {
       str: [22,
         34],
@@ -16857,9 +16426,7 @@ export const MobData = [
     move: 1,
     mob_type: 'special',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -16929,9 +16496,7 @@ export const MobData = [
     move: 1,
     mob_type: 'special',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -17793,9 +17358,7 @@ export const MobData = [
     move: 1,
     mob_type: 'special',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -18032,7 +17595,7 @@ export const MobData = [
       '',
       '450'
     ],
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -18083,7 +17646,7 @@ export const MobData = [
       '',
       '450'
     ],
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -18132,7 +17695,7 @@ export const MobData = [
       '',
       '450'
     ],
-    fame: '450',
+    fame: 450,
     stats: {
       str: [225,
         250],
@@ -19026,7 +18589,7 @@ export const MobData = [
       '',
       '600'
     ],
-    fame: '600',
+    fame: 600,
     stats: {
       str: [125,
         135],
@@ -19080,9 +18643,7 @@ export const MobData = [
     move: 1,
     mob_type: 'summons',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -19103,9 +18664,7 @@ export const MobData = [
     move: 1,
     mob_type: 'summons',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
 
@@ -19116,8 +18675,8 @@ export const MobData = [
     name: 'ancient lich',
     description: 'ancient lich',
     armor: 60,
-    karma: '-23000',
-    fame: '23000',
+    karma: -23000,
+    fame: 23000,
     stats: {
       str: [206,
         305],
@@ -19229,8 +18788,8 @@ export const MobData = [
     name: 'bone knight',
     description: 'bone knight',
     armor: 40,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [195,
         250],
@@ -19274,8 +18833,8 @@ export const MobData = [
     name: 'bone magi',
     description: 'bone magi',
     armor: 38,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [76,
         100],
@@ -19361,8 +18920,8 @@ export const MobData = [
     name: 'ghoul',
     description: 'ghoul',
     armor: 28,
-    karma: '-2500',
-    fame: '2500',
+    karma: -2500,
+    fame: 2500,
     stats: {
       str: [76,
         100],
@@ -19410,7 +18969,7 @@ export const MobData = [
       '',
       '8000'
     ],
-    fame: '8000',
+    fame: 8000,
     stats: {
       str: [171,
         200],
@@ -19460,7 +19019,7 @@ export const MobData = [
       '',
       '18000'
     ],
-    fame: '18000',
+    fame: 18000,
     stats: {
       str: [416,
         505],
@@ -19511,7 +19070,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [346,
         370],
@@ -19559,7 +19118,7 @@ export const MobData = [
       '',
       '500'
     ],
-    fame: '500',
+    fame: 500,
     stats: {
       str: [26,
         40],
@@ -19578,9 +19137,7 @@ export const MobData = [
     move: 1,
     mob_type: 'humanoid',
     attackable: true,
-    inventory: [
-      null
-    ],
+    inventory: [],
     credits: 0,
     skills: {
       wrestling: [20,
@@ -19645,7 +19202,7 @@ export const MobData = [
       '',
       '12500'
     ],
-    fame: '12500',
+    fame: 12500,
     stats: {
       str: [301,
         350],
@@ -19693,7 +19250,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [76,
         100],
@@ -19740,8 +19297,8 @@ export const MobData = [
     name: 'skeletal knight',
     description: 'skeletal knight',
     armor: 40,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [196,
         250],
@@ -19785,8 +19342,8 @@ export const MobData = [
     name: 'skeletal mage',
     description: 'skeletal mage',
     armor: 38,
-    karma: '-3000',
-    fame: '3000',
+    karma: -3000,
+    fame: 3000,
     stats: {
       str: [76,
         100],
@@ -19834,7 +19391,7 @@ export const MobData = [
       '',
       '450'
     ],
-    fame: '450',
+    fame: 450,
     stats: {
       str: [56,
         80],
@@ -19882,7 +19439,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [76,
         100],
@@ -19933,7 +19490,7 @@ export const MobData = [
       '',
       '4000'
     ],
-    fame: '4000',
+    fame: 4000,
     stats: {
       str: [76,
         100],
@@ -19980,20 +19537,13 @@ export const MobData = [
     name: 'zombie',
     description: 'zombie',
     armor: 18,
-    karma: [
-      '',
-      '600'
-    ],
-    fame: '600',
+    karma: 600,
+    fame: 600,
     stats: {
-      str: [46,
-        70],
-      dex: [31,
-        50],
-      int: [26,
-        40],
-      hp: [28,
-        42],
+      str: [46,70],
+      dex: [31,50],
+      int: [26,40],
+      hp: [28,42],
       taming: null,
       barding: 33
     },
@@ -20011,16 +19561,11 @@ export const MobData = [
         description: 'Random Body Part or Bone'
       }
     ],
-    credits: [50,
-      100],
+    credits: [50,100],
     skills: {
-      wrestling: [35,
-        50],
-      tactics: [35,
-        50],
-      magic_resistance: [15,
-        40
-      ]
+      wrestling: [35,50],
+      tactics: [35,50],
+      magic_resistance: [15,40]
     }
   }
 ];

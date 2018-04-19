@@ -339,7 +339,7 @@ class Combat extends Component {
 
     score.deaths++;
     status.dead = true;
-console.log('mobwin');
+
     Config.notifyError(this.props.store, `The ${this.state.mob.name} has defeated you.`);
     Config.notifyError(this.props.store, `You lost ${this.state.player.credits - credits} credits.`);
 
@@ -504,7 +504,15 @@ console.log('mobwin');
     let img = (!!mob && !!mob.img) ? mob.img : '';
 
     if (!!mob && !!mob.inventory && mob.inventory.length > 0) {
-      items = _.map(mob.inventory, (inventory) => {
+      items = _.map(_.filter(mob.inventory, (filter_inventory) => {
+        let chance = true;
+
+        if (filter_inventory.chance === 'object' && filter_inventory.chance.length > 1) {
+          // If it has a chance[] array, check for the chance. Otherwise, the default is true.
+          chance = _.random(1, filter_inventory.chance[1]) === 1;
+        }
+        return _.isNumber(filter_inventory.id) && typeof filter_inventory.chance === 'object' && chance;
+      }), (inventory) => {
         let item_data = {..._.findWhere(ItemData, { id: inventory.id }), ...inventory};
         return (
           <div className="row" key={`mob_inv_${item_data.id}`}>
