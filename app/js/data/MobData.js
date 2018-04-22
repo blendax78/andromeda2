@@ -13,7 +13,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 2,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -61,7 +61,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 4,
-      speed: 2
+      speed: 2.5
     },
     move: 2,
     mob_type: 'animal',
@@ -101,7 +101,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 2,
     wander: true,
@@ -140,7 +140,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 2,
     mob_type: 'animal',
@@ -180,7 +180,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 2,
     wander: true,
@@ -217,7 +217,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 4,
-      speed: 2,
+      speed: 2.5,
       taming: 29.1,
       barding: 7
     },
@@ -257,7 +257,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2000
+      speed: 2.5000
     },
     move: 0,
     mob_type: 'training',
@@ -293,7 +293,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 8,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -334,7 +334,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     aggro: true,
@@ -373,7 +373,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -408,7 +408,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 2,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -443,7 +443,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 1,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -480,7 +480,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 1,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -517,7 +517,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -552,7 +552,7 @@ export const MobData = [
       barding: 9.2
     },
     offense: {
-      speed: 2,
+      speed: 2.5,
       min: 1,
       max: 1
     },
@@ -586,7 +586,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -623,7 +623,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     aggro:true,
@@ -662,7 +662,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -699,7 +699,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 6,
-      speed: 2
+      speed: 2.5
     },
     move: 2,
     mob_type: 'animal',
@@ -735,7 +735,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 2,
     img: `${Config.URLS.IMAGES}/mobs/Eagle_100.png`,
@@ -770,7 +770,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 8,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -801,7 +801,7 @@ export const MobData = [
       barding: 83.6
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -838,7 +838,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -882,7 +882,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -926,7 +926,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -974,7 +974,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1019,7 +1019,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 4,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1059,7 +1059,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1103,7 +1103,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1147,7 +1147,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1191,7 +1191,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1233,7 +1233,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1274,7 +1274,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 4,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1316,7 +1316,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1354,7 +1354,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1402,7 +1402,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 2,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1442,7 +1442,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1490,7 +1490,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1538,7 +1538,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 8,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1586,7 +1586,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 5,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1628,7 +1628,7 @@ export const MobData = [
       barding: 26
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1667,7 +1667,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1712,7 +1712,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1756,7 +1756,7 @@ export const MobData = [
     offense: {
       min: 2,
       max: 6,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1800,7 +1800,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1842,7 +1842,7 @@ export const MobData = [
     offense: {
       min: 25,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1883,7 +1883,7 @@ export const MobData = [
     offense: {
       min: 2,
       max: 4,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1923,7 +1923,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -1965,7 +1965,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2006,7 +2006,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 1,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2046,7 +2046,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2090,7 +2090,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 2,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2132,7 +2132,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 5,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2153,7 +2153,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2186,7 +2186,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 2,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2230,7 +2230,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 21,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2274,7 +2274,7 @@ export const MobData = [
       barding: 30
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2297,7 +2297,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2330,7 +2330,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 4,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2377,7 +2377,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2419,7 +2419,7 @@ export const MobData = [
       barding: 59
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2458,7 +2458,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2500,7 +2500,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2538,7 +2538,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2586,7 +2586,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2630,7 +2630,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'animal',
@@ -2672,7 +2672,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2693,7 +2693,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2714,7 +2714,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2735,7 +2735,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2756,7 +2756,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2777,7 +2777,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2810,7 +2810,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2856,7 +2856,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2887,7 +2887,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2918,7 +2918,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2949,7 +2949,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -2980,7 +2980,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3013,7 +3013,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3059,7 +3059,7 @@ export const MobData = [
       barding: 70.6
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3099,7 +3099,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3145,7 +3145,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3166,7 +3166,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3187,7 +3187,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3208,7 +3208,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3229,7 +3229,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3250,7 +3250,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3283,7 +3283,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3331,7 +3331,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3377,7 +3377,7 @@ export const MobData = [
     offense: {
       min: 22,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3418,7 +3418,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3463,7 +3463,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -3509,7 +3509,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -3545,7 +3545,7 @@ export const MobData = [
     offense: {
       min: 25,
       max: 31,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -3581,7 +3581,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -3617,7 +3617,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 36,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -3656,7 +3656,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -3692,7 +3692,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -3728,7 +3728,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -3769,7 +3769,7 @@ export const MobData = [
     offense: {
       min: 21,
       max: 31,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -3812,7 +3812,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -3848,7 +3848,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 36,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -3887,7 +3887,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -3923,7 +3923,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -3959,7 +3959,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -3995,7 +3995,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -4031,7 +4031,7 @@ export const MobData = [
     offense: {
       min: 27,
       max: 34,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -4070,7 +4070,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -4109,7 +4109,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 36,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -4145,7 +4145,7 @@ export const MobData = [
     offense: {
       min: 22,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'arachnids',
@@ -4184,7 +4184,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -4223,7 +4223,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -4262,7 +4262,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4303,7 +4303,7 @@ export const MobData = [
     offense: {
       min: 25,
       max: 35,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4344,7 +4344,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4385,7 +4385,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4432,7 +4432,7 @@ export const MobData = [
     offense: {
       min: 21,
       max: 33,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4477,7 +4477,7 @@ export const MobData = [
     offense: {
       min: 21,
       max: 33,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4522,7 +4522,7 @@ export const MobData = [
     offense: {
       min: 25,
       max: 35,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4565,7 +4565,7 @@ export const MobData = [
     offense: {
       min: 28,
       max: 55,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4609,7 +4609,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 35,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4654,7 +4654,7 @@ export const MobData = [
     offense: {
       min: 27,
       max: 38,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4702,7 +4702,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'champions',
@@ -4747,7 +4747,7 @@ export const MobData = [
       barding: 88
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -4787,7 +4787,7 @@ export const MobData = [
     offense: {
       min: 22,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -4833,7 +4833,7 @@ export const MobData = [
       barding: 71.5
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -4873,7 +4873,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -4921,7 +4921,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -4967,7 +4967,7 @@ export const MobData = [
       barding: 72.5
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -5005,7 +5005,7 @@ export const MobData = [
     offense: {
       min: 27,
       max: 34,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'daemons',
@@ -5046,7 +5046,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5094,7 +5094,7 @@ export const MobData = [
     offense: {
       min: 28,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5142,7 +5142,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5188,7 +5188,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5219,7 +5219,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5252,7 +5252,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 27,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5300,7 +5300,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5346,7 +5346,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5379,7 +5379,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5425,7 +5425,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5458,7 +5458,7 @@ export const MobData = [
     offense: {
       min: 21,
       max: 31,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5503,7 +5503,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5551,7 +5551,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5599,7 +5599,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5645,7 +5645,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5681,7 +5681,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5714,7 +5714,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5759,7 +5759,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5807,7 +5807,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 21,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5853,7 +5853,7 @@ export const MobData = [
     offense: {
       min: 28,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5892,7 +5892,7 @@ export const MobData = [
     offense: {
       min: 22,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5928,7 +5928,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 30,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -5969,7 +5969,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6015,7 +6015,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6046,7 +6046,7 @@ export const MobData = [
       barding: 75.6
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6080,7 +6080,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6119,7 +6119,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6152,7 +6152,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6200,7 +6200,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6248,7 +6248,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6292,7 +6292,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6325,7 +6325,7 @@ export const MobData = [
     offense: {
       min: 28,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6373,7 +6373,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6421,7 +6421,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'elementals',
@@ -6464,7 +6464,7 @@ export const MobData = [
       barding: 70.8
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -6504,7 +6504,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -6550,7 +6550,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -6589,7 +6589,7 @@ export const MobData = [
       barding: 110.8
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -6627,7 +6627,7 @@ export const MobData = [
       barding: 88
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -6665,7 +6665,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -6703,7 +6703,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -6746,7 +6746,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -6777,7 +6777,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -6810,7 +6810,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 27,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -6846,7 +6846,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -6882,7 +6882,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -6913,7 +6913,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -6944,7 +6944,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 36,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -6983,7 +6983,7 @@ export const MobData = [
       barding: 96.5
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7021,7 +7021,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7052,7 +7052,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7091,7 +7091,7 @@ export const MobData = [
       barding: 61.5
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7131,7 +7131,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7176,7 +7176,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7222,7 +7222,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7260,7 +7260,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7306,7 +7306,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7345,7 +7345,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7384,7 +7384,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7415,7 +7415,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7446,7 +7446,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7477,7 +7477,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7516,7 +7516,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7554,7 +7554,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7605,7 +7605,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7656,7 +7656,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7700,7 +7700,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7731,7 +7731,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7762,7 +7762,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7793,7 +7793,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7824,7 +7824,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7855,7 +7855,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7886,7 +7886,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7917,7 +7917,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7948,7 +7948,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -7979,7 +7979,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8010,7 +8010,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8043,7 +8043,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8086,7 +8086,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8122,7 +8122,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8153,7 +8153,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8184,7 +8184,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 27,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8220,7 +8220,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8253,7 +8253,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8300,7 +8300,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8346,7 +8346,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8377,7 +8377,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8408,7 +8408,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8439,7 +8439,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8470,7 +8470,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8506,7 +8506,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8544,7 +8544,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8587,7 +8587,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8623,7 +8623,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8659,7 +8659,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 21,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8698,7 +8698,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8734,7 +8734,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8773,7 +8773,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8809,7 +8809,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8848,7 +8848,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8887,7 +8887,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8926,7 +8926,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -8967,7 +8967,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 5,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9015,7 +9015,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9063,7 +9063,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9109,7 +9109,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 36,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9145,7 +9145,7 @@ export const MobData = [
       barding: 19
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9184,7 +9184,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9228,7 +9228,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9273,7 +9273,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9321,7 +9321,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9366,7 +9366,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9411,7 +9411,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9456,7 +9456,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9502,7 +9502,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9541,7 +9541,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9577,7 +9577,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9618,7 +9618,7 @@ export const MobData = [
     offense: {
       min: 0,
       max: 0,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9656,7 +9656,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9704,7 +9704,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9749,7 +9749,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -9795,7 +9795,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -9834,7 +9834,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 31,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -9873,7 +9873,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -9912,7 +9912,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'gargoyles',
@@ -9950,7 +9950,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -9992,7 +9992,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 21,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10033,7 +10033,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10076,7 +10076,7 @@ export const MobData = [
     offense: {
       min: 25,
       max: 31,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10112,7 +10112,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10150,7 +10150,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10198,7 +10198,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10244,7 +10244,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10282,7 +10282,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10328,7 +10328,7 @@ export const MobData = [
       barding: 60
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10366,7 +10366,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10414,7 +10414,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10462,7 +10462,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10505,7 +10505,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10546,7 +10546,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10592,7 +10592,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 31,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10633,7 +10633,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10676,7 +10676,7 @@ export const MobData = [
       barding: 56.7
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10712,7 +10712,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10758,7 +10758,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10799,7 +10799,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10845,7 +10845,7 @@ export const MobData = [
       barding: 26.6
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10884,7 +10884,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10930,7 +10930,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -10966,7 +10966,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11004,7 +11004,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 2,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11050,7 +11050,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11091,7 +11091,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11136,7 +11136,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11182,7 +11182,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11220,7 +11220,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11265,7 +11265,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11306,7 +11306,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11342,7 +11342,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11375,7 +11375,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11418,7 +11418,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 21,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11459,7 +11459,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11505,7 +11505,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11546,7 +11546,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11594,7 +11594,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11642,7 +11642,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11688,7 +11688,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11729,7 +11729,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'misc_monsters',
@@ -11768,7 +11768,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'orcs',
@@ -11809,7 +11809,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 8,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'orcs',
@@ -11855,7 +11855,7 @@ export const MobData = [
       barding: 94.3
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'orcs',
@@ -11895,7 +11895,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'orcs',
@@ -11942,7 +11942,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'orcs',
@@ -11987,7 +11987,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'orcs',
@@ -12026,7 +12026,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'orcs',
@@ -12065,7 +12065,7 @@ export const MobData = [
       barding: 86.1
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'plants',
@@ -12105,7 +12105,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'plants',
@@ -12151,7 +12151,7 @@ export const MobData = [
       barding: 71
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'plants',
@@ -12191,7 +12191,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'plants',
@@ -12239,7 +12239,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'plants',
@@ -12285,7 +12285,7 @@ export const MobData = [
       barding: 76.6
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'plants',
@@ -12321,7 +12321,7 @@ export const MobData = [
     offense: {
       min: 4,
       max: 5,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -12369,7 +12369,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -12417,7 +12417,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -12463,7 +12463,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12501,7 +12501,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 35,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12547,7 +12547,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12585,7 +12585,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12633,7 +12633,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12681,7 +12681,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12727,7 +12727,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 36,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12768,7 +12768,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12804,7 +12804,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12837,7 +12837,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12883,7 +12883,7 @@ export const MobData = [
     offense: {
       min: 19,
       max: 33,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12922,7 +12922,7 @@ export const MobData = [
     offense: {
       min: 36,
       max: 45,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -12961,7 +12961,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13000,7 +13000,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13038,7 +13038,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13084,7 +13084,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13122,7 +13122,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13169,7 +13169,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13217,7 +13217,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13263,7 +13263,7 @@ export const MobData = [
     offense: {
       min: 29,
       max: 35,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13309,7 +13309,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13348,7 +13348,7 @@ export const MobData = [
       barding: 118.3
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13388,7 +13388,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13436,7 +13436,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13482,7 +13482,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'reptiles',
@@ -13523,7 +13523,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'slimes',
@@ -13558,7 +13558,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'slimes',
@@ -13588,7 +13588,7 @@ export const MobData = [
       barding: 81.5
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'slimes',
@@ -13624,7 +13624,7 @@ export const MobData = [
     offense: {
       min: 1,
       max: 5,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'slimes',
@@ -13670,7 +13670,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13709,7 +13709,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13748,7 +13748,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13787,7 +13787,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13826,7 +13826,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13865,7 +13865,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13904,7 +13904,7 @@ export const MobData = [
     offense: {
       min: 21,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13940,7 +13940,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -13979,7 +13979,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14018,7 +14018,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14057,7 +14057,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14096,7 +14096,7 @@ export const MobData = [
     offense: {
       min: 21,
       max: 32,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14135,7 +14135,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14174,7 +14174,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14213,7 +14213,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14252,7 +14252,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14288,7 +14288,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14324,7 +14324,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14360,7 +14360,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14396,7 +14396,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14435,7 +14435,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14474,7 +14474,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14513,7 +14513,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14552,7 +14552,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14591,7 +14591,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14630,7 +14630,7 @@ export const MobData = [
     offense: {
       min: 19,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14669,7 +14669,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14708,7 +14708,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14747,7 +14747,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14786,7 +14786,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14825,7 +14825,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14864,7 +14864,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 21,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14900,7 +14900,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14939,7 +14939,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -14978,7 +14978,7 @@ export const MobData = [
     offense: {
       min: 6,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15017,7 +15017,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15056,7 +15056,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15095,7 +15095,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15134,7 +15134,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15173,7 +15173,7 @@ export const MobData = [
     offense: {
       min: 19,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15212,7 +15212,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15251,7 +15251,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15290,7 +15290,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15329,7 +15329,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15368,7 +15368,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15407,7 +15407,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15446,7 +15446,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15485,7 +15485,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15524,7 +15524,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15563,7 +15563,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15602,7 +15602,7 @@ export const MobData = [
     offense: {
       min: 19,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15641,7 +15641,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15680,7 +15680,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15719,7 +15719,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15758,7 +15758,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15797,7 +15797,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15833,7 +15833,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15872,7 +15872,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15911,7 +15911,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15950,7 +15950,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -15989,7 +15989,7 @@ export const MobData = [
     offense: {
       min: 19,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16028,7 +16028,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16067,7 +16067,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16106,7 +16106,7 @@ export const MobData = [
     offense: {
       min: 19,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16145,7 +16145,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16184,7 +16184,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16223,7 +16223,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16254,7 +16254,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 27,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16293,7 +16293,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16324,7 +16324,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16360,7 +16360,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16399,7 +16399,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16435,7 +16435,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16471,7 +16471,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16507,7 +16507,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16546,7 +16546,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16585,7 +16585,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16624,7 +16624,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 21,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16663,7 +16663,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16702,7 +16702,7 @@ export const MobData = [
     offense: {
       min: 19,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16741,7 +16741,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16780,7 +16780,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16819,7 +16819,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16858,7 +16858,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16897,7 +16897,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16933,7 +16933,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -16972,7 +16972,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17008,7 +17008,7 @@ export const MobData = [
     offense: {
       min: 16,
       max: 2,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17044,7 +17044,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17080,7 +17080,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17119,7 +17119,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17155,7 +17155,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17186,7 +17186,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17222,7 +17222,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17261,7 +17261,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17300,7 +17300,7 @@ export const MobData = [
     offense: {
       min: 9,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17336,7 +17336,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17372,7 +17372,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17410,7 +17410,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17456,7 +17456,7 @@ export const MobData = [
       barding: 38.9
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17504,7 +17504,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 19,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17550,7 +17550,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17589,7 +17589,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17628,7 +17628,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17664,7 +17664,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17703,7 +17703,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17742,7 +17742,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17781,7 +17781,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 27,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17820,7 +17820,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17859,7 +17859,7 @@ export const MobData = [
     offense: {
       min: 17,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17895,7 +17895,7 @@ export const MobData = [
     offense: {
       min: 18,
       max: 28,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17934,7 +17934,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -17973,7 +17973,7 @@ export const MobData = [
     offense: {
       min: 12,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18012,7 +18012,7 @@ export const MobData = [
     offense: {
       min: 20,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18051,7 +18051,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 22,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18090,7 +18090,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 20,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18126,7 +18126,7 @@ export const MobData = [
     offense: {
       min: 5,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18165,7 +18165,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 17,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18204,7 +18204,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 25,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18243,7 +18243,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 15,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18279,7 +18279,7 @@ export const MobData = [
     offense: {
       min: 10,
       max: 14,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18315,7 +18315,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 29,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18354,7 +18354,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 16,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18395,7 +18395,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 12,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'special',
@@ -18428,7 +18428,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'summons',
@@ -18449,7 +18449,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'summons',
@@ -18482,7 +18482,7 @@ export const MobData = [
     offense: {
       min: 15,
       max: 27,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18518,7 +18518,7 @@ export const MobData = [
       barding: null
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18554,7 +18554,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18595,7 +18595,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18640,7 +18640,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18686,7 +18686,7 @@ export const MobData = [
     offense: {
       min: 14,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18727,7 +18727,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 9,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18772,7 +18772,7 @@ export const MobData = [
     offense: {
       min: 24,
       max: 26,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18819,7 +18819,7 @@ export const MobData = [
     offense: {
       min: 11,
       max: 13,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18867,7 +18867,7 @@ export const MobData = [
     offense: {
       min: 13,
       max: 23,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18910,7 +18910,7 @@ export const MobData = [
       barding: 19
     },
     offense: {
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18949,7 +18949,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 24,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -18993,7 +18993,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 10,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -19038,7 +19038,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -19086,7 +19086,7 @@ export const MobData = [
     offense: {
       min: 8,
       max: 18,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -19131,7 +19131,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -19176,7 +19176,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -19221,7 +19221,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -19269,7 +19269,7 @@ export const MobData = [
     offense: {
       min: 7,
       max: 11,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
@@ -19313,7 +19313,7 @@ export const MobData = [
     offense: {
       min: 3,
       max: 7,
-      speed: 2
+      speed: 2.5
     },
     move: 1,
     mob_type: 'humanoid',
