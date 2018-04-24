@@ -1,6 +1,6 @@
 import Config from '../components/Config';
 
-// Finished fixing ID 22.
+// Finished fixing ID 61.
 export const MobData = [
   {
     id: 1,
@@ -389,7 +389,7 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
-      magic_resistance: '5.0'
+      magic_resistance: 5.0
     }
   },
   {
@@ -789,14 +789,10 @@ export const MobData = [
     karma: -20000,
     fame: 20000,
     stats: {
-      str: [376,
-        400],
-      dex: [91,
-        120],
-      int: [291,
-        300],
-      hp: [226,
-        240],
+      str: [376,400],
+      dex: [91,120],
+      int: [291,300],
+      hp: [226,240],
       taming: 106,
       barding: 83.6
     },
@@ -824,14 +820,10 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [94,
-        170],
-      dex: [56,
-        75],
-      int: [6,
-        10],
-      hp: [71,
-        88],
+      str: [94,170],
+      dex: [56,75],
+      int: [6,10],
+      hp: [71,88],
       taming: null,
       barding: 30
     },
@@ -851,13 +843,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [29,
-        44],
-      tactics: [29,
-        44],
-      magic_resistance: [27,
-        32
-      ]
+      wrestling: [29,44],
+      tactics: [29,44],
+      magic_resistance: [27,32]
     }
   },
   {
@@ -868,14 +856,10 @@ export const MobData = [
     karma: -1500,
     fame: 1500,
     stats: {
-      str: [94,
-        170],
-      dex: [96,
-        115],
-      int: [6,
-        10],
-      hp: [71,
-        110],
+      str: [94,170],
+      dex: [96,115],
+      int: [6,10],
+      hp: [71,110],
       taming: 77.1,
       barding: 55
     },
@@ -895,13 +879,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [79,
-        94],
-      tactics: [79,
-        94],
-      magic_resistance: [75,
-        80
-      ]
+      wrestling: [79,94],
+      tactics: [79,94],
+      magic_resistance: [75,80]
     }
   },
   {
@@ -912,14 +892,10 @@ export const MobData = [
     karma: -2500,
     fame: 2500,
     stats: {
-      str: [186,
-        215],
-      dex: [56,
-        80],
-      int: [66,
-        85],
-      hp: [112,
-        129],
+      str: [186,215],
+      dex: [56,80],
+      int: [66,85],
+      hp: [112,129],
       taming: null,
       barding: 73
     },
@@ -934,22 +910,14 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400]
       }
     ],
-    credits: [125,
-      175],
+    credits: [125,175],
     skills: {
-      wrestling: [60,
-        80],
-      tactics: [65,
-        70],
-      magic_resistance: [25,
-        40
-      ]
+      wrestling: [60,80],
+      tactics: [65,70],
+      magic_resistance: [25,40]
     }
   },
   {
@@ -960,14 +928,10 @@ export const MobData = [
     karma: -750,
     fame: 750,
     stats: {
-      str: [76,
-        100],
-      dex: [6,
-        25],
-      int: [11,
-        20],
-      hp: [46,
-        60],
+      str: [76,100],
+      dex: [6,25],
+      int: [11,20],
+      hp: [46,60],
       taming: 77.1,
       barding: 27
     },
@@ -985,16 +949,11 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [25,
-      50],
+    credits: [25,50],
     skills: {
-      wrestling: [40,
-        60],
-      tactics: [40,
-        60],
-      magic_resistance: [25,
-        40
-      ]
+      wrestling: [40,60],
+      tactics: [40,60],
+      magic_resistance: [25,40]
     }
   },
   {
@@ -1005,14 +964,10 @@ export const MobData = [
     karma: 0,
     fame: 150,
     stats: {
-      str: [19,
-        19],
-      dex: [15,
-        15],
-      int: [5,
-        5],
-      hp: [12,
-        12],
+      str: [19,19],
+      dex: [15,15],
+      int: [5,5],
+      hp: [12,12],
       taming: 11.1,
       barding: 6
     },
@@ -1034,7 +989,7 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
-      magic_resistance: '5.0'
+      magic_resistance: 5.0
     }
   },
   {
@@ -1045,14 +1000,10 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [53,
-        95],
-      dex: [36,
-        55],
-      int: [36,
-        60],
-      hp: [38,
-        51],
+      str: [53,95],
+      dex: [36,55],
+      int: [36,60],
+      hp: [38,51],
       taming: 18.9,
       barding: 29
     },
@@ -1072,13 +1023,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [43,
-        58],
-      tactics: [43,
-        58],
-      magic_resistance: [45,
-        60
-      ]
+      wrestling: [43,58],
+      tactics: [43,58],
+      magic_resistance: [45,60]
     }
   },
   {
@@ -1089,14 +1036,10 @@ export const MobData = [
     karma: 0,
     fame: 300,
     stats: {
-      str: [41,
-        71],
-      dex: [47,
-        77],
-      int: [27,
-        57],
-      hp: [27,
-        41],
+      str: [41,71],
+      dex: [47,77],
+      int: [27,57],
+      hp: [27,41],
       taming: 59.1,
       barding: 25
     },
@@ -1116,13 +1059,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [29,
-        47],
-      tactics: [29,
-        47],
-      magic_resistance: [26,
-        44
-      ]
+      wrestling: [29,47],
+      tactics: [29,47],
+      magic_resistance: [26,44]
     }
   },
   {
@@ -1133,14 +1072,10 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [56,
-        80],
-      dex: [56,
-        75],
-      int: [31,
-        55],
-      hp: [34,
-        48],
+      str: [56,80],
+      dex: [56,75],
+      int: [31,55],
+      hp: [34,48],
       taming: 53.1,
       barding: 28
     },
@@ -1160,13 +1095,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [45,
-        60],
-      tactics: [45,
-        60],
-      magic_resistance: [20,
-        35
-      ]
+      wrestling: [45,60],
+      tactics: [45,60],
+      magic_resistance: [20,35]
     }
   },
   {
@@ -1177,14 +1108,10 @@ export const MobData = [
     karma: 0,
     fame: 1000,
     stats: {
-      str: [126,
-        155],
-      dex: [81,
-        105],
-      int: [16,
-        40],
-      hp: [76,
-        93],
+      str: [126,155],
+      dex: [81,105],
+      int: [16,40],
+      hp: [76,93],
       taming: 59.1,
       barding: 44
     },
@@ -1204,13 +1131,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [45,
-        70],
-      tactics: [70,
-        100],
-      magic_resistance: [25,
-        40
-      ]
+      wrestling: [45,70],
+      tactics: [70,100],
+      magic_resistance: [25,40]
     }
   },
   {
@@ -1219,14 +1142,10 @@ export const MobData = [
     description: 'hell cat',
     armor: 30,
     stats: {
-      str: [51,
-        100],
-      dex: [52,
-        150],
-      int: [13,
-        85],
-      hp: [48,
-        67],
+      str: [51,100],
+      dex: [52,150],
+      int: [13,85],
+      hp: [48,67],
       taming: 71.1,
       barding: 41
     },
@@ -1241,10 +1160,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '1000'
-        ]
+        chance: [1,1000]
       }
     ],
     credits: 0,
@@ -1260,14 +1176,10 @@ export const MobData = [
     karma: -300,
     fame: 300,
     stats: {
-      str: [22,
-        98],
-      dex: [56,
-        75],
-      int: [6,
-        10],
-      hp: [28,
-        45],
+      str: [22,98],
+      dex: [56,75],
+      int: [6,10],
+      hp: [28,45],
       taming: 11.1,
       barding: 22
     },
@@ -1287,13 +1199,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [29,
-        44],
-      tactics: [29,
-        44],
-      magic_resistance: [25,
-        30
-      ]
+      wrestling: [29,44],
+      tactics: [29,44],
+      magic_resistance: [25,30]
     }
   },
   {
@@ -1302,14 +1210,10 @@ export const MobData = [
     description: 'ice serpent',
     armor: 32,
     stats: {
-      str: [216,
-        245],
-      dex: [26,
-        50],
-      int: [66,
-        85],
-      hp: [130,
-        147],
+      str: [216,245],
+      dex: [26,50],
+      int: [66,85],
+      hp: [130,147],
       taming: null,
       barding: 59
     },
@@ -1340,14 +1244,10 @@ export const MobData = [
     karma: -900,
     fame: 900,
     stats: {
-      str: [42,
-        54],
-      dex: [36,
-        45],
-      int: [26,
-        30],
-      hp: [0,
-        0],
+      str: [42,54],
+      dex: [36,45],
+      int: [26,30],
+      hp: [0,0],
       taming: null,
       barding: 21
     },
@@ -1362,22 +1262,14 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '1000'
-        ]
+        chance: [1,1000]
       }
     ],
-    credits: [50,
-      100],
+    credits: [50,100],
     skills: {
-      wrestling: [39,
-        54],
-      tactics: [39,
-        54],
-      magic_resistance: [15,
-        20
-      ]
+      wrestling: [39,54],
+      tactics: [39,54],
+      magic_resistance: [15,20]
     }
   },
   {
@@ -1388,14 +1280,10 @@ export const MobData = [
     karma: 0,
     fame: 150,
     stats: {
-      str: [15,
-        15],
-      dex: [25,
-        25],
-      int: [5,
-        5],
-      hp: [9,
-        9],
+      str: [15,15],
+      dex: [25,25],
+      int: [5,5],
+      hp: [9,9],
       taming: 0,
       barding: 6
     },
@@ -1417,7 +1305,7 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
-      magic_resistance: '5.0'
+      magic_resistance: 5.0
     }
   },
   {
@@ -1428,14 +1316,10 @@ export const MobData = [
     karma: 3000,
     fame: 3000,
     stats: {
-      str: [126,
-        150],
-      dex: [56,
-        75],
-      int: [11,
-        20],
-      hp: [76,
-        90],
+      str: [126,150],
+      dex: [56,75],
+      int: [11,20],
+      hp: [76,90],
       taming: 80.7,
       barding: 54
     },
@@ -1450,22 +1334,14 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
-    credits: [50,
-      100],
+    credits: [50,100],
     skills: {
-      wrestling: [60,
-        80],
-      tactics: [60,
-        80],
-      magic_resistance: [55,
-        70
-      ]
+      wrestling: [60,80],
+      tactics: [60,80],
+      magic_resistance: [55,70]
     }
   },
   {
@@ -1476,14 +1352,10 @@ export const MobData = [
     karma: -4500,
     fame: 4500,
     stats: {
-      str: [386,
-        415],
-      dex: [56,
-        80],
-      int: [66,
-        85],
-      hp: [232,
-        249],
+      str: [386,415],
+      dex: [56,80],
+      int: [66,85],
+      hp: [232,249],
       taming: null,
       barding: 75
     },
@@ -1498,22 +1370,14 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
-    credits: [200,
-      250],
+    credits: [200,250],
     skills: {
-      wrestling: [60,
-        80],
-      tactics: [65,
-        70],
-      magic_resistance: [25,
-        70
-      ]
+      wrestling: [60,80],
+      tactics: [65,70],
+      magic_resistance: [25,70]
     }
   },
   {
@@ -1524,14 +1388,10 @@ export const MobData = [
     karma: -600,
     fame: 600,
     stats: {
-      str: [43,
-        55],
-      dex: [16,
-        25],
-      int: [6,
-        10],
-      hp: [28,
-        32],
+      str: [43,55],
+      dex: [16,25],
+      int: [6,10],
+      hp: [28,32],
       taming: null,
       barding: 23
     },
@@ -1546,22 +1406,14 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '1000'
-        ]
+        chance: [1,1000]
       }
     ],
-    credits: [25,
-      50],
+    credits: [25,50],
     skills: {
-      wrestling: [19,
-        34],
-      tactics: [19,
-        34],
-      magic_resistance: [15,
-        20
-      ]
+      wrestling: [19,34],
+      tactics: [19,34],
+      magic_resistance: [15,20]
     }
   },
   {
@@ -1572,14 +1424,10 @@ export const MobData = [
     karma: 0,
     fame: 300,
     stats: {
-      str: [21,
-        49],
-      dex: [36,
-        55],
-      int: [16,
-        30],
-      hp: [15,
-        27],
+      str: [21,49],
+      dex: [36,55],
+      int: [16,30],
+      hp: [15,27],
       taming: 35.1,
       barding: 15
     },
@@ -1599,13 +1447,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [19,
-        29],
-      tactics: [19,
-        29],
-      magic_resistance: [15,
-        20
-      ]
+      wrestling: [19,29],
+      tactics: [19,29],
+      magic_resistance: [15,20]
     }
   },
   {
@@ -1616,14 +1460,10 @@ export const MobData = [
     karma: 0,
     fame: 300,
     stats: {
-      str: [22,
-        64],
-      dex: [56,
-        75],
-      int: [16,
-        30],
-      hp: [20,
-        33],
+      str: [22,64],
+      dex: [56,75],
+      int: [16,30],
+      hp: [20,33],
       taming: 0,
       barding: 26
     },
@@ -1636,13 +1476,9 @@ export const MobData = [
     inventory: [],
     credits: 0,
     skills: {
-      wrestling: [29,
-        44],
-      tactics: [29,
-        44],
-      magic_resistance: [25,
-        30
-      ]
+      wrestling: [29,44],
+      tactics: [29,44],
+      magic_resistance: [25,30]
     }
   },
   {
@@ -1653,14 +1489,10 @@ export const MobData = [
     karma: 14000,
     fame: 14000,
     stats: {
-      str: [496,
-        525],
-      dex: [86,
-        105],
-      int: [86,
-        125],
-      hp: [298,
-        315],
+      str: [496,525],
+      dex: [86,105],
+      int: [86,125],
+      hp: [298,315],
       taming: 95.1,
       barding: 92
     },
@@ -1678,16 +1510,11 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [400,
-      500],
+    credits: [400,500],
     skills: {
-      wrestling: [80,
-        92],
-      tactics: [97,
-        100],
-      magic_resistance: [85,
-        100
-      ]
+      wrestling: [80,92],
+      tactics: [97,100],
+      magic_resistance: [85,100]
     }
   },
   {
@@ -1698,14 +1525,10 @@ export const MobData = [
     karma: -200,
     fame: 0,
     stats: {
-      str: [44,
-        120],
-      dex: [36,
-        55],
-      int: [6,
-        10],
-      hp: [61,
-        80],
+      str: [44,120],
+      dex: [36,55],
+      int: [6,10],
+      hp: [61,80],
       taming: 11.1,
       barding: 30
     },
@@ -1725,13 +1548,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [29,
-        44],
-      tactics: [29,
-        44],
-      magic_resistance: [25,
-        30
-      ]
+      wrestling: [29,44],
+      tactics: [29,44],
+      magic_resistance: [25,30]
     }
   },
   {
@@ -1742,14 +1561,10 @@ export const MobData = [
     karma: -200,
     fame: 0,
     stats: {
-      str: [52,
-        80],
-      dex: [36,
-        55],
-      int: [16,
-        30],
-      hp: [50,
-        50],
+      str: [52,80],
+      dex: [36,55],
+      int: [16,30],
+      hp: [50,50],
       taming: 11.1,
       barding: 27
     },
@@ -1769,13 +1584,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [19,
-        29],
-      tactics: [19,
-        29],
-      magic_resistance: [15,
-        20
-      ]
+      wrestling: [19,29],
+      tactics: [19,29],
+      magic_resistance: [15,20]
     }
   },
   {
@@ -1786,14 +1597,10 @@ export const MobData = [
     karma: 0,
     fame: 450,
     stats: {
-      str: [61,
-        85],
-      dex: [86,
-        105],
-      int: [26,
-        50],
-      hp: [37,
-        51],
+      str: [61,85],
+      dex: [86,105],
+      int: [26,50],
+      hp: [37,51],
       taming: 53.1,
       barding: 32
     },
@@ -1813,13 +1620,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [50,
-        65],
-      tactics: [50,
-        65],
-      magic_resistance: [15,
-        30
-      ]
+      wrestling: [50,65],
+      tactics: [50,65],
+      magic_resistance: [15,30]
     }
   },
   {
@@ -1828,14 +1631,10 @@ export const MobData = [
     description: 'phoenix',
     armor: 60,
     stats: {
-      str: [504,
-        700],
-      dex: [202,
-        300],
-      int: [504,
-        700],
-      hp: [340,
-        383],
+      str: [504,700],
+      dex: [202,300],
+      int: [504,700],
+      hp: [340,383],
       taming: null,
       barding: 108
     },
@@ -1850,10 +1649,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '100'
-        ]
+        chance: [1,100],
       }
     ],
     credits: 0,
@@ -1869,14 +1665,10 @@ export const MobData = [
     karma: 0,
     fame: 150,
     stats: {
-      str: [20,
-        20],
-      dex: [20,
-        20],
-      int: [5,
-        5],
-      hp: [12,
-        12],
+      str: [20,20],
+      dex: [20,20],
+      int: [5,5],
+      hp: [12,12],
       taming: 11.1,
       barding: 6
     },
@@ -1898,7 +1690,7 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
-      magic_resistance: '5.0'
+      magic_resistance: 5.0
     }
   },
   {
@@ -1909,14 +1701,10 @@ export const MobData = [
     karma: 0,
     fame: 1500,
     stats: {
-      str: [116,
-        140],
-      dex: [81,
-        105],
-      int: [26,
-        50],
-      hp: [70,
-        84],
+      str: [116,140],
+      dex: [81,105],
+      int: [26,50],
+      hp: [70,84],
       taming: 35.1,
       barding: 46
     },
@@ -1936,13 +1724,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [45,
-        70],
-      tactics: [60,
-        90],
-      magic_resistance: [45,
-        60
-      ]
+      wrestling: [45,70],
+      tactics: [60,90],
+      magic_resistance: [45,60]
     }
   },
   {
@@ -1951,14 +1735,10 @@ export const MobData = [
     description: 'predator hell cat',
     armor: 30,
     stats: {
-      str: [161,
-        185],
-      dex: [96,
-        115],
-      int: [76,
-        100],
-      hp: [97,
-        131],
+      str: [161,185],
+      dex: [96,115],
+      int: [76,100],
+      hp: [97,131],
       taming: 89.1,
       barding: 67
     },
@@ -1973,10 +1753,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: 0,
@@ -1992,14 +1769,10 @@ export const MobData = [
     karma: 0,
     fame: 150,
     stats: {
-      str: [6,
-        10],
-      dex: [26,
-        38],
-      int: [6,
-        14],
-      hp: [4,
-        6],
+      str: [6,10],
+      dex: [26,38],
+      int: [6,14],
+      hp: [4,6],
       taming: 0,
       barding: 6
     },
@@ -2021,7 +1794,7 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
-      magic_resistance: '5.0'
+      magic_resistance: 5.0
     }
   },
   {
@@ -2032,14 +1805,10 @@ export const MobData = [
     karma: 10000,
     fame: 10000,
     stats: {
-      str: [1,
-        1],
-      dex: [801,
-        1],
-      int: [151,
-        400],
-      hp: [751,
-        930],
+      str: [1,1],
+      dex: [801,1],
+      int: [151,400],
+      hp: [751,930],
       taming: 59.1,
       barding: 127
     },
@@ -2059,13 +1828,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [73,
-        88],
-      tactics: [73,
-        110],
-      magic_resistance: [32,
-        54
-      ]
+      wrestling: [73,88],
+      tactics: [73,110],
+      magic_resistance: [32,54]
     }
   },
   {
@@ -2076,14 +1841,10 @@ export const MobData = [
     karma: -150,
     fame: 150,
     stats: {
-      str: [9,
-        9],
-      dex: [35,
-        35],
-      int: [5,
-        5],
-      hp: [6,
-        6],
+      str: [9,9],
+      dex: [35,35],
+      int: [5,5],
+      hp: [6,6],
       taming: 0,
       barding: 6
     },
@@ -2098,10 +1859,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '1000'
-        ]
+        chance: [1,1000]
       }
     ],
     credits: [25,
@@ -2109,7 +1867,7 @@ export const MobData = [
     skills: {
       wrestling: 4.0,
       tactics: 4.0,
-      magic_resistance: '4.0'
+      magic_resistance: 4.0
     }
   },
   {
@@ -2118,14 +1876,10 @@ export const MobData = [
     description: 'ridable llama',
     armor: 0,
     stats: {
-      str: [21,
-        49],
-      dex: [56,
-        75],
-      int: [16,
-        30],
-      hp: [15,
-        27],
+      str: [21,49],
+      dex: [56,75],
+      int: [16,30],
+      hp: [15,27],
       taming: 29.1,
       barding: 18
     },
@@ -2172,14 +1926,10 @@ export const MobData = [
     karma: -300,
     fame: 300,
     stats: {
-      str: [9,
-        9],
-      dex: [25,
-        25],
-      int: [6,
-        10],
-      hp: [6,
-        6],
+      str: [9,9],
+      dex: [25,25],
+      int: [6,10],
+      hp: [6,6],
       taming: -0.09,
       barding: 6
     },
@@ -2194,10 +1944,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '1000'
-        ]
+        chance: [1,1000]
       }
     ],
     credits: [25,
@@ -2205,7 +1952,7 @@ export const MobData = [
     skills: {
       wrestling: 5.0,
       tactics: 5.0,
-      magic_resistance: '5.0'
+      magic_resistance: 5.0
     }
   },
   {
@@ -2216,14 +1963,10 @@ export const MobData = [
     karma: -7000,
     fame: 7000,
     stats: {
-      str: [161,
-        360],
-      dex: [151,
-        300],
-      int: [21,
-        40],
-      hp: [97,
-        216],
+      str: [161,360],
+      dex: [151,300],
+      int: [21,40],
+      hp: [97,216],
       taming: null,
       barding: 85
     },
@@ -2238,22 +1981,14 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
-    credits: [250,
-      300],
+    credits: [250,300],
     skills: {
-      wrestling: [85,
-        100],
-      tactics: [80,
-        95],
-      magic_resistance: [95,
-        100
-      ]
+      wrestling: [85,100],
+      tactics: [80,95],
+      magic_resistance: [95,100]
     }
   },
   {
@@ -2338,10 +2073,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '1000'
-        ]
+        chance: [1,1000]
       }
     ],
     credits: 0,
@@ -2546,10 +2278,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: [300,
@@ -2817,10 +2546,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -3020,10 +2746,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -3106,10 +2829,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -3290,10 +3010,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -3338,10 +3055,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -3384,10 +3098,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'Terathan Infiltrator Statuette'
       }
     ],
@@ -3470,10 +3181,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -3603,14 +3311,10 @@ export const MobData = [
     description: 'beast tamer',
     armor: 60,
     stats: {
-      str: [605,
-        725],
-      dex: [125,
-        150],
-      int: [505,
-        750],
-      hp: [8,
-        9],
+      str: [605,725],
+      dex: [125,150],
+      int: [505,750],
+      hp: [8,9],
       taming: null,
       barding: 413
     },
@@ -3624,10 +3328,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Mask of the Wilds'
       }
     ],
@@ -3735,10 +3436,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '4'
-        ],
+        chance: [1,4],
         description: 'Peculiar Meat (Carve)'
       }
     ],
@@ -3855,10 +3553,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '4'
-        ],
+        chance: [1,4],
         description: 'Peculiar Meat (Carve)'
       }
     ],
@@ -4038,10 +3733,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'Purveyor of Darkness Statuette'
       }
     ],
@@ -4077,10 +3769,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '25'
-        ],
+        chance: [1,25],
         description: 'Rabbit of Caerbannog Statuette'
       }
     ],
@@ -4152,10 +3841,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'Terathan Infiltrator Statuette'
       }
     ],
@@ -4191,10 +3877,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'two headed behemoth statuette'
       }
     ],
@@ -4230,10 +3913,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'Wyvern Monarch Statuette'
       }
     ],
@@ -4270,10 +3950,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Santas Clothing  4 Possible Items',
-        chance: [
-          '1',
-          '4'
-        ]
+        chance: [1,4],
       }
     ],
     credits: 0,
@@ -4352,10 +4029,7 @@ export const MobData = [
     inventory: [
       {
         description: 'vial of tears (2014)',
-        chance: [
-          '1',
-          '5'
-        ]
+        chance: [1,5],
       }
     ],
     credits: 0,
@@ -4393,10 +4067,7 @@ export const MobData = [
     inventory: [
       {
         description: 'true harrower statuette',
-        chance: [
-          '1',
-          '20'
-        ]
+        chance: [1,20],
       }
     ],
     credits: 0,
@@ -4662,10 +4333,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '20'
-        ]
+        chance: [1,20],
       }
     ],
     credits: [2000,
@@ -4710,10 +4378,7 @@ export const MobData = [
     inventory: [
       {
         description: 'true harrower statuette',
-        chance: [
-          '1',
-          '20'
-        ]
+        chance: [1,20],
       }
     ],
     credits: 0,
@@ -4794,10 +4459,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -4880,10 +4542,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -4928,10 +4587,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -5012,10 +4668,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'Purveyor of Darkness Statuette'
       }
     ],
@@ -5053,10 +4706,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -5101,10 +4751,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -5149,10 +4796,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -5259,10 +4903,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -5307,10 +4948,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -5386,10 +5024,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -5510,10 +5145,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -5558,10 +5190,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -5606,23 +5235,15 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Random Daemon Bone Armor Piece'
       }
     ],
-    credits: [400,
-      500],
+    credits: [400,500],
     skills: {
-      wrestling: [60,
-        80],
-      tactics: [60,
-        80],
-      magic_resistance: [60,
-        75
-      ]
+      wrestling: [60,80],
+      tactics: [60,80],
+      magic_resistance: [60,75]
     }
   },
   {
@@ -5631,14 +5252,10 @@ export const MobData = [
     description: 'efreet sultan',
     armor: 70,
     stats: {
-      str: [810,
-        855],
-      dex: [266,
-        285],
-      int: [1,
-        1],
-      hp: [1,
-        1],
+      str: [810,855],
+      dex: [266,285],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: 143
     },
@@ -5766,10 +5383,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -5814,10 +5428,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -5860,10 +5471,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -5935,10 +5543,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Studded Gloves Of Mining'
       }
     ],
@@ -5976,10 +5581,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Level 5 Treasure Map'
       }
     ],
@@ -6087,10 +5689,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -6159,10 +5758,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -6207,10 +5803,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -6255,10 +5848,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -6332,10 +5922,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -6380,10 +5967,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -6512,10 +6096,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: [275,
@@ -6558,10 +6139,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: 0,
@@ -6818,22 +6396,14 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '100'
-        ]
+        chance: [1,100],
       }
     ],
-    credits: [1500,
-      1700],
+    credits: [1500,1700],
     skills: {
-      wrestling: [75,
-        87],
-      tactics: [90,
-        100],
-      magic_resistance: [175,
-        200
-      ]
+      wrestling: [75,87],
+      tactics: [90,100],
+      magic_resistance: [175,200]
     }
   },
   {
@@ -6919,45 +6489,6 @@ export const MobData = [
     mob_type: 'humanoid',
     attackable: true,
     inventory: [],
-    credits: 0,
-    skills: {
-
-    }
-  },
-  {
-    id: 183,
-    name: 'beast tamer',
-    description: 'beast tamer',
-    armor: 60,
-    stats: {
-      str: [605,
-        725],
-      dex: [125,
-        150],
-      int: [505,
-        750],
-      hp: [8,
-        9],
-      taming: null,
-      barding: 413
-    },
-    offense: {
-      min: 29,
-      max: 36,
-      speed: 2.5
-    },
-    move: 1,
-    mob_type: 'humanoid',
-    attackable: true,
-    inventory: [
-      {
-        description: 'Mask of the Wilds',
-        chance: [
-          '1',
-          '10'
-        ]
-      }
-    ],
     credits: 0,
     skills: {
 
@@ -7060,10 +6591,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: 0,
@@ -7184,10 +6712,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [125,
@@ -7268,10 +6793,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [50,
@@ -7314,10 +6836,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -7353,10 +6872,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -7485,10 +7001,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Peculiar Meat (Carve)',
-        chance: [
-          '1',
-          '4'
-        ]
+        chance: [1,4],
       }
     ],
     credits: 0,
@@ -7562,10 +7075,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [125,
@@ -7613,10 +7123,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: [175,
@@ -7664,10 +7171,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [500,
@@ -8261,10 +7765,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: [275,
@@ -8308,10 +7809,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: [450,
@@ -8667,10 +8165,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -8742,10 +8237,7 @@ export const MobData = [
     inventory: [
       {
         description: 'tattered spellbook',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -8817,10 +8309,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -8856,10 +8345,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '100'
-        ]
+        chance: [1,100],
       }
     ],
     credits: 0,
@@ -8895,10 +8381,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '100'
-        ]
+        chance: [1,100],
       }
     ],
     credits: 0,
@@ -8934,10 +8417,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -8975,10 +8455,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [50,
@@ -9023,10 +8500,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: [300,
@@ -9071,10 +8545,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: [275,
@@ -9236,10 +8707,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '100'
-        ]
+        chance: [1,100],
       }
     ],
     credits: [1050,
@@ -9281,10 +8749,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [50,
@@ -9464,10 +8929,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [50,
@@ -9510,10 +8972,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -9585,10 +9044,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -9664,10 +9120,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [50,
@@ -9757,10 +9210,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '10'
-        ]
+        chance: [1,10],
       }
     ],
     credits: [314,
@@ -9803,10 +9253,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '10'
-        ]
+        chance: [1,10],
       }
     ],
     credits: 0,
@@ -9842,10 +9289,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '10'
-        ]
+        chance: [1,10],
       }
     ],
     credits: 0,
@@ -9881,10 +9325,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '10'
-        ]
+        chance: [1,10],
       }
     ],
     credits: 0,
@@ -10000,10 +9441,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '10'
-        ]
+        chance: [1,10],
       }
     ],
     credits: 0,
@@ -10157,10 +9595,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Platinum Coin'
       }
     ],
@@ -10205,10 +9640,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -10289,10 +9721,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -10373,10 +9802,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -10421,10 +9847,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -10512,10 +9935,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Platinum Coin'
       }
     ],
@@ -10553,10 +9973,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -10599,10 +10016,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Platinum Coin'
       }
     ],
@@ -10719,10 +10133,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -10765,10 +10176,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '1000'
-        ],
+        chance: [1,1000],
         description: 'Platinum Coin'
       }
     ],
@@ -10806,10 +10214,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -10891,10 +10296,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -11011,10 +10413,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '1000'
-        ],
+        chance: [1,1000],
         description: 'Platinum Coin'
       }
     ],
@@ -11057,10 +10456,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Platinum Coin'
       }
     ],
@@ -11143,10 +10539,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -11227,10 +10620,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -11272,10 +10662,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '25'
-        ],
+        chance: [1,25],
         description: 'Rabbit of Caerbannog Statuette'
       }
     ],
@@ -11313,10 +10700,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -11382,10 +10766,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -11425,10 +10806,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Platinum Coin'
       }
     ],
@@ -11466,10 +10844,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -11512,10 +10887,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '1000'
-        ],
+        chance: [1,1000],
         description: 'Platinum Coin'
       }
     ],
@@ -11553,10 +10925,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -11601,10 +10970,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -11649,10 +11015,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -11695,10 +11058,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'two headed behemoth statuette'
       }
     ],
@@ -11775,10 +11135,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -11816,10 +11173,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -11902,10 +11256,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -11949,10 +11300,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -11973,14 +11321,10 @@ export const MobData = [
     description: 'orcish lord',
     armor: 0,
     stats: {
-      str: [147,
-        215],
-      dex: [91,
-        115],
-      int: [61,
-        85],
-      hp: [95,
-        123],
+      str: [147,215],
+      dex: [91,115],
+      int: [61,85],
+      hp: [95,123],
       taming: null,
       barding: 61
     },
@@ -11994,10 +11338,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '3'
-        ],
+        chance: [1,3],
         description: 'Random Reagent'
       }
     ],
@@ -12012,14 +11353,10 @@ export const MobData = [
     description: 'orcish mage',
     armor: 30,
     stats: {
-      str: [116,
-        150],
-      dex: [91,
-        115],
-      int: [161,
-        185],
-      hp: [70,
-        90],
+      str: [116,150],
+      dex: [91,115],
+      int: [161,185],
+      hp: [70,90],
       taming: null,
       barding: 71
     },
@@ -12033,10 +11370,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -12112,10 +11446,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '1000'
-        ],
+        chance: [1,1000],
         description: 'Platinum Coin'
       }
     ],
@@ -12198,10 +11529,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -12246,10 +11574,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -12328,10 +11653,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -12376,10 +11698,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -12424,10 +11743,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -12508,10 +11824,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -12592,10 +11905,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -12640,10 +11950,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -12688,10 +11995,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -12734,10 +12038,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '4'
-        ],
+        chance: [1,4],
         description: 'Peculiar Meat (Carve)'
       }
     ],
@@ -12775,10 +12076,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Special Fishing Net'
       }
     ],
@@ -12844,10 +12142,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -12890,10 +12185,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Random Fishing Net Piece'
       }
     ],
@@ -12929,10 +12221,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -12968,10 +12257,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -13045,10 +12331,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -13129,10 +12412,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -13176,10 +12456,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -13224,10 +12501,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Level 4 Treasure Map'
       }
     ],
@@ -13270,10 +12544,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -13316,10 +12587,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -13395,10 +12663,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -13443,10 +12708,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -13489,10 +12751,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'Wyvern Monarch Statuette'
       }
     ],
@@ -13531,10 +12790,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '200'
-        ]
+        chance: [1,200]
       }
     ],
     credits: 0,
@@ -13632,10 +12888,7 @@ export const MobData = [
     inventory: [
       {
         description: 'Platinum Coin',
-        chance: [
-          '1',
-          '400'
-        ]
+        chance: [1,400],
       }
     ],
     credits: [25,
@@ -13677,10 +12930,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Yeti Statue  2 Hues (1151, 1154)'
       }
     ],
@@ -13716,10 +12966,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -13755,10 +13002,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -13794,10 +13038,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -13833,10 +13074,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -13872,10 +13110,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '25'
-        ],
+        chance: [1,25],
         description: 'Santas Lair Scroll (Dungeon)'
       }
     ],
@@ -13947,10 +13182,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -13986,10 +13218,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -14025,10 +13254,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14064,10 +13290,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -14103,10 +13326,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -14142,10 +13362,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14181,10 +13398,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14220,10 +13434,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14403,10 +13614,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14442,10 +13650,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -14481,10 +13686,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -14520,10 +13722,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -14559,10 +13758,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -14598,10 +13794,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -14637,10 +13830,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -14676,10 +13866,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -14715,10 +13902,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -14754,10 +13938,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Random Ranger Armor Piece'
       }
     ],
@@ -14793,10 +13974,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -14832,10 +14010,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14907,10 +14082,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14946,10 +14118,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -14985,10 +14154,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Rabbits Feet'
       }
     ],
@@ -15024,10 +14190,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15063,10 +14226,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15102,10 +14262,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -15141,10 +14298,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15180,10 +14334,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -15219,10 +14370,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -15258,10 +14406,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -15297,10 +14442,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Random Ranger Armor Piece'
       }
     ],
@@ -15336,10 +14478,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -15375,10 +14514,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15414,10 +14550,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15453,10 +14586,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15492,10 +14622,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'polar bear statuette'
       }
     ],
@@ -15531,10 +14658,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15570,10 +14694,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -15609,10 +14730,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Hidden Village Scroll (Overworld)'
       }
     ],
@@ -15648,10 +14766,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Hidden Village Scroll (Overworld)'
       }
     ],
@@ -15687,10 +14802,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Hidden Village Scroll (Overworld)'
       }
     ],
@@ -15726,10 +14838,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Ranger Armor of Fire  1 Random Piece, 4 Fire Hues'
       }
     ],
@@ -15765,10 +14874,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Level 6 Treasure Map'
       }
     ],
@@ -15840,10 +14946,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -15879,10 +14982,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -15918,10 +15018,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Polar Bear Statuette'
       }
     ],
@@ -15957,10 +15054,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -15996,10 +15090,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '25'
-        ],
+        chance: [1,25],
         description: 'Ice Fortress Scroll (Overworld)'
       }
     ],
@@ -16035,10 +15126,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -16074,10 +15162,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -16113,10 +15198,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Ranger Armor of Frost  1 Random Piece, 4 Ice Hues'
       }
     ],
@@ -16152,10 +15234,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -16191,10 +15270,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -16261,10 +15337,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -16367,10 +15440,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -16514,10 +15584,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -16553,10 +15620,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -16592,10 +15656,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Frozen Continent Scroll (Overworld)'
       }
     ],
@@ -16631,10 +15692,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -16670,10 +15728,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'Ice Reaper Statuette  4 Hues'
       }
     ],
@@ -16709,10 +15764,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'the naughty list  a rare runebook'
       }
     ],
@@ -16748,10 +15800,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Leprechaun Sandals'
       }
     ],
@@ -16787,10 +15836,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -16826,10 +15872,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -16865,10 +15908,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Hidden Village Scroll (Overworld)'
       }
     ],
@@ -16940,10 +15980,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -17087,10 +16124,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -17229,10 +16263,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '50'
-        ],
+        chance: [1,50],
         description: 'Santas Lair Scroll (Overworld)'
       }
     ],
@@ -17268,10 +16299,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -17417,10 +16445,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '1000'
-        ],
+        chance: [1,1000],
         description: 'Platinum Coin'
       }
     ],
@@ -17463,10 +16488,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '1000'
-        ],
+        chance: [1,1000],
         description: 'Platinum Coin'
       }
     ],
@@ -17511,10 +16533,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -17557,10 +16576,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Sloth Statuette'
       }
     ],
@@ -17596,10 +16612,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -17671,10 +16684,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -17710,10 +16720,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Random Event Clothing Item(17 Possible Items)'
       }
     ],
@@ -17749,10 +16756,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Random Event Clothing Item  17 Possible Items'
       }
     ],
@@ -17788,10 +16792,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Random Event Clothing Item  (17 Possible Items)'
       }
     ],
@@ -17827,10 +16828,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '10'
-        ],
+        chance: [1,10],
         description: 'Random Event Clothing Item (17 Possible Items)'
       }
     ],
@@ -17902,10 +16900,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'captain Johnes cutlass'
       }
     ],
@@ -17941,10 +16936,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -17980,10 +16972,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'a vial of catnip'
       }
     ],
@@ -18019,10 +17008,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -18058,10 +17044,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -18133,10 +17116,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -18172,10 +17152,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Vanity Statuette'
       }
     ],
@@ -18211,10 +17188,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '250'
-        ],
+        chance: [1,250],
         description: 'vixen statuette'
       }
     ],
@@ -18322,10 +17296,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '20'
-        ],
+        chance: [1,20],,
         description: 'Platinum Coin'
       }
     ],
@@ -18361,10 +17332,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '4'
-        ],
+        chance: [1,4],
         description: 'Peculiar Meat (Carve)'
       }
     ],
@@ -18489,10 +17457,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -18561,10 +17526,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -18647,10 +17609,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -18693,10 +17652,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '4'
-        ],
+        chance: [1,4],
         description: 'Peculiar Meat (Carve)'
       }
     ],
@@ -18779,10 +17735,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -18826,10 +17779,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '200'
-        ],
+        chance: [1,200],
         description: 'Platinum Coin'
       }
     ],
@@ -19000,10 +17950,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '100'
-        ],
+        chance: [1,100]
         description: 'Platinum Coin'
       }
     ],
@@ -19045,10 +17992,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -19228,10 +18172,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400]
         description: 'Platinum Coin'
       }
     ],
@@ -19276,10 +18217,7 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        chance: [
-          '1',
-          '400'
-        ],
+        chance: [1,400],
         description: 'Platinum Coin'
       }
     ],
