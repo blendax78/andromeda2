@@ -530,12 +530,12 @@ var Config = {
   },
 
   prettyPrint: function prettyPrint(string) {
+    var result = '';
     if (string.indexOf('_') !== -1) {
-      var _result = '';
       var string_data = string.split('_');
 
       for (var i in string_data) {
-        _result += _this.a.upperCase(string_data[i]) + ' ';
+        result += _this.a.upperCase(string_data[i]) + ' ';
       }
     } else {
       result = _this.a.upperCase(string);

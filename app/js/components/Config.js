@@ -133,8 +133,8 @@ const Config = {
   },
 
   prettyPrint: (string) => {
+    let result = '';
     if (string.indexOf('_') !== -1) {
-      let result = '';
       let string_data = string.split('_');
 
       for (let i in string_data) {
