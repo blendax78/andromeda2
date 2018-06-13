@@ -125,7 +125,7 @@ const Config = {
     SKILLS: '/skill',
   },
   SETTINGS: {
-    SKILL_TIMEOUT: 1
+    SKILL_TIMEOUT: 11
   },
 
   upperCase: (string) => {
