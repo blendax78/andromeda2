@@ -92,6 +92,8 @@ const Config = {
       SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',
       GET: 'SKILLS.GET',
+      ANATOMY: 'SKILLS.ANATOMY',
+      ANIMAL_LORE: 'SKILLS.ANIMAL_LORE',
       HIDING: 'SKILLS.HIDING',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MEDITATION: 'SKILLS.MEDITATION',
@@ -122,9 +124,27 @@ const Config = {
     BANK: '/bank',
     SKILLS: '/skill',
   },
+  SETTINGS: {
+    SKILL_TIMEOUT: 1
+  },
 
   upperCase: (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  },
+
+  prettyPrint: (string) => {
+    if (string.indexOf('_') !== -1) {
+      let result = '';
+      let string_data = string.split('_');
+
+      for (let i in string_data) {
+        result += this.a.upperCase(string_data[i]) + ' ';
+      }
+    } else {
+      result = this.a.upperCase(string);
+    }
+
+    return result.trim();
   },
 
   randomKey: (text = '') => {

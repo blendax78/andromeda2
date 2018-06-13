@@ -149,6 +149,16 @@ export const SkillData = {
     secondary: 'strength',
     title: 'Biologist'
   },
+  animal_lore: {
+    id: 16,
+    name: 'Animal Lore',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'intelligence',
+    secondary: 'strength',
+    title: 'Naturalist'
+  },
 };
 
 

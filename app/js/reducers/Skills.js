@@ -40,7 +40,7 @@ const Skills = (state = {}, action) => {
         player[stat]++;
 
         state.Queue.add('actions', Config.ACTIONS.PLAYER.SAVE, state.Player);
-        notifyGain(`${ Config.upperCase(stat) } increased by 1. It is now ${player[stat].toString()}.`);
+        notifyGain(`${ Config.prettyPrint(stat) } increased by 1. It is now ${player[stat].toString()}.`);
       }
     }
   };
@@ -159,9 +159,7 @@ const Skills = (state = {}, action) => {
 
     if (random <= skill.current + skill.modifier) {
       notify('You have hidden yourself well.');
-
       checkSkillGain(skill.name.toLowerCase());
-      checkResultSuccess();
 
       state.Player.status.hide = true;
       return true;
@@ -178,16 +176,53 @@ const Skills = (state = {}, action) => {
 
   }
 
+  let anatomy = (mob) => {
+    let skill = state.Skills.animal_lore;
+    let random = _.random(1, 100);
+
+    if (random <= skill.current + skill.modifier) {
+      notify('You discover some things about this creature.');
+      checkSkillGain('anatomy');
+console.log('anat', mob);
+      return true;
+    } else {
+      notify('You do not know enough about this creature.')
+      if (skill.current < 20.0) {
+        // If under 20, check on fail.
+        checkSkillGain('anatomy');
+      }
+
+      return false
+    }
+  };
+
+  let animalLore = (mob) => {
+    let skill = state.Skills.animal_lore;
+    let random = _.random(1, 100);
+
+    if (random <= skill.current + skill.modifier) {
+      notify('You discover some things about this creature.');
+      checkSkillGain('animal_lore');
+console.log('AL', mob);
+      return true;
+    } else {
+      notify('You do not know enough about this creature.')
+      if (skill.current < 20.0) {
+        // If under 20, check on fail.
+        checkSkillGain('animal_lore');
+      }
+
+      return false
+    }
+  };
+
   let meditate = () => {
     let skill = state.Skills.meditation;
-    // This function is called when an object is clicked and a skill is checked.
     let random = _.random(1, 100);
 
     if (random <= skill.current + skill.modifier) {
       notify('You enter a meditative trance.');
-
       checkSkillGain(skill.name.toLowerCase());
-      checkResultSuccess();
 
       state.Player.status.meditate = true;
       return true;
@@ -232,6 +267,12 @@ const Skills = (state = {}, action) => {
     break;
     case SKILLS.MEDITATION:
       meditate();
+    break;
+    case SKILLS.ANATOMY:
+      anatomy(payload.mob);
+    break;
+    case SKILLS.ANIMAL_LORE:
+      animalLore(payload.mob);
     break;
     case SKILLS.CRAFT:
       // Handles all crafting skills

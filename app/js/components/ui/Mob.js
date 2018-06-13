@@ -7,14 +7,21 @@ class Mob extends Component {
     super(props);
 
     this.keys = {
-      actions: Config.randomKey('mob_actions')
+      actions: Config.randomKey('mob_actions'),
+      attack: Config.randomKey('mob_actions'),
+      lore: Config.randomKey('mob_actions')
     };
 
     this.state = {
       mob: this.props.data,
       player: this.props.store.getState().Player,
       showAction: false,
-      showCombat: this.props.store.getState().Mobs.showCombat
+      showCombat: this.props.store.getState().Mobs.showCombat,
+      buttons: {
+        anatomy: true,
+        animal_lore: true,
+        attack: true
+      }
     };
 
     this.unsubscribe = props.store.subscribe(() => {
@@ -65,15 +72,71 @@ class Mob extends Component {
     Config.modal(this.props.store, '', '', 'combat');
   }
 
+  animalLore(mob) {
+    let buttons = this.state.buttons;
+    buttons.animal_lore = false;
+    this.setState({ buttons: buttons });
+
+    this.props.store.dispatch({ type: Config.ACTIONS.SKILLS.ANIMAL_LORE, payload: { mob: mob } });
+
+    setTimeout(() => {
+      buttons.animal_lore = true;
+      this.setState({ buttons: buttons });
+    }, Config.SETTINGS.SKILL_TIMEOUT * 1000);
+  }
+
+  anatomy(mob) {
+    let buttons = this.state.buttons;
+    buttons.anatomy = false;
+    this.setState({ buttons: buttons });
+
+    this.props.store.dispatch({ type: Config.ACTIONS.SKILLS.ANATOMY, payload: { mob: mob } });
+    setTimeout(() => {
+      buttons.anatomy = true;
+      this.setState({ buttons: buttons });
+    }, Config.SETTINGS.SKILL_TIMEOUT * 1000);
+  }
+
   getMobActions() {
     if (!this.state.showAction) {
       return '';
     }
 
     let buttons = [];
+    let buttonStyle = {};
 
     if (this.state.mob.attackable && !this.state.player.status.dead) {
-      buttons.push(<button key={this.keys.actions} type="button" className="btn btn-default top5" onClick={(e) => this.toggleCombat()}>Attack</button>);
+      buttonStyle = classNames({
+        disabled: !this.state.buttons.attack,
+        btn: true,
+        'btn-default': true,
+        top5: true
+      });
+      buttons.push(
+        <button key={this.keys.attack} disabled={!this.state.buttons.attack} type="button" className={buttonStyle} onClick={(e) => this.toggleCombat()}>Attack</button>
+      );
+    }
+
+    if (this.state.mob.mob_type !== 'humanoid') {
+      buttonStyle = classNames({
+        disabled: !this.state.buttons.animal_lore,
+        btn: true,
+        'btn-default': true,
+        top5: true
+      });
+      buttons.push(
+        <button key={this.keys.lore} disabled={!this.state.buttons.animal_lore} type="button" className={buttonStyle} onClick={(e) => this.animalLore(this.state.mob)}>Animal Lore</button>
+      );
+    } else {
+      buttonStyle = classNames({
+        disabled: !this.state.buttons.anatomy,
+        btn: true,
+        'btn-default': true,
+        top5: true
+      });
+      buttons.push(
+        <button key={this.keys.anatomy} disabled={!this.state.buttons.anatomy} type="button" className={buttonStyle} onClick={(e) => this.anatomy(this.state.mob)}>Anatomy</button>
+      );
     }
 
     return (

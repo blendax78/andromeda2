@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 146);
+/******/ 	return __webpack_require__(__webpack_require__.s = 147);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -389,7 +389,7 @@ module.exports = warning;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uuid__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uuid__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uuid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uuid__);
 
 
@@ -489,6 +489,8 @@ var Config = {
       SAVE: 'SKILLS.SAVE',
       FETCH: 'SKILLS.FETCH',
       GET: 'SKILLS.GET',
+      ANATOMY: 'SKILLS.ANATOMY',
+      ANIMAL_LORE: 'SKILLS.ANIMAL_LORE',
       HIDING: 'SKILLS.HIDING',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MEDITATION: 'SKILLS.MEDITATION',
@@ -519,9 +521,27 @@ var Config = {
     BANK: '/bank',
     SKILLS: '/skill'
   },
+  SETTINGS: {
+    SKILL_TIMEOUT: 1
+  },
 
   upperCase: function upperCase(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  },
+
+  prettyPrint: function prettyPrint(string) {
+    if (string.indexOf('_') !== -1) {
+      var _result = '';
+      var string_data = string.split('_');
+
+      for (var i in string_data) {
+        _result += _this.a.upperCase(string_data[i]) + ' ';
+      }
+    } else {
+      result = _this.a.upperCase(string);
+    }
+
+    return result.trim();
   },
 
   randomKey: function randomKey() {
@@ -791,7 +811,7 @@ module.exports = __webpack_require__(31);
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(275), __esModule: true };
+module.exports = { "default": __webpack_require__(276), __esModule: true };
 
 /***/ }),
 /* 7 */
@@ -817,7 +837,7 @@ exports.default = function (instance, Constructor) {
 
 exports.__esModule = true;
 
-var _defineProperty = __webpack_require__(278);
+var _defineProperty = __webpack_require__(279);
 
 var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
@@ -873,11 +893,11 @@ exports.default = function (self, call) {
 
 exports.__esModule = true;
 
-var _setPrototypeOf = __webpack_require__(302);
+var _setPrototypeOf = __webpack_require__(303);
 
 var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-var _create = __webpack_require__(306);
+var _create = __webpack_require__(307);
 
 var _create2 = _interopRequireDefault(_create);
 
@@ -1019,7 +1039,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 var ReactDOMComponentFlags = __webpack_require__(103);
 
 var invariant = __webpack_require__(1);
@@ -1634,7 +1654,7 @@ module.exports = ReactComponentTreeHook;
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(263);
+var _assign = __webpack_require__(264);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -1677,7 +1697,7 @@ exports.default = _assign2.default || function (target) {
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(188);
+  var ReactDebugTool = __webpack_require__(189);
   debugTool = ReactDebugTool;
 }
 
@@ -2299,233 +2319,6 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 
 /***/ }),
 /* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var _prodInvariant = __webpack_require__(4);
-
-var invariant = __webpack_require__(1);
-
-function checkMask(value, bitmask) {
-  return (value & bitmask) === bitmask;
-}
-
-var DOMPropertyInjection = {
-  /**
-   * Mapping from normalized, camelcased property names to a configuration that
-   * specifies how the associated DOM property should be accessed or rendered.
-   */
-  MUST_USE_PROPERTY: 0x1,
-  HAS_BOOLEAN_VALUE: 0x4,
-  HAS_NUMERIC_VALUE: 0x8,
-  HAS_POSITIVE_NUMERIC_VALUE: 0x10 | 0x8,
-  HAS_OVERLOADED_BOOLEAN_VALUE: 0x20,
-
-  /**
-   * Inject some specialized knowledge about the DOM. This takes a config object
-   * with the following properties:
-   *
-   * isCustomAttribute: function that given an attribute name will return true
-   * if it can be inserted into the DOM verbatim. Useful for data-* or aria-*
-   * attributes where it's impossible to enumerate all of the possible
-   * attribute names,
-   *
-   * Properties: object mapping DOM property name to one of the
-   * DOMPropertyInjection constants or null. If your attribute isn't in here,
-   * it won't get written to the DOM.
-   *
-   * DOMAttributeNames: object mapping React attribute name to the DOM
-   * attribute name. Attribute names not specified use the **lowercase**
-   * normalized name.
-   *
-   * DOMAttributeNamespaces: object mapping React attribute name to the DOM
-   * attribute namespace URL. (Attribute names not specified use no namespace.)
-   *
-   * DOMPropertyNames: similar to DOMAttributeNames but for DOM properties.
-   * Property names not specified use the normalized name.
-   *
-   * DOMMutationMethods: Properties that require special mutation methods. If
-   * `value` is undefined, the mutation method should unset the property.
-   *
-   * @param {object} domPropertyConfig the config as described above.
-   */
-  injectDOMPropertyConfig: function (domPropertyConfig) {
-    var Injection = DOMPropertyInjection;
-    var Properties = domPropertyConfig.Properties || {};
-    var DOMAttributeNamespaces = domPropertyConfig.DOMAttributeNamespaces || {};
-    var DOMAttributeNames = domPropertyConfig.DOMAttributeNames || {};
-    var DOMPropertyNames = domPropertyConfig.DOMPropertyNames || {};
-    var DOMMutationMethods = domPropertyConfig.DOMMutationMethods || {};
-
-    if (domPropertyConfig.isCustomAttribute) {
-      DOMProperty._isCustomAttributeFunctions.push(domPropertyConfig.isCustomAttribute);
-    }
-
-    for (var propName in Properties) {
-      !!DOMProperty.properties.hasOwnProperty(propName) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'injectDOMPropertyConfig(...): You\'re trying to inject DOM property \'%s\' which has already been injected. You may be accidentally injecting the same DOM property config twice, or you may be injecting two configs that have conflicting property names.', propName) : _prodInvariant('48', propName) : void 0;
-
-      var lowerCased = propName.toLowerCase();
-      var propConfig = Properties[propName];
-
-      var propertyInfo = {
-        attributeName: lowerCased,
-        attributeNamespace: null,
-        propertyName: propName,
-        mutationMethod: null,
-
-        mustUseProperty: checkMask(propConfig, Injection.MUST_USE_PROPERTY),
-        hasBooleanValue: checkMask(propConfig, Injection.HAS_BOOLEAN_VALUE),
-        hasNumericValue: checkMask(propConfig, Injection.HAS_NUMERIC_VALUE),
-        hasPositiveNumericValue: checkMask(propConfig, Injection.HAS_POSITIVE_NUMERIC_VALUE),
-        hasOverloadedBooleanValue: checkMask(propConfig, Injection.HAS_OVERLOADED_BOOLEAN_VALUE)
-      };
-      !(propertyInfo.hasBooleanValue + propertyInfo.hasNumericValue + propertyInfo.hasOverloadedBooleanValue <= 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'DOMProperty: Value can be one of boolean, overloaded boolean, or numeric value, but not a combination: %s', propName) : _prodInvariant('50', propName) : void 0;
-
-      if (process.env.NODE_ENV !== 'production') {
-        DOMProperty.getPossibleStandardName[lowerCased] = propName;
-      }
-
-      if (DOMAttributeNames.hasOwnProperty(propName)) {
-        var attributeName = DOMAttributeNames[propName];
-        propertyInfo.attributeName = attributeName;
-        if (process.env.NODE_ENV !== 'production') {
-          DOMProperty.getPossibleStandardName[attributeName] = propName;
-        }
-      }
-
-      if (DOMAttributeNamespaces.hasOwnProperty(propName)) {
-        propertyInfo.attributeNamespace = DOMAttributeNamespaces[propName];
-      }
-
-      if (DOMPropertyNames.hasOwnProperty(propName)) {
-        propertyInfo.propertyName = DOMPropertyNames[propName];
-      }
-
-      if (DOMMutationMethods.hasOwnProperty(propName)) {
-        propertyInfo.mutationMethod = DOMMutationMethods[propName];
-      }
-
-      DOMProperty.properties[propName] = propertyInfo;
-    }
-  }
-};
-
-/* eslint-disable max-len */
-var ATTRIBUTE_NAME_START_CHAR = ':A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD';
-/* eslint-enable max-len */
-
-/**
- * DOMProperty exports lookup objects that can be used like functions:
- *
- *   > DOMProperty.isValid['id']
- *   true
- *   > DOMProperty.isValid['foobar']
- *   undefined
- *
- * Although this may be confusing, it performs better in general.
- *
- * @see http://jsperf.com/key-exists
- * @see http://jsperf.com/key-missing
- */
-var DOMProperty = {
-  ID_ATTRIBUTE_NAME: 'data-reactid',
-  ROOT_ATTRIBUTE_NAME: 'data-reactroot',
-
-  ATTRIBUTE_NAME_START_CHAR: ATTRIBUTE_NAME_START_CHAR,
-  ATTRIBUTE_NAME_CHAR: ATTRIBUTE_NAME_START_CHAR + '\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040',
-
-  /**
-   * Map from property "standard name" to an object with info about how to set
-   * the property in the DOM. Each object contains:
-   *
-   * attributeName:
-   *   Used when rendering markup or with `*Attribute()`.
-   * attributeNamespace
-   * propertyName:
-   *   Used on DOM node instances. (This includes properties that mutate due to
-   *   external factors.)
-   * mutationMethod:
-   *   If non-null, used instead of the property or `setAttribute()` after
-   *   initial render.
-   * mustUseProperty:
-   *   Whether the property must be accessed and mutated as an object property.
-   * hasBooleanValue:
-   *   Whether the property should be removed when set to a falsey value.
-   * hasNumericValue:
-   *   Whether the property must be numeric or parse as a numeric and should be
-   *   removed when set to a falsey value.
-   * hasPositiveNumericValue:
-   *   Whether the property must be positive numeric or parse as a positive
-   *   numeric and should be removed when set to a falsey value.
-   * hasOverloadedBooleanValue:
-   *   Whether the property can be used as a flag as well as with a value.
-   *   Removed when strictly equal to false; present without a value when
-   *   strictly equal to true; present with a value otherwise.
-   */
-  properties: {},
-
-  /**
-   * Mapping from lowercase property names to the properly cased version, used
-   * to warn in the case of missing properties. Available only in __DEV__.
-   *
-   * autofocus is predefined, because adding it to the property whitelist
-   * causes unintended side effects.
-   *
-   * @type {Object}
-   */
-  getPossibleStandardName: process.env.NODE_ENV !== 'production' ? { autofocus: 'autoFocus' } : null,
-
-  /**
-   * All of the isCustomAttribute() functions that have been injected.
-   */
-  _isCustomAttributeFunctions: [],
-
-  /**
-   * Checks whether a property name is a custom attribute.
-   * @method
-   */
-  isCustomAttribute: function (attributeName) {
-    for (var i = 0; i < DOMProperty._isCustomAttributeFunctions.length; i++) {
-      var isCustomAttributeFn = DOMProperty._isCustomAttributeFunctions[i];
-      if (isCustomAttributeFn(attributeName)) {
-        return true;
-      }
-    }
-    return false;
-  },
-
-  injection: DOMPropertyInjection
-};
-
-module.exports = DOMProperty;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self
-  // eslint-disable-next-line no-new-func
-  : Function('return this')();
-if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
-
-
-/***/ }),
-/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4841,6 +4634,233 @@ http://www.uorenaissance.com/list/Plate/P
 */
 
 /***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+
+
+var _prodInvariant = __webpack_require__(4);
+
+var invariant = __webpack_require__(1);
+
+function checkMask(value, bitmask) {
+  return (value & bitmask) === bitmask;
+}
+
+var DOMPropertyInjection = {
+  /**
+   * Mapping from normalized, camelcased property names to a configuration that
+   * specifies how the associated DOM property should be accessed or rendered.
+   */
+  MUST_USE_PROPERTY: 0x1,
+  HAS_BOOLEAN_VALUE: 0x4,
+  HAS_NUMERIC_VALUE: 0x8,
+  HAS_POSITIVE_NUMERIC_VALUE: 0x10 | 0x8,
+  HAS_OVERLOADED_BOOLEAN_VALUE: 0x20,
+
+  /**
+   * Inject some specialized knowledge about the DOM. This takes a config object
+   * with the following properties:
+   *
+   * isCustomAttribute: function that given an attribute name will return true
+   * if it can be inserted into the DOM verbatim. Useful for data-* or aria-*
+   * attributes where it's impossible to enumerate all of the possible
+   * attribute names,
+   *
+   * Properties: object mapping DOM property name to one of the
+   * DOMPropertyInjection constants or null. If your attribute isn't in here,
+   * it won't get written to the DOM.
+   *
+   * DOMAttributeNames: object mapping React attribute name to the DOM
+   * attribute name. Attribute names not specified use the **lowercase**
+   * normalized name.
+   *
+   * DOMAttributeNamespaces: object mapping React attribute name to the DOM
+   * attribute namespace URL. (Attribute names not specified use no namespace.)
+   *
+   * DOMPropertyNames: similar to DOMAttributeNames but for DOM properties.
+   * Property names not specified use the normalized name.
+   *
+   * DOMMutationMethods: Properties that require special mutation methods. If
+   * `value` is undefined, the mutation method should unset the property.
+   *
+   * @param {object} domPropertyConfig the config as described above.
+   */
+  injectDOMPropertyConfig: function (domPropertyConfig) {
+    var Injection = DOMPropertyInjection;
+    var Properties = domPropertyConfig.Properties || {};
+    var DOMAttributeNamespaces = domPropertyConfig.DOMAttributeNamespaces || {};
+    var DOMAttributeNames = domPropertyConfig.DOMAttributeNames || {};
+    var DOMPropertyNames = domPropertyConfig.DOMPropertyNames || {};
+    var DOMMutationMethods = domPropertyConfig.DOMMutationMethods || {};
+
+    if (domPropertyConfig.isCustomAttribute) {
+      DOMProperty._isCustomAttributeFunctions.push(domPropertyConfig.isCustomAttribute);
+    }
+
+    for (var propName in Properties) {
+      !!DOMProperty.properties.hasOwnProperty(propName) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'injectDOMPropertyConfig(...): You\'re trying to inject DOM property \'%s\' which has already been injected. You may be accidentally injecting the same DOM property config twice, or you may be injecting two configs that have conflicting property names.', propName) : _prodInvariant('48', propName) : void 0;
+
+      var lowerCased = propName.toLowerCase();
+      var propConfig = Properties[propName];
+
+      var propertyInfo = {
+        attributeName: lowerCased,
+        attributeNamespace: null,
+        propertyName: propName,
+        mutationMethod: null,
+
+        mustUseProperty: checkMask(propConfig, Injection.MUST_USE_PROPERTY),
+        hasBooleanValue: checkMask(propConfig, Injection.HAS_BOOLEAN_VALUE),
+        hasNumericValue: checkMask(propConfig, Injection.HAS_NUMERIC_VALUE),
+        hasPositiveNumericValue: checkMask(propConfig, Injection.HAS_POSITIVE_NUMERIC_VALUE),
+        hasOverloadedBooleanValue: checkMask(propConfig, Injection.HAS_OVERLOADED_BOOLEAN_VALUE)
+      };
+      !(propertyInfo.hasBooleanValue + propertyInfo.hasNumericValue + propertyInfo.hasOverloadedBooleanValue <= 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'DOMProperty: Value can be one of boolean, overloaded boolean, or numeric value, but not a combination: %s', propName) : _prodInvariant('50', propName) : void 0;
+
+      if (process.env.NODE_ENV !== 'production') {
+        DOMProperty.getPossibleStandardName[lowerCased] = propName;
+      }
+
+      if (DOMAttributeNames.hasOwnProperty(propName)) {
+        var attributeName = DOMAttributeNames[propName];
+        propertyInfo.attributeName = attributeName;
+        if (process.env.NODE_ENV !== 'production') {
+          DOMProperty.getPossibleStandardName[attributeName] = propName;
+        }
+      }
+
+      if (DOMAttributeNamespaces.hasOwnProperty(propName)) {
+        propertyInfo.attributeNamespace = DOMAttributeNamespaces[propName];
+      }
+
+      if (DOMPropertyNames.hasOwnProperty(propName)) {
+        propertyInfo.propertyName = DOMPropertyNames[propName];
+      }
+
+      if (DOMMutationMethods.hasOwnProperty(propName)) {
+        propertyInfo.mutationMethod = DOMMutationMethods[propName];
+      }
+
+      DOMProperty.properties[propName] = propertyInfo;
+    }
+  }
+};
+
+/* eslint-disable max-len */
+var ATTRIBUTE_NAME_START_CHAR = ':A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD';
+/* eslint-enable max-len */
+
+/**
+ * DOMProperty exports lookup objects that can be used like functions:
+ *
+ *   > DOMProperty.isValid['id']
+ *   true
+ *   > DOMProperty.isValid['foobar']
+ *   undefined
+ *
+ * Although this may be confusing, it performs better in general.
+ *
+ * @see http://jsperf.com/key-exists
+ * @see http://jsperf.com/key-missing
+ */
+var DOMProperty = {
+  ID_ATTRIBUTE_NAME: 'data-reactid',
+  ROOT_ATTRIBUTE_NAME: 'data-reactroot',
+
+  ATTRIBUTE_NAME_START_CHAR: ATTRIBUTE_NAME_START_CHAR,
+  ATTRIBUTE_NAME_CHAR: ATTRIBUTE_NAME_START_CHAR + '\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040',
+
+  /**
+   * Map from property "standard name" to an object with info about how to set
+   * the property in the DOM. Each object contains:
+   *
+   * attributeName:
+   *   Used when rendering markup or with `*Attribute()`.
+   * attributeNamespace
+   * propertyName:
+   *   Used on DOM node instances. (This includes properties that mutate due to
+   *   external factors.)
+   * mutationMethod:
+   *   If non-null, used instead of the property or `setAttribute()` after
+   *   initial render.
+   * mustUseProperty:
+   *   Whether the property must be accessed and mutated as an object property.
+   * hasBooleanValue:
+   *   Whether the property should be removed when set to a falsey value.
+   * hasNumericValue:
+   *   Whether the property must be numeric or parse as a numeric and should be
+   *   removed when set to a falsey value.
+   * hasPositiveNumericValue:
+   *   Whether the property must be positive numeric or parse as a positive
+   *   numeric and should be removed when set to a falsey value.
+   * hasOverloadedBooleanValue:
+   *   Whether the property can be used as a flag as well as with a value.
+   *   Removed when strictly equal to false; present without a value when
+   *   strictly equal to true; present with a value otherwise.
+   */
+  properties: {},
+
+  /**
+   * Mapping from lowercase property names to the properly cased version, used
+   * to warn in the case of missing properties. Available only in __DEV__.
+   *
+   * autofocus is predefined, because adding it to the property whitelist
+   * causes unintended side effects.
+   *
+   * @type {Object}
+   */
+  getPossibleStandardName: process.env.NODE_ENV !== 'production' ? { autofocus: 'autoFocus' } : null,
+
+  /**
+   * All of the isCustomAttribute() functions that have been injected.
+   */
+  _isCustomAttributeFunctions: [],
+
+  /**
+   * Checks whether a property name is a custom attribute.
+   * @method
+   */
+  isCustomAttribute: function (attributeName) {
+    for (var i = 0; i < DOMProperty._isCustomAttributeFunctions.length; i++) {
+      var isCustomAttributeFn = DOMProperty._isCustomAttributeFunctions[i];
+      if (isCustomAttributeFn(attributeName)) {
+        return true;
+      }
+    }
+    return false;
+  },
+
+  injection: DOMPropertyInjection
+};
+
+module.exports = DOMProperty;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5309,7 +5329,7 @@ module.exports = PooledClass;
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(23);
+var global = __webpack_require__(24);
 var core = __webpack_require__(20);
 var ctx = __webpack_require__(128);
 var hide = __webpack_require__(35);
@@ -5434,14 +5454,14 @@ module.exports = function (it, key) {
 var _assign = __webpack_require__(11);
 
 var ReactBaseClasses = __webpack_require__(90);
-var ReactChildren = __webpack_require__(147);
-var ReactDOMFactories = __webpack_require__(151);
+var ReactChildren = __webpack_require__(148);
+var ReactDOMFactories = __webpack_require__(152);
 var ReactElement = __webpack_require__(25);
-var ReactPropTypes = __webpack_require__(155);
-var ReactVersion = __webpack_require__(158);
+var ReactPropTypes = __webpack_require__(156);
+var ReactVersion = __webpack_require__(159);
 
-var createReactClass = __webpack_require__(159);
-var onlyChild = __webpack_require__(161);
+var createReactClass = __webpack_require__(160);
+var onlyChild = __webpack_require__(162);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
@@ -5613,7 +5633,7 @@ module.exports = reactProdInvariant;
 
 
 
-var ReactRef = __webpack_require__(186);
+var ReactRef = __webpack_require__(187);
 var ReactInstrumentation = __webpack_require__(16);
 
 var warning = __webpack_require__(2);
@@ -5945,7 +5965,7 @@ module.exports = function (it) {
 
 var store = __webpack_require__(80)('wks');
 var uid = __webpack_require__(57);
-var Symbol = __webpack_require__(23).Symbol;
+var Symbol = __webpack_require__(24).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function (name) {
@@ -6511,11 +6531,11 @@ module.exports = function (it) {
 
 exports.__esModule = true;
 
-var _iterator = __webpack_require__(281);
+var _iterator = __webpack_require__(282);
 
 var _iterator2 = _interopRequireDefault(_iterator);
 
-var _symbol = __webpack_require__(292);
+var _symbol = __webpack_require__(293);
 
 var _symbol2 = _interopRequireDefault(_symbol);
 
@@ -7460,10 +7480,10 @@ module.exports = escapeTextContentForBrowser;
 var _assign = __webpack_require__(11);
 
 var EventPluginRegistry = __webpack_require__(49);
-var ReactEventEmitterMixin = __webpack_require__(212);
+var ReactEventEmitterMixin = __webpack_require__(213);
 var ViewportMetrics = __webpack_require__(111);
 
-var getVendorPrefixedEventName = __webpack_require__(213);
+var getVendorPrefixedEventName = __webpack_require__(214);
 var isEventSupported = __webpack_require__(63);
 
 /**
@@ -8370,7 +8390,7 @@ module.exports = getEventModifierState;
 
 
 var DOMLazyTree = __webpack_require__(34);
-var Danger = __webpack_require__(197);
+var Danger = __webpack_require__(198);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInstrumentation = __webpack_require__(16);
 
@@ -9750,7 +9770,7 @@ module.exports = function (key) {
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(23);
+var global = __webpack_require__(24);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
 module.exports = function (key) {
@@ -9806,7 +9826,7 @@ module.exports = {};
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(44);
-var dPs = __webpack_require__(286);
+var dPs = __webpack_require__(287);
 var enumBugKeys = __webpack_require__(81);
 var IE_PROTO = __webpack_require__(79)('IE_PROTO');
 var Empty = function () { /* empty */ };
@@ -9821,7 +9841,7 @@ var createDict = function () {
   var gt = '>';
   var iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(287).appendChild(iframe);
+  __webpack_require__(288).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -9871,7 +9891,7 @@ exports.f = __webpack_require__(39);
 /* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(23);
+var global = __webpack_require__(24);
 var core = __webpack_require__(20);
 var LIBRARY = __webpack_require__(84);
 var wksExt = __webpack_require__(88);
@@ -10231,7 +10251,7 @@ var ReactCurrentOwner = __webpack_require__(18);
 var ReactComponentTreeHook = __webpack_require__(14);
 var ReactElement = __webpack_require__(25);
 
-var checkReactTypeSpec = __webpack_require__(152);
+var checkReactTypeSpec = __webpack_require__(153);
 
 var canDefineProperty = __webpack_require__(47);
 var getIteratorFn = __webpack_require__(93);
@@ -10482,7 +10502,7 @@ module.exports = ReactElementValidator;
 // Therefore we re-export development-only version with all the PropTypes checks here.
 // However if one is migrating to the `prop-types` npm library, they will go through the
 // `index.js` entry point, and it will branch depending on the environment.
-var factory = __webpack_require__(156);
+var factory = __webpack_require__(157);
 module.exports = function(isValidElement) {
   // It is still allowed in 15.5.
   var throwOnDirectAccess = false;
@@ -10517,7 +10537,7 @@ module.exports = ReactPropTypesSecret;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(172);
 
 
 
@@ -10772,9 +10792,9 @@ var ActionTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(171);
 
 
 
@@ -10844,7 +10864,7 @@ function isPlainObject(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(165);
 
 
 /** Built-in value references. */
@@ -11737,11 +11757,11 @@ module.exports = CSSProperty;
 
 
 
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInstrumentation = __webpack_require__(16);
 
-var quoteAttributeValueForBrowser = __webpack_require__(211);
+var quoteAttributeValueForBrowser = __webpack_require__(212);
 var warning = __webpack_require__(2);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -12209,11 +12229,11 @@ module.exports = ReactDOMSelect;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(11);
 
-var ReactCompositeComponent = __webpack_require__(219);
+var ReactCompositeComponent = __webpack_require__(220);
 var ReactEmptyComponent = __webpack_require__(120);
 var ReactHostComponent = __webpack_require__(121);
 
-var getNextDebugID = __webpack_require__(222);
+var getNextDebugID = __webpack_require__(223);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -12499,9 +12519,9 @@ module.exports = ReactHostComponent;
 var _prodInvariant = __webpack_require__(4);
 
 var ReactCurrentOwner = __webpack_require__(18);
-var REACT_ELEMENT_TYPE = __webpack_require__(223);
+var REACT_ELEMENT_TYPE = __webpack_require__(224);
 
-var getIteratorFn = __webpack_require__(224);
+var getIteratorFn = __webpack_require__(225);
 var invariant = __webpack_require__(1);
 var KeyEscapeUtils = __webpack_require__(72);
 var warning = __webpack_require__(2);
@@ -12759,9 +12779,9 @@ module.exports = EventListener;
 
 
 
-var ReactDOMSelection = __webpack_require__(236);
+var ReactDOMSelection = __webpack_require__(237);
 
-var containsNode = __webpack_require__(238);
+var containsNode = __webpack_require__(239);
 var focusNode = __webpack_require__(113);
 var getActiveElement = __webpack_require__(125);
 
@@ -12932,17 +12952,17 @@ module.exports = getActiveElement;
 var _prodInvariant = __webpack_require__(4);
 
 var DOMLazyTree = __webpack_require__(34);
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 var React = __webpack_require__(31);
 var ReactBrowserEventEmitter = __webpack_require__(54);
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDOMContainerInfo = __webpack_require__(253);
-var ReactDOMFeatureFlags = __webpack_require__(254);
+var ReactDOMContainerInfo = __webpack_require__(254);
+var ReactDOMFeatureFlags = __webpack_require__(255);
 var ReactFeatureFlags = __webpack_require__(108);
 var ReactInstanceMap = __webpack_require__(43);
 var ReactInstrumentation = __webpack_require__(16);
-var ReactMarkupChecksum = __webpack_require__(255);
+var ReactMarkupChecksum = __webpack_require__(256);
 var ReactReconciler = __webpack_require__(33);
 var ReactUpdateQueue = __webpack_require__(73);
 var ReactUpdates = __webpack_require__(19);
@@ -13496,7 +13516,7 @@ module.exports = getHostComponentFromComposite;
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(266);
+var aFunction = __webpack_require__(267);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -13531,7 +13551,7 @@ module.exports = !__webpack_require__(29) && !__webpack_require__(37)(function (
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(36);
-var document = __webpack_require__(23).document;
+var document = __webpack_require__(24).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -13545,7 +13565,7 @@ module.exports = function (it) {
 
 var has = __webpack_require__(30);
 var toIObject = __webpack_require__(38);
-var arrayIndexOf = __webpack_require__(268)(false);
+var arrayIndexOf = __webpack_require__(269)(false);
 var IE_PROTO = __webpack_require__(79)('IE_PROTO');
 
 module.exports = function (object, names) {
@@ -13683,7 +13703,7 @@ var redefine = __webpack_require__(138);
 var hide = __webpack_require__(35);
 var has = __webpack_require__(30);
 var Iterators = __webpack_require__(85);
-var $iterCreate = __webpack_require__(285);
+var $iterCreate = __webpack_require__(286);
 var setToStringTag = __webpack_require__(87);
 var getPrototypeOf = __webpack_require__(136);
 var ITERATOR = __webpack_require__(39)('iterator');
@@ -15096,6 +15116,13012 @@ var PlayerControls = function (_Component) {
 
 /***/ }),
 /* 145 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MobData; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
+
+
+// Finished fixing ID 61.
+// Need to look up missing inventory data.
+var MobData = [{
+  id: 1,
+  name: 'sheep',
+  description: 'A little sheep is wandering around here.',
+  armor: 6,
+  karma: -300,
+  fame: 300,
+  aggro: false,
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  stats: {
+    str: [19, 19],
+    dex: [25, 25],
+    int: [5, 5],
+    hp: [12, 12],
+    taming: 11.1,
+    barding: 7
+  },
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 5,
+    count: 3,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png',
+  skills: {
+    wrestling: [5, 5],
+    tactics: [6, 6],
+    magic_resistance: [5, 5]
+  }
+}, {
+  id: 2,
+  name: 'hind',
+  description: 'A hind is wandering here.',
+  armor: 8,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [21, 51],
+    dex: [47, 77],
+    int: [17, 47],
+    hp: [15, 29],
+    barding: 17,
+    taming: 13.1
+  },
+  aggro: false,
+  offense: {
+    min: 4,
+    max: 4,
+    speed: 2.5
+  },
+  move: 2,
+  mob_type: 'animal',
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 8,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Hind_100.png',
+  skills: {
+    wrestling: [26, 26],
+    tactics: [19, 19],
+    magic_resistance: [15, 15]
+  }
+}, {
+  id: 3,
+  name: 'black bear',
+  description: 'A black bear is sitting here, staring at you.',
+  armor: 24,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [76, 100],
+    dex: [56, 75],
+    int: [11, 14],
+    hp: [46, 60],
+    taming: 35.1,
+    barding: 33
+  },
+  aggro: false,
+  offense: {
+    min: 6,
+    max: 16,
+    speed: 2.5
+  },
+  move: 2,
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [20, 40]
+  }
+}, {
+  id: 4,
+  name: 'brown bear',
+  description: 'A brown bear is wandering around, looking for a snack.',
+  armor: 24,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [76, 100],
+    dex: [26, 45],
+    int: [23, 47],
+    hp: [46, 60],
+    taming: 41.1,
+    barding: 30
+  },
+  aggro: false,
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 2,
+  mob_type: 'animal',
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BrownBear_100.png',
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [25, 35]
+  }
+}, {
+  id: 5,
+  name: 'bull',
+  description: 'A bull is here, looking for the herd.',
+  armor: 28,
+  karma: 0,
+  fame: 600,
+  stats: {
+    str: [77, 111],
+    dex: [56, 75],
+    int: [47, 75],
+    hp: [50, 64],
+    barding: 30,
+    taming: 71.1
+  },
+  aggro: false,
+  offense: {
+    min: 4,
+    max: 9,
+    speed: 2.5
+  },
+  move: 2,
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 15,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Bull_100.png',
+  skills: {
+    wrestling: [40.1, 57.5],
+    tactics: [67.6, 85],
+    magic_resistance: [17.6, 25]
+  }
+}, {
+  id: 6,
+  name: 'cow',
+  description: 'A cow is chewing on some grass.',
+  armor: 10,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [30, 30],
+    dex: [15, 15],
+    int: [5, 5],
+    hp: [18, 18]
+  },
+  aggro: false,
+  offense: {
+    min: 1,
+    max: 4,
+    speed: 2.5,
+    taming: 29.1,
+    barding: 7
+  },
+  move: 1,
+  mob_type: 'animal',
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Cow_100.png',
+  skills: {
+    wrestling: [5.5, 5.5],
+    tactics: [5.5, 5.5],
+    magic_resistance: [5.5, 5.5]
+  }
+}, {
+  id: 7,
+  name: 'training dummy',
+  description: 'A training dummy stands here. There is a bright red target painted on it.',
+  armor: 100,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [0, 0],
+    dex: [0, 0],
+    int: [0, 0],
+    hp: [500, 500]
+  },
+  aggro: false,
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5000
+  },
+  move: 0,
+  mob_type: 'training',
+  wander: false,
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/misc/training_dummy.png',
+  skills: {
+    wrestling: [0, 0],
+    tactics: [0, 0],
+    magic_resistance: [0, 0]
+  }
+}, {
+  id: 8,
+  name: 'giant rat',
+  description: 'A giant rat is looking for a meal.',
+  armor: 18,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [32, 74],
+    dex: [46, 65],
+    int: [16, 30],
+    hp: [26, 39],
+    taming: 29.1,
+    barding: 24
+  },
+  aggro: true,
+  offense: {
+    min: 4,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  wander: false,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 6,
+    chance: [1, 1]
+  }],
+  credits: [1, 25],
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/GiantRat_100.png',
+  skills: {
+    wrestling: [29.3, 44],
+    tactics: [29.3, 44],
+    magic_resistance: [25.1, 30]
+  }
+}, {
+  id: 9,
+  name: 'alligator',
+  description: 'An alligator is stalking its prey.',
+  armor: 30,
+  karma: -600,
+  fame: 600,
+  stats: {
+    str: [76, 100],
+    dex: [6, 25],
+    int: [11, 20],
+    hp: [46, 60],
+    taming: 47.1,
+    barding: 29
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  aggro: true,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Alligator_100.png',
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 10,
+  name: 'bird',
+  description: 'A bird is flying nearby.',
+  armor: 2,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [10, 10],
+    dex: [25, 35],
+    int: [10, 10],
+    hp: [0, 0],
+    taming: 0,
+    barding: 7
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '25 Feathers',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Bird_100.png',
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 11,
+  name: 'bull frog',
+  description: 'A bull frog hops around at your feet.',
+  armor: 6,
+  stats: {
+    str: [46, 70],
+    dex: [6, 25],
+    int: [11, 20],
+    hp: [28, 42],
+    taming: 23.1,
+    barding: 21
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 4,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 12,
+  name: 'cat',
+  description: 'A cat licks itself while it watches you lazily.',
+  armor: 8,
+  karma: -150,
+  fame: 0,
+  stats: {
+    str: [9, 9],
+    dex: [35, 35],
+    int: [5, 5],
+    hp: [6, 6],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 1,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Cat_100.png',
+  inventory: [{
+    description: '1 Raw Rib (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 4.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 13,
+  name: 'chicken',
+  description: 'A chicken runs around like a chicken with its head cut off.',
+  armor: 2,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [5, 5],
+    dex: [15, 15],
+    int: [5, 5],
+    hp: [3, 3],
+    taming: 0.9,
+    barding: 4
+  },
+  offense: {
+    min: 1,
+    max: 1,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Chicken_100.png',
+  inventory: [{
+    description: '25 Feathers (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 4.0
+  }
+}, {
+  id: 14,
+  name: 'cougar',
+  description: 'A cougar stalks some game.',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [66, 85],
+    int: [26, 50],
+    hp: [34, 48],
+    taming: 41.1,
+    barding: 27
+  },
+  offense: {
+    min: 4,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 10,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [15, 30]
+  }
+}, {
+  id: 16,
+  name: 'crane',
+  description: 'A crane squawks loudly.',
+  armor: 5,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [25, 35],
+    dex: [15, 25],
+    int: [10, 15],
+    hp: [25, 35],
+    taming: null,
+    barding: 9.2
+  },
+  offense: {
+    speed: 2.5,
+    min: 1,
+    max: 1
+  },
+  move: 1,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Crane_100.png',
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [10, 11],
+    tactics: [10, 11],
+    magic_resistance: [4, 5]
+  }
+}, {
+  id: 17,
+  name: 'desert ostard',
+  description: 'A desert ostard is running around here.',
+  armor: 0,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [94, 170],
+    dex: [56, 75],
+    int: [6, 10],
+    hp: [71, 88],
+    taming: 29.1,
+    barding: 33
+  },
+  offense: {
+    min: 5,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/DesertOstard_100.png',
+  skills: {
+    wrestling: [29, 44],
+    tactics: [25, 40],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 18,
+  name: 'dire wolf',
+  description: 'A dire wolf snarls at you.',
+  armor: 22,
+  karma: -2500,
+  fame: 2500,
+  stats: {
+    str: [96, 120],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: 83.1,
+    barding: 43
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  aggro: true,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/DireWolf_100.png',
+  inventory: [{
+    id: 27,
+    count: 7,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [57, 75]
+  }
+}, {
+  id: 19,
+  name: 'dog',
+  description: 'A dog begs you for a treat.',
+  armor: 12,
+  karma: -300,
+  fame: 0,
+  stats: {
+    str: [27, 37],
+    dex: [28, 43],
+    int: [29, 37],
+    hp: [17, 22],
+    taming: 0,
+    barding: 17
+  },
+  offense: {
+    min: 4,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Dog_100.png',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 31],
+    tactics: [19, 31],
+    magic_resistance: [22, 47]
+  }
+}, {
+  id: 20,
+  name: 'dolphin',
+  description: 'A dolphin swims around playfully.',
+  armor: 16,
+  karma: -2000,
+  fame: 500,
+  stats: {
+    str: [21, 49],
+    dex: [66, 85],
+    int: [96, 110],
+    hp: [15, 27],
+    taming: null,
+    barding: 26
+  },
+  offense: {
+    min: 3,
+    max: 6,
+    speed: 2.5
+  },
+  move: 2,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 21,
+  name: 'eagle',
+  description: 'A majestic eagle is perched here.',
+  armor: 22,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [31, 47],
+    dex: [36, 60],
+    int: [8, 20],
+    hp: [20, 27],
+    taming: 17.1,
+    barding: 18
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 2,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Eagle_100.png',
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '36 Feathers',
+    chance: [1, 1]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [20, 30],
+    tactics: [18, 37],
+    magic_resistance: [15, 30]
+  }
+}, {
+  id: 22,
+  name: 'faction war horse',
+  description: 'faction war horse',
+  armor: null,
+  stats: {
+    str: [400, 400],
+    dex: [125, 125],
+    int: [51, 55],
+    hp: [240, 240],
+    taming: 11.1,
+    barding: 65
+  },
+  offense: {
+    min: 5,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/FactionWarHorse_100.png',
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 27,
+  name: 'fire steed',
+  description: 'fire steed',
+  armor: 0,
+  karma: -20000,
+  fame: 20000,
+  stats: {
+    str: [376, 400],
+    dex: [91, 120],
+    int: [291, 300],
+    hp: [226, 240],
+    taming: 106,
+    barding: 83.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: 100.0,
+    tactics: [100, 100],
+    magic_resistance: [100, 120]
+  }
+}, {
+  id: 28,
+  name: 'forest ostard',
+  description: 'A forest ostard wanders around.',
+  armor: null,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [94, 170],
+    dex: [56, 75],
+    int: [6, 10],
+    hp: [71, 88],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 8,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [27, 32]
+  }
+}, {
+  id: 29,
+  name: 'frenzied ostard',
+  description: 'A frenzied ostard sees you and begins to run toward you.',
+  armor: 0,
+  karma: -1500,
+  fame: 1500,
+  aggro: true,
+  stats: {
+    str: [94, 170],
+    dex: [96, 115],
+    int: [6, 10],
+    hp: [71, 110],
+    taming: 77.1,
+    barding: 55
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [79, 94],
+    tactics: [79, 94],
+    magic_resistance: [75, 80]
+  }
+}, {
+  id: 30,
+  name: 'giant serpent',
+  description: 'A giant serpent slithers toward you.',
+  armor: 32,
+  karma: -2500,
+  fame: 2500,
+  stats: {
+    str: [186, 215],
+    dex: [56, 80],
+    int: [66, 85],
+    hp: [112, 129],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }, {
+    id: 27,
+    count: 10,
+    chance: [1, 1]
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [65, 70],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 31,
+  name: 'giant toad',
+  description: 'giant toad',
+  armor: 24,
+  karma: -750,
+  fame: 750,
+  stats: {
+    str: [76, 100],
+    dex: [6, 25],
+    int: [11, 20],
+    hp: [46, 60],
+    taming: 77.1,
+    barding: 27
+  },
+  offense: {
+    min: 5,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 32,
+  name: 'goat',
+  description: 'A goat is chewing on some grass.',
+  armor: 10,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [19, 19],
+    dex: [15, 15],
+    int: [5, 5],
+    hp: [12, 12],
+    taming: 11.1,
+    barding: 6
+  },
+  offense: {
+    min: 3,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 8,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 33,
+  name: 'gorilla',
+  description: 'gorilla',
+  armor: 20,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [53, 95],
+    dex: [36, 55],
+    int: [36, 60],
+    hp: [38, 51],
+    taming: 18.9,
+    barding: 29
+  },
+  offense: {
+    min: 4,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '6 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [43, 58],
+    tactics: [43, 58],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 34,
+  name: 'great hart',
+  description: 'A great hart stares at you, ready to run.',
+  armor: 24,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [41, 71],
+    dex: [47, 77],
+    int: [27, 57],
+    hp: [27, 41],
+    taming: 59.1,
+    barding: 25
+  },
+  offense: {
+    min: 5,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 15,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 47],
+    tactics: [29, 47],
+    magic_resistance: [26, 44]
+  }
+}, {
+  id: 35,
+  name: 'grey wolf',
+  description: 'grey wolf',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [31, 55],
+    hp: [34, 48],
+    taming: 53.1,
+    barding: 28
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 6,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [20, 35]
+  }
+}, {
+  id: 36,
+  name: 'grizzly bear',
+  description: 'grizzly bear',
+  armor: 24,
+  karma: 0,
+  fame: 1000,
+  stats: {
+    str: [126, 155],
+    dex: [81, 105],
+    int: [16, 40],
+    hp: [76, 93],
+    taming: 59.1,
+    barding: 44
+  },
+  offense: {
+    min: 8,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 16,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 70],
+    tactics: [70, 100],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 37,
+  name: 'hell cat',
+  description: 'hell cat',
+  armor: 30,
+  stats: {
+    str: [51, 100],
+    dex: [52, 150],
+    int: [13, 85],
+    hp: [48, 67],
+    taming: 71.1,
+    barding: 41
+  },
+  aggro: true,
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 38,
+  name: 'horse',
+  description: 'A wild horse runs around.',
+  armor: null,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [22, 98],
+    dex: [56, 75],
+    int: [6, 10],
+    hp: [28, 45],
+    taming: 11.1,
+    barding: 22
+  },
+  offense: {
+    min: 3,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 39,
+  name: 'ice serpent',
+  description: 'ice serpent',
+  armor: 32,
+  stats: {
+    str: [216, 245],
+    dex: [26, 50],
+    int: [66, 85],
+    hp: [130, 147],
+    taming: null,
+    barding: 59
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Random Weapon, Armor or Shield',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 40,
+  name: 'ice snake',
+  description: 'ice snake',
+  armor: 30,
+  karma: -900,
+  fame: 900,
+  stats: {
+    str: [42, 54],
+    dex: [36, 45],
+    int: [26, 30],
+    hp: [0, 0],
+    taming: null,
+    barding: 21
+  },
+  offense: {
+    min: 4,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [39, 54],
+    tactics: [39, 54],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 41,
+  name: 'jack rabbit',
+  description: 'A jack rabbit looks for its burrow.',
+  armor: 4,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [15, 15],
+    dex: [25, 25],
+    int: [5, 5],
+    hp: [9, 9],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Rib (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 42,
+  name: 'lava lizard',
+  description: 'lava lizard',
+  armor: 40,
+  karma: 3000,
+  fame: 3000,
+  stats: {
+    str: [126, 150],
+    dex: [56, 75],
+    int: [11, 20],
+    hp: [76, 90],
+    taming: 80.7,
+    barding: 54
+  },
+  offense: {
+    min: 6,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [60, 80],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 43,
+  name: 'lava serpent',
+  description: 'lava serpent',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [386, 415],
+    dex: [56, 80],
+    int: [66, 85],
+    hp: [232, 249],
+    taming: null,
+    barding: 75
+  },
+  offense: {
+    min: 10,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [200, 250],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [65, 70],
+    magic_resistance: [25, 70]
+  }
+}, {
+  id: 44,
+  name: 'lava snake',
+  description: 'lava snake',
+  armor: 24,
+  karma: -600,
+  fame: 600,
+  stats: {
+    str: [43, 55],
+    dex: [16, 25],
+    int: [6, 10],
+    hp: [28, 32],
+    taming: null,
+    barding: 23
+  },
+  offense: {
+    min: 1,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [19, 34],
+    tactics: [19, 34],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 45,
+  name: 'llama',
+  description: 'A llama walks around quietly.',
+  armor: 16,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [21, 49],
+    dex: [36, 55],
+    int: [16, 30],
+    hp: [15, 27],
+    taming: 35.1,
+    barding: 15
+  },
+  offense: {
+    min: 3,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 46,
+  name: 'mountain goat',
+  description: 'A mountain goat is perched on some rocks.',
+  armor: 10,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [22, 64],
+    dex: [56, 75],
+    int: [16, 30],
+    hp: [20, 33],
+    taming: 0,
+    barding: 26
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 47,
+  name: 'nightmare',
+  description: 'nightmare',
+  armor: 60,
+  karma: 14000,
+  fame: 14000,
+  stats: {
+    str: [496, 525],
+    dex: [86, 105],
+    int: [86, 125],
+    hp: [298, 315],
+    taming: 95.1,
+    barding: 92
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [80, 92],
+    tactics: [97, 100],
+    magic_resistance: [85, 100]
+  }
+}, {
+  id: 48,
+  name: 'pack horse',
+  description: 'pack horse',
+  armor: 16,
+  karma: -200,
+  fame: 0,
+  stats: {
+    str: [44, 120],
+    dex: [36, 55],
+    int: [6, 10],
+    hp: [61, 80],
+    taming: 11.1,
+    barding: 30
+  },
+  offense: {
+    min: 5,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 49,
+  name: 'pack llama',
+  description: 'pack llama',
+  armor: 16,
+  karma: -200,
+  fame: 0,
+  stats: {
+    str: [52, 80],
+    dex: [36, 55],
+    int: [16, 30],
+    hp: [50, 50],
+    taming: 11.1,
+    barding: 27
+  },
+  offense: {
+    min: 2,
+    max: 6,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 50,
+  name: 'panther',
+  description: 'A panther stalks its prey.',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [61, 85],
+    dex: [86, 105],
+    int: [26, 50],
+    hp: [37, 51],
+    taming: 53.1,
+    barding: 32
+  },
+  offense: {
+    min: 4,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 10,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [50, 65],
+    tactics: [50, 65],
+    magic_resistance: [15, 30]
+  }
+}, {
+  id: 51,
+  name: 'phoenix',
+  description: 'phoenix',
+  armor: 60,
+  stats: {
+    str: [504, 700],
+    dex: [202, 300],
+    int: [504, 700],
+    hp: [340, 383],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 25,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 52,
+  name: 'pig',
+  description: 'A pig is wallowing in the dirt.',
+  armor: 12,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [20, 20],
+    dex: [20, 20],
+    int: [5, 5],
+    hp: [12, 12],
+    taming: 11.1,
+    barding: 6
+  },
+  offense: {
+    min: 2,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 53,
+  name: 'polar bear',
+  description: 'polar bear',
+  armor: 18,
+  karma: 0,
+  fame: 1500,
+  stats: {
+    str: [116, 140],
+    dex: [81, 105],
+    int: [26, 50],
+    hp: [70, 84],
+    taming: 35.1,
+    barding: 46
+  },
+  offense: {
+    min: 7,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '2 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 70],
+    tactics: [60, 90],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 54,
+  name: 'predator hell cat',
+  description: 'predator hell cat',
+  armor: 30,
+  stats: {
+    str: [161, 185],
+    dex: [96, 115],
+    int: [76, 100],
+    hp: [97, 131],
+    taming: 89.1,
+    barding: 67
+  },
+  offense: {
+    min: 5,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 55,
+  name: 'rabbit',
+  description: 'A rabbit looks for its burrow.',
+  armor: 6,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [6, 10],
+    dex: [26, 38],
+    int: [6, 14],
+    hp: [4, 6],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 1,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Rib (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 56,
+  name: 'raging grizzly bear',
+  description: 'raging grizzly bear',
+  armor: 24,
+  karma: 10000,
+  fame: 10000,
+  stats: {
+    str: [1, 1],
+    dex: [801, 1],
+    int: [151, 400],
+    hp: [751, 930],
+    taming: 59.1,
+    barding: 127
+  },
+  offense: {
+    min: 18,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '4 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [73, 88],
+    tactics: [73, 110],
+    magic_resistance: [32, 54]
+  }
+}, {
+  id: 57,
+  name: 'rat',
+  description: 'A rat is wandering around looking for food.',
+  armor: 6,
+  karma: -150,
+  fame: 150,
+  stats: {
+    str: [9, 9],
+    dex: [35, 35],
+    int: [5, 5],
+    hp: [6, 6],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: 4.0,
+    tactics: 4.0,
+    magic_resistance: 4.0
+  }
+}, {
+  id: 58,
+  name: 'ridable llama',
+  description: 'ridable llama',
+  armor: 0,
+  stats: {
+    str: [21, 49],
+    dex: [56, 75],
+    int: [16, 30],
+    hp: [15, 27],
+    taming: 29.1,
+    barding: 18
+  },
+  offense: {
+    min: 3,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 59,
+  name: 'scaled swamp dragon',
+  description: 'scaled swamp dragon',
+  armor: 0,
+  stats: {
+    taming: 93.9,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 60,
+  name: 'sewer rat',
+  description: 'sewer rat',
+  armor: 6,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [9, 9],
+    dex: [25, 25],
+    int: [6, 10],
+    hp: [6, 6],
+    taming: -0.09,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 61,
+  name: 'silver serpent',
+  description: 'silver serpent',
+  armor: 40,
+  karma: -7000,
+  fame: 7000,
+  stats: {
+    str: [161, 360],
+    dex: [151, 300],
+    int: [21, 40],
+    hp: [97, 216],
+    taming: null,
+    barding: 85
+  },
+  offense: {
+    min: 5,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [250, 300],
+  skills: {
+    wrestling: [85, 100],
+    tactics: [80, 95],
+    magic_resistance: [95, 100]
+  }
+}, {
+  id: 62,
+  name: 'silver steed',
+  description: 'silver steed',
+  armor: null,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [78, 80],
+    dex: '53',
+    int: '10',
+    hp: [78, 80],
+    taming: 103.1,
+    barding: 30
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: 39,
+    tactics: 32,
+    magic_resistance: '26'
+  }
+}, {
+  id: 63,
+  name: 'skeletal mount',
+  description: 'skeletal mount',
+  armor: 0,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 64,
+  name: 'snake',
+  description: 'A snake slithers on the ground',
+  armor: 16,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [22, 34],
+    dex: [16, 25],
+    int: [6, 10],
+    hp: [15, 19],
+    taming: 59.1,
+    barding: 29
+  },
+  aggro: true,
+  offense: {
+    min: 1,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 34],
+    tactics: [19, 34],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 65,
+  name: 'snow leopard',
+  description: 'snow leopard',
+  armor: 24,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [66, 85],
+    int: [26, 50],
+    hp: [34, 48],
+    taming: 53.1,
+    barding: 29
+  },
+  offense: {
+    min: 3,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '8 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [40, 50],
+    tactics: [45, 60],
+    magic_resistance: [25, 35]
+  }
+}, {
+  id: 66,
+  name: 'swamp dragon',
+  description: 'swamp dragon',
+  armor: 0,
+  karma: -2000,
+  fame: 2000,
+  stats: {
+    str: [201, 300],
+    dex: [66, 85],
+    int: [61, 100],
+    hp: [121, 180],
+    taming: 93.9,
+    barding: 59
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 55],
+    magic_resistance: [45, 55]
+  }
+}, {
+  id: 67,
+  name: 'timber wolf',
+  description: 'A timber wolf is looking for prey.',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [11, 25],
+    hp: [34, 48],
+    taming: 23.1,
+    barding: 28
+  },
+  offense: {
+    min: 5,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 5,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [40, 60],
+    tactics: [30, 50],
+    magic_resistance: [27, 45]
+  }
+}, {
+  id: 68,
+  name: 'tropical bird',
+  description: 'tropical bird',
+  armor: 2,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: 0,
+    barding: 7
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '25 Feathers',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 69,
+  name: 'unicorn',
+  description: 'unicorn',
+  armor: 0,
+  karma: 9000,
+  fame: 9000,
+  stats: {
+    str: [296, 325],
+    dex: [96, 115],
+    int: [186, 225],
+    hp: [191, 210],
+    taming: 95.1,
+    barding: 89
+  },
+  offense: {
+    min: 16,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [300, 350],
+  skills: {
+    wrestling: [80, 92],
+    tactics: [20, 22],
+    magic_resistance: [75, 90]
+  }
+}, {
+  id: 70,
+  name: 'walrus',
+  description: 'walrus',
+  armor: 18,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [21, 29],
+    dex: [46, 55],
+    int: [16, 20],
+    hp: [14, 17],
+    taming: 35.1,
+    barding: 15
+  },
+  offense: {
+    min: 4,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '12 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 71,
+  name: 'white wolf',
+  description: 'white wolf',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [31, 55],
+    hp: [34, 48],
+    taming: 65.1,
+    barding: 27
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '6 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [20, 35]
+  }
+}, {
+  id: 72,
+  name: 'arachnid enforcer',
+  description: 'arachnid enforcer',
+  armor: 50,
+  stats: {
+    str: [750, 850],
+    dex: [105, 115],
+    int: [420, 475],
+    hp: [900, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 73,
+  name: 'black solen infiltrator queen',
+  description: 'black solen infiltrator queen',
+  armor: 50,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 74,
+  name: 'black solen infiltrator warrior',
+  description: 'black solen infiltrator warrior',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 75,
+  name: 'black solen queen',
+  description: 'black solen queen',
+  armor: 45,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 76,
+  name: 'black solen warrior',
+  description: 'black solen warrior',
+  armor: 35,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 77,
+  name: 'black solen worker',
+  description: 'black solen worker',
+  armor: 28,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 78,
+  name: 'dread spider',
+  description: 'dread spider',
+  armor: 36,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [196, 220],
+    dex: [126, 145],
+    int: [286, 310],
+    hp: [118, 132],
+    taming: null,
+    barding: 95
+  },
+  offense: {
+    min: 5,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [450, 650],
+  skills: {
+    wrestling: [87, 96],
+    tactics: [85, 97],
+    magic_resistance: [45, 55]
+  }
+}, {
+  id: 79,
+  name: 'drone mage',
+  description: 'drone mage',
+  armor: 20,
+  stats: {
+    str: [250, 300],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [250, 275],
+    taming: null,
+    barding: 119
+  },
+  offense: {
+    min: 10,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 80,
+  name: 'drone sentry',
+  description: 'drone sentry',
+  armor: 20,
+  stats: {
+    str: [200, 225],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [175, 250],
+    taming: null,
+    barding: 121
+  },
+  offense: {
+    min: 10,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 81,
+  name: 'drone spitter',
+  description: 'drone spitter',
+  armor: 25,
+  stats: {
+    str: [325, 350],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [325, 350],
+    taming: null,
+    barding: 118
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 82,
+  name: 'drone warrior',
+  description: 'drone warrior',
+  armor: 30,
+  stats: {
+    str: [425, 475],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [425, 475],
+    taming: null,
+    barding: 124
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 83,
+  name: 'drone worker',
+  description: 'drone worker',
+  armor: 15,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [175, 250],
+    taming: null,
+    barding: 111
+  },
+  offense: {
+    min: 10,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 84,
+  name: 'frost spider',
+  description: 'frost spider',
+  armor: 28,
+  karma: -775,
+  fame: 775,
+  stats: {
+    str: [76, 100],
+    dex: [126, 145],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: 75.7,
+    barding: 40
+  },
+  offense: {
+    min: 6,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [75, 125],
+  skills: {
+    wrestling: [50, 65],
+    tactics: [35, 50],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 85,
+  name: 'giant black widow',
+  description: 'giant black widow',
+  armor: 24,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [76, 100],
+    dex: [96, 115],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 70.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: [125, 175],
+  skills: {
+    wrestling: [70, 85],
+    tactics: [65, 80],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 86,
+  name: 'giant spider',
+  description: 'A giant spider silently approaches.',
+  armor: 16,
+  karma: -600,
+  fame: 600,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: 59.1,
+    barding: 53
+  },
+  offense: {
+    min: 5,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  aggro: true,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [50, 65],
+    tactics: [35, 50],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 87,
+  name: 'ilyxia the arachnid queen',
+  description: 'ilyxia the arachnid queen',
+  armor: 60,
+  stats: {
+    str: [819, 910],
+    dex: [125, 135],
+    int: [420, 475],
+    hp: [1400, 1550],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 16,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 88,
+  name: 'red solen infiltrator queen',
+  description: 'red solen infiltrator queen',
+  armor: 50,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 89,
+  name: 'red solen infiltrator warrior',
+  description: 'red solen infiltrator warrior',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 90,
+  name: 'red solen queen',
+  description: 'red solen queen',
+  armor: 45,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 91,
+  name: 'red solen warrior',
+  description: 'red solen warrior',
+  armor: 35,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 92,
+  name: 'red solen worker',
+  description: 'red solen worker',
+  armor: 28,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 93,
+  name: 'terathan avenger',
+  description: 'terathan avenger',
+  armor: 50,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [467, 645],
+    dex: [77, 95],
+    int: [126, 150],
+    hp: [296, 372],
+    taming: null,
+    barding: 104
+  },
+  offense: {
+    min: 18,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [550, 600],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 94,
+  name: 'terathan drone',
+  description: 'terathan drone',
+  armor: 24,
+  karma: 2000,
+  fame: 2000,
+  stats: {
+    str: [36, 65],
+    dex: [96, 145],
+    int: [21, 45],
+    hp: [22, 39],
+    taming: null,
+    barding: 32
+  },
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [40, 50],
+    tactics: [30, 50],
+    magic_resistance: [30, 45]
+  }
+}, {
+  id: 95,
+  name: 'terathan infiltrator',
+  description: 'terathan infiltrator',
+  armor: 70,
+  stats: {
+    str: [810, 910],
+    dex: [125, 135],
+    int: [420, 475],
+    hp: [1400, 1550],
+    taming: null,
+    barding: 151
+  },
+  offense: {
+    min: 22,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Terathan Infiltrator Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 96,
+  name: 'terathan matriarch',
+  description: 'terathan matriarch',
+  armor: 0,
+  karma: 10000,
+  fame: 10000,
+  stats: {
+    str: [316, 405],
+    dex: [96, 115],
+    int: [366, 455],
+    hp: [190, 243],
+    taming: null,
+    barding: 87
+  },
+  offense: {
+    min: 11,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: [570, 605],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [90, 100]
+  }
+}, {
+  id: 97,
+  name: 'terathan warrior',
+  description: 'terathan warrior',
+  armor: 30,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [166, 215],
+    dex: [96, 145],
+    int: [41, 65],
+    hp: [100, 129],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [80, 100],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 98,
+  name: 'anaconda',
+  description: 'anaconda',
+  armor: 55,
+  stats: {
+    str: [1000, 1100],
+    dex: [153, 172],
+    int: [300, 400],
+    hp: [1650, 1925],
+    taming: null,
+    barding: 189
+  },
+  offense: {
+    min: 12,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 99,
+  name: 'arctic ogre mage',
+  description: 'arctic ogre mage',
+  armor: 65,
+  stats: {
+    str: [1000, 1100],
+    dex: [82, 95],
+    int: [1000, 1100],
+    hp: [1495, 1595],
+    taming: null,
+    barding: 184
+  },
+  offense: {
+    min: 25,
+    max: 31,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 100,
+  name: 'azure dragon',
+  description: 'azure dragon',
+  armor: 80,
+  stats: {
+    str: [1000, 1100],
+    dex: [120, 130],
+    int: [770, 820],
+    hp: [3000, 3000],
+    taming: null,
+    barding: 239
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'PlatinumCoin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 101,
+  name: 'beast tamer',
+  description: 'beast tamer',
+  armor: 60,
+  stats: {
+    str: [605, 725],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [8, 9],
+    taming: null,
+    barding: 413
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Mask of the Wilds'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 102,
+  name: 'beholder',
+  description: 'beholder',
+  armor: 65,
+  stats: {
+    str: [630, 730],
+    dex: [86, 105],
+    int: [910, 950],
+    hp: [1300, 1400],
+    taming: null,
+    barding: 184
+  },
+  offense: {
+    min: 12,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 103,
+  name: 'colossus',
+  description: 'colossus',
+  armor: 78,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [100, 1100],
+    hp: [2702, 3231],
+    taming: null,
+    barding: 208
+  },
+  offense: {
+    min: 16,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 104,
+  name: 'dark one',
+  description: 'dark one',
+  armor: 65,
+  stats: {
+    str: [770, 830],
+    dex: [146, 185],
+    int: [1000, 1100],
+    hp: [1700, 1800],
+    taming: null,
+    barding: 243
+  },
+  offense: {
+    min: 14,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 105,
+  name: 'diseased blood elemental',
+  description: 'diseased blood elemental',
+  armor: 80,
+  karma: 8500,
+  fame: 8500,
+  stats: {
+    str: [880, 950],
+    dex: [95, 105],
+    int: [1000, 1100],
+    hp: [1800, 2000],
+    taming: null,
+    barding: 213
+  },
+  offense: {
+    min: 21,
+    max: 31,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: [651, 744],
+  skills: {
+    wrestling: [123, 138],
+    tactics: [130, 137],
+    magic_resistance: [116, 125]
+  }
+}, {
+  id: 106,
+  name: 'efreet sultan',
+  description: 'efreet sultan',
+  armor: 70,
+  stats: {
+    str: [810, 855],
+    dex: [266, 285],
+    int: [1000, 1100],
+    hp: [1200, 1300],
+    taming: null,
+    barding: 143
+  },
+  offense: {
+    min: 13,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 107,
+  name: 'elder wyrm',
+  description: 'elder wyrm',
+  armor: 90,
+  stats: {
+    str: [1000, 1100],
+    dex: [125, 145],
+    int: [1000, 1100],
+    hp: [5000, 5000],
+    taming: null,
+    barding: 365
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 108,
+  name: 'grand visor of chaos',
+  description: 'grand visor of chaos',
+  armor: 70,
+  stats: {
+    str: [1000, 1100],
+    dex: [230, 275],
+    int: [205, 225],
+    hp: [2100, 2200],
+    taming: null,
+    barding: 152
+  },
+  offense: {
+    min: 12,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 109,
+  name: 'jungle titan',
+  description: 'jungle titan',
+  armor: 48,
+  stats: {
+    str: [600, 750],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [2400, 2700],
+    taming: null,
+    barding: 185
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 110,
+  name: 'ogre mage',
+  description: 'ogre mage',
+  armor: 65,
+  stats: {
+    str: [1000, 1100],
+    dex: [90, 99],
+    int: [720, 770],
+    hp: [1400, 1500],
+    taming: null,
+    barding: 180
+  },
+  offense: {
+    min: 20,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 111,
+  name: 'ophidian queen',
+  description: 'ophidian queen',
+  armor: 78,
+  stats: {
+    str: [810, 910],
+    dex: [125, 135],
+    int: [420, 475],
+    hp: [1900, 2100],
+    taming: null,
+    barding: 172
+  },
+  offense: {
+    min: 18,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 112,
+  name: 'purveyor of darkness',
+  description: 'purveyor of darkness',
+  armor: 100,
+  stats: {
+    str: [1000, 1100],
+    dex: [225, 255],
+    int: [600, 700],
+    hp: [4000, 4000],
+    taming: null,
+    barding: 299
+  },
+  offense: {
+    min: 27,
+    max: 34,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Purveyor of Darkness Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 113,
+  name: 'rabbit of caerbannog',
+  description: 'rabbit of caerbannog',
+  armor: 60,
+  stats: {
+    str: [605, 805],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [9, 10],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 25],
+    description: 'Rabbit of Caerbannog Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 114,
+  name: 'reptile tamer',
+  description: 'reptile tamer',
+  armor: 60,
+  stats: {
+    str: [605, 725],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [8, 9],
+    taming: null,
+    barding: 413
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin (All Players)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 116,
+  name: 'two headed behemoth',
+  description: 'two headed behemoth',
+  armor: 78,
+  stats: {
+    str: [900, 1050],
+    dex: [115, 155],
+    int: [1000, 1100],
+    hp: [2000, 3000],
+    taming: null,
+    barding: 188
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'two headed behemoth statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 117,
+  name: 'wyvern monarch',
+  description: 'wyvern monarch',
+  armor: 55,
+  stats: {
+    str: [1000, 1100],
+    dex: [153, 172],
+    int: [300, 400],
+    hp: [650, 725],
+    taming: null,
+    barding: 125
+  },
+  offense: {
+    min: 12,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Wyvern Monarch Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 118,
+  name: 'bad santa',
+  description: 'bad santa',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Santas Clothing  4 Possible Items',
+    chance: [1, 4]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 119,
+  name: 'barracoon',
+  description: 'barracoon',
+  armor: 70,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [4000, 4000],
+    taming: null,
+    barding: 237
+  },
+  offense: {
+    min: 25,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Greed',
+    chance: [1, 1]
+  }],
+  credits: [4000, 6000],
+  skills: {
+    wrestling: [118, 122],
+    tactics: [118, 120],
+    magic_resistance: '100.0'
+  }
+}, {
+  id: 120,
+  name: 'cupid',
+  description: 'cupid',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'vial of tears (2014)',
+    chance: [1, 5]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 121,
+  name: 'harrower',
+  description: 'harrower',
+  armor: 60,
+  karma: 25000,
+  fame: 25000,
+  stats: {
+    str: [900, 1050],
+    dex: [125, 135],
+    int: [1000, 1100],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'true harrower statuette',
+    chance: [1, 20]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [115, 120],
+    tactics: [115, 120],
+    magic_resistance: [115, 160]
+  }
+}, {
+  id: 122,
+  name: 'lord oaks',
+  description: 'lord oaks',
+  armor: 100,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [403, 850],
+    dex: [101, 150],
+    int: [503, 800],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 272
+  },
+  offense: {
+    min: 21,
+    max: 33,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Enlightenment',
+    chance: [1, 1]
+  }],
+  credits: [3500, 6000],
+  skills: {
+    wrestling: [115, null],
+    tactics: [119, null],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 123,
+  name: 'mephitis',
+  description: 'mephitis',
+  armor: 80,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [505, 1100],
+    dex: [102, 300],
+    int: [402, 600],
+    hp: [5000, 7000],
+    taming: null,
+    barding: 352
+  },
+  offense: {
+    min: 21,
+    max: 33,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Venom',
+    chance: [1, 1]
+  }],
+  credits: [2500, 3000],
+  skills: {
+    wrestling: [123, 126],
+    tactics: [118, 120],
+    magic_resistance: [104, 112]
+  }
+}, {
+  id: 124,
+  name: 'neira',
+  description: 'neira',
+  armor: 30,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [6, 8],
+    taming: null,
+    barding: 399
+  },
+  offense: {
+    min: 25,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Death',
+    chance: [1, 1]
+  }],
+  credits: [2500, 3000],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: '150.0'
+  }
+}, {
+  id: 125,
+  name: 'rikktor',
+  description: 'rikktor',
+  armor: 130,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [701, 900],
+    dex: [201, 350],
+    int: [51, 100],
+    hp: [6, 9],
+    taming: null,
+    barding: 358
+  },
+  offense: {
+    min: 28,
+    max: 55,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Power',
+    chance: [1, 1]
+  }],
+  credits: [4000, 5000],
+  skills: {
+    wrestling: [118, 123],
+    tactics: [100, 100],
+    magic_resistance: [140, 160]
+  }
+}, {
+  id: 126,
+  name: 'semidar',
+  description: 'semidar',
+  armor: 20,
+  karma: 24000,
+  fame: 24000,
+  stats: {
+    str: [502, 600],
+    dex: [102, 200],
+    int: [601, 750],
+    hp: [2000, 4000],
+    taming: null,
+    barding: 243
+  },
+  offense: {
+    min: 29,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Pain',
+    chance: [1, 1]
+  }],
+  credits: [6000, 6500],
+  skills: {
+    wrestling: [117, 123],
+    tactics: [129, 131],
+    magic_resistance: [120, 140]
+  }
+}, {
+  id: 127,
+  name: 'silvani',
+  description: 'silvani',
+  armor: 50,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [253, 400],
+    dex: [157, 850],
+    int: [503, 800],
+    hp: [600, 600],
+    taming: null,
+    barding: 142
+  },
+  offense: {
+    min: 27,
+    max: 38,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 20]
+  }],
+  credits: [2000, 3000],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 128,
+  name: 'the true harrower',
+  description: 'the true harrower',
+  armor: 60,
+  karma: 25000,
+  fame: 25000,
+  stats: {
+    str: [900, 1050],
+    dex: [125, 135],
+    int: [1000, 1100],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'true harrower statuette',
+    chance: [1, 20]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [115, 120],
+    tactics: [115, 120],
+    magic_resistance: [115, 160]
+  }
+}, {
+  id: 129,
+  name: 'arcane daemon',
+  description: 'arcane daemon',
+  armor: 55,
+  karma: -10000,
+  fame: 7000,
+  stats: {
+    str: [131, 150],
+    dex: [126, 145],
+    int: [301, 350],
+    hp: [101, 115],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [],
+  credits: [250, 300],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [70, 80],
+    magic_resistance: [85, 95]
+  }
+}, {
+  id: 130,
+  name: 'balron',
+  description: 'balron',
+  armor: 90,
+  karma: -24000,
+  fame: 24000,
+  stats: {
+    str: [969, 1100],
+    dex: [177, 255],
+    int: [151, 250],
+    hp: [592, 711],
+    taming: null,
+    barding: 125
+  },
+  offense: {
+    min: 22,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1200, 1650],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 131,
+  name: 'chaos daemon',
+  description: 'chaos daemon',
+  armor: 15,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [106, 130],
+    dex: [171, 200],
+    int: [56, 80],
+    hp: [91, 110],
+    taming: null,
+    barding: 71.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [],
+  credits: [175, 225],
+  skills: {
+    wrestling: [95, 100],
+    tactics: [70, 80],
+    magic_resistance: [85, 95]
+  }
+}, {
+  id: 132,
+  name: 'daemon',
+  description: 'daemon',
+  armor: 58,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [476, 505],
+    dex: [76, 95],
+    int: [301, 325],
+    hp: [286, 303],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [550, 650],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [70, 80],
+    magic_resistance: [85, 95]
+  }
+}, {
+  id: 133,
+  name: 'ice fiend',
+  description: 'ice fiend',
+  armor: 60,
+  karma: -18000,
+  fame: 18000,
+  stats: {
+    str: [376, 405],
+    dex: [176, 195],
+    int: [201, 225],
+    hp: [226, 243],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [650, 800],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 90],
+    magic_resistance: [75, 85]
+  }
+}, {
+  id: 134,
+  name: 'moloch',
+  description: 'moloch',
+  armor: 32,
+  karma: -7500,
+  fame: 7500,
+  stats: {
+    str: [331, 360],
+    dex: [66, 85],
+    int: [41, 65],
+    hp: [171, 200],
+    taming: null,
+    barding: 72.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [],
+  credits: [300, 350],
+  skills: {
+    wrestling: [70, 90],
+    tactics: [75, 90],
+    magic_resistance: [65, 75]
+  }
+}, {
+  id: 136,
+  name: 'acid elemental',
+  description: 'acid elemental',
+  armor: 40,
+  karma: -10000,
+  fame: 10000,
+  stats: {
+    str: [326, 355],
+    dex: [66, 85],
+    int: [271, 295],
+    hp: [196, 213],
+    taming: null,
+    barding: 100
+  },
+  offense: {
+    min: 9,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [70, 90],
+    tactics: [80, 90],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 137,
+  name: 'agapite elemental',
+  description: 'agapite elemental',
+  armor: 32,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 28,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 138,
+  name: 'air elemental',
+  description: 'air elemental',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [126, 155],
+    dex: [166, 185],
+    int: [101, 125],
+    hp: [76, 93],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 8,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [60, 80],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 139,
+  name: 'amber golem',
+  description: 'amber golem',
+  armor: 35,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [200, 275],
+    taming: null,
+    barding: 120
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 140,
+  name: 'amethyst golem',
+  description: 'amethyst golem',
+  armor: 38,
+  stats: {
+    str: [200, 225],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [200, 225],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 10,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 141,
+  name: 'blood elemental',
+  description: 'blood elemental',
+  armor: 60,
+  karma: -12500,
+  fame: 12500,
+  stats: {
+    str: [526, 615],
+    dex: [66, 85],
+    int: [226, 350],
+    hp: [316, 369],
+    taming: null,
+    barding: 93
+  },
+  offense: {
+    min: 17,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [700, 900],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [80, 95]
+  }
+}, {
+  id: 142,
+  name: 'bronze elemental',
+  description: 'bronze elemental',
+  armor: 29,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 143,
+  name: 'citrine golem',
+  description: 'citrine golem',
+  armor: 41,
+  stats: {
+    str: [325, 350],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [325, 350],
+    taming: null,
+    barding: 111
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 144,
+  name: 'copper elemental',
+  description: 'copper elemental',
+  armor: 26,
+  karma: -4800,
+  fame: 4800,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 145,
+  name: 'diamond golem',
+  description: 'diamond golem',
+  armor: 50,
+  stats: {
+    str: [750, 850],
+    dex: [50, 65],
+    int: [25, 35],
+    hp: [1400, 1600],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 10,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 147,
+  name: 'dull copper elemental',
+  description: 'dull copper elemental',
+  armor: 20,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 148,
+  name: 'earth elemental',
+  description: 'earth elemental',
+  armor: 34,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [126, 155],
+    dex: [66, 85],
+    int: [71, 92],
+    hp: [76, 93],
+    taming: null,
+    barding: 51
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 149,
+  name: 'efreet',
+  description: 'efreet',
+  armor: 98,
+  karma: -10000,
+  fame: 10000,
+  stats: {
+    str: [326, 355],
+    dex: [266, 285],
+    int: [171, 195],
+    hp: [196, 213],
+    taming: null,
+    barding: 83
+  },
+  offense: {
+    min: 11,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Random Daemon Bone Armor Piece'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [60, 80],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 151,
+  name: 'emerald golem',
+  description: 'emerald golem',
+  armor: 41,
+  stats: {
+    str: [325, 350],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [325, 350],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 152,
+  name: 'fire elemental',
+  description: 'fire elemental',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [126, 155],
+    dex: [166, 185],
+    int: [101, 125],
+    hp: [76, 93],
+    taming: null,
+    barding: 72
+  },
+  offense: {
+    min: 7,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Lightsource'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [70, 100],
+    tactics: [80, 100],
+    magic_resistance: [75, 105]
+  }
+}, {
+  id: 153,
+  name: 'golden elemental',
+  description: 'golden elemental',
+  armor: 60,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 154,
+  name: 'ice elemental',
+  description: 'ice elemental',
+  armor: 40,
+  karma: -4000,
+  fame: 4000,
+  stats: {
+    str: [156, 185],
+    dex: [96, 115],
+    int: [171, 192],
+    hp: [94, 111],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 10,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [70, 100],
+    magic_resistance: [30, 80]
+  }
+}, {
+  id: 155,
+  name: 'marble elemental',
+  description: 'marble elemental',
+  armor: 38,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 28,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 156,
+  name: 'ore golem',
+  description: 'ore golem',
+  armor: 38,
+  stats: {
+    str: [201, 225],
+    dex: [106, 115],
+    int: [71, 92],
+    hp: [115, 135],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 22,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Pile of Ore (Approx 50 ingots Worth)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 157,
+  name: 'ore golem lord',
+  description: 'ore golem lord',
+  armor: 38,
+  stats: {
+    str: [235, 265],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [156, 183],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 24,
+    max: 30,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Studded Gloves Of Mining'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 158,
+  name: 'poison elemental',
+  description: 'poison elemental',
+  armor: 70,
+  karma: -12500,
+  fame: 12500,
+  stats: {
+    str: [426, 515],
+    dex: [166, 185],
+    int: [361, 435],
+    hp: [256, 309],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Level 5 Treasure Map'
+  }],
+  credits: [750, 950],
+  skills: {
+    wrestling: [70, 90],
+    tactics: [80, 100],
+    magic_resistance: [85, 115]
+  }
+}, {
+  id: 159,
+  name: 'ruby golem',
+  description: 'ruby golem',
+  armor: 40,
+  stats: {
+    str: [750, 850],
+    dex: [50, 65],
+    int: [25, 35],
+    hp: [1200, 1300],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 160,
+  name: 'sand vortex',
+  description: 'sand vortex',
+  armor: 28,
+  karma: 4500,
+  fame: 4500,
+  stats: {
+    str: [96, 120],
+    dex: [171, 195],
+    int: [76, 100],
+    hp: [51, 62],
+    taming: null,
+    barding: 75.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: [100, 150],
+  skills: {
+    wrestling: 80.0,
+    tactics: 70.0,
+    magic_resistance: '150.0'
+  }
+}, {
+  id: 161,
+  name: 'sandstone elemental',
+  description: 'sandstone elemental',
+  armor: 60,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 162,
+  name: 'sapphire golem',
+  description: 'sapphire golem',
+  armor: 34,
+  stats: {
+    str: [425, 475],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [425, 475],
+    taming: null,
+    barding: 129
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 163,
+  name: 'shadow iron elemental',
+  description: 'shadow iron elemental',
+  armor: 23,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 164,
+  name: 'snow elemental',
+  description: 'snow elemental',
+  armor: 50,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [326, 355],
+    dex: [166, 185],
+    int: [71, 95],
+    hp: [196, 213],
+    taming: null,
+    barding: 67
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [250, 350],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [50, 65]
+  }
+}, {
+  id: 165,
+  name: 'stone elemental',
+  description: 'stone elemental',
+  armor: 26,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [85, 95],
+    magic_resistance: '100.0'
+  }
+}, {
+  id: 166,
+  name: 'tourmaline golem',
+  description: 'tourmaline golem',
+  armor: 34,
+  stats: {
+    str: [425, 475],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [425, 475],
+    taming: null,
+    barding: 129
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 167,
+  name: 'valorite elemental',
+  description: 'valorite elemental',
+  armor: 38,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 28,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [450, 650],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 168,
+  name: 'verite elemental',
+  description: 'verite elemental',
+  armor: 35,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 163],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 169,
+  name: 'water elemental',
+  description: 'water elemental',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [126, 155],
+    dex: [66, 85],
+    int: [101, 125],
+    hp: [76, 93],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 7,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [50, 70],
+    magic_resistance: [100, 115]
+  }
+}, {
+  id: 170,
+  name: 'enslaved gargoyle',
+  description: 'enslaved gargoyle',
+  armor: 35,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [302, 360],
+    dex: [76, 95],
+    int: [81, 105],
+    hp: [186, 212],
+    taming: null,
+    barding: 70.8
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [],
+  credits: [250, 300],
+  skills: {
+    wrestling: [40, 80],
+    tactics: [50, 70],
+    magic_resistance: [70, 85]
+  }
+}, {
+  id: 171,
+  name: 'fire gargoyle',
+  description: 'fire gargoyle',
+  armor: 32,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [351, 400],
+    dex: [126, 145],
+    int: [226, 250],
+    hp: [211, 240],
+    taming: null,
+    barding: 97
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [40, 80],
+    tactics: [80, 100],
+    magic_resistance: [90, 105]
+  }
+}, {
+  id: 172,
+  name: 'gargoyle',
+  description: 'gargoyle',
+  armor: 32,
+  stats: {
+    str: [146, 175],
+    dex: [76, 95],
+    int: [81, 105],
+    hp: [88, 105],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 173,
+  name: 'gargoyle destroyer',
+  description: 'gargoyle destroyer',
+  armor: 50,
+  karma: -10000,
+  fame: 10000,
+  stats: {
+    str: [760, 850],
+    dex: [102, 150],
+    int: [152, 200],
+    hp: [482, 485],
+    taming: null,
+    barding: 110.8
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [],
+  credits: [750, 950],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [120, 160]
+  }
+}, {
+  id: 174,
+  name: 'gargoyle enforcer',
+  description: 'gargoyle enforcer',
+  armor: 50,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [260, 350],
+    dex: [76, 95],
+    int: [101, 125],
+    hp: [182, 185],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [],
+  credits: [275, 325],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [70, 80],
+    magic_resistance: [120, 130]
+  }
+}, {
+  id: 175,
+  name: 'obsidian gargoyle',
+  description: 'obsidian gargoyle',
+  armor: 48,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [2400, 2900],
+    taming: null,
+    barding: 189
+  },
+  offense: {
+    min: 16,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 176,
+  name: 'stone gargoyle',
+  description: 'stone gargoyle',
+  armor: 50,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [246, 275],
+    dex: [76, 95],
+    int: [81, 105],
+    hp: [148, 165],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: [250, 325],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [80, 100],
+    magic_resistance: [85, 100]
+  }
+}, {
+  id: 177,
+  name: 'actor',
+  description: 'actor',
+  armor: null,
+  stats: {
+    str: [31, 31],
+    dex: [41, 41],
+    int: [51, 51],
+    hp: [1, 1],
+    taming: null,
+    barding: 12
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 178,
+  name: 'alchemist',
+  description: 'alchemist',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 179,
+  name: 'ancient lich',
+  description: 'ancient lich',
+  armor: 60,
+  karma: -23000,
+  fame: 23000,
+  stats: {
+    str: [206, 305],
+    dex: [96, 115],
+    int: [966, 1100],
+    hp: [560, 595],
+    taming: null,
+    barding: 142
+  },
+  offense: {
+    min: 15,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: [1500, 1700],
+  skills: {
+    wrestling: [75, 87],
+    tactics: [90, 100],
+    magic_resistance: [175, 200]
+  }
+}, {
+  id: 180,
+  name: 'animated zombie',
+  description: 'animated zombie',
+  armor: 18,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 181,
+  name: 'artist',
+  description: 'artist',
+  armor: null,
+  stats: {
+    str: [31, 31],
+    dex: [41, 41],
+    int: [51, 51],
+    hp: [1, 1],
+    taming: null,
+    barding: 16
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 182,
+  name: 'barkeeper',
+  description: 'barkeeper',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 184,
+  name: 'betrayer',
+  description: 'betrayer',
+  armor: 65,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [401, 500],
+    dex: [81, 100],
+    int: [151, 200],
+    hp: [241, 300],
+    taming: null,
+    barding: 96.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: [750, 900],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [120, 130]
+  }
+}, {
+  id: 185,
+  name: 'blacksmith',
+  description: 'blacksmith',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 186,
+  name: 'bogle',
+  description: 'bogle',
+  armor: 28,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 187,
+  name: 'bogling',
+  description: 'bogling',
+  armor: 28,
+  karma: -450,
+  fame: 450,
+  stats: {
+    str: [96, 120],
+    dex: [91, 115],
+    int: [21, 45],
+    hp: [58, 72],
+    taming: null,
+    barding: 61.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: [50, 100],
+  skills: {
+    wrestling: [55, 75],
+    tactics: [55, 80],
+    magic_resistance: [75, 100]
+  }
+}, {
+  id: 188,
+  name: 'bone knight',
+  description: 'bone knight',
+  armor: 40,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [195, 250],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [118, 150],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 8,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'WoodenShield',
+    chance: [1, 1]
+  }],
+  credits: [175, 275],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [95, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 189,
+  name: 'bone magi',
+  description: 'bone magi',
+  armor: 38,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [76, 100],
+    dex: [56, 75],
+    int: [186, 210],
+    hp: [46, 60],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 190,
+  name: 'bridegroom',
+  description: 'bridegroom',
+  armor: null,
+  stats: {
+    str: [90, 100],
+    dex: [90, 100],
+    int: [15, 25],
+    hp: [1, 1],
+    taming: null,
+    barding: 33
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 191,
+  name: 'brigand',
+  description: 'A brigand sharpens a dagger.',
+  armor: 0,
+  karma: 1000,
+  fame: 1000,
+  aggro: true,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [61, 75],
+    hp: [100, 120],
+    taming: null,
+    barding: 56
+  },
+  offense: {
+    min: 10,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 150],
+  skills: {
+    wrestling: [15, 37],
+    tactics: [65, 87],
+    magic_resistance: [25, 47]
+  }
+}, {
+  id: 192,
+  name: 'brigand archer',
+  description: 'A brigand archer readies his bow.',
+  armor: 0,
+  aggro: true,
+  stats: {
+    str: [125, 150],
+    dex: [125, 150],
+    int: [500, 750],
+    hp: [150, 200],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 10,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 193,
+  name: 'brigand strong',
+  description: 'A strong brigand is flexing as he prepares to attack.',
+  armor: 0,
+  stats: {
+    str: [125, 150],
+    dex: [81, 95],
+    int: [500, 750],
+    hp: [150, 175],
+    taming: null,
+    barding: 87
+  },
+  aggro: true,
+  offense: {
+    min: 12,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 194,
+  name: 'carpenter',
+  description: 'carpenter',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 195,
+  name: 'cobbler',
+  description: 'cobbler',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 196,
+  name: 'cook',
+  description: 'cook',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 198,
+  name: 'escortable mage',
+  description: 'escortable mage',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: 60
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 199,
+  name: 'evil mage',
+  description: 'evil mage',
+  armor: 16,
+  karma: 2500,
+  fame: 2500,
+  stats: {
+    str: [81, 105],
+    dex: [91, 115],
+    int: [96, 120],
+    hp: [49, 63],
+    taming: null,
+    barding: 69
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [20, 60],
+    tactics: [65, 87],
+    magic_resistance: [75, 97]
+  }
+}, {
+  id: 200,
+  name: 'evil mage lord',
+  description: 'evil mage lord',
+  armor: 16,
+  karma: 10500,
+  fame: ['', '10500'],
+  stats: {
+    str: [81, 105],
+    dex: [191, 215],
+    int: [126, 150],
+    hp: [49, 63],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [20, 80],
+    tactics: [65, 87],
+    magic_resistance: [77, 100]
+  }
+}, {
+  id: 201,
+  name: 'executioner',
+  description: 'executioner',
+  armor: null,
+  karma: 5000,
+  fame: ['', '5000'],
+  stats: {
+    str: [386, 400],
+    dex: [151, 165],
+    int: [1000, 1100],
+    hp: [386, 400],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 8,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [500, 650],
+  skills: {
+    wrestling: 0,
+    tactics: 125.0,
+    magic_resistance: [77, 100]
+  }
+}, {
+  id: 202,
+  name: 'faction deathknight',
+  description: 'faction deathknight',
+  armor: 0,
+  stats: {
+    str: [126, 150],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 203,
+  name: 'faction henchman',
+  description: 'faction henchman',
+  armor: 0,
+  stats: {
+    str: [91, 115],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 10,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 204,
+  name: 'faction knight',
+  description: 'faction knight',
+  armor: 0,
+  stats: {
+    str: [126, 150],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 205,
+  name: 'faction mercenary',
+  description: 'faction mercenary',
+  armor: 0,
+  stats: {
+    str: [116, 125],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 206,
+  name: 'faction necromancer',
+  description: 'faction necromancer',
+  armor: null,
+  stats: {
+    str: [151, 175],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 207,
+  name: 'faction paladin',
+  description: 'faction paladin',
+  armor: null,
+  stats: {
+    str: [151, 175],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 208,
+  name: 'faction sorceress',
+  description: 'faction sorceress',
+  armor: null,
+  stats: {
+    str: [126, 150],
+    dex: [61, 85],
+    int: [126, 150],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 209,
+  name: 'faction wizard',
+  description: 'faction wizard',
+  armor: null,
+  stats: {
+    str: [151, 175],
+    dex: [61, 85],
+    int: [151, 175],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 210,
+  name: 'farmer',
+  description: 'A farmer is looking at his crops.',
+  armor: 1,
+  stats: {
+    str: [0, 1],
+    dex: [0, 1],
+    int: [0, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 211,
+  name: 'fisherman',
+  description: 'fisherman',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 212,
+  name: 'furtrader',
+  description: 'furtrader',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 213,
+  name: 'ghoul',
+  description: 'ghoul',
+  armor: 28,
+  karma: -2500,
+  fame: 2500,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 45
+  },
+  offense: {
+    min: 7,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Weapon',
+    chance: [1, 1]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 215,
+  name: 'gypsy',
+  description: 'gypsy',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 216,
+  name: 'hairstylist',
+  description: 'hairstylist',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 217,
+  name: 'human brigand',
+  description: 'A human brigand lunges at you.',
+  armor: 0,
+  aggro: true,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [61, 75],
+    hp: [1, 1],
+    taming: null,
+    barding: 40
+  },
+  offense: {
+    min: 15,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Weapon',
+    chance: [1, 1]
+  }],
+  credits: [50, 150],
+  skills: {}
+}, {
+  id: 218,
+  name: 'knight of ni',
+  description: 'knight of ni',
+  armor: 35,
+  stats: {
+    str: [250, 375],
+    dex: [81, 95],
+    int: [500, 750],
+    hp: [150, 175],
+    taming: null,
+    barding: 83
+  },
+  offense: {
+    min: 12,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 219,
+  name: 'lich',
+  description: 'lich',
+  armor: 50,
+  karma: 8000,
+  fame: 8000,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [276, 305],
+    hp: [103, 120],
+    taming: null,
+    barding: 92
+  },
+  offense: {
+    min: 24,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [275, 324],
+  skills: {
+    wrestling: [0, 0],
+    tactics: [70, 90],
+    magic_resistance: [80, 100]
+  }
+}, {
+  id: 220,
+  name: 'lich lord',
+  description: 'lich lord',
+  armor: 50,
+  karma: 18000,
+  fame: 18000,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [566, 655],
+    hp: [250, 303],
+    taming: null,
+    barding: 109
+  },
+  offense: {
+    min: 11,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [450, 600],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [150, 200]
+  }
+}, {
+  id: 221,
+  name: 'lord fenix',
+  description: 'lord fenix',
+  armor: 0,
+  stats: {
+    str: [381, 405],
+    dex: [191, 215],
+    int: [726, 1100],
+    hp: [650, 863],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 222,
+  name: 'lord jamkul shieldheart',
+  description: 'lord jamkul shieldheart',
+  armor: 0,
+  stats: {
+    str: [381, 405],
+    dex: [191, 215],
+    int: [726, 1100],
+    hp: [650, 863],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 223,
+  name: 'lord kronos the elemental mage',
+  description: 'lord kronos the elemental mage',
+  armor: 30,
+  stats: {
+    str: [450, 550],
+    dex: [75, 85],
+    int: [420, 475],
+    hp: [1400, 1550],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 15,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 224,
+  name: 'lord xerxes',
+  description: 'lord xerxes',
+  armor: 0,
+  stats: {
+    str: [381, 405],
+    dex: [191, 215],
+    int: [726, 1100],
+    hp: [650, 863],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 225,
+  name: 'merchant',
+  description: 'merchant',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 226,
+  name: 'messenger',
+  description: 'messenger',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 227,
+  name: 'mummy',
+  description: 'mummy',
+  armor: 50,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [346, 370],
+    dex: [71, 90],
+    int: [26, 40],
+    hp: [208, 222],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 13,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Bones',
+    chance: [1, 1]
+  }],
+  credits: [305, 315],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}, {
+  id: 228,
+  name: 'noble',
+  description: 'noble',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 229,
+  name: 'pirate bartender',
+  description: 'pirate bartender',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1350],
+    taming: null,
+    barding: 166
+  },
+  offense: {
+    min: 9,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 230,
+  name: 'pirate boatswain',
+  description: 'pirate boatswain',
+  armor: 0,
+  stats: {
+    str: [200, 225],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [1, 1],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 10,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 231,
+  name: 'pirate captain',
+  description: 'pirate captain',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1400],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 13,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 232,
+  name: 'pirate captain ghost',
+  description: 'pirate captain ghost',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1350],
+    taming: null,
+    barding: 143
+  },
+  offense: {
+    min: 9,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'tattered spellbook',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 233,
+  name: 'pirate digger',
+  description: 'pirate digger',
+  armor: 0,
+  stats: {
+    str: [325, 375],
+    dex: [90, 120],
+    int: [2000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 166
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 234,
+  name: 'pirate ghost',
+  description: 'pirate ghost',
+  armor: 0,
+  stats: {
+    str: [81, 105],
+    dex: [191, 215],
+    int: [1000, 1100],
+    hp: [125, 175],
+    taming: null,
+    barding: 105
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 235,
+  name: 'pirate navigator',
+  description: 'pirate navigator',
+  armor: 0,
+  stats: {
+    str: [325, 375],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [1, 1],
+    taming: null,
+    barding: 116
+  },
+  offense: {
+    min: 10,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 236,
+  name: 'pirate quartermaster',
+  description: 'pirate quartermaster',
+  armor: 0,
+  stats: {
+    str: [375, 425],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [375, 425],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 10,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 237,
+  name: 'pirate sailor',
+  description: 'pirate sailor',
+  armor: 0,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [1, 1],
+    taming: null,
+    barding: 104
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 238,
+  name: 'ratman',
+  description: 'A ratman ears pick up as it sees you.',
+  armor: 28,
+  karma: 1500,
+  fame: 1500,
+  aggro: true,
+  stats: {
+    str: [96, 120],
+    dex: [81, 100],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 38
+  },
+  offense: {
+    min: 4,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [50, 75],
+    tactics: [50, 75],
+    magic_resistance: [35, 60]
+  }
+}, {
+  id: 239,
+  name: 'ratman archer',
+  description: 'ratman archer',
+  armor: 56,
+  karma: 6500,
+  fame: 6500,
+  stats: {
+    str: [146, 180],
+    dex: [101, 130],
+    int: [116, 140],
+    hp: [88, 108],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 15,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [300, 350],
+  skills: {
+    wrestling: [50, 75],
+    tactics: [50, 75],
+    magic_resistance: [65, 90]
+  }
+}, {
+  id: 240,
+  name: 'ratman mage',
+  description: 'ratman mage',
+  armor: 44,
+  karma: 7500,
+  fame: 7500,
+  stats: {
+    str: [146, 180],
+    dex: [101, 130],
+    int: [186, 210],
+    hp: [88, 108],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [275, 352],
+  skills: {
+    wrestling: [50, 75],
+    tactics: [50, 75],
+    magic_resistance: [65, 90]
+  }
+}, {
+  id: 242,
+  name: 'restless soul',
+  description: 'restless soul',
+  armor: 6,
+  karma: 500,
+  fame: 500,
+  stats: {
+    str: [26, 40],
+    dex: [26, 40],
+    int: [26, 40],
+    hp: [16, 24],
+    taming: null,
+    barding: 19
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [20, 30],
+    tactics: [20, 30],
+    magic_resistance: [20, 30]
+  }
+}, {
+  id: 243,
+  name: 'revenant',
+  description: 'revenant',
+  armor: 62,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [196, 250],
+    dex: [110, 120],
+    int: [128, 138],
+    hp: [500, 550],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 7,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Various Bones',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 244,
+  name: 'rotting corpse',
+  description: 'rotting corpse',
+  armor: 40,
+  karma: 12500,
+  fame: 12500,
+  stats: {
+    str: [301, 350],
+    dex: [75, 75],
+    int: [151, 200],
+    hp: [1200, 1200],
+    taming: null,
+    barding: 125
+  },
+  offense: {
+    min: 8,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: [1050, 1279],
+  skills: {
+    wrestling: [90, 100],
+    tactics: 100.0,
+    magic_resistance: '250.0'
+  }
+}, {
+  id: 245,
+  name: 'shade',
+  description: 'shade',
+  armor: 28,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 65
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 246,
+  name: 'skeletal knight',
+  description: 'skeletal knight',
+  armor: 40,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [196, 250],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [118, 150],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 8,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'WoodenShield',
+    chance: [1, 1]
+  }],
+  credits: [175, 275],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [95, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 247,
+  name: 'skeletal mage',
+  description: 'skeletal mage',
+  armor: 38,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [76, 100],
+    dex: [56, 75],
+    int: [186, 210],
+    hp: [46, 60],
+    taming: null,
+    barding: 77
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 248,
+  name: 'skeleton',
+  description: 'A skeleton wordlessly approaches.',
+  armor: 16,
+  karma: 450,
+  fame: 450,
+  aggro: true,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [16, 40],
+    hp: [34, 48],
+    taming: null,
+    barding: 36
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Bones',
+    chance: [1, 1]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 249,
+  name: 'spectre',
+  description: 'spectre',
+  armor: 28,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 250,
+  name: 'undead parrot',
+  description: 'undead parrot',
+  armor: 0,
+  stats: {
+    str: [85, 110],
+    dex: [125, 150],
+    int: [1000, 1100],
+    hp: [1, 1],
+    taming: null,
+    barding: 113
+  },
+  offense: {
+    min: 10,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 251,
+  name: 'undead pirate captain',
+  description: 'undead pirate captain',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1350],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 252,
+  name: 'undead pirate sailor',
+  description: 'undead pirate sailor',
+  armor: 0,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [1, 1],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 6,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 253,
+  name: 'wandering healer',
+  description: 'A wandering healer hums to himself.',
+  armor: 25,
+  karma: 10000,
+  fame: 1000,
+  stats: {
+    str: [100, 100],
+    dex: [100, 100],
+    int: [100, 100],
+    hp: [100, 100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 4,
+    max: 6,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [0, 0],
+    tactics: [82, 100],
+    magic_resistance: [82, 100]
+  }
+}, {
+  id: 254,
+  name: 'wraith',
+  description: 'wraith',
+  armor: 28,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 67
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 255,
+  name: 'zombie',
+  description: 'A zombie moans nearby.',
+  armor: 18,
+  karma: 600,
+  fame: 600,
+  aggro: true,
+  stats: {
+    str: [46, 70],
+    dex: [31, 50],
+    int: [26, 40],
+    hp: [28, 42],
+    taming: null,
+    barding: 33
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Body Part or Bone',
+    chance: [1, 1]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}, {
+  id: 256,
+  name: 'cave troll',
+  description: 'cave troll',
+  armor: 40,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [475, 525],
+    dex: [75, 85],
+    int: [250, 350],
+    hp: [725, 875],
+    taming: null,
+    barding: 121
+  },
+  offense: {
+    min: 14,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: [314, 486],
+  skills: {
+    wrestling: [81, 104],
+    tactics: [87, 101],
+    magic_resistance: [71, 82]
+  }
+}, {
+  id: 257,
+  name: 'forest troll',
+  description: 'forest troll',
+  armor: 40,
+  stats: {
+    str: [750, 800],
+    dex: [75, 85],
+    int: [250, 350],
+    hp: [700, 825],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 258,
+  name: 'gamayun',
+  description: 'gamayun',
+  armor: 38,
+  stats: {
+    str: [320, 340],
+    dex: [100, 110],
+    int: [500, 700],
+    hp: [400, 550],
+    taming: null,
+    barding: 105
+  },
+  offense: {
+    min: 9,
+    max: 31,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 259,
+  name: 'mountain troll',
+  description: 'mountain troll',
+  armor: 40,
+  stats: {
+    str: [475, 525],
+    dex: [75, 85],
+    int: [250, 350],
+    hp: [600, 625],
+    taming: null,
+    barding: 113
+  },
+  offense: {
+    min: 9,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 261,
+  name: 'revenant',
+  description: 'revenant',
+  armor: 62,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [196, 250],
+    dex: [110, 120],
+    int: [128, 138],
+    hp: [500, 550],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 7,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Various Bones',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 262,
+  name: 'spectral rabbit',
+  description: 'spectral rabbit',
+  armor: 40,
+  stats: {
+    str: [401, 650],
+    dex: [160, 180],
+    int: [500, 600],
+    hp: [650, 950],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 263,
+  name: 'arctic ogre lord',
+  description: 'arctic ogre lord',
+  armor: 50,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [767, 945],
+    dex: [66, 75],
+    int: [46, 70],
+    hp: [476, 552],
+    taming: null,
+    barding: 96
+  },
+  offense: {
+    min: 20,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'RawRibs'
+  }],
+  credits: [750, 950],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [125, 140]
+  }
+}, {
+  id: 267,
+  name: 'centaur',
+  description: 'centaur',
+  armor: 50,
+  karma: 0,
+  fame: 6500,
+  stats: {
+    str: [202, 300],
+    dex: [104, 260],
+    int: [91, 100],
+    hp: [130, 172],
+    taming: null,
+    barding: 72
+  },
+  offense: {
+    min: 13,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [95, 100],
+    tactics: [90, 100],
+    magic_resistance: [50, 80]
+  }
+}, {
+  id: 269,
+  name: 'cyclops',
+  description: 'cyclops',
+  armor: 48,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [336, 385],
+    dex: [96, 115],
+    int: [31, 55],
+    hp: [202, 231],
+    taming: null,
+    barding: 65
+  },
+  offense: {
+    min: 7,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [80, 100],
+    magic_resistance: [60, 105]
+  }
+}, {
+  id: 270,
+  name: 'dark wisp',
+  description: 'dark wisp',
+  armor: 40,
+  karma: 10000,
+  fame: 15000,
+  stats: {
+    str: [196, 225],
+    dex: [196, 225],
+    int: [196, 225],
+    hp: [118, 135],
+    taming: null,
+    barding: 60
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: [400, 500],
+  skills: {
+    wrestling: 50.0,
+    tactics: 80.0,
+    magic_resistance: [80, 90]
+  }
+}, {
+  id: 271,
+  name: 'elder gazer',
+  description: 'elder gazer',
+  armor: 50,
+  karma: -12500,
+  fame: 12500,
+  stats: {
+    str: [296, 325],
+    dex: [86, 105],
+    int: [291, 385],
+    hp: [178, 195],
+    taming: null,
+    barding: 87
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 600],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [115, 130]
+  }
+}, {
+  id: 272,
+  name: 'ethereal warrior',
+  description: 'ethereal warrior',
+  armor: 120,
+  karma: 7000,
+  fame: 7000,
+  stats: {
+    str: [586, 785],
+    dex: [177, 255],
+    int: [351, 450],
+    hp: [352, 471],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 13,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [900, 1200],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [90, 100],
+    magic_resistance: [90, 100]
+  }
+}, {
+  id: 273,
+  name: 'ettin',
+  description: 'An ettin knocks over some small trees.',
+  armor: 38,
+  karma: -3000,
+  fame: 3000,
+  aggro: true,
+  stats: {
+    str: [136, 165],
+    dex: [56, 75],
+    int: [31, 55],
+    hp: [82, 99],
+    taming: null,
+    barding: 42
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [50, 60],
+    tactics: [50, 70],
+    magic_resistance: [40, 55]
+  }
+}, {
+  id: 275,
+  name: 'frost troll',
+  description: 'frost troll',
+  armor: 50,
+  karma: -4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [126, 145],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 6,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 277,
+  name: 'gazer',
+  description: 'gazer',
+  armor: 36,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [96, 125],
+    dex: [86, 105],
+    int: [141, 165],
+    hp: [58, 75],
+    taming: null,
+    barding: 68
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [50, 70],
+    magic_resistance: [50, 70]
+  }
+}, {
+  id: 278,
+  name: 'gazer larva',
+  description: 'gazer larva',
+  armor: 25,
+  karma: -900,
+  fame: 900,
+  stats: {
+    str: [76, 100],
+    dex: [51, 75],
+    int: [56, 80],
+    hp: [36, 47],
+    taming: null,
+    barding: 56.7
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: [25, 50],
+  skills: {
+    wrestling: 70.0,
+    tactics: 70.0,
+    magic_resistance: '70.0'
+  }
+}, {
+  id: 279,
+  name: 'harpy',
+  description: 'A harpy screeches as it attacks.',
+  armor: 28,
+  karma: 2500,
+  fame: 2500,
+  aggro: true,
+  stats: {
+    str: [86, 120],
+    dex: [86, 110],
+    int: [51, 75],
+    hp: [58, 72],
+    taming: null,
+    barding: 47
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 90],
+    tactics: [70, 100],
+    magic_resistance: [50, 65]
+  }
+}, {
+  id: 280,
+  name: 'headless one',
+  description: 'A headless one blindly moves toward you.',
+  armor: 18,
+  stats: {
+    str: [26, 50],
+    dex: [36, 55],
+    int: [16, 30],
+    hp: [16, 30],
+    taming: null,
+    barding: 19
+  },
+  aggro: true,
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 281,
+  name: 'hell hound',
+  description: 'hell hound',
+  armor: 30,
+  karma: 3400,
+  fame: 3400,
+  stats: {
+    str: [102, 150],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [66, 125],
+    taming: 85.5,
+    barding: 39
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [57, 75]
+  }
+}, {
+  id: 282,
+  name: 'horde minion',
+  description: 'horde minion',
+  armor: 18,
+  karma: 500,
+  fame: 500,
+  stats: {
+    str: [16, 40],
+    dex: [31, 60],
+    int: [11, 25],
+    hp: [10, 24],
+    taming: null,
+    barding: 26.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [25, 40],
+    tactics: [0, 15],
+    magic_resistance: [null, null]
+  }
+}, {
+  id: 283,
+  name: 'imp',
+  description: 'imp',
+  armor: 30,
+  karma: 2500,
+  fame: 2500,
+  stats: {
+    str: [91, 115],
+    dex: [61, 80],
+    int: [86, 105],
+    hp: [55, 70],
+    taming: 83.1,
+    barding: 56
+  },
+  offense: {
+    min: 10,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [40, 44],
+    tactics: [42, 50],
+    magic_resistance: [30, 50]
+  }
+}, {
+  id: 285,
+  name: 'kirin',
+  description: 'kirin',
+  armor: 0,
+  stats: {
+    str: [286, 325],
+    dex: [86, 105],
+    int: [186, 225],
+    hp: [191, 210],
+    taming: null,
+    barding: 82
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 286,
+  name: 'mongbat',
+  description: 'A mongbat swoops in for an attack.',
+  armor: 10,
+  karma: 150,
+  fame: 150,
+  aggro: true,
+  stats: {
+    str: [6, 10],
+    dex: [26, 38],
+    int: [6, 14],
+    hp: [4, 6],
+    taming: 18.9,
+    barding: 7
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [5, 10],
+    tactics: [5, 10],
+    magic_resistance: [5, 14]
+  }
+}, {
+  id: 288,
+  name: 'ogre',
+  description: 'You smell an ogre nearby.',
+  armor: 32,
+  karma: 3000,
+  fame: 3000,
+  aggro: true,
+  stats: {
+    str: [166, 195],
+    dex: [46, 65],
+    int: [46, 70],
+    hp: [100, 117],
+    taming: null,
+    barding: 53
+  },
+  offense: {
+    min: 9,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [70, 80],
+    tactics: [60, 70],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 289,
+  name: 'ogre lord',
+  description: 'ogre lord',
+  armor: 50,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [767, 945],
+    dex: [66, 75],
+    int: [46, 70],
+    hp: [476, 552],
+    taming: null,
+    barding: 96
+  },
+  offense: {
+    min: 20,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [600, 650],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [125, 140]
+  }
+}, {
+  id: 291,
+  name: 'pixie',
+  description: 'pixie',
+  armor: 100,
+  karma: 7000,
+  fame: 7000,
+  stats: {
+    str: [21, 30],
+    dex: [301, 400],
+    int: [201, 250],
+    hp: [13, 18],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 9,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [10, 12],
+    tactics: [10, 20],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 293,
+  name: 'scorpion',
+  description: 'scorpion',
+  armor: 28,
+  karma: 2000,
+  fame: 2000,
+  stats: {
+    str: [73, 115],
+    dex: [76, 95],
+    int: [16, 30],
+    hp: [50, 63],
+    taming: 47.1,
+    barding: 55
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [50, 65],
+    tactics: [60, 75],
+    magic_resistance: [30, 35]
+  }
+}, {
+  id: 294,
+  name: 'sea horse',
+  description: 'sea horse',
+  armor: null,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 295,
+  name: 'shadow wisp',
+  description: 'shadow wisp',
+  armor: 18,
+  karma: 500,
+  fame: 500,
+  stats: {
+    str: [50, 50],
+    dex: [60, 60],
+    int: [100, 100],
+    hp: [50, 50],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [25, 40],
+    tactics: [0, 15],
+    magic_resistance: '10.0'
+  }
+}, {
+  id: 297,
+  name: 'stone harpy',
+  description: 'stone harpy',
+  armor: 50,
+  karma: 4500,
+  fame: 4500,
+  stats: {
+    str: [296, 320],
+    dex: [86, 110],
+    int: [51, 75],
+    hp: [178, 192],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [290, 325],
+  skills: {
+    wrestling: [70, 100],
+    tactics: [70, 100],
+    magic_resistance: [50, 65]
+  }
+}, {
+  id: 298,
+  name: 'strong mongbat',
+  description: 'strong mongbat',
+  armor: 10,
+  stats: {
+    str: [6, 10],
+    dex: [26, 38],
+    int: [6, 14],
+    hp: [4, 6],
+    taming: 71.1,
+    barding: 14
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 299,
+  name: 'succubus',
+  description: 'succubus',
+  armor: 80,
+  karma: -24000,
+  fame: 24000,
+  stats: {
+    str: [488, 620],
+    dex: [121, 170],
+    int: [498, 657],
+    hp: [312, 353],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1000, 1200],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [80, 90],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 300,
+  name: 'titan',
+  description: 'titan',
+  armor: 40,
+  karma: 11500,
+  fame: 11500,
+  stats: {
+    str: [536, 585],
+    dex: [126, 145],
+    int: [281, 305],
+    hp: [322, 351],
+    taming: null,
+    barding: 100
+  },
+  offense: {
+    min: 13,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [600, 800],
+  skills: {
+    wrestling: [40, 50],
+    tactics: [60, 80],
+    magic_resistance: [85, 100]
+  }
+}, {
+  id: 301,
+  name: 'troll',
+  description: 'troll',
+  armor: 40,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [176, 205],
+    dex: [46, 65],
+    int: [46, 70],
+    hp: [106, 123],
+    taming: null,
+    barding: 50
+  },
+  offense: {
+    min: 8,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [50, 70],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 303,
+  name: 'wisp',
+  description: 'A wisp floats through the air.',
+  armor: 40,
+  karma: 0,
+  fame: 4000,
+  stats: {
+    str: [196, 225],
+    dex: [196, 225],
+    int: [196, 225],
+    hp: [118, 135],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 17,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Light Source'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [80, 80],
+    tactics: [80, 80],
+    magic_resistance: [80, 80]
+  }
+}, {
+  id: 304,
+  name: 'orc',
+  description: 'An orc snarls at you.',
+  armor: 28,
+  aggro: true,
+  stats: {
+    str: [96, 120],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 42
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 305,
+  name: 'orc bomber',
+  description: 'orc bomber',
+  armor: 30,
+  karma: 2500,
+  fame: 2500,
+  stats: {
+    str: [147, 215],
+    dex: [91, 115],
+    int: [61, 85],
+    hp: [95, 123],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 1,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 85],
+    tactics: [75, 90],
+    magic_resistance: [70, 85]
+  }
+}, {
+  id: 306,
+  name: 'orc brute',
+  description: 'orc brute',
+  armor: 50,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [767, 945],
+    dex: [66, 75],
+    int: [46, 70],
+    hp: [476, 552],
+    taming: null,
+    barding: 94.3
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [],
+  credits: [750, 950],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [125, 140]
+  }
+}, {
+  id: 307,
+  name: 'orc captain',
+  description: 'An orc captain readies its axe.',
+  armor: 34,
+  karma: 2500,
+  fame: 2500,
+  aggro: true,
+  stats: {
+    str: [111, 145],
+    dex: [101, 135],
+    int: [86, 110],
+    hp: [67, 87],
+    taming: null,
+    barding: 60
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [100, 150],
+  skills: {
+    wrestling: [0, 0],
+    tactics: [85, 100],
+    magic_resistance: [70, 85]
+  }
+}, {
+  id: 308,
+  name: 'orc scout',
+  description: 'orc scout',
+  armor: null,
+  karma: 1500,
+  fame: 1500,
+  stats: {
+    str: [96, 120],
+    dex: [101, 130],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 15,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [0, 0],
+    tactics: [55, 80],
+    magic_resistance: [50, 75]
+  }
+}, {
+  id: 309,
+  name: 'orcish lord',
+  description: 'An orcish lord quickly approaches.',
+  armor: 0,
+  aggro: true,
+  stats: {
+    str: [147, 215],
+    dex: [91, 115],
+    int: [61, 85],
+    hp: [95, 123],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 4,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 3],
+    description: 'Random Reagent'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 310,
+  name: 'orcish mage',
+  description: 'orcish mage',
+  armor: 30,
+  stats: {
+    str: [116, 150],
+    dex: [91, 115],
+    int: [161, 185],
+    hp: [70, 90],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 4,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 311,
+  name: 'bog thing',
+  description: 'bog thing',
+  armor: 28,
+  karma: -8000,
+  fame: 8000,
+  stats: {
+    str: [801, 900],
+    dex: [46, 65],
+    int: [36, 50],
+    hp: [481, 540],
+    taming: null,
+    barding: 86.1
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [],
+  credits: [275, 325],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [70, 85],
+    magic_resistance: [90, 95]
+  }
+}, {
+  id: 312,
+  name: 'corpser',
+  description: 'corpser',
+  armor: 18,
+  karma: -1000,
+  fame: 1000,
+  stats: {
+    str: [156, 180],
+    dex: [26, 45],
+    int: [26, 40],
+    hp: [94, 108],
+    taming: null,
+    barding: 46
+  },
+  offense: {
+    min: 10,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 313,
+  name: 'quagmire',
+  description: 'quagmire',
+  armor: 32,
+  karma: 1500,
+  fame: 1500,
+  stats: {
+    str: [101, 130],
+    dex: [66, 85],
+    int: [31, 55],
+    hp: [91, 105],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [],
+  credits: [125, 175],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 60],
+    magic_resistance: [65, 75]
+  }
+}, {
+  id: 314,
+  name: 'reaper',
+  description: 'reaper',
+  armor: 40,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [66, 215],
+    dex: [66, 75],
+    int: [101, 250],
+    hp: [40, 129],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 9,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [50, 60],
+    tactics: [45, 60],
+    magic_resistance: [100, 125]
+  }
+}, {
+  id: 315,
+  name: 'swamp tentacle',
+  description: 'swamp tentacle',
+  armor: 28,
+  karma: 3000,
+  fame: 3000,
+  stats: {
+    str: [96, 120],
+    dex: [66, 85],
+    int: [16, 30],
+    hp: [58, 72],
+    taming: null,
+    barding: 44
+  },
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [65, 80],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 316,
+  name: 'whipping vine',
+  description: 'whipping vine',
+  armor: 45,
+  karma: 1000,
+  fame: 1000,
+  stats: {
+    str: [251, 300],
+    dex: [76, 100],
+    int: [26, 40],
+    hp: [251, 300],
+    taming: null,
+    barding: 76.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [],
+  credits: [null, null],
+  skills: {
+    wrestling: 70.0,
+    tactics: 70.0,
+    magic_resistance: '70.0'
+  }
+}, {
+  id: 321,
+  name: 'ancient wyrm',
+  description: 'ancient wyrm',
+  armor: 70,
+  karma: -22500,
+  fame: 22500,
+  stats: {
+    str: [1000, 1100],
+    dex: [86, 175],
+    int: [686, 775],
+    hp: [658, 711],
+    taming: null,
+    barding: 149
+  },
+  offense: {
+    min: 29,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1600, 1800],
+  skills: {
+    wrestling: [110, null],
+    tactics: [127, null],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 322,
+  name: 'azure dragon',
+  description: 'azure dragon',
+  armor: 80,
+  stats: {
+    str: [1000, 1100],
+    dex: [120, 130],
+    int: [770, 820],
+    hp: [3000, 3000],
+    taming: null,
+    barding: 239
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'PlatinumCoin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 323,
+  name: 'deep sea serpent',
+  description: 'deep sea serpent',
+  armor: 60,
+  karma: -6000,
+  fame: 6000,
+  stats: {
+    str: [251, 425],
+    dex: [87, 135],
+    int: [87, 155],
+    hp: [151, 255],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 6,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [60, 70],
+    tactics: [60, 70],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 324,
+  name: 'dragon',
+  description: 'dragon',
+  armor: 60,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [796, 825],
+    dex: [86, 105],
+    int: [436, 475],
+    hp: [478, 495],
+    taming: 93.9,
+    barding: 112
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [1000, 1200],
+  skills: {
+    wrestling: [90, 92],
+    tactics: [97, 100],
+    magic_resistance: [99, 100]
+  }
+}, {
+  id: 325,
+  name: 'drake',
+  description: 'drake',
+  armor: 46,
+  karma: -5500,
+  fame: 5500,
+  stats: {
+    str: [401, 430],
+    dex: [133, 152],
+    int: [101, 140],
+    hp: [241, 258],
+    taming: 84.3,
+    barding: 79
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [65, 90],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 326,
+  name: 'elder wyrm',
+  description: 'elder wyrm',
+  armor: 90,
+  stats: {
+    str: [1000, 1100],
+    dex: [125, 145],
+    int: [1000, 1100],
+    hp: [5000, 5000],
+    taming: null,
+    barding: 365
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 327,
+  name: 'kraken',
+  description: 'kraken',
+  armor: 50,
+  karma: 11000,
+  fame: 11000,
+  stats: {
+    str: [250, 275],
+    dex: [90, 110],
+    int: [26, 40],
+    hp: [250, 275],
+    taming: null,
+    barding: 89
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Special Fishing Net'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 328,
+  name: 'leviathan',
+  description: 'leviathan',
+  armor: null,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 329,
+  name: 'lizardman',
+  description: 'lizardman',
+  armor: 28,
+  karma: 1500,
+  fame: 1500,
+  stats: {
+    str: [96, 120],
+    dex: [86, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 46
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 75],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [55, 80],
+    magic_resistance: [35, 60]
+  }
+}, {
+  id: 330,
+  name: 'lock lake monster',
+  description: 'lock lake monster',
+  armor: 60,
+  stats: {
+    str: [756, 780],
+    dex: [226, 245],
+    int: [100, 200],
+    hp: [750, 800],
+    taming: null,
+    barding: 93
+  },
+  offense: {
+    min: 19,
+    max: 33,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Fishing Net Piece'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 331,
+  name: 'ophidian archmage',
+  description: 'ophidian archmage',
+  armor: 44,
+  stats: {
+    str: [281, 305],
+    dex: [191, 215],
+    int: [226, 250],
+    hp: [169, 183],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 36,
+    max: 45,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 332,
+  name: 'ophidian knight',
+  description: 'ophidian knight',
+  armor: 40,
+  stats: {
+    str: [417, 595],
+    dex: [166, 175],
+    int: [46, 70],
+    hp: [266, 342],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 16,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 333,
+  name: 'ophidian mage',
+  description: 'ophidian mage',
+  armor: 30,
+  stats: {
+    str: [181, 205],
+    dex: [191, 215],
+    int: [96, 120],
+    hp: [109, 123],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 334,
+  name: 'ophidian matriarch',
+  description: 'ophidian matriarch',
+  armor: 50,
+  karma: 16000,
+  fame: 16000,
+  stats: {
+    str: [416, 505],
+    dex: [96, 115],
+    int: [366, 455],
+    hp: [250, 303],
+    taming: null,
+    barding: 98
+  },
+  offense: {
+    min: 11,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [550, 650],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [90, 100]
+  }
+}, {
+  id: 336,
+  name: 'ophidian warrior',
+  description: 'ophidian warrior',
+  armor: 36,
+  karma: 4500,
+  fame: 4500,
+  stats: {
+    str: [150, 320],
+    dex: [94, 190],
+    int: [64, 160],
+    hp: [128, 155],
+    taming: null,
+    barding: 65
+  },
+  offense: {
+    min: 5,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [0, 0],
+    tactics: [75, 90],
+    magic_resistance: [70, 85]
+  }
+}, {
+  id: 337,
+  name: 'sea serpent',
+  description: 'sea serpent',
+  armor: 30,
+  karma: 6000,
+  fame: 6000,
+  stats: {
+    str: [168, 225],
+    dex: [58, 85],
+    int: [53, 95],
+    hp: [110, 127],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [60, 70],
+    tactics: [60, 70],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 338,
+  name: 'serpentine dragon',
+  description: 'serpentine dragon',
+  armor: 36,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [111, 140],
+    dex: [201, 220],
+    int: [1000, 1100],
+    hp: [480, 480],
+    taming: null,
+    barding: 130
+  },
+  offense: {
+    min: 5,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Level 4 Treasure Map'
+  }],
+  credits: [900, 1100],
+  skills: {
+    wrestling: [30, 100],
+    tactics: [50, 60],
+    magic_resistance: '100.0'
+  }
+}, {
+  id: 339,
+  name: 'shadow wyrm',
+  description: 'shadow wyrm',
+  armor: 70,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 200],
+    int: [488, 620],
+    hp: [558, 599],
+    taming: null,
+    barding: 141
+  },
+  offense: {
+    min: 29,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1550, 1800],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: [100, 130]
+  }
+}, {
+  id: 340,
+  name: 'shipwreck kraken',
+  description: 'shipwreck kraken',
+  armor: 40,
+  stats: {
+    str: [250, 275],
+    dex: [90, 110],
+    int: [26, 40],
+    hp: [250, 275],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 341,
+  name: 'skeletal dragon',
+  description: 'skeletal dragon',
+  armor: 80,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [898, 1030],
+    dex: [68, 200],
+    int: [488, 620],
+    hp: [558, 599],
+    taming: null,
+    barding: 118.3
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [],
+  credits: [1600, 1800],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: [100, 130]
+  }
+}, {
+  id: 342,
+  name: 'white wyrm',
+  description: 'white wyrm',
+  armor: 64,
+  karma: 18000,
+  fame: 18000,
+  stats: {
+    str: [721, 760],
+    dex: [101, 130],
+    int: [386, 425],
+    hp: [433, 456],
+    taming: 96.3,
+    barding: 103
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1200, 1400],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [97, 100],
+    magic_resistance: [99, 100]
+  }
+}, {
+  id: 343,
+  name: 'wyvern',
+  description: 'wyvern',
+  armor: 40,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [202, 240],
+    dex: [153, 172],
+    int: [51, 90],
+    hp: [125, 141],
+    taming: null,
+    barding: 79
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [65, 90],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 345,
+  name: 'frost ooze',
+  description: 'frost ooze',
+  armor: 38,
+  karma: -450,
+  fame: 450,
+  stats: {
+    str: [18, 30],
+    dex: [16, 21],
+    int: [16, 20],
+    hp: [13, 17],
+    taming: null,
+    barding: 11
+  },
+  offense: {
+    min: 3,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'slimes',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [25, 40],
+    tactics: [19, 34],
+    magic_resistance: [5, 10]
+  }
+}, {
+  id: 346,
+  name: 'jwilson',
+  description: 'jwilson',
+  armor: 8,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'slimes',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 347,
+  name: 'plague beast',
+  description: 'plague beast',
+  armor: 30,
+  karma: 13000,
+  fame: 13000,
+  stats: {
+    str: [302, 500],
+    dex: '80',
+    int: [16, 20],
+    hp: [318, 404],
+    taming: null,
+    barding: 81.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'slimes',
+  attackable: true,
+  inventory: [],
+  credits: [450, 600],
+  skills: {
+    wrestling: 100.0,
+    tactics: [100, 100],
+    magic_resistance: '35.0'
+  }
+}, {
+  id: 348,
+  name: 'slime',
+  description: 'slime',
+  armor: 8,
+  karma: 300,
+  fame: 300,
+  stats: {
+    str: [22, 34],
+    dex: [16, 21],
+    int: [16, 20],
+    hp: [15, 19],
+    taming: 23.1,
+    barding: 27
+  },
+  offense: {
+    min: 1,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'slimes',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [19, 34],
+    tactics: [19, 34],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 349,
+  name: 'abominable snowman',
+  description: 'abominable snowman',
+  armor: 35,
+  stats: {
+    str: [446, 515],
+    dex: [126, 155],
+    int: [281, 305],
+    hp: [700, 900],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 15,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Yeti Statue  2 Hues (1151, 1154)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 350,
+  name: 'acolyte of death',
+  description: 'acolyte of death',
+  armor: 36,
+  stats: {
+    str: [351, 400],
+    dex: [101, 150],
+    int: [502, 700],
+    hp: [750, 100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 351,
+  name: 'avarice',
+  description: 'avarice',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1100, 2000],
+    hp: [850, 1100],
+    taming: null,
+    barding: 158
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 352,
+  name: 'balam the daemon knight',
+  description: 'balam the daemon knight',
+  armor: 40,
+  stats: {
+    str: [550, 575],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 353,
+  name: 'black knight',
+  description: 'black knight',
+  armor: 40,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [3000, 4000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 354,
+  name: 'blitzen',
+  description: 'blitzen',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 160
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 25],
+    description: 'Santas Lair Scroll (Dungeon)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 355,
+  name: 'bloated zombie',
+  description: 'bloated zombie',
+  armor: 30,
+  stats: {
+    str: [485, 545],
+    dex: [81, 120],
+    int: [375, 425],
+    hp: [455, 525],
+    taming: null,
+    barding: 102
+  },
+  offense: {
+    min: 21,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 356,
+  name: 'blood necromancer',
+  description: 'blood necromancer',
+  armor: 50,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [903, 1120],
+    taming: null,
+    barding: 156
+  },
+  offense: {
+    min: 18,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 357,
+  name: 'bloodthirsty turkey',
+  description: 'bloodthirsty turkey',
+  armor: 40,
+  stats: {
+    str: [1000, 1100],
+    dex: [235, 250],
+    int: [301, 325],
+    hp: [1650, 1750],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 17,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 358,
+  name: 'comet',
+  description: 'comet',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 200],
+    int: [750, 1100],
+    hp: [850, 1100],
+    taming: null,
+    barding: 134
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 359,
+  name: 'corrupt soul',
+  description: 'corrupt soul',
+  armor: 28,
+  stats: {
+    str: [75, 80],
+    dex: [16, 45],
+    int: [111, 125],
+    hp: [100, 175],
+    taming: null,
+    barding: 72
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 360,
+  name: 'crystal ogre',
+  description: 'crystal ogre',
+  armor: 32,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [1250, 1500],
+    taming: null,
+    barding: 134
+  },
+  offense: {
+    min: 21,
+    max: 32,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 361,
+  name: 'crystal wolf',
+  description: 'crystal wolf',
+  armor: 22,
+  stats: {
+    str: [125, 150],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 50
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 362,
+  name: 'cuckold',
+  description: 'cuckold',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1100, 2100],
+    hp: [850, 1100],
+    taming: null,
+    barding: 146
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 363,
+  name: 'cupid',
+  description: 'cupid',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 151
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 364,
+  name: 'cupids apprentice archer',
+  description: 'cupids apprentice archer',
+  armor: 15,
+  stats: {
+    str: [106, 116],
+    dex: [91, 115],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 69
+  },
+  offense: {
+    min: 11,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 365,
+  name: 'cupids archer',
+  description: 'cupids archer',
+  armor: 20,
+  stats: {
+    str: [110, 125],
+    dex: [100, 110],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 12,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 366,
+  name: 'cupids rookie archer',
+  description: 'cupids rookie archer',
+  armor: 10,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 68
+  },
+  offense: {
+    min: 10,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 367,
+  name: 'cupids veteran archer',
+  description: 'cupids veteran archer',
+  armor: 25,
+  stats: {
+    str: [110, 130],
+    dex: [110, 130],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 13,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 368,
+  name: 'dancer',
+  description: 'dancer',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 155
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 369,
+  name: 'dark elf archer',
+  description: 'dark elf archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [800, 1000],
+    hp: [288, 308],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    min: 15,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 370,
+  name: 'dark elf axer',
+  description: 'dark elf axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 950],
+    hp: [325, 500],
+    taming: null,
+    barding: 106
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 371,
+  name: 'dark elf battle mage',
+  description: 'dark elf battle mage',
+  armor: 50,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [566, 655],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 372,
+  name: 'dark elf commander',
+  description: 'dark elf commander',
+  armor: 60,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [3000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 373,
+  name: 'dark elf fencer',
+  description: 'dark elf fencer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 950],
+    hp: [325, 500],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 374,
+  name: 'dark elf knight',
+  description: 'dark elf knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [1100, 1250],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 375,
+  name: 'dark elf macer',
+  description: 'dark elf macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 950],
+    hp: [325, 500],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 376,
+  name: 'dark elf mage',
+  description: 'dark elf mage',
+  armor: 35,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [705, 950],
+    hp: [103, 120],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    min: 15,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 377,
+  name: 'dark elf ranger',
+  description: 'dark elf ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Random Ranger Armor Piece'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 378,
+  name: 'dark elf spirit',
+  description: 'dark elf spirit',
+  armor: 45,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [12000, 15000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 9,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 379,
+  name: 'dasher',
+  description: 'dasher',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 157
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 380,
+  name: 'defiled zombie',
+  description: 'defiled zombie',
+  armor: 27,
+  stats: {
+    str: [445, 505],
+    dex: [61, 100],
+    int: [375, 425],
+    hp: [415, 485],
+    taming: null,
+    barding: 96
+  },
+  offense: {
+    min: 17,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 381,
+  name: 'despair',
+  description: 'despair',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 162
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 382,
+  name: 'donner',
+  description: 'donner',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 152
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 383,
+  name: 'easter bunny',
+  description: 'easter bunny',
+  armor: 40,
+  stats: {
+    str: [350, 350],
+    dex: [205, 205],
+    int: [50, 50],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 6,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Rabbits Feet'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 384,
+  name: 'elf archer',
+  description: 'elf archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [705, 940],
+    hp: [288, 308],
+    taming: null,
+    barding: 105
+  },
+  offense: {
+    min: 15,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 385,
+  name: 'elf axer',
+  description: 'elf axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 1000],
+    hp: [325, 500],
+    taming: null,
+    barding: 112
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 386,
+  name: 'elf battle mage',
+  description: 'elf battle mage',
+  armor: 50,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [566, 655],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 387,
+  name: 'elf fencer',
+  description: 'elf fencer',
+  armor: 45,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 388,
+  name: 'elf knight',
+  description: 'elf knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [1100, 1250],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 389,
+  name: 'elf macer',
+  description: 'elf macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 111
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 390,
+  name: 'elf mage',
+  description: 'elf mage',
+  armor: 35,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [276, 305],
+    hp: [250, 320],
+    taming: null,
+    barding: 87
+  },
+  offense: {
+    min: 15,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 391,
+  name: 'elf ranger',
+  description: 'elf ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Random Ranger Armor Piece'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 392,
+  name: 'evil polar bear',
+  description: 'evil polar bear',
+  armor: 18,
+  stats: {
+    str: [150, 450],
+    dex: [80, 140],
+    int: [50, 500],
+    hp: [250, 750],
+    taming: null,
+    barding: 100
+  },
+  offense: {
+    min: 8,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 393,
+  name: 'fire reaper',
+  description: 'fire reaper',
+  armor: 40,
+  stats: {
+    str: [215, 315],
+    dex: [66, 75],
+    int: [750, 1000],
+    hp: [250, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 394,
+  name: 'flame archer',
+  description: 'flame archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [716, 940],
+    hp: [288, 308],
+    taming: null,
+    barding: 109
+  },
+  offense: {
+    min: 11,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 395,
+  name: 'flame axer',
+  description: 'flame axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [750, 1000],
+    hp: [325, 500],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 396,
+  name: 'flame battle mage',
+  description: 'flame battle mage',
+  armor: 50,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [3000, 4000],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'polar bear statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 397,
+  name: 'flame fencer',
+  description: 'flame fencer',
+  armor: 45,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 107
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 398,
+  name: 'flame ghoul',
+  description: 'flame ghoul',
+  armor: 50,
+  stats: {
+    str: [345, 370],
+    dex: [71, 90],
+    int: [26, 40],
+    hp: [208, 222],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 13,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 399,
+  name: 'flame knight',
+  description: 'flame knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 400,
+  name: 'flame macer',
+  description: 'flame macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 101
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 401,
+  name: 'flame mage',
+  description: 'flame mage',
+  armor: 35,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 402,
+  name: 'flame ranger',
+  description: 'flame ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Ranger Armor of Fire  1 Random Piece, 4 Fire Hues'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 403,
+  name: 'fluffy',
+  description: 'fluffy',
+  armor: 70,
+  stats: {
+    str: [1000, 1100],
+    dex: [180, 190],
+    int: [1000, 1100],
+    hp: [2000, 2325],
+    taming: null,
+    barding: 186
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Level 6 Treasure Map'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 404,
+  name: 'frankensteins monster',
+  description: 'frankensteins monster',
+  armor: 78,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 16,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 405,
+  name: 'frost archer',
+  description: 'frost archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [716, 940],
+    hp: [288, 308],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 11,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 406,
+  name: 'frost axer',
+  description: 'frost axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [750, 1000],
+    hp: [325, 500],
+    taming: null,
+    barding: 116
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 407,
+  name: 'frost battle mage',
+  description: 'frost battle mage',
+  armor: 50,
+  stats: {
+    str: [415, 505],
+    dex: [146, 165],
+    int: [3000, 4000],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 14,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Polar Bear Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 408,
+  name: 'frost fencer',
+  description: 'frost fencer',
+  armor: 45,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 409,
+  name: 'frost knight',
+  description: 'frost knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 25],
+    description: 'Ice Fortress Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 410,
+  name: 'frost macer',
+  description: 'frost macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 101
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 411,
+  name: 'frost mage',
+  description: 'frost mage',
+  armor: 35,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [700, 950],
+    hp: [250, 320],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 412,
+  name: 'frost ranger',
+  description: 'frost ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [125, 135],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Ranger Armor of Frost  1 Random Piece, 4 Ice Hues'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 413,
+  name: 'gluttony',
+  description: 'gluttony',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 162
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 414,
+  name: 'goblin',
+  description: 'goblin',
+  armor: 32,
+  stats: {
+    str: [175, 200],
+    dex: [81, 105],
+    int: [650, 710],
+    hp: [275, 325],
+    taming: null,
+    barding: 94
+  },
+  offense: {
+    min: 10,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 415,
+  name: 'good polar bear',
+  description: 'good polar bear',
+  armor: 0,
+  stats: {
+    str: [125, 175],
+    dex: [81, 105],
+    int: [26, 50],
+    hp: [125, 250],
+    taming: 80.1,
+    barding: 70
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 416,
+  name: 'grave necromancer',
+  description: 'grave necromancer',
+  armor: 40,
+  stats: {
+    str: [216, 305],
+    dex: [96, 115],
+    int: [966, 1000],
+    hp: [3000, 3000],
+    taming: null,
+    barding: 210
+  },
+  offense: {
+    min: 15,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 417,
+  name: 'greed',
+  description: 'greed',
+  armor: 60,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 418,
+  name: 'grinch',
+  description: 'grinch',
+  armor: 120,
+  stats: {
+    str: [586, 785],
+    dex: [177, 255],
+    int: [351, 450],
+    hp: [5000, 6000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 13,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Piece of Grinch Clothing'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 419,
+  name: 'headlesshorseless',
+  description: 'headlesshorseless',
+  armor: 36,
+  stats: {
+    str: [428, 480],
+    dex: [136, 155],
+    int: [86, 130],
+    hp: [550, 750],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 14,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 420,
+  name: 'holiday elf (beefy)',
+  description: 'holiday elf (beefy)',
+  armor: null,
+  stats: {
+    str: [150, 175],
+    dex: [110, 120],
+    int: [200, 250],
+    hp: [180, 250],
+    taming: null,
+    barding: 86
+  },
+  offense: {
+    min: 16,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: '200-275 Gold Coins'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 421,
+  name: 'holiday elf (rough)',
+  description: 'holiday elf (rough)',
+  armor: null,
+  stats: {
+    str: [125, 150],
+    dex: [110, 120],
+    int: [200, 250],
+    hp: [130, 190],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: '150-225 Gold Coins'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 422,
+  name: 'holiday elf (wimpy)',
+  description: 'holiday elf (wimpy)',
+  armor: null,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [200, 250],
+    hp: [75, 125],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 8,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: '75-150 Gold Coins'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 423,
+  name: 'holiday reindeer',
+  description: 'holiday reindeer',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 424,
+  name: 'hubris',
+  description: 'hubris',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 174
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 425,
+  name: 'ice ghoul',
+  description: 'ice ghoul',
+  armor: 50,
+  stats: {
+    str: [345, 370],
+    dex: [71, 90],
+    int: [26, 40],
+    hp: [208, 222],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 13,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Frozen Continent Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 426,
+  name: 'ice golem',
+  description: 'ice golem',
+  armor: 40,
+  stats: {
+    str: [156, 185],
+    dex: [96, 115],
+    int: [171, 192],
+    hp: [225, 425],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 10,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 427,
+  name: 'ice reaper',
+  description: 'ice reaper',
+  armor: 40,
+  stats: {
+    str: [215, 315],
+    dex: [66, 75],
+    int: [750, 1000],
+    hp: [250, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Ice Reaper Statuette  4 Hues'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 428,
+  name: 'krampus',
+  description: 'krampus',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'the naughty list  a rare runebook'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 429,
+  name: 'leprechaun',
+  description: 'leprechaun',
+  armor: null,
+  stats: {
+    str: [81, 105],
+    dex: [191, 215],
+    int: [126, 150],
+    hp: [175, 325],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Leprechaun Sandals'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 430,
+  name: 'leprechaun jockey',
+  description: 'leprechaun jockey',
+  armor: null,
+  stats: {
+    str: [161, 205],
+    dex: [75, 100],
+    int: [126, 150],
+    hp: [1250, 1500],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 431,
+  name: 'lust',
+  description: 'lust',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 161
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 432,
+  name: 'mini daemon',
+  description: 'mini daemon',
+  armor: 58,
+  stats: {
+    str: [476, 505],
+    dex: [76, 95],
+    int: [301, 325],
+    hp: [286, 303],
+    taming: null,
+    barding: 98
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 433,
+  name: 'minion of cupid',
+  description: 'minion of cupid',
+  armor: 10,
+  stats: {
+    str: [75, 100],
+    dex: [46, 58],
+    int: [16, 24],
+    hp: [25, 50],
+    taming: null,
+    barding: 33
+  },
+  offense: {
+    min: 8,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 434,
+  name: 'mutant fluffy',
+  description: 'mutant fluffy',
+  armor: 60,
+  stats: {
+    str: [696, 775],
+    dex: [86, 105],
+    int: [436, 475],
+    hp: [578, 595],
+    taming: null,
+    barding: 117
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 435,
+  name: 'plague zombie',
+  description: 'plague zombie',
+  armor: 24,
+  stats: {
+    str: [415, 465],
+    dex: [51, 85],
+    int: [375, 450],
+    hp: [385, 445],
+    taming: null,
+    barding: 97
+  },
+  offense: {
+    min: 14,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 436,
+  name: 'polar bear boss',
+  description: 'polar bear boss',
+  armor: 50,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 16,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'StrengthPotion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 437,
+  name: 'poltergeist',
+  description: 'poltergeist',
+  armor: 34,
+  stats: {
+    str: [166, 210],
+    dex: [96, 115],
+    int: [325, 375],
+    hp: [146, 190],
+    taming: null,
+    barding: 92
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 438,
+  name: 'prancer',
+  description: 'prancer',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 167
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 439,
+  name: 'queen of the damned',
+  description: 'queen of the damned',
+  armor: 40,
+  stats: {
+    str: [750, 850],
+    dex: [105, 115],
+    int: [420, 475],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted High Level Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 440,
+  name: 'ridable polar bear',
+  description: 'ridable polar bear',
+  armor: 18,
+  stats: {
+    str: [116, 140],
+    dex: [81, 105],
+    int: [26, 50],
+    hp: [70, 84],
+    taming: 11.1,
+    barding: 44
+  },
+  offense: {
+    min: 7,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 441,
+  name: 'royal mummy',
+  description: 'royal mummy',
+  armor: 40,
+  stats: {
+    str: [625, 725],
+    dex: [150, 170],
+    int: [26, 40],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 157
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted High Level Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 442,
+  name: 'rudolph',
+  description: 'rudolph',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 443,
+  name: 'savage turkey',
+  description: 'savage turkey',
+  armor: 30,
+  stats: {
+    str: [605, 625],
+    dex: [140, 150],
+    int: [301, 325],
+    hp: [1050, 1100],
+    taming: null,
+    barding: 97
+  },
+  offense: {
+    min: 13,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 444,
+  name: 'servant of cupid',
+  description: 'servant of cupid',
+  armor: 15,
+  stats: {
+    str: [96, 115],
+    dex: [56, 68],
+    int: [16, 24],
+    hp: [50, 75],
+    taming: null,
+    barding: 44
+  },
+  offense: {
+    min: 9,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 445,
+  name: 'skeletal blood knight',
+  description: 'skeletal blood knight',
+  armor: 35,
+  stats: {
+    str: [496, 650],
+    dex: [96, 135],
+    int: [636, 690],
+    hp: [518, 750],
+    taming: null,
+    barding: 116
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 446,
+  name: 'skeletal blood mage',
+  description: 'skeletal blood mage',
+  armor: 44,
+  stats: {
+    str: [166, 210],
+    dex: [56, 75],
+    int: [386, 410],
+    hp: [850, 950],
+    taming: null,
+    barding: 140
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 450,
+  name: 'sloth',
+  description: 'sloth',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 168
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Sloth Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 451,
+  name: 'snow vortex',
+  description: 'snow vortex',
+  armor: 50,
+  stats: {
+    str: [326, 355],
+    dex: [166, 185],
+    int: [71, 95],
+    hp: [296, 413],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 452,
+  name: 'sorcerer of cupid',
+  description: 'sorcerer of cupid',
+  armor: 25,
+  stats: {
+    str: [50, 75],
+    dex: [26, 38],
+    int: [125, 150],
+    hp: [75, 100],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 8,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 453,
+  name: 'succubus concubine',
+  description: 'succubus concubine',
+  armor: 25,
+  stats: {
+    str: [225, 275],
+    dex: [75, 150],
+    int: [325, 400],
+    hp: [1500, 2000],
+    taming: null,
+    barding: 163
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 454,
+  name: 'turkey archer',
+  description: 'turkey archer',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 138
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item(17 Possible Items)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 455,
+  name: 'turkey fencer',
+  description: 'turkey fencer',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 138
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item  17 Possible Items'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 456,
+  name: 'turkey knight',
+  description: 'turkey knight',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item  (17 Possible Items)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 457,
+  name: 'turkey macer',
+  description: 'turkey macer',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 138
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item (17 Possible Items)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 458,
+  name: 'turkinator',
+  description: 'turkinator',
+  armor: 40,
+  stats: {
+    str: [1000, 1100],
+    dex: [125, 150],
+    int: [301, 325],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 256
+  },
+  offense: {
+    min: 17,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted Gems'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 459,
+  name: 'undead captain johne',
+  description: 'undead captain johne',
+  armor: 40,
+  stats: {
+    str: [625, 725],
+    dex: [150, 170],
+    int: [26, 40],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'captain Johnes cutlass'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 460,
+  name: 'undead cat',
+  description: 'undead cat',
+  armor: 30,
+  stats: {
+    str: [102, 150],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [35, 65],
+    taming: null,
+    barding: 50
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 461,
+  name: 'undead cat lady',
+  description: 'undead cat lady',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 176
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'a vial of catnip'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 462,
+  name: 'undead dragon',
+  description: 'undead dragon',
+  armor: 40,
+  stats: {
+    str: [750, 900],
+    dex: [68, 125],
+    int: [488, 620],
+    hp: [3000, 4000],
+    taming: null,
+    barding: 220
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 463,
+  name: 'vampire',
+  description: 'vampire',
+  armor: 35,
+  stats: {
+    str: [446, 515],
+    dex: [126, 155],
+    int: [281, 305],
+    hp: [700, 800],
+    taming: null,
+    barding: 132
+  },
+  offense: {
+    min: 15,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 464,
+  name: 'vampire lord',
+  description: 'vampire lord',
+  armor: 30,
+  stats: {
+    str: [450, 500],
+    dex: [191, 215],
+    int: [800, 1000],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 207
+  },
+  offense: {
+    min: 10,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted Medium Level Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 465,
+  name: 'vampire mistress',
+  description: 'vampire mistress',
+  armor: 20,
+  stats: {
+    str: [225, 75],
+    dex: [75, 150],
+    int: [325, 400],
+    hp: [1250, 1750],
+    taming: null,
+    barding: 182
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 466,
+  name: 'vanity',
+  description: 'vanity',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 172
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Vanity Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 467,
+  name: 'vixen',
+  description: 'vixen',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 146
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'vixen statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 468,
+  name: 'walking dead',
+  description: 'walking dead',
+  armor: 21,
+  stats: {
+    str: [145, 175],
+    dex: [41, 70],
+    int: [375, 450],
+    hp: [225, 250],
+    taming: null,
+    barding: 84
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 469,
+  name: 'warrior of cupid',
+  description: 'warrior of cupid',
+  armor: 20,
+  stats: {
+    str: [105, 125],
+    dex: [66, 88],
+    int: [16, 24],
+    hp: [75, 100],
+    taming: null,
+    barding: 53
+  },
+  offense: {
+    min: 10,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 470,
+  name: 'white witch',
+  description: 'white witch',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 471,
+  name: 'wild turkey',
+  description: 'wild turkey',
+  armor: 20,
+  stats: {
+    str: [505, 525],
+    dex: [100, 120],
+    int: [301, 325],
+    hp: [475, 525],
+    taming: null,
+    barding: 75
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 472,
+  name: 'zombie',
+  description: 'zombie',
+  armor: 18,
+  karma: 600,
+  fame: 600,
+  stats: {
+    str: [125, 135],
+    dex: [31, 50],
+    int: [375, 425],
+    hp: [75, 125],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 8,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}, {
+  id: 473,
+  name: 'blade spirit',
+  description: 'blade spirit',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'summons',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 474,
+  name: 'energy vortex',
+  description: 'energy vortex',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'summons',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 476,
+  name: 'animated zombie',
+  description: 'animated zombie',
+  armor: 18,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 477,
+  name: 'bogle',
+  description: 'bogle',
+  armor: 28,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 478,
+  name: 'bone knight',
+  description: 'bone knight',
+  armor: 40,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [195, 250],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [118, 150],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 8,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'WoodenShield'
+  }],
+  credits: [175, 275],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [95, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 480,
+  name: 'dark one',
+  description: 'dark one',
+  armor: 65,
+  stats: {
+    str: [770, 830],
+    dex: [146, 185],
+    int: [1000, 1100],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 243
+  },
+  offense: {
+    min: 14,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 482,
+  name: 'lich',
+  description: 'lich',
+  armor: 50,
+  karma: 8000,
+  fame: 8000,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [276, 305],
+    hp: [103, 120],
+    taming: null,
+    barding: 92
+  },
+  offense: {
+    min: 24,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [275, 324],
+  skills: {
+    wrestling: [0, 0],
+    tactics: [70, 90],
+    magic_resistance: [80, 100]
+  }
+}, {
+  id: 484,
+  name: 'mummy',
+  description: 'mummy',
+  armor: 50,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [346, 370],
+    dex: [71, 90],
+    int: [26, 40],
+    hp: [208, 222],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 13,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Bones'
+  }],
+  credits: [305, 315],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}, {
+  id: 485,
+  name: 'restless soul',
+  description: 'restless soul',
+  armor: 6,
+  karma: 500,
+  fame: 500,
+  stats: {
+    str: [26, 40],
+    dex: [26, 40],
+    int: [26, 40],
+    hp: [16, 24],
+    taming: null,
+    barding: 19
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [20, 30],
+    tactics: [20, 30],
+    magic_resistance: [20, 30]
+  }
+}, {
+  id: 486,
+  name: 'revenant',
+  description: 'revenant',
+  armor: 62,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [196, 250],
+    dex: [110, 120],
+    int: [128, 138],
+    hp: [500, 550],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 7,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Various Bones'
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 489,
+  name: 'skeletal knight',
+  description: 'skeletal knight',
+  armor: 40,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [196, 250],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [118, 150],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 8,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'WoodenShield'
+  }],
+  credits: [175, 275],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [95, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 490,
+  name: 'skeletal mage',
+  description: 'skeletal mage',
+  armor: 38,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [76, 100],
+    dex: [56, 75],
+    int: [186, 210],
+    hp: [46, 60],
+    taming: null,
+    barding: 77
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 491,
+  name: 'skeleton',
+  description: 'skeleton',
+  armor: 16,
+  karma: 450,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [16, 40],
+    hp: [34, 48],
+    taming: null,
+    barding: 36
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Bones'
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 494,
+  name: 'zombie',
+  description: 'zombie',
+  armor: 18,
+  karma: 600,
+  fame: 600,
+  stats: {
+    str: [46, 70],
+    dex: [31, 50],
+    int: [26, 40],
+    hp: [28, 42],
+    taming: null,
+    barding: 33
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Body Part or Bone'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}];
+
+// http: //www.uoguide.com/Fame
+// http: //www.uoguide.com/Brown_Bear
+// http: //www.uorenaissance.com/info/BrownBear
+
+/***/ }),
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15117,20 +28143,24 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux__ = __webpack_require__(162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_App__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reducers__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_App__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reducers__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AndromedaService__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_MobData__ = __webpack_require__(145);
+
+
 
 
 
@@ -15144,12 +28174,14 @@ var store = Object(__WEBPACK_IMPORTED_MODULE_1_redux__["b" /* createStore */])(_
 if (__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].ENV === 'dev') {
   window.store = store;
   window.Config = __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */];
+  window.ItemData = __WEBPACK_IMPORTED_MODULE_7__data_ItemData__["a" /* ItemData */];
+  window.MobData = __WEBPACK_IMPORTED_MODULE_8__data_MobData__["a" /* MobData */];
 }
 
 __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_App__["a" /* default */], { store: store }), document.querySelector('#app'));
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15165,11 +28197,11 @@ __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 
 
 
-var PooledClass = __webpack_require__(148);
+var PooledClass = __webpack_require__(149);
 var ReactElement = __webpack_require__(25);
 
 var emptyFunction = __webpack_require__(17);
-var traverseAllChildren = __webpack_require__(149);
+var traverseAllChildren = __webpack_require__(150);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -15345,7 +28377,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15463,7 +28495,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15486,7 +28518,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(92);
 
 var getIteratorFn = __webpack_require__(93);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(150);
+var KeyEscapeUtils = __webpack_require__(151);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -15645,7 +28677,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15709,7 +28741,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15884,7 +28916,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15902,8 +28934,8 @@ module.exports = ReactDOMFactories;
 
 var _prodInvariant = __webpack_require__(32);
 
-var ReactPropTypeLocationNames = __webpack_require__(153);
-var ReactPropTypesSecret = __webpack_require__(154);
+var ReactPropTypeLocationNames = __webpack_require__(154);
+var ReactPropTypesSecret = __webpack_require__(155);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -15977,7 +29009,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16008,7 +29040,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16030,7 +29062,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16054,7 +29086,7 @@ var factory = __webpack_require__(95);
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16073,7 +29105,7 @@ var warning = __webpack_require__(2);
 var assign = __webpack_require__(11);
 
 var ReactPropTypesSecret = __webpack_require__(96);
-var checkPropTypes = __webpack_require__(157);
+var checkPropTypes = __webpack_require__(158);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -16604,7 +29636,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16671,7 +29703,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16690,7 +29722,7 @@ module.exports = checkPropTypes;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16713,12 +29745,12 @@ var _require2 = __webpack_require__(25),
     isValidElement = _require2.isValidElement;
 
 var ReactNoopUpdateQueue = __webpack_require__(91);
-var factory = __webpack_require__(160);
+var factory = __webpack_require__(161);
 
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17652,7 +30684,7 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17696,14 +30728,14 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(101);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
@@ -17732,13 +30764,13 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(166);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(168);
 
 
 
@@ -17770,11 +30802,11 @@ function baseGetTag(value) {
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(166);
 
 
 /** Detect free variable `self`. */
@@ -17787,7 +30819,7 @@ var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || fr
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17799,7 +30831,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(100)))
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17853,7 +30885,7 @@ function getRawTag(value) {
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17882,11 +30914,11 @@ function objectToString(value) {
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(170);
 
 
 /** Built-in value references. */
@@ -17896,7 +30928,7 @@ var getPrototype = Object(__WEBPACK_IMPORTED_MODULE_0__overArg_js__["a" /* defau
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17918,7 +30950,7 @@ function overArg(func, transform) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17954,11 +30986,11 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(173);
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(174);
 /* global window */
 
 
@@ -17979,10 +31011,10 @@ if (typeof self !== 'undefined') {
 var result = Object(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(100), __webpack_require__(172)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(100), __webpack_require__(173)(module)))
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -18012,7 +31044,7 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18037,7 +31069,7 @@ function symbolObservablePonyfill(root) {
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18178,7 +31210,7 @@ function combineReducers(reducers) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18232,7 +31264,7 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18288,17 +31320,17 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(178);
+module.exports = __webpack_require__(179);
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18317,15 +31349,15 @@ module.exports = __webpack_require__(178);
 
 
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDefaultInjection = __webpack_require__(179);
+var ReactDefaultInjection = __webpack_require__(180);
 var ReactMount = __webpack_require__(126);
 var ReactReconciler = __webpack_require__(33);
 var ReactUpdates = __webpack_require__(19);
-var ReactVersion = __webpack_require__(257);
+var ReactVersion = __webpack_require__(258);
 
-var findDOMNode = __webpack_require__(258);
+var findDOMNode = __webpack_require__(259);
 var getHostComponentFromComposite = __webpack_require__(127);
-var renderSubtreeIntoContainer = __webpack_require__(259);
+var renderSubtreeIntoContainer = __webpack_require__(260);
 var warning = __webpack_require__(2);
 
 ReactDefaultInjection.inject();
@@ -18402,9 +31434,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV !== 'production') {
   var ReactInstrumentation = __webpack_require__(16);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(260);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(261);
-  var ReactDOMInvalidARIAHook = __webpack_require__(262);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(261);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(262);
+  var ReactDOMInvalidARIAHook = __webpack_require__(263);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -18415,7 +31447,7 @@ module.exports = ReactDOM;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18431,25 +31463,25 @@ module.exports = ReactDOM;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(180);
-var BeforeInputEventPlugin = __webpack_require__(181);
-var ChangeEventPlugin = __webpack_require__(185);
-var DefaultEventPluginOrder = __webpack_require__(193);
-var EnterLeaveEventPlugin = __webpack_require__(194);
-var HTMLDOMPropertyConfig = __webpack_require__(195);
-var ReactComponentBrowserEnvironment = __webpack_require__(196);
-var ReactDOMComponent = __webpack_require__(202);
+var ARIADOMPropertyConfig = __webpack_require__(181);
+var BeforeInputEventPlugin = __webpack_require__(182);
+var ChangeEventPlugin = __webpack_require__(186);
+var DefaultEventPluginOrder = __webpack_require__(194);
+var EnterLeaveEventPlugin = __webpack_require__(195);
+var HTMLDOMPropertyConfig = __webpack_require__(196);
+var ReactComponentBrowserEnvironment = __webpack_require__(197);
+var ReactDOMComponent = __webpack_require__(203);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDOMEmptyComponent = __webpack_require__(228);
-var ReactDOMTreeTraversal = __webpack_require__(229);
-var ReactDOMTextComponent = __webpack_require__(230);
-var ReactDefaultBatchingStrategy = __webpack_require__(231);
-var ReactEventListener = __webpack_require__(232);
-var ReactInjection = __webpack_require__(234);
-var ReactReconcileTransaction = __webpack_require__(235);
-var SVGDOMPropertyConfig = __webpack_require__(241);
-var SelectEventPlugin = __webpack_require__(242);
-var SimpleEventPlugin = __webpack_require__(243);
+var ReactDOMEmptyComponent = __webpack_require__(229);
+var ReactDOMTreeTraversal = __webpack_require__(230);
+var ReactDOMTextComponent = __webpack_require__(231);
+var ReactDefaultBatchingStrategy = __webpack_require__(232);
+var ReactEventListener = __webpack_require__(233);
+var ReactInjection = __webpack_require__(235);
+var ReactReconcileTransaction = __webpack_require__(236);
+var SVGDOMPropertyConfig = __webpack_require__(242);
+var SelectEventPlugin = __webpack_require__(243);
+var SimpleEventPlugin = __webpack_require__(244);
 
 var alreadyInjected = false;
 
@@ -18506,7 +31538,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18585,7 +31617,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18603,9 +31635,9 @@ module.exports = ARIADOMPropertyConfig;
 
 var EventPropagators = __webpack_require__(40);
 var ExecutionEnvironment = __webpack_require__(13);
-var FallbackCompositionState = __webpack_require__(182);
-var SyntheticCompositionEvent = __webpack_require__(183);
-var SyntheticInputEvent = __webpack_require__(184);
+var FallbackCompositionState = __webpack_require__(183);
+var SyntheticCompositionEvent = __webpack_require__(184);
+var SyntheticInputEvent = __webpack_require__(185);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -18974,7 +32006,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19074,7 +32106,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19115,7 +32147,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19157,7 +32189,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19474,7 +32506,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19491,7 +32523,7 @@ module.exports = ChangeEventPlugin;
 
 
 
-var ReactOwner = __webpack_require__(187);
+var ReactOwner = __webpack_require__(188);
 
 var ReactRef = {};
 
@@ -19568,7 +32600,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19667,7 +32699,7 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19684,12 +32716,12 @@ module.exports = ReactOwner;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(189);
-var ReactHostOperationHistoryHook = __webpack_require__(190);
+var ReactInvalidSetStateWarningHook = __webpack_require__(190);
+var ReactHostOperationHistoryHook = __webpack_require__(191);
 var ReactComponentTreeHook = __webpack_require__(14);
 var ExecutionEnvironment = __webpack_require__(13);
 
-var performanceNow = __webpack_require__(191);
+var performanceNow = __webpack_require__(192);
 var warning = __webpack_require__(2);
 
 var hooks = [];
@@ -20034,7 +33066,7 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20077,7 +33109,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20116,7 +33148,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20131,7 +33163,7 @@ module.exports = ReactHostOperationHistoryHook;
  * @typechecks
  */
 
-var performance = __webpack_require__(192);
+var performance = __webpack_require__(193);
 
 var performanceNow;
 
@@ -20153,7 +33185,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20179,7 +33211,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20210,7 +33242,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20313,7 +33345,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20329,7 +33361,7 @@ module.exports = EnterLeaveEventPlugin;
 
 
 
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -20554,7 +33586,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20571,7 +33603,7 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 var DOMChildrenOperations = __webpack_require__(65);
-var ReactDOMIDOperations = __webpack_require__(201);
+var ReactDOMIDOperations = __webpack_require__(202);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -20587,7 +33619,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20608,7 +33640,7 @@ var _prodInvariant = __webpack_require__(4);
 var DOMLazyTree = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(13);
 
-var createNodesFromMarkup = __webpack_require__(198);
+var createNodesFromMarkup = __webpack_require__(199);
 var emptyFunction = __webpack_require__(17);
 var invariant = __webpack_require__(1);
 
@@ -20639,7 +33671,7 @@ module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20658,8 +33690,8 @@ module.exports = Danger;
 
 var ExecutionEnvironment = __webpack_require__(13);
 
-var createArrayFromMixed = __webpack_require__(199);
-var getMarkupWrap = __webpack_require__(200);
+var createArrayFromMixed = __webpack_require__(200);
+var getMarkupWrap = __webpack_require__(201);
 var invariant = __webpack_require__(1);
 
 /**
@@ -20727,7 +33759,7 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20858,7 +33890,7 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20957,7 +33989,7 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20995,7 +34027,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21016,24 +34048,24 @@ module.exports = ReactDOMIDOperations;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(11);
 
-var AutoFocusUtils = __webpack_require__(203);
-var CSSPropertyOperations = __webpack_require__(204);
+var AutoFocusUtils = __webpack_require__(204);
+var CSSPropertyOperations = __webpack_require__(205);
 var DOMLazyTree = __webpack_require__(34);
 var DOMNamespaces = __webpack_require__(66);
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 var DOMPropertyOperations = __webpack_require__(115);
 var EventPluginHub = __webpack_require__(41);
 var EventPluginRegistry = __webpack_require__(49);
 var ReactBrowserEventEmitter = __webpack_require__(54);
 var ReactDOMComponentFlags = __webpack_require__(103);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDOMInput = __webpack_require__(214);
-var ReactDOMOption = __webpack_require__(215);
+var ReactDOMInput = __webpack_require__(215);
+var ReactDOMOption = __webpack_require__(216);
 var ReactDOMSelect = __webpack_require__(117);
-var ReactDOMTextarea = __webpack_require__(216);
+var ReactDOMTextarea = __webpack_require__(217);
 var ReactInstrumentation = __webpack_require__(16);
-var ReactMultiChild = __webpack_require__(217);
-var ReactServerRenderingTransaction = __webpack_require__(226);
+var ReactMultiChild = __webpack_require__(218);
+var ReactServerRenderingTransaction = __webpack_require__(227);
 
 var emptyFunction = __webpack_require__(17);
 var escapeTextContentForBrowser = __webpack_require__(53);
@@ -22011,7 +35043,7 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22040,7 +35072,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22060,10 +35092,10 @@ var CSSProperty = __webpack_require__(114);
 var ExecutionEnvironment = __webpack_require__(13);
 var ReactInstrumentation = __webpack_require__(16);
 
-var camelizeStyleName = __webpack_require__(205);
-var dangerousStyleValue = __webpack_require__(207);
-var hyphenateStyleName = __webpack_require__(208);
-var memoizeStringOnly = __webpack_require__(210);
+var camelizeStyleName = __webpack_require__(206);
+var dangerousStyleValue = __webpack_require__(208);
+var hyphenateStyleName = __webpack_require__(209);
+var memoizeStringOnly = __webpack_require__(211);
 var warning = __webpack_require__(2);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -22261,7 +35293,7 @@ module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22276,7 +35308,7 @@ module.exports = CSSPropertyOperations;
 
 
 
-var camelize = __webpack_require__(206);
+var camelize = __webpack_require__(207);
 
 var msPattern = /^-ms-/;
 
@@ -22304,7 +35336,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22339,7 +35371,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22424,7 +35456,7 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22439,7 +35471,7 @@ module.exports = dangerousStyleValue;
 
 
 
-var hyphenate = __webpack_require__(209);
+var hyphenate = __webpack_require__(210);
 
 var msPattern = /^ms-/;
 
@@ -22466,7 +35498,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22502,7 +35534,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22535,7 +35567,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22566,7 +35598,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22603,7 +35635,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22709,7 +35741,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23002,7 +36034,7 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23130,7 +36162,7 @@ module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23296,7 +36328,7 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23320,10 +36352,10 @@ var ReactInstrumentation = __webpack_require__(16);
 
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactReconciler = __webpack_require__(33);
-var ReactChildReconciler = __webpack_require__(218);
+var ReactChildReconciler = __webpack_require__(219);
 
 var emptyFunction = __webpack_require__(17);
-var flattenChildren = __webpack_require__(225);
+var flattenChildren = __webpack_require__(226);
 var invariant = __webpack_require__(1);
 
 /**
@@ -23748,7 +36780,7 @@ module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23907,7 +36939,7 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23936,7 +36968,7 @@ var ReactNodeTypes = __webpack_require__(119);
 var ReactReconciler = __webpack_require__(33);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(220);
+  var checkReactTypeSpec = __webpack_require__(221);
 }
 
 var emptyObject = __webpack_require__(48);
@@ -24813,7 +37845,7 @@ module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24831,7 +37863,7 @@ module.exports = ReactCompositeComponent;
 
 var _prodInvariant = __webpack_require__(4);
 
-var ReactPropTypeLocationNames = __webpack_require__(221);
+var ReactPropTypeLocationNames = __webpack_require__(222);
 var ReactPropTypesSecret = __webpack_require__(116);
 
 var invariant = __webpack_require__(1);
@@ -24906,7 +37938,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24937,7 +37969,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24963,7 +37995,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24988,7 +38020,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25034,7 +38066,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25116,7 +38148,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25137,7 +38169,7 @@ var _assign = __webpack_require__(11);
 var PooledClass = __webpack_require__(26);
 var Transaction = __webpack_require__(50);
 var ReactInstrumentation = __webpack_require__(16);
-var ReactServerUpdateQueue = __webpack_require__(227);
+var ReactServerUpdateQueue = __webpack_require__(228);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -25212,7 +38244,7 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25357,7 +38389,7 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25422,7 +38454,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25564,7 +38596,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25732,7 +38764,7 @@ module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25805,7 +38837,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25830,7 +38862,7 @@ var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(19);
 
 var getEventTarget = __webpack_require__(62);
-var getUnboundedScrollPosition = __webpack_require__(233);
+var getUnboundedScrollPosition = __webpack_require__(234);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -25965,7 +38997,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26007,7 +39039,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26023,7 +39055,7 @@ module.exports = getUnboundedScrollPosition;
 
 
 
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 var EventPluginHub = __webpack_require__(41);
 var EventPluginUtils = __webpack_require__(60);
 var ReactComponentEnvironment = __webpack_require__(69);
@@ -26046,7 +39078,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26230,7 +39262,7 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26248,7 +39280,7 @@ module.exports = ReactReconcileTransaction;
 
 var ExecutionEnvironment = __webpack_require__(13);
 
-var getNodeForCharacterOffset = __webpack_require__(237);
+var getNodeForCharacterOffset = __webpack_require__(238);
 var getTextContentAccessor = __webpack_require__(106);
 
 /**
@@ -26447,7 +39479,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26526,7 +39558,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26541,7 +39573,7 @@ module.exports = getNodeForCharacterOffset;
  * 
  */
 
-var isTextNode = __webpack_require__(239);
+var isTextNode = __webpack_require__(240);
 
 /*eslint-disable no-bitwise */
 
@@ -26569,7 +39601,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26584,7 +39616,7 @@ module.exports = containsNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(240);
+var isNode = __webpack_require__(241);
 
 /**
  * @param {*} object The object to check.
@@ -26597,7 +39629,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26625,7 +39657,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26932,7 +39964,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27125,7 +40157,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27147,17 +40179,17 @@ var _prodInvariant = __webpack_require__(4);
 var EventListener = __webpack_require__(123);
 var EventPropagators = __webpack_require__(40);
 var ReactDOMComponentTree = __webpack_require__(12);
-var SyntheticAnimationEvent = __webpack_require__(244);
-var SyntheticClipboardEvent = __webpack_require__(245);
+var SyntheticAnimationEvent = __webpack_require__(245);
+var SyntheticClipboardEvent = __webpack_require__(246);
 var SyntheticEvent = __webpack_require__(21);
-var SyntheticFocusEvent = __webpack_require__(246);
-var SyntheticKeyboardEvent = __webpack_require__(247);
+var SyntheticFocusEvent = __webpack_require__(247);
+var SyntheticKeyboardEvent = __webpack_require__(248);
 var SyntheticMouseEvent = __webpack_require__(51);
-var SyntheticDragEvent = __webpack_require__(249);
-var SyntheticTouchEvent = __webpack_require__(250);
-var SyntheticTransitionEvent = __webpack_require__(251);
+var SyntheticDragEvent = __webpack_require__(250);
+var SyntheticTouchEvent = __webpack_require__(251);
+var SyntheticTransitionEvent = __webpack_require__(252);
 var SyntheticUIEvent = __webpack_require__(42);
-var SyntheticWheelEvent = __webpack_require__(252);
+var SyntheticWheelEvent = __webpack_require__(253);
 
 var emptyFunction = __webpack_require__(17);
 var getEventCharCode = __webpack_require__(75);
@@ -27357,7 +40389,7 @@ module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27401,7 +40433,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27444,7 +40476,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27485,7 +40517,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27504,7 +40536,7 @@ module.exports = SyntheticFocusEvent;
 var SyntheticUIEvent = __webpack_require__(42);
 
 var getEventCharCode = __webpack_require__(75);
-var getEventKey = __webpack_require__(248);
+var getEventKey = __webpack_require__(249);
 var getEventModifierState = __webpack_require__(64);
 
 /**
@@ -27574,7 +40606,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27691,7 +40723,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27732,7 +40764,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27782,7 +40814,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27826,7 +40858,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 252 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27882,7 +40914,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 253 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27921,7 +40953,7 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 254 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27945,7 +40977,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27961,7 +40993,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var adler32 = __webpack_require__(256);
+var adler32 = __webpack_require__(257);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -28000,7 +41032,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 256 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28049,7 +41081,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 257 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28068,7 +41100,7 @@ module.exports = adler32;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 258 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28134,7 +41166,7 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 259 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28155,7 +41187,7 @@ var ReactMount = __webpack_require__(126);
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 260 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28171,7 +41203,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 
 
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 var EventPluginRegistry = __webpack_require__(49);
 var ReactComponentTreeHook = __webpack_require__(14);
 
@@ -28273,7 +41305,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 261 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28322,7 +41354,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 262 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28338,7 +41370,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 
 
-var DOMProperty = __webpack_require__(22);
+var DOMProperty = __webpack_require__(23);
 var ReactComponentTreeHook = __webpack_require__(14);
 
 var warning = __webpack_require__(2);
@@ -28421,31 +41453,31 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 263 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(264), __esModule: true };
-
-/***/ }),
 /* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(265);
-module.exports = __webpack_require__(20).Object.assign;
-
+module.exports = { "default": __webpack_require__(265), __esModule: true };
 
 /***/ }),
 /* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(27);
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(267) });
+__webpack_require__(266);
+module.exports = __webpack_require__(20).Object.assign;
 
 
 /***/ }),
 /* 266 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(27);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(268) });
+
+
+/***/ }),
+/* 267 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -28455,7 +41487,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28496,14 +41528,14 @@ module.exports = !$assign || __webpack_require__(37)(function () {
 
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(38);
-var toLength = __webpack_require__(269);
-var toAbsoluteIndex = __webpack_require__(270);
+var toLength = __webpack_require__(270);
+var toAbsoluteIndex = __webpack_require__(271);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -28525,7 +41557,7 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -28537,7 +41569,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(78);
@@ -28550,11 +41582,11 @@ module.exports = function (index, length) {
 
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var v1 = __webpack_require__(272);
-var v4 = __webpack_require__(273);
+var v1 = __webpack_require__(273);
+var v4 = __webpack_require__(274);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -28564,7 +41596,7 @@ module.exports = uuid;
 
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var rng = __webpack_require__(134);
@@ -28679,7 +41711,7 @@ module.exports = v1;
 
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var rng = __webpack_require__(134);
@@ -28714,7 +41746,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28730,10 +41762,10 @@ module.exports = v4;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ui_navbar__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ui_modals___ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ui_navbar__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ui_modals___ = __webpack_require__(314);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ui_UI__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ui_UI__ = __webpack_require__(325);
 
 
 
@@ -28846,22 +41878,22 @@ var App = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (App);
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(276);
+__webpack_require__(277);
 module.exports = __webpack_require__(20).Object.getPrototypeOf;
 
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
 var toObject = __webpack_require__(83);
 var $getPrototypeOf = __webpack_require__(136);
 
-__webpack_require__(277)('getPrototypeOf', function () {
+__webpack_require__(278)('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
     return $getPrototypeOf(toObject(it));
   };
@@ -28869,7 +41901,7 @@ __webpack_require__(277)('getPrototypeOf', function () {
 
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives
@@ -28885,16 +41917,16 @@ module.exports = function (KEY, exec) {
 
 
 /***/ }),
-/* 278 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(279), __esModule: true };
-
-/***/ }),
 /* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(280);
+module.exports = { "default": __webpack_require__(280), __esModule: true };
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(281);
 var $Object = __webpack_require__(20).Object;
 module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
@@ -28902,7 +41934,7 @@ module.exports = function defineProperty(it, key, desc) {
 
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(27);
@@ -28911,27 +41943,27 @@ $export($export.S + $export.F * !__webpack_require__(29), 'Object', { defineProp
 
 
 /***/ }),
-/* 281 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(282), __esModule: true };
-
-/***/ }),
 /* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(283);
-__webpack_require__(288);
-module.exports = __webpack_require__(88).f('iterator');
-
+module.exports = { "default": __webpack_require__(283), __esModule: true };
 
 /***/ }),
 /* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(284);
+__webpack_require__(289);
+module.exports = __webpack_require__(88).f('iterator');
+
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
-var $at = __webpack_require__(284)(true);
+var $at = __webpack_require__(285)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
 __webpack_require__(137)(String, 'String', function (iterated) {
@@ -28950,7 +41982,7 @@ __webpack_require__(137)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(78);
@@ -28973,7 +42005,7 @@ module.exports = function (TO_STRING) {
 
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28993,7 +42025,7 @@ module.exports = function (Constructor, NAME, next) {
 
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(28);
@@ -29012,19 +42044,19 @@ module.exports = __webpack_require__(29) ? Object.defineProperties : function de
 
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var document = __webpack_require__(23).document;
+var document = __webpack_require__(24).document;
 module.exports = document && document.documentElement;
 
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(289);
-var global = __webpack_require__(23);
+__webpack_require__(290);
+var global = __webpack_require__(24);
 var hide = __webpack_require__(35);
 var Iterators = __webpack_require__(85);
 var TO_STRING_TAG = __webpack_require__(39)('toStringTag');
@@ -29045,13 +42077,13 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var addToUnscopables = __webpack_require__(290);
-var step = __webpack_require__(291);
+var addToUnscopables = __webpack_require__(291);
+var step = __webpack_require__(292);
 var Iterators = __webpack_require__(85);
 var toIObject = __webpack_require__(38);
 
@@ -29086,14 +42118,14 @@ addToUnscopables('entries');
 
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports) {
 
 module.exports = function () { /* empty */ };
 
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports) {
 
 module.exports = function (done, value) {
@@ -29102,35 +42134,35 @@ module.exports = function (done, value) {
 
 
 /***/ }),
-/* 292 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(293), __esModule: true };
-
-/***/ }),
 /* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(294);
-__webpack_require__(299);
-__webpack_require__(300);
-__webpack_require__(301);
-module.exports = __webpack_require__(20).Symbol;
-
+module.exports = { "default": __webpack_require__(294), __esModule: true };
 
 /***/ }),
 /* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(295);
+__webpack_require__(300);
+__webpack_require__(301);
+__webpack_require__(302);
+module.exports = __webpack_require__(20).Symbol;
+
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 // ECMAScript 6 symbols shim
-var global = __webpack_require__(23);
+var global = __webpack_require__(24);
 var has = __webpack_require__(30);
 var DESCRIPTORS = __webpack_require__(29);
 var $export = __webpack_require__(27);
 var redefine = __webpack_require__(138);
-var META = __webpack_require__(295).KEY;
+var META = __webpack_require__(296).KEY;
 var $fails = __webpack_require__(37);
 var shared = __webpack_require__(80);
 var setToStringTag = __webpack_require__(87);
@@ -29138,15 +42170,15 @@ var uid = __webpack_require__(57);
 var wks = __webpack_require__(39);
 var wksExt = __webpack_require__(88);
 var wksDefine = __webpack_require__(89);
-var enumKeys = __webpack_require__(296);
-var isArray = __webpack_require__(297);
+var enumKeys = __webpack_require__(297);
+var isArray = __webpack_require__(298);
 var anObject = __webpack_require__(44);
 var isObject = __webpack_require__(36);
 var toIObject = __webpack_require__(38);
 var toPrimitive = __webpack_require__(76);
 var createDesc = __webpack_require__(55);
 var _create = __webpack_require__(86);
-var gOPNExt = __webpack_require__(298);
+var gOPNExt = __webpack_require__(299);
 var $GOPD = __webpack_require__(140);
 var $DP = __webpack_require__(28);
 var $keys = __webpack_require__(56);
@@ -29360,7 +42392,7 @@ setToStringTag(global.JSON, 'JSON', true);
 
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var META = __webpack_require__(57)('meta');
@@ -29419,7 +42451,7 @@ var meta = module.exports = {
 
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
@@ -29440,7 +42472,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
@@ -29451,7 +42483,7 @@ module.exports = Array.isArray || function isArray(arg) {
 
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -29476,50 +42508,50 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports) {
 
-
-
-/***/ }),
-/* 300 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(89)('asyncIterator');
 
 
 /***/ }),
 /* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(89)('observable');
+__webpack_require__(89)('asyncIterator');
 
 
 /***/ }),
 /* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(303), __esModule: true };
+__webpack_require__(89)('observable');
+
 
 /***/ }),
 /* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(304);
-module.exports = __webpack_require__(20).Object.setPrototypeOf;
-
+module.exports = { "default": __webpack_require__(304), __esModule: true };
 
 /***/ }),
 /* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.19 Object.setPrototypeOf(O, proto)
-var $export = __webpack_require__(27);
-$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(305).set });
+__webpack_require__(305);
+module.exports = __webpack_require__(20).Object.setPrototypeOf;
 
 
 /***/ }),
 /* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.19 Object.setPrototypeOf(O, proto)
+var $export = __webpack_require__(27);
+$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(306).set });
+
+
+/***/ }),
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -29550,16 +42582,16 @@ module.exports = {
 
 
 /***/ }),
-/* 306 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(307), __esModule: true };
-
-/***/ }),
 /* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(308);
+module.exports = { "default": __webpack_require__(308), __esModule: true };
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(309);
 var $Object = __webpack_require__(20).Object;
 module.exports = function create(P, D) {
   return $Object.create(P, D);
@@ -29567,7 +42599,7 @@ module.exports = function create(P, D) {
 
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(27);
@@ -29576,7 +42608,7 @@ $export($export.S, 'Object', { create: __webpack_require__(86) });
 
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29592,9 +42624,9 @@ $export($export.S, 'Object', { create: __webpack_require__(86) });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__NavbarRight__ = __webpack_require__(310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__NavItem__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__NavDropdown__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__NavbarRight__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__NavItem__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__NavDropdown__ = __webpack_require__(313);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Config__ = __webpack_require__(3);
 
 
@@ -29654,15 +42686,15 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        'More MOBs & zones'
-      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'li',
-        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Magic'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
         'Regs'
+      ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'li',
+        { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
+        'More zones'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -29694,7 +42726,7 @@ var Navbar = function (_Component) {
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
-        '(Eventually) Autogenerated worlds (python job that generates js?)'
+        '(Eventually) Autogenerated worlds (python job that generates js? middleware will be used here)'
       ), __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'li',
         { key: __WEBPACK_IMPORTED_MODULE_9__Config__["a" /* default */].randomKey('li') },
@@ -29819,7 +42851,7 @@ var Navbar = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Navbar);
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29872,7 +42904,7 @@ var NavbarRight = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (NavbarRight);
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29952,7 +42984,7 @@ var NavItem = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (NavItem);
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30035,7 +43067,7 @@ var NavDropdown = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (NavDropdown);
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30054,12 +43086,12 @@ var NavDropdown = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__InventoryList__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SkillsList__ = __webpack_require__(314);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SpellBook__ = __webpack_require__(315);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__PlayerStats__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Store__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ContainerActions__ = __webpack_require__(321);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Combat__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SkillsList__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SpellBook__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__PlayerStats__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Store__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ContainerActions__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Combat__ = __webpack_require__(323);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Config__ = __webpack_require__(3);
 
 
@@ -30307,7 +43339,7 @@ var Modal = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Modal);
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30401,7 +43433,7 @@ var SkillsList = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (SkillsList);
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30478,7 +43510,7 @@ var SpellBook = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (SpellBook);
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30600,7 +43632,7 @@ var PlayerStats = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (PlayerStats);
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30617,10 +43649,10 @@ var PlayerStats = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Crafting__ = __webpack_require__(318);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Buy__ = __webpack_require__(319);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Sell__ = __webpack_require__(320);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Crafting__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Buy__ = __webpack_require__(320);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Sell__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__data_ItemData__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__PlayerStatus__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__InventoryList__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_classnames__ = __webpack_require__(46);
@@ -31059,7 +44091,7 @@ var Store = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Store);
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31076,7 +44108,7 @@ var Store = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
 
 
 
@@ -31404,7 +44436,7 @@ http://uorforum.com/threads/magical-item-properties.3003/
 */
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31421,7 +44453,7 @@ http://uorforum.com/threads/magical-item-properties.3003/
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
 
 
 
@@ -31632,7 +44664,7 @@ var Buy = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Buy);
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31649,7 +44681,7 @@ var Buy = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
 
 
 
@@ -31864,7 +44896,7 @@ var Sell = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Sell);
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31928,7 +44960,7 @@ var ContainerActions = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ContainerActions);
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31952,8 +44984,8 @@ var ContainerActions = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__MessageList__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CombatStatus__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CombatStatus__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__data_ItemData__ = __webpack_require__(22);
 
 
 
@@ -32321,7 +45353,7 @@ var Combat = function (_Component) {
 
       score.deaths++;
       status.dead = true;
-      console.log('mobwin');
+
       __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].notifyError(this.props.store, 'The ' + this.state.mob.name + ' has defeated you.');
       __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].notifyError(this.props.store, 'You lost ' + (this.state.player.credits - credits) + ' credits.');
 
@@ -32521,7 +45553,15 @@ var Combat = function (_Component) {
       var img = !!mob && !!mob.img ? mob.img : '';
 
       if (!!mob && !!mob.inventory && mob.inventory.length > 0) {
-        items = _.map(mob.inventory, function (inventory) {
+        items = _.map(_.filter(mob.inventory, function (filter_inventory) {
+          var chance = true;
+
+          if (filter_inventory.chance === 'object' && filter_inventory.chance.length > 1) {
+            // If it has a chance[] array, check for the chance. Otherwise, the default is true.
+            chance = _.random(1, filter_inventory.chance[1]) === 1;
+          }
+          return _.isNumber(filter_inventory.id) && __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default()(filter_inventory.chance) === 'object' && chance;
+        }), function (inventory) {
           var item_data = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, _.findWhere(__WEBPACK_IMPORTED_MODULE_12__data_ItemData__["a" /* ItemData */], { id: inventory.id }), inventory);
           return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
             'div',
@@ -32643,7 +45683,7 @@ var Combat = function (_Component) {
 // 9) Apply Resulting Damage
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32661,7 +45701,7 @@ var Combat = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(3);
 
 
@@ -33045,7 +46085,7 @@ var CombatStatus = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (CombatStatus);
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33061,9 +46101,9 @@ var CombatStatus = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MainPanel__ = __webpack_require__(325);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__RightPanel__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__BottomPanel__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MainPanel__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__RightPanel__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__BottomPanel__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__PlayerControls__ = __webpack_require__(144);
 
 
@@ -33122,7 +46162,7 @@ var UI = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (UI);
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33138,7 +46178,7 @@ var UI = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Map__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Map__ = __webpack_require__(327);
 
 
 
@@ -33187,7 +46227,7 @@ var MainPanel = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (MainPanel);
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33205,9 +46245,9 @@ var MainPanel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Decoration__ = __webpack_require__(327);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Town__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Mob__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Decoration__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Town__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Mob__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Config__ = __webpack_require__(3);
 
 
@@ -33549,7 +46589,7 @@ var Map = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Map);
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33638,7 +46678,7 @@ var Decoration = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Decoration);
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33700,7 +46740,7 @@ var Town = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Town);
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33737,14 +46777,21 @@ var Mob = function (_Component) {
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Mob.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Mob)).call(this, props));
 
     _this.keys = {
-      actions: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions')
+      actions: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions'),
+      attack: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions'),
+      lore: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions')
     };
 
     _this.state = {
       mob: _this.props.data,
       player: _this.props.store.getState().Player,
       showAction: false,
-      showCombat: _this.props.store.getState().Mobs.showCombat
+      showCombat: _this.props.store.getState().Mobs.showCombat,
+      buttons: {
+        anatomy: true,
+        animal_lore: true,
+        attack: true
+      }
     };
 
     _this.unsubscribe = props.store.subscribe(function () {
@@ -33783,7 +46830,7 @@ var Mob = function (_Component) {
   }, {
     key: 'checkAggro',
     value: function checkAggro() {
-      if (this.state.mob.aggro && !this.props.store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0) {
+      if (this.state.mob.aggro && !this.props.store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0 && this.state.player.status.dead !== true) {
         // Aggro mob attack!
         this.toggleCombat();
       }
@@ -33802,23 +46849,91 @@ var Mob = function (_Component) {
       __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].modal(this.props.store, '', '', 'combat');
     }
   }, {
+    key: 'animalLore',
+    value: function animalLore(mob) {
+      var _this3 = this;
+
+      var buttons = this.state.buttons;
+      buttons.animal_lore = false;
+      this.setState({ buttons: buttons });
+
+      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.ANIMAL_LORE, payload: { mob: mob } });
+
+      setTimeout(function () {
+        buttons.animal_lore = true;
+        _this3.setState({ buttons: buttons });
+      }, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].SETTINGS.SKILL_TIMEOUT * 1000);
+    }
+  }, {
+    key: 'anatomy',
+    value: function anatomy(mob) {
+      var _this4 = this;
+
+      var buttons = this.state.buttons;
+      buttons.anatomy = false;
+      this.setState({ buttons: buttons });
+
+      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.ANATOMY, payload: { mob: mob } });
+      setTimeout(function () {
+        buttons.anatomy = true;
+        _this4.setState({ buttons: buttons });
+      }, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].SETTINGS.SKILL_TIMEOUT * 1000);
+    }
+  }, {
     key: 'getMobActions',
     value: function getMobActions() {
-      var _this3 = this;
+      var _this5 = this;
 
       if (!this.state.showAction) {
         return '';
       }
 
       var buttons = [];
+      var buttonStyle = {};
 
       if (this.state.mob.attackable && !this.state.player.status.dead) {
+        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+          disabled: !this.state.buttons.attack,
+          btn: true,
+          'btn-default': true,
+          top5: true
+        });
         buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
           'button',
-          { key: this.keys.actions, type: 'button', className: 'btn btn-default top5', onClick: function onClick(e) {
-              return _this3.toggleCombat();
+          { key: this.keys.attack, disabled: !this.state.buttons.attack, type: 'button', className: buttonStyle, onClick: function onClick(e) {
+              return _this5.toggleCombat();
             } },
           'Attack'
+        ));
+      }
+
+      if (this.state.mob.mob_type !== 'humanoid') {
+        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+          disabled: !this.state.buttons.animal_lore,
+          btn: true,
+          'btn-default': true,
+          top5: true
+        });
+        buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'button',
+          { key: this.keys.lore, disabled: !this.state.buttons.animal_lore, type: 'button', className: buttonStyle, onClick: function onClick(e) {
+              return _this5.animalLore(_this5.state.mob);
+            } },
+          'Animal Lore'
+        ));
+      } else {
+        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+          disabled: !this.state.buttons.anatomy,
+          btn: true,
+          'btn-default': true,
+          top5: true
+        });
+        buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'button',
+          { key: this.keys.anatomy, disabled: !this.state.buttons.anatomy, type: 'button', className: buttonStyle, onClick: function onClick(e) {
+              return _this5.anatomy(_this5.state.mob);
+            } },
+          'Anatomy'
         ));
       }
 
@@ -33835,7 +46950,7 @@ var Mob = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this6 = this;
 
       var mob_classes = __WEBPACK_IMPORTED_MODULE_7_classnames__({
         red: this.state.mob.aggro
@@ -33850,7 +46965,7 @@ var Mob = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'a',
             { href: '#', onClick: function onClick(e) {
-                return _this4.toggleMobAction();
+                return _this6.toggleMobAction();
               }, className: mob_classes },
             this.state.mob.description
           ),
@@ -33866,7 +46981,7 @@ var Mob = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Mob);
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33928,7 +47043,7 @@ var RightPanel = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (RightPanel);
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33984,16 +47099,16 @@ var BottomPanel = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (BottomPanel);
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__User__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Messages__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Planet__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__User__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Messages__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Planet__ = __webpack_require__(337);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Inventory__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Skills__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Mobs__ = __webpack_require__(346);
@@ -34099,7 +47214,7 @@ var Reducers = function Reducers() {
 /* harmony default export */ __webpack_exports__["a"] = (Reducers);
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34136,7 +47251,7 @@ var User = function User() {
 /* harmony default export */ __webpack_exports__["a"] = (User);
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34419,7 +47534,7 @@ var Player = function Player() {
 /* harmony default export */ __webpack_exports__["a"] = (Player);
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34488,16 +47603,16 @@ var Messages = function Messages() {
 /* harmony default export */ __webpack_exports__["a"] = (Messages);
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_PlanetData__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_DecorationData__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_MobData__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_PlanetData__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_DecorationData__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_MobData__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__data_ZoneData__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__data_TownData__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_StoreData__ = __webpack_require__(342);
@@ -34595,7 +47710,7 @@ var Planet = function Planet() {
 /* harmony default export */ __webpack_exports__["a"] = (Planet);
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34661,7 +47776,7 @@ var PlanetData = [{
 }];
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34762,14180 +47877,6 @@ var DecorationData = [{
 }];
 
 /***/ }),
-/* 339 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MobData; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
-
-
-var MobData = [{
-  id: 1,
-  name: 'sheep',
-  description: 'A little sheep is wandering around here.',
-  armor: 6,
-  karma: -300,
-  fame: 300,
-  aggro: false,
-  offense: {
-    min: 1,
-    max: 2,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  stats: {
-    str: [19, 19],
-    dex: [25, 25],
-    int: [5, 5],
-    hp: [12, 12],
-    taming: 11.1,
-    barding: 7
-  },
-  wander: true,
-  attackable: true,
-  inventory: [{
-    id: 5,
-    count: 3
-  }],
-  credits: 0,
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png',
-  skills: {
-    wrestling: [5, 5],
-    tactics: [6, 6],
-    magic_resistance: [5, 5]
-  }
-}, {
-  id: 2,
-  name: 'hind',
-  description: 'A hind is wandering here.',
-  armor: 8,
-  karma: 0,
-  fame: 300,
-  stats: {
-    str: [21, 51],
-    dex: [47, 77],
-    int: [17, 47],
-    hp: [15, 29],
-    barding: 17,
-    taming: 13.1
-  },
-  aggro: false,
-  offense: {
-    min: 4,
-    max: 4,
-    speed: 2
-  },
-  move: 2,
-  mob_type: 'animal',
-  wander: true,
-  attackable: true,
-  inventory: [{
-    id: 27,
-    count: 8
-  }],
-  credits: 0,
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Hind_100.png',
-  skills: {
-    wrestling: [26, 26],
-    tactics: [19, 19],
-    magic_resistance: [15, 15]
-  }
-}, {
-  id: 3,
-  name: 'black bear',
-  description: 'A black bear is sitting here, staring at you.',
-  armor: 24,
-  karma: 0,
-  fame: 450,
-  stats: {
-    str: [76, 100],
-    dex: [56, 75],
-    int: [11, 14],
-    hp: [46, 60],
-    taming: 35.1,
-    barding: 33
-  },
-  aggro: false,
-  offense: {
-    min: 6,
-    max: 16,
-    speed: 2
-  },
-  move: 2,
-  wander: true,
-  attackable: true,
-  inventory: [{
-    id: 27,
-    count: 12
-  }],
-  credits: 0,
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
-  skills: {
-    wrestling: [40, 60],
-    tactics: [40, 60],
-    magic_resistance: [20, 40]
-  }
-}, {
-  id: 4,
-  name: 'brown bear',
-  description: 'A brown bear is wandering around, looking for a snack.',
-  armor: 24,
-  karma: 0,
-  fame: 450,
-  stats: {
-    str: [76, 100],
-    dex: [26, 45],
-    int: [23, 47],
-    hp: [46, 60],
-    taming: 41.1,
-    barding: 30
-  },
-  aggro: false,
-  offense: {
-    min: 6,
-    max: 12,
-    speed: 2
-  },
-  move: 2,
-  mob_type: 'animal',
-  wander: true,
-  attackable: true,
-  inventory: [{
-    id: 27,
-    count: 12
-  }],
-  credits: 0,
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BrownBear_100.png',
-  skills: {
-    wrestling: [40, 60],
-    tactics: [40, 60],
-    magic_resistance: [25, 35]
-  }
-}, {
-  id: 5,
-  name: 'bull',
-  description: 'A bull is here, looking for the herd.',
-  armor: 28,
-  karma: 0,
-  fame: 600,
-  stats: {
-    str: [77, 111],
-    dex: [56, 75],
-    int: [47, 75],
-    hp: [50, 64],
-    barding: 30,
-    taming: 71.1
-  },
-  aggro: false,
-  offense: {
-    min: 4,
-    max: 9,
-    speed: 2
-  },
-  move: 2,
-  wander: true,
-  attackable: true,
-  inventory: [{
-    id: 27,
-    count: 15
-  }],
-  credits: 0,
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Bull_100.png',
-  skills: {
-    wrestling: [40.1, 57.5],
-    tactics: [67.6, 85],
-    magic_resistance: [17.6, 25]
-  }
-}, {
-  id: 6,
-  name: 'cow',
-  description: 'A cow is chewing on some grass.',
-  armor: 10,
-  karma: 0,
-  fame: 300,
-  stats: {
-    str: [30, 30],
-    dex: [15, 15],
-    int: [5, 5],
-    hp: [18, 18]
-  },
-  aggro: false,
-  offense: {
-    min: 1,
-    max: 4,
-    speed: 2,
-    taming: 29.1,
-    barding: 7
-  },
-  move: 1,
-  mob_type: 'animal',
-  wander: true,
-  attackable: true,
-  inventory: [{
-    id: 27,
-    count: 12
-  }],
-  credits: 0,
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Cow_100.png',
-  skills: {
-    wrestling: [5.5, 5.5],
-    tactics: [5.5, 5.5],
-    magic_resistance: [5.5, 5.5]
-  }
-}, {
-  id: 7,
-  name: 'training dummy',
-  description: 'A training dummy stands here. There is a bright red target painted on it.',
-  armor: 100,
-  karma: 0,
-  fame: 0,
-  stats: {
-    str: [0, 0],
-    dex: [0, 0],
-    int: [0, 0],
-    hp: [500, 500]
-  },
-  aggro: false,
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2000
-  },
-  move: 0,
-  mob_type: 'training',
-  wander: false,
-  attackable: true,
-  inventory: [],
-  credits: 0,
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/misc/training_dummy.png',
-  skills: {
-    wrestling: [0, 0],
-    tactics: [0, 0],
-    magic_resistance: [0, 0]
-  }
-}, {
-  id: 8,
-  name: 'giant rat',
-  description: 'A giant rat is looking for a meal.',
-  armor: 18,
-  karma: -300,
-  fame: 300,
-  stats: {
-    str: [32, 74],
-    dex: [46, 65],
-    int: [16, 30],
-    hp: [26, 39],
-    taming: 29.1,
-    barding: 24
-  },
-  aggro: true,
-  offense: {
-    min: 4,
-    max: 8,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  wander: false,
-  attackable: true,
-  inventory: [{
-    id: 27,
-    count: 6
-  }],
-  credits: [1, 25],
-  img: __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/GiantRat_100.png',
-  skills: {
-    wrestling: [29.3, 44],
-    tactics: [29.3, 44],
-    magic_resistance: [25.1, 30]
-  }
-}, {
-  id: 9,
-  name: 'alligator',
-  description: 'alligator',
-  armor: 30,
-  karma: '-600',
-  fame: '600',
-  stats: {
-    str: [76, 100],
-    dex: [6, 25],
-    int: [11, 20],
-    hp: [46, 60],
-    taming: 47.1,
-    barding: 29
-  },
-  offense: {
-    min: 5,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '12 Spined Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [40, 60],
-    tactics: [40, 60],
-    magic_resistance: [25, 40]
-  }
-}, {
-  id: 10,
-  name: 'bird',
-  description: 'bird',
-  armor: 2,
-  karma: 0,
-  fame: '150',
-  stats: {
-    str: [10, 10],
-    dex: [25, 35],
-    int: [10, 10],
-    hp: [0, 0],
-    taming: 0,
-    barding: 7
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '25 Feathers',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.0,
-    tactics: 5.0,
-    magic_resistance: '5.0'
-  }
-}, {
-  id: 11,
-  name: 'bull frog',
-  description: 'bull frog',
-  armor: 6,
-  stats: {
-    str: [46, 70],
-    dex: [6, 25],
-    int: [11, 20],
-    hp: [28, 42],
-    taming: 23.1,
-    barding: 21
-  },
-  offense: {
-    min: 1,
-    max: 2,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '4 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 12,
-  name: 'cat',
-  description: 'cat',
-  armor: 8,
-  karma: '-150',
-  fame: 0,
-  stats: {
-    str: [9, 9],
-    dex: [35, 35],
-    int: [5, 5],
-    hp: [6, 6],
-    taming: 0,
-    barding: 6
-  },
-  offense: {
-    min: 1,
-    max: 1,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Rib (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.0,
-    tactics: 4.0,
-    magic_resistance: '5.0'
-  }
-}, {
-  id: 13,
-  name: 'chicken',
-  description: 'chicken',
-  armor: 2,
-  karma: 0,
-  fame: '150',
-  stats: {
-    str: [5, 5],
-    dex: [15, 15],
-    int: [5, 5],
-    hp: [3, 3],
-    taming: 0.9,
-    barding: 4
-  },
-  offense: {
-    min: 1,
-    max: 1,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '25 Feathers (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.0,
-    tactics: 5.0,
-    magic_resistance: '4.0'
-  }
-}, {
-  id: 14,
-  name: 'cougar',
-  description: 'cougar',
-  armor: 16,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [66, 85],
-    int: [26, 50],
-    hp: [34, 48],
-    taming: 41.1,
-    barding: 27
-  },
-  offense: {
-    min: 4,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '10 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [45, 60],
-    tactics: [45, 60],
-    magic_resistance: [15, 30]
-  }
-}, {
-  id: 15,
-  name: 'cow',
-  description: 'cow',
-  armor: 10,
-  karma: 0,
-  fame: '300',
-  stats: {
-    str: [30, 30],
-    dex: [15, 15],
-    int: [5, 5],
-    hp: [18, 18],
-    taming: 11.1,
-    barding: 7
-  },
-  offense: {
-    min: 1,
-    max: 4,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '8 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.5,
-    tactics: 5.5,
-    magic_resistance: '5.5'
-  }
-}, {
-  id: 16,
-  name: 'crane',
-  description: 'crane',
-  armor: 5,
-  karma: 'negative',
-  fame: 'none',
-  stats: {
-    str: [25, 35],
-    dex: [15, 25],
-    int: [10, 15],
-    hp: [25, 35],
-    taming: null,
-    barding: 9.2
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: [10, 11],
-    tactics: [10, 11],
-    magic_resistance: [4, 5]
-  }
-}, {
-  id: 17,
-  name: 'desert ostard',
-  description: 'desert ostard',
-  armor: 0,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [94, 170],
-    dex: [56, 75],
-    int: [6, 10],
-    hp: [71, 88],
-    taming: 29.1,
-    barding: 33
-  },
-  offense: {
-    min: 5,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '3 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [29, 44],
-    tactics: [25, 40],
-    magic_resistance: [25, 30]
-  }
-}, {
-  id: 18,
-  name: 'dire wolf',
-  description: 'dire wolf',
-  armor: 22,
-  karma: '-2500',
-  fame: '2500',
-  stats: {
-    str: [96, 120],
-    dex: [81, 105],
-    int: [36, 60],
-    hp: [58, 72],
-    taming: 83.1,
-    barding: 43
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '7 Spined Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [60, 80],
-    tactics: [50, 70],
-    magic_resistance: [57, 75]
-  }
-}, {
-  id: 19,
-  name: 'dog',
-  description: 'dog',
-  armor: 12,
-  karma: '-300',
-  fame: 0,
-  stats: {
-    str: [27, 37],
-    dex: [28, 43],
-    int: [29, 37],
-    hp: [17, 22],
-    taming: 0,
-    barding: 17
-  },
-  offense: {
-    min: 4,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [19, 31],
-    tactics: [19, 31],
-    magic_resistance: [22, 47]
-  }
-}, {
-  id: 20,
-  name: 'dolphin',
-  description: 'dolphin',
-  armor: 16,
-  karma: '-2000',
-  fame: '500',
-  stats: {
-    str: [21, 49],
-    dex: [66, 85],
-    int: [96, 110],
-    hp: [15, 27],
-    taming: null,
-    barding: 26
-  },
-  offense: {
-    min: 3,
-    max: 6,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [19, 29],
-    tactics: [19, 29],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 21,
-  name: 'eagle',
-  description: 'eagle',
-  armor: 22,
-  karma: 0,
-  fame: '300',
-  stats: {
-    str: [31, 47],
-    dex: [36, 60],
-    int: [8, 20],
-    hp: [20, 27],
-    taming: 17.1,
-    barding: 18
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '36 Feathers',
-    chance: [1, 1]
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [20, 30],
-    tactics: [18, 37],
-    magic_resistance: [15, 30]
-  }
-}, {
-  id: 22,
-  name: 'faction war horse',
-  description: 'faction war horse',
-  armor: null,
-  stats: {
-    str: [400, 400],
-    dex: [125, 125],
-    int: [51, 55],
-    hp: [240, 240],
-    taming: 11.1,
-    barding: 65
-  },
-  offense: {
-    min: 5,
-    max: 8,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 23,
-  name: 'faction war horse council of mages',
-  description: 'faction war horse council of mages',
-  armor: null,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 24,
-  name: 'faction war horse minax',
-  description: 'faction war horse minax',
-  armor: null,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 25,
-  name: 'faction war horse shadowlords',
-  description: 'faction war horse shadowlords',
-  armor: null,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 26,
-  name: 'faction war horse true britannians',
-  description: 'faction war horse true britannians',
-  armor: null,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 27,
-  name: 'fire steed',
-  description: 'fire steed',
-  armor: 0,
-  karma: '-20000',
-  fame: '20000',
-  stats: {
-    str: [376, 400],
-    dex: [91, 120],
-    int: [291, 300],
-    hp: [226, 240],
-    taming: 106,
-    barding: 83.6
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: 100.0,
-    tactics: [100, 100],
-    magic_resistance: [100, 120]
-  }
-}, {
-  id: 28,
-  name: 'forest ostard',
-  description: 'forest ostard',
-  armor: null,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [94, 170],
-    dex: [56, 75],
-    int: [6, 10],
-    hp: [71, 88],
-    taming: null,
-    barding: 30
-  },
-  offense: {
-    min: 8,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '3 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [29, 44],
-    tactics: [29, 44],
-    magic_resistance: [27, 32]
-  }
-}, {
-  id: 29,
-  name: 'frenzied ostard',
-  description: 'frenzied ostard',
-  armor: 0,
-  karma: '-1500',
-  fame: '1500',
-  stats: {
-    str: [94, 170],
-    dex: [96, 115],
-    int: [6, 10],
-    hp: [71, 110],
-    taming: 77.1,
-    barding: 55
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '3 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [79, 94],
-    tactics: [79, 94],
-    magic_resistance: [75, 80]
-  }
-}, {
-  id: 30,
-  name: 'giant serpent',
-  description: 'giant serpent',
-  armor: 32,
-  karma: '-2500',
-  fame: '2500',
-  stats: {
-    str: [186, 215],
-    dex: [56, 80],
-    int: [66, 85],
-    hp: [112, 129],
-    taming: null,
-    barding: 73
-  },
-  offense: {
-    min: 7,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [65, 70],
-    magic_resistance: [25, 40]
-  }
-}, {
-  id: 31,
-  name: 'giant toad',
-  description: 'giant toad',
-  armor: 24,
-  karma: '-750',
-  fame: '750',
-  stats: {
-    str: [76, 100],
-    dex: [6, 25],
-    int: [11, 20],
-    hp: [46, 60],
-    taming: 77.1,
-    barding: 27
-  },
-  offense: {
-    min: 5,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '12 Spined Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [40, 60],
-    tactics: [40, 60],
-    magic_resistance: [25, 40]
-  }
-}, {
-  id: 32,
-  name: 'goat',
-  description: 'goat',
-  armor: 10,
-  karma: 0,
-  fame: '150',
-  stats: {
-    str: [19, 19],
-    dex: [15, 15],
-    int: [5, 5],
-    hp: [12, 12],
-    taming: 11.1,
-    barding: 6
-  },
-  offense: {
-    min: 3,
-    max: 4,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '8 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.0,
-    tactics: 5.0,
-    magic_resistance: '5.0'
-  }
-}, {
-  id: 33,
-  name: 'gorilla',
-  description: 'gorilla',
-  armor: 20,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [53, 95],
-    dex: [36, 55],
-    int: [36, 60],
-    hp: [38, 51],
-    taming: 18.9,
-    barding: 29
-  },
-  offense: {
-    min: 4,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '6 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [43, 58],
-    tactics: [43, 58],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 34,
-  name: 'great hart',
-  description: 'great hart',
-  armor: 24,
-  karma: 0,
-  fame: '300',
-  stats: {
-    str: [41, 71],
-    dex: [47, 77],
-    int: [27, 57],
-    hp: [27, 41],
-    taming: 59.1,
-    barding: 25
-  },
-  offense: {
-    min: 5,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '6 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [29, 47],
-    tactics: [29, 47],
-    magic_resistance: [26, 44]
-  }
-}, {
-  id: 35,
-  name: 'grey wolf',
-  description: 'grey wolf',
-  armor: 16,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [56, 75],
-    int: [31, 55],
-    hp: [34, 48],
-    taming: 53.1,
-    barding: 28
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '6 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [45, 60],
-    tactics: [45, 60],
-    magic_resistance: [20, 35]
-  }
-}, {
-  id: 36,
-  name: 'grizzly bear',
-  description: 'grizzly bear',
-  armor: 24,
-  karma: 0,
-  fame: '1000',
-  stats: {
-    str: [126, 155],
-    dex: [81, 105],
-    int: [16, 40],
-    hp: [76, 93],
-    taming: 59.1,
-    barding: 44
-  },
-  offense: {
-    min: 8,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '2 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [45, 70],
-    tactics: [70, 100],
-    magic_resistance: [25, 40]
-  }
-}, {
-  id: 37,
-  name: 'hell cat',
-  description: 'hell cat',
-  armor: 30,
-  stats: {
-    str: [51, 100],
-    dex: [52, 150],
-    int: [13, 85],
-    hp: [48, 67],
-    taming: 71.1,
-    barding: 41
-  },
-  offense: {
-    min: 6,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '1000']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 38,
-  name: 'horse',
-  description: 'horse',
-  armor: null,
-  karma: '-300',
-  fame: '300',
-  stats: {
-    str: [22, 98],
-    dex: [56, 75],
-    int: [6, 10],
-    hp: [28, 45],
-    taming: 11.1,
-    barding: 22
-  },
-  offense: {
-    min: 3,
-    max: 4,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '3 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [29, 44],
-    tactics: [29, 44],
-    magic_resistance: [25, 30]
-  }
-}, {
-  id: 39,
-  name: 'ice serpent',
-  description: 'ice serpent',
-  armor: 32,
-  stats: {
-    str: [216, 245],
-    dex: [26, 50],
-    int: [66, 85],
-    hp: [130, 147],
-    taming: null,
-    barding: 59
-  },
-  offense: {
-    min: 7,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Random Weapon, Armor or Shield',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 40,
-  name: 'ice snake',
-  description: 'ice snake',
-  armor: 30,
-  karma: '-900',
-  fame: '900',
-  stats: {
-    str: [42, 54],
-    dex: [36, 45],
-    int: [26, 30],
-    hp: [0, 0],
-    taming: null,
-    barding: 21
-  },
-  offense: {
-    min: 4,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '1000']
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [39, 54],
-    tactics: [39, 54],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 41,
-  name: 'jack rabbit',
-  description: 'jack rabbit',
-  armor: 4,
-  karma: 0,
-  fame: '150',
-  stats: {
-    str: [15, 15],
-    dex: [25, 25],
-    int: [5, 5],
-    hp: [9, 9],
-    taming: 0,
-    barding: 6
-  },
-  offense: {
-    min: 1,
-    max: 2,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Rib (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.0,
-    tactics: 5.0,
-    magic_resistance: '5.0'
-  }
-}, {
-  id: 42,
-  name: 'lava lizard',
-  description: 'lava lizard',
-  armor: 40,
-  karma: ['', '3000'],
-  fame: '3000',
-  stats: {
-    str: [126, 150],
-    dex: [56, 75],
-    int: [11, 20],
-    hp: [76, 90],
-    taming: 80.7,
-    barding: 54
-  },
-  offense: {
-    min: 6,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [60, 80],
-    magic_resistance: [55, 70]
-  }
-}, {
-  id: 43,
-  name: 'lava serpent',
-  description: 'lava serpent',
-  armor: 40,
-  karma: '-4500',
-  fame: '4500',
-  stats: {
-    str: [386, 415],
-    dex: [56, 80],
-    int: [66, 85],
-    hp: [232, 249],
-    taming: null,
-    barding: 75
-  },
-  offense: {
-    min: 10,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [200, 250],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [65, 70],
-    magic_resistance: [25, 70]
-  }
-}, {
-  id: 44,
-  name: 'lava snake',
-  description: 'lava snake',
-  armor: 24,
-  karma: '-600',
-  fame: '600',
-  stats: {
-    str: [43, 55],
-    dex: [16, 25],
-    int: [6, 10],
-    hp: [28, 32],
-    taming: null,
-    barding: 23
-  },
-  offense: {
-    min: 1,
-    max: 8,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '1000']
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [19, 34],
-    tactics: [19, 34],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 45,
-  name: 'llama',
-  description: 'llama',
-  armor: 16,
-  karma: 0,
-  fame: '300',
-  stats: {
-    str: [21, 49],
-    dex: [36, 55],
-    int: [16, 30],
-    hp: [15, 27],
-    taming: 35.1,
-    barding: 15
-  },
-  offense: {
-    min: 3,
-    max: 5,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [19, 29],
-    tactics: [19, 29],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 46,
-  name: 'mountain goat',
-  description: 'mountain goat',
-  armor: 10,
-  karma: 0,
-  fame: '300',
-  stats: {
-    str: [22, 64],
-    dex: [56, 75],
-    int: [16, 30],
-    hp: [20, 33],
-    taming: 0,
-    barding: 26
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: [29, 44],
-    tactics: [29, 44],
-    magic_resistance: [25, 30]
-  }
-}, {
-  id: 47,
-  name: 'nightmare',
-  description: 'nightmare',
-  armor: 60,
-  karma: ['', '14000'],
-  fame: '14000',
-  stats: {
-    str: [496, 525],
-    dex: [86, 105],
-    int: [86, 125],
-    hp: [298, 315],
-    taming: 95.1,
-    barding: 92
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Random Potion',
-    chance: [1, 1]
-  }],
-  credits: [400, 500],
-  skills: {
-    wrestling: [80, 92],
-    tactics: [97, 100],
-    magic_resistance: [85, 100]
-  }
-}, {
-  id: 48,
-  name: 'pack horse',
-  description: 'pack horse',
-  armor: 16,
-  karma: '-200',
-  fame: 0,
-  stats: {
-    str: [44, 120],
-    dex: [36, 55],
-    int: [6, 10],
-    hp: [61, 80],
-    taming: 11.1,
-    barding: 30
-  },
-  offense: {
-    min: 5,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '3 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [29, 44],
-    tactics: [29, 44],
-    magic_resistance: [25, 30]
-  }
-}, {
-  id: 49,
-  name: 'pack llama',
-  description: 'pack llama',
-  armor: 16,
-  karma: '-200',
-  fame: 0,
-  stats: {
-    str: [52, 80],
-    dex: [36, 55],
-    int: [16, 30],
-    hp: [50, 50],
-    taming: 11.1,
-    barding: 27
-  },
-  offense: {
-    min: 2,
-    max: 6,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [19, 29],
-    tactics: [19, 29],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 50,
-  name: 'panther',
-  description: 'panther',
-  armor: 16,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [61, 85],
-    dex: [86, 105],
-    int: [26, 50],
-    hp: [37, 51],
-    taming: 53.1,
-    barding: 32
-  },
-  offense: {
-    min: 4,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '10 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [50, 65],
-    tactics: [50, 65],
-    magic_resistance: [15, 30]
-  }
-}, {
-  id: 51,
-  name: 'phoenix',
-  description: 'phoenix',
-  armor: 60,
-  stats: {
-    str: [504, 700],
-    dex: [202, 300],
-    int: [504, 700],
-    hp: [340, 383],
-    taming: null,
-    barding: 108
-  },
-  offense: {
-    min: 25,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '100']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 52,
-  name: 'pig',
-  description: 'pig',
-  armor: 12,
-  karma: 0,
-  fame: '150',
-  stats: {
-    str: [20, 20],
-    dex: [20, 20],
-    int: [5, 5],
-    hp: [12, 12],
-    taming: 11.1,
-    barding: 6
-  },
-  offense: {
-    min: 2,
-    max: 4,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.0,
-    tactics: 5.0,
-    magic_resistance: '5.0'
-  }
-}, {
-  id: 53,
-  name: 'polar bear',
-  description: 'polar bear',
-  armor: 18,
-  karma: 0,
-  fame: '1500',
-  stats: {
-    str: [116, 140],
-    dex: [81, 105],
-    int: [26, 50],
-    hp: [70, 84],
-    taming: 35.1,
-    barding: 46
-  },
-  offense: {
-    min: 7,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '2 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [45, 70],
-    tactics: [60, 90],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 54,
-  name: 'predator hell cat',
-  description: 'predator hell cat',
-  armor: 30,
-  stats: {
-    str: [161, 185],
-    dex: [96, 115],
-    int: [76, 100],
-    hp: [97, 131],
-    taming: 89.1,
-    barding: 67
-  },
-  offense: {
-    min: 5,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 55,
-  name: 'rabbit',
-  description: 'rabbit',
-  armor: 6,
-  karma: 0,
-  fame: '150',
-  stats: {
-    str: [6, 10],
-    dex: [26, 38],
-    int: [6, 14],
-    hp: [4, 6],
-    taming: 0,
-    barding: 6
-  },
-  offense: {
-    min: 1,
-    max: 1,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '1 Raw Rib (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: 5.0,
-    tactics: 5.0,
-    magic_resistance: '5.0'
-  }
-}, {
-  id: 56,
-  name: 'raging grizzly bear',
-  description: 'raging grizzly bear',
-  armor: 24,
-  karma: ['', '10,000'],
-  fame: '10,000',
-  stats: {
-    str: [1, 1],
-    dex: [801, 1],
-    int: [151, 400],
-    hp: [751, 930],
-    taming: 59.1,
-    barding: 127
-  },
-  offense: {
-    min: 18,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '4 Raw Ribs (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [73, 88],
-    tactics: [73, 110],
-    magic_resistance: [32, 54]
-  }
-}, {
-  id: 57,
-  name: 'rat',
-  description: 'rat',
-  armor: 6,
-  karma: '-150',
-  fame: '150',
-  stats: {
-    str: [9, 9],
-    dex: [35, 35],
-    int: [5, 5],
-    hp: [6, 6],
-    taming: 0,
-    barding: 6
-  },
-  offense: {
-    min: 1,
-    max: 2,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '1000']
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: 4.0,
-    tactics: 4.0,
-    magic_resistance: '4.0'
-  }
-}, {
-  id: 58,
-  name: 'ridable llama',
-  description: 'ridable llama',
-  armor: 0,
-  stats: {
-    str: [21, 49],
-    dex: [56, 75],
-    int: [16, 30],
-    hp: [15, 27],
-    taming: 29.1,
-    barding: 18
-  },
-  offense: {
-    min: 3,
-    max: 5,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 59,
-  name: 'scaled swamp dragon',
-  description: 'scaled swamp dragon',
-  armor: 0,
-  stats: {
-    taming: 93.9,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 60,
-  name: 'sewer rat',
-  description: 'sewer rat',
-  armor: 6,
-  karma: '-300',
-  fame: '300',
-  stats: {
-    str: [9, 9],
-    dex: [25, 25],
-    int: [6, 10],
-    hp: [6, 6],
-    taming: -0.09,
-    barding: 6
-  },
-  offense: {
-    min: 1,
-    max: 2,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '1000']
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: 5.0,
-    tactics: 5.0,
-    magic_resistance: '5.0'
-  }
-}, {
-  id: 61,
-  name: 'silver serpent',
-  description: 'silver serpent',
-  armor: 40,
-  karma: '-7000',
-  fame: '7000',
-  stats: {
-    str: [161, 360],
-    dex: [151, 300],
-    int: [21, 40],
-    hp: [97, 216],
-    taming: null,
-    barding: 85
-  },
-  offense: {
-    min: 5,
-    max: 21,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [250, 300],
-  skills: {
-    wrestling: [85, 100],
-    tactics: [80, 95],
-    magic_resistance: [95, 100]
-  }
-}, {
-  id: 62,
-  name: 'silver steed',
-  description: 'silver steed',
-  armor: null,
-  karma: 'unknown negative',
-  fame: 0,
-  stats: {
-    str: [78, 80],
-    dex: '53',
-    int: '10',
-    hp: [78, 80],
-    taming: 103.1,
-    barding: 30
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: 39,
-    tactics: 32,
-    magic_resistance: '26'
-  }
-}, {
-  id: 63,
-  name: 'skeletal mount',
-  description: 'skeletal mount',
-  armor: 0,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 64,
-  name: 'snake',
-  description: 'snake',
-  armor: 16,
-  karma: '-300',
-  fame: '300',
-  stats: {
-    str: [22, 34],
-    dex: [16, 25],
-    int: [6, 10],
-    hp: [15, 19],
-    taming: 59.1,
-    barding: 29
-  },
-  offense: {
-    min: 1,
-    max: 4,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '1000']
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [19, 34],
-    tactics: [19, 34],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 65,
-  name: 'snow leopard',
-  description: 'snow leopard',
-  armor: 24,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [66, 85],
-    int: [26, 50],
-    hp: [34, 48],
-    taming: 53.1,
-    barding: 29
-  },
-  offense: {
-    min: 3,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '8 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [40, 50],
-    tactics: [45, 60],
-    magic_resistance: [25, 35]
-  }
-}, {
-  id: 66,
-  name: 'swamp dragon',
-  description: 'swamp dragon',
-  armor: 0,
-  karma: '-2000',
-  fame: '2000',
-  stats: {
-    str: [201, 300],
-    dex: [66, 85],
-    int: [61, 100],
-    hp: [121, 180],
-    taming: 93.9,
-    barding: 59
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 55],
-    magic_resistance: [45, 55]
-  }
-}, {
-  id: 67,
-  name: 'timber wolf',
-  description: 'timber wolf',
-  armor: 16,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [56, 75],
-    int: [11, 25],
-    hp: [34, 48],
-    taming: 23.1,
-    barding: 28
-  },
-  offense: {
-    min: 5,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '5 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [40, 60],
-    tactics: [30, 50],
-    magic_resistance: [27, 45]
-  }
-}, {
-  id: 68,
-  name: 'tropical bird',
-  description: 'tropical bird',
-  armor: 2,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: 0,
-    barding: 7
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '25 Feathers',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 69,
-  name: 'unicorn',
-  description: 'unicorn',
-  armor: 0,
-  karma: '9000',
-  fame: '9000',
-  stats: {
-    str: [296, 325],
-    dex: [96, 115],
-    int: [186, 225],
-    hp: [191, 210],
-    taming: 95.1,
-    barding: 89
-  },
-  offense: {
-    min: 16,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [300, 350],
-  skills: {
-    wrestling: [80, 92],
-    tactics: [20, 22],
-    magic_resistance: [75, 90]
-  }
-}, {
-  id: 70,
-  name: 'walrus',
-  description: 'walrus',
-  armor: 18,
-  karma: 0,
-  fame: '150',
-  stats: {
-    str: [21, 29],
-    dex: [46, 55],
-    int: [16, 20],
-    hp: [14, 17],
-    taming: 35.1,
-    barding: 15
-  },
-  offense: {
-    min: 4,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '12 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [19, 29],
-    tactics: [19, 29],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 71,
-  name: 'white wolf',
-  description: 'white wolf',
-  armor: 16,
-  karma: 0,
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [56, 75],
-    int: [31, 55],
-    hp: [34, 48],
-    taming: 65.1,
-    barding: 27
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'animal',
-  attackable: true,
-  inventory: [{
-    description: '6 Leather Hides (Carve)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [45, 60],
-    tactics: [45, 60],
-    magic_resistance: [20, 35]
-  }
-}, {
-  id: 72,
-  name: 'arachnid enforcer',
-  description: 'arachnid enforcer',
-  armor: 50,
-  stats: {
-    str: [750, 850],
-    dex: [105, 115],
-    int: [420, 475],
-    hp: [900, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 14,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 73,
-  name: 'black solen infiltrator queen',
-  description: 'black solen infiltrator queen',
-  armor: 50,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 74,
-  name: 'black solen infiltrator warrior',
-  description: 'black solen infiltrator warrior',
-  armor: 40,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 75,
-  name: 'black solen queen',
-  description: 'black solen queen',
-  armor: 45,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 76,
-  name: 'black solen warrior',
-  description: 'black solen warrior',
-  armor: 35,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 77,
-  name: 'black solen worker',
-  description: 'black solen worker',
-  armor: 28,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 78,
-  name: 'dread spider',
-  description: 'dread spider',
-  armor: 36,
-  karma: '-5000',
-  fame: '5000',
-  stats: {
-    str: [196, 220],
-    dex: [126, 145],
-    int: [286, 310],
-    hp: [118, 132],
-    taming: null,
-    barding: 95
-  },
-  offense: {
-    min: 5,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [450, 650],
-  skills: {
-    wrestling: [87, 96],
-    tactics: [85, 97],
-    magic_resistance: [45, 55]
-  }
-}, {
-  id: 79,
-  name: 'drone mage',
-  description: 'drone mage',
-  armor: 20,
-  stats: {
-    str: [250, 300],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [250, 275],
-    taming: null,
-    barding: 119
-  },
-  offense: {
-    min: 10,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 80,
-  name: 'drone sentry',
-  description: 'drone sentry',
-  armor: 20,
-  stats: {
-    str: [200, 225],
-    dex: [110, 120],
-    int: [1, 1],
-    hp: [175, 250],
-    taming: null,
-    barding: 121
-  },
-  offense: {
-    min: 10,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 81,
-  name: 'drone spitter',
-  description: 'drone spitter',
-  armor: 25,
-  stats: {
-    str: [325, 350],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [325, 350],
-    taming: null,
-    barding: 118
-  },
-  offense: {
-    min: 12,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 82,
-  name: 'drone warrior',
-  description: 'drone warrior',
-  armor: 30,
-  stats: {
-    str: [425, 475],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [425, 475],
-    taming: null,
-    barding: 124
-  },
-  offense: {
-    min: 14,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 83,
-  name: 'drone worker',
-  description: 'drone worker',
-  armor: 15,
-  stats: {
-    str: [86, 100],
-    dex: [70, 95],
-    int: [1, 1],
-    hp: [175, 250],
-    taming: null,
-    barding: 111
-  },
-  offense: {
-    min: 10,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 84,
-  name: 'frost spider',
-  description: 'frost spider',
-  armor: 28,
-  karma: '-775',
-  fame: '775',
-  stats: {
-    str: [76, 100],
-    dex: [126, 145],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: 75.7,
-    barding: 40
-  },
-  offense: {
-    min: 6,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [75, 125],
-  skills: {
-    wrestling: [50, 65],
-    tactics: [35, 50],
-    magic_resistance: [25, 40]
-  }
-}, {
-  id: 85,
-  name: 'giant black widow',
-  description: 'giant black widow',
-  armor: 24,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [76, 100],
-    dex: [96, 115],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 70.6
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: [125, 175],
-  skills: {
-    wrestling: [70, 85],
-    tactics: [65, 80],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 86,
-  name: 'giant spider',
-  description: 'giant spider',
-  armor: 16,
-  karma: '-600',
-  fame: '600',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: 59.1,
-    barding: 53
-  },
-  offense: {
-    min: 5,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [50, 65],
-    tactics: [35, 50],
-    magic_resistance: [25, 40]
-  }
-}, {
-  id: 87,
-  name: 'ilyxia the arachnid queen',
-  description: 'ilyxia the arachnid queen',
-  armor: 60,
-  stats: {
-    str: [819, 910],
-    dex: [125, 135],
-    int: [420, 475],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 16,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 88,
-  name: 'red solen infiltrator queen',
-  description: 'red solen infiltrator queen',
-  armor: 50,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 89,
-  name: 'red solen infiltrator warrior',
-  description: 'red solen infiltrator warrior',
-  armor: 40,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 90,
-  name: 'red solen queen',
-  description: 'red solen queen',
-  armor: 45,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 91,
-  name: 'red solen warrior',
-  description: 'red solen warrior',
-  armor: 35,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 92,
-  name: 'red solen worker',
-  description: 'red solen worker',
-  armor: 28,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 93,
-  name: 'terathan avenger',
-  description: 'terathan avenger',
-  armor: 50,
-  karma: ['', '15000'],
-  fame: '15000',
-  stats: {
-    str: [467, 645],
-    dex: [77, 95],
-    int: [126, 150],
-    hp: [296, 372],
-    taming: null,
-    barding: 104
-  },
-  offense: {
-    min: 18,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [550, 600],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 94,
-  name: 'terathan drone',
-  description: 'terathan drone',
-  armor: 24,
-  karma: ['', '2000'],
-  fame: '2000',
-  stats: {
-    str: [36, 65],
-    dex: [96, 145],
-    int: [21, 45],
-    hp: [22, 39],
-    taming: null,
-    barding: 32
-  },
-  offense: {
-    min: 6,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [40, 50],
-    tactics: [30, 50],
-    magic_resistance: [30, 45]
-  }
-}, {
-  id: 95,
-  name: 'terathan infiltrator',
-  description: 'terathan infiltrator',
-  armor: 70,
-  stats: {
-    str: [810, 910],
-    dex: [125, 135],
-    int: [420, 475],
-    hp: [1, 1],
-    taming: null,
-    barding: 151
-  },
-  offense: {
-    min: 22,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'Terathan Infiltrator Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 96,
-  name: 'terathan matriarch',
-  description: 'terathan matriarch',
-  armor: 0,
-  karma: ['', '10000'],
-  fame: '10000',
-  stats: {
-    str: [316, 405],
-    dex: [96, 115],
-    int: [366, 455],
-    hp: [190, 243],
-    taming: null,
-    barding: 87
-  },
-  offense: {
-    min: 11,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: [570, 605],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [50, 70],
-    magic_resistance: [90, 100]
-  }
-}, {
-  id: 97,
-  name: 'terathan warrior',
-  description: 'terathan warrior',
-  armor: 30,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [166, 215],
-    dex: [96, 145],
-    int: [41, 65],
-    hp: [100, 129],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 7,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [80, 90],
-    tactics: [80, 100],
-    magic_resistance: [60, 75]
-  }
-}, {
-  id: 98,
-  name: 'anaconda',
-  description: 'anaconda',
-  armor: 55,
-  stats: {
-    str: [1, 1],
-    dex: [153, 172],
-    int: [300, 400],
-    hp: [1, 1],
-    taming: null,
-    barding: 189
-  },
-  offense: {
-    min: 12,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 99,
-  name: 'arctic ogre mage',
-  description: 'arctic ogre mage',
-  armor: 65,
-  stats: {
-    str: [1, 1],
-    dex: [82, 95],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 184
-  },
-  offense: {
-    min: 25,
-    max: 31,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 100,
-  name: 'azure dragon',
-  description: 'azure dragon',
-  armor: 80,
-  stats: {
-    str: [1, 1],
-    dex: [120, 130],
-    int: [770, 820],
-    hp: [3, 3],
-    taming: null,
-    barding: 239
-  },
-  offense: {
-    min: 20,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'PlatinumCoin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 101,
-  name: 'beast tamer',
-  description: 'beast tamer',
-  armor: 60,
-  stats: {
-    str: [605, 725],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [8, 9],
-    taming: null,
-    barding: 413
-  },
-  offense: {
-    min: 29,
-    max: 36,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Mask of the Wilds'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 102,
-  name: 'beholder',
-  description: 'beholder',
-  armor: 65,
-  stats: {
-    str: [630, 730],
-    dex: [86, 105],
-    int: [910, 950],
-    hp: [1, 1],
-    taming: null,
-    barding: 184
-  },
-  offense: {
-    min: 12,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 103,
-  name: 'colossus',
-  description: 'colossus',
-  armor: 78,
-  stats: {
-    str: [900, 1],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [2, 3],
-    taming: null,
-    barding: 208
-  },
-  offense: {
-    min: 16,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 104,
-  name: 'dark one',
-  description: 'dark one',
-  armor: 65,
-  stats: {
-    str: [770, 830],
-    dex: [146, 185],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 243
-  },
-  offense: {
-    min: 14,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '4'],
-    description: 'Peculiar Meat (Carve)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 105,
-  name: 'diseased blood elemental',
-  description: 'diseased blood elemental',
-  armor: 80,
-  karma: ['', '8500'],
-  fame: '8500',
-  stats: {
-    str: [880, 950],
-    dex: [95, 105],
-    int: [1, 1],
-    hp: [1, 2],
-    taming: null,
-    barding: 213
-  },
-  offense: {
-    min: 21,
-    max: 31,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: [651, 744],
-  skills: {
-    wrestling: [123, 138],
-    tactics: [130, 137],
-    magic_resistance: [116, 125]
-  }
-}, {
-  id: 106,
-  name: 'efreet sultan',
-  description: 'efreet sultan',
-  armor: 70,
-  stats: {
-    str: [810, 855],
-    dex: [266, 285],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 143
-  },
-  offense: {
-    min: 13,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 107,
-  name: 'elder wyrm',
-  description: 'elder wyrm',
-  armor: 90,
-  stats: {
-    str: [1, 1],
-    dex: [125, 145],
-    int: [1, 1],
-    hp: [5, 5],
-    taming: null,
-    barding: 365
-  },
-  offense: {
-    min: 29,
-    max: 36,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '4'],
-    description: 'Peculiar Meat (Carve)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 108,
-  name: 'grand visor of chaos',
-  description: 'grand visor of chaos',
-  armor: 70,
-  stats: {
-    str: [1, 1],
-    dex: [230, 275],
-    int: [205, 225],
-    hp: [2, 2],
-    taming: null,
-    barding: 152
-  },
-  offense: {
-    min: 12,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 109,
-  name: 'jungle titan',
-  description: 'jungle titan',
-  armor: 48,
-  stats: {
-    str: [600, 750],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [2, 2],
-    taming: null,
-    barding: 185
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 110,
-  name: 'ogre mage',
-  description: 'ogre mage',
-  armor: 65,
-  stats: {
-    str: [1, 1],
-    dex: [90, 99],
-    int: [720, 770],
-    hp: [1, 1],
-    taming: null,
-    barding: 180
-  },
-  offense: {
-    min: 20,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 111,
-  name: 'ophidian queen',
-  description: 'ophidian queen',
-  armor: 78,
-  stats: {
-    str: [810, 910],
-    dex: [125, 135],
-    int: [420, 475],
-    hp: [1, 2],
-    taming: null,
-    barding: 172
-  },
-  offense: {
-    min: 18,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 112,
-  name: 'purveyor of darkness',
-  description: 'purveyor of darkness',
-  armor: 100,
-  stats: {
-    str: [1, 1],
-    dex: [225, 255],
-    int: [600, 700],
-    hp: [4, 4],
-    taming: null,
-    barding: 299
-  },
-  offense: {
-    min: 27,
-    max: 34,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'Purveyor of Darkness Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 113,
-  name: 'rabbit of caerbannog',
-  description: 'rabbit of caerbannog',
-  armor: 60,
-  stats: {
-    str: [605, 805],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [9, 10],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 20,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '25'],
-    description: 'Rabbit of Caerbannog Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 114,
-  name: 'reptile tamer',
-  description: 'reptile tamer',
-  armor: 60,
-  stats: {
-    str: [605, 725],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [8, 9],
-    taming: null,
-    barding: 413
-  },
-  offense: {
-    min: 29,
-    max: 36,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin (All Players)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 115,
-  name: 'terathan infiltrator',
-  description: 'terathan infiltrator',
-  armor: 70,
-  stats: {
-    str: [810, 910],
-    dex: [125, 135],
-    int: [420, 475],
-    hp: [1, 1],
-    taming: null,
-    barding: 151
-  },
-  offense: {
-    min: 22,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'arachnids',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'Terathan Infiltrator Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 116,
-  name: 'two headed behemoth',
-  description: 'two headed behemoth',
-  armor: 78,
-  stats: {
-    str: [900, 1],
-    dex: [115, 155],
-    int: [1, 1],
-    hp: [2, 3],
-    taming: null,
-    barding: 188
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'two headed behemoth statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 117,
-  name: 'wyvern monarch',
-  description: 'wyvern monarch',
-  armor: 55,
-  stats: {
-    str: [1, 1],
-    dex: [153, 172],
-    int: [300, 400],
-    hp: [650, 725],
-    taming: null,
-    barding: 125
-  },
-  offense: {
-    min: 12,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'Wyvern Monarch Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 118,
-  name: 'bad santa',
-  description: 'bad santa',
-  armor: 55,
-  stats: {
-    str: [250, 275],
-    dex: [126, 145],
-    int: [676, 905],
-    hp: [2, 3],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 24,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Santas Clothing  4 Possible Items',
-    chance: ['1', '4']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 119,
-  name: 'barracoon',
-  description: 'barracoon',
-  armor: 70,
-  karma: ['', '22500'],
-  fame: '22500',
-  stats: {
-    str: [305, 425],
-    dex: [72, 150],
-    int: [505, 750],
-    hp: [4, 4],
-    taming: null,
-    barding: 237
-  },
-  offense: {
-    min: 25,
-    max: 35,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Skull of Greed',
-    chance: [1, 1]
-  }],
-  credits: [4000, 6000],
-  skills: {
-    wrestling: [118, 122],
-    tactics: [118, 120],
-    magic_resistance: '100.0'
-  }
-}, {
-  id: 120,
-  name: 'cupid',
-  description: 'cupid',
-  armor: 55,
-  stats: {
-    str: [250, 275],
-    dex: [126, 145],
-    int: [676, 905],
-    hp: [4, 5],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 24,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'vial of tears (2014)',
-    chance: ['1', '5']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 121,
-  name: 'harrower',
-  description: 'harrower',
-  armor: 60,
-  karma: ['', '25,000'],
-  fame: '25,000',
-  stats: {
-    str: [900, 1],
-    dex: [125, 135],
-    int: [1, 1],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'true harrower statuette',
-    chance: ['1', '20']
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [115, 120],
-    tactics: [115, 120],
-    magic_resistance: [115, 160]
-  }
-}, {
-  id: 122,
-  name: 'lord oaks',
-  description: 'lord oaks',
-  armor: 100,
-  karma: '22500',
-  fame: '22500',
-  stats: {
-    str: [403, 850],
-    dex: [101, 150],
-    int: [503, 800],
-    hp: [4, 5],
-    taming: null,
-    barding: 272
-  },
-  offense: {
-    min: 21,
-    max: 33,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Skull of Enlightenment',
-    chance: [1, 1]
-  }],
-  credits: [3500, 6000],
-  skills: {
-    wrestling: [115, null],
-    tactics: [119, null],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 123,
-  name: 'mephitis',
-  description: 'mephitis',
-  armor: 80,
-  karma: ['', '22500'],
-  fame: '22500',
-  stats: {
-    str: [505, 1],
-    dex: [102, 300],
-    int: [402, 600],
-    hp: [5, 7],
-    taming: null,
-    barding: 352
-  },
-  offense: {
-    min: 21,
-    max: 33,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Skull of Venom',
-    chance: [1, 1]
-  }],
-  credits: [2500, 3000],
-  skills: {
-    wrestling: [123, 126],
-    tactics: [118, 120],
-    magic_resistance: [104, 112]
-  }
-}, {
-  id: 124,
-  name: 'neira',
-  description: 'neira',
-  armor: 30,
-  karma: 0,
-  fame: 0,
-  stats: {
-    str: [305, 425],
-    dex: [72, 150],
-    int: [505, 750],
-    hp: [6, 8],
-    taming: null,
-    barding: 399
-  },
-  offense: {
-    min: 25,
-    max: 35,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Skull of Death',
-    chance: [1, 1]
-  }],
-  credits: [2500, 3000],
-  skills: {
-    wrestling: [97, 100],
-    tactics: [97, 100],
-    magic_resistance: '150.0'
-  }
-}, {
-  id: 125,
-  name: 'rikktor',
-  description: 'rikktor',
-  armor: 130,
-  karma: ['', '22500'],
-  fame: '22500',
-  stats: {
-    str: [701, 900],
-    dex: [201, 350],
-    int: [51, 100],
-    hp: [6, 9],
-    taming: null,
-    barding: 358
-  },
-  offense: {
-    min: 28,
-    max: 55,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Skull of Power',
-    chance: [1, 1]
-  }],
-  credits: [4000, 5000],
-  skills: {
-    wrestling: [118, 123],
-    tactics: [100, 100],
-    magic_resistance: [140, 160]
-  }
-}, {
-  id: 126,
-  name: 'semidar',
-  description: 'semidar',
-  armor: 20,
-  karma: ['', '24000'],
-  fame: '24000',
-  stats: {
-    str: [502, 600],
-    dex: [102, 200],
-    int: [601, 750],
-    hp: [2, 4],
-    taming: null,
-    barding: 243
-  },
-  offense: {
-    min: 29,
-    max: 35,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Skull of Pain',
-    chance: [1, 1]
-  }],
-  credits: [6000, 6500],
-  skills: {
-    wrestling: [117, 123],
-    tactics: [129, 131],
-    magic_resistance: [120, 140]
-  }
-}, {
-  id: 127,
-  name: 'silvani',
-  description: 'silvani',
-  armor: 50,
-  karma: 0,
-  fame: 0,
-  stats: {
-    str: [253, 400],
-    dex: [157, 850],
-    int: [503, 800],
-    hp: [600, 600],
-    taming: null,
-    barding: 142
-  },
-  offense: {
-    min: 27,
-    max: 38,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '20']
-  }],
-  credits: [2000, 3000],
-  skills: {
-    wrestling: [97, 100],
-    tactics: [97, 100],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 128,
-  name: 'the true harrower',
-  description: 'the true harrower',
-  armor: 60,
-  karma: ['', '25,000'],
-  fame: '25,000',
-  stats: {
-    str: [900, 1],
-    dex: [125, 135],
-    int: [1, 1],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'champions',
-  attackable: true,
-  inventory: [{
-    description: 'true harrower statuette',
-    chance: ['1', '20']
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [115, 120],
-    tactics: [115, 120],
-    magic_resistance: [115, 160]
-  }
-}, {
-  id: 129,
-  name: 'arcane daemon',
-  description: 'arcane daemon',
-  armor: 55,
-  karma: '-10000',
-  fame: '7000',
-  stats: {
-    str: [131, 150],
-    dex: [126, 145],
-    int: [301, 350],
-    hp: [101, 115],
-    taming: null,
-    barding: 88
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [null],
-  credits: [250, 300],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [70, 80],
-    magic_resistance: [85, 95]
-  }
-}, {
-  id: 130,
-  name: 'balron',
-  description: 'balron',
-  armor: 90,
-  karma: '-24000',
-  fame: '24000',
-  stats: {
-    str: [969, 1],
-    dex: [177, 255],
-    int: [151, 250],
-    hp: [592, 711],
-    taming: null,
-    barding: 125
-  },
-  offense: {
-    min: 22,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1200, 1650],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 131,
-  name: 'chaos daemon',
-  description: 'chaos daemon',
-  armor: 15,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [106, 130],
-    dex: [171, 200],
-    int: [56, 80],
-    hp: [91, 110],
-    taming: null,
-    barding: 71.5
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [null],
-  credits: [175, 225],
-  skills: {
-    wrestling: [95, 100],
-    tactics: [70, 80],
-    magic_resistance: [85, 95]
-  }
-}, {
-  id: 132,
-  name: 'daemon',
-  description: 'daemon',
-  armor: 58,
-  karma: '-15000',
-  fame: '15000',
-  stats: {
-    str: [476, 505],
-    dex: [76, 95],
-    int: [301, 325],
-    hp: [286, 303],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 7,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [550, 650],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [70, 80],
-    magic_resistance: [85, 95]
-  }
-}, {
-  id: 133,
-  name: 'ice fiend',
-  description: 'ice fiend',
-  armor: 60,
-  karma: 'lvl 5 -18000',
-  fame: 'lvl 5 18000',
-  stats: {
-    str: [376, 405],
-    dex: [176, 195],
-    int: [201, 225],
-    hp: [226, 243],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 8,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [650, 800],
-  skills: {
-    wrestling: [80, 100],
-    tactics: [80, 90],
-    magic_resistance: [75, 85]
-  }
-}, {
-  id: 134,
-  name: 'moloch',
-  description: 'moloch',
-  armor: 32,
-  karma: 'lvl 4 -7500',
-  fame: 'lvl 4 7500',
-  stats: {
-    str: [331, 360],
-    dex: [66, 85],
-    int: [41, 65],
-    hp: [171, 200],
-    taming: null,
-    barding: 72.5
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [null],
-  credits: [300, 350],
-  skills: {
-    wrestling: [70, 90],
-    tactics: [75, 90],
-    magic_resistance: [65, 75]
-  }
-}, {
-  id: 135,
-  name: 'purveyor of darkness',
-  description: 'purveyor of darkness',
-  armor: 100,
-  stats: {
-    str: [1, 1],
-    dex: [225, 255],
-    int: [600, 700],
-    hp: [4, 4],
-    taming: null,
-    barding: 299
-  },
-  offense: {
-    min: 27,
-    max: 34,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'daemons',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'Purveyor of Darkness Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 136,
-  name: 'acid elemental',
-  description: 'acid elemental',
-  armor: 40,
-  karma: '-10,000',
-  fame: '10,000',
-  stats: {
-    str: [326, 355],
-    dex: [66, 85],
-    int: [271, 295],
-    hp: [196, 213],
-    taming: null,
-    barding: 100
-  },
-  offense: {
-    min: 9,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [400, 500],
-  skills: {
-    wrestling: [70, 90],
-    tactics: [80, 90],
-    magic_resistance: [60, 75]
-  }
-}, {
-  id: 137,
-  name: 'agapite elemental',
-  description: 'agapite elemental',
-  armor: 32,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 63
-  },
-  offense: {
-    min: 28,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 138,
-  name: 'air elemental',
-  description: 'air elemental',
-  armor: 40,
-  karma: '-4500',
-  fame: '4500',
-  stats: {
-    str: [126, 155],
-    dex: [166, 185],
-    int: [101, 125],
-    hp: [76, 93],
-    taming: null,
-    barding: 71
-  },
-  offense: {
-    min: 8,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [60, 80],
-    magic_resistance: [60, 75]
-  }
-}, {
-  id: 139,
-  name: 'amber golem',
-  description: 'amber golem',
-  armor: 35,
-  stats: {
-    str: [86, 100],
-    dex: [70, 95],
-    int: [1, 1],
-    hp: [200, 275],
-    taming: null,
-    barding: 120
-  },
-  offense: {
-    min: 8,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 140,
-  name: 'amethyst golem',
-  description: 'amethyst golem',
-  armor: 38,
-  stats: {
-    str: [200, 225],
-    dex: [110, 120],
-    int: [1, 1],
-    hp: [200, 225],
-    taming: null,
-    barding: 123
-  },
-  offense: {
-    min: 10,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 141,
-  name: 'blood elemental',
-  description: 'blood elemental',
-  armor: 60,
-  karma: '-12500',
-  fame: '12500',
-  stats: {
-    str: [526, 615],
-    dex: [66, 85],
-    int: [226, 350],
-    hp: [316, 369],
-    taming: null,
-    barding: 93
-  },
-  offense: {
-    min: 17,
-    max: 27,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [700, 900],
-  skills: {
-    wrestling: [80, 100],
-    tactics: [80, 100],
-    magic_resistance: [80, 95]
-  }
-}, {
-  id: 142,
-  name: 'bronze elemental',
-  description: 'bronze elemental',
-  armor: 29,
-  karma: '-5000',
-  fame: '5000',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 143,
-  name: 'citrine golem',
-  description: 'citrine golem',
-  armor: 41,
-  stats: {
-    str: [325, 350],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [325, 350],
-    taming: null,
-    barding: 111
-  },
-  offense: {
-    min: 12,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 144,
-  name: 'copper elemental',
-  description: 'copper elemental',
-  armor: 26,
-  karma: '-4800',
-  fame: '4800',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 63
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 145,
-  name: 'diamond golem',
-  description: 'diamond golem',
-  armor: 50,
-  stats: {
-    str: [750, 850],
-    dex: [50, 65],
-    int: [25, 35],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 10,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 146,
-  name: 'diseased blood elemental',
-  description: 'diseased blood elemental',
-  armor: 80,
-  karma: ['', '8500'],
-  fame: '8500',
-  stats: {
-    str: [880, 950],
-    dex: [95, 105],
-    int: [1, 1],
-    hp: [1, 2],
-    taming: null,
-    barding: 213
-  },
-  offense: {
-    min: 21,
-    max: 31,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: [651, 744],
-  skills: {
-    wrestling: [123, 138],
-    tactics: [130, 137],
-    magic_resistance: [116, 125]
-  }
-}, {
-  id: 147,
-  name: 'dull copper elemental',
-  description: 'dull copper elemental',
-  armor: 20,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 63
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 148,
-  name: 'earth elemental',
-  description: 'earth elemental',
-  armor: 34,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [126, 155],
-    dex: [66, 85],
-    int: [71, 92],
-    hp: [76, 93],
-    taming: null,
-    barding: 51
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 149,
-  name: 'efreet',
-  description: 'efreet',
-  armor: 98,
-  karma: '-10000',
-  fame: '10000',
-  stats: {
-    str: [326, 355],
-    dex: [266, 285],
-    int: [171, 195],
-    hp: [196, 213],
-    taming: null,
-    barding: 83
-  },
-  offense: {
-    min: 11,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Random Daemon Bone Armor Piece'
-  }],
-  credits: [400, 500],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [60, 80],
-    magic_resistance: [60, 75]
-  }
-}, {
-  id: 150,
-  name: 'efreet sultan',
-  description: 'efreet sultan',
-  armor: 70,
-  stats: {
-    str: [810, 855],
-    dex: [266, 285],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 143
-  },
-  offense: {
-    min: 13,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 151,
-  name: 'emerald golem',
-  description: 'emerald golem',
-  armor: 41,
-  stats: {
-    str: [325, 350],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [325, 350],
-    taming: null,
-    barding: 108
-  },
-  offense: {
-    min: 12,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 152,
-  name: 'fire elemental',
-  description: 'fire elemental',
-  armor: 40,
-  karma: '-4500',
-  fame: '4500',
-  stats: {
-    str: [126, 155],
-    dex: [166, 185],
-    int: [101, 125],
-    hp: [76, 93],
-    taming: null,
-    barding: 72
-  },
-  offense: {
-    min: 7,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Lightsource'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [70, 100],
-    tactics: [80, 100],
-    magic_resistance: [75, 105]
-  }
-}, {
-  id: 153,
-  name: 'golden elemental',
-  description: 'golden elemental',
-  armor: 60,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 63
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 154,
-  name: 'ice elemental',
-  description: 'ice elemental',
-  armor: 40,
-  karma: '-4000',
-  fame: '4000',
-  stats: {
-    str: [156, 185],
-    dex: [96, 115],
-    int: [171, 192],
-    hp: [94, 111],
-    taming: null,
-    barding: 73
-  },
-  offense: {
-    min: 10,
-    max: 21,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [275, 325],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [70, 100],
-    magic_resistance: [30, 80]
-  }
-}, {
-  id: 155,
-  name: 'marble elemental',
-  description: 'marble elemental',
-  armor: 38,
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 63
-  },
-  offense: {
-    min: 28,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 156,
-  name: 'ore golem',
-  description: 'ore golem',
-  armor: 38,
-  stats: {
-    str: [201, 225],
-    dex: [106, 115],
-    int: [71, 92],
-    hp: [115, 135],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 22,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Pile of Ore (Approx 50 ingots Worth)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 157,
-  name: 'ore golem lord',
-  description: 'ore golem lord',
-  armor: 38,
-  stats: {
-    str: [235, 265],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [156, 183],
-    taming: null,
-    barding: 64
-  },
-  offense: {
-    min: 24,
-    max: 30,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Studded Gloves Of Mining'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 158,
-  name: 'poison elemental',
-  description: 'poison elemental',
-  armor: 70,
-  karma: '-12500',
-  fame: '12500',
-  stats: {
-    str: [426, 515],
-    dex: [166, 185],
-    int: [361, 435],
-    hp: [256, 309],
-    taming: null,
-    barding: 115
-  },
-  offense: {
-    min: 12,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Level 5 Treasure Map'
-  }],
-  credits: [750, 950],
-  skills: {
-    wrestling: [70, 90],
-    tactics: [80, 100],
-    magic_resistance: [85, 115]
-  }
-}, {
-  id: 159,
-  name: 'ruby golem',
-  description: 'ruby golem',
-  armor: 40,
-  stats: {
-    str: [750, 850],
-    dex: [50, 65],
-    int: [25, 35],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 12,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 160,
-  name: 'sand vortex',
-  description: 'sand vortex',
-  armor: 28,
-  karma: ['', '4500'],
-  fame: '4500',
-  stats: {
-    str: [96, 120],
-    dex: [171, 195],
-    int: [76, 100],
-    hp: [51, 62],
-    taming: null,
-    barding: 75.6
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: [100, 150],
-  skills: {
-    wrestling: 80.0,
-    tactics: 70.0,
-    magic_resistance: '150.0'
-  }
-}, {
-  id: 161,
-  name: 'sandstone elemental',
-  description: 'sandstone elemental',
-  armor: 60,
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 162,
-  name: 'sapphire golem',
-  description: 'sapphire golem',
-  armor: 34,
-  stats: {
-    str: [425, 475],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [425, 475],
-    taming: null,
-    barding: 129
-  },
-  offense: {
-    min: 14,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 163,
-  name: 'shadow iron elemental',
-  description: 'shadow iron elemental',
-  armor: 23,
-  karma: ['', '3500'],
-  fame: '3500',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 71
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 164,
-  name: 'snow elemental',
-  description: 'snow elemental',
-  armor: 50,
-  karma: '-5000',
-  fame: '5000',
-  stats: {
-    str: [326, 355],
-    dex: [166, 185],
-    int: [71, 95],
-    hp: [196, 213],
-    taming: null,
-    barding: 67
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [250, 350],
-  skills: {
-    wrestling: [80, 100],
-    tactics: [80, 100],
-    magic_resistance: [50, 65]
-  }
-}, {
-  id: 165,
-  name: 'stone elemental',
-  description: 'stone elemental',
-  armor: 26,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [400, 500],
-  skills: {
-    wrestling: [85, 95],
-    tactics: [85, 95],
-    magic_resistance: '100.0'
-  }
-}, {
-  id: 166,
-  name: 'tourmaline golem',
-  description: 'tourmaline golem',
-  armor: 34,
-  stats: {
-    str: [425, 475],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [425, 475],
-    taming: null,
-    barding: 129
-  },
-  offense: {
-    min: 14,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 167,
-  name: 'valorite elemental',
-  description: 'valorite elemental',
-  armor: 38,
-  karma: ['', '3500'],
-  fame: '3500',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 153],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 28,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [450, 650],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 168,
-  name: 'verite elemental',
-  description: 'verite elemental',
-  armor: 35,
-  karma: ['', '3500'],
-  fame: '3500',
-  stats: {
-    str: [226, 255],
-    dex: [126, 145],
-    int: [71, 92],
-    hp: [136, 163],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 9,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [60, 100],
-    magic_resistance: [50, 95]
-  }
-}, {
-  id: 169,
-  name: 'water elemental',
-  description: 'water elemental',
-  armor: 40,
-  karma: '-4500',
-  fame: '4500',
-  stats: {
-    str: [126, 155],
-    dex: [66, 85],
-    int: [101, 125],
-    hp: [76, 93],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 7,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'elementals',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [50, 70],
-    tactics: [50, 70],
-    magic_resistance: [100, 115]
-  }
-}, {
-  id: 170,
-  name: 'enslaved gargoyle',
-  description: 'enslaved gargoyle',
-  armor: 35,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [302, 360],
-    dex: [76, 95],
-    int: [81, 105],
-    hp: [186, 212],
-    taming: null,
-    barding: 70.8
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [null],
-  credits: [250, 300],
-  skills: {
-    wrestling: [40, 80],
-    tactics: [50, 70],
-    magic_resistance: [70, 85]
-  }
-}, {
-  id: 171,
-  name: 'fire gargoyle',
-  description: 'fire gargoyle',
-  armor: 32,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [351, 400],
-    dex: [126, 145],
-    int: [226, 250],
-    hp: [211, 240],
-    taming: null,
-    barding: 97
-  },
-  offense: {
-    min: 7,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [275, 325],
-  skills: {
-    wrestling: [40, 80],
-    tactics: [80, 100],
-    magic_resistance: [90, 105]
-  }
-}, {
-  id: 172,
-  name: 'gargoyle',
-  description: 'gargoyle',
-  armor: 32,
-  stats: {
-    str: [146, 175],
-    dex: [76, 95],
-    int: [81, 105],
-    hp: [88, 105],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 7,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 173,
-  name: 'gargoyle destroyer',
-  description: 'gargoyle destroyer',
-  armor: 50,
-  karma: '-10000',
-  fame: '10000',
-  stats: {
-    str: [760, 850],
-    dex: [102, 150],
-    int: [152, 200],
-    hp: [482, 485],
-    taming: null,
-    barding: 110.8
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [null],
-  credits: [750, 950],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [120, 160]
-  }
-}, {
-  id: 174,
-  name: 'gargoyle enforcer',
-  description: 'gargoyle enforcer',
-  armor: 50,
-  karma: '-5000',
-  fame: '5000',
-  stats: {
-    str: [260, 350],
-    dex: [76, 95],
-    int: [101, 125],
-    hp: [182, 185],
-    taming: null,
-    barding: 88
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [null],
-  credits: [275, 325],
-  skills: {
-    wrestling: [80, 90],
-    tactics: [70, 80],
-    magic_resistance: [120, 130]
-  }
-}, {
-  id: 175,
-  name: 'obsidian gargoyle',
-  description: 'obsidian gargoyle',
-  armor: 48,
-  stats: {
-    str: [900, 1],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [2, 2],
-    taming: null,
-    barding: 189
-  },
-  offense: {
-    min: 16,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 176,
-  name: 'stone gargoyle',
-  description: 'stone gargoyle',
-  armor: 50,
-  karma: '4000',
-  fame: '4000',
-  stats: {
-    str: [246, 275],
-    dex: [76, 95],
-    int: [81, 105],
-    hp: [148, 165],
-    taming: null,
-    barding: 63
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [{
-    description: 'Random Potion',
-    chance: [1, 1]
-  }],
-  credits: [250, 325],
-  skills: {
-    wrestling: [60, 100],
-    tactics: [80, 100],
-    magic_resistance: [85, 100]
-  }
-}, {
-  id: 177,
-  name: 'actor',
-  description: 'actor',
-  armor: null,
-  stats: {
-    str: [31, 31],
-    dex: [41, 41],
-    int: [51, 51],
-    hp: [0, 0],
-    taming: null,
-    barding: 12
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 178,
-  name: 'alchemist',
-  description: 'alchemist',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 179,
-  name: 'ancient lich',
-  description: 'ancient lich',
-  armor: 60,
-  karma: '-23000',
-  fame: '23000',
-  stats: {
-    str: [206, 305],
-    dex: [96, 115],
-    int: [966, 1],
-    hp: [560, 595],
-    taming: null,
-    barding: 142
-  },
-  offense: {
-    min: 15,
-    max: 27,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '100']
-  }],
-  credits: [1500, 1700],
-  skills: {
-    wrestling: [75, 87],
-    tactics: [90, 100],
-    magic_resistance: [175, 200]
-  }
-}, {
-  id: 180,
-  name: 'animated zombie',
-  description: 'animated zombie',
-  armor: 18,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Random Potion',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 181,
-  name: 'artist',
-  description: 'artist',
-  armor: null,
-  stats: {
-    str: [31, 31],
-    dex: [41, 41],
-    int: [51, 51],
-    hp: [0, 0],
-    taming: null,
-    barding: 16
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 182,
-  name: 'barkeeper',
-  description: 'barkeeper',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 183,
-  name: 'beast tamer',
-  description: 'beast tamer',
-  armor: 60,
-  stats: {
-    str: [605, 725],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [8, 9],
-    taming: null,
-    barding: 413
-  },
-  offense: {
-    min: 29,
-    max: 36,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Mask of the Wilds',
-    chance: ['1', '10']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 184,
-  name: 'betrayer',
-  description: 'betrayer',
-  armor: 65,
-  karma: '-15000',
-  fame: '15000',
-  stats: {
-    str: [401, 500],
-    dex: [81, 100],
-    int: [151, 200],
-    hp: [241, 300],
-    taming: null,
-    barding: 96.5
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: [750, 900],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [120, 130]
-  }
-}, {
-  id: 185,
-  name: 'blacksmith',
-  description: 'blacksmith',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 186,
-  name: 'bogle',
-  description: 'bogle',
-  armor: 28,
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 64
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 187,
-  name: 'bogling',
-  description: 'bogling',
-  armor: 28,
-  karma: '-450',
-  fame: '450',
-  stats: {
-    str: [96, 120],
-    dex: [91, 115],
-    int: [21, 45],
-    hp: [58, 72],
-    taming: null,
-    barding: 61.5
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: [50, 100],
-  skills: {
-    wrestling: [55, 75],
-    tactics: [55, 80],
-    magic_resistance: [75, 100]
-  }
-}, {
-  id: 188,
-  name: 'bone knight',
-  description: 'bone knight',
-  armor: 40,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [195, 250],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [118, 150],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 8,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'WoodenShield',
-    chance: [1, 1]
-  }],
-  credits: [175, 275],
-  skills: {
-    wrestling: [85, 95],
-    tactics: [95, 100],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 189,
-  name: 'bone magi',
-  description: 'bone magi',
-  armor: 38,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [76, 100],
-    dex: [56, 75],
-    int: [186, 210],
-    hp: [46, 60],
-    taming: null,
-    barding: 81
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [55, 70]
-  }
-}, {
-  id: 190,
-  name: 'bridegroom',
-  description: 'bridegroom',
-  armor: null,
-  stats: {
-    str: [90, 100],
-    dex: [90, 100],
-    int: [15, 25],
-    hp: [0, 0],
-    taming: null,
-    barding: 33
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: '150-250 Gold Coins',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 191,
-  name: 'brigand',
-  description: 'brigand',
-  armor: 0,
-  karma: ['', '1000'],
-  fame: '1000',
-  stats: {
-    str: [86, 100],
-    dex: [81, 95],
-    int: [61, 75],
-    hp: [0, 0],
-    taming: null,
-    barding: 56
-  },
-  offense: {
-    min: 10,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [50, 150],
-  skills: {
-    wrestling: [15, 37],
-    tactics: [65, 87],
-    magic_resistance: [25, 47]
-  }
-}, {
-  id: 192,
-  name: 'brigand archer',
-  description: 'brigand archer',
-  armor: 0,
-  stats: {
-    str: [125, 150],
-    dex: [125, 150],
-    int: [500, 750],
-    hp: [150, 200],
-    taming: null,
-    barding: 78
-  },
-  offense: {
-    min: 10,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 193,
-  name: 'brigand strong',
-  description: 'brigand strong',
-  armor: 0,
-  stats: {
-    str: [125, 150],
-    dex: [81, 95],
-    int: [500, 750],
-    hp: [150, 175],
-    taming: null,
-    barding: 87
-  },
-  offense: {
-    min: 12,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 194,
-  name: 'carpenter',
-  description: 'carpenter',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 195,
-  name: 'cobbler',
-  description: 'cobbler',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 196,
-  name: 'cook',
-  description: 'cook',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 197,
-  name: 'dark one',
-  description: 'dark one',
-  armor: 65,
-  stats: {
-    str: [770, 830],
-    dex: [146, 185],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 243
-  },
-  offense: {
-    min: 14,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Peculiar Meat (Carve)',
-    chance: ['1', '4']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 198,
-  name: 'escortable mage',
-  description: 'escortable mage',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: 60
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: '150-250 Gold Coins',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 199,
-  name: 'evil mage',
-  description: 'evil mage',
-  armor: 16,
-  karma: ['', '2500'],
-  fame: '2500',
-  stats: {
-    str: [81, 105],
-    dex: [91, 115],
-    int: [96, 120],
-    hp: [49, 63],
-    taming: null,
-    barding: 69
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [20, 60],
-    tactics: [65, 87],
-    magic_resistance: [75, 97]
-  }
-}, {
-  id: 200,
-  name: 'evil mage lord',
-  description: 'evil mage lord',
-  armor: 16,
-  karma: ['', '10500'],
-  fame: ['', '10500'],
-  stats: {
-    str: [81, 105],
-    dex: [191, 215],
-    int: [126, 150],
-    hp: [49, 63],
-    taming: null,
-    barding: 74
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [20, 80],
-    tactics: [65, 87],
-    magic_resistance: [77, 100]
-  }
-}, {
-  id: 201,
-  name: 'executioner',
-  description: 'executioner',
-  armor: null,
-  karma: '5000',
-  fame: ['', '5000'],
-  stats: {
-    str: [386, 400],
-    dex: [151, 165],
-    int: [1, 1],
-    hp: [386, 400],
-    taming: null,
-    barding: 115
-  },
-  offense: {
-    min: 8,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [500, 650],
-  skills: {
-    wrestling: 0,
-    tactics: 125.0,
-    magic_resistance: [77, 100]
-  }
-}, {
-  id: 202,
-  name: 'faction deathknight',
-  description: 'faction deathknight',
-  armor: 0,
-  stats: {
-    str: [126, 150],
-    dex: [61, 85],
-    int: [81, 95],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 203,
-  name: 'faction henchman',
-  description: 'faction henchman',
-  armor: 0,
-  stats: {
-    str: [91, 115],
-    dex: [61, 85],
-    int: [81, 95],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 10,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 204,
-  name: 'faction knight',
-  description: 'faction knight',
-  armor: 0,
-  stats: {
-    str: [126, 150],
-    dex: [61, 85],
-    int: [81, 95],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 205,
-  name: 'faction mercenary',
-  description: 'faction mercenary',
-  armor: 0,
-  stats: {
-    str: [116, 125],
-    dex: [61, 85],
-    int: [81, 95],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 206,
-  name: 'faction necromancer',
-  description: 'faction necromancer',
-  armor: null,
-  stats: {
-    str: [151, 175],
-    dex: [61, 85],
-    int: [81, 95],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 207,
-  name: 'faction paladin',
-  description: 'faction paladin',
-  armor: null,
-  stats: {
-    str: [151, 175],
-    dex: [61, 85],
-    int: [81, 95],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 208,
-  name: 'faction sorceress',
-  description: 'faction sorceress',
-  armor: null,
-  stats: {
-    str: [126, 150],
-    dex: [61, 85],
-    int: [126, 150],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 209,
-  name: 'faction wizard',
-  description: 'faction wizard',
-  armor: null,
-  stats: {
-    str: [151, 175],
-    dex: [61, 85],
-    int: [151, 175],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 210,
-  name: 'farmer',
-  description: 'farmer',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 211,
-  name: 'fisherman',
-  description: 'fisherman',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 212,
-  name: 'furtrader',
-  description: 'furtrader',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 213,
-  name: 'ghoul',
-  description: 'ghoul',
-  armor: 28,
-  karma: '-2500',
-  fame: '2500',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 45
-  },
-  offense: {
-    min: 7,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Random Weapon',
-    chance: [1, 1]
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 214,
-  name: 'grand visor of chaos',
-  description: 'grand visor of chaos',
-  armor: 70,
-  stats: {
-    str: [1, 1],
-    dex: [230, 275],
-    int: [205, 225],
-    hp: [2, 2],
-    taming: null,
-    barding: 152
-  },
-  offense: {
-    min: 12,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 215,
-  name: 'gypsy',
-  description: 'gypsy',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 216,
-  name: 'hairstylist',
-  description: 'hairstylist',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 217,
-  name: 'human brigand',
-  description: 'human brigand',
-  armor: 0,
-  stats: {
-    str: [86, 100],
-    dex: [81, 95],
-    int: [61, 75],
-    hp: [0, 0],
-    taming: null,
-    barding: 40
-  },
-  offense: {
-    min: 15,
-    max: 27,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Random Weapon',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 218,
-  name: 'knight of ni',
-  description: 'knight of ni',
-  armor: 35,
-  stats: {
-    str: [250, 375],
-    dex: [81, 95],
-    int: [500, 750],
-    hp: [150, 175],
-    taming: null,
-    barding: 83
-  },
-  offense: {
-    min: 12,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 219,
-  name: 'lich',
-  description: 'lich',
-  armor: 50,
-  karma: ['', '8000'],
-  fame: '8000',
-  stats: {
-    str: [171, 200],
-    dex: [126, 145],
-    int: [276, 305],
-    hp: [103, 120],
-    taming: null,
-    barding: 92
-  },
-  offense: {
-    min: 24,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [275, 324],
-  skills: {
-    wrestling: [0, 0],
-    tactics: [70, 90],
-    magic_resistance: [80, 100]
-  }
-}, {
-  id: 220,
-  name: 'lich lord',
-  description: 'lich lord',
-  armor: 50,
-  karma: ['', '18000'],
-  fame: '18000',
-  stats: {
-    str: [416, 505],
-    dex: [146, 165],
-    int: [566, 655],
-    hp: [250, 303],
-    taming: null,
-    barding: 109
-  },
-  offense: {
-    min: 11,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [450, 600],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [50, 70],
-    magic_resistance: [150, 200]
-  }
-}, {
-  id: 221,
-  name: 'lord fenix',
-  description: 'lord fenix',
-  armor: 0,
-  stats: {
-    str: [381, 405],
-    dex: [191, 215],
-    int: [726, 1],
-    hp: [650, 863],
-    taming: null,
-    barding: 122
-  },
-  offense: {
-    min: 12,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 222,
-  name: 'lord jamkul shieldheart',
-  description: 'lord jamkul shieldheart',
-  armor: 0,
-  stats: {
-    str: [381, 405],
-    dex: [191, 215],
-    int: [726, 1],
-    hp: [650, 863],
-    taming: null,
-    barding: 122
-  },
-  offense: {
-    min: 12,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 223,
-  name: 'lord kronos the elemental mage',
-  description: 'lord kronos the elemental mage',
-  armor: 30,
-  stats: {
-    str: [450, 550],
-    dex: [75, 85],
-    int: [420, 475],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 15,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 224,
-  name: 'lord xerxes',
-  description: 'lord xerxes',
-  armor: 0,
-  stats: {
-    str: [381, 405],
-    dex: [191, 215],
-    int: [726, 1],
-    hp: [650, 863],
-    taming: null,
-    barding: 122
-  },
-  offense: {
-    min: 12,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 225,
-  name: 'merchant',
-  description: 'merchant',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: '150-250 Gold Coins',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 226,
-  name: 'messenger',
-  description: 'messenger',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: 30
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: '150-250 Gold Coins',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 227,
-  name: 'mummy',
-  description: 'mummy',
-  armor: 50,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [346, 370],
-    dex: [71, 90],
-    int: [26, 40],
-    hp: [208, 222],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 13,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Random Bones',
-    chance: [1, 1]
-  }],
-  credits: [305, 315],
-  skills: {
-    wrestling: [35, 50],
-    tactics: [35, 50],
-    magic_resistance: [15, 40]
-  }
-}, {
-  id: 228,
-  name: 'noble',
-  description: 'noble',
-  armor: null,
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: 30
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: '150-250 Gold Coins',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 229,
-  name: 'pirate bartender',
-  description: 'pirate bartender',
-  armor: 0,
-  stats: {
-    str: [650, 750],
-    dex: [110, 120],
-    int: [2, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 166
-  },
-  offense: {
-    min: 9,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 230,
-  name: 'pirate boatswain',
-  description: 'pirate boatswain',
-  armor: 0,
-  stats: {
-    str: [200, 225],
-    dex: [110, 120],
-    int: [1, 1],
-    hp: [0, 0],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 10,
-    max: 21,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 231,
-  name: 'pirate captain',
-  description: 'pirate captain',
-  armor: 0,
-  stats: {
-    str: [650, 750],
-    dex: [110, 120],
-    int: [2, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 171
-  },
-  offense: {
-    min: 13,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 232,
-  name: 'pirate captain ghost',
-  description: 'pirate captain ghost',
-  armor: 0,
-  stats: {
-    str: [650, 750],
-    dex: [110, 120],
-    int: [2, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 143
-  },
-  offense: {
-    min: 9,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'tattered spellbook',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 233,
-  name: 'pirate digger',
-  description: 'pirate digger',
-  armor: 0,
-  stats: {
-    str: [325, 375],
-    dex: [90, 120],
-    int: [2, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 166
-  },
-  offense: {
-    min: 12,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 234,
-  name: 'pirate ghost',
-  description: 'pirate ghost',
-  armor: 0,
-  stats: {
-    str: [81, 105],
-    dex: [191, 215],
-    int: [1, 1],
-    hp: [125, 175],
-    taming: null,
-    barding: 105
-  },
-  offense: {
-    min: 12,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 235,
-  name: 'pirate navigator',
-  description: 'pirate navigator',
-  armor: 0,
-  stats: {
-    str: [325, 375],
-    dex: [110, 120],
-    int: [1, 1],
-    hp: [0, 0],
-    taming: null,
-    barding: 116
-  },
-  offense: {
-    min: 10,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '100']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 236,
-  name: 'pirate quartermaster',
-  description: 'pirate quartermaster',
-  armor: 0,
-  stats: {
-    str: [375, 425],
-    dex: [90, 120],
-    int: [1, 1],
-    hp: [375, 425],
-    taming: null,
-    barding: 123
-  },
-  offense: {
-    min: 10,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '100']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 237,
-  name: 'pirate sailor',
-  description: 'pirate sailor',
-  armor: 0,
-  stats: {
-    str: [86, 100],
-    dex: [70, 95],
-    int: [1, 1],
-    hp: [0, 0],
-    taming: null,
-    barding: 104
-  },
-  offense: {
-    min: 8,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 238,
-  name: 'ratman',
-  description: 'ratman',
-  armor: 28,
-  karma: ['', '1500'],
-  fame: '1500',
-  stats: {
-    str: [96, 120],
-    dex: [81, 100],
-    int: [36, 60],
-    hp: [58, 72],
-    taming: null,
-    barding: 38
-  },
-  offense: {
-    min: 4,
-    max: 5,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [50, 75],
-    tactics: [50, 75],
-    magic_resistance: [35, 60]
-  }
-}, {
-  id: 239,
-  name: 'ratman archer',
-  description: 'ratman archer',
-  armor: 56,
-  karma: ['', '6500'],
-  fame: '6500',
-  stats: {
-    str: [146, 180],
-    dex: [101, 130],
-    int: [116, 140],
-    hp: [88, 108],
-    taming: null,
-    barding: 74
-  },
-  offense: {
-    min: 15,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [300, 350],
-  skills: {
-    wrestling: [50, 75],
-    tactics: [50, 75],
-    magic_resistance: [65, 90]
-  }
-}, {
-  id: 240,
-  name: 'ratman mage',
-  description: 'ratman mage',
-  armor: 44,
-  karma: ['', '7500'],
-  fame: '7500',
-  stats: {
-    str: [146, 180],
-    dex: [101, 130],
-    int: [186, 210],
-    hp: [88, 108],
-    taming: null,
-    barding: 64
-  },
-  offense: {
-    min: 7,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: [275, 352],
-  skills: {
-    wrestling: [50, 75],
-    tactics: [50, 75],
-    magic_resistance: [65, 90]
-  }
-}, {
-  id: 241,
-  name: 'reptile tamer',
-  description: 'reptile tamer',
-  armor: 60,
-  stats: {
-    str: [605, 725],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [8, 9],
-    taming: null,
-    barding: 413
-  },
-  offense: {
-    min: 29,
-    max: 36,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin (All Players)',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 242,
-  name: 'restless soul',
-  description: 'restless soul',
-  armor: 6,
-  karma: ['', '500'],
-  fame: '500',
-  stats: {
-    str: [26, 40],
-    dex: [26, 40],
-    int: [26, 40],
-    hp: [16, 24],
-    taming: null,
-    barding: 19
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: [20, 30],
-    tactics: [20, 30],
-    magic_resistance: [20, 30]
-  }
-}, {
-  id: 243,
-  name: 'revenant',
-  description: 'revenant',
-  armor: 62,
-  karma: 0,
-  fame: 0,
-  stats: {
-    str: [196, 250],
-    dex: [110, 120],
-    int: [128, 138],
-    hp: [500, 550],
-    taming: null,
-    barding: 103
-  },
-  offense: {
-    min: 7,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Various Bones',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 244,
-  name: 'rotting corpse',
-  description: 'rotting corpse',
-  armor: 40,
-  karma: ['', '12500'],
-  fame: '12500',
-  stats: {
-    str: [301, 350],
-    dex: [75, 75],
-    int: [151, 200],
-    hp: [1, 1],
-    taming: null,
-    barding: 125
-  },
-  offense: {
-    min: 8,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '100']
-  }],
-  credits: [1050, 1279],
-  skills: {
-    wrestling: [90, 100],
-    tactics: 100.0,
-    magic_resistance: '250.0'
-  }
-}, {
-  id: 245,
-  name: 'shade',
-  description: 'shade',
-  armor: 28,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 65
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 246,
-  name: 'skeletal knight',
-  description: 'skeletal knight',
-  armor: 40,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [196, 250],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [118, 150],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 8,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'WoodenShield',
-    chance: [1, 1]
-  }],
-  credits: [175, 275],
-  skills: {
-    wrestling: [85, 95],
-    tactics: [95, 100],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 247,
-  name: 'skeletal mage',
-  description: 'skeletal mage',
-  armor: 38,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [76, 100],
-    dex: [56, 75],
-    int: [186, 210],
-    hp: [46, 60],
-    taming: null,
-    barding: 77
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Random Potion',
-    chance: [1, 1]
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [55, 70]
-  }
-}, {
-  id: 248,
-  name: 'skeleton',
-  description: 'skeleton',
-  armor: 16,
-  karma: ['', '450'],
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [56, 75],
-    int: [16, 40],
-    hp: [34, 48],
-    taming: null,
-    barding: 36
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Random Bones',
-    chance: [1, 1]
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 249,
-  name: 'spectre',
-  description: 'spectre',
-  armor: 28,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 250,
-  name: 'undead parrot',
-  description: 'undead parrot',
-  armor: 0,
-  stats: {
-    str: [85, 110],
-    dex: [125, 150],
-    int: [1, 1],
-    hp: [0, 0],
-    taming: null,
-    barding: 113
-  },
-  offense: {
-    min: 10,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 251,
-  name: 'undead pirate captain',
-  description: 'undead pirate captain',
-  armor: 0,
-  stats: {
-    str: [650, 750],
-    dex: [110, 120],
-    int: [2, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 171
-  },
-  offense: {
-    min: 12,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 252,
-  name: 'undead pirate sailor',
-  description: 'undead pirate sailor',
-  armor: 0,
-  stats: {
-    str: [86, 100],
-    dex: [70, 95],
-    int: [1, 1],
-    hp: [0, 0],
-    taming: null,
-    barding: 103
-  },
-  offense: {
-    min: 6,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 253,
-  name: 'wandering healer',
-  description: 'wandering healer',
-  armor: null,
-  karma: '10000',
-  fame: '1000',
-  stats: {
-    str: [0, null],
-    dex: [0, null],
-    int: [0, null],
-    hp: [0, 0],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 0,
-    max: 0,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: [0, 0],
-    tactics: [82, 100],
-    magic_resistance: [82, 100]
-  }
-}, {
-  id: 254,
-  name: 'wraith',
-  description: 'wraith',
-  armor: 28,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 67
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 255,
-  name: 'zombie',
-  description: 'zombie',
-  armor: 18,
-  karma: ['', '600'],
-  fame: '600',
-  stats: {
-    str: [46, 70],
-    dex: [31, 50],
-    int: [26, 40],
-    hp: [28, 42],
-    taming: null,
-    barding: 33
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Random Body Part or Bone',
-    chance: [1, 1]
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [35, 50],
-    tactics: [35, 50],
-    magic_resistance: [15, 40]
-  }
-}, {
-  id: 256,
-  name: 'cave troll',
-  description: 'cave troll',
-  armor: 40,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [475, 525],
-    dex: [75, 85],
-    int: [250, 350],
-    hp: [725, 875],
-    taming: null,
-    barding: 121
-  },
-  offense: {
-    min: 14,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '10']
-  }],
-  credits: [314, 486],
-  skills: {
-    wrestling: [81, 104],
-    tactics: [87, 101],
-    magic_resistance: [71, 82]
-  }
-}, {
-  id: 257,
-  name: 'forest troll',
-  description: 'forest troll',
-  armor: 40,
-  stats: {
-    str: [750, 800],
-    dex: [75, 85],
-    int: [250, 350],
-    hp: [700, 825],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 17,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '10']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 258,
-  name: 'gamayun',
-  description: 'gamayun',
-  armor: 38,
-  stats: {
-    str: [320, 340],
-    dex: [100, 110],
-    int: [500, 700],
-    hp: [400, 550],
-    taming: null,
-    barding: 105
-  },
-  offense: {
-    min: 9,
-    max: 31,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '10']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 259,
-  name: 'mountain troll',
-  description: 'mountain troll',
-  armor: 40,
-  stats: {
-    str: [475, 525],
-    dex: [75, 85],
-    int: [250, 350],
-    hp: [600, 625],
-    taming: null,
-    barding: 113
-  },
-  offense: {
-    min: 9,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '10']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 260,
-  name: 'obsidian gargoyle',
-  description: 'obsidian gargoyle',
-  armor: 48,
-  stats: {
-    str: [900, 1],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [2, 2],
-    taming: null,
-    barding: 189
-  },
-  offense: {
-    min: 16,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'gargoyles',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 261,
-  name: 'revenant',
-  description: 'revenant',
-  armor: 62,
-  karma: 0,
-  fame: 0,
-  stats: {
-    str: [196, 250],
-    dex: [110, 120],
-    int: [128, 138],
-    hp: [500, 550],
-    taming: null,
-    barding: 103
-  },
-  offense: {
-    min: 7,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    description: 'Various Bones',
-    chance: [1, 1]
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 262,
-  name: 'spectral rabbit',
-  description: 'spectral rabbit',
-  armor: 40,
-  stats: {
-    str: [401, 650],
-    dex: [160, 180],
-    int: [500, 600],
-    hp: [650, 950],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 15,
-    max: 21,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '10']
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 263,
-  name: 'arctic ogre lord',
-  description: 'arctic ogre lord',
-  armor: 50,
-  karma: '-15,000',
-  fame: '15,000',
-  stats: {
-    str: [767, 945],
-    dex: [66, 75],
-    int: [46, 70],
-    hp: [476, 552],
-    taming: null,
-    barding: 96
-  },
-  offense: {
-    min: 20,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'RawRibs'
-  }],
-  credits: [750, 950],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [125, 140]
-  }
-}, {
-  id: 264,
-  name: 'arctic ogre mage',
-  description: 'arctic ogre mage',
-  armor: 65,
-  stats: {
-    str: [1, 1],
-    dex: [82, 95],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 184
-  },
-  offense: {
-    min: 25,
-    max: 31,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 265,
-  name: 'beholder',
-  description: 'beholder',
-  armor: 65,
-  stats: {
-    str: [630, 730],
-    dex: [86, 105],
-    int: [910, 950],
-    hp: [1, 1],
-    taming: null,
-    barding: 184
-  },
-  offense: {
-    min: 12,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 266,
-  name: 'cave troll',
-  description: 'cave troll',
-  armor: 40,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [475, 525],
-    dex: [75, 85],
-    int: [250, 350],
-    hp: [725, 875],
-    taming: null,
-    barding: 121
-  },
-  offense: {
-    min: 14,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Platinum Coin'
-  }],
-  credits: [314, 486],
-  skills: {
-    wrestling: [81, 104],
-    tactics: [87, 101],
-    magic_resistance: [71, 82]
-  }
-}, {
-  id: 267,
-  name: 'centaur',
-  description: 'centaur',
-  armor: 50,
-  karma: '0',
-  fame: '6500',
-  stats: {
-    str: [202, 300],
-    dex: [104, 260],
-    int: [91, 100],
-    hp: [130, 172],
-    taming: null,
-    barding: 72
-  },
-  offense: {
-    min: 13,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [275, 325],
-  skills: {
-    wrestling: [95, 100],
-    tactics: [90, 100],
-    magic_resistance: [50, 80]
-  }
-}, {
-  id: 268,
-  name: 'colossus',
-  description: 'colossus',
-  armor: 78,
-  stats: {
-    str: [900, 1],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [2, 3],
-    taming: null,
-    barding: 208
-  },
-  offense: {
-    min: 16,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 269,
-  name: 'cyclops',
-  description: 'cyclops',
-  armor: 48,
-  karma: '-4500',
-  fame: '4500',
-  stats: {
-    str: [336, 385],
-    dex: [96, 115],
-    int: [31, 55],
-    hp: [202, 231],
-    taming: null,
-    barding: 65
-  },
-  offense: {
-    min: 7,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [400, 500],
-  skills: {
-    wrestling: [80, 90],
-    tactics: [80, 100],
-    magic_resistance: [60, 105]
-  }
-}, {
-  id: 270,
-  name: 'dark wisp',
-  description: 'dark wisp',
-  armor: 40,
-  karma: ['', '10000'],
-  fame: '15000',
-  stats: {
-    str: [196, 225],
-    dex: [196, 225],
-    int: [196, 225],
-    hp: [118, 135],
-    taming: null,
-    barding: 60
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [null],
-  credits: [400, 500],
-  skills: {
-    wrestling: 50.0,
-    tactics: 80.0,
-    magic_resistance: [80, 90]
-  }
-}, {
-  id: 271,
-  name: 'elder gazer',
-  description: 'elder gazer',
-  armor: 50,
-  karma: '-12500',
-  fame: '12500',
-  stats: {
-    str: [296, 325],
-    dex: [86, 105],
-    int: [291, 385],
-    hp: [178, 195],
-    taming: null,
-    barding: 87
-  },
-  offense: {
-    min: 8,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [400, 600],
-  skills: {
-    wrestling: [80, 100],
-    tactics: [80, 100],
-    magic_resistance: [115, 130]
-  }
-}, {
-  id: 272,
-  name: 'ethereal warrior',
-  description: 'ethereal warrior',
-  armor: 120,
-  karma: '7000',
-  fame: '7000',
-  stats: {
-    str: [586, 785],
-    dex: [177, 255],
-    int: [351, 450],
-    hp: [352, 471],
-    taming: null,
-    barding: 108
-  },
-  offense: {
-    min: 13,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [900, 1200],
-  skills: {
-    wrestling: [97, 100],
-    tactics: [90, 100],
-    magic_resistance: [90, 100]
-  }
-}, {
-  id: 273,
-  name: 'ettin',
-  description: 'ettin',
-  armor: 38,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [136, 165],
-    dex: [56, 75],
-    int: [31, 55],
-    hp: [82, 99],
-    taming: null,
-    barding: 42
-  },
-  offense: {
-    min: 7,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [50, 60],
-    tactics: [50, 70],
-    magic_resistance: [40, 55]
-  }
-}, {
-  id: 274,
-  name: 'forest troll',
-  description: 'forest troll',
-  armor: 40,
-  stats: {
-    str: [750, 800],
-    dex: [75, 85],
-    int: [250, 350],
-    hp: [700, 825],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 17,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 275,
-  name: 'frost troll',
-  description: 'frost troll',
-  armor: 50,
-  karma: '-4000',
-  fame: '4000',
-  stats: {
-    str: [76, 100],
-    dex: [126, 145],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 6,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [80, 100],
-    tactics: [80, 100],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 276,
-  name: 'gamayun',
-  description: 'gamayun',
-  armor: 38,
-  stats: {
-    str: [320, 340],
-    dex: [100, 110],
-    int: [500, 700],
-    hp: [400, 550],
-    taming: null,
-    barding: 105
-  },
-  offense: {
-    min: 9,
-    max: 31,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 277,
-  name: 'gazer',
-  description: 'gazer',
-  armor: 36,
-  karma: '-3500',
-  fame: '3500',
-  stats: {
-    str: [96, 125],
-    dex: [86, 105],
-    int: [141, 165],
-    hp: [58, 75],
-    taming: null,
-    barding: 68
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [50, 70],
-    tactics: [50, 70],
-    magic_resistance: [50, 70]
-  }
-}, {
-  id: 278,
-  name: 'gazer larva',
-  description: 'gazer larva',
-  armor: 25,
-  karma: '-900',
-  fame: '900',
-  stats: {
-    str: [76, 100],
-    dex: [51, 75],
-    int: [56, 80],
-    hp: [36, 47],
-    taming: null,
-    barding: 56.7
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [null],
-  credits: [25, 50],
-  skills: {
-    wrestling: 70.0,
-    tactics: 70.0,
-    magic_resistance: '70.0'
-  }
-}, {
-  id: 279,
-  name: 'harpy',
-  description: 'harpy',
-  armor: 28,
-  karma: ['', '2500'],
-  fame: '2500',
-  stats: {
-    str: [86, 120],
-    dex: [86, 110],
-    int: [51, 75],
-    hp: [58, 72],
-    taming: null,
-    barding: 47
-  },
-  offense: {
-    min: 5,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [60, 90],
-    tactics: [70, 100],
-    magic_resistance: [50, 65]
-  }
-}, {
-  id: 280,
-  name: 'headlessone',
-  description: 'headlessone',
-  armor: 18,
-  stats: {
-    str: [26, 50],
-    dex: [36, 55],
-    int: [16, 30],
-    hp: [16, 30],
-    taming: null,
-    barding: 19
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '1000'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 281,
-  name: 'hell hound',
-  description: 'hell hound',
-  armor: 30,
-  karma: ['', '3400'],
-  fame: '3400',
-  stats: {
-    str: [102, 150],
-    dex: [81, 105],
-    int: [36, 60],
-    hp: [66, 125],
-    taming: 85.5,
-    barding: 39
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [50, 70],
-    magic_resistance: [57, 75]
-  }
-}, {
-  id: 282,
-  name: 'horde minion',
-  description: 'horde minion',
-  armor: 18,
-  karma: ['', '500'],
-  fame: '500',
-  stats: {
-    str: [16, 40],
-    dex: [31, 60],
-    int: [11, 25],
-    hp: [10, 24],
-    taming: null,
-    barding: 26.6
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: [25, 40],
-    tactics: [0, 15],
-    magic_resistance: [null, null]
-  }
-}, {
-  id: 283,
-  name: 'imp',
-  description: 'imp',
-  armor: 30,
-  karma: ['', '2500'],
-  fame: '2500',
-  stats: {
-    str: [91, 115],
-    dex: [61, 80],
-    int: [86, 105],
-    hp: [55, 70],
-    taming: 83.1,
-    barding: 56
-  },
-  offense: {
-    min: 10,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [40, 44],
-    tactics: [42, 50],
-    magic_resistance: [30, 50]
-  }
-}, {
-  id: 284,
-  name: 'jungle titan',
-  description: 'jungle titan',
-  armor: 48,
-  stats: {
-    str: [600, 750],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [2, 2],
-    taming: null,
-    barding: 185
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 285,
-  name: 'kirin',
-  description: 'kirin',
-  armor: 0,
-  stats: {
-    str: [286, 325],
-    dex: [86, 105],
-    int: [186, 225],
-    hp: [191, 210],
-    taming: null,
-    barding: 82
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 286,
-  name: 'mongbat',
-  description: 'mongbat',
-  armor: 10,
-  karma: ['', '150'],
-  fame: '150',
-  stats: {
-    str: [6, 10],
-    dex: [26, 38],
-    int: [6, 14],
-    hp: [4, 6],
-    taming: 18.9,
-    barding: 7
-  },
-  offense: {
-    min: 1,
-    max: 2,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '1000'],
-    description: 'Platinum Coin'
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [5, 10],
-    tactics: [5, 10],
-    magic_resistance: [5, 14]
-  }
-}, {
-  id: 287,
-  name: 'mountain troll',
-  description: 'mountain troll',
-  armor: 40,
-  stats: {
-    str: [475, 525],
-    dex: [75, 85],
-    int: [250, 350],
-    hp: [600, 625],
-    taming: null,
-    barding: 113
-  },
-  offense: {
-    min: 9,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 288,
-  name: 'ogre',
-  description: 'ogre',
-  armor: 32,
-  karma: ['', '3000'],
-  fame: '3000',
-  stats: {
-    str: [166, 195],
-    dex: [46, 65],
-    int: [46, 70],
-    hp: [100, 117],
-    taming: null,
-    barding: 53
-  },
-  offense: {
-    min: 9,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [70, 80],
-    tactics: [60, 70],
-    magic_resistance: [55, 70]
-  }
-}, {
-  id: 289,
-  name: 'ogre lord',
-  description: 'ogre lord',
-  armor: 50,
-  karma: ['', '15000'],
-  fame: '15000',
-  stats: {
-    str: [767, 945],
-    dex: [66, 75],
-    int: [46, 70],
-    hp: [476, 552],
-    taming: null,
-    barding: 96
-  },
-  offense: {
-    min: 20,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [600, 650],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [125, 140]
-  }
-}, {
-  id: 290,
-  name: 'ogre mage',
-  description: 'ogre mage',
-  armor: 65,
-  stats: {
-    str: [1, 1],
-    dex: [90, 99],
-    int: [720, 770],
-    hp: [1, 1],
-    taming: null,
-    barding: 180
-  },
-  offense: {
-    min: 20,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 291,
-  name: 'pixie',
-  description: 'pixie',
-  armor: 100,
-  karma: '7000',
-  fame: '7000',
-  stats: {
-    str: [21, 30],
-    dex: [301, 400],
-    int: [201, 250],
-    hp: [13, 18],
-    taming: null,
-    barding: 76
-  },
-  offense: {
-    min: 9,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [10, 12],
-    tactics: [10, 20],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 292,
-  name: 'rabbit of caerbannog',
-  description: 'rabbit of caerbannog',
-  armor: 60,
-  stats: {
-    str: [605, 805],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [9, 10],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 20,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '25'],
-    description: 'Rabbit of Caerbannog Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 293,
-  name: 'scorpion',
-  description: 'scorpion',
-  armor: 28,
-  karma: ['', '2000'],
-  fame: '2000',
-  stats: {
-    str: [73, 115],
-    dex: [76, 95],
-    int: [16, 30],
-    hp: [50, 63],
-    taming: 47.1,
-    barding: 55
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [50, 65],
-    tactics: [60, 75],
-    magic_resistance: [30, 35]
-  }
-}, {
-  id: 294,
-  name: 'sea horse',
-  description: 'sea horse',
-  armor: null,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 295,
-  name: 'shadow wisp',
-  description: 'shadow wisp',
-  armor: 18,
-  karma: ['', '500'],
-  fame: '500',
-  stats: {
-    str: [50, 50],
-    dex: [60, 60],
-    int: [100, 100],
-    hp: [50, 50],
-    taming: null,
-    barding: 30
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [25, 40],
-    tactics: [0, 15],
-    magic_resistance: '10.0'
-  }
-}, {
-  id: 296,
-  name: 'spectral rabbit',
-  description: 'spectral rabbit',
-  armor: 40,
-  stats: {
-    str: [401, 650],
-    dex: [160, 180],
-    int: [500, 600],
-    hp: [650, 950],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 15,
-    max: 21,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 297,
-  name: 'stone harpy',
-  description: 'stone harpy',
-  armor: 50,
-  karma: ['', '4500'],
-  fame: '4500',
-  stats: {
-    str: [296, 320],
-    dex: [86, 110],
-    int: [51, 75],
-    hp: [178, 192],
-    taming: null,
-    barding: 63
-  },
-  offense: {
-    min: 8,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [290, 325],
-  skills: {
-    wrestling: [70, 100],
-    tactics: [70, 100],
-    magic_resistance: [50, 65]
-  }
-}, {
-  id: 298,
-  name: 'strong mongbat',
-  description: 'strong mongbat',
-  armor: 10,
-  stats: {
-    str: [6, 10],
-    dex: [26, 38],
-    int: [6, 14],
-    hp: [4, 6],
-    taming: 71.1,
-    barding: 14
-  },
-  offense: {
-    min: 5,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '1000'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 299,
-  name: 'succubus',
-  description: 'succubus',
-  armor: 80,
-  karma: 'lvl 5 -24000',
-  fame: 'lvl 5 24000',
-  stats: {
-    str: [488, 620],
-    dex: [121, 170],
-    int: [498, 657],
-    hp: [312, 353],
-    taming: null,
-    barding: 103
-  },
-  offense: {
-    min: 18,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1000, 1200],
-  skills: {
-    wrestling: [80, 90],
-    tactics: [80, 90],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 300,
-  name: 'titan',
-  description: 'titan',
-  armor: 40,
-  karma: ['', '11500'],
-  fame: '11500',
-  stats: {
-    str: [536, 585],
-    dex: [126, 145],
-    int: [281, 305],
-    hp: [322, 351],
-    taming: null,
-    barding: 100
-  },
-  offense: {
-    min: 13,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [600, 800],
-  skills: {
-    wrestling: [40, 50],
-    tactics: [60, 80],
-    magic_resistance: [85, 100]
-  }
-}, {
-  id: 301,
-  name: 'troll',
-  description: 'troll',
-  armor: 40,
-  karma: ['', '3500'],
-  fame: '3500',
-  stats: {
-    str: [176, 205],
-    dex: [46, 65],
-    int: [46, 70],
-    hp: [106, 123],
-    taming: null,
-    barding: 50
-  },
-  offense: {
-    min: 8,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [50, 70],
-    tactics: [50, 70],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 302,
-  name: 'two headed behemoth',
-  description: 'two headed behemoth',
-  armor: 78,
-  stats: {
-    str: [900, 1],
-    dex: [115, 155],
-    int: [1, 1],
-    hp: [2, 3],
-    taming: null,
-    barding: 188
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'two headed behemoth statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 303,
-  name: 'wisp',
-  description: 'wisp',
-  armor: 40,
-  karma: '0',
-  fame: '4000',
-  stats: {
-    str: [196, 225],
-    dex: [196, 225],
-    int: [196, 225],
-    hp: [118, 135],
-    taming: null,
-    barding: 78
-  },
-  offense: {
-    min: 17,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'misc_monsters',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Light Source'
-  }],
-  credits: [400, 500],
-  skills: {
-    wrestling: 80.0,
-    tactics: 80.0,
-    magic_resistance: '80.0'
-  }
-}, {
-  id: 304,
-  name: 'orc',
-  description: 'orc',
-  armor: 28,
-  stats: {
-    str: [96, 120],
-    dex: [81, 105],
-    int: [36, 60],
-    hp: [58, 72],
-    taming: null,
-    barding: 42
-  },
-  offense: {
-    min: 5,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'orcs',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 305,
-  name: 'orc bomber',
-  description: 'orc bomber',
-  armor: 30,
-  karma: ['', '2500'],
-  fame: '2500',
-  stats: {
-    str: [147, 215],
-    dex: [91, 115],
-    int: [61, 85],
-    hp: [95, 123],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 1,
-    max: 8,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'orcs',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [60, 85],
-    tactics: [75, 90],
-    magic_resistance: [70, 85]
-  }
-}, {
-  id: 306,
-  name: 'orc brute',
-  description: 'orc brute',
-  armor: 50,
-  karma: ['', '15000'],
-  fame: '15000',
-  stats: {
-    str: [767, 945],
-    dex: [66, 75],
-    int: [46, 70],
-    hp: [476, 552],
-    taming: null,
-    barding: 94.3
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'orcs',
-  attackable: true,
-  inventory: [null],
-  credits: [750, 950],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [125, 140]
-  }
-}, {
-  id: 307,
-  name: 'orc captain',
-  description: 'orc captain',
-  armor: 34,
-  karma: ['', '2500'],
-  fame: '2500',
-  stats: {
-    str: [111, 145],
-    dex: [101, 135],
-    int: [86, 110],
-    hp: [67, 87],
-    taming: null,
-    barding: 60
-  },
-  offense: {
-    min: 5,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'orcs',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [100, 150],
-  skills: {
-    wrestling: [0, 0],
-    tactics: [85, 100],
-    magic_resistance: [70, 85]
-  }
-}, {
-  id: 308,
-  name: 'orc scout',
-  description: 'orc scout',
-  armor: null,
-  karma: ['', '1500'],
-  fame: '1500',
-  stats: {
-    str: [96, 120],
-    dex: [101, 130],
-    int: [36, 60],
-    hp: [58, 72],
-    taming: null,
-    barding: 71
-  },
-  offense: {
-    min: 15,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'orcs',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [0, 0],
-    tactics: [55, 80],
-    magic_resistance: [50, 75]
-  }
-}, {
-  id: 309,
-  name: 'orcish lord',
-  description: 'orcish lord',
-  armor: 0,
-  stats: {
-    str: [147, 215],
-    dex: [91, 115],
-    int: [61, 85],
-    hp: [95, 123],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 4,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'orcs',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '3'],
-    description: 'Random Reagent'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 310,
-  name: 'orcish mage',
-  description: 'orcish mage',
-  armor: 30,
-  stats: {
-    str: [116, 150],
-    dex: [91, 115],
-    int: [161, 185],
-    hp: [70, 90],
-    taming: null,
-    barding: 71
-  },
-  offense: {
-    min: 4,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'orcs',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 311,
-  name: 'bog thing',
-  description: 'bog thing',
-  armor: 28,
-  karma: '-8000',
-  fame: '8000',
-  stats: {
-    str: [801, 900],
-    dex: [46, 65],
-    int: [36, 50],
-    hp: [481, 540],
-    taming: null,
-    barding: 86.1
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'plants',
-  attackable: true,
-  inventory: [null],
-  credits: [275, 325],
-  skills: {
-    wrestling: [65, 80],
-    tactics: [70, 85],
-    magic_resistance: [90, 95]
-  }
-}, {
-  id: 312,
-  name: 'corpser',
-  description: 'corpser',
-  armor: 18,
-  karma: '-1000',
-  fame: '1000',
-  stats: {
-    str: [156, 180],
-    dex: [26, 45],
-    int: [26, 40],
-    hp: [94, 108],
-    taming: null,
-    barding: 46
-  },
-  offense: {
-    min: 10,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'plants',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '1000'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 60],
-    tactics: [45, 60],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 313,
-  name: 'quagmire',
-  description: 'quagmire',
-  armor: 32,
-  karma: ['', '1500'],
-  fame: '1500',
-  stats: {
-    str: [101, 130],
-    dex: [66, 85],
-    int: [31, 55],
-    hp: [91, 105],
-    taming: null,
-    barding: 71
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'plants',
-  attackable: true,
-  inventory: [null],
-  credits: [125, 175],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [50, 60],
-    magic_resistance: [65, 75]
-  }
-}, {
-  id: 314,
-  name: 'reaper',
-  description: 'reaper',
-  armor: 40,
-  karma: ['', '3500'],
-  fame: '3500',
-  stats: {
-    str: [66, 215],
-    dex: [66, 75],
-    int: [101, 250],
-    hp: [40, 129],
-    taming: null,
-    barding: 81
-  },
-  offense: {
-    min: 9,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'plants',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [50, 60],
-    tactics: [45, 60],
-    magic_resistance: [100, 125]
-  }
-}, {
-  id: 315,
-  name: 'swamp tentacle',
-  description: 'swamp tentacle',
-  armor: 28,
-  karma: ['', '3000'],
-  fame: '3000',
-  stats: {
-    str: [96, 120],
-    dex: [66, 85],
-    int: [16, 30],
-    hp: [58, 72],
-    taming: null,
-    barding: 44
-  },
-  offense: {
-    min: 6,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'plants',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 175],
-  skills: {
-    wrestling: [65, 80],
-    tactics: [65, 80],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 316,
-  name: 'whipping vine',
-  description: 'whipping vine',
-  armor: 45,
-  karma: ['', '1000'],
-  fame: '1000',
-  stats: {
-    str: [251, 300],
-    dex: [76, 100],
-    int: [26, 40],
-    hp: [251, 300],
-    taming: null,
-    barding: 76.6
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'plants',
-  attackable: true,
-  inventory: [null],
-  credits: [null, null],
-  skills: {
-    wrestling: 70.0,
-    tactics: 70.0,
-    magic_resistance: '70.0'
-  }
-}, {
-  id: 317,
-  name: 'ratman',
-  description: 'ratman',
-  armor: 28,
-  karma: ['', '1500'],
-  fame: '1500',
-  stats: {
-    str: [96, 120],
-    dex: [81, 100],
-    int: [36, 60],
-    hp: [58, 72],
-    taming: null,
-    barding: 38
-  },
-  offense: {
-    min: 4,
-    max: 5,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [50, 75],
-    tactics: [50, 75],
-    magic_resistance: [35, 60]
-  }
-}, {
-  id: 318,
-  name: 'ratman archer',
-  description: 'ratman archer',
-  armor: 56,
-  karma: ['', '6500'],
-  fame: '6500',
-  stats: {
-    str: [146, 180],
-    dex: [101, 130],
-    int: [116, 140],
-    hp: [88, 108],
-    taming: null,
-    barding: 74
-  },
-  offense: {
-    min: 15,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [300, 350],
-  skills: {
-    wrestling: [50, 75],
-    tactics: [50, 75],
-    magic_resistance: [65, 90]
-  }
-}, {
-  id: 319,
-  name: 'ratman mage',
-  description: 'ratman mage',
-  armor: 44,
-  karma: ['', '7500'],
-  fame: '7500',
-  stats: {
-    str: [146, 180],
-    dex: [101, 130],
-    int: [186, 210],
-    hp: [88, 108],
-    taming: null,
-    barding: 64
-  },
-  offense: {
-    min: 7,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [275, 352],
-  skills: {
-    wrestling: [50, 75],
-    tactics: [50, 75],
-    magic_resistance: [65, 90]
-  }
-}, {
-  id: 320,
-  name: 'anaconda',
-  description: 'anaconda',
-  armor: 55,
-  stats: {
-    str: [1, 1],
-    dex: [153, 172],
-    int: [300, 400],
-    hp: [1, 1],
-    taming: null,
-    barding: 189
-  },
-  offense: {
-    min: 12,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 321,
-  name: 'ancient wyrm',
-  description: 'ancient wyrm',
-  armor: 70,
-  karma: '-22500',
-  fame: '22500',
-  stats: {
-    str: [1, 1],
-    dex: [86, 175],
-    int: [686, 775],
-    hp: [658, 711],
-    taming: null,
-    barding: 149
-  },
-  offense: {
-    min: 29,
-    max: 35,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1600, 1800],
-  skills: {
-    wrestling: [110, null],
-    tactics: [127, null],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 322,
-  name: 'azure dragon',
-  description: 'azure dragon',
-  armor: 80,
-  stats: {
-    str: [1, 1],
-    dex: [120, 130],
-    int: [770, 820],
-    hp: [3, 3],
-    taming: null,
-    barding: 239
-  },
-  offense: {
-    min: 20,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'PlatinumCoin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 323,
-  name: 'deep sea serpent',
-  description: 'deep sea serpent',
-  armor: 60,
-  karma: '-6000',
-  fame: '6000',
-  stats: {
-    str: [251, 425],
-    dex: [87, 135],
-    int: [87, 155],
-    hp: [151, 255],
-    taming: null,
-    barding: 74
-  },
-  offense: {
-    min: 6,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [60, 70],
-    tactics: [60, 70],
-    magic_resistance: [60, 75]
-  }
-}, {
-  id: 324,
-  name: 'dragon',
-  description: 'dragon',
-  armor: 60,
-  karma: '-15000',
-  fame: '15000',
-  stats: {
-    str: [796, 825],
-    dex: [86, 105],
-    int: [436, 475],
-    hp: [478, 495],
-    taming: 93.9,
-    barding: 112
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1000, 1200],
-  skills: {
-    wrestling: [90, 92],
-    tactics: [97, 100],
-    magic_resistance: [99, 100]
-  }
-}, {
-  id: 325,
-  name: 'drake',
-  description: 'drake',
-  armor: 46,
-  karma: '-5500',
-  fame: '5500',
-  stats: {
-    str: [401, 430],
-    dex: [133, 152],
-    int: [101, 140],
-    hp: [241, 258],
-    taming: 84.3,
-    barding: 79
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [275, 325],
-  skills: {
-    wrestling: [65, 80],
-    tactics: [65, 90],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 326,
-  name: 'elder wyrm',
-  description: 'elder wyrm',
-  armor: 90,
-  stats: {
-    str: [1, 1],
-    dex: [125, 145],
-    int: [1, 1],
-    hp: [5, 5],
-    taming: null,
-    barding: 365
-  },
-  offense: {
-    min: 29,
-    max: 36,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '4'],
-    description: 'Peculiar Meat (Carve)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 327,
-  name: 'kraken',
-  description: 'kraken',
-  armor: 50,
-  karma: ['', '11000'],
-  fame: '11000',
-  stats: {
-    str: [250, 275],
-    dex: [90, 110],
-    int: [26, 40],
-    hp: [250, 275],
-    taming: null,
-    barding: 89
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Special Fishing Net'
-  }],
-  credits: [275, 325],
-  skills: {
-    wrestling: [45, 60],
-    tactics: [45, 60],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 328,
-  name: 'leviathan',
-  description: 'leviathan',
-  armor: null,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 329,
-  name: 'lizardman',
-  description: 'lizardman',
-  armor: 28,
-  karma: ['', '1500'],
-  fame: '1500',
-  stats: {
-    str: [96, 120],
-    dex: [86, 105],
-    int: [36, 60],
-    hp: [58, 72],
-    taming: null,
-    barding: 46
-  },
-  offense: {
-    min: 5,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 75],
-  skills: {
-    wrestling: [50, 70],
-    tactics: [55, 80],
-    magic_resistance: [35, 60]
-  }
-}, {
-  id: 330,
-  name: 'lock lake monster',
-  description: 'lock lake monster',
-  armor: 60,
-  stats: {
-    str: [756, 780],
-    dex: [226, 245],
-    int: [100, 200],
-    hp: [750, 800],
-    taming: null,
-    barding: 93
-  },
-  offense: {
-    min: 19,
-    max: 33,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Random Fishing Net Piece'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 331,
-  name: 'ophidian archmage',
-  description: 'ophidian archmage',
-  armor: 44,
-  stats: {
-    str: [281, 305],
-    dex: [191, 215],
-    int: [226, 250],
-    hp: [169, 183],
-    taming: null,
-    barding: 76
-  },
-  offense: {
-    min: 36,
-    max: 45,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 332,
-  name: 'ophidian knight',
-  description: 'ophidian knight',
-  armor: 40,
-  stats: {
-    str: [417, 595],
-    dex: [166, 175],
-    int: [46, 70],
-    hp: [266, 342],
-    taming: null,
-    barding: 78
-  },
-  offense: {
-    min: 16,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 333,
-  name: 'ophidian mage',
-  description: 'ophidian mage',
-  armor: 30,
-  stats: {
-    str: [181, 205],
-    dex: [191, 215],
-    int: [96, 120],
-    hp: [109, 123],
-    taming: null,
-    barding: 76
-  },
-  offense: {
-    min: 5,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 334,
-  name: 'ophidian matriarch',
-  description: 'ophidian matriarch',
-  armor: 50,
-  karma: ['', '16000'],
-  fame: '16000',
-  stats: {
-    str: [416, 505],
-    dex: [96, 115],
-    int: [366, 455],
-    hp: [250, 303],
-    taming: null,
-    barding: 98
-  },
-  offense: {
-    min: 11,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [550, 650],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [50, 70],
-    magic_resistance: [90, 100]
-  }
-}, {
-  id: 335,
-  name: 'ophidian queen',
-  description: 'ophidian queen',
-  armor: 78,
-  stats: {
-    str: [810, 910],
-    dex: [125, 135],
-    int: [420, 475],
-    hp: [1, 2],
-    taming: null,
-    barding: 172
-  },
-  offense: {
-    min: 18,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 336,
-  name: 'ophidian warrior',
-  description: 'ophidian warrior',
-  armor: 36,
-  karma: ['', '4500'],
-  fame: '4500',
-  stats: {
-    str: [150, 320],
-    dex: [94, 190],
-    int: [64, 160],
-    hp: [128, 155],
-    taming: null,
-    barding: 65
-  },
-  offense: {
-    min: 5,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [0, 0],
-    tactics: [75, 90],
-    magic_resistance: [70, 85]
-  }
-}, {
-  id: 337,
-  name: 'sea serpent',
-  description: 'sea serpent',
-  armor: 30,
-  karma: ['', '6000'],
-  fame: '6000',
-  stats: {
-    str: [168, 225],
-    dex: [58, 85],
-    int: [53, 95],
-    hp: [110, 127],
-    taming: null,
-    barding: 64
-  },
-  offense: {
-    min: 7,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [60, 70],
-    tactics: [60, 70],
-    magic_resistance: [60, 75]
-  }
-}, {
-  id: 338,
-  name: 'serpentine dragon',
-  description: 'serpentine dragon',
-  armor: 36,
-  karma: '15000',
-  fame: '15000',
-  stats: {
-    str: [111, 140],
-    dex: [201, 220],
-    int: [1, 1],
-    hp: [480, 480],
-    taming: null,
-    barding: 130
-  },
-  offense: {
-    min: 5,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Level 4 Treasure Map'
-  }],
-  credits: [900, 1100],
-  skills: {
-    wrestling: [30, 100],
-    tactics: [50, 60],
-    magic_resistance: '100.0'
-  }
-}, {
-  id: 339,
-  name: 'shadow wyrm',
-  description: 'shadow wyrm',
-  armor: 70,
-  karma: ['', '22500'],
-  fame: '22500',
-  stats: {
-    str: [898, 1],
-    dex: [68, 200],
-    int: [488, 620],
-    hp: [558, 599],
-    taming: null,
-    barding: 141
-  },
-  offense: {
-    min: 29,
-    max: 35,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1550, 1800],
-  skills: {
-    wrestling: [97, 100],
-    tactics: [97, 100],
-    magic_resistance: [100, 130]
-  }
-}, {
-  id: 340,
-  name: 'shipwreck kraken',
-  description: 'shipwreck kraken',
-  armor: 40,
-  stats: {
-    str: [250, 275],
-    dex: [90, 110],
-    int: [26, 40],
-    hp: [250, 275],
-    taming: null,
-    barding: 74
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 341,
-  name: 'skeletal dragon',
-  description: 'skeletal dragon',
-  armor: 80,
-  karma: ['', '22500'],
-  fame: '22500',
-  stats: {
-    str: [898, 1030],
-    dex: [68, 200],
-    int: [488, 620],
-    hp: [558, 599],
-    taming: null,
-    barding: 118.3
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [null],
-  credits: [1600, 1800],
-  skills: {
-    wrestling: [97, 100],
-    tactics: [97, 100],
-    magic_resistance: [100, 130]
-  }
-}, {
-  id: 342,
-  name: 'white wyrm',
-  description: 'white wyrm',
-  armor: 64,
-  karma: ['', '18000'],
-  fame: '18000',
-  stats: {
-    str: [721, 760],
-    dex: [101, 130],
-    int: [386, 425],
-    hp: [433, 456],
-    taming: 96.3,
-    barding: 103
-  },
-  offense: {
-    min: 17,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1200, 1400],
-  skills: {
-    wrestling: [90, 100],
-    tactics: [97, 100],
-    magic_resistance: [99, 100]
-  }
-}, {
-  id: 343,
-  name: 'wyvern',
-  description: 'wyvern',
-  armor: 40,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [202, 240],
-    dex: [153, 172],
-    int: [51, 90],
-    hp: [125, 141],
-    taming: null,
-    barding: 79
-  },
-  offense: {
-    min: 8,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [175, 225],
-  skills: {
-    wrestling: [65, 80],
-    tactics: [65, 90],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 344,
-  name: 'wyvern monarch',
-  description: 'wyvern monarch',
-  armor: 55,
-  stats: {
-    str: [1, 1],
-    dex: [153, 172],
-    int: [300, 400],
-    hp: [650, 725],
-    taming: null,
-    barding: 125
-  },
-  offense: {
-    min: 12,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'reptiles',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'Wyvern Monarch Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 345,
-  name: 'frost ooze',
-  description: 'frost ooze',
-  armor: 38,
-  karma: '-450',
-  fame: '450',
-  stats: {
-    str: [18, 30],
-    dex: [16, 21],
-    int: [16, 20],
-    hp: [13, 17],
-    taming: null,
-    barding: 11
-  },
-  offense: {
-    min: 3,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'slimes',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '200']
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [25, 40],
-    tactics: [19, 34],
-    magic_resistance: [5, 10]
-  }
-}, {
-  id: 346,
-  name: 'jwilson',
-  description: 'jwilson',
-  armor: 8,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'slimes',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 347,
-  name: 'plague beast',
-  description: 'plague beast',
-  armor: 30,
-  karma: ['', '13000'],
-  fame: '13000',
-  stats: {
-    str: [302, 500],
-    dex: '80',
-    int: [16, 20],
-    hp: [318, 404],
-    taming: null,
-    barding: 81.5
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'slimes',
-  attackable: true,
-  inventory: [null],
-  credits: [450, 600],
-  skills: {
-    wrestling: 100.0,
-    tactics: [100, 100],
-    magic_resistance: '35.0'
-  }
-}, {
-  id: 348,
-  name: 'slime',
-  description: 'slime',
-  armor: 8,
-  karma: ['', '300'],
-  fame: '300',
-  stats: {
-    str: [22, 34],
-    dex: [16, 21],
-    int: [16, 20],
-    hp: [15, 19],
-    taming: 23.1,
-    barding: 27
-  },
-  offense: {
-    min: 1,
-    max: 5,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'slimes',
-  attackable: true,
-  inventory: [{
-    description: 'Platinum Coin',
-    chance: ['1', '400']
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [19, 34],
-    tactics: [19, 34],
-    magic_resistance: [15, 20]
-  }
-}, {
-  id: 349,
-  name: 'abominable snowman',
-  description: 'abominable snowman',
-  armor: 35,
-  stats: {
-    str: [446, 515],
-    dex: [126, 155],
-    int: [281, 305],
-    hp: [700, 900],
-    taming: null,
-    barding: 123
-  },
-  offense: {
-    min: 15,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Yeti Statue  2 Hues (1151, 1154)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 350,
-  name: 'acolyte of death',
-  description: 'acolyte of death',
-  armor: 36,
-  stats: {
-    str: [351, 400],
-    dex: [101, 150],
-    int: [502, 700],
-    hp: [750, 100],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 5,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 351,
-  name: 'avarice',
-  description: 'avarice',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 158
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 352,
-  name: 'balam the daemon knight',
-  description: 'balam the daemon knight',
-  armor: 40,
-  stats: {
-    str: [550, 575],
-    dex: [126, 145],
-    int: [676, 905],
-    hp: [4, 5],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 24,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 353,
-  name: 'black knight',
-  description: 'black knight',
-  armor: 40,
-  stats: {
-    str: [305, 425],
-    dex: [72, 150],
-    int: [505, 750],
-    hp: [3, 4],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 20,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 354,
-  name: 'blitzen',
-  description: 'blitzen',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 160
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '25'],
-    description: 'Santas Lair Scroll (Dungeon)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 355,
-  name: 'bloated zombie',
-  description: 'bloated zombie',
-  armor: 30,
-  stats: {
-    str: [485, 545],
-    dex: [81, 120],
-    int: [375, 425],
-    hp: [455, 525],
-    taming: null,
-    barding: 102
-  },
-  offense: {
-    min: 21,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 356,
-  name: 'blood necromancer',
-  description: 'blood necromancer',
-  armor: 50,
-  stats: {
-    str: [250, 275],
-    dex: [126, 145],
-    int: [676, 905],
-    hp: [903, 1],
-    taming: null,
-    barding: 156
-  },
-  offense: {
-    min: 18,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 357,
-  name: 'bloodthirsty turkey',
-  description: 'bloodthirsty turkey',
-  armor: 40,
-  stats: {
-    str: [1, 1],
-    dex: [235, 250],
-    int: [301, 325],
-    hp: [1, 1],
-    taming: null,
-    barding: 123
-  },
-  offense: {
-    min: 17,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 358,
-  name: 'comet',
-  description: 'comet',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 200],
-    int: [750, 1],
-    hp: [850, 1],
-    taming: null,
-    barding: 134
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 359,
-  name: 'corrupt soul',
-  description: 'corrupt soul',
-  armor: 28,
-  stats: {
-    str: [75, 80],
-    dex: [16, 45],
-    int: [111, 125],
-    hp: [100, 175],
-    taming: null,
-    barding: 72
-  },
-  offense: {
-    min: 7,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 360,
-  name: 'crystal ogre',
-  description: 'crystal ogre',
-  armor: 32,
-  stats: {
-    str: [900, 1],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 134
-  },
-  offense: {
-    min: 21,
-    max: 32,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 361,
-  name: 'crystal wolf',
-  description: 'crystal wolf',
-  armor: 22,
-  stats: {
-    str: [125, 150],
-    dex: [81, 105],
-    int: [36, 60],
-    hp: [58, 72],
-    taming: null,
-    barding: 50
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 362,
-  name: 'cuckold',
-  description: 'cuckold',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 146
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 363,
-  name: 'cupid',
-  description: 'cupid',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 151
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 364,
-  name: 'cupids apprentice archer',
-  description: 'cupids apprentice archer',
-  armor: 15,
-  stats: {
-    str: [106, 116],
-    dex: [91, 115],
-    int: [100, 200],
-    hp: [0, 0],
-    taming: null,
-    barding: 69
-  },
-  offense: {
-    min: 11,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 365,
-  name: 'cupids archer',
-  description: 'cupids archer',
-  armor: 20,
-  stats: {
-    str: [110, 125],
-    dex: [100, 110],
-    int: [100, 200],
-    hp: [0, 0],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 12,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 366,
-  name: 'cupids rookie archer',
-  description: 'cupids rookie archer',
-  armor: 10,
-  stats: {
-    str: [86, 100],
-    dex: [81, 95],
-    int: [100, 200],
-    hp: [0, 0],
-    taming: null,
-    barding: 68
-  },
-  offense: {
-    min: 10,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 367,
-  name: 'cupids veteran archer',
-  description: 'cupids veteran archer',
-  armor: 25,
-  stats: {
-    str: [110, 130],
-    dex: [110, 130],
-    int: [100, 200],
-    hp: [0, 0],
-    taming: null,
-    barding: 71
-  },
-  offense: {
-    min: 13,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 368,
-  name: 'dancer',
-  description: 'dancer',
-  armor: 38,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 155
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 369,
-  name: 'dark elf archer',
-  description: 'dark elf archer',
-  armor: 35,
-  stats: {
-    str: [146, 180],
-    dex: [180, 205],
-    int: [800, 1],
-    hp: [288, 308],
-    taming: null,
-    barding: 88
-  },
-  offense: {
-    min: 15,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 370,
-  name: 'dark elf axer',
-  description: 'dark elf axer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [705, 950],
-    hp: [325, 500],
-    taming: null,
-    barding: 106
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 371,
-  name: 'dark elf battle mage',
-  description: 'dark elf battle mage',
-  armor: 50,
-  stats: {
-    str: [416, 505],
-    dex: [146, 165],
-    int: [566, 655],
-    hp: [450, 750],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 11,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 372,
-  name: 'dark elf commander',
-  description: 'dark elf commander',
-  armor: 60,
-  stats: {
-    str: [305, 425],
-    dex: [72, 150],
-    int: [505, 750],
-    hp: [3, 3],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 20,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 373,
-  name: 'dark elf fencer',
-  description: 'dark elf fencer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [705, 950],
-    hp: [325, 500],
-    taming: null,
-    barding: 115
-  },
-  offense: {
-    min: 14,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 374,
-  name: 'dark elf knight',
-  description: 'dark elf knight',
-  armor: 90,
-  stats: {
-    str: [425, 525],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 19,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 375,
-  name: 'dark elf macer',
-  description: 'dark elf macer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [705, 950],
-    hp: [325, 500],
-    taming: null,
-    barding: 103
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 376,
-  name: 'dark elf mage',
-  description: 'dark elf mage',
-  armor: 35,
-  stats: {
-    str: [171, 200],
-    dex: [126, 145],
-    int: [705, 950],
-    hp: [103, 120],
-    taming: null,
-    barding: 88
-  },
-  offense: {
-    min: 15,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 377,
-  name: 'dark elf ranger',
-  description: 'dark elf ranger',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [150, 175],
-    int: [505, 750],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 18,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Random Ranger Armor Piece'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 378,
-  name: 'dark elf spirit',
-  description: 'dark elf spirit',
-  armor: 45,
-  stats: {
-    str: [650, 750],
-    dex: [110, 120],
-    int: [2, 2],
-    hp: [12, 15],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 9,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 379,
-  name: 'dasher',
-  description: 'dasher',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 157
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 380,
-  name: 'defiled zombie',
-  description: 'defiled zombie',
-  armor: 27,
-  stats: {
-    str: [445, 505],
-    dex: [61, 100],
-    int: [375, 425],
-    hp: [415, 485],
-    taming: null,
-    barding: 96
-  },
-  offense: {
-    min: 17,
-    max: 21,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 381,
-  name: 'despair',
-  description: 'despair',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 162
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 382,
-  name: 'donner',
-  description: 'donner',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 152
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 383,
-  name: 'easter bunny',
-  description: 'easter bunny',
-  armor: 40,
-  stats: {
-    str: [350, 350],
-    dex: [205, 205],
-    int: [50, 50],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 6,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Rabbits Feet'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 384,
-  name: 'elf archer',
-  description: 'elf archer',
-  armor: 35,
-  stats: {
-    str: [146, 180],
-    dex: [180, 205],
-    int: [705, 940],
-    hp: [288, 308],
-    taming: null,
-    barding: 105
-  },
-  offense: {
-    min: 15,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 385,
-  name: 'elf axer',
-  description: 'elf axer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [705, 1],
-    hp: [325, 500],
-    taming: null,
-    barding: 112
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 386,
-  name: 'elf battle mage',
-  description: 'elf battle mage',
-  armor: 50,
-  stats: {
-    str: [416, 505],
-    dex: [146, 165],
-    int: [566, 655],
-    hp: [450, 750],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 11,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 387,
-  name: 'elf fencer',
-  description: 'elf fencer',
-  armor: 45,
-  stats: {
-    str: [205, 325],
-    dex: [75, 100],
-    int: [505, 750],
-    hp: [325, 500],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 14,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 388,
-  name: 'elf knight',
-  description: 'elf knight',
-  armor: 90,
-  stats: {
-    str: [425, 525],
-    dex: [125, 150],
-    int: [505, 750],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 19,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 389,
-  name: 'elf macer',
-  description: 'elf macer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [505, 750],
-    hp: [325, 500],
-    taming: null,
-    barding: 111
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 390,
-  name: 'elf mage',
-  description: 'elf mage',
-  armor: 35,
-  stats: {
-    str: [171, 200],
-    dex: [126, 145],
-    int: [276, 305],
-    hp: [250, 320],
-    taming: null,
-    barding: 87
-  },
-  offense: {
-    min: 15,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 391,
-  name: 'elf ranger',
-  description: 'elf ranger',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [150, 175],
-    int: [505, 750],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 18,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Random Ranger Armor Piece'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 392,
-  name: 'evil polar bear',
-  description: 'evil polar bear',
-  armor: 18,
-  stats: {
-    str: [150, 450],
-    dex: [80, 140],
-    int: [50, 500],
-    hp: [250, 750],
-    taming: null,
-    barding: 100
-  },
-  offense: {
-    min: 8,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 393,
-  name: 'fire reaper',
-  description: 'fire reaper',
-  armor: 40,
-  stats: {
-    str: [215, 315],
-    dex: [66, 75],
-    int: [750, 1],
-    hp: [250, 500],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 15,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 394,
-  name: 'flame archer',
-  description: 'flame archer',
-  armor: 35,
-  stats: {
-    str: [146, 180],
-    dex: [180, 205],
-    int: [716, 940],
-    hp: [288, 308],
-    taming: null,
-    barding: 109
-  },
-  offense: {
-    min: 11,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 395,
-  name: 'flame axer',
-  description: 'flame axer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [750, 1],
-    hp: [325, 500],
-    taming: null,
-    barding: 115
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 396,
-  name: 'flame battle mage',
-  description: 'flame battle mage',
-  armor: 50,
-  stats: {
-    str: [416, 505],
-    dex: [146, 165],
-    int: [3, 4],
-    hp: [450, 750],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 11,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'polar bear statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 397,
-  name: 'flame fencer',
-  description: 'flame fencer',
-  armor: 45,
-  stats: {
-    str: [205, 325],
-    dex: [75, 100],
-    int: [505, 750],
-    hp: [325, 500],
-    taming: null,
-    barding: 107
-  },
-  offense: {
-    min: 14,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 398,
-  name: 'flame ghoul',
-  description: 'flame ghoul',
-  armor: 50,
-  stats: {
-    str: [345, 370],
-    dex: [71, 90],
-    int: [26, 40],
-    hp: [208, 222],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 13,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 399,
-  name: 'flame knight',
-  description: 'flame knight',
-  armor: 90,
-  stats: {
-    str: [425, 525],
-    dex: [125, 150],
-    int: [3, 4],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 19,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Hidden Village Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 400,
-  name: 'flame macer',
-  description: 'flame macer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [505, 750],
-    hp: [325, 500],
-    taming: null,
-    barding: 101
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Hidden Village Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 401,
-  name: 'flame mage',
-  description: 'flame mage',
-  armor: 35,
-  stats: {
-    str: [205, 325],
-    dex: [75, 100],
-    int: [505, 750],
-    hp: [325, 500],
-    taming: null,
-    barding: 108
-  },
-  offense: {
-    min: 14,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Hidden Village Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 402,
-  name: 'flame ranger',
-  description: 'flame ranger',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [150, 175],
-    int: [3, 4],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 18,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Ranger Armor of Fire  1 Random Piece, 4 Fire Hues'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 403,
-  name: 'fluffy',
-  description: 'fluffy',
-  armor: 70,
-  stats: {
-    str: [1, 1],
-    dex: [180, 190],
-    int: [1, 1],
-    hp: [2, 2],
-    taming: null,
-    barding: 186
-  },
-  offense: {
-    min: 17,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Level 6 Treasure Map'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 404,
-  name: 'frankensteins monster',
-  description: 'frankensteins monster',
-  armor: 78,
-  stats: {
-    str: [900, 1],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [4, 5],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 16,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Scrolls'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 405,
-  name: 'frost archer',
-  description: 'frost archer',
-  armor: 35,
-  stats: {
-    str: [146, 180],
-    dex: [180, 205],
-    int: [716, 940],
-    hp: [288, 308],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 11,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 406,
-  name: 'frost axer',
-  description: 'frost axer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [750, 1],
-    hp: [325, 500],
-    taming: null,
-    barding: 116
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 407,
-  name: 'frost battle mage',
-  description: 'frost battle mage',
-  armor: 50,
-  stats: {
-    str: [415, 505],
-    dex: [146, 165],
-    int: [3, 4],
-    hp: [450, 750],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 14,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Polar Bear Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 408,
-  name: 'frost fencer',
-  description: 'frost fencer',
-  armor: 45,
-  stats: {
-    str: [205, 325],
-    dex: [75, 100],
-    int: [505, 750],
-    hp: [325, 500],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 14,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 409,
-  name: 'frost knight',
-  description: 'frost knight',
-  armor: 90,
-  stats: {
-    str: [425, 525],
-    dex: [125, 150],
-    int: [3, 4],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 19,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '25'],
-    description: 'Ice Fortress Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 410,
-  name: 'frost macer',
-  description: 'frost macer',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [75, 100],
-    int: [505, 750],
-    hp: [325, 500],
-    taming: null,
-    barding: 101
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 411,
-  name: 'frost mage',
-  description: 'frost mage',
-  armor: 35,
-  stats: {
-    str: [171, 200],
-    dex: [126, 145],
-    int: [700, 950],
-    hp: [250, 320],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 15,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 412,
-  name: 'frost ranger',
-  description: 'frost ranger',
-  armor: 45,
-  stats: {
-    str: [305, 425],
-    dex: [125, 135],
-    int: [3, 4],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 19,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Ranger Armor of Frost  1 Random Piece, 4 Ice Hues'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 413,
-  name: 'gluttony',
-  description: 'gluttony',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 162
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 414,
-  name: 'goblin',
-  description: 'goblin',
-  armor: 32,
-  stats: {
-    str: [175, 200],
-    dex: [81, 105],
-    int: [650, 710],
-    hp: [275, 325],
-    taming: null,
-    barding: 94
-  },
-  offense: {
-    min: 10,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 415,
-  name: 'good polar bear',
-  description: 'good polar bear',
-  armor: 0,
-  stats: {
-    str: [125, 175],
-    dex: [81, 105],
-    int: [26, 50],
-    hp: [125, 250],
-    taming: 80.1,
-    barding: 70
-  },
-  offense: {
-    min: 8,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 416,
-  name: 'grave necromancer',
-  description: 'grave necromancer',
-  armor: 40,
-  stats: {
-    str: [216, 305],
-    dex: [96, 115],
-    int: [966, 1],
-    hp: [3, 3],
-    taming: null,
-    barding: 210
-  },
-  offense: {
-    min: 15,
-    max: 27,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 417,
-  name: 'greed',
-  description: 'greed',
-  armor: 60,
-  stats: {
-    str: [250, 275],
-    dex: [126, 145],
-    int: [676, 905],
-    hp: [2, 3],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 24,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 418,
-  name: 'grinch',
-  description: 'grinch',
-  armor: 120,
-  stats: {
-    str: [586, 785],
-    dex: [177, 255],
-    int: [351, 450],
-    hp: [5, 6],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 13,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Piece of Grinch Clothing'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 419,
-  name: 'headlesshorseless',
-  description: 'headlesshorseless',
-  armor: 36,
-  stats: {
-    str: [428, 480],
-    dex: [136, 155],
-    int: [86, 130],
-    hp: [550, 750],
-    taming: null,
-    barding: 122
-  },
-  offense: {
-    min: 14,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 420,
-  name: 'holiday elf (beefy)',
-  description: 'holiday elf (beefy)',
-  armor: null,
-  stats: {
-    str: [150, 175],
-    dex: [110, 120],
-    int: [200, 250],
-    hp: [180, 250],
-    taming: null,
-    barding: 86
-  },
-  offense: {
-    min: 16,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: '200-275 Gold Coins'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 421,
-  name: 'holiday elf (rough)',
-  description: 'holiday elf (rough)',
-  armor: null,
-  stats: {
-    str: [125, 150],
-    dex: [110, 120],
-    int: [200, 250],
-    hp: [130, 190],
-    taming: null,
-    barding: 81
-  },
-  offense: {
-    min: 12,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: '150-225 Gold Coins'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 422,
-  name: 'holiday elf (wimpy)',
-  description: 'holiday elf (wimpy)',
-  armor: null,
-  stats: {
-    str: [86, 100],
-    dex: [81, 95],
-    int: [200, 250],
-    hp: [75, 125],
-    taming: null,
-    barding: 76
-  },
-  offense: {
-    min: 8,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: '75-150 Gold Coins'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 423,
-  name: 'holiday reindeer',
-  description: 'holiday reindeer',
-  armor: 38,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 171
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 424,
-  name: 'hubris',
-  description: 'hubris',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 174
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 425,
-  name: 'ice ghoul',
-  description: 'ice ghoul',
-  armor: 50,
-  stats: {
-    str: [345, 370],
-    dex: [71, 90],
-    int: [26, 40],
-    hp: [208, 222],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 13,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Frozen Continent Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 426,
-  name: 'ice golem',
-  description: 'ice golem',
-  armor: 40,
-  stats: {
-    str: [156, 185],
-    dex: [96, 115],
-    int: [171, 192],
-    hp: [225, 425],
-    taming: null,
-    barding: 81
-  },
-  offense: {
-    min: 10,
-    max: 21,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 427,
-  name: 'ice reaper',
-  description: 'ice reaper',
-  armor: 40,
-  stats: {
-    str: [215, 315],
-    dex: [66, 75],
-    int: [750, 1],
-    hp: [250, 500],
-    taming: null,
-    barding: 110
-  },
-  offense: {
-    min: 15,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'Ice Reaper Statuette  4 Hues'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 428,
-  name: 'krampus',
-  description: 'krampus',
-  armor: 55,
-  stats: {
-    str: [250, 275],
-    dex: [126, 145],
-    int: [676, 905],
-    hp: [2, 3],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 19,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'the naughty list  a rare runebook'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 429,
-  name: 'leprechaun',
-  description: 'leprechaun',
-  armor: null,
-  stats: {
-    str: [81, 105],
-    dex: [191, 215],
-    int: [126, 150],
-    hp: [175, 325],
-    taming: null,
-    barding: 73
-  },
-  offense: {
-    min: 14,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Leprechaun Sandals'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 430,
-  name: 'leprechaun jockey',
-  description: 'leprechaun jockey',
-  armor: null,
-  stats: {
-    str: [161, 205],
-    dex: [75, 100],
-    int: [126, 150],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 18,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 431,
-  name: 'lust',
-  description: 'lust',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 161
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 432,
-  name: 'mini daemon',
-  description: 'mini daemon',
-  armor: 58,
-  stats: {
-    str: [476, 505],
-    dex: [76, 95],
-    int: [301, 325],
-    hp: [286, 303],
-    taming: null,
-    barding: 98
-  },
-  offense: {
-    min: 7,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Hidden Village Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 433,
-  name: 'minion of cupid',
-  description: 'minion of cupid',
-  armor: 10,
-  stats: {
-    str: [75, 100],
-    dex: [46, 58],
-    int: [16, 24],
-    hp: [25, 50],
-    taming: null,
-    barding: 33
-  },
-  offense: {
-    min: 8,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 434,
-  name: 'mutant fluffy',
-  description: 'mutant fluffy',
-  armor: 60,
-  stats: {
-    str: [696, 775],
-    dex: [86, 105],
-    int: [436, 475],
-    hp: [578, 595],
-    taming: null,
-    barding: 117
-  },
-  offense: {
-    min: 16,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 435,
-  name: 'plague zombie',
-  description: 'plague zombie',
-  armor: 24,
-  stats: {
-    str: [415, 465],
-    dex: [51, 85],
-    int: [375, 450],
-    hp: [385, 445],
-    taming: null,
-    barding: 97
-  },
-  offense: {
-    min: 14,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 436,
-  name: 'polar bear boss',
-  description: 'polar bear boss',
-  armor: 50,
-  stats: {
-    str: [900, 1],
-    dex: [114, 155],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 16,
-    max: 2,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'StrengthPotion'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 437,
-  name: 'poltergeist',
-  description: 'poltergeist',
-  armor: 34,
-  stats: {
-    str: [166, 210],
-    dex: [96, 115],
-    int: [325, 375],
-    hp: [146, 190],
-    taming: null,
-    barding: 92
-  },
-  offense: {
-    min: 11,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 438,
-  name: 'prancer',
-  description: 'prancer',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 167
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 439,
-  name: 'queen of the damned',
-  description: 'queen of the damned',
-  armor: 40,
-  stats: {
-    str: [750, 850],
-    dex: [105, 115],
-    int: [420, 475],
-    hp: [4, 5],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 18,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Assorted High Level Scrolls'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 440,
-  name: 'ridable polar bear',
-  description: 'ridable polar bear',
-  armor: 18,
-  stats: {
-    str: [116, 140],
-    dex: [81, 105],
-    int: [26, 50],
-    hp: [70, 84],
-    taming: 11.1,
-    barding: 44
-  },
-  offense: {
-    min: 7,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 441,
-  name: 'royal mummy',
-  description: 'royal mummy',
-  armor: 40,
-  stats: {
-    str: [625, 725],
-    dex: [150, 170],
-    int: [26, 40],
-    hp: [4, 5],
-    taming: null,
-    barding: 157
-  },
-  offense: {
-    min: 18,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Assorted High Level Scrolls'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 442,
-  name: 'rudolph',
-  description: 'rudolph',
-  armor: 38,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 171
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '50'],
-    description: 'Santas Lair Scroll (Overworld)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 443,
-  name: 'savage turkey',
-  description: 'savage turkey',
-  armor: 30,
-  stats: {
-    str: [605, 625],
-    dex: [140, 150],
-    int: [301, 325],
-    hp: [1, 1],
-    taming: null,
-    barding: 97
-  },
-  offense: {
-    min: 13,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 444,
-  name: 'servant of cupid',
-  description: 'servant of cupid',
-  armor: 15,
-  stats: {
-    str: [96, 115],
-    dex: [56, 68],
-    int: [16, 24],
-    hp: [50, 75],
-    taming: null,
-    barding: 44
-  },
-  offense: {
-    min: 9,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 445,
-  name: 'skeletal blood knight',
-  description: 'skeletal blood knight',
-  armor: 35,
-  stats: {
-    str: [496, 650],
-    dex: [96, 135],
-    int: [636, 690],
-    hp: [518, 750],
-    taming: null,
-    barding: 116
-  },
-  offense: {
-    min: 18,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 446,
-  name: 'skeletal blood mage',
-  description: 'skeletal blood mage',
-  armor: 44,
-  stats: {
-    str: [166, 210],
-    dex: [56, 75],
-    int: [386, 410],
-    hp: [850, 950],
-    taming: null,
-    barding: 140
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 447,
-  name: 'skeleton',
-  description: 'skeleton',
-  armor: 16,
-  karma: ['', '450'],
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [56, 75],
-    int: [216, 240],
-    hp: [75, 125],
-    taming: null,
-    barding: 67
-  },
-  offense: {
-    min: 10,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '1000'],
-    description: 'Platinum Coin'
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 448,
-  name: 'skeleton',
-  description: 'skeleton',
-  armor: 20,
-  karma: ['', '450'],
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [56, 75],
-    int: [16, 40],
-    hp: [34, 48],
-    taming: null,
-    barding: 38.9
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '1000'],
-    description: 'Platinum Coin'
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 449,
-  name: 'skeleton',
-  description: 'skeleton',
-  armor: 30,
-  karma: ['', '450'],
-  fame: '450',
-  stats: {
-    str: [225, 250],
-    dex: [90, 105],
-    int: [475, 515],
-    hp: [375, 400],
-    taming: null,
-    barding: 94
-  },
-  offense: {
-    min: 13,
-    max: 19,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 450,
-  name: 'sloth',
-  description: 'sloth',
-  armor: 38,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 168
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Sloth Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 451,
-  name: 'snow vortex',
-  description: 'snow vortex',
-  armor: 50,
-  stats: {
-    str: [326, 355],
-    dex: [166, 185],
-    int: [71, 95],
-    hp: [296, 413],
-    taming: null,
-    barding: 78
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 452,
-  name: 'sorcerer of cupid',
-  description: 'sorcerer of cupid',
-  armor: 25,
-  stats: {
-    str: [50, 75],
-    dex: [26, 38],
-    int: [125, 150],
-    hp: [75, 100],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 8,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 453,
-  name: 'succubus concubine',
-  description: 'succubus concubine',
-  armor: 25,
-  stats: {
-    str: [225, 275],
-    dex: [75, 150],
-    int: [325, 400],
-    hp: [1, 2],
-    taming: null,
-    barding: 163
-  },
-  offense: {
-    min: 5,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 454,
-  name: 'turkey archer',
-  description: 'turkey archer',
-  armor: 35,
-  stats: {
-    str: [305, 425],
-    dex: [150, 175],
-    int: [505, 750],
-    hp: [1, 1],
-    taming: null,
-    barding: 138
-  },
-  offense: {
-    min: 18,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Random Event Clothing Item(17 Possible Items)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 455,
-  name: 'turkey fencer',
-  description: 'turkey fencer',
-  armor: 35,
-  stats: {
-    str: [305, 425],
-    dex: [150, 175],
-    int: [505, 750],
-    hp: [1, 1],
-    taming: null,
-    barding: 138
-  },
-  offense: {
-    min: 14,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Random Event Clothing Item  17 Possible Items'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 456,
-  name: 'turkey knight',
-  description: 'turkey knight',
-  armor: 35,
-  stats: {
-    str: [305, 425],
-    dex: [72, 150],
-    int: [505, 750],
-    hp: [4, 5],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 18,
-    max: 27,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Random Event Clothing Item  (17 Possible Items)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 457,
-  name: 'turkey macer',
-  description: 'turkey macer',
-  armor: 35,
-  stats: {
-    str: [305, 425],
-    dex: [150, 175],
-    int: [505, 750],
-    hp: [1, 1],
-    taming: null,
-    barding: 138
-  },
-  offense: {
-    min: 17,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '10'],
-    description: 'Random Event Clothing Item (17 Possible Items)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 458,
-  name: 'turkinator',
-  description: 'turkinator',
-  armor: 40,
-  stats: {
-    str: [1, 1],
-    dex: [125, 150],
-    int: [301, 325],
-    hp: [4, 5],
-    taming: null,
-    barding: 256
-  },
-  offense: {
-    min: 17,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Assorted Gems'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 459,
-  name: 'undead captain johne',
-  description: 'undead captain johne',
-  armor: 40,
-  stats: {
-    str: [625, 725],
-    dex: [150, 170],
-    int: [26, 40],
-    hp: [4, 5],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 18,
-    max: 28,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'captain Johnes cutlass'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 460,
-  name: 'undead cat',
-  description: 'undead cat',
-  armor: 30,
-  stats: {
-    str: [102, 150],
-    dex: [81, 105],
-    int: [36, 60],
-    hp: [35, 65],
-    taming: null,
-    barding: 50
-  },
-  offense: {
-    min: 11,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 461,
-  name: 'undead cat lady',
-  description: 'undead cat lady',
-  armor: 0,
-  stats: {
-    str: [650, 750],
-    dex: [110, 120],
-    int: [2, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 176
-  },
-  offense: {
-    min: 12,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'a vial of catnip'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 462,
-  name: 'undead dragon',
-  description: 'undead dragon',
-  armor: 40,
-  stats: {
-    str: [750, 900],
-    dex: [68, 125],
-    int: [488, 620],
-    hp: [3, 4],
-    taming: null,
-    barding: 220
-  },
-  offense: {
-    min: 20,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 463,
-  name: 'vampire',
-  description: 'vampire',
-  armor: 35,
-  stats: {
-    str: [446, 515],
-    dex: [126, 155],
-    int: [281, 305],
-    hp: [700, 800],
-    taming: null,
-    barding: 132
-  },
-  offense: {
-    min: 15,
-    max: 22,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 464,
-  name: 'vampire lord',
-  description: 'vampire lord',
-  armor: 30,
-  stats: {
-    str: [450, 500],
-    dex: [191, 215],
-    int: [800, 1],
-    hp: [4, 5],
-    taming: null,
-    barding: 207
-  },
-  offense: {
-    min: 10,
-    max: 20,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Assorted Medium Level Scrolls'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 465,
-  name: 'vampire mistress',
-  description: 'vampire mistress',
-  armor: 20,
-  stats: {
-    str: [225, 75],
-    dex: [75, 150],
-    int: [325, 400],
-    hp: [1, 1],
-    taming: null,
-    barding: 182
-  },
-  offense: {
-    min: 5,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 466,
-  name: 'vanity',
-  description: 'vanity',
-  armor: 38,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [850, 1],
-    taming: null,
-    barding: 172
-  },
-  offense: {
-    min: 13,
-    max: 17,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Vanity Statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 467,
-  name: 'vixen',
-  description: 'vixen',
-  armor: 40,
-  stats: {
-    str: [898, 1],
-    dex: [68, 100],
-    int: [1, 2],
-    hp: [1, 1],
-    taming: null,
-    barding: 146
-  },
-  offense: {
-    min: 15,
-    max: 25,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '250'],
-    description: 'vixen statuette'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 468,
-  name: 'walking dead',
-  description: 'walking dead',
-  armor: 21,
-  stats: {
-    str: [145, 175],
-    dex: [41, 70],
-    int: [375, 450],
-    hp: [225, 250],
-    taming: null,
-    barding: 84
-  },
-  offense: {
-    min: 11,
-    max: 15,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 469,
-  name: 'warrior of cupid',
-  description: 'warrior of cupid',
-  armor: 20,
-  stats: {
-    str: [105, 125],
-    dex: [66, 88],
-    int: [16, 24],
-    hp: [75, 100],
-    taming: null,
-    barding: 53
-  },
-  offense: {
-    min: 10,
-    max: 14,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Valentines Candy'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 470,
-  name: 'white witch',
-  description: 'white witch',
-  armor: 55,
-  stats: {
-    str: [250, 275],
-    dex: [126, 145],
-    int: [676, 905],
-    hp: [2, 3],
-    taming: null,
-    barding: null
-  },
-  offense: {
-    min: 24,
-    max: 29,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '20'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 471,
-  name: 'wild turkey',
-  description: 'wild turkey',
-  armor: 20,
-  stats: {
-    str: [505, 525],
-    dex: [100, 120],
-    int: [301, 325],
-    hp: [475, 525],
-    taming: null,
-    barding: 75
-  },
-  offense: {
-    min: 8,
-    max: 16,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '4'],
-    description: 'Peculiar Meat (Carve)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 472,
-  name: 'zombie',
-  description: 'zombie',
-  armor: 18,
-  karma: ['', '600'],
-  fame: '600',
-  stats: {
-    str: [125, 135],
-    dex: [31, 50],
-    int: [375, 425],
-    hp: [75, 125],
-    taming: null,
-    barding: 73
-  },
-  offense: {
-    min: 8,
-    max: 12,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'special',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potions'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [35, 50],
-    tactics: [35, 50],
-    magic_resistance: [15, 40]
-  }
-}, {
-  id: 473,
-  name: 'blade spirit',
-  description: 'blade spirit',
-  armor: 40,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'summons',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 474,
-  name: 'energy vortex',
-  description: 'energy vortex',
-  armor: 40,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'summons',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {}
-}, {
-  id: 475,
-  name: 'ancient lich',
-  description: 'ancient lich',
-  armor: 60,
-  karma: '-23000',
-  fame: '23000',
-  stats: {
-    str: [206, 305],
-    dex: [96, 115],
-    int: [966, 1],
-    hp: [560, 595],
-    taming: null,
-    barding: 142
-  },
-  offense: {
-    min: 15,
-    max: 27,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1500, 1700],
-  skills: {
-    wrestling: [75, 87],
-    tactics: [90, 100],
-    magic_resistance: [175, 200]
-  }
-}, {
-  id: 476,
-  name: 'animated zombie',
-  description: 'animated zombie',
-  armor: 18,
-  stats: {
-    taming: null,
-    barding: null
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 477,
-  name: 'bogle',
-  description: 'bogle',
-  armor: 28,
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 64
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 478,
-  name: 'bone knight',
-  description: 'bone knight',
-  armor: 40,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [195, 250],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [118, 150],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 8,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'WoodenShield'
-  }],
-  credits: [175, 275],
-  skills: {
-    wrestling: [85, 95],
-    tactics: [95, 100],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 479,
-  name: 'bone magi',
-  description: 'bone magi',
-  armor: 38,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [76, 100],
-    dex: [56, 75],
-    int: [186, 210],
-    hp: [46, 60],
-    taming: null,
-    barding: 81
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [55, 70]
-  }
-}, {
-  id: 480,
-  name: 'dark one',
-  description: 'dark one',
-  armor: 65,
-  stats: {
-    str: [770, 830],
-    dex: [146, 185],
-    int: [1, 1],
-    hp: [1, 1],
-    taming: null,
-    barding: 243
-  },
-  offense: {
-    min: 14,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '4'],
-    description: 'Peculiar Meat (Carve)'
-  }],
-  credits: 0,
-  skills: {}
-}, {
-  id: 481,
-  name: 'ghoul',
-  description: 'ghoul',
-  armor: 28,
-  karma: '-2500',
-  fame: '2500',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 45
-  },
-  offense: {
-    min: 7,
-    max: 9,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Weapon'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 482,
-  name: 'lich',
-  description: 'lich',
-  armor: 50,
-  karma: ['', '8000'],
-  fame: '8000',
-  stats: {
-    str: [171, 200],
-    dex: [126, 145],
-    int: [276, 305],
-    hp: [103, 120],
-    taming: null,
-    barding: 92
-  },
-  offense: {
-    min: 24,
-    max: 26,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [275, 324],
-  skills: {
-    wrestling: [0, 0],
-    tactics: [70, 90],
-    magic_resistance: [80, 100]
-  }
-}, {
-  id: 483,
-  name: 'lich lord',
-  description: 'lich lord',
-  armor: 50,
-  karma: ['', '18000'],
-  fame: '18000',
-  stats: {
-    str: [416, 505],
-    dex: [146, 165],
-    int: [566, 655],
-    hp: [250, 303],
-    taming: null,
-    barding: 109
-  },
-  offense: {
-    min: 11,
-    max: 13,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '200'],
-    description: 'Platinum Coin'
-  }],
-  credits: [450, 600],
-  skills: {
-    wrestling: [60, 80],
-    tactics: [50, 70],
-    magic_resistance: [150, 200]
-  }
-}, {
-  id: 484,
-  name: 'mummy',
-  description: 'mummy',
-  armor: 50,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [346, 370],
-    dex: [71, 90],
-    int: [26, 40],
-    hp: [208, 222],
-    taming: null,
-    barding: 70
-  },
-  offense: {
-    min: 13,
-    max: 23,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Bones'
-  }],
-  credits: [305, 315],
-  skills: {
-    wrestling: [35, 50],
-    tactics: [35, 50],
-    magic_resistance: [15, 40]
-  }
-}, {
-  id: 485,
-  name: 'restless soul',
-  description: 'restless soul',
-  armor: 6,
-  karma: ['', '500'],
-  fame: '500',
-  stats: {
-    str: [26, 40],
-    dex: [26, 40],
-    int: [26, 40],
-    hp: [16, 24],
-    taming: null,
-    barding: 19
-  },
-  offense: {
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [null],
-  credits: 0,
-  skills: {
-    wrestling: [20, 30],
-    tactics: [20, 30],
-    magic_resistance: [20, 30]
-  }
-}, {
-  id: 486,
-  name: 'revenant',
-  description: 'revenant',
-  armor: 62,
-  karma: 0,
-  fame: 0,
-  stats: {
-    str: [196, 250],
-    dex: [110, 120],
-    int: [128, 138],
-    hp: [500, 550],
-    taming: null,
-    barding: 103
-  },
-  offense: {
-    min: 7,
-    max: 24,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Various Bones'
-  }],
-  credits: 0,
-  skills: {
-    wrestling: [90, 100],
-    tactics: [90, 100],
-    magic_resistance: [100, 150]
-  }
-}, {
-  id: 487,
-  name: 'rotting corpse',
-  description: 'rotting corpse',
-  armor: 40,
-  karma: ['', '12500'],
-  fame: '12500',
-  stats: {
-    str: [301, 350],
-    dex: [75, 75],
-    int: [151, 200],
-    hp: [1, 1],
-    taming: null,
-    barding: 125
-  },
-  offense: {
-    min: 8,
-    max: 10,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '100'],
-    description: 'Platinum Coin'
-  }],
-  credits: [1050, 1279],
-  skills: {
-    wrestling: [90, 100],
-    tactics: 100.0,
-    magic_resistance: '250.0'
-  }
-}, {
-  id: 488,
-  name: 'shade',
-  description: 'shade',
-  armor: 28,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 65
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 489,
-  name: 'skeletal knight',
-  description: 'skeletal knight',
-  armor: 40,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [196, 250],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [118, 150],
-    taming: null,
-    barding: 61
-  },
-  offense: {
-    min: 8,
-    max: 18,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'WoodenShield'
-  }],
-  credits: [175, 275],
-  skills: {
-    wrestling: [85, 95],
-    tactics: [95, 100],
-    magic_resistance: [65, 80]
-  }
-}, {
-  id: 490,
-  name: 'skeletal mage',
-  description: 'skeletal mage',
-  armor: 38,
-  karma: '-3000',
-  fame: '3000',
-  stats: {
-    str: [76, 100],
-    dex: [56, 75],
-    int: [186, 210],
-    hp: [46, 60],
-    taming: null,
-    barding: 77
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Potion'
-  }],
-  credits: [125, 150],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [55, 70]
-  }
-}, {
-  id: 491,
-  name: 'skeleton',
-  description: 'skeleton',
-  armor: 16,
-  karma: ['', '450'],
-  fame: '450',
-  stats: {
-    str: [56, 80],
-    dex: [56, 75],
-    int: [16, 40],
-    hp: [34, 48],
-    taming: null,
-    barding: 36
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Bones'
-  }],
-  credits: [25, 50],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 492,
-  name: 'spectre',
-  description: 'spectre',
-  armor: 28,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 62
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 493,
-  name: 'wraith',
-  description: 'wraith',
-  armor: 28,
-  karma: ['', '4000'],
-  fame: '4000',
-  stats: {
-    str: [76, 100],
-    dex: [76, 95],
-    int: [36, 60],
-    hp: [46, 60],
-    taming: null,
-    barding: 67
-  },
-  offense: {
-    min: 7,
-    max: 11,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: ['1', '400'],
-    description: 'Platinum Coin'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [45, 55],
-    tactics: [45, 60],
-    magic_resistance: [45, 60]
-  }
-}, {
-  id: 494,
-  name: 'zombie',
-  description: 'zombie',
-  armor: 18,
-  karma: ['', '600'],
-  fame: '600',
-  stats: {
-    str: [46, 70],
-    dex: [31, 50],
-    int: [26, 40],
-    hp: [28, 42],
-    taming: null,
-    barding: 33
-  },
-  offense: {
-    min: 3,
-    max: 7,
-    speed: 2
-  },
-  move: 1,
-  mob_type: 'humanoid',
-  attackable: true,
-  inventory: [{
-    chance: [1, 1],
-    description: 'Random Body Part or Bone'
-  }],
-  credits: [50, 100],
-  skills: {
-    wrestling: [35, 50],
-    tactics: [35, 50],
-    magic_resistance: [15, 40]
-  }
-}];
-
-// http: //www.uoguide.com/Fame
-// http: //www.uoguide.com/Brown_Bear
-// http: //www.uorenaissance.com/info/BrownBear
-
-/***/ }),
 /* 340 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -48972,6 +47913,120 @@ var ZoneData = [{
   }, {
     id: 8,
     chance: 5
+  }, {
+    id: 13,
+    chance: 5
+  }, {
+    id: 52,
+    chance: 2
+  }, {
+    id: 210,
+    chance: 2
+  }, {
+    id: 10,
+    chance: 5
+  }, {
+    id: 11,
+    chance: 5
+  }, {
+    id: 14,
+    chance: 5
+  }, {
+    id: 16,
+    chance: 5
+  }, {
+    id: 19,
+    chance: 5
+  }, {
+    id: 21,
+    chance: 5
+  }, {
+    id: 32,
+    chance: 5
+  }, {
+    id: 34,
+    chance: 5
+  }, {
+    id: 38,
+    chance: 5
+  }, {
+    id: 41,
+    chance: 5
+  }, {
+    id: 45,
+    chance: 5
+  }, {
+    id: 46,
+    chance: 5
+  }, {
+    id: 50,
+    chance: 2
+  }, {
+    id: 55,
+    chance: 2
+  }, {
+    id: 57,
+    chance: 2
+  }, {
+    id: 64,
+    chance: 2
+  }, {
+    id: 67,
+    chance: 2
+  }, {
+    id: 86,
+    chance: 2
+  }, {
+    id: 191,
+    chance: 2
+  }, {
+    id: 192,
+    chance: 2
+  }, {
+    id: 193,
+    chance: 2
+  }, {
+    id: 217,
+    chance: 2
+  }, {
+    id: 238,
+    chance: 2
+  }, {
+    id: 248,
+    chance: 2
+  }, {
+    id: 253,
+    chance: 5
+  }, {
+    id: 255,
+    chance: 2
+  }, {
+    id: 273,
+    chance: 2
+  }, {
+    id: 279,
+    chance: 2
+  }, {
+    id: 280,
+    chance: 2
+  }, {
+    id: 286,
+    chance: 2
+  }, {
+    id: 288,
+    chance: 2
+  }, {
+    id: 303,
+    chance: 2
+  }, {
+    id: 304,
+    chance: 2
+  }, {
+    id: 307,
+    chance: 2
+  }, {
+    id: 309,
+    chance: 2
   }],
   decorations: [{
     id: 1,
@@ -49001,6 +48056,120 @@ var ZoneData = [{
   }, {
     id: 6,
     chance: 20
+  }, {
+    id: 13,
+    chance: 5
+  }, {
+    id: 52,
+    chance: 2
+  }, {
+    id: 210,
+    chance: 2
+  }, {
+    id: 10,
+    chance: 5
+  }, {
+    id: 11,
+    chance: 5
+  }, {
+    id: 14,
+    chance: 5
+  }, {
+    id: 16,
+    chance: 5
+  }, {
+    id: 19,
+    chance: 5
+  }, {
+    id: 21,
+    chance: 5
+  }, {
+    id: 32,
+    chance: 5
+  }, {
+    id: 34,
+    chance: 5
+  }, {
+    id: 38,
+    chance: 5
+  }, {
+    id: 41,
+    chance: 5
+  }, {
+    id: 45,
+    chance: 5
+  }, {
+    id: 46,
+    chance: 5
+  }, {
+    id: 50,
+    chance: 2
+  }, {
+    id: 55,
+    chance: 2
+  }, {
+    id: 57,
+    chance: 2
+  }, {
+    id: 64,
+    chance: 2
+  }, {
+    id: 67,
+    chance: 2
+  }, {
+    id: 86,
+    chance: 2
+  }, {
+    id: 191,
+    chance: 2
+  }, {
+    id: 192,
+    chance: 2
+  }, {
+    id: 193,
+    chance: 2
+  }, {
+    id: 217,
+    chance: 2
+  }, {
+    id: 238,
+    chance: 2
+  }, {
+    id: 248,
+    chance: 2
+  }, {
+    id: 253,
+    chance: 5
+  }, {
+    id: 255,
+    chance: 2
+  }, {
+    id: 273,
+    chance: 2
+  }, {
+    id: 279,
+    chance: 2
+  }, {
+    id: 280,
+    chance: 2
+  }, {
+    id: 286,
+    chance: 2
+  }, {
+    id: 288,
+    chance: 2
+  }, {
+    id: 303,
+    chance: 2
+  }, {
+    id: 304,
+    chance: 2
+  }, {
+    id: 307,
+    chance: 2
+  }, {
+    id: 309,
+    chance: 2
   }],
   decorations: [{
     id: 1,
@@ -49039,6 +48208,123 @@ var ZoneData = [{
   }, {
     id: 8,
     chance: 10
+  }, {
+    id: 18,
+    chance: 5
+  }, {
+    id: 28,
+    chance: 5
+  }, {
+    id: 29,
+    chance: 5
+  }, {
+    id: 30,
+    chance: 2
+  }, {
+    id: 10,
+    chance: 5
+  }, {
+    id: 11,
+    chance: 5
+  }, {
+    id: 14,
+    chance: 5
+  }, {
+    id: 16,
+    chance: 5
+  }, {
+    id: 19,
+    chance: 5
+  }, {
+    id: 21,
+    chance: 5
+  }, {
+    id: 32,
+    chance: 5
+  }, {
+    id: 34,
+    chance: 5
+  }, {
+    id: 38,
+    chance: 5
+  }, {
+    id: 41,
+    chance: 5
+  }, {
+    id: 45,
+    chance: 5
+  }, {
+    id: 46,
+    chance: 5
+  }, {
+    id: 50,
+    chance: 2
+  }, {
+    id: 55,
+    chance: 2
+  }, {
+    id: 57,
+    chance: 2
+  }, {
+    id: 64,
+    chance: 2
+  }, {
+    id: 67,
+    chance: 2
+  }, {
+    id: 86,
+    chance: 2
+  }, {
+    id: 191,
+    chance: 2
+  }, {
+    id: 192,
+    chance: 2
+  }, {
+    id: 193,
+    chance: 2
+  }, {
+    id: 217,
+    chance: 2
+  }, {
+    id: 238,
+    chance: 2
+  }, {
+    id: 248,
+    chance: 2
+  }, {
+    id: 253,
+    chance: 5
+  }, {
+    id: 255,
+    chance: 2
+  }, {
+    id: 273,
+    chance: 2
+  }, {
+    id: 279,
+    chance: 2
+  }, {
+    id: 280,
+    chance: 2
+  }, {
+    id: 286,
+    chance: 2
+  }, {
+    id: 288,
+    chance: 2
+  }, {
+    id: 303,
+    chance: 2
+  }, {
+    id: 304,
+    chance: 2
+  }, {
+    id: 307,
+    chance: 2
+  }, {
+    id: 309,
+    chance: 2
   }],
   decorations: [{
     id: 1,
@@ -49071,6 +48357,123 @@ var ZoneData = [{
   }, {
     id: 8,
     chance: 15
+  }, {
+    id: 18,
+    chance: 5
+  }, {
+    id: 28,
+    chance: 5
+  }, {
+    id: 29,
+    chance: 5
+  }, {
+    id: 30,
+    chance: 2
+  }, {
+    id: 10,
+    chance: 5
+  }, {
+    id: 11,
+    chance: 5
+  }, {
+    id: 14,
+    chance: 5
+  }, {
+    id: 16,
+    chance: 5
+  }, {
+    id: 19,
+    chance: 5
+  }, {
+    id: 21,
+    chance: 5
+  }, {
+    id: 32,
+    chance: 5
+  }, {
+    id: 34,
+    chance: 5
+  }, {
+    id: 38,
+    chance: 5
+  }, {
+    id: 41,
+    chance: 5
+  }, {
+    id: 45,
+    chance: 5
+  }, {
+    id: 46,
+    chance: 5
+  }, {
+    id: 50,
+    chance: 5
+  }, {
+    id: 55,
+    chance: 5
+  }, {
+    id: 57,
+    chance: 5
+  }, {
+    id: 64,
+    chance: 5
+  }, {
+    id: 67,
+    chance: 5
+  }, {
+    id: 86,
+    chance: 5
+  }, {
+    id: 191,
+    chance: 5
+  }, {
+    id: 192,
+    chance: 5
+  }, {
+    id: 193,
+    chance: 5
+  }, {
+    id: 217,
+    chance: 5
+  }, {
+    id: 238,
+    chance: 5
+  }, {
+    id: 248,
+    chance: 5
+  }, {
+    id: 253,
+    chance: 5
+  }, {
+    id: 255,
+    chance: 5
+  }, {
+    id: 273,
+    chance: 5
+  }, {
+    id: 279,
+    chance: 5
+  }, {
+    id: 280,
+    chance: 5
+  }, {
+    id: 286,
+    chance: 5
+  }, {
+    id: 288,
+    chance: 5
+  }, {
+    id: 303,
+    chance: 5
+  }, {
+    id: 304,
+    chance: 5
+  }, {
+    id: 307,
+    chance: 5
+  }, {
+    id: 309,
+    chance: 5
   }],
   decorations: [{
     id: 1,
@@ -49194,7 +48597,7 @@ var StoreData = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(22);
 
 
 
@@ -49448,7 +48851,7 @@ var Skills = function Skills() {
         player[stat]++;
 
         state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER.SAVE, state.Player);
-        notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(stat) + ' increased by 1. It is now ' + player[stat].toString() + '.');
+        notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].prettyPrint(stat) + ' increased by 1. It is now ' + player[stat].toString() + '.');
       }
     }
   };
@@ -49567,9 +48970,7 @@ var Skills = function Skills() {
 
     if (random <= skill.current + skill.modifier) {
       notify('You have hidden yourself well.');
-
       checkSkillGain(skill.name.toLowerCase());
-      checkResultSuccess();
 
       state.Player.status.hide = true;
       return true;
@@ -49585,16 +48986,53 @@ var Skills = function Skills() {
     }
   };
 
+  var anatomy = function anatomy(mob) {
+    var skill = state.Skills.animal_lore;
+    var random = _.random(1, 100);
+
+    if (random <= skill.current + skill.modifier) {
+      notify('You discover some things about this creature.');
+      checkSkillGain('anatomy');
+      console.log('anat', mob);
+      return true;
+    } else {
+      notify('You do not know enough about this creature.');
+      if (skill.current < 20.0) {
+        // If under 20, check on fail.
+        checkSkillGain('anatomy');
+      }
+
+      return false;
+    }
+  };
+
+  var animalLore = function animalLore(mob) {
+    var skill = state.Skills.animal_lore;
+    var random = _.random(1, 100);
+
+    if (random <= skill.current + skill.modifier) {
+      notify('You discover some things about this creature.');
+      checkSkillGain('animal_lore');
+      console.log('AL', mob);
+      return true;
+    } else {
+      notify('You do not know enough about this creature.');
+      if (skill.current < 20.0) {
+        // If under 20, check on fail.
+        checkSkillGain('animal_lore');
+      }
+
+      return false;
+    }
+  };
+
   var meditate = function meditate() {
     var skill = state.Skills.meditation;
-    // This function is called when an object is clicked and a skill is checked.
     var random = _.random(1, 100);
 
     if (random <= skill.current + skill.modifier) {
       notify('You enter a meditative trance.');
-
       checkSkillGain(skill.name.toLowerCase());
-      checkResultSuccess();
 
       state.Player.status.meditate = true;
       return true;
@@ -49637,6 +49075,12 @@ var Skills = function Skills() {
       break;
     case SKILLS.MEDITATION:
       meditate();
+      break;
+    case SKILLS.ANATOMY:
+      anatomy(payload.mob);
+      break;
+    case SKILLS.ANIMAL_LORE:
+      animalLore(payload.mob);
       break;
     case SKILLS.CRAFT:
       // Handles all crafting skills
@@ -49808,6 +49252,16 @@ var SkillData = {
     primary: 'intelligence',
     secondary: 'strength',
     title: 'Biologist'
+  },
+  animal_lore: {
+    id: 16,
+    name: 'Animal Lore',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'intelligence',
+    secondary: 'strength',
+    title: 'Naturalist'
   }
 };
 
@@ -50255,7 +49709,7 @@ var Queue = function Queue() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(22);
 
 
 
@@ -50629,7 +50083,7 @@ if (typeof window !== 'undefined') { // Browser window
 
 var Emitter = __webpack_require__(354);
 var RequestBase = __webpack_require__(355);
-var isObject = __webpack_require__(145);
+var isObject = __webpack_require__(146);
 var ResponseBase = __webpack_require__(356);
 var Agent = __webpack_require__(358);
 
@@ -51714,7 +51168,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(145);
+var isObject = __webpack_require__(146);
 
 /**
  * Expose `RequestBase`.

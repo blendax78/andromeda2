@@ -396,7 +396,7 @@ export const MobData = [
   {
     id: 11,
     name: 'bull frog',
-    description: 'bull frog',
+    description: 'A bull frog hops around at your feet.',
     armor: 6,
     stats: {
       str: [46,70],
@@ -816,7 +816,7 @@ export const MobData = [
   {
     id: 28,
     name: 'forest ostard',
-    description: 'forest ostard',
+    description: 'A forest ostard wanders around.',
     armor: null,
     karma: 0,
     fame: 450,
@@ -852,10 +852,11 @@ export const MobData = [
   {
     id: 29,
     name: 'frenzied ostard',
-    description: 'frenzied ostard',
+    description: 'A frenzied ostard sees you and begins to run toward you.',
     armor: 0,
     karma: -1500,
     fame: 1500,
+    aggro: true,
     stats: {
       str: [94,170],
       dex: [96,115],
@@ -888,7 +889,7 @@ export const MobData = [
   {
     id: 30,
     name: 'giant serpent',
-    description: 'giant serpent',
+    description: 'A giant serpent slithers toward you.',
     armor: 32,
     karma: -2500,
     fame: 2500,
@@ -912,6 +913,11 @@ export const MobData = [
       {
         description: 'Platinum Coin',
         chance: [1,400]
+      },
+      {
+        id: 27,
+        count: 10,
+        chance: [1,1]
       }
     ],
     credits: [125,175],
@@ -946,8 +952,9 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '12 Spined Hides (Carve)',
-        chance: [1, 1]
+        id: 27,
+        count: 12,
+        chance: [1,1]
       }
     ],
     credits: [25,50],
@@ -960,7 +967,7 @@ export const MobData = [
   {
     id: 32,
     name: 'goat',
-    description: 'goat',
+    description: 'A goat is chewing on some grass.',
     armor: 10,
     karma: 0,
     fame: 150,
@@ -982,8 +989,9 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '8 Leather Hides (Carve)',
-        chance: [1, 1]
+        id: 27,
+        count: 8,
+        chance: [1,1]
       }
     ],
     credits: 0,
@@ -1032,7 +1040,7 @@ export const MobData = [
   {
     id: 34,
     name: 'great hart',
-    description: 'great hart',
+    description: 'A great hart stares at you, ready to run.',
     armor: 24,
     karma: 0,
     fame: 300,
@@ -1054,8 +1062,9 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '6 Raw Ribs (Carve)',
-        chance: [1, 1]
+        id: 27,
+        count: 15,
+        chance: [1,1]
       }
     ],
     credits: 0,
@@ -1090,8 +1099,9 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '6 Leather Hides (Carve)',
-        chance: [1, 1]
+        id: 27,
+        count: 6,
+        chance: [1,1]
       }
     ],
     credits: 0,
@@ -1126,8 +1136,9 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '2 Raw Ribs (Carve)',
-        chance: [1, 1]
+        id: 27,
+        count: 16,
+        chance: [1,1]
       }
     ],
     credits: 0,
@@ -1150,6 +1161,7 @@ export const MobData = [
       taming: 71.1,
       barding: 41
     },
+    aggro: true,
     offense: {
       min: 6,
       max: 12,
@@ -1172,7 +1184,7 @@ export const MobData = [
   {
     id: 38,
     name: 'horse',
-    description: 'horse',
+    description: 'A wild horse runs around.',
     armor: null,
     karma: -300,
     fame: 300,
@@ -1276,7 +1288,7 @@ export const MobData = [
   {
     id: 41,
     name: 'jack rabbit',
-    description: 'jack rabbit',
+    description: 'A jack rabbit looks for its burrow.',
     armor: 4,
     karma: 0,
     fame: 150,
@@ -1420,7 +1432,7 @@ export const MobData = [
   {
     id: 45,
     name: 'llama',
-    description: 'llama',
+    description: 'A llama walks around quietly.',
     armor: 16,
     karma: 0,
     fame: 300,
@@ -1456,7 +1468,7 @@ export const MobData = [
   {
     id: 46,
     name: 'mountain goat',
-    description: 'mountain goat',
+    description: 'A mountain goat is perched on some rocks.',
     armor: 10,
     karma: 0,
     fame: 300,
@@ -1593,7 +1605,7 @@ export const MobData = [
   {
     id: 50,
     name: 'panther',
-    description: 'panther',
+    description: 'A panther stalks its prey.',
     armor: 16,
     karma: 0,
     fame: 450,
@@ -1615,8 +1627,9 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '10 Leather Hides (Carve)',
-        chance: [1, 1]
+        id: 27,
+        count: 10,
+        chance: [1,1]
       }
     ],
     credits: 0,
@@ -1661,7 +1674,7 @@ export const MobData = [
   {
     id: 52,
     name: 'pig',
-    description: 'pig',
+    description: 'A pig is wallowing in the dirt.',
     armor: 12,
     karma: 0,
     fame: 150,
@@ -1765,7 +1778,7 @@ export const MobData = [
   {
     id: 55,
     name: 'rabbit',
-    description: 'rabbit',
+    description: 'A rabbit looks for its burrow.',
     armor: 6,
     karma: 0,
     fame: 150,
@@ -1837,7 +1850,7 @@ export const MobData = [
   {
     id: 57,
     name: 'rat',
-    description: 'rat',
+    description: 'A rat is wandering around looking for food.',
     armor: 6,
     karma: -150,
     fame: 150,
@@ -2047,22 +2060,19 @@ export const MobData = [
   {
     id: 64,
     name: 'snake',
-    description: 'snake',
+    description: 'A snake slithers on the ground',
     armor: 16,
     karma: -300,
     fame: 300,
     stats: {
-      str: [22,
-        34],
-      dex: [16,
-        25],
-      int: [6,
-        10],
-      hp: [15,
-        19],
+      str: [22,34],
+      dex: [16,25],
+      int: [6,10],
+      hp: [15,19],
       taming: 59.1,
       barding: 29
     },
+    aggro: true,
     offense: {
       min: 1,
       max: 4,
@@ -2079,13 +2089,9 @@ export const MobData = [
     ],
     credits: 0,
     skills: {
-      wrestling: [19,
-        34],
-      tactics: [19,
-        34],
-      magic_resistance: [15,
-        20
-      ]
+      wrestling: [19,34],
+      tactics: [19,34],
+      magic_resistance: [15,20]
     }
   },
   {
@@ -2172,19 +2178,15 @@ export const MobData = [
   {
     id: 67,
     name: 'timber wolf',
-    description: 'timber wolf',
+    description: 'A timber wolf is looking for prey.',
     armor: 16,
     karma: 0,
     fame: 450,
     stats: {
-      str: [56,
-        80],
-      dex: [56,
-        75],
-      int: [11,
-        25],
-      hp: [34,
-        48],
+      str: [56,80],
+      dex: [56,75],
+      int: [11,25],
+      hp: [34,48],
       taming: 23.1,
       barding: 28
     },
@@ -2198,19 +2200,16 @@ export const MobData = [
     attackable: true,
     inventory: [
       {
-        description: '5 Leather Hides (Carve)',
-        chance: [1, 1]
+        id: 27,
+        count: 5,
+        chance: [1,1]
       }
     ],
     credits: 0,
     skills: {
-      wrestling: [40,
-        60],
-      tactics: [30,
-        50],
-      magic_resistance: [27,
-        45
-      ]
+      wrestling: [40,60],
+      tactics: [30,50],
+      magic_resistance: [27,45]
     }
   },
   {
@@ -2219,14 +2218,10 @@ export const MobData = [
     description: 'tropical bird',
     armor: 2,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: 0,
       barding: 7
     },
@@ -2798,19 +2793,15 @@ export const MobData = [
   {
     id: 86,
     name: 'giant spider',
-    description: 'giant spider',
+    description: 'A giant spider silently approaches.',
     armor: 16,
     karma: -600,
     fame: 600,
     stats: {
-      str: [76,
-        100],
-      dex: [76,
-        95],
-      int: [36,
-        60],
-      hp: [46,
-        60],
+      str: [76,100],
+      dex: [76,95],
+      int: [36,60],
+      hp: [46,60],
       taming: 59.1,
       barding: 53
     },
@@ -2820,6 +2811,7 @@ export const MobData = [
       speed: 2.5
     },
     move: 1,
+    aggro: true,
     mob_type: 'arachnids',
     attackable: true,
     inventory: [
@@ -3966,8 +3958,7 @@ export const MobData = [
       dex: [125,
         135],
       int: [1000,1100],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -4271,8 +4262,7 @@ export const MobData = [
       dex: [125,
         135],
       int: [1000,1100],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6099,8 +6089,7 @@ export const MobData = [
         41],
       int: [51,
         51],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 12
     },
@@ -6124,14 +6113,10 @@ export const MobData = [
     description: 'alchemist',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6226,8 +6211,7 @@ export const MobData = [
         41],
       int: [51,
         51],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 16
     },
@@ -6251,14 +6235,10 @@ export const MobData = [
     description: 'barkeeper',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6320,14 +6300,10 @@ export const MobData = [
     description: 'blacksmith',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6521,8 +6497,7 @@ export const MobData = [
         100],
       int: [15,
         25],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 33
     },
@@ -6548,19 +6523,16 @@ export const MobData = [
   {
     id: 191,
     name: 'brigand',
-    description: 'brigand',
+    description: 'A brigand sharpens a dagger.',
     armor: 0,
     karma: 1000,
     fame: 1000,
+    aggro: true,
     stats: {
-      str: [86,
-        100],
-      dex: [81,
-        95],
-      int: [61,
-        75],
-      hp: [0,
-        0],
+      str: [86,100],
+      dex: [81,95],
+      int: [61,75],
+      hp: [100,120],
       taming: null,
       barding: 56
     },
@@ -6578,32 +6550,24 @@ export const MobData = [
         chance: [1,400],
       }
     ],
-    credits: [50,
-      150],
+    credits: [50,150],
     skills: {
-      wrestling: [15,
-        37],
-      tactics: [65,
-        87],
-      magic_resistance: [25,
-        47
-      ]
+      wrestling: [15,37],
+      tactics: [65,87],
+      magic_resistance: [25,47]
     }
   },
   {
     id: 192,
     name: 'brigand archer',
-    description: 'brigand archer',
+    description: 'A brigand archer readies his bow.',
     armor: 0,
+    aggro: true,
     stats: {
-      str: [125,
-        150],
-      dex: [125,
-        150],
-      int: [500,
-        750],
-      hp: [150,
-        200],
+      str: [125,150],
+      dex: [125,150],
+      int: [500,750],
+      hp: [150,200],
       taming: null,
       barding: 78
     },
@@ -6629,20 +6593,17 @@ export const MobData = [
   {
     id: 193,
     name: 'brigand strong',
-    description: 'brigand strong',
+    description: 'A strong brigand is flexing as he prepares to attack.',
     armor: 0,
     stats: {
-      str: [125,
-        150],
-      dex: [81,
-        95],
-      int: [500,
-        750],
-      hp: [150,
-        175],
+      str: [125,150],
+      dex: [81,95],
+      int: [500,750],
+      hp: [150,175],
       taming: null,
       barding: 87
     },
+    aggro: true,
     offense: {
       min: 12,
       max: 28,
@@ -6668,14 +6629,10 @@ export const MobData = [
     description: 'carpenter',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6699,14 +6656,10 @@ export const MobData = [
     description: 'cobbler',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6730,14 +6683,10 @@ export const MobData = [
     description: 'cook',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6761,14 +6710,10 @@ export const MobData = [
     description: 'escortable mage',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: 60
     },
@@ -6941,8 +6886,7 @@ export const MobData = [
         85],
       int: [81,
         95],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -6972,8 +6916,7 @@ export const MobData = [
         85],
       int: [81,
         95],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7003,8 +6946,7 @@ export const MobData = [
         85],
       int: [81,
         95],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7034,8 +6976,7 @@ export const MobData = [
         85],
       int: [81,
         95],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7065,8 +7006,7 @@ export const MobData = [
         85],
       int: [81,
         95],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7096,8 +7036,7 @@ export const MobData = [
         85],
       int: [81,
         95],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7127,8 +7066,7 @@ export const MobData = [
         85],
       int: [126,
         150],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7158,8 +7096,7 @@ export const MobData = [
         85],
       int: [151,
         175],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7180,17 +7117,13 @@ export const MobData = [
   {
     id: 210,
     name: 'farmer',
-    description: 'farmer',
-    armor: null,
+    description: 'A farmer is looking at his crops.',
+    armor: 1,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [0,1],
+      dex: [0,1],
+      int: [0,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7214,14 +7147,10 @@ export const MobData = [
     description: 'fisherman',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7245,14 +7174,10 @@ export const MobData = [
     description: 'furtrader',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7321,14 +7246,10 @@ export const MobData = [
     description: 'gypsy',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7352,14 +7273,10 @@ export const MobData = [
     description: 'hairstylist',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7380,17 +7297,14 @@ export const MobData = [
   {
     id: 217,
     name: 'human brigand',
-    description: 'human brigand',
+    description: 'A human brigand lunges at you.',
     armor: 0,
+    aggro: true,
     stats: {
-      str: [86,
-        100],
-      dex: [81,
-        95],
-      int: [61,
-        75],
-      hp: [0,
-        0],
+      str: [86,100],
+      dex: [81,95],
+      int: [61,75],
+      hp: [1,1],
       taming: null,
       barding: 40
     },
@@ -7408,7 +7322,7 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: 0,
+    credits: [50,150],
     skills: {
 
     }
@@ -7659,14 +7573,10 @@ export const MobData = [
     description: 'merchant',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: null
     },
@@ -7695,14 +7605,10 @@ export const MobData = [
     description: 'messenger',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: 30
     },
@@ -7776,14 +7682,10 @@ export const MobData = [
     description: 'noble',
     armor: null,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [1, 1],
+      dex: [1,1],
+      int: [1,1],
+      hp: [1,1],
       taming: null,
       barding: 30
     },
@@ -7851,8 +7753,7 @@ export const MobData = [
       dex: [110,
         120],
       int: [1000,1100],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 110
     },
@@ -8023,8 +7924,7 @@ export const MobData = [
       dex: [110,
         120],
       int: [1000,1100],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 116
     },
@@ -8093,8 +7993,7 @@ export const MobData = [
       dex: [70,
         95],
       int: [1000,1100],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 104
     },
@@ -8120,19 +8019,16 @@ export const MobData = [
   {
     id: 238,
     name: 'ratman',
-    description: 'ratman',
+    description: 'A ratman ears pick up as it sees you.',
     armor: 28,
     karma: 1500,
     fame: 1500,
+    aggro: true,
     stats: {
-      str: [96,
-        120],
-      dex: [81,
-        100],
-      int: [36,
-        60],
-      hp: [58,
-        72],
+      str: [96,120],
+      dex: [81,100],
+      int: [36,60],
+      hp: [58,72],
       taming: null,
       barding: 38
     },
@@ -8150,16 +8046,11 @@ export const MobData = [
         chance: [1,400],
       }
     ],
-    credits: [50,
-      100],
+    credits: [50,100],
     skills: {
-      wrestling: [50,
-        75],
-      tactics: [50,
-        75],
-      magic_resistance: [35,
-        60
-      ]
+      wrestling: [50,75],
+      tactics: [50,75],
+      magic_resistance: [35,60]
     }
   },
   {
@@ -8512,19 +8403,16 @@ export const MobData = [
   {
     id: 248,
     name: 'skeleton',
-    description: 'skeleton',
+    description: 'A skeleton wordlessly approaches.',
     armor: 16,
     karma: 450,
     fame: 450,
+    aggro: true,
     stats: {
-      str: [56,
-        80],
-      dex: [56,
-        75],
-      int: [16,
-        40],
-      hp: [34,
-        48],
+      str: [56,80],
+      dex: [56,75],
+      int: [16,40],
+      hp: [34,48],
       taming: null,
       barding: 36
     },
@@ -8542,16 +8430,11 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [25,
-      50],
+    credits: [25,50],
     skills: {
-      wrestling: [45,
-        55],
-      tactics: [45,
-        60],
-      magic_resistance: [45,
-        60
-      ]
+      wrestling: [45,55],
+      tactics: [45,60],
+      magic_resistance: [45,60]
     }
   },
   {
@@ -8610,8 +8493,7 @@ export const MobData = [
       dex: [125,
         150],
       int: [1000,1100],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 113
     },
@@ -8679,8 +8561,7 @@ export const MobData = [
       dex: [70,
         95],
       int: [1000,1100],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 103
     },
@@ -8706,25 +8587,21 @@ export const MobData = [
   {
     id: 253,
     name: 'wandering healer',
-    description: 'wandering healer',
-    armor: null,
+    description: 'A wandering healer hums to himself.',
+    armor: 25,
     karma: 10000,
     fame: 1000,
     stats: {
-      str: [0,
-        null],
-      dex: [0,
-        null],
-      int: [0,
-        null],
-      hp: [0,
-        0],
+      str: [100, 100],
+      dex: [100,100],
+      int: [100,100],
+      hp: [100,100],
       taming: null,
       barding: null
     },
     offense: {
-      min: 0,
-      max: 0,
+      min: 4,
+      max: 6,
       speed: 2.5
     },
     move: 1,
@@ -8734,11 +8611,8 @@ export const MobData = [
     credits: 0,
     skills: {
       wrestling: [0,0],
-      tactics: [82,
-        100],
-      magic_resistance: [82,
-        100
-      ]
+      tactics: [82,100],
+      magic_resistance: [82,100]
     }
   },
   {
@@ -8789,19 +8663,16 @@ export const MobData = [
   {
     id: 255,
     name: 'zombie',
-    description: 'zombie',
+    description: 'A zombie moans nearby.',
     armor: 18,
     karma: 600,
     fame: 600,
+    aggro: true,
     stats: {
-      str: [46,
-        70],
-      dex: [31,
-        50],
-      int: [26,
-        40],
-      hp: [28,
-        42],
+      str: [46,70],
+      dex: [31,50],
+      int: [26,40],
+      hp: [28,42],
       taming: null,
       barding: 33
     },
@@ -8819,16 +8690,11 @@ export const MobData = [
         chance: [1, 1]
       }
     ],
-    credits: [50,
-      100],
+    credits: [50,100],
     skills: {
-      wrestling: [35,
-        50],
-      tactics: [35,
-        50],
-      magic_resistance: [15,
-        40
-      ]
+      wrestling: [35,50],
+      tactics: [35,50],
+      magic_resistance: [15,40]
     }
   },
   {
@@ -9328,19 +9194,16 @@ export const MobData = [
   {
     id: 273,
     name: 'ettin',
-    description: 'ettin',
+    description: 'An ettin knocks over some small trees.',
     armor: 38,
     karma: -3000,
     fame: 3000,
+    aggro: true,
     stats: {
-      str: [136,
-        165],
-      dex: [56,
-        75],
-      int: [31,
-        55],
-      hp: [82,
-        99],
+      str: [136,165],
+      dex: [56,75],
+      int: [31,55],
+      hp: [82,99],
       taming: null,
       barding: 42
     },
@@ -9358,16 +9221,11 @@ export const MobData = [
         description: 'Random Potion'
       }
     ],
-    credits: [175,
-      225],
+    credits: [175,225],
     skills: {
-      wrestling: [50,
-        60],
-      tactics: [50,
-        70],
-      magic_resistance: [40,
-        55
-      ]
+      wrestling: [50,60],
+      tactics: [50,70],
+      magic_resistance: [40,55]
     }
   },
   {
@@ -9497,19 +9355,16 @@ export const MobData = [
   {
     id: 279,
     name: 'harpy',
-    description: 'harpy',
+    description: 'A harpy screeches as it attacks.',
     armor: 28,
     karma: 2500,
     fame: 2500,
+    aggro: true,
     stats: {
-      str: [86,
-        120],
-      dex: [86,
-        110],
-      int: [51,
-        75],
-      hp: [58,
-        72],
+      str: [86,120],
+      dex: [86,110],
+      int: [51,75],
+      hp: [58,72],
       taming: null,
       barding: 47
     },
@@ -9527,35 +9382,27 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [125,
-      150],
+    credits: [125,150],
     skills: {
-      wrestling: [60,
-        90],
-      tactics: [70,
-        100],
-      magic_resistance: [50,
-        65
-      ]
+      wrestling: [60,90],
+      tactics: [70,100],
+      magic_resistance: [50,65]
     }
   },
   {
     id: 280,
-    name: 'headlessone',
-    description: 'headlessone',
+    name: 'headless one',
+    description: 'A headless one blindly moves toward you.',
     armor: 18,
     stats: {
-      str: [26,
-        50],
-      dex: [36,
-        55],
-      int: [16,
-        30],
-      hp: [16,
-        30],
+      str: [26,50],
+      dex: [36,55],
+      int: [16,30],
+      hp: [16,30],
       taming: null,
       barding: 19
     },
+    aggro:true,
     offense: {
       min: 5,
       max: 10,
@@ -9741,17 +9588,15 @@ export const MobData = [
   {
     id: 286,
     name: 'mongbat',
-    description: 'mongbat',
+    description: 'A mongbat swoops in for an attack.',
     armor: 10,
     karma: 150,
     fame: 150,
+    aggro: true,
     stats: {
-      str: [6,
-        10],
-      dex: [26,
-        38],
-      int: [6,
-        14],
+      str: [6,10],
+      dex: [26,38],
+      int: [6,14],
       hp: [4,6],
       taming: 18.9,
       barding: 7
@@ -9770,34 +9615,26 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [25,
-      50],
+    credits: [25,50],
     skills: {
-      wrestling: [5,
-        10],
-      tactics: [5,
-        10],
-      magic_resistance: [5,
-        14
-      ]
+      wrestling: [5,10],
+      tactics: [5,10],
+      magic_resistance: [5,14]
     }
   },
   {
     id: 288,
     name: 'ogre',
-    description: 'ogre',
+    description: 'You smell an ogre nearby.',
     armor: 32,
     karma: 3000,
     fame: 3000,
+    aggro: true,
     stats: {
-      str: [166,
-        195],
-      dex: [46,
-        65],
-      int: [46,
-        70],
-      hp: [100,
-        117],
+      str: [166,195],
+      dex: [46,65],
+      int: [46,70],
+      hp: [100,117],
       taming: null,
       barding: 53
     },
@@ -9815,16 +9652,11 @@ export const MobData = [
         description: 'Random Potion'
       }
     ],
-    credits: [125,
-      175],
+    credits: [125,175],
     skills: {
-      wrestling: [70,
-        80],
-      tactics: [60,
-        70],
-      magic_resistance: [55,
-        70
-      ]
+      wrestling: [70,80],
+      tactics: [60,70],
+      magic_resistance: [55,70]
     }
   },
   {
@@ -10243,19 +10075,15 @@ export const MobData = [
   {
     id: 303,
     name: 'wisp',
-    description: 'wisp',
+    description: 'A wisp floats through the air.',
     armor: 40,
     karma: 0,
     fame: 4000,
     stats: {
-      str: [196,
-        225],
-      dex: [196,
-        225],
-      int: [196,
-        225],
-      hp: [118,
-        135],
+      str: [196,225],
+      dex: [196,225],
+      int: [196,225],
+      hp: [118,135],
       taming: null,
       barding: 78
     },
@@ -10273,28 +10101,24 @@ export const MobData = [
         description: 'Random Light Source'
       }
     ],
-    credits: [400,
-      500],
+    credits: [400,500],
     skills: {
-      wrestling: 80.0,
-      tactics: 80.0,
-      magic_resistance: '80.0'
+      wrestling: [80,80],
+      tactics: [80,80],
+      magic_resistance: [80, 80]
     }
   },
   {
     id: 304,
     name: 'orc',
-    description: 'orc',
+    description: 'An orc snarls at you.',
     armor: 28,
+    aggro: true,
     stats: {
-      str: [96,
-        120],
-      dex: [81,
-        105],
-      int: [36,
-        60],
-      hp: [58,
-        72],
+      str: [96,120],
+      dex: [81,105],
+      int: [36,60],
+      hp: [58,72],
       taming: null,
       barding: 42
     },
@@ -10325,14 +10149,10 @@ export const MobData = [
     karma: 2500,
     fame: 2500,
     stats: {
-      str: [147,
-        215],
-      dex: [91,
-        115],
-      int: [61,
-        85],
-      hp: [95,
-        123],
+      str: [147,215],
+      dex: [91,115],
+      int: [61,85],
+      hp: [95,123],
       taming: null,
       barding: 61
     },
@@ -10403,19 +10223,16 @@ export const MobData = [
   {
     id: 307,
     name: 'orc captain',
-    description: 'orc captain',
+    description: 'An orc captain readies its axe.',
     armor: 34,
     karma: 2500,
     fame: 2500,
+    aggro: true,
     stats: {
-      str: [111,
-        145],
-      dex: [101,
-        135],
-      int: [86,
-        110],
-      hp: [67,
-        87],
+      str: [111,145],
+      dex: [101,135],
+      int: [86,110],
+      hp: [67,87],
       taming: null,
       barding: 60
     },
@@ -10433,15 +10250,11 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [100,
-      150],
+    credits: [100,150],
     skills: {
       wrestling: [0,0],
-      tactics: [85,
-        100],
-      magic_resistance: [70,
-        85
-      ]
+      tactics: [85,100],
+      magic_resistance: [70,85]
     }
   },
   {
@@ -10491,8 +10304,9 @@ export const MobData = [
   {
     id: 309,
     name: 'orcish lord',
-    description: 'orcish lord',
+    description: 'An orcish lord quickly approaches.',
     armor: 0,
+    aggro: true,
     stats: {
       str: [147,215],
       dex: [91,115],
@@ -12350,8 +12164,7 @@ export const MobData = [
         115],
       int: [100,
         200],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 69
     },
@@ -12386,8 +12199,7 @@ export const MobData = [
         110],
       int: [100,
         200],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 70
     },
@@ -12422,8 +12234,7 @@ export const MobData = [
         95],
       int: [100,
         200],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 68
     },
@@ -12458,8 +12269,7 @@ export const MobData = [
         130],
       int: [100,
         200],
-      hp: [0,
-        0],
+      hp: [1,1],
       taming: null,
       barding: 71
     },

@@ -37,6 +37,158 @@ export const ZoneData = [
       {
         id: 8,
         chance: 5
+      },
+      {
+        id: 13,
+        chance: 5
+      },
+      {
+        id: 52,
+        chance: 2
+      },
+      {
+        id: 210,
+        chance: 2
+      },
+      {
+        id: 10,
+        chance: 5
+      },
+      {
+        id: 11,
+        chance: 5
+      },
+      {
+        id: 14,
+        chance: 5
+      },
+      {
+        id: 16,
+        chance: 5
+      },
+      {
+        id: 19,
+        chance: 5
+      },
+      {
+        id: 21,
+        chance: 5
+      },
+      {
+        id: 32,
+        chance: 5
+      },
+      {
+        id: 34,
+        chance: 5
+      },
+      {
+        id: 38,
+        chance: 5
+      },
+      {
+        id: 41,
+        chance: 5
+      },
+      {
+        id: 45,
+        chance: 5
+      },
+      {
+        id: 46,
+        chance: 5
+      },
+      {
+        id: 50,
+        chance: 2
+      },
+      {
+        id: 55,
+        chance: 2
+      },
+      {
+        id: 57,
+        chance: 2
+      },
+      {
+        id: 64,
+        chance: 2
+      },
+      {
+        id: 67,
+        chance: 2
+      },
+      {
+        id: 86,
+        chance: 2
+      },
+      {
+        id: 191,
+        chance: 2
+      },
+      {
+        id: 192,
+        chance: 2
+      },
+      {
+        id: 193,
+        chance: 2
+      },
+      {
+        id: 217,
+        chance: 2
+      },
+      {
+        id: 238,
+        chance: 2
+      },
+      {
+        id: 248,
+        chance: 2
+      },
+      {
+        id: 253,
+        chance: 5
+      },
+      {
+        id: 255,
+        chance: 2
+      },
+      {
+        id: 273,
+        chance: 2
+      },
+      {
+        id: 279,
+        chance: 2
+      },
+      {
+        id: 280,
+        chance: 2
+      },
+      {
+        id: 286,
+        chance: 2
+      },
+      {
+        id: 288,
+        chance: 2
+      },
+      {
+        id: 303,
+        chance: 2
+      },
+      {
+        id: 304,
+        chance: 2
+      },
+      {
+        id: 307,
+        chance: 2
+      },
+      {
+        id: 309,
+        chance: 2
       }
     ],
     decorations: [
@@ -76,6 +228,158 @@ export const ZoneData = [
       {
         id: 6,
         chance: 20
+      },
+      {
+        id: 13,
+        chance: 5
+      },
+      {
+        id: 52,
+        chance: 2
+      },
+      {
+        id: 210,
+        chance: 2
+      },
+      {
+        id: 10,
+        chance: 5
+      },
+      {
+        id: 11,
+        chance: 5
+      },
+      {
+        id: 14,
+        chance: 5
+      },
+      {
+        id: 16,
+        chance: 5
+      },
+      {
+        id: 19,
+        chance: 5
+      },
+      {
+        id: 21,
+        chance: 5
+      },
+      {
+        id: 32,
+        chance: 5
+      },
+      {
+        id: 34,
+        chance: 5
+      },
+      {
+        id: 38,
+        chance: 5
+      },
+      {
+        id: 41,
+        chance: 5
+      },
+      {
+        id: 45,
+        chance: 5
+      },
+      {
+        id: 46,
+        chance: 5
+      },
+      {
+        id: 50,
+        chance: 2
+      },
+      {
+        id: 55,
+        chance: 2
+      },
+      {
+        id: 57,
+        chance: 2
+      },
+      {
+        id: 64,
+        chance: 2
+      },
+      {
+        id: 67,
+        chance: 2
+      },
+      {
+        id: 86,
+        chance: 2
+      },
+      {
+        id: 191,
+        chance: 2
+      },
+      {
+        id: 192,
+        chance: 2
+      },
+      {
+        id: 193,
+        chance: 2
+      },
+      {
+        id: 217,
+        chance: 2
+      },
+      {
+        id: 238,
+        chance: 2
+      },
+      {
+        id: 248,
+        chance: 2
+      },
+      {
+        id: 253,
+        chance: 5
+      },
+      {
+        id: 255,
+        chance: 2
+      },
+      {
+        id: 273,
+        chance: 2
+      },
+      {
+        id: 279,
+        chance: 2
+      },
+      {
+        id: 280,
+        chance: 2
+      },
+      {
+        id: 286,
+        chance: 2
+      },
+      {
+        id: 288,
+        chance: 2
+      },
+      {
+        id: 303,
+        chance: 2
+      },
+      {
+        id: 304,
+        chance: 2
+      },
+      {
+        id: 307,
+        chance: 2
+      },
+      {
+        id: 309,
+        chance: 2
       }
     ],
     decorations: [
@@ -127,6 +431,162 @@ export const ZoneData = [
       {
         id: 8,
         chance: 10
+      },
+      {
+        id: 18,
+        chance: 5
+      },
+      {
+        id: 28,
+        chance: 5
+      },
+      {
+        id: 29,
+        chance: 5
+      },
+      {
+        id: 30,
+        chance: 2
+      },
+      {
+        id: 10,
+        chance: 5
+      },
+      {
+        id: 11,
+        chance: 5
+      },
+      {
+        id: 14,
+        chance: 5
+      },
+      {
+        id: 16,
+        chance: 5
+      },
+      {
+        id: 19,
+        chance: 5
+      },
+      {
+        id: 21,
+        chance: 5
+      },
+      {
+        id: 32,
+        chance: 5
+      },
+      {
+        id: 34,
+        chance: 5
+      },
+      {
+        id: 38,
+        chance: 5
+      },
+      {
+        id: 41,
+        chance: 5
+      },
+      {
+        id: 45,
+        chance: 5
+      },
+      {
+        id: 46,
+        chance: 5
+      },
+      {
+        id: 50,
+        chance: 2
+      },
+      {
+        id: 55,
+        chance: 2
+      },
+      {
+        id: 57,
+        chance: 2
+      },
+      {
+        id: 64,
+        chance: 2
+      },
+      {
+        id: 67,
+        chance: 2
+      },
+      {
+        id: 86,
+        chance: 2
+      },
+      {
+        id: 191,
+        chance: 2
+      },
+      {
+        id: 192,
+        chance: 2
+      },
+      {
+        id: 193,
+        chance: 2
+      },
+      {
+        id: 217,
+        chance: 2
+      },
+      {
+        id: 238,
+        chance: 2
+      },
+      {
+        id: 248,
+        chance: 2
+      },
+      {
+        id: 253,
+        chance: 5
+      },
+      {
+        id: 255,
+        chance: 2
+      },
+      {
+        id: 273,
+        chance: 2
+      },
+      {
+        id: 279,
+        chance: 2
+      },
+      {
+        id: 280,
+        chance: 2
+      },
+      {
+        id: 286,
+        chance: 2
+      },
+      {
+        id: 288,
+        chance: 2
+      },
+      {
+        id: 303,
+        chance: 2
+      },
+      {
+        id: 304,
+        chance: 2
+      },
+      {
+        id: 307,
+        chance: 2
+      },
+      {
+        id: 309,
+        chance: 2
       }
     ],
     decorations: [
@@ -170,6 +630,162 @@ export const ZoneData = [
       {
         id: 8,
         chance: 15
+      },
+      {
+        id: 18,
+        chance: 5
+      },
+      {
+        id: 28,
+        chance: 5
+      },
+      {
+        id: 29,
+        chance: 5
+      },
+      {
+        id: 30,
+        chance: 2
+      },
+      {
+        id: 10,
+        chance: 5
+      },
+      {
+        id: 11,
+        chance: 5
+      },
+      {
+        id: 14,
+        chance: 5
+      },
+      {
+        id: 16,
+        chance: 5
+      },
+      {
+        id: 19,
+        chance: 5
+      },
+      {
+        id: 21,
+        chance: 5
+      },
+      {
+        id: 32,
+        chance: 5
+      },
+      {
+        id: 34,
+        chance: 5
+      },
+      {
+        id: 38,
+        chance: 5
+      },
+      {
+        id: 41,
+        chance: 5
+      },
+      {
+        id: 45,
+        chance: 5
+      },
+      {
+        id: 46,
+        chance: 5
+      },
+      {
+        id: 50,
+        chance: 5
+      },
+      {
+        id: 55,
+        chance: 5
+      },
+      {
+        id: 57,
+        chance: 5
+      },
+      {
+        id: 64,
+        chance: 5
+      },
+      {
+        id: 67,
+        chance: 5
+      },
+      {
+        id: 86,
+        chance: 5
+      },
+      {
+        id: 191,
+        chance: 5
+      },
+      {
+        id: 192,
+        chance: 5
+      },
+      {
+        id: 193,
+        chance: 5
+      },
+      {
+        id: 217,
+        chance: 5
+      },
+      {
+        id: 238,
+        chance: 5
+      },
+      {
+        id: 248,
+        chance: 5
+      },
+      {
+        id: 253,
+        chance: 5
+      },
+      {
+        id: 255,
+        chance: 5
+      },
+      {
+        id: 273,
+        chance: 5
+      },
+      {
+        id: 279,
+        chance: 5
+      },
+      {
+        id: 280,
+        chance: 5
+      },
+      {
+        id: 286,
+        chance: 5
+      },
+      {
+        id: 288,
+        chance: 5
+      },
+      {
+        id: 303,
+        chance: 5
+      },
+      {
+        id: 304,
+        chance: 5
+      },
+      {
+        id: 307,
+        chance: 5
+      },
+      {
+        id: 309,
+        chance: 5
       }
     ],
     decorations: [
