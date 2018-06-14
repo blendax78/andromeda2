@@ -338,7 +338,10 @@ const Config = {
     store.getState().Skills.swordsmanship.current = 100;
     store.getState().Skills.tactics.current = 100;
     store.getState().Player.strength = 100;
-    store.getState().Player.credits = 100;
+    store.getState().Player.credits = 1000;
+    store.getState().Player.status.hp_regen = 5;
+    store.getState().Player.status.mp_regen = 5;
+    store.getState().Player.status.stamina_regen = 5;
   }
 
 }
