@@ -105,21 +105,19 @@ class Mob extends Component {
     let buttons = [];
     let buttonStyle = {};
 
-    if (this.state.mob.attackable && !this.state.player.status.dead) {
-      buttonStyle = classNames({
-        disabled: !this.state.buttons.attack,
-        btn: true,
-        'btn-default': true,
-        top5: true
-      });
-      buttons.push(
-        <button key={this.keys.attack} disabled={!this.state.buttons.attack} type="button" className={buttonStyle} onClick={(e) => this.toggleCombat()}>Attack</button>
-      );
-    }
+    buttonStyle = classNames({
+      disabled: !this.state.buttons.attack && !this.state.player.status.dead && this.state.mob.attackable,
+      btn: true,
+      'btn-default': true,
+      top5: true
+    });
+    buttons.push(
+      <button key={this.keys.attack} disabled={!this.state.buttons.attack} type="button" className={buttonStyle} onClick={(e) => this.toggleCombat()}>Attack</button>
+    );
 
     if (this.state.mob.mob_type !== 'humanoid') {
       buttonStyle = classNames({
-        disabled: !this.state.buttons.animal_lore,
+        disabled: !this.state.buttons.animal_lore && !this.state.player.status.dead,
         btn: true,
         'btn-default': true,
         top5: true
@@ -129,7 +127,7 @@ class Mob extends Component {
       );
     } else {
       buttonStyle = classNames({
-        disabled: !this.state.buttons.anatomy,
+        disabled: !this.state.buttons.anatomy && !this.state.player.status.dead,
         btn: true,
         'btn-default': true,
         top5: true

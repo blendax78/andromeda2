@@ -26,6 +26,7 @@ const Effects = (state = {}, action) => {
   _.each(_.union(state.Inventory.weapons, state.Inventory.armor), (eq) => {
     if (eq.type === 'armor' && eq.equip && eq.equip.equipped === true) {
       defense.physical += eq.armor.physical;
+      defense[eq.equip.location] = eq.armor.physical;
 
       // Stat Penalty/Bonus
       state.Player.effects.dexterity += (!!eq.armor.dexterity) ? eq.armor.dexterity : 0;
@@ -34,8 +35,9 @@ const Effects = (state = {}, action) => {
 
     } else if (eq.type === 'weapons' && eq.equip && eq.equip.equipped === true) {
       offense = Config.clone(eq.weapon);
-      exceptional = Config.clone(eq.exceptional);
-    }      
+    }
+
+    exceptional = Config.clone(eq.exceptional);
   });
 
   defense.physical = Math.round(defense.physical);

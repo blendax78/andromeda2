@@ -107,7 +107,7 @@ class Combat extends Component {
       Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
       * Damage Increase is capped at 100%.
     */
-    // FORMULA: Damage Absorbed= Random value between of 1/2 AR to full AR of Hit Location's piece of armor.
+    // FORMULA: Damage Absorbed= Random value between 1/2 of AR to full AR of Hit Location's piece of armor.
     if (max <= 0) {
       return 0;
     }
@@ -251,7 +251,10 @@ class Combat extends Component {
         let chance_to_hit = this.calcChanceToHit(mob.skills.wrestling, skill.current);
 
         if (_.random(1, 100) <= chance_to_hit) {
-          let damage = this.calcDamage(mob.offense.min, mob.offense.max, player.defense.physical);
+          let location = this.calcHitLocation();
+          let defense = (!!player.defense[location]) ? Math.round(player.defense[location]) : 0;
+
+          let damage = this.calcDamage(mob.offense.min, mob.offense.max, defense);
           Config.notifyError(this.props.store, `The ${mob.name} hits you for ${damage} damage.`);
 
           player.hp -= (player.hp - damage >= 0) ? damage : player.hp;
@@ -261,6 +264,33 @@ class Combat extends Component {
           Config.notify(this.props.store, `The ${mob.name} misses you.`);
         }
       }
+    }
+  }
+
+  calcHitLocation() {
+    /*
+      FORMULA:
+        Body  44% Breastplates, Tunics, Dresses, Cloak, Shirts
+        Arms  14% Arm Plates, Chainmail Tunic, Sleeves
+        Head  14% Hats, Helmets
+        Legs/Feet 14% Leg Plates, Leggings, Pants, Skirts, Thigh Boots
+        Neck  7%  Gorgets
+        Hands 7%  Gauntlets, Gloves
+    */
+    let rand = _.random(1, 100);
+    const LOCATIONS = Config.ACTIONS.INVENTORY;
+    if (rand <= 7) {
+      return LOCATIONS.HANDS;
+    } else if (rand <= 14) {
+      return LOCATIONS.NECK;
+    } else if (rand <= 28) {
+      return LOCATIONS.LEGS;
+    } else if (rand <= 42) {
+      return LOCATIONS.HEAD;
+    } else if (rand <= 56) {
+      return LOCATIONS.ARMS;
+    } else {
+      return LOCATIONS.BODY;
     }
   }
 
@@ -588,6 +618,7 @@ class Combat extends Component {
 }
 
 export default Combat;
+// http://www.uorenaissance.com/stratics/combat
 // http://web.archive.org/web/20020806221626/http://uo.stratics.com/content/arms-armor/combat.shtml#8
 // https://uo.stratics.com/content/arms-armor/combat.php
 // Attack Sequence
