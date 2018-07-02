@@ -685,7 +685,7 @@ var Config = {
       };
     } else {
       get = function get(prop) {
-        return '';
+        return false;
       };
     }
     return {
@@ -747,6 +747,10 @@ var Config = {
     store.getState().Skills.swordsmanship.current = 100;
     store.getState().Skills.tactics.current = 100;
     store.getState().Player.strength = 100;
+    store.getState().Player.credits = 1000;
+    store.getState().Player.status.hp_regen = 5;
+    store.getState().Player.status.mp_regen = 5;
+    store.getState().Player.status.stamina_regen = 5;
   }
 
 };
@@ -4232,7 +4236,7 @@ var ItemData = [{
   name: 'shoes',
   plural: 'shoes',
   countable: false,
-  description: 'shoes',
+  description: 'a pair of shoes',
   value: 6,
   weight: 1,
   type: 'armor',
@@ -4261,7 +4265,7 @@ var ItemData = [{
   name: 'sandals',
   plural: 'sandals',
   countable: false,
-  description: 'sandals',
+  description: 'a pair of sandals',
   value: 4,
   weight: 1,
   type: 'armor',
@@ -4290,7 +4294,7 @@ var ItemData = [{
   name: 'boots',
   plural: 'boots',
   countable: false,
-  description: 'boots',
+  description: 'a pair of boots',
   value: 8,
   weight: 2,
   type: 'armor',
@@ -4319,7 +4323,7 @@ var ItemData = [{
   name: 'thigh boots',
   plural: 'thigh boots',
   countable: false,
-  description: 'thigh boots',
+  description: 'a pair of thigh boots',
   value: 10,
   weight: 2,
   type: 'armor',
@@ -45115,7 +45119,7 @@ var Combat = function (_Component) {
         Final Damage = Base Damage + (Base Damage * Final Damage Bonus%)
         * Damage Increase is capped at 100%.
       */
-      // FORMULA: Damage Absorbed= Random value between of 1/2 AR to full AR of Hit Location's piece of armor.
+      // FORMULA: Damage Absorbed= Random value between 1/2 of AR to full AR of Hit Location's piece of armor.
       if (max <= 0) {
         return 0;
       }
@@ -45268,7 +45272,10 @@ var Combat = function (_Component) {
           var chance_to_hit = this.calcChanceToHit(mob.skills.wrestling, skill.current);
 
           if (_.random(1, 100) <= chance_to_hit) {
-            var damage = this.calcDamage(mob.offense.min, mob.offense.max, player.defense.physical);
+            var location = this.calcHitLocation();
+            var defense = !!player.defense[location] ? Math.round(player.defense[location]) : 0;
+
+            var damage = this.calcDamage(mob.offense.min, mob.offense.max, defense);
             __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].notifyError(this.props.store, 'The ' + mob.name + ' hits you for ' + damage + ' damage.');
 
             player.hp -= player.hp - damage >= 0 ? damage : player.hp;
@@ -45277,6 +45284,34 @@ var Combat = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].notify(this.props.store, 'The ' + mob.name + ' misses you.');
           }
         }
+      }
+    }
+  }, {
+    key: 'calcHitLocation',
+    value: function calcHitLocation() {
+      /*
+        FORMULA:
+          Body  44% Breastplates, Tunics, Dresses, Cloak, Shirts
+          Arms  14% Arm Plates, Chainmail Tunic, Sleeves
+          Head  14% Hats, Helmets
+          Legs/Feet 14% Leg Plates, Leggings, Pants, Skirts, Thigh Boots
+          Neck  7%  Gorgets
+          Hands 7%  Gauntlets, Gloves
+      */
+      var rand = _.random(1, 100);
+      var LOCATIONS = __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.INVENTORY;
+      if (rand <= 7) {
+        return LOCATIONS.HANDS;
+      } else if (rand <= 14) {
+        return LOCATIONS.NECK;
+      } else if (rand <= 28) {
+        return LOCATIONS.LEGS;
+      } else if (rand <= 42) {
+        return LOCATIONS.HEAD;
+      } else if (rand <= 56) {
+        return LOCATIONS.ARMS;
+      } else {
+        return LOCATIONS.BODY;
       }
     }
   }, {
@@ -45669,6 +45704,7 @@ var Combat = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_7_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Combat);
+// http://www.uorenaissance.com/stratics/combat
 // http://web.archive.org/web/20020806221626/http://uo.stratics.com/content/arms-armor/combat.shtml#8
 // https://uo.stratics.com/content/arms-armor/combat.php
 // Attack Sequence
@@ -46891,25 +46927,23 @@ var Mob = function (_Component) {
       var buttons = [];
       var buttonStyle = {};
 
-      if (this.state.mob.attackable && !this.state.player.status.dead) {
-        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
-          disabled: !this.state.buttons.attack,
-          btn: true,
-          'btn-default': true,
-          top5: true
-        });
-        buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          'button',
-          { key: this.keys.attack, disabled: !this.state.buttons.attack, type: 'button', className: buttonStyle, onClick: function onClick(e) {
-              return _this5.toggleCombat();
-            } },
-          'Attack'
-        ));
-      }
+      buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+        disabled: !this.state.buttons.attack && !this.state.player.status.dead && this.state.mob.attackable,
+        btn: true,
+        'btn-default': true,
+        top5: true
+      });
+      buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'button',
+        { key: this.keys.attack, disabled: !this.state.buttons.attack, type: 'button', className: buttonStyle, onClick: function onClick(e) {
+            return _this5.toggleCombat();
+          } },
+        'Attack'
+      ));
 
       if (this.state.mob.mob_type !== 'humanoid') {
         buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
-          disabled: !this.state.buttons.animal_lore,
+          disabled: !this.state.buttons.animal_lore && !this.state.player.status.dead,
           btn: true,
           'btn-default': true,
           top5: true
@@ -46923,7 +46957,7 @@ var Mob = function (_Component) {
         ));
       } else {
         buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
-          disabled: !this.state.buttons.anatomy,
+          disabled: !this.state.buttons.anatomy && !this.state.player.status.dead,
           btn: true,
           'btn-default': true,
           top5: true
@@ -48885,7 +48919,7 @@ var Skills = function Skills() {
       checkStatGain(skill);
 
       state.Queue.add('actions', __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.SKILLS.SAVE, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, state.Skills, { player_id: state.Player.id }));
-      notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].upperCase(skill) + ' increased by ' + gain.toString() + '. It is now ' + state.Skills[skill].current + '.');
+      notifyGain(__WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].prettyPrint(skill) + ' increased by ' + gain.toString() + '. It is now ' + state.Skills[skill].current + '.');
     }
   };
 
@@ -49571,8 +49605,16 @@ var Effects = function Effects() {
 
   // Equipment
   _.each(_.union(state.Inventory.weapons, state.Inventory.armor), function (eq) {
+    exceptional = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].clone(eq.exceptional);
+
     if (eq.type === 'armor' && eq.equip && eq.equip.equipped === true) {
       defense.physical += eq.armor.physical;
+      defense[eq.equip.location] = eq.armor.physical;
+
+      if (!!exceptional && !!exceptional.bonus) {
+        defense[eq.equip.location] += exceptional.bonus;
+        defense.physical += exceptional.bonus;
+      }
 
       // Stat Penalty/Bonus
       state.Player.effects.dexterity += !!eq.armor.dexterity ? eq.armor.dexterity : 0;
@@ -49580,7 +49622,6 @@ var Effects = function Effects() {
       state.Player.effects.strength += !!eq.armor.strength ? eq.armor.strength : 0;
     } else if (eq.type === 'weapons' && eq.equip && eq.equip.equipped === true) {
       offense = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].clone(eq.weapon);
-      exceptional = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].clone(eq.exceptional);
     }
   });
 
