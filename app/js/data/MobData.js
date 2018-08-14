@@ -6,6 +6,7 @@ export const MobData = [
   {
     id: 1,
     name: 'sheep',
+    difficulty: 0,
     description: 'A little sheep is wandering around here.',
     armor: 6,
     karma: -300,
@@ -46,6 +47,7 @@ export const MobData = [
   {
     id: 2,
     name: 'hind',
+    difficulty: 0,
     description: 'A hind is wandering here.',
     armor: 8,
     karma: 0,
@@ -85,6 +87,7 @@ export const MobData = [
   },
   {
     id: 3,
+    difficulty: 0,
     name: 'black bear',
     description: 'A black bear is sitting here, staring at you.',
     armor: 24,
@@ -125,6 +128,7 @@ export const MobData = [
   {
     id: 4,
     name: 'brown bear',
+    difficulty: 0,
     description: 'A brown bear is wandering around, looking for a snack.',
     armor: 24,
     karma: 0,
@@ -165,6 +169,7 @@ export const MobData = [
   {
     id: 5,
     name: 'bull',
+    difficulty: 0,
     description: 'A bull is here, looking for the herd.',
     armor: 28,
     karma: 0,
@@ -204,6 +209,7 @@ export const MobData = [
   {
     id: 6,
     name: 'cow',
+    difficulty: 0,
     description: 'A cow is chewing on some grass.',
     armor: 10,
     karma: 0,
@@ -244,6 +250,7 @@ export const MobData = [
   {
     id: 7,
     name: 'training dummy',
+    difficulty: 0,
     description: 'A training dummy stands here. There is a bright red target painted on it.',
     armor: 100,
     karma: 0,
@@ -278,6 +285,7 @@ export const MobData = [
   {
     id: 8,
     name: 'giant rat',
+    difficulty: 0,
     description: 'A giant rat is looking for a meal.',
     armor: 18,
     karma: -300,
@@ -320,6 +328,7 @@ export const MobData = [
   {
     id: 9,
     name: 'alligator',
+    difficulty: 0,
     description: 'An alligator is stalking its prey.',
     armor: 30,
     karma: -600,
@@ -359,6 +368,7 @@ export const MobData = [
   {
     id: 10,
     name: 'bird',
+    difficulty: 0,
     description: 'A bird is flying nearby.',
     armor: 2,
     karma: 0,
@@ -396,6 +406,7 @@ export const MobData = [
   {
     id: 11,
     name: 'bull frog',
+    difficulty: 0,
     description: 'A bull frog hops around at your feet.',
     armor: 6,
     stats: {
@@ -429,6 +440,7 @@ export const MobData = [
   {
     id: 12,
     name: 'cat',
+    difficulty: 0,
     description: 'A cat licks itself while it watches you lazily.',
     armor: 8,
     karma: -150,
@@ -466,6 +478,7 @@ export const MobData = [
   {
     id: 13,
     name: 'chicken',
+    difficulty: 0,
     description: 'A chicken runs around like a chicken with its head cut off.',
     armor: 2,
     karma: 0,
@@ -503,6 +516,7 @@ export const MobData = [
   {
     id: 14,
     name: 'cougar',
+    difficulty: 0,
     description: 'A cougar stalks some game.',
     armor: 16,
     karma: 0,
@@ -540,6 +554,7 @@ export const MobData = [
   {
     id: 16,
     name: 'crane',
+    difficulty: 0,
     description: 'A crane squawks loudly.',
     armor: 5,
     karma: 0,
@@ -572,6 +587,7 @@ export const MobData = [
   {
     id: 17,
     name: 'desert ostard',
+    difficulty: 1,
     description: 'A desert ostard is running around here.',
     armor: 0,
     karma: 0,
@@ -609,6 +625,7 @@ export const MobData = [
   {
     id: 18,
     name: 'dire wolf',
+    difficulty: 1,
     description: 'A dire wolf snarls at you.',
     armor: 22,
     karma: -2500,
@@ -648,6 +665,7 @@ export const MobData = [
   {
     id: 19,
     name: 'dog',
+    difficulty: 0,
     description: 'A dog begs you for a treat.',
     armor: 12,
     karma: -300,
@@ -685,6 +703,7 @@ export const MobData = [
   {
     id: 20,
     name: 'dolphin',
+    difficulty: 0,
     description: 'A dolphin swims around playfully.',
     armor: 16,
     karma: -2000,
@@ -721,6 +740,7 @@ export const MobData = [
   {
     id: 21,
     name: 'eagle',
+    difficulty: 0,
     description: 'A majestic eagle is perched here.',
     armor: 22,
     karma: 0,
@@ -758,6 +778,7 @@ export const MobData = [
   {
     id: 22,
     name: 'faction war horse',
+    difficulty: 1,
     description: 'faction war horse',
     armor: null,
     stats: {
@@ -785,6 +806,7 @@ export const MobData = [
   {
     id: 27,
     name: 'fire steed',
+    difficulty: 1,
     description: 'fire steed',
     armor: 0,
     karma: -20000,
@@ -816,6 +838,7 @@ export const MobData = [
   {
     id: 28,
     name: 'forest ostard',
+    difficulty: 1,
     description: 'A forest ostard wanders around.',
     armor: null,
     karma: 0,
@@ -852,6 +875,7 @@ export const MobData = [
   {
     id: 29,
     name: 'frenzied ostard',
+    difficulty: 1,
     description: 'A frenzied ostard sees you and begins to run toward you.',
     armor: 0,
     karma: -1500,
@@ -889,6 +913,7 @@ export const MobData = [
   {
     id: 30,
     name: 'giant serpent',
+    difficulty: 1,
     description: 'A giant serpent slithers toward you.',
     armor: 32,
     karma: -2500,
@@ -930,6 +955,7 @@ export const MobData = [
   {
     id: 31,
     name: 'giant toad',
+    difficulty: 0,
     description: 'giant toad',
     armor: 24,
     karma: -750,
@@ -967,6 +993,7 @@ export const MobData = [
   {
     id: 32,
     name: 'goat',
+    difficulty: 0,
     description: 'A goat is chewing on some grass.',
     armor: 10,
     karma: 0,
@@ -1004,6 +1031,7 @@ export const MobData = [
   {
     id: 33,
     name: 'gorilla',
+    difficulty: 0,
     description: 'gorilla',
     armor: 20,
     karma: 0,
@@ -1040,6 +1068,7 @@ export const MobData = [
   {
     id: 34,
     name: 'great hart',
+    difficulty: 0,
     description: 'A great hart stares at you, ready to run.',
     armor: 24,
     karma: 0,
@@ -1077,6 +1106,7 @@ export const MobData = [
   {
     id: 35,
     name: 'grey wolf',
+    difficulty: 0,
     description: 'grey wolf',
     armor: 16,
     karma: 0,
@@ -1114,6 +1144,7 @@ export const MobData = [
   {
     id: 36,
     name: 'grizzly bear',
+    difficulty: 1,
     description: 'grizzly bear',
     armor: 24,
     karma: 0,
@@ -1151,6 +1182,7 @@ export const MobData = [
   {
     id: 37,
     name: 'hell cat',
+    difficulty: 1,
     description: 'hell cat',
     armor: 30,
     stats: {
@@ -1184,6 +1216,7 @@ export const MobData = [
   {
     id: 38,
     name: 'horse',
+    difficulty: 0,
     description: 'A wild horse runs around.',
     armor: null,
     karma: -300,
@@ -1220,6 +1253,7 @@ export const MobData = [
   {
     id: 39,
     name: 'ice serpent',
+    difficulty: 1,
     description: 'ice serpent',
     armor: 32,
     stats: {
@@ -1252,6 +1286,7 @@ export const MobData = [
   {
     id: 40,
     name: 'ice snake',
+    difficulty: 0,
     description: 'ice snake',
     armor: 30,
     karma: -900,
@@ -1288,6 +1323,7 @@ export const MobData = [
   {
     id: 41,
     name: 'jack rabbit',
+    difficulty: 0,
     description: 'A jack rabbit looks for its burrow.',
     armor: 4,
     karma: 0,
@@ -1324,6 +1360,7 @@ export const MobData = [
   {
     id: 42,
     name: 'lava lizard',
+    difficulty: 1,
     description: 'lava lizard',
     armor: 40,
     karma: 3000,
@@ -1360,6 +1397,7 @@ export const MobData = [
   {
     id: 43,
     name: 'lava serpent',
+    difficulty: 2,
     description: 'lava serpent',
     armor: 40,
     karma: -4500,
@@ -1396,6 +1434,7 @@ export const MobData = [
   {
     id: 44,
     name: 'lava snake',
+    difficulty: 0,
     description: 'lava snake',
     armor: 24,
     karma: -600,
@@ -1432,6 +1471,7 @@ export const MobData = [
   {
     id: 45,
     name: 'llama',
+    difficulty: 0,
     description: 'A llama walks around quietly.',
     armor: 16,
     karma: 0,
@@ -1468,6 +1508,7 @@ export const MobData = [
   {
     id: 46,
     name: 'mountain goat',
+    difficulty: 0,
     description: 'A mountain goat is perched on some rocks.',
     armor: 10,
     karma: 0,
@@ -1497,6 +1538,7 @@ export const MobData = [
   {
     id: 47,
     name: 'nightmare',
+    difficulty: 2,
     description: 'nightmare',
     armor: 60,
     karma: 14000,
@@ -1533,6 +1575,7 @@ export const MobData = [
   {
     id: 48,
     name: 'pack horse',
+    difficulty: 0,
     description: 'pack horse',
     armor: 16,
     karma: -200,
@@ -1569,6 +1612,7 @@ export const MobData = [
   {
     id: 49,
     name: 'pack llama',
+    difficulty: 0,
     description: 'pack llama',
     armor: 16,
     karma: -200,
@@ -1605,6 +1649,7 @@ export const MobData = [
   {
     id: 50,
     name: 'panther',
+    difficulty: 0,
     description: 'A panther stalks its prey.',
     armor: 16,
     karma: 0,
@@ -1642,6 +1687,7 @@ export const MobData = [
   {
     id: 51,
     name: 'phoenix',
+    difficulty: 2,
     description: 'phoenix',
     armor: 60,
     stats: {
@@ -1674,6 +1720,7 @@ export const MobData = [
   {
     id: 52,
     name: 'pig',
+    difficulty: 0,
     description: 'A pig is wallowing in the dirt.',
     armor: 12,
     karma: 0,
@@ -1710,6 +1757,7 @@ export const MobData = [
   {
     id: 53,
     name: 'polar bear',
+    difficulty: 1,
     description: 'polar bear',
     armor: 18,
     karma: 0,
@@ -1746,6 +1794,7 @@ export const MobData = [
   {
     id: 54,
     name: 'predator hell cat',
+    difficulty: 2,
     description: 'predator hell cat',
     armor: 30,
     stats: {
@@ -1778,6 +1827,7 @@ export const MobData = [
   {
     id: 55,
     name: 'rabbit',
+    difficulty: 0,
     description: 'A rabbit looks for its burrow.',
     armor: 6,
     karma: 0,
@@ -1814,6 +1864,7 @@ export const MobData = [
   {
     id: 56,
     name: 'raging grizzly bear',
+    difficulty: 3,
     description: 'raging grizzly bear',
     armor: 24,
     karma: 10000,
@@ -1850,6 +1901,7 @@ export const MobData = [
   {
     id: 57,
     name: 'rat',
+    difficulty: 0,
     description: 'A rat is wandering around looking for food.',
     armor: 6,
     karma: -150,
@@ -1887,6 +1939,7 @@ export const MobData = [
   {
     id: 58,
     name: 'ridable llama',
+    difficulty: 0,
     description: 'ridable llama',
     armor: 0,
     stats: {
@@ -1914,6 +1967,7 @@ export const MobData = [
   {
     id: 59,
     name: 'scaled swamp dragon',
+    difficulty: 0,
     description: 'scaled swamp dragon',
     armor: 0,
     stats: {
@@ -1935,6 +1989,7 @@ export const MobData = [
   {
     id: 60,
     name: 'sewer rat',
+    difficulty: 0,
     description: 'sewer rat',
     armor: 6,
     karma: -300,
@@ -1972,6 +2027,7 @@ export const MobData = [
   {
     id: 61,
     name: 'silver serpent',
+    difficulty: 2,
     description: 'silver serpent',
     armor: 40,
     karma: -7000,
@@ -2008,17 +2064,16 @@ export const MobData = [
   {
     id: 62,
     name: 'silver steed',
+    difficulty: 0,
     description: 'silver steed',
     armor: null,
     karma: 0,
     fame: 0,
     stats: {
-      str: [78,
-        80],
-      dex: '53',
-      int: '10',
-      hp: [78,
-        80],
+      str: [78,80],
+      dex: [53,53],
+      int: [10,10],
+      hp: [78,80],
       taming: 103.1,
       barding: 30
     },
@@ -2039,6 +2094,7 @@ export const MobData = [
   {
     id: 63,
     name: 'skeletal mount',
+    difficulty: 0,
     description: 'skeletal mount',
     armor: 0,
     stats: {
@@ -2060,6 +2116,7 @@ export const MobData = [
   {
     id: 64,
     name: 'snake',
+    difficulty: 0,
     description: 'A snake slithers on the ground',
     armor: 16,
     karma: -300,
@@ -2097,19 +2154,16 @@ export const MobData = [
   {
     id: 65,
     name: 'snow leopard',
+    difficulty: 0,
     description: 'snow leopard',
     armor: 24,
     karma: 0,
     fame: 450,
     stats: {
-      str: [56,
-        80],
-      dex: [66,
-        85],
-      int: [26,
-        50],
-      hp: [34,
-        48],
+      str: [56,80],
+      dex: [66,85],
+      int: [26,50],
+      hp: [34,48],
       taming: 53.1,
       barding: 29
     },
@@ -2141,19 +2195,16 @@ export const MobData = [
   {
     id: 66,
     name: 'swamp dragon',
+    difficulty: 1,
     description: 'swamp dragon',
     armor: 0,
     karma: -2000,
     fame: 2000,
     stats: {
-      str: [201,
-        300],
-      dex: [66,
-        85],
-      int: [61,
-        100],
-      hp: [121,
-        180],
+      str: [201,300],
+      dex: [66,85],
+      int: [61,100],
+      hp: [121,180],
       taming: 93.9,
       barding: 59
     },
@@ -2178,6 +2229,7 @@ export const MobData = [
   {
     id: 67,
     name: 'timber wolf',
+    difficulty: 0,
     description: 'A timber wolf is looking for prey.',
     armor: 16,
     karma: 0,
@@ -2215,6 +2267,7 @@ export const MobData = [
   {
     id: 68,
     name: 'tropical bird',
+    difficulty: 0,
     description: 'tropical bird',
     armor: 2,
     stats: {
@@ -2247,19 +2300,16 @@ export const MobData = [
   {
     id: 69,
     name: 'unicorn',
+    difficulty: 2,
     description: 'unicorn',
     armor: 0,
     karma: 9000,
     fame: 9000,
     stats: {
-      str: [296,
-        325],
-      dex: [96,
-        115],
-      int: [186,
-        225],
-      hp: [191,
-        210],
+      str: [296,325],
+      dex: [96,115],
+      int: [186,225],
+      hp: [191,210],
       taming: 95.1,
       barding: 89
     },
@@ -2292,19 +2342,16 @@ export const MobData = [
   {
     id: 70,
     name: 'walrus',
+    difficulty: 0,
     description: 'walrus',
     armor: 18,
     karma: 0,
     fame: 150,
     stats: {
-      str: [21,
-        29],
-      dex: [46,
-        55],
-      int: [16,
-        20],
-      hp: [14,
-        17],
+      str: [21,29],
+      dex: [46,55],
+      int: [16,20],
+      hp: [14,17],
       taming: 35.1,
       barding: 15
     },
@@ -2336,19 +2383,16 @@ export const MobData = [
   {
     id: 71,
     name: 'white wolf',
+    difficulty: 0,
     description: 'white wolf',
     armor: 16,
     karma: 0,
     fame: 450,
     stats: {
-      str: [56,
-        80],
-      dex: [56,
-        75],
-      int: [31,
-        55],
-      hp: [34,
-        48],
+      str: [56,80],
+      dex: [56,75],
+      int: [31,55],
+      hp: [34,48],
       taming: 65.1,
       barding: 27
     },
@@ -2380,15 +2424,13 @@ export const MobData = [
   {
     id: 72,
     name: 'arachnid enforcer',
+    difficulty: 3,
     description: 'arachnid enforcer',
     armor: 50,
     stats: {
-      str: [750,
-        850],
-      dex: [105,
-        115],
-      int: [420,
-        475],
+      str: [750,850],
+      dex: [105,115],
+      int: [420,475],
       hp: [900,1100],
       taming: null,
       barding: null
@@ -2410,6 +2452,7 @@ export const MobData = [
   {
     id: 73,
     name: 'black solen infiltrator queen',
+    difficulty: 3,
     description: 'black solen infiltrator queen',
     armor: 50,
     stats: {
@@ -2431,6 +2474,7 @@ export const MobData = [
   {
     id: 74,
     name: 'black solen infiltrator warrior',
+    difficulty: 3,
     description: 'black solen infiltrator warrior',
     armor: 40,
     stats: {
@@ -2452,6 +2496,7 @@ export const MobData = [
   {
     id: 75,
     name: 'black solen queen',
+    difficulty: 4,
     description: 'black solen queen',
     armor: 45,
     stats: {
@@ -2473,6 +2518,7 @@ export const MobData = [
   {
     id: 76,
     name: 'black solen warrior',
+    difficulty: 3,
     description: 'black solen warrior',
     armor: 35,
     stats: {
@@ -2494,6 +2540,7 @@ export const MobData = [
   {
     id: 77,
     name: 'black solen worker',
+    difficulty: 3,
     description: 'black solen worker',
     armor: 28,
     stats: {
@@ -2515,19 +2562,16 @@ export const MobData = [
   {
     id: 78,
     name: 'dread spider',
+    difficulty: 2,
     description: 'dread spider',
     armor: 36,
     karma: -5000,
     fame: 5000,
     stats: {
-      str: [196,
-        220],
-      dex: [126,
-        145],
-      int: [286,
-        310],
-      hp: [118,
-        132],
+      str: [196,220],
+      dex: [126,145],
+      int: [286,310],
+      hp: [118,132],
       taming: null,
       barding: 95
     },
@@ -2560,16 +2604,14 @@ export const MobData = [
   {
     id: 79,
     name: 'drone mage',
+    difficulty: 2,
     description: 'drone mage',
     armor: 20,
     stats: {
-      str: [250,
-        300],
-      dex: [90,
-        120],
+      str: [250,300],
+      dex: [90,120],
       int: [1000,1100],
-      hp: [250,
-        275],
+      hp: [250,275],
       taming: null,
       barding: 119
     },
@@ -2590,16 +2632,14 @@ export const MobData = [
   {
     id: 80,
     name: 'drone sentry',
+    difficulty: 2,
     description: 'drone sentry',
     armor: 20,
     stats: {
-      str: [200,
-        225],
-      dex: [110,
-        120],
+      str: [200,225],
+      dex: [110,120],
       int: [1000,1100],
-      hp: [175,
-        250],
+      hp: [175,250],
       taming: null,
       barding: 121
     },
@@ -2620,16 +2660,14 @@ export const MobData = [
   {
     id: 81,
     name: 'drone spitter',
+    difficulty: 2,
     description: 'drone spitter',
     armor: 25,
     stats: {
-      str: [325,
-        350],
-      dex: [90,
-        120],
+      str: [325,350],
+      dex: [90,120],
       int: [1000,1100],
-      hp: [325,
-        350],
+      hp: [325,350],
       taming: null,
       barding: 118
     },
@@ -2650,16 +2688,14 @@ export const MobData = [
   {
     id: 82,
     name: 'drone warrior',
+    difficulty: 2,
     description: 'drone warrior',
     armor: 30,
     stats: {
-      str: [425,
-        475],
-      dex: [90,
-        120],
+      str: [425,475],
+      dex: [90,120],
       int: [1000,1100],
-      hp: [425,
-        475],
+      hp: [425,475],
       taming: null,
       barding: 124
     },
@@ -2680,16 +2716,14 @@ export const MobData = [
   {
     id: 83,
     name: 'drone worker',
+    difficulty: 2,
     description: 'drone worker',
     armor: 15,
     stats: {
-      str: [86,
-        100],
-      dex: [70,
-        95],
+      str: [86,100],
+      dex: [70,95],
       int: [1000,1100],
-      hp: [175,
-        250],
+      hp: [175,250],
       taming: null,
       barding: 111
     },
@@ -2710,19 +2744,16 @@ export const MobData = [
   {
     id: 84,
     name: 'frost spider',
+    difficulty: 1,
     description: 'frost spider',
     armor: 28,
     karma: -775,
     fame: 775,
     stats: {
-      str: [76,
-        100],
-      dex: [126,
-        145],
-      int: [36,
-        60],
-      hp: [46,
-        60],
+      str: [76,100],
+      dex: [126,145],
+      int: [36,60],
+      hp: [46,60],
       taming: 75.7,
       barding: 40
     },
@@ -2755,19 +2786,16 @@ export const MobData = [
   {
     id: 85,
     name: 'giant black widow',
+    difficulty: 1,
     description: 'giant black widow',
     armor: 24,
     karma: -3500,
     fame: 3500,
     stats: {
-      str: [76,
-        100],
-      dex: [96,
-        115],
-      int: [36,
-        60],
-      hp: [46,
-        60],
+      str: [76,100],
+      dex: [96,115],
+      int: [36,60],
+      hp: [46,60],
       taming: null,
       barding: 70.6
     },
@@ -2793,6 +2821,7 @@ export const MobData = [
   {
     id: 86,
     name: 'giant spider',
+    difficulty: 1,
     description: 'A giant spider silently approaches.',
     armor: 16,
     karma: -600,
@@ -2835,15 +2864,13 @@ export const MobData = [
   {
     id: 87,
     name: 'ilyxia the arachnid queen',
+    difficulty: 4,
     description: 'ilyxia the arachnid queen',
     armor: 60,
     stats: {
-      str: [819,
-        910],
-      dex: [125,
-        135],
-      int: [420,
-        475],
+      str: [819,910],
+      dex: [125,135],
+      int: [420,475],
       hp: [1400,1550],
       taming: null,
       barding: null
@@ -2865,6 +2892,7 @@ export const MobData = [
   {
     id: 88,
     name: 'red solen infiltrator queen',
+    difficulty: 4,
     description: 'red solen infiltrator queen',
     armor: 50,
     stats: {
@@ -2886,6 +2914,7 @@ export const MobData = [
   {
     id: 89,
     name: 'red solen infiltrator warrior',
+    difficulty: 3,
     description: 'red solen infiltrator warrior',
     armor: 40,
     stats: {
@@ -2907,6 +2936,7 @@ export const MobData = [
   {
     id: 90,
     name: 'red solen queen',
+    difficulty: 4,
     description: 'red solen queen',
     armor: 45,
     stats: {
@@ -2928,6 +2958,7 @@ export const MobData = [
   {
     id: 91,
     name: 'red solen warrior',
+    difficulty: 3,
     description: 'red solen warrior',
     armor: 35,
     stats: {
@@ -2949,6 +2980,7 @@ export const MobData = [
   {
     id: 92,
     name: 'red solen worker',
+    difficulty: 3,
     description: 'red solen worker',
     armor: 28,
     stats: {
@@ -2970,19 +3002,16 @@ export const MobData = [
   {
     id: 93,
     name: 'terathan avenger',
+    difficulty: 3,
     description: 'terathan avenger',
     armor: 50,
     karma: 15000,
     fame: 15000,
     stats: {
-      str: [467,
-        645],
-      dex: [77,
-        95],
-      int: [126,
-        150],
-      hp: [296,
-        372],
+      str: [467,645],
+      dex: [77,95],
+      int: [126,150],
+      hp: [296,372],
       taming: null,
       barding: 104
     },
@@ -3015,19 +3044,16 @@ export const MobData = [
   {
     id: 94,
     name: 'terathan drone',
+    difficulty: 2,
     description: 'terathan drone',
     armor: 24,
     karma: 2000,
     fame: 2000,
     stats: {
-      str: [36,
-        65],
-      dex: [96,
-        145],
-      int: [21,
-        45],
-      hp: [22,
-        39],
+      str: [36,65],
+      dex: [96,145],
+      int: [21,45],
+      hp: [22,39],
       taming: null,
       barding: 32
     },
@@ -3060,15 +3086,13 @@ export const MobData = [
   {
     id: 95,
     name: 'terathan infiltrator',
+    difficulty: 3,
     description: 'terathan infiltrator',
     armor: 70,
     stats: {
-      str: [810,
-        910],
-      dex: [125,
-        135],
-      int: [420,
-        475],
+      str: [810,910],
+      dex: [125,135],
+      int: [420,475],
       hp: [1400,1550],
       taming: null,
       barding: 151
@@ -3095,19 +3119,16 @@ export const MobData = [
   {
     id: 96,
     name: 'terathan matriarch',
+    difficulty: 3,
     description: 'terathan matriarch',
     armor: 0,
     karma: 10000,
     fame: 10000,
     stats: {
-      str: [316,
-        405],
-      dex: [96,
-        115],
-      int: [366,
-        455],
-      hp: [190,
-        243],
+      str: [316,405],
+      dex: [96,115],
+      int: [366,455],
+      hp: [190,243],
       taming: null,
       barding: 87
     },
@@ -3140,19 +3161,16 @@ export const MobData = [
   {
     id: 97,
     name: 'terathan warrior',
+    difficulty: 2,
     description: 'terathan warrior',
     armor: 30,
     karma: 4000,
     fame: 4000,
     stats: {
-      str: [166,
-        215],
-      dex: [96,
-        145],
-      int: [41,
-        65],
-      hp: [100,
-        129],
+      str: [166,215],
+      dex: [96,145],
+      int: [41,65],
+      hp: [100,129],
       taming: null,
       barding: 61
     },
@@ -3185,14 +3203,13 @@ export const MobData = [
   {
     id: 98,
     name: 'anaconda',
+    difficulty: 4,
     description: 'anaconda',
     armor: 55,
     stats: {
       str: [1000,1100],
-      dex: [153,
-        172],
-      int: [300,
-        400],
+      dex: [153,172],
+      int: [300,400],
       hp: [1650,1925],
       taming: null,
       barding: 189
@@ -3219,12 +3236,12 @@ export const MobData = [
   {
     id: 99,
     name: 'arctic ogre mage',
+    difficulty: 4,
     description: 'arctic ogre mage',
     armor: 65,
     stats: {
       str: [1000,1100],
-      dex: [82,
-        95],
+      dex: [82,95],
       int: [1000,1100],
       hp: [1495,1595],
       taming: null,
@@ -3252,14 +3269,13 @@ export const MobData = [
   {
     id: 100,
     name: 'azure dragon',
+    difficulty: 5,
     description: 'azure dragon',
     armor: 80,
     stats: {
       str: [1000,1100],
-      dex: [120,
-        130],
-      int: [770,
-        820],
+      dex: [120,130],
+      int: [770,820],
       hp: [3000,3000],
       taming: null,
       barding: 239
@@ -3286,13 +3302,14 @@ export const MobData = [
   {
     id: 101,
     name: 'beast tamer',
+    difficulty: 5,
     description: 'beast tamer',
     armor: 60,
     stats: {
       str: [605,725],
       dex: [125,150],
       int: [505,750],
-      hp: [8,9],
+      hp: [8000,9000],
       taming: null,
       barding: 413
     },
@@ -3318,15 +3335,13 @@ export const MobData = [
   {
     id: 102,
     name: 'beholder',
+    difficulty: 4,
     description: 'beholder',
     armor: 65,
     stats: {
-      str: [630,
-        730],
-      dex: [86,
-        105],
-      int: [910,
-        950],
+      str: [630,730],
+      dex: [86,105],
+      int: [910,950],
       hp: [1300,1400],
       taming: null,
       barding: 184
@@ -3353,6 +3368,7 @@ export const MobData = [
   {
     id: 103,
     name: 'colossus',
+    difficulty: 4,
     description: 'colossus',
     armor: 78,
     stats: {
@@ -3385,13 +3401,12 @@ export const MobData = [
   {
     id: 104,
     name: 'dark one',
+    difficulty: 3,
     description: 'dark one',
     armor: 65,
     stats: {
-      str: [770,
-        830],
-      dex: [146,
-        185],
+      str: [770,830],
+      dex: [146,185],
       int: [1000,1100],
       hp: [1700,1800],
       taming: null,
@@ -3419,15 +3434,14 @@ export const MobData = [
   {
     id: 105,
     name: 'diseased blood elemental',
+    difficulty: 4,
     description: 'diseased blood elemental',
     armor: 80,
     karma: 8500,
     fame: 8500,
     stats: {
-      str: [880,
-        950],
-      dex: [95,
-        105],
+      str: [880,950],
+      dex: [95,105],
       int: [1000,1100],
       hp: [1800,2000],
       taming: null,
@@ -3462,13 +3476,12 @@ export const MobData = [
   {
     id: 106,
     name: 'efreet sultan',
+    difficulty: 3,
     description: 'efreet sultan',
     armor: 70,
     stats: {
-      str: [810,
-        855],
-      dex: [266,
-        285],
+      str: [810,855],
+      dex: [266,285],
       int: [1000,1100],
       hp: [1200,1300],
       taming: null,
@@ -3496,6 +3509,7 @@ export const MobData = [
   {
     id: 107,
     name: 'elder wyrm',
+    difficulty: 4,
     description: 'elder wyrm',
     armor: 90,
     stats: {
@@ -3528,14 +3542,13 @@ export const MobData = [
   {
     id: 108,
     name: 'grand visor of chaos',
+    difficulty: 4,
     description: 'grand visor of chaos',
     armor: 70,
     stats: {
       str: [1000,1100],
-      dex: [230,
-        275],
-      int: [205,
-        225],
+      dex: [230,275],
+      int: [205,225],
       hp: [2100,2200],
       taming: null,
       barding: 152
@@ -3562,6 +3575,7 @@ export const MobData = [
   {
     id: 109,
     name: 'jungle titan',
+    difficulty: 4,
     description: 'jungle titan',
     armor: 48,
     stats: {
@@ -3594,14 +3608,13 @@ export const MobData = [
   {
     id: 110,
     name: 'ogre mage',
+    difficulty: 3,
     description: 'ogre mage',
     armor: 65,
     stats: {
       str: [1000,1100],
-      dex: [90,
-        99],
-      int: [720,
-        770],
+      dex: [90,99],
+      int: [720,770],
       hp: [1400,1500],
       taming: null,
       barding: 180
@@ -3628,15 +3641,13 @@ export const MobData = [
   {
     id: 111,
     name: 'ophidian queen',
+    difficulty: 4,
     description: 'ophidian queen',
     armor: 78,
     stats: {
-      str: [810,
-        910],
-      dex: [125,
-        135],
-      int: [420,
-        475],
+      str: [810,910],
+      dex: [125,135],
+      int: [420,475],
       hp: [1900,2100],
       taming: null,
       barding: 172
@@ -3663,14 +3674,13 @@ export const MobData = [
   {
     id: 112,
     name: 'purveyor of darkness',
+    difficulty: 5,
     description: 'purveyor of darkness',
     armor: 100,
     stats: {
       str: [1000,1100],
-      dex: [225,
-        255],
-      int: [600,
-        700],
+      dex: [225,255],
+      int: [600,700],
       hp: [4000,4000],
       taming: null,
       barding: 299
@@ -3697,17 +3707,14 @@ export const MobData = [
   {
     id: 113,
     name: 'rabbit of caerbannog',
+    difficulty: 3,
     description: 'rabbit of caerbannog',
     armor: 60,
     stats: {
-      str: [605,
-        805],
-      dex: [125,
-        150],
-      int: [505,
-        750],
-      hp: [9,
-        10],
+      str: [605,805],
+      dex: [125,150],
+      int: [505,750],
+      hp: [900,1000],
       taming: null,
       barding: null
     },
@@ -3733,17 +3740,14 @@ export const MobData = [
   {
     id: 114,
     name: 'reptile tamer',
+    difficulty: 4,
     description: 'reptile tamer',
     armor: 60,
     stats: {
-      str: [605,
-        725],
-      dex: [125,
-        150],
-      int: [505,
-        750],
-      hp: [8,
-        9],
+      str: [605,725],
+      dex: [125,150],
+      int: [505,750],
+      hp: [2000,2300],
       taming: null,
       barding: 413
     },
@@ -3769,12 +3773,12 @@ export const MobData = [
   {
     id: 116,
     name: 'two headed behemoth',
+    difficulty: 4,
     description: 'two headed behemoth',
     armor: 78,
     stats: {
       str: [900,1050],
-      dex: [115,
-        155],
+      dex: [115,155],
       int: [1000,1100],
       hp: [2000,3000],
       taming: null,
@@ -3802,16 +3806,14 @@ export const MobData = [
   {
     id: 117,
     name: 'wyvern monarch',
+    difficulty: 3,
     description: 'wyvern monarch',
     armor: 55,
     stats: {
       str: [1000,1100],
-      dex: [153,
-        172],
-      int: [300,
-        400],
-      hp: [650,
-        725],
+      dex: [153,172],
+      int: [300,400],
+      hp: [650,725],
       taming: null,
       barding: 125
     },
@@ -3837,15 +3839,13 @@ export const MobData = [
   {
     id: 118,
     name: 'bad santa',
+    difficulty: 4,
     description: 'bad santa',
     armor: 55,
     stats: {
-      str: [250,
-        275],
-      dex: [126,
-        145],
-      int: [676,
-        905],
+      str: [250,275],
+      dex: [126,145],
+      int: [676,905],
       hp: [2000,3000],
       taming: null,
       barding: null
@@ -3872,17 +3872,15 @@ export const MobData = [
   {
     id: 119,
     name: 'barracoon',
+    difficulty: 4,
     description: 'barracoon',
     armor: 70,
     karma: 22500,
     fame: 22500,
     stats: {
-      str: [305,
-        425],
-      dex: [72,
-        150],
-      int: [505,
-        750],
+      str: [305,425],
+      dex: [72,150],
+      int: [505,750],
       hp: [4000,4000],
       taming: null,
       barding: 237
@@ -3914,15 +3912,13 @@ export const MobData = [
   {
     id: 120,
     name: 'cupid',
+    difficulty: 3,
     description: 'cupid',
     armor: 55,
     stats: {
-      str: [250,
-        275],
-      dex: [126,
-        145],
-      int: [676,
-        905],
+      str: [250,275],
+      dex: [126,145],
+      int: [676,905],
       hp: [4000,5000],
       taming: null,
       barding: null
@@ -3949,16 +3945,16 @@ export const MobData = [
   {
     id: 121,
     name: 'harrower',
+    difficulty: 6,
     description: 'harrower',
     armor: 60,
     karma: 25000,
     fame: 25000,
     stats: {
       str: [900,1050],
-      dex: [125,
-        135],
+      dex: [125,135],
       int: [1000,1100],
-      hp: [1,1],
+      hp: [10000,11000],
       taming: null,
       barding: null
     },
@@ -3990,17 +3986,15 @@ export const MobData = [
   {
     id: 122,
     name: 'lord oaks',
+    difficulty: 5,
     description: 'lord oaks',
     armor: 100,
     karma: 22500,
     fame: 22500,
     stats: {
-      str: [403,
-        850],
-      dex: [101,
-        150],
-      int: [503,
-        800],
+      str: [403,850],
+      dex: [101,150],
+      int: [503,800],
       hp: [4000,5000],
       taming: null,
       barding: 272
@@ -4033,6 +4027,7 @@ export const MobData = [
   },
   {
     id: 123,
+    difficulty: 5,
     name: 'mephitis',
     description: 'mephitis',
     armor: 80,
@@ -4040,10 +4035,8 @@ export const MobData = [
     fame: 22500,
     stats: {
       str: [505,1100],
-      dex: [102,
-        300],
-      int: [402,
-        600],
+      dex: [102,300],
+      int: [402,600],
       hp: [5000,7000],
       taming: null,
       barding: 352
@@ -4077,19 +4070,16 @@ export const MobData = [
   {
     id: 124,
     name: 'neira',
+    difficulty: 4,
     description: 'neira',
     armor: 30,
     karma: 0,
     fame: 0,
     stats: {
-      str: [305,
-        425],
-      dex: [72,
-        150],
-      int: [505,
-        750],
-      hp: [6,
-        8],
+      str: [305,425],
+      dex: [72,150],
+      int: [505,750],
+      hp: [3000,3500],
       taming: null,
       barding: 399
     },
@@ -4120,19 +4110,16 @@ export const MobData = [
   {
     id: 125,
     name: 'rikktor',
+    difficulty: 4,
     description: 'rikktor',
     armor: 130,
     karma: 22500,
     fame: 22500,
     stats: {
-      str: [701,
-        900],
-      dex: [201,
-        350],
-      int: [51,
-        100],
-      hp: [6,
-        9],
+      str: [701,900],
+      dex: [201,350],
+      int: [51,100],
+      hp: [3000,3900],
       taming: null,
       barding: 358
     },
@@ -4164,17 +4151,15 @@ export const MobData = [
   {
     id: 126,
     name: 'semidar',
+    difficulty: 4,
     description: 'semidar',
     armor: 20,
     karma: 24000,
     fame: 24000,
     stats: {
-      str: [502,
-        600],
-      dex: [102,
-        200],
-      int: [601,
-        750],
+      str: [502,600],
+      dex: [102,200],
+      int: [601,750],
       hp: [2000,4000],
       taming: null,
       barding: 243
@@ -4208,19 +4193,16 @@ export const MobData = [
   {
     id: 127,
     name: 'silvani',
+    difficulty: 3,
     description: 'silvani',
     armor: 50,
     karma: 0,
     fame: 0,
     stats: {
-      str: [253,
-        400],
-      dex: [157,
-        850],
-      int: [503,
-        800],
-      hp: [600,
-        600],
+      str: [253,400],
+      dex: [157,850],
+      int: [503,800],
+      hp: [600,600],
       taming: null,
       barding: 142
     },
@@ -4253,16 +4235,16 @@ export const MobData = [
   {
     id: 128,
     name: 'the true harrower',
+    difficulty: 6,
     description: 'the true harrower',
     armor: 60,
     karma: 25000,
     fame: 25000,
     stats: {
       str: [900,1050],
-      dex: [125,
-        135],
+      dex: [125,135],
       int: [1000,1100],
-      hp: [1,1],
+      hp: [11000,11000],
       taming: null,
       barding: null
     },
@@ -4294,19 +4276,16 @@ export const MobData = [
   {
     id: 129,
     name: 'arcane daemon',
+    difficulty: 3,
     description: 'arcane daemon',
     armor: 55,
     karma: -10000,
     fame: 7000,
     stats: {
-      str: [131,
-        150],
-      dex: [126,
-        145],
-      int: [301,
-        350],
-      hp: [101,
-        115],
+      str: [131,150],
+      dex: [126,145],
+      int: [301,350],
+      hp: [101,115],
       taming: null,
       barding: 88
     },
@@ -4332,18 +4311,16 @@ export const MobData = [
   {
     id: 130,
     name: 'balron',
+    difficulty: 4,
     description: 'balron',
     armor: 90,
     karma: -24000,
     fame: 24000,
     stats: {
       str: [969,1100],
-      dex: [177,
-        255],
-      int: [151,
-        250],
-      hp: [592,
-        711],
+      dex: [177,255],
+      int: [151,250],
+      hp: [592,711],
       taming: null,
       barding: 125
     },
@@ -4376,19 +4353,16 @@ export const MobData = [
   {
     id: 131,
     name: 'chaos daemon',
+    difficulty: 3,
     description: 'chaos daemon',
     armor: 15,
     karma: -3000,
     fame: 3000,
     stats: {
-      str: [106,
-        130],
-      dex: [171,
-        200],
-      int: [56,
-        80],
-      hp: [91,
-        110],
+      str: [106,130],
+      dex: [171,200],
+      int: [56,80],
+      hp: [91,110],
       taming: null,
       barding: 71.5
     },
@@ -4414,19 +4388,16 @@ export const MobData = [
   {
     id: 132,
     name: 'daemon',
+    difficulty: 3,
     description: 'daemon',
     armor: 58,
     karma: -15000,
     fame: 15000,
     stats: {
-      str: [476,
-        505],
-      dex: [76,
-        95],
-      int: [301,
-        325],
-      hp: [286,
-        303],
+      str: [476,505],
+      dex: [76,95],
+      int: [301,325],
+      hp: [286,303],
       taming: null,
       barding: null
     },
@@ -4459,19 +4430,16 @@ export const MobData = [
   {
     id: 133,
     name: 'ice fiend',
+    difficulty: 3,
     description: 'ice fiend',
     armor: 60,
     karma: -18000,
     fame: 18000,
     stats: {
-      str: [376,
-        405],
-      dex: [176,
-        195],
-      int: [201,
-        225],
-      hp: [226,
-        243],
+      str: [376,405],
+      dex: [176,195],
+      int: [201,225],
+      hp: [226,243],
       taming: null,
       barding: null
     },
@@ -4504,19 +4472,16 @@ export const MobData = [
   {
     id: 134,
     name: 'moloch',
+    difficulty: 3,
     description: 'moloch',
     armor: 32,
     karma: -7500,
     fame: 7500,
     stats: {
-      str: [331,
-        360],
-      dex: [66,
-        85],
-      int: [41,
-        65],
-      hp: [171,
-        200],
+      str: [331,360],
+      dex: [66,85],
+      int: [41,65],
+      hp: [171,200],
       taming: null,
       barding: 72.5
     },
@@ -4542,19 +4507,16 @@ export const MobData = [
   {
     id: 136,
     name: 'acid elemental',
+    difficulty: 3,
     description: 'acid elemental',
     armor: 40,
     karma: -10000,
     fame: 10000,
     stats: {
-      str: [326,
-        355],
-      dex: [66,
-        85],
-      int: [271,
-        295],
-      hp: [196,
-        213],
+      str: [326,355],
+      dex: [66,85],
+      int: [271,295],
+      hp: [196,213],
       taming: null,
       barding: 100
     },
@@ -4587,19 +4549,16 @@ export const MobData = [
   {
     id: 137,
     name: 'agapite elemental',
+    difficulty: 2,
     description: 'agapite elemental',
     armor: 32,
     karma: -3500,
     fame: 3500,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 63
     },
@@ -4632,19 +4591,16 @@ export const MobData = [
   {
     id: 138,
     name: 'air elemental',
+    difficulty: 2,
     description: 'air elemental',
     armor: 40,
     karma: -4500,
     fame: 4500,
     stats: {
-      str: [126,
-        155],
-      dex: [166,
-        185],
-      int: [101,
-        125],
-      hp: [76,
-        93],
+      str: [126,155],
+      dex: [166,185],
+      int: [101,125],
+      hp: [76,93],
       taming: null,
       barding: 71
     },
@@ -4677,13 +4633,12 @@ export const MobData = [
   {
     id: 139,
     name: 'amber golem',
+    difficulty: 2,
     description: 'amber golem',
     armor: 35,
     stats: {
-      str: [86,
-        100],
-      dex: [70,
-        95],
+      str: [86,100],
+      dex: [70,95],
       int: [1000,1100],
       hp: [200,
         275],
@@ -4707,13 +4662,12 @@ export const MobData = [
   {
     id: 140,
     name: 'amethyst golem',
+    difficulty: 2,
     description: 'amethyst golem',
     armor: 38,
     stats: {
-      str: [200,
-        225],
-      dex: [110,
-        120],
+      str: [200,225],
+      dex: [110,120],
       int: [1000,1100],
       hp: [200,
         225],
@@ -4737,19 +4691,16 @@ export const MobData = [
   {
     id: 141,
     name: 'blood elemental',
+    difficulty: 3,
     description: 'blood elemental',
     armor: 60,
     karma: -12500,
     fame: 12500,
     stats: {
-      str: [526,
-        615],
-      dex: [66,
-        85],
-      int: [226,
-        350],
-      hp: [316,
-        369],
+      str: [526,615],
+      dex: [66,85],
+      int: [226,350],
+      hp: [316,369],
       taming: null,
       barding: 93
     },
@@ -4782,19 +4733,16 @@ export const MobData = [
   {
     id: 142,
     name: 'bronze elemental',
+    difficulty: 2,
     description: 'bronze elemental',
     armor: 29,
     karma: -5000,
     fame: 5000,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 62
     },
@@ -4827,16 +4775,14 @@ export const MobData = [
   {
     id: 143,
     name: 'citrine golem',
+    difficulty: 2,
     description: 'citrine golem',
     armor: 41,
     stats: {
-      str: [325,
-        350],
-      dex: [90,
-        120],
+      str: [325,350],
+      dex: [90,120],
       int: [1000,1100],
-      hp: [325,
-        350],
+      hp: [325,350],
       taming: null,
       barding: 111
     },
@@ -4857,19 +4803,16 @@ export const MobData = [
   {
     id: 144,
     name: 'copper elemental',
+    difficulty: 2,
     description: 'copper elemental',
     armor: 26,
     karma: -4800,
     fame: 4800,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 63
     },
@@ -4902,15 +4845,13 @@ export const MobData = [
   {
     id: 145,
     name: 'diamond golem',
+    difficulty: 2,
     description: 'diamond golem',
     armor: 50,
     stats: {
-      str: [750,
-        850],
-      dex: [50,
-        65],
-      int: [25,
-        35],
+      str: [750,850],
+      dex: [50,65],
+      int: [25,35],
       hp: [1400,1600],
       taming: null,
       barding: null
@@ -4932,19 +4873,16 @@ export const MobData = [
   {
     id: 147,
     name: 'dull copper elemental',
+    difficulty: 2,
     description: 'dull copper elemental',
     armor: 20,
     karma: -3500,
     fame: 3500,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 63
     },
@@ -4977,19 +4915,16 @@ export const MobData = [
   {
     id: 148,
     name: 'earth elemental',
+    difficulty: 2,
     description: 'earth elemental',
     armor: 34,
     karma: -3500,
     fame: 3500,
     stats: {
-      str: [126,
-        155],
-      dex: [66,
-        85],
-      int: [71,
-        92],
-      hp: [76,
-        93],
+      str: [126,155],
+      dex: [66,85],
+      int: [71,92],
+      hp: [76,93],
       taming: null,
       barding: 51
     },
@@ -5022,19 +4957,16 @@ export const MobData = [
   {
     id: 149,
     name: 'efreet',
+    difficulty: 2,
     description: 'efreet',
     armor: 98,
     karma: -10000,
     fame: 10000,
     stats: {
-      str: [326,
-        355],
-      dex: [266,
-        285],
-      int: [171,
-        195],
-      hp: [196,
-        213],
+      str: [326,355],
+      dex: [266,285],
+      int: [171,195],
+      hp: [196,213],
       taming: null,
       barding: 83
     },
@@ -5062,16 +4994,14 @@ export const MobData = [
   {
     id: 151,
     name: 'emerald golem',
+    difficulty: 2,
     description: 'emerald golem',
     armor: 41,
     stats: {
-      str: [325,
-        350],
-      dex: [90,
-        120],
+      str: [325,350],
+      dex: [90,120],
       int: [1000,1100],
-      hp: [325,
-        350],
+      hp: [325,350],
       taming: null,
       barding: 108
     },
@@ -5092,19 +5022,16 @@ export const MobData = [
   {
     id: 152,
     name: 'fire elemental',
+    difficulty: 2,
     description: 'fire elemental',
     armor: 40,
     karma: -4500,
     fame: 4500,
     stats: {
-      str: [126,
-        155],
-      dex: [166,
-        185],
-      int: [101,
-        125],
-      hp: [76,
-        93],
+      str: [126,155],
+      dex: [166,185],
+      int: [101,125],
+      hp: [76,93],
       taming: null,
       barding: 72
     },
@@ -5137,19 +5064,16 @@ export const MobData = [
   {
     id: 153,
     name: 'golden elemental',
+    difficulty: 2,
     description: 'golden elemental',
     armor: 60,
     karma: -3500,
     fame: 3500,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 63
     },
@@ -5182,19 +5106,16 @@ export const MobData = [
   {
     id: 154,
     name: 'ice elemental',
+    difficulty: 2,
     description: 'ice elemental',
     armor: 40,
     karma: -4000,
     fame: 4000,
     stats: {
-      str: [156,
-        185],
-      dex: [96,
-        115],
-      int: [171,
-        192],
-      hp: [94,
-        111],
+      str: [156,185],
+      dex: [96,115],
+      int: [171,192],
+      hp: [94,111],
       taming: null,
       barding: 73
     },
@@ -5227,17 +5148,14 @@ export const MobData = [
   {
     id: 155,
     name: 'marble elemental',
+    difficulty: 2,
     description: 'marble elemental',
     armor: 38,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 63
     },
@@ -5263,17 +5181,14 @@ export const MobData = [
   {
     id: 156,
     name: 'ore golem',
+    difficulty: 2,
     description: 'ore golem',
     armor: 38,
     stats: {
-      str: [201,
-        225],
-      dex: [106,
-        115],
-      int: [71,
-        92],
-      hp: [115,
-        135],
+      str: [201,225],
+      dex: [106,115],
+      int: [71,92],
+      hp: [115,135],
       taming: null,
       barding: 61
     },
@@ -5299,17 +5214,14 @@ export const MobData = [
   {
     id: 157,
     name: 'ore golem lord',
+    difficulty: 3,
     description: 'ore golem lord',
     armor: 38,
     stats: {
-      str: [235,
-        265],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [156,
-        183],
+      str: [235,265],
+      dex: [126,145],
+      int: [71,92],
+      hp: [156,183],
       taming: null,
       barding: 64
     },
@@ -5335,19 +5247,16 @@ export const MobData = [
   {
     id: 158,
     name: 'poison elemental',
+    difficulty: 3,
     description: 'poison elemental',
     armor: 70,
     karma: -12500,
     fame: 12500,
     stats: {
-      str: [426,
-        515],
-      dex: [166,
-        185],
-      int: [361,
-        435],
-      hp: [256,
-        309],
+      str: [426,515],
+      dex: [166,185],
+      int: [361,435],
+      hp: [256,309],
       taming: null,
       barding: 115
     },
@@ -5380,15 +5289,13 @@ export const MobData = [
   {
     id: 159,
     name: 'ruby golem',
+    difficulty: 2,
     description: 'ruby golem',
     armor: 40,
     stats: {
-      str: [750,
-        850],
-      dex: [50,
-        65],
-      int: [25,
-        35],
+      str: [750,850],
+      dex: [50,65],
+      int: [25,35],
       hp: [1200,1300],
       taming: null,
       barding: null
@@ -5410,19 +5317,16 @@ export const MobData = [
   {
     id: 160,
     name: 'sand vortex',
+    difficulty: 2,
     description: 'sand vortex',
     armor: 28,
     karma: 4500,
     fame: 4500,
     stats: {
-      str: [96,
-        120],
-      dex: [171,
-        195],
-      int: [76,
-        100],
-      hp: [51,
-        62],
+      str: [96,120],
+      dex: [171,195],
+      int: [76,100],
+      hp: [51,62],
       taming: null,
       barding: 75.6
     },
@@ -5444,17 +5348,14 @@ export const MobData = [
   {
     id: 161,
     name: 'sandstone elemental',
+    difficulty: 2,
     description: 'sandstone elemental',
     armor: 60,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 62
     },
@@ -5480,16 +5381,14 @@ export const MobData = [
   {
     id: 162,
     name: 'sapphire golem',
+    difficulty: 2,
     description: 'sapphire golem',
     armor: 34,
     stats: {
-      str: [425,
-        475],
-      dex: [90,
-        120],
+      str: [425,475],
+      dex: [90,120],
       int: [1000,1100],
-      hp: [425,
-        475],
+      hp: [425,475],
       taming: null,
       barding: 129
     },
@@ -5510,19 +5409,16 @@ export const MobData = [
   {
     id: 163,
     name: 'shadow iron elemental',
+    difficulty: 4,
     description: 'shadow iron elemental',
     armor: 23,
     karma: 3500,
     fame: 3500,
     stats: {
-      str: [226,
-        255],
-      dex: [126,
-        145],
-      int: [71,
-        92],
-      hp: [136,
-        153],
+      str: [226,255],
+      dex: [126,145],
+      int: [71,92],
+      hp: [136,153],
       taming: null,
       barding: 71
     },
@@ -5540,16 +5436,11 @@ export const MobData = [
         description: 'Platinum Coin'
       }
     ],
-    credits: [125,
-      150],
+    credits: [125,150],
     skills: {
-      wrestling: [60,
-        100],
-      tactics: [60,
-        100],
-      magic_resistance: [50,
-        95
-      ]
+      wrestling: [60,100],
+      tactics: [60,100],
+      magic_resistance: [50,95]
     }
   },
   {

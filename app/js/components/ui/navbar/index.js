@@ -38,6 +38,7 @@ class Navbar extends Component {
   showToDos() {
     let todos = [
       <li key={Config.randomKey('li')}>Add animal lore to mob options</li>,
+      <li key={Config.randomKey('li')}>Break up Services</li>,
       <li key={Config.randomKey('li')}>Magic</li>,
       <li key={Config.randomKey('li')}>Regs</li>,
       <li key={Config.randomKey('li')}>More zones</li>,
