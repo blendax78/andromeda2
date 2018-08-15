@@ -28,9 +28,20 @@ const Planet = (state = {}, action) => {
       _.each(state.Planet.zones, (zone) => {
         _.extend(zone, _.findWhere(ZoneData, { id: zone.id }));
         
-        _.each(zone.mobs, (mob) => {
-          _.extend(mob, _.findWhere(MobData, { id: mob.id }));
-        });
+        if (zone.difficulty && zone.difficultyChance) {
+          _.each(_.where(MobData, { difficulty: zone.difficulty }), (mob) => {
+            mob.chance = zone.difficultyChance;
+            zone.mobs.push(_.extend(mob));
+          });
+        }
+
+        if (zone.mobs) {
+          _.each(zone.mobs, (mob) => {
+            if (!mob.name) {
+              _.extend(mob, _.findWhere(MobData, { id: mob.id }));
+            }
+          });
+        }
 
         _.each(zone.decorations, (decoration) => {
           _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
@@ -57,9 +68,20 @@ const Planet = (state = {}, action) => {
         _.extend(decoration, _.findWhere(DecorationData, { id: decoration.id }));
       });
 
-      _.each(state.Planet.defaultZone.mobs, (mob) => {
-        _.extend(mob, _.findWhere(MobData, { id: mob.id }));
-      });
+        if (state.Planet.defaultZone.difficulty && state.Planet.defaultZone.difficultyChance) {
+          _.each(_.where(MobData, { difficulty: state.Planet.defaultZone.difficulty }), (mob) => {
+            mob.chance = state.Planet.defaultZone.difficultyChance;
+            state.Planet.defaultZone.mobs.push(_.extend(mob));
+          });
+        }
+
+        if (state.Planet.defaultZone.mobs) {
+          _.each(state.Planet.defaultZone.mobs, (mob) => {
+            if (!mob.name) {
+              _.extend(mob, _.findWhere(MobData, { id: mob.id }));
+            }
+          });
+        }
     break;
     case PLANET.TICK:
       _.each(_.filter(state.Planet.locations, (location) => {
