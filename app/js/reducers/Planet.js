@@ -29,6 +29,9 @@ const Planet = (state = {}, action) => {
         _.extend(zone, _.findWhere(ZoneData, { id: zone.id }));
         
         if (zone.difficulty && zone.difficultyChance) {
+          if (zone.difficulty == -1) {
+            zone.difficulty = _.random(0, _.max(_.pluck(MobData, 'difficulty')));
+          }
           _.each(_.where(MobData, { difficulty: zone.difficulty }), (mob) => {
             mob.chance = zone.difficultyChance;
             zone.mobs.push(_.extend(mob));
@@ -69,6 +72,10 @@ const Planet = (state = {}, action) => {
       });
 
         if (state.Planet.defaultZone.difficulty && state.Planet.defaultZone.difficultyChance) {
+          if (state.Planet.defaultZone.difficulty == -1) {
+            state.Planet.defaultZone.difficulty = _.random(0, _.max(_.pluck(MobData, 'difficulty')));
+          }
+
           _.each(_.where(MobData, { difficulty: state.Planet.defaultZone.difficulty }), (mob) => {
             mob.chance = state.Planet.defaultZone.difficultyChance;
             state.Planet.defaultZone.mobs.push(_.extend(mob));
