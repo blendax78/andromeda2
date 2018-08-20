@@ -21,9 +21,11 @@ export const PlanetData = [
     planetY: 0,
     dungeons: [
       {
+        difficultyMin: 0,
         difficultyMax: 2,
-        depth: 50,
+        depth: 150,
         mobChance: 15,
+        mobMax: 2,
         treasureMax: 1,
         treasureChance: 1,
         x: 666,

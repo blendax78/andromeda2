@@ -100,10 +100,18 @@ class PlayerControls extends Component {
       break;
       default:
         // handles UP/DOWN
-        this.props.store.dispatch({
-          type: dir,
-          payload: {}
-        });
+        if (this.state.player.dungeon.step === 0 && dir === Config.ACTIONS.PLAYER.UP) {
+          // Leave dungeon
+          this.props.store.dispatch({
+            type: Config.ACTIONS.PLAYER.DUNGEON,
+            payload: { dungeon: false }
+          });          
+        } else {
+          this.props.store.dispatch({
+            type: dir,
+            payload: {}
+          });
+        }
       break;
     }
   }

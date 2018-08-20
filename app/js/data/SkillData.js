@@ -159,6 +159,16 @@ export const SkillData = {
     secondary: 'strength',
     title: 'Naturalist'
   },
+  lockpicking: {
+    id: 17,
+    name: 'Lockpicking',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'intelligence',
+    title: 'Infiltrator'
+  },
 };
 
 

@@ -6,6 +6,7 @@ class Dungeon extends Component {
     super(props);
 
     this.state = {
+      locked: true
     };
   }
 
@@ -15,8 +16,17 @@ class Dungeon extends Component {
   componentDidMount() {
   }
 
+  clickTreasure() {
+    if (this.state.locked) {
+      console.log('You attempt to unlock the chest.');
+    } else {
+      console.log('You open the chest.');
+    }
+  }
+
   render() {
-    return <div>Treasure</div>;
+    let locked = (this.state.locked) ? 'locked' : 'unlocked';
+    return <a href="#" className="green" onClick={ () => { this.clickTreasure() }}>({this.props.level})A small, {locked} treasure chest is sitting here.</a>;
   }
 }
 
