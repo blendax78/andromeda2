@@ -32,7 +32,10 @@ const Config = {
       WEST: 'PLAYER.WEST',
       NORTH: 'PLAYER.NORTH',
       SOUTH: 'PLAYER.SOUTH',
+      UP: 'PLAYER.UP',
+      DOWN: 'PLAYER.DOWN',
       TICK: 'PLAYER.TICK',
+      DUNGEON: 'PLAYER.DUNGEON',
       COMBAT: {
         MELEE: 'COMBAT.MELEE',
         RANGED: 'COMBAT.RANGED',

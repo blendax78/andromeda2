@@ -1,0 +1,1 @@
+from libs.planet_name_generator import generate_planet_name

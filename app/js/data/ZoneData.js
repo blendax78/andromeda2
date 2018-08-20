@@ -816,6 +816,8 @@ export const ZoneData = [
     name: 'Desert Zone 1',
     description: 'Desert as far as the eye can see.',
     mobs: [],
+    difficulty: 1,
+    difficultyChance: 20,
     decorations: [
       {
         id: 4,

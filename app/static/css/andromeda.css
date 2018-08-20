@@ -74,6 +74,10 @@
   color: red;
 }
 
+.blood-red {
+  color: #750000;
+}
+
 /* The <body> has a container class */
 .container {
   background-color: #f7f7f7;

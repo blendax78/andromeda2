@@ -23,6 +23,7 @@ const Player = (state = {}, action) => {
     credits: 15,
     encumbrance: 0,
     move: 1,
+    dungeon: false,
     status: {
       inn: false,
       meditate: false,
@@ -227,6 +228,21 @@ const Player = (state = {}, action) => {
       state.Player.stamina = (state.Player.status.run) ? update_stamina(-1) : state.Player.stamina;
       state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
     break;
+    case PLAYER.UP:
+      if (state.Player.dungeon !== false && state.Player.dungeon.step > 0) {
+        // Need to check for exiting at 0.
+        state.Player.dungeon.step = move(state.Player.dungeon.step, -increment(), state.Player.dungeon.depth);
+        state.Player.stamina = (state.Player.status.run) ? update_stamina(-1) : state.Player.stamina;
+        state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
+      }
+    break;
+    case PLAYER.DOWN:
+      if (state.Player.dungeon !== false && state.Player.dungeon.step < state.Player.dungeon.depth) {
+        state.Player.dungeon.step = move(state.Player.dungeon.step, increment(), state.Player.dungeon.depth);
+        state.Player.stamina = (state.Player.status.run) ? update_stamina(-1) : state.Player.stamina;
+        state.Player.status.run = (state.Player.stamina === 0) ? false : state.Player.status.run;
+      }
+    break;
     case PLAYER.TICK:
       state.Player.score.timer++;
 
@@ -249,6 +265,9 @@ const Player = (state = {}, action) => {
       if (update_partials('stamina')) {
         state.Player.stamina = update_stamina(1);
       }
+    break;
+    case PLAYER.DUNGEON:
+      state.Player.dungeon = payload.dungeon;
     break;
     case PLAYER.COMBAT.RUN:
       state.Combat.actions.run = payload.run;

@@ -1,24 +1,36 @@
 import React, { Component } from 'react';
 import Map from './Map';
+import Dungeon from './Dungeon';
 
 class MainPanel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      map: true
+      planet: props.store.getState().Planet,
+      player: props.store.getState().Player
     };
+  }
 
-    // props.store.subscribe(() => {
-    //   this.setState({
-    //     right: { body: this.props.store.getState().User.user_name }
-    //   });
-    // });
+  componentWillUnmount() {
+    // Make sure to unsubscribe!
+    this.unsubscribe();
+  }
+
+  componentDidMount() {
+    this.unsubscribe = this.props.store.subscribe(() => {
+      this.setState({
+        planet: this.props.store.getState().Planet,
+        player: this.props.store.getState().Player
+      });
+    });
   }
 
   render() {
 
-    let render = (this.state.map) ? <Map store={this.props.store} /> : '';
+    let render = (this.state.player.dungeon === false) ? 
+      <Map store={this.props.store} /> :
+      <Dungeon data={this.state.player.dungeon} store={this.props.store} /> ;
 
     return (
         <div className="nav-panel table-bordered main-panel col-lg-12 col-md-12 col-sm-12">

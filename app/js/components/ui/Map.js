@@ -21,9 +21,9 @@ class Map extends Component {
 
     this.unsubscribe = props.store.subscribe(() => {
       this.setState({
-        planet: this.props.store.getState().Planet,
-        player: this.props.store.getState().Player,
-        mobs: this.props.store.getState().Mobs,
+        planet: props.store.getState().Planet,
+        player: props.store.getState().Player,
+        mobs: props.store.getState().Mobs,
         town: _.findWhere(props.store.getState().Planet.towns, { x: props.store.getState().Player.x, y: props.store.getState().Player.y })
       });
     });
@@ -55,6 +55,25 @@ class Map extends Component {
     });
 
     return zone;
+  }
+
+  enterDungeon(dungeon) {
+    this.props.store.dispatch({
+      type: Config.ACTIONS.PLAYER.DUNGEON,
+      payload: {
+        dungeon: {...dungeon, step: 1}
+      }
+    });
+  }
+
+  getDungeon() {
+    let dungeon = _.findWhere(this.state.planet.dungeons, { x: this.state.player.x, y: this.state.player.y });
+
+    if (dungeon) {
+      return <a href="#" className="blood-red" onClick={() => this.enterDungeon(dungeon)}>{dungeon.description}</a>
+    } else {
+      return '';
+    }
   }
 
   getDecorations(zone) {
@@ -246,6 +265,7 @@ class Map extends Component {
     let planet = this.state.planet;
     let zone = this.getZone();
     let decorations = this.getDecorations(zone);
+    let dungeon = this.getDungeon();
     let mobs = (!this.state.town) ? this.getMobs(zone) : this.getTownMobs();
     let town_name = (!!this.state.town) ? ` - ${this.state.town.name}` : '';
     return (
@@ -258,6 +278,11 @@ class Map extends Component {
           <div className="row bottom5">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               {zone.description}
+            </div>
+          </div>
+          <div className="row bottom5">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              {dungeon}
             </div>
           </div>
           <div className="row">

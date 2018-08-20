@@ -32,7 +32,7 @@ class PlayerControls extends Component {
       return;
     }
 
-    if (this.state.player.stamina <= 0) {
+    if (this.state.player.stamina <= 0 && !this.state.player.status.dead) {
       Config.notifyWarning(this.props.store, 'You are too tired to move.');
       return;
     }
@@ -98,6 +98,13 @@ class PlayerControls extends Component {
           });
         }
       break;
+      default:
+        // handles UP/DOWN
+        this.props.store.dispatch({
+          type: dir,
+          payload: {}
+        });
+      break;
     }
   }
 
@@ -135,19 +142,31 @@ class PlayerControls extends Component {
       switch (e.keyCode) {
         case 38:
           // up
-          this.move(Config.ACTIONS.PLAYER.NORTH);
+          if (this.state.player.dungeon === false) {
+            this.move(Config.ACTIONS.PLAYER.NORTH);
+          } else {
+            this.move(Config.ACTIONS.PLAYER.UP);
+          }
         break;
         case 40:
           // down
-          this.move(Config.ACTIONS.PLAYER.SOUTH);
+          if (this.state.player.dungeon === false) {
+            this.move(Config.ACTIONS.PLAYER.SOUTH);
+          } else {
+            this.move(Config.ACTIONS.PLAYER.DOWN);
+          }
         break;
         case 37:
           // left
-          this.move(Config.ACTIONS.PLAYER.WEST);
+          if (this.state.player.dungeon === false) {
+            this.move(Config.ACTIONS.PLAYER.WEST);
+          }
         break;
         case 39:
           // right
-          this.move(Config.ACTIONS.PLAYER.EAST);
+          if (this.state.player.dungeon === false) {
+            this.move(Config.ACTIONS.PLAYER.EAST);
+          }
         break;
         case 82:
           // R
@@ -229,15 +248,33 @@ class PlayerControls extends Component {
   componentDidUpdate() {
   }
 
+  renderDungeonButtons() {
+    return (this.state.player.dungeon === false) ? '' :
+      <div className="col-lg-6 col-md-7 col-sm-12 col-xs-7">
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">&nbsp;</div>
+        <div className="btn-group-vertical">
+          <button
+            type="button"
+            className="btn btn-default btn-direction"
+            onClick={() => this.move(Config.ACTIONS.PLAYER.UP)}>Up</button>
+          <button 
+            type="button" 
+            disabled={this.state.player.dungeon.step === this.state.player.dungeon.depth} 
+            className="btn btn-default btn-direction"
+            onClick={() => this.move(Config.ACTIONS.PLAYER.DOWN)}>Down</button>
+        </div>
+      </div>
+  }
+
   render() {
     let player = this.state.player;
     let planet = this.state.planet;
 
     // Buttons
-    let east = (player.x < planet.width && !this.state.app.modal.open) ? false : true;
-    let west = (player.x > 0 && !this.state.app.modal.open) ? false : true;
-    let north = (player.y > 0 && !this.state.app.modal.open) ? false : true;
-    let south = (player.y < planet.height && !this.state.app.modal.open) ? false : true;
+    let east = (player.x < planet.width && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
+    let west = (player.x > 0 && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
+    let north = (player.y > 0 && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
+    let south = (player.y < planet.height && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
 
     let move_disabled = (this.state.player.stamina === 0) ? true : false;
 
@@ -273,12 +310,14 @@ class PlayerControls extends Component {
                 </div>
                 <div className="btn-group-vertical">
                   <button disabled={north} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.NORTH)}>N</button>
-                  <button disabled={false} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.SOUTH)}>S</button>
+                  <button disabled={south} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.SOUTH)}>S</button>
                 </div>
                 <div className="btn-group">
                   <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.EAST)}>E</button>
                 </div>
               </div>
+
+              {this.renderDungeonButtons()}
 
               <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4">
                 <label className="checkbox-inline">

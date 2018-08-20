@@ -1,4 +1,5 @@
 import Config from '../components/Config';
+// decoration.inventory: Means that a successful skill check will place this item in inventory
 
 export const DecorationData = [
   {
@@ -28,7 +29,7 @@ export const DecorationData = [
       maxMessage: 'There is no more wood to be harvested.',
       result: {
         message: 'You pick up some logs.',
-        inventory: true, // Means that a successful skill check will place this item in inventory
+        inventory: true,
         item: 1
       }
     }

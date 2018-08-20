@@ -19,6 +19,20 @@ export const PlanetData = [
     width: 2000,
     planetX: 0,
     planetY: 0,
+    dungeons: [
+      {
+        difficultyMax: 2,
+        depth: 50,
+        mobChance: 15,
+        treasureMax: 1,
+        treasureChance: 1,
+        x: 666,
+        y: 666,
+        name: 'Covetous',
+        description: 'A modest fallen tower in a bleak mountain range marks the entrance to the dungeon of Covetous.'
+      }
+    ]
+    ,
     towns: [
       {
         id: 1,
