@@ -9,7 +9,8 @@ class Dungeon extends Component {
     super(props);
 
     this.state = {
-      dungeon: this.props.store.getState().Player.dungeon,
+      dungeon: props.store.getState().Player.dungeon,
+      combat: props.store.getState().Mobs.combat,
       player: props.store.getState().Player,
       planet: props.store.getState().Planet,
       mobs: [],
@@ -29,7 +30,8 @@ class Dungeon extends Component {
       if (this.mounted) {
         this.checkForMobs();
         this.setState({
-          dungeon: this.props.store.getState().Player.dungeon
+          dungeon: this.props.store.getState().Player.dungeon,
+          combat: props.store.getState().Mobs.combat
         });
       }
     });
