@@ -6,7 +6,8 @@ class Dungeon extends Component {
     super(props);
 
     this.state = {
-      locked: true
+      locked: true,
+      data: props.data
     };
   }
 

@@ -327,12 +327,14 @@ class Combat extends Component {
     if (this.state.player.hp <= 0 || this.state.mob.hp <= 0 || this.state.fled === true) {
       clearInterval(this.tick);
 
-      if (this.state.mob.hp <= 0) {
-        // Player wins
-        this.playerWin();
-      } else {
-        // Mob wins
-        this.mobWin();
+      if (this.state.fled !== true) {
+        if (this.state.mob.hp <= 0) {
+          // Player wins
+          this.playerWin();
+        } else {
+          // Mob wins
+          this.mobWin();
+        }
       }
 
       this.props.store.dispatch({
@@ -340,9 +342,6 @@ class Combat extends Component {
         payload: { locked: false }
       });
 
-      // this.props.store.dispatch({
-      //   type: Config.ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
-      // });
     } else {
       this.timer += 0.25;
     }

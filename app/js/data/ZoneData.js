@@ -13,8 +13,6 @@ export const ZoneData = [
     id: 1,
     name: 'Plains Zone 1',
     description: 'Rolling fields stretch as far as the eye can see.',
-    difficulty:2,
-    difficultyChance: 50,
     mobs: [
       {
         id: 1,

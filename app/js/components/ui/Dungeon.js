@@ -29,9 +29,10 @@ class Dungeon extends Component {
     this.unsubscribe = this.props.store.subscribe(() => {
       if (this.mounted) {
         this.checkForMobs();
+        this.checkForTreasure();
         this.setState({
           dungeon: this.props.store.getState().Player.dungeon,
-          combat: props.store.getState().Mobs.combat
+          combat: this.props.store.getState().Mobs.combat
         });
       }
     });
@@ -53,10 +54,11 @@ class Dungeon extends Component {
   checkForMobs() {
     // Checks if there are any mobs in current location.
     var mobs = _.where(this.state.mobs, { dungeon: this.state.dungeon.step });
+    var mobList = this.state.mobs;
 
     if (!mobs || mobs.length === 0) {
       mobs = [];
-      var mobList = this.state.mobs;
+      
       let chance = _.random(0, 100);
       let level = this.calcLevel(this.state.dungeon.step, this.props.data.difficultyMax, this.props.data.depth);
       level = (level < this.props.data.difficultyMin) ? this.props.data.difficultyMin : level;
@@ -69,7 +71,7 @@ class Dungeon extends Component {
           mob.key = Config.randomKey('dungeonMob');
           mobList.push(mob);
           mobs.push(mob);
-          console.log(mob);
+
           this.props.store.dispatch({
             type: Config.ACTIONS.MOBS.CREATE,
             payload: {mob: mob}
@@ -86,17 +88,49 @@ class Dungeon extends Component {
           mobs: mobList
         });
       }
+    } else {
+      // Update mob list from current combat state
+      if (!this.state.combat) {
+        return;
+      }
+
+      let mobIndex = _.findIndex(this.state.mobs, {key: this.state.combat.key});
+      if (mobIndex !== -1) {
+        mobList[mobIndex] = this.state.combat;
+        this.setState({
+          mobs: mobList
+        });
+      }
     }
   }
 
-  getTreasureChest() {
+  checkForTreasure() {
     let chance = _.random(0, 100);
-    let treasure = '';
+    let treasure = _.findWhere(this.state.treasure, { dungeon: this.state.dungeon.step });
+    let treasureList = this.state.treasure;
+    if (!treasure) {
+      if (chance <= this.props.data.treasureChance) {
+        treasureList.push({ dungeon: this.state.dungeon.step, empty: false });
+      } else {
+        treasureList.push({ dungeon: this.state.dungeon.step, empty: true });
+      }
 
-    if (chance <= this.props.data.treasureChance) {
-      treasure = <TreasureChest store={this.props.store} level={this.calcLevel(this.state.dungeon.step, this.props.data.treasureMax, this.props.data.depth)}/>;
+      this.setState({
+        treasure: treasureList
+      });
     }
-    return treasure;
+    console.log(this.state.treasure);
+  }
+
+  getTreasureChest() {
+    let chest = '';
+    let treasure = _.findWhere(this.state.treasure, { dungeon: this.state.dungeon.step, empty: false });
+
+    if (treasure) {
+      chest = <TreasureChest store={this.props.store} level={this.calcLevel(this.state.dungeon.step, this.props.data.treasureMax, this.props.data.depth)} data={treasure} />;
+    }
+
+    return chest;
   }
 
   render() {
