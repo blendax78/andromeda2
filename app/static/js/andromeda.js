@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 147);
+/******/ 	return __webpack_require__(__webpack_require__.s = 149);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -315,81 +315,12 @@ module.exports = invariant;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-var emptyFunction = __webpack_require__(17);
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warning = emptyFunction;
-
-if (process.env.NODE_ENV !== 'production') {
-  var printWarning = function printWarning(format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  warning = function warning(condition, format) {
-    if (format === undefined) {
-      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (format.indexOf('Failed Composite propType: ') === 0) {
-      return; // Ignore CompositeComponent proptype check.
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning.apply(undefined, [format].concat(args));
-    }
-  };
-}
-
-module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uuid__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uuid__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uuid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uuid__);
 
 
@@ -429,7 +360,10 @@ var Config = {
       WEST: 'PLAYER.WEST',
       NORTH: 'PLAYER.NORTH',
       SOUTH: 'PLAYER.SOUTH',
+      UP: 'PLAYER.UP',
+      DOWN: 'PLAYER.DOWN',
       TICK: 'PLAYER.TICK',
+      DUNGEON: 'PLAYER.DUNGEON',
       COMBAT: {
         MELEE: 'COMBAT.MELEE',
         RANGED: 'COMBAT.RANGED',
@@ -505,8 +439,7 @@ var Config = {
       SHOW_ACTION: 'MOBS.SHOW_ACTION',
       SHOW_COMBAT: 'MOBS.SHOW_COMBAT',
       UPDATE: 'MOBS.UPDATE',
-      TICK: 'MOBS.TICK',
-      SAVE: 'MOBS.SAVE'
+      TICK: 'MOBS.TICK'
     },
     QUEUE: {
       ADD: 'QUEUE.ADD',
@@ -520,8 +453,7 @@ var Config = {
     USER: '/user',
     INVENTORY: '/inventory',
     BANK: '/bank',
-    SKILLS: '/skill',
-    MOBS: '/mob'
+    SKILLS: '/skill'
   },
   SETTINGS: {
     SKILL_TIMEOUT: 11
@@ -760,7 +692,86 @@ var Config = {
 /* harmony default export */ __webpack_exports__["a"] = (Config);
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var emptyFunction = __webpack_require__(17);
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning = emptyFunction;
+
+if (process.env.NODE_ENV !== 'production') {
+  var printWarning = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
+}
+
+module.exports = warning;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(31);
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -804,20 +815,10 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(31);
-
-
-/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(276), __esModule: true };
+module.exports = { "default": __webpack_require__(278), __esModule: true };
 
 /***/ }),
 /* 7 */
@@ -843,7 +844,7 @@ exports.default = function (instance, Constructor) {
 
 exports.__esModule = true;
 
-var _defineProperty = __webpack_require__(279);
+var _defineProperty = __webpack_require__(138);
 
 var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
@@ -899,11 +900,11 @@ exports.default = function (self, call) {
 
 exports.__esModule = true;
 
-var _setPrototypeOf = __webpack_require__(303);
+var _setPrototypeOf = __webpack_require__(304);
 
 var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-var _create = __webpack_require__(307);
+var _create = __webpack_require__(308);
 
 var _create2 = _interopRequireDefault(_create);
 
@@ -1043,10 +1044,10 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var DOMProperty = __webpack_require__(23);
-var ReactDOMComponentFlags = __webpack_require__(103);
+var ReactDOMComponentFlags = __webpack_require__(104);
 
 var invariant = __webpack_require__(1);
 
@@ -1289,7 +1290,7 @@ var _prodInvariant = __webpack_require__(32);
 var ReactCurrentOwner = __webpack_require__(18);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 function isNative(fn) {
   // Based on isNative() from Lodash
@@ -1660,7 +1661,7 @@ module.exports = ReactComponentTreeHook;
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(264);
+var _assign = __webpack_require__(266);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -1703,7 +1704,7 @@ exports.default = _assign2.default || function (target) {
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(189);
+  var ReactDebugTool = __webpack_require__(191);
   debugTool = ReactDebugTool;
 }
 
@@ -1803,12 +1804,12 @@ module.exports = ReactCurrentOwner;
 
 
 
-var _prodInvariant = __webpack_require__(4),
+var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(11);
 
-var CallbackQueue = __webpack_require__(107);
+var CallbackQueue = __webpack_require__(108);
 var PooledClass = __webpack_require__(26);
-var ReactFeatureFlags = __webpack_require__(108);
+var ReactFeatureFlags = __webpack_require__(109);
 var ReactReconciler = __webpack_require__(33);
 var Transaction = __webpack_require__(50);
 
@@ -2073,7 +2074,7 @@ var _assign = __webpack_require__(11);
 var PooledClass = __webpack_require__(26);
 
 var emptyFunction = __webpack_require__(17);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var didWarnForAddedNewProperty = false;
 var isProxySupported = typeof Proxy === 'function';
@@ -2329,7 +2330,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ItemData; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(2);
 
 
 var ItemData = [{
@@ -4656,7 +4657,7 @@ http://www.uorenaissance.com/list/Plate/P
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -4887,11 +4888,11 @@ var _assign = __webpack_require__(11);
 
 var ReactCurrentOwner = __webpack_require__(18);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 var canDefineProperty = __webpack_require__(47);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(92);
+var REACT_ELEMENT_TYPE = __webpack_require__(93);
 
 var RESERVED_PROPS = {
   key: true,
@@ -5231,7 +5232,7 @@ module.exports = ReactElement;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -5337,7 +5338,7 @@ module.exports = PooledClass;
 
 var global = __webpack_require__(24);
 var core = __webpack_require__(20);
-var ctx = __webpack_require__(128);
+var ctx = __webpack_require__(129);
 var hide = __webpack_require__(35);
 var PROTOTYPE = 'prototype';
 
@@ -5403,7 +5404,7 @@ module.exports = $export;
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(44);
-var IE8_DOM_DEFINE = __webpack_require__(129);
+var IE8_DOM_DEFINE = __webpack_require__(130);
 var toPrimitive = __webpack_require__(76);
 var dP = Object.defineProperty;
 
@@ -5459,15 +5460,15 @@ module.exports = function (it, key) {
 
 var _assign = __webpack_require__(11);
 
-var ReactBaseClasses = __webpack_require__(90);
-var ReactChildren = __webpack_require__(148);
-var ReactDOMFactories = __webpack_require__(152);
+var ReactBaseClasses = __webpack_require__(91);
+var ReactChildren = __webpack_require__(150);
+var ReactDOMFactories = __webpack_require__(154);
 var ReactElement = __webpack_require__(25);
-var ReactPropTypes = __webpack_require__(156);
-var ReactVersion = __webpack_require__(159);
+var ReactPropTypes = __webpack_require__(158);
+var ReactVersion = __webpack_require__(161);
 
-var createReactClass = __webpack_require__(160);
-var onlyChild = __webpack_require__(162);
+var createReactClass = __webpack_require__(162);
+var onlyChild = __webpack_require__(164);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
@@ -5476,7 +5477,7 @@ var cloneElement = ReactElement.cloneElement;
 if (process.env.NODE_ENV !== 'production') {
   var lowPriorityWarning = __webpack_require__(59);
   var canDefineProperty = __webpack_require__(47);
-  var ReactElementValidator = __webpack_require__(94);
+  var ReactElementValidator = __webpack_require__(95);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
@@ -5639,10 +5640,10 @@ module.exports = reactProdInvariant;
 
 
 
-var ReactRef = __webpack_require__(187);
+var ReactRef = __webpack_require__(189);
 var ReactInstrumentation = __webpack_require__(16);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 /**
  * Helper to call ReactRef.attachRefs with this composite component, split out
@@ -5815,7 +5816,7 @@ var DOMNamespaces = __webpack_require__(66);
 var setInnerHTML = __webpack_require__(52);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(67);
-var setTextContent = __webpack_require__(112);
+var setTextContent = __webpack_require__(113);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -5958,7 +5959,7 @@ module.exports = function (exec) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(132);
+var IObject = __webpack_require__(133);
 var defined = __webpack_require__(77);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -6002,9 +6003,9 @@ $exports.store = store;
 var EventPluginHub = __webpack_require__(41);
 var EventPluginUtils = __webpack_require__(60);
 
-var accumulateInto = __webpack_require__(104);
-var forEachAccumulated = __webpack_require__(105);
-var warning = __webpack_require__(2);
+var accumulateInto = __webpack_require__(105);
+var forEachAccumulated = __webpack_require__(106);
+var warning = __webpack_require__(3);
 
 var getListener = EventPluginHub.getListener;
 
@@ -6139,14 +6140,14 @@ module.exports = EventPropagators;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var EventPluginRegistry = __webpack_require__(49);
 var EventPluginUtils = __webpack_require__(60);
 var ReactErrorUtils = __webpack_require__(61);
 
-var accumulateInto = __webpack_require__(104);
-var forEachAccumulated = __webpack_require__(105);
+var accumulateInto = __webpack_require__(105);
+var forEachAccumulated = __webpack_require__(106);
 var invariant = __webpack_require__(1);
 
 /**
@@ -6537,11 +6538,11 @@ module.exports = function (it) {
 
 exports.__esModule = true;
 
-var _iterator = __webpack_require__(282);
+var _iterator = __webpack_require__(283);
 
 var _iterator2 = _interopRequireDefault(_iterator);
 
-var _symbol = __webpack_require__(293);
+var _symbol = __webpack_require__(294);
 
 var _symbol2 = _interopRequireDefault(_symbol);
 
@@ -6684,7 +6685,7 @@ module.exports = emptyObject;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -6943,7 +6944,7 @@ module.exports = EventPluginRegistry;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -7177,7 +7178,7 @@ module.exports = TransactionImpl;
 
 
 var SyntheticUIEvent = __webpack_require__(42);
-var ViewportMetrics = __webpack_require__(111);
+var ViewportMetrics = __webpack_require__(112);
 
 var getEventModifierState = __webpack_require__(64);
 
@@ -7486,10 +7487,10 @@ module.exports = escapeTextContentForBrowser;
 var _assign = __webpack_require__(11);
 
 var EventPluginRegistry = __webpack_require__(49);
-var ReactEventEmitterMixin = __webpack_require__(213);
-var ViewportMetrics = __webpack_require__(111);
+var ReactEventEmitterMixin = __webpack_require__(215);
+var ViewportMetrics = __webpack_require__(112);
 
-var getVendorPrefixedEventName = __webpack_require__(214);
+var getVendorPrefixedEventName = __webpack_require__(216);
 var isEventSupported = __webpack_require__(63);
 
 /**
@@ -7814,7 +7815,7 @@ module.exports = function (bitmap, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(131);
+var $keys = __webpack_require__(132);
 var enumBugKeys = __webpack_require__(81);
 
 module.exports = Object.keys || function keys(O) {
@@ -7928,12 +7929,12 @@ module.exports = lowPriorityWarning;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var ReactErrorUtils = __webpack_require__(61);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 /**
  * Injected dependencies:
@@ -8396,13 +8397,13 @@ module.exports = getEventModifierState;
 
 
 var DOMLazyTree = __webpack_require__(34);
-var Danger = __webpack_require__(198);
+var Danger = __webpack_require__(200);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInstrumentation = __webpack_require__(16);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(67);
 var setInnerHTML = __webpack_require__(52);
-var setTextContent = __webpack_require__(112);
+var setTextContent = __webpack_require__(113);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -8689,16 +8690,16 @@ module.exports = createMicrosoftUnsafeLocalFunction;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
-var ReactPropTypesSecret = __webpack_require__(116);
-var propTypesFactory = __webpack_require__(95);
+var ReactPropTypesSecret = __webpack_require__(117);
+var propTypesFactory = __webpack_require__(96);
 
 var React = __webpack_require__(31);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var hasReadOnlyValue = {
   button: true,
@@ -8834,7 +8835,7 @@ module.exports = LinkedValueUtils;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -9065,7 +9066,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactInstanceMap = __webpack_require__(43);
@@ -9073,7 +9074,7 @@ var ReactInstrumentation = __webpack_require__(16);
 var ReactUpdates = __webpack_require__(19);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 function enqueueUpdate(internalInstance) {
   ReactUpdates.enqueueUpdate(internalInstance);
@@ -9308,7 +9309,7 @@ module.exports = ReactUpdateQueue;
 var _assign = __webpack_require__(11);
 
 var emptyFunction = __webpack_require__(17);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var validateDOMNesting = emptyFunction;
 
@@ -9832,7 +9833,7 @@ module.exports = {};
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(44);
-var dPs = __webpack_require__(287);
+var dPs = __webpack_require__(288);
 var enumBugKeys = __webpack_require__(81);
 var IE_PROTO = __webpack_require__(79)('IE_PROTO');
 var Empty = function () { /* empty */ };
@@ -9841,13 +9842,13 @@ var PROTOTYPE = 'prototype';
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function () {
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(130)('iframe');
+  var iframe = __webpack_require__(131)('iframe');
   var i = enumBugKeys.length;
   var lt = '<';
   var gt = '>';
   var iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(288).appendChild(iframe);
+  __webpack_require__(289).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -9910,6 +9911,13091 @@ module.exports = function (name) {
 
 /***/ }),
 /* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MobData; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(2);
+
+
+var _ref, _ref2;
+
+
+
+// Finished fixing ID 61.
+// Need to look up missing inventory data.
+var MobData = [{
+  id: 1,
+  name: 'sheep',
+  difficulty: 0,
+  description: 'A little sheep is wandering around here.',
+  armor: 6,
+  karma: -300,
+  fame: 300,
+  aggro: false,
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  stats: {
+    str: [19, 19],
+    dex: [25, 25],
+    int: [5, 5],
+    hp: [12, 12],
+    taming: 11.1,
+    barding: 7
+  },
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 5,
+    count: 3,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Sheep_100.png',
+  skills: {
+    wrestling: [5, 5],
+    tactics: [6, 6],
+    magic_resistance: [5, 5]
+  }
+}, {
+  id: 2,
+  name: 'hind',
+  difficulty: 0,
+  description: 'A hind is wandering here.',
+  armor: 8,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [21, 51],
+    dex: [47, 77],
+    int: [17, 47],
+    hp: [15, 29],
+    barding: 17,
+    taming: 13.1
+  },
+  aggro: false,
+  offense: {
+    min: 4,
+    max: 4,
+    speed: 2.5
+  },
+  move: 2,
+  mob_type: 'animal',
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 8,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Hind_100.png',
+  skills: {
+    wrestling: [26, 26],
+    tactics: [19, 19],
+    magic_resistance: [15, 15]
+  }
+}, {
+  id: 3,
+  difficulty: 0,
+  name: 'black bear',
+  description: 'A black bear is sitting here, staring at you.',
+  armor: 24,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [76, 100],
+    dex: [56, 75],
+    int: [11, 14],
+    hp: [46, 60],
+    taming: 35.1,
+    barding: 33
+  },
+  aggro: false,
+  offense: {
+    min: 6,
+    max: 16,
+    speed: 2.5
+  },
+  move: 2,
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BlackBear_100.png',
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [20, 40]
+  }
+}, {
+  id: 4,
+  name: 'brown bear',
+  difficulty: 0,
+  description: 'A brown bear is wandering around, looking for a snack.',
+  armor: 24,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [76, 100],
+    dex: [26, 45],
+    int: [23, 47],
+    hp: [46, 60],
+    taming: 41.1,
+    barding: 30
+  },
+  aggro: false,
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 2,
+  mob_type: 'animal',
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/BrownBear_100.png',
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [25, 35]
+  }
+}, {
+  id: 5,
+  name: 'bull',
+  difficulty: 0,
+  description: 'A bull is here, looking for the herd.',
+  armor: 28,
+  karma: 0,
+  fame: 600,
+  stats: {
+    str: [77, 111],
+    dex: [56, 75],
+    int: [47, 75],
+    hp: [50, 64],
+    barding: 30,
+    taming: 71.1
+  },
+  aggro: false,
+  offense: {
+    min: 4,
+    max: 9,
+    speed: 2.5
+  },
+  move: 2,
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 15,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Bull_100.png',
+  skills: {
+    wrestling: [40.1, 57.5],
+    tactics: [67.6, 85],
+    magic_resistance: [17.6, 25]
+  }
+}, {
+  id: 6,
+  name: 'cow',
+  difficulty: 0,
+  description: 'A cow is chewing on some grass.',
+  armor: 10,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [30, 30],
+    dex: [15, 15],
+    int: [5, 5],
+    hp: [18, 18]
+  },
+  aggro: false,
+  offense: {
+    min: 1,
+    max: 4,
+    speed: 2.5,
+    taming: 29.1,
+    barding: 7
+  },
+  move: 1,
+  mob_type: 'animal',
+  wander: true,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Cow_100.png',
+  skills: {
+    wrestling: [5.5, 5.5],
+    tactics: [5.5, 5.5],
+    magic_resistance: [5.5, 5.5]
+  }
+}, {
+  id: 7,
+  name: 'training dummy',
+  difficulty: 0,
+  description: 'A training dummy stands here. There is a bright red target painted on it.',
+  armor: 100,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [0, 0],
+    dex: [0, 0],
+    int: [0, 0],
+    hp: [500, 500]
+  },
+  aggro: false,
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5000
+  },
+  move: 0,
+  mob_type: 'training',
+  wander: false,
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/misc/training_dummy.png',
+  skills: {
+    wrestling: [0, 0],
+    tactics: [0, 0],
+    magic_resistance: [0, 0]
+  }
+}, {
+  id: 8,
+  name: 'giant rat',
+  difficulty: 0,
+  description: 'A giant rat is looking for a meal.',
+  armor: 18,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [32, 74],
+    dex: [46, 65],
+    int: [16, 30],
+    hp: [26, 39],
+    taming: 29.1,
+    barding: 24
+  },
+  aggro: true,
+  offense: {
+    min: 4,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  wander: false,
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 6,
+    chance: [1, 1]
+  }],
+  credits: [1, 25],
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/GiantRat_100.png',
+  skills: {
+    wrestling: [29.3, 44],
+    tactics: [29.3, 44],
+    magic_resistance: [25.1, 30]
+  }
+}, {
+  id: 9,
+  name: 'alligator',
+  difficulty: 0,
+  description: 'An alligator is stalking its prey.',
+  armor: 30,
+  karma: -600,
+  fame: 600,
+  stats: {
+    str: [76, 100],
+    dex: [6, 25],
+    int: [11, 20],
+    hp: [46, 60],
+    taming: 47.1,
+    barding: 29
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  aggro: true,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Alligator_100.png',
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 10,
+  name: 'bird',
+  difficulty: 0,
+  description: 'A bird is flying nearby.',
+  armor: 2,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [10, 10],
+    dex: [25, 35],
+    int: [10, 10],
+    hp: [0, 0],
+    taming: 0,
+    barding: 7
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '25 Feathers',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Bird_100.png',
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 11,
+  name: 'bull frog',
+  difficulty: 0,
+  description: 'A bull frog hops around at your feet.',
+  armor: 6,
+  stats: {
+    str: [46, 70],
+    dex: [6, 25],
+    int: [11, 20],
+    hp: [28, 42],
+    taming: 23.1,
+    barding: 21
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 4,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 12,
+  name: 'cat',
+  difficulty: 0,
+  description: 'A cat licks itself while it watches you lazily.',
+  armor: 8,
+  karma: -150,
+  fame: 0,
+  stats: {
+    str: [9, 9],
+    dex: [35, 35],
+    int: [5, 5],
+    hp: [6, 6],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 1,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Cat_100.png',
+  inventory: [{
+    description: '1 Raw Rib (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 4.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 13,
+  name: 'chicken',
+  difficulty: 0,
+  description: 'A chicken runs around like a chicken with its head cut off.',
+  armor: 2,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [5, 5],
+    dex: [15, 15],
+    int: [5, 5],
+    hp: [3, 3],
+    taming: 0.9,
+    barding: 4
+  },
+  offense: {
+    min: 1,
+    max: 1,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Chicken_100.png',
+  inventory: [{
+    description: '25 Feathers (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 4.0
+  }
+}, {
+  id: 14,
+  name: 'cougar',
+  difficulty: 0,
+  description: 'A cougar stalks some game.',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [66, 85],
+    int: [26, 50],
+    hp: [34, 48],
+    taming: 41.1,
+    barding: 27
+  },
+  offense: {
+    min: 4,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 10,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [15, 30]
+  }
+}, {
+  id: 16,
+  name: 'crane',
+  difficulty: 0,
+  description: 'A crane squawks loudly.',
+  armor: 5,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [25, 35],
+    dex: [15, 25],
+    int: [10, 15],
+    hp: [25, 35],
+    taming: null,
+    barding: 9.2
+  },
+  offense: {
+    speed: 2.5,
+    min: 1,
+    max: 1
+  },
+  move: 1,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Crane_100.png',
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [10, 11],
+    tactics: [10, 11],
+    magic_resistance: [4, 5]
+  }
+}, {
+  id: 17,
+  name: 'desert ostard',
+  difficulty: 1,
+  description: 'A desert ostard is running around here.',
+  armor: 0,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [94, 170],
+    dex: [56, 75],
+    int: [6, 10],
+    hp: [71, 88],
+    taming: 29.1,
+    barding: 33
+  },
+  offense: {
+    min: 5,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/DesertOstard_100.png',
+  skills: {
+    wrestling: [29, 44],
+    tactics: [25, 40],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 18,
+  name: 'dire wolf',
+  difficulty: 1,
+  description: 'A dire wolf snarls at you.',
+  armor: 22,
+  karma: -2500,
+  fame: 2500,
+  stats: {
+    str: [96, 120],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: 83.1,
+    barding: 43
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  aggro: true,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/DireWolf_100.png',
+  inventory: [{
+    id: 27,
+    count: 7,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [57, 75]
+  }
+}, {
+  id: 19,
+  name: 'dog',
+  difficulty: 0,
+  description: 'A dog begs you for a treat.',
+  armor: 12,
+  karma: -300,
+  fame: 0,
+  stats: {
+    str: [27, 37],
+    dex: [28, 43],
+    int: [29, 37],
+    hp: [17, 22],
+    taming: 0,
+    barding: 17
+  },
+  offense: {
+    min: 4,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Dog_100.png',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 31],
+    tactics: [19, 31],
+    magic_resistance: [22, 47]
+  }
+}, {
+  id: 20,
+  name: 'dolphin',
+  difficulty: 0,
+  description: 'A dolphin swims around playfully.',
+  armor: 16,
+  karma: -2000,
+  fame: 500,
+  stats: {
+    str: [21, 49],
+    dex: [66, 85],
+    int: [96, 110],
+    hp: [15, 27],
+    taming: null,
+    barding: 26
+  },
+  offense: {
+    min: 3,
+    max: 6,
+    speed: 2.5
+  },
+  move: 2,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 21,
+  name: 'eagle',
+  difficulty: 0,
+  description: 'A majestic eagle is perched here.',
+  armor: 22,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [31, 47],
+    dex: [36, 60],
+    int: [8, 20],
+    hp: [20, 27],
+    taming: 17.1,
+    barding: 18
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 2,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/Eagle_100.png',
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '36 Feathers',
+    chance: [1, 1]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [20, 30],
+    tactics: [18, 37],
+    magic_resistance: [15, 30]
+  }
+}, {
+  id: 22,
+  name: 'faction war horse',
+  difficulty: 1,
+  description: 'faction war horse',
+  armor: null,
+  stats: {
+    str: [400, 400],
+    dex: [125, 125],
+    int: [51, 55],
+    hp: [240, 240],
+    taming: 11.1,
+    barding: 65
+  },
+  offense: {
+    min: 5,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  img: __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].URLS.IMAGES + '/mobs/FactionWarHorse_100.png',
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 27,
+  name: 'fire steed',
+  difficulty: 1,
+  description: 'fire steed',
+  armor: 0,
+  karma: -20000,
+  fame: 20000,
+  stats: {
+    str: [376, 400],
+    dex: [91, 120],
+    int: [291, 300],
+    hp: [226, 240],
+    taming: 106,
+    barding: 83.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: 100.0,
+    tactics: [100, 100],
+    magic_resistance: [100, 120]
+  }
+}, {
+  id: 28,
+  name: 'forest ostard',
+  difficulty: 1,
+  description: 'A forest ostard wanders around.',
+  armor: null,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [94, 170],
+    dex: [56, 75],
+    int: [6, 10],
+    hp: [71, 88],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 8,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [27, 32]
+  }
+}, {
+  id: 29,
+  name: 'frenzied ostard',
+  difficulty: 1,
+  description: 'A frenzied ostard sees you and begins to run toward you.',
+  armor: 0,
+  karma: -1500,
+  fame: 1500,
+  aggro: true,
+  stats: {
+    str: [94, 170],
+    dex: [96, 115],
+    int: [6, 10],
+    hp: [71, 110],
+    taming: 77.1,
+    barding: 55
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [79, 94],
+    tactics: [79, 94],
+    magic_resistance: [75, 80]
+  }
+}, {
+  id: 30,
+  name: 'giant serpent',
+  difficulty: 1,
+  description: 'A giant serpent slithers toward you.',
+  armor: 32,
+  karma: -2500,
+  fame: 2500,
+  stats: {
+    str: [186, 215],
+    dex: [56, 80],
+    int: [66, 85],
+    hp: [112, 129],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }, {
+    id: 27,
+    count: 10,
+    chance: [1, 1]
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [65, 70],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 31,
+  name: 'giant toad',
+  difficulty: 0,
+  description: 'giant toad',
+  armor: 24,
+  karma: -750,
+  fame: 750,
+  stats: {
+    str: [76, 100],
+    dex: [6, 25],
+    int: [11, 20],
+    hp: [46, 60],
+    taming: 77.1,
+    barding: 27
+  },
+  offense: {
+    min: 5,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 12,
+    chance: [1, 1]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [40, 60],
+    tactics: [40, 60],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 32,
+  name: 'goat',
+  difficulty: 0,
+  description: 'A goat is chewing on some grass.',
+  armor: 10,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [19, 19],
+    dex: [15, 15],
+    int: [5, 5],
+    hp: [12, 12],
+    taming: 11.1,
+    barding: 6
+  },
+  offense: {
+    min: 3,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 8,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 33,
+  name: 'gorilla',
+  difficulty: 0,
+  description: 'gorilla',
+  armor: 20,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [53, 95],
+    dex: [36, 55],
+    int: [36, 60],
+    hp: [38, 51],
+    taming: 18.9,
+    barding: 29
+  },
+  offense: {
+    min: 4,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '6 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [43, 58],
+    tactics: [43, 58],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 34,
+  name: 'great hart',
+  difficulty: 0,
+  description: 'A great hart stares at you, ready to run.',
+  armor: 24,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [41, 71],
+    dex: [47, 77],
+    int: [27, 57],
+    hp: [27, 41],
+    taming: 59.1,
+    barding: 25
+  },
+  offense: {
+    min: 5,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 15,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 47],
+    tactics: [29, 47],
+    magic_resistance: [26, 44]
+  }
+}, {
+  id: 35,
+  name: 'grey wolf',
+  difficulty: 0,
+  description: 'A grey wolf looks for the rest of its pack.',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [31, 55],
+    hp: [34, 48],
+    taming: 53.1,
+    barding: 28
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 6,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [20, 35]
+  }
+}, {
+  id: 36,
+  name: 'grizzly bear',
+  difficulty: 1,
+  description: 'grizzly bear',
+  armor: 24,
+  karma: 0,
+  fame: 1000,
+  stats: {
+    str: [126, 155],
+    dex: [81, 105],
+    int: [16, 40],
+    hp: [76, 93],
+    taming: 59.1,
+    barding: 44
+  },
+  offense: {
+    min: 8,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 16,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 70],
+    tactics: [70, 100],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 37,
+  name: 'hell cat',
+  difficulty: 1,
+  description: 'hell cat',
+  armor: 30,
+  stats: {
+    str: [51, 100],
+    dex: [52, 150],
+    int: [13, 85],
+    hp: [48, 67],
+    taming: 71.1,
+    barding: 41
+  },
+  aggro: true,
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 38,
+  name: 'horse',
+  difficulty: 0,
+  description: 'A wild horse runs around.',
+  armor: null,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [22, 98],
+    dex: [56, 75],
+    int: [6, 10],
+    hp: [28, 45],
+    taming: 11.1,
+    barding: 22
+  },
+  offense: {
+    min: 3,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 39,
+  name: 'ice serpent',
+  difficulty: 1,
+  description: 'ice serpent',
+  armor: 32,
+  stats: {
+    str: [216, 245],
+    dex: [26, 50],
+    int: [66, 85],
+    hp: [130, 147],
+    taming: null,
+    barding: 59
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Random Weapon, Armor or Shield',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 40,
+  name: 'ice snake',
+  difficulty: 0,
+  aggro: true,
+  description: 'An ice snake slithers around here.',
+  armor: 30,
+  karma: -900,
+  fame: 900,
+  stats: {
+    str: [42, 54],
+    dex: [36, 45],
+    int: [26, 30],
+    hp: [28, 30],
+    taming: null,
+    barding: 21
+  },
+  offense: {
+    min: 4,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [39, 54],
+    tactics: [39, 54],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 41,
+  name: 'jack rabbit',
+  difficulty: 0,
+  description: 'A jack rabbit looks for its burrow.',
+  armor: 4,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [15, 15],
+    dex: [25, 25],
+    int: [5, 5],
+    hp: [9, 9],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Rib (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 42,
+  name: 'lava lizard',
+  difficulty: 1,
+  description: 'lava lizard',
+  armor: 40,
+  karma: 3000,
+  fame: 3000,
+  stats: {
+    str: [126, 150],
+    dex: [56, 75],
+    int: [11, 20],
+    hp: [76, 90],
+    taming: 80.7,
+    barding: 54
+  },
+  offense: {
+    min: 6,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [60, 80],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 43,
+  name: 'lava serpent',
+  difficulty: 2,
+  description: 'lava serpent',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [386, 415],
+    dex: [56, 80],
+    int: [66, 85],
+    hp: [232, 249],
+    taming: null,
+    barding: 75
+  },
+  offense: {
+    min: 10,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [200, 250],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [65, 70],
+    magic_resistance: [25, 70]
+  }
+}, {
+  id: 44,
+  name: 'lava snake',
+  difficulty: 0,
+  description: 'A lava snake scorches the ground as it moves along.',
+  aggro: true,
+  armor: 24,
+  karma: -600,
+  fame: 600,
+  stats: {
+    str: [43, 55],
+    dex: [16, 25],
+    int: [6, 10],
+    hp: [28, 32],
+    taming: null,
+    barding: 23
+  },
+  offense: {
+    min: 1,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [19, 34],
+    tactics: [19, 34],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 45,
+  name: 'llama',
+  difficulty: 0,
+  description: 'A llama walks around quietly.',
+  armor: 16,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [21, 49],
+    dex: [36, 55],
+    int: [16, 30],
+    hp: [15, 27],
+    taming: 35.1,
+    barding: 15
+  },
+  offense: {
+    min: 3,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 46,
+  name: 'mountain goat',
+  difficulty: 0,
+  description: 'A mountain goat is perched on some rocks.',
+  armor: 10,
+  karma: 0,
+  fame: 300,
+  stats: {
+    str: [22, 64],
+    dex: [56, 75],
+    int: [16, 30],
+    hp: [20, 33],
+    taming: 0,
+    barding: 26
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 47,
+  name: 'nightmare',
+  difficulty: 2,
+  description: 'nightmare',
+  armor: 60,
+  karma: 14000,
+  fame: 14000,
+  stats: {
+    str: [496, 525],
+    dex: [86, 105],
+    int: [86, 125],
+    hp: [298, 315],
+    taming: 95.1,
+    barding: 92
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [80, 92],
+    tactics: [97, 100],
+    magic_resistance: [85, 100]
+  }
+}, {
+  id: 48,
+  name: 'pack horse',
+  difficulty: 0,
+  description: 'pack horse',
+  armor: 16,
+  karma: -200,
+  fame: 0,
+  stats: {
+    str: [44, 120],
+    dex: [36, 55],
+    int: [6, 10],
+    hp: [61, 80],
+    taming: 11.1,
+    barding: 30
+  },
+  offense: {
+    min: 5,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '3 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [29, 44],
+    tactics: [29, 44],
+    magic_resistance: [25, 30]
+  }
+}, {
+  id: 49,
+  name: 'pack llama',
+  difficulty: 0,
+  description: 'pack llama',
+  armor: 16,
+  karma: -200,
+  fame: 0,
+  stats: {
+    str: [52, 80],
+    dex: [36, 55],
+    int: [16, 30],
+    hp: [50, 50],
+    taming: 11.1,
+    barding: 27
+  },
+  offense: {
+    min: 2,
+    max: 6,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 50,
+  name: 'panther',
+  difficulty: 0,
+  description: 'A panther stalks its prey.',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [61, 85],
+    dex: [86, 105],
+    int: [26, 50],
+    hp: [37, 51],
+    taming: 53.1,
+    barding: 32
+  },
+  offense: {
+    min: 4,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 10,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [50, 65],
+    tactics: [50, 65],
+    magic_resistance: [15, 30]
+  }
+}, {
+  id: 51,
+  name: 'phoenix',
+  difficulty: 2,
+  description: 'phoenix',
+  armor: 60,
+  stats: {
+    str: [504, 700],
+    dex: [202, 300],
+    int: [504, 700],
+    hp: [340, 383],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 25,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 52,
+  name: 'pig',
+  difficulty: 0,
+  description: 'A pig is wallowing in the dirt.',
+  armor: 12,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [20, 20],
+    dex: [20, 20],
+    int: [5, 5],
+    hp: [12, 12],
+    taming: 11.1,
+    barding: 6
+  },
+  offense: {
+    min: 2,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 53,
+  name: 'polar bear',
+  difficulty: 1,
+  description: 'polar bear',
+  armor: 18,
+  karma: 0,
+  fame: 1500,
+  stats: {
+    str: [116, 140],
+    dex: [81, 105],
+    int: [26, 50],
+    hp: [70, 84],
+    taming: 35.1,
+    barding: 46
+  },
+  offense: {
+    min: 7,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '2 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 70],
+    tactics: [60, 90],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 54,
+  name: 'predator hell cat',
+  difficulty: 2,
+  description: 'predator hell cat',
+  armor: 30,
+  stats: {
+    str: [161, 185],
+    dex: [96, 115],
+    int: [76, 100],
+    hp: [97, 131],
+    taming: 89.1,
+    barding: 67
+  },
+  offense: {
+    min: 5,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 55,
+  name: 'rabbit',
+  difficulty: 0,
+  description: 'A rabbit looks for its burrow.',
+  armor: 6,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [6, 10],
+    dex: [26, 38],
+    int: [6, 14],
+    hp: [4, 6],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 1,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '1 Raw Rib (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 56,
+  name: 'raging grizzly bear',
+  difficulty: 3,
+  description: 'raging grizzly bear',
+  armor: 24,
+  karma: 10000,
+  fame: 10000,
+  stats: {
+    str: [1, 1],
+    dex: [801, 1],
+    int: [151, 400],
+    hp: [751, 930],
+    taming: 59.1,
+    barding: 127
+  },
+  offense: {
+    min: 18,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '4 Raw Ribs (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [73, 88],
+    tactics: [73, 110],
+    magic_resistance: [32, 54]
+  }
+}, {
+  id: 57,
+  name: 'rat',
+  difficulty: 0,
+  description: 'A rat is wandering around looking for food.',
+  armor: 6,
+  karma: -150,
+  fame: 150,
+  stats: {
+    str: [9, 9],
+    dex: [35, 35],
+    int: [5, 5],
+    hp: [6, 6],
+    taming: 0,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: 4.0,
+    tactics: 4.0,
+    magic_resistance: 4.0
+  }
+}, {
+  id: 58,
+  name: 'ridable llama',
+  difficulty: 0,
+  description: 'ridable llama',
+  armor: 0,
+  stats: {
+    str: [21, 49],
+    dex: [56, 75],
+    int: [16, 30],
+    hp: [15, 27],
+    taming: 29.1,
+    barding: 18
+  },
+  offense: {
+    min: 3,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 59,
+  name: 'scaled swamp dragon',
+  difficulty: 0,
+  description: 'scaled swamp dragon',
+  armor: 0,
+  stats: {
+    taming: 93.9,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 60,
+  name: 'sewer rat',
+  difficulty: 0,
+  description: 'sewer rat',
+  armor: 6,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [9, 9],
+    dex: [25, 25],
+    int: [6, 10],
+    hp: [6, 6],
+    taming: -0.09,
+    barding: 6
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: 5.0,
+    tactics: 5.0,
+    magic_resistance: 5.0
+  }
+}, {
+  id: 61,
+  name: 'silver serpent',
+  difficulty: 2,
+  description: 'silver serpent',
+  armor: 40,
+  karma: -7000,
+  fame: 7000,
+  stats: {
+    str: [161, 360],
+    dex: [151, 300],
+    int: [21, 40],
+    hp: [97, 216],
+    taming: null,
+    barding: 85
+  },
+  offense: {
+    min: 5,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [250, 300],
+  skills: {
+    wrestling: [85, 100],
+    tactics: [80, 95],
+    magic_resistance: [95, 100]
+  }
+}, {
+  id: 62,
+  name: 'silver steed',
+  difficulty: 0,
+  description: 'silver steed',
+  armor: null,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [78, 80],
+    dex: [53, 53],
+    int: [10, 10],
+    hp: [78, 80],
+    taming: 103.1,
+    barding: 30
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: 39,
+    tactics: 32,
+    magic_resistance: '26'
+  }
+}, {
+  id: 63,
+  name: 'skeletal mount',
+  difficulty: 0,
+  description: 'skeletal mount',
+  armor: 0,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 64,
+  name: 'snake',
+  difficulty: 0,
+  description: 'A snake slithers on the ground',
+  armor: 16,
+  karma: -300,
+  fame: 300,
+  stats: {
+    str: [22, 34],
+    dex: [16, 25],
+    int: [6, 10],
+    hp: [15, 19],
+    taming: 59.1,
+    barding: 29
+  },
+  aggro: true,
+  offense: {
+    min: 1,
+    max: 4,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1000]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 34],
+    tactics: [19, 34],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 65,
+  name: 'snow leopard',
+  difficulty: 0,
+  description: 'snow leopard',
+  armor: 24,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [66, 85],
+    int: [26, 50],
+    hp: [34, 48],
+    taming: 53.1,
+    barding: 29
+  },
+  offense: {
+    min: 3,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '8 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [40, 50],
+    tactics: [45, 60],
+    magic_resistance: [25, 35]
+  }
+}, {
+  id: 66,
+  name: 'swamp dragon',
+  difficulty: 1,
+  description: 'swamp dragon',
+  armor: 0,
+  karma: -2000,
+  fame: 2000,
+  stats: {
+    str: [201, 300],
+    dex: [66, 85],
+    int: [61, 100],
+    hp: [121, 180],
+    taming: 93.9,
+    barding: 59
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 55],
+    magic_resistance: [45, 55]
+  }
+}, {
+  id: 67,
+  name: 'timber wolf',
+  difficulty: 0,
+  description: 'A timber wolf is looking for prey.',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [11, 25],
+    hp: [34, 48],
+    taming: 23.1,
+    barding: 28
+  },
+  offense: {
+    min: 5,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    id: 27,
+    count: 5,
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [40, 60],
+    tactics: [30, 50],
+    magic_resistance: [27, 45]
+  }
+}, {
+  id: 68,
+  name: 'tropical bird',
+  difficulty: 0,
+  description: 'tropical bird',
+  armor: 2,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: 0,
+    barding: 7
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '25 Feathers',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 69,
+  name: 'unicorn',
+  difficulty: 2,
+  description: 'unicorn',
+  armor: 0,
+  karma: 9000,
+  fame: 9000,
+  stats: {
+    str: [296, 325],
+    dex: [96, 115],
+    int: [186, 225],
+    hp: [191, 210],
+    taming: 95.1,
+    barding: 89
+  },
+  offense: {
+    min: 16,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [300, 350],
+  skills: {
+    wrestling: [80, 92],
+    tactics: [20, 22],
+    magic_resistance: [75, 90]
+  }
+}, {
+  id: 70,
+  name: 'walrus',
+  difficulty: 0,
+  description: 'walrus',
+  armor: 18,
+  karma: 0,
+  fame: 150,
+  stats: {
+    str: [21, 29],
+    dex: [46, 55],
+    int: [16, 20],
+    hp: [14, 17],
+    taming: 35.1,
+    barding: 15
+  },
+  offense: {
+    min: 4,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '12 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [19, 29],
+    tactics: [19, 29],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 71,
+  name: 'white wolf',
+  difficulty: 0,
+  description: 'white wolf',
+  armor: 16,
+  karma: 0,
+  fame: 450,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [31, 55],
+    hp: [34, 48],
+    taming: 65.1,
+    barding: 27
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'animal',
+  attackable: true,
+  inventory: [{
+    description: '6 Leather Hides (Carve)',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [20, 35]
+  }
+}, {
+  id: 72,
+  name: 'arachnid enforcer',
+  difficulty: 3,
+  description: 'arachnid enforcer',
+  armor: 50,
+  stats: {
+    str: [750, 850],
+    dex: [105, 115],
+    int: [420, 475],
+    hp: [900, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 73,
+  name: 'black solen infiltrator queen',
+  difficulty: 3,
+  description: 'black solen infiltrator queen',
+  armor: 50,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 74,
+  name: 'black solen infiltrator warrior',
+  difficulty: 3,
+  description: 'black solen infiltrator warrior',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 75,
+  name: 'black solen queen',
+  difficulty: 4,
+  description: 'black solen queen',
+  armor: 45,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 76,
+  name: 'black solen warrior',
+  difficulty: 3,
+  description: 'black solen warrior',
+  armor: 35,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 77,
+  name: 'black solen worker',
+  difficulty: 3,
+  description: 'black solen worker',
+  armor: 28,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 78,
+  name: 'dread spider',
+  difficulty: 2,
+  description: 'dread spider',
+  armor: 36,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [196, 220],
+    dex: [126, 145],
+    int: [286, 310],
+    hp: [118, 132],
+    taming: null,
+    barding: 95
+  },
+  offense: {
+    min: 5,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [450, 650],
+  skills: {
+    wrestling: [87, 96],
+    tactics: [85, 97],
+    magic_resistance: [45, 55]
+  }
+}, {
+  id: 79,
+  name: 'drone mage',
+  difficulty: 2,
+  description: 'drone mage',
+  armor: 20,
+  stats: {
+    str: [250, 300],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [250, 275],
+    taming: null,
+    barding: 119
+  },
+  offense: {
+    min: 10,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 80,
+  name: 'drone sentry',
+  difficulty: 2,
+  description: 'drone sentry',
+  armor: 20,
+  stats: {
+    str: [200, 225],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [175, 250],
+    taming: null,
+    barding: 121
+  },
+  offense: {
+    min: 10,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 81,
+  name: 'drone spitter',
+  difficulty: 2,
+  description: 'drone spitter',
+  armor: 25,
+  stats: {
+    str: [325, 350],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [325, 350],
+    taming: null,
+    barding: 118
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 82,
+  name: 'drone warrior',
+  difficulty: 2,
+  description: 'drone warrior',
+  armor: 30,
+  stats: {
+    str: [425, 475],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [425, 475],
+    taming: null,
+    barding: 124
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 83,
+  name: 'drone worker',
+  difficulty: 2,
+  description: 'drone worker',
+  armor: 15,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [175, 250],
+    taming: null,
+    barding: 111
+  },
+  offense: {
+    min: 10,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 84,
+  name: 'frost spider',
+  difficulty: 1,
+  description: 'frost spider',
+  armor: 28,
+  karma: -775,
+  fame: 775,
+  stats: {
+    str: [76, 100],
+    dex: [126, 145],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: 75.7,
+    barding: 40
+  },
+  offense: {
+    min: 6,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [75, 125],
+  skills: {
+    wrestling: [50, 65],
+    tactics: [35, 50],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 85,
+  name: 'giant black widow',
+  difficulty: 1,
+  description: 'giant black widow',
+  armor: 24,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [76, 100],
+    dex: [96, 115],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 70.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: [125, 175],
+  skills: {
+    wrestling: [70, 85],
+    tactics: [65, 80],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 86,
+  name: 'giant spider',
+  difficulty: 1,
+  description: 'A giant spider silently approaches.',
+  armor: 16,
+  karma: -600,
+  fame: 600,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: 59.1,
+    barding: 53
+  },
+  offense: {
+    min: 5,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  aggro: true,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [50, 65],
+    tactics: [35, 50],
+    magic_resistance: [25, 40]
+  }
+}, {
+  id: 87,
+  name: 'ilyxia the arachnid queen',
+  difficulty: 4,
+  description: 'ilyxia the arachnid queen',
+  armor: 60,
+  stats: {
+    str: [819, 910],
+    dex: [125, 135],
+    int: [420, 475],
+    hp: [1400, 1550],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 16,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 88,
+  name: 'red solen infiltrator queen',
+  difficulty: 4,
+  description: 'red solen infiltrator queen',
+  armor: 50,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 89,
+  name: 'red solen infiltrator warrior',
+  difficulty: 3,
+  description: 'red solen infiltrator warrior',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 90,
+  name: 'red solen queen',
+  difficulty: 4,
+  description: 'red solen queen',
+  armor: 45,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 91,
+  name: 'red solen warrior',
+  difficulty: 3,
+  description: 'red solen warrior',
+  armor: 35,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 92,
+  name: 'red solen worker',
+  difficulty: 3,
+  description: 'red solen worker',
+  armor: 28,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 93,
+  name: 'terathan avenger',
+  difficulty: 3,
+  description: 'terathan avenger',
+  armor: 50,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [467, 645],
+    dex: [77, 95],
+    int: [126, 150],
+    hp: [296, 372],
+    taming: null,
+    barding: 104
+  },
+  offense: {
+    min: 18,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [550, 600],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 94,
+  name: 'terathan drone',
+  difficulty: 2,
+  description: 'terathan drone',
+  armor: 24,
+  karma: 2000,
+  fame: 2000,
+  stats: {
+    str: [36, 65],
+    dex: [96, 145],
+    int: [21, 45],
+    hp: [22, 39],
+    taming: null,
+    barding: 32
+  },
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [40, 50],
+    tactics: [30, 50],
+    magic_resistance: [30, 45]
+  }
+}, {
+  id: 95,
+  name: 'terathan infiltrator',
+  difficulty: 3,
+  description: 'terathan infiltrator',
+  armor: 70,
+  stats: {
+    str: [810, 910],
+    dex: [125, 135],
+    int: [420, 475],
+    hp: [1400, 1550],
+    taming: null,
+    barding: 151
+  },
+  offense: {
+    min: 22,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Terathan Infiltrator Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 96,
+  name: 'terathan matriarch',
+  difficulty: 3,
+  description: 'terathan matriarch',
+  armor: 0,
+  karma: 10000,
+  fame: 10000,
+  stats: {
+    str: [316, 405],
+    dex: [96, 115],
+    int: [366, 455],
+    hp: [190, 243],
+    taming: null,
+    barding: 87
+  },
+  offense: {
+    min: 11,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: [570, 605],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [90, 100]
+  }
+}, {
+  id: 97,
+  name: 'terathan warrior',
+  difficulty: 2,
+  description: 'terathan warrior',
+  armor: 30,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [166, 215],
+    dex: [96, 145],
+    int: [41, 65],
+    hp: [100, 129],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'arachnids',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [80, 100],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 98,
+  name: 'anaconda',
+  difficulty: 4,
+  description: 'anaconda',
+  armor: 55,
+  stats: {
+    str: [1000, 1100],
+    dex: [153, 172],
+    int: [300, 400],
+    hp: [1650, 1925],
+    taming: null,
+    barding: 189
+  },
+  offense: {
+    min: 12,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 99,
+  name: 'arctic ogre mage',
+  difficulty: 4,
+  description: 'arctic ogre mage',
+  armor: 65,
+  stats: {
+    str: [1000, 1100],
+    dex: [82, 95],
+    int: [1000, 1100],
+    hp: [1495, 1595],
+    taming: null,
+    barding: 184
+  },
+  offense: {
+    min: 25,
+    max: 31,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 100,
+  name: 'azure dragon',
+  difficulty: 5,
+  description: 'azure dragon',
+  armor: 80,
+  stats: {
+    str: [1000, 1100],
+    dex: [120, 130],
+    int: [770, 820],
+    hp: [3000, 3000],
+    taming: null,
+    barding: 239
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'PlatinumCoin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 101,
+  name: 'beast tamer',
+  difficulty: 5,
+  description: 'beast tamer',
+  armor: 60,
+  stats: {
+    str: [605, 725],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [8000, 9000],
+    taming: null,
+    barding: 413
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Mask of the Wilds'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 102,
+  name: 'beholder',
+  difficulty: 4,
+  description: 'beholder',
+  armor: 65,
+  stats: {
+    str: [630, 730],
+    dex: [86, 105],
+    int: [910, 950],
+    hp: [1300, 1400],
+    taming: null,
+    barding: 184
+  },
+  offense: {
+    min: 12,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 103,
+  name: 'colossus',
+  difficulty: 4,
+  description: 'colossus',
+  armor: 78,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [100, 1100],
+    hp: [2702, 3231],
+    taming: null,
+    barding: 208
+  },
+  offense: {
+    min: 16,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 104,
+  name: 'dark one',
+  difficulty: 3,
+  description: 'dark one',
+  armor: 65,
+  stats: {
+    str: [770, 830],
+    dex: [146, 185],
+    int: [1000, 1100],
+    hp: [1700, 1800],
+    taming: null,
+    barding: 243
+  },
+  offense: {
+    min: 14,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 105,
+  name: 'diseased blood elemental',
+  difficulty: 4,
+  description: 'diseased blood elemental',
+  armor: 80,
+  karma: 8500,
+  fame: 8500,
+  stats: {
+    str: [880, 950],
+    dex: [95, 105],
+    int: [1000, 1100],
+    hp: [1800, 2000],
+    taming: null,
+    barding: 213
+  },
+  offense: {
+    min: 21,
+    max: 31,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: [651, 744],
+  skills: {
+    wrestling: [123, 138],
+    tactics: [130, 137],
+    magic_resistance: [116, 125]
+  }
+}, {
+  id: 106,
+  name: 'efreet sultan',
+  difficulty: 3,
+  description: 'efreet sultan',
+  armor: 70,
+  stats: {
+    str: [810, 855],
+    dex: [266, 285],
+    int: [1000, 1100],
+    hp: [1200, 1300],
+    taming: null,
+    barding: 143
+  },
+  offense: {
+    min: 13,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 107,
+  name: 'elder wyrm',
+  difficulty: 4,
+  description: 'elder wyrm',
+  armor: 90,
+  stats: {
+    str: [1000, 1100],
+    dex: [125, 145],
+    int: [1000, 1100],
+    hp: [5000, 5000],
+    taming: null,
+    barding: 365
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 108,
+  name: 'grand visor of chaos',
+  difficulty: 4,
+  description: 'grand visor of chaos',
+  armor: 70,
+  stats: {
+    str: [1000, 1100],
+    dex: [230, 275],
+    int: [205, 225],
+    hp: [2100, 2200],
+    taming: null,
+    barding: 152
+  },
+  offense: {
+    min: 12,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 109,
+  name: 'jungle titan',
+  difficulty: 4,
+  description: 'jungle titan',
+  armor: 48,
+  stats: {
+    str: [600, 750],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [2400, 2700],
+    taming: null,
+    barding: 185
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 110,
+  name: 'ogre mage',
+  difficulty: 3,
+  description: 'ogre mage',
+  armor: 65,
+  stats: {
+    str: [1000, 1100],
+    dex: [90, 99],
+    int: [720, 770],
+    hp: [1400, 1500],
+    taming: null,
+    barding: 180
+  },
+  offense: {
+    min: 20,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 111,
+  name: 'ophidian queen',
+  difficulty: 4,
+  description: 'ophidian queen',
+  armor: 78,
+  stats: {
+    str: [810, 910],
+    dex: [125, 135],
+    int: [420, 475],
+    hp: [1900, 2100],
+    taming: null,
+    barding: 172
+  },
+  offense: {
+    min: 18,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 112,
+  name: 'purveyor of darkness',
+  difficulty: 5,
+  description: 'purveyor of darkness',
+  armor: 100,
+  stats: {
+    str: [1000, 1100],
+    dex: [225, 255],
+    int: [600, 700],
+    hp: [4000, 4000],
+    taming: null,
+    barding: 299
+  },
+  offense: {
+    min: 27,
+    max: 34,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Purveyor of Darkness Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 113,
+  name: 'rabbit of caerbannog',
+  difficulty: 3,
+  description: 'rabbit of caerbannog',
+  armor: 60,
+  stats: {
+    str: [605, 805],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [900, 1000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 25],
+    description: 'Rabbit of Caerbannog Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 114,
+  name: 'reptile tamer',
+  difficulty: 4,
+  description: 'reptile tamer',
+  armor: 60,
+  stats: {
+    str: [605, 725],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [2000, 2300],
+    taming: null,
+    barding: 413
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Platinum Coin (All Players)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 116,
+  name: 'two headed behemoth',
+  difficulty: 4,
+  description: 'two headed behemoth',
+  armor: 78,
+  stats: {
+    str: [900, 1050],
+    dex: [115, 155],
+    int: [1000, 1100],
+    hp: [2000, 3000],
+    taming: null,
+    barding: 188
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'two headed behemoth statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 117,
+  name: 'wyvern monarch',
+  difficulty: 3,
+  description: 'wyvern monarch',
+  armor: 55,
+  stats: {
+    str: [1000, 1100],
+    dex: [153, 172],
+    int: [300, 400],
+    hp: [650, 725],
+    taming: null,
+    barding: 125
+  },
+  offense: {
+    min: 12,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Wyvern Monarch Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 118,
+  name: 'bad santa',
+  difficulty: 4,
+  description: 'bad santa',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Santas Clothing  4 Possible Items',
+    chance: [1, 4]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 119,
+  name: 'barracoon',
+  difficulty: 4,
+  description: 'barracoon',
+  armor: 70,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [4000, 4000],
+    taming: null,
+    barding: 237
+  },
+  offense: {
+    min: 25,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Greed',
+    chance: [1, 1]
+  }],
+  credits: [4000, 6000],
+  skills: {
+    wrestling: [118, 122],
+    tactics: [118, 120],
+    magic_resistance: '100.0'
+  }
+}, {
+  id: 120,
+  name: 'cupid',
+  difficulty: 3,
+  description: 'cupid',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'vial of tears (2014)',
+    chance: [1, 5]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 121,
+  name: 'harrower',
+  difficulty: 6,
+  description: 'harrower',
+  armor: 60,
+  karma: 25000,
+  fame: 25000,
+  stats: {
+    str: [900, 1050],
+    dex: [125, 135],
+    int: [1000, 1100],
+    hp: [10000, 11000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'true harrower statuette',
+    chance: [1, 20]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [115, 120],
+    tactics: [115, 120],
+    magic_resistance: [115, 160]
+  }
+}, {
+  id: 122,
+  name: 'lord oaks',
+  difficulty: 5,
+  description: 'lord oaks',
+  armor: 100,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [403, 850],
+    dex: [101, 150],
+    int: [503, 800],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 272
+  },
+  offense: {
+    min: 21,
+    max: 33,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Enlightenment',
+    chance: [1, 1]
+  }],
+  credits: [3500, 6000],
+  skills: {
+    wrestling: [115, null],
+    tactics: [119, null],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 123,
+  difficulty: 5,
+  name: 'mephitis',
+  description: 'mephitis',
+  armor: 80,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [505, 1100],
+    dex: [102, 300],
+    int: [402, 600],
+    hp: [5000, 7000],
+    taming: null,
+    barding: 352
+  },
+  offense: {
+    min: 21,
+    max: 33,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Venom',
+    chance: [1, 1]
+  }],
+  credits: [2500, 3000],
+  skills: {
+    wrestling: [123, 126],
+    tactics: [118, 120],
+    magic_resistance: [104, 112]
+  }
+}, {
+  id: 124,
+  name: 'neira',
+  difficulty: 4,
+  description: 'neira',
+  armor: 30,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [3000, 3500],
+    taming: null,
+    barding: 399
+  },
+  offense: {
+    min: 25,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Death',
+    chance: [1, 1]
+  }],
+  credits: [2500, 3000],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: '150.0'
+  }
+}, {
+  id: 125,
+  name: 'rikktor',
+  difficulty: 4,
+  description: 'rikktor',
+  armor: 130,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [701, 900],
+    dex: [201, 350],
+    int: [51, 100],
+    hp: [3000, 3900],
+    taming: null,
+    barding: 358
+  },
+  offense: {
+    min: 28,
+    max: 55,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Power',
+    chance: [1, 1]
+  }],
+  credits: [4000, 5000],
+  skills: {
+    wrestling: [118, 123],
+    tactics: [100, 100],
+    magic_resistance: [140, 160]
+  }
+}, {
+  id: 126,
+  name: 'semidar',
+  difficulty: 4,
+  description: 'semidar',
+  armor: 20,
+  karma: 24000,
+  fame: 24000,
+  stats: {
+    str: [502, 600],
+    dex: [102, 200],
+    int: [601, 750],
+    hp: [2000, 4000],
+    taming: null,
+    barding: 243
+  },
+  offense: {
+    min: 29,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Skull of Pain',
+    chance: [1, 1]
+  }],
+  credits: [6000, 6500],
+  skills: {
+    wrestling: [117, 123],
+    tactics: [129, 131],
+    magic_resistance: [120, 140]
+  }
+}, {
+  id: 127,
+  name: 'silvani',
+  difficulty: 3,
+  description: 'silvani',
+  armor: 50,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [253, 400],
+    dex: [157, 850],
+    int: [503, 800],
+    hp: [600, 600],
+    taming: null,
+    barding: 142
+  },
+  offense: {
+    min: 27,
+    max: 38,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 20]
+  }],
+  credits: [2000, 3000],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 128,
+  name: 'the true harrower',
+  difficulty: 6,
+  description: 'the true harrower',
+  armor: 60,
+  karma: 25000,
+  fame: 25000,
+  stats: {
+    str: [900, 1050],
+    dex: [125, 135],
+    int: [1000, 1100],
+    hp: [11000, 11000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'champions',
+  attackable: true,
+  inventory: [{
+    description: 'true harrower statuette',
+    chance: [1, 20]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [115, 120],
+    tactics: [115, 120],
+    magic_resistance: [115, 160]
+  }
+}, {
+  id: 129,
+  name: 'arcane daemon',
+  difficulty: 3,
+  description: 'arcane daemon',
+  armor: 55,
+  karma: -10000,
+  fame: 7000,
+  stats: {
+    str: [131, 150],
+    dex: [126, 145],
+    int: [301, 350],
+    hp: [101, 115],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [],
+  credits: [250, 300],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [70, 80],
+    magic_resistance: [85, 95]
+  }
+}, {
+  id: 130,
+  name: 'balron',
+  difficulty: 4,
+  description: 'balron',
+  armor: 90,
+  karma: -24000,
+  fame: 24000,
+  stats: {
+    str: [969, 1100],
+    dex: [177, 255],
+    int: [151, 250],
+    hp: [592, 711],
+    taming: null,
+    barding: 125
+  },
+  offense: {
+    min: 22,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1200, 1650],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 131,
+  name: 'chaos daemon',
+  difficulty: 3,
+  description: 'chaos daemon',
+  armor: 15,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [106, 130],
+    dex: [171, 200],
+    int: [56, 80],
+    hp: [91, 110],
+    taming: null,
+    barding: 71.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [],
+  credits: [175, 225],
+  skills: {
+    wrestling: [95, 100],
+    tactics: [70, 80],
+    magic_resistance: [85, 95]
+  }
+}, {
+  id: 132,
+  name: 'daemon',
+  difficulty: 3,
+  description: 'daemon',
+  armor: 58,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [476, 505],
+    dex: [76, 95],
+    int: [301, 325],
+    hp: [286, 303],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [550, 650],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [70, 80],
+    magic_resistance: [85, 95]
+  }
+}, {
+  id: 133,
+  name: 'ice fiend',
+  difficulty: 3,
+  description: 'ice fiend',
+  armor: 60,
+  karma: -18000,
+  fame: 18000,
+  stats: {
+    str: [376, 405],
+    dex: [176, 195],
+    int: [201, 225],
+    hp: [226, 243],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [650, 800],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 90],
+    magic_resistance: [75, 85]
+  }
+}, {
+  id: 134,
+  name: 'moloch',
+  difficulty: 3,
+  description: 'moloch',
+  armor: 32,
+  karma: -7500,
+  fame: 7500,
+  stats: {
+    str: [331, 360],
+    dex: [66, 85],
+    int: [41, 65],
+    hp: [171, 200],
+    taming: null,
+    barding: 72.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'daemons',
+  attackable: true,
+  inventory: [],
+  credits: [300, 350],
+  skills: {
+    wrestling: [70, 90],
+    tactics: [75, 90],
+    magic_resistance: [65, 75]
+  }
+}, {
+  id: 136,
+  name: 'acid elemental',
+  difficulty: 3,
+  description: 'acid elemental',
+  armor: 40,
+  karma: -10000,
+  fame: 10000,
+  stats: {
+    str: [326, 355],
+    dex: [66, 85],
+    int: [271, 295],
+    hp: [196, 213],
+    taming: null,
+    barding: 100
+  },
+  offense: {
+    min: 9,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [70, 90],
+    tactics: [80, 90],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 137,
+  name: 'agapite elemental',
+  difficulty: 2,
+  description: 'agapite elemental',
+  armor: 32,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 28,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 138,
+  name: 'air elemental',
+  difficulty: 2,
+  description: 'air elemental',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [126, 155],
+    dex: [166, 185],
+    int: [101, 125],
+    hp: [76, 93],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 8,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [60, 80],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 139,
+  name: 'amber golem',
+  difficulty: 2,
+  description: 'amber golem',
+  armor: 35,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [200, 275],
+    taming: null,
+    barding: 120
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 140,
+  name: 'amethyst golem',
+  difficulty: 2,
+  description: 'amethyst golem',
+  armor: 38,
+  stats: {
+    str: [200, 225],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [200, 225],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 10,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 141,
+  name: 'blood elemental',
+  difficulty: 3,
+  description: 'blood elemental',
+  armor: 60,
+  karma: -12500,
+  fame: 12500,
+  stats: {
+    str: [526, 615],
+    dex: [66, 85],
+    int: [226, 350],
+    hp: [316, 369],
+    taming: null,
+    barding: 93
+  },
+  offense: {
+    min: 17,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [700, 900],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [80, 95]
+  }
+}, {
+  id: 142,
+  name: 'bronze elemental',
+  difficulty: 2,
+  description: 'bronze elemental',
+  armor: 29,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 143,
+  name: 'citrine golem',
+  difficulty: 2,
+  description: 'citrine golem',
+  armor: 41,
+  stats: {
+    str: [325, 350],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [325, 350],
+    taming: null,
+    barding: 111
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 144,
+  name: 'copper elemental',
+  difficulty: 2,
+  description: 'copper elemental',
+  armor: 26,
+  karma: -4800,
+  fame: 4800,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 145,
+  name: 'diamond golem',
+  difficulty: 2,
+  description: 'diamond golem',
+  armor: 50,
+  stats: {
+    str: [750, 850],
+    dex: [50, 65],
+    int: [25, 35],
+    hp: [1400, 1600],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 10,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 147,
+  name: 'dull copper elemental',
+  difficulty: 2,
+  description: 'dull copper elemental',
+  armor: 20,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 148,
+  name: 'earth elemental',
+  difficulty: 2,
+  description: 'earth elemental',
+  armor: 34,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [126, 155],
+    dex: [66, 85],
+    int: [71, 92],
+    hp: [76, 93],
+    taming: null,
+    barding: 51
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 149,
+  name: 'efreet',
+  difficulty: 2,
+  description: 'efreet',
+  armor: 98,
+  karma: -10000,
+  fame: 10000,
+  stats: {
+    str: [326, 355],
+    dex: [266, 285],
+    int: [171, 195],
+    hp: [196, 213],
+    taming: null,
+    barding: 83
+  },
+  offense: {
+    min: 11,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Random Daemon Bone Armor Piece'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [60, 80],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 151,
+  name: 'emerald golem',
+  difficulty: 2,
+  description: 'emerald golem',
+  armor: 41,
+  stats: {
+    str: [325, 350],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [325, 350],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 152,
+  name: 'fire elemental',
+  difficulty: 2,
+  description: 'fire elemental',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [126, 155],
+    dex: [166, 185],
+    int: [101, 125],
+    hp: [76, 93],
+    taming: null,
+    barding: 72
+  },
+  offense: {
+    min: 7,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Lightsource'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [70, 100],
+    tactics: [80, 100],
+    magic_resistance: [75, 105]
+  }
+}, {
+  id: 153,
+  name: 'golden elemental',
+  difficulty: 2,
+  description: 'golden elemental',
+  armor: 60,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 154,
+  name: 'ice elemental',
+  difficulty: 2,
+  description: 'ice elemental',
+  armor: 40,
+  karma: -4000,
+  fame: 4000,
+  stats: {
+    str: [156, 185],
+    dex: [96, 115],
+    int: [171, 192],
+    hp: [94, 111],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 10,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [70, 100],
+    magic_resistance: [30, 80]
+  }
+}, {
+  id: 155,
+  name: 'marble elemental',
+  difficulty: 2,
+  description: 'marble elemental',
+  armor: 38,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 28,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 156,
+  name: 'ore golem',
+  difficulty: 2,
+  description: 'ore golem',
+  armor: 38,
+  stats: {
+    str: [201, 225],
+    dex: [106, 115],
+    int: [71, 92],
+    hp: [115, 135],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 22,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Pile of Ore (Approx 50 ingots Worth)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 157,
+  name: 'ore golem lord',
+  difficulty: 3,
+  description: 'ore golem lord',
+  armor: 38,
+  stats: {
+    str: [235, 265],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [156, 183],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 24,
+    max: 30,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Studded Gloves Of Mining'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 158,
+  name: 'poison elemental',
+  difficulty: 3,
+  description: 'poison elemental',
+  armor: 70,
+  karma: -12500,
+  fame: 12500,
+  stats: {
+    str: [426, 515],
+    dex: [166, 185],
+    int: [361, 435],
+    hp: [256, 309],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Level 5 Treasure Map'
+  }],
+  credits: [750, 950],
+  skills: {
+    wrestling: [70, 90],
+    tactics: [80, 100],
+    magic_resistance: [85, 115]
+  }
+}, {
+  id: 159,
+  name: 'ruby golem',
+  difficulty: 2,
+  description: 'ruby golem',
+  armor: 40,
+  stats: {
+    str: [750, 850],
+    dex: [50, 65],
+    int: [25, 35],
+    hp: [1200, 1300],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 160,
+  name: 'sand vortex',
+  difficulty: 2,
+  description: 'sand vortex',
+  armor: 28,
+  karma: 4500,
+  fame: 4500,
+  stats: {
+    str: [96, 120],
+    dex: [171, 195],
+    int: [76, 100],
+    hp: [51, 62],
+    taming: null,
+    barding: 75.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: [100, 150],
+  skills: {
+    wrestling: 80.0,
+    tactics: 70.0,
+    magic_resistance: '150.0'
+  }
+}, {
+  id: 161,
+  name: 'sandstone elemental',
+  difficulty: 2,
+  description: 'sandstone elemental',
+  armor: 60,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 162,
+  name: 'sapphire golem',
+  difficulty: 2,
+  description: 'sapphire golem',
+  armor: 34,
+  stats: {
+    str: [425, 475],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [425, 475],
+    taming: null,
+    barding: 129
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 163,
+  name: 'shadow iron elemental',
+  difficulty: 4,
+  description: 'shadow iron elemental',
+  armor: 23,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 164,
+  name: 'snow elemental',
+  difficulty: 2,
+  description: 'snow elemental',
+  armor: 50,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [326, 355],
+    dex: [166, 185],
+    int: [71, 95],
+    hp: [196, 213],
+    taming: null,
+    barding: 67
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [250, 350],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [50, 65]
+  }
+}, {
+  id: 165,
+  name: 'stone elemental',
+  difficulty: 2,
+  description: 'stone elemental',
+  armor: 26,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [85, 95],
+    magic_resistance: [100, 100]
+  }
+}, {
+  id: 166,
+  name: 'tourmaline golem',
+  difficulty: 2,
+  description: 'tourmaline golem',
+  armor: 34,
+  stats: {
+    str: [425, 475],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [425, 475],
+    taming: null,
+    barding: 129
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 167,
+  name: 'valorite elemental',
+  description: 'valorite elemental',
+  difficulty: 2,
+  armor: 38,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 153],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 28,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [450, 650],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 168,
+  name: 'verite elemental',
+  difficulty: 2,
+  description: 'verite elemental',
+  armor: 35,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [226, 255],
+    dex: [126, 145],
+    int: [71, 92],
+    hp: [136, 163],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 9,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [60, 100],
+    magic_resistance: [50, 95]
+  }
+}, {
+  id: 169,
+  name: 'water elemental',
+  difficulty: 2,
+  description: 'water elemental',
+  armor: 40,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [126, 155],
+    dex: [66, 85],
+    int: [101, 125],
+    hp: [76, 93],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 7,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'elementals',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [50, 70],
+    magic_resistance: [100, 115]
+  }
+}, {
+  id: 170,
+  name: 'enslaved gargoyle',
+  difficulty: 2,
+  description: 'enslaved gargoyle',
+  armor: 35,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [302, 360],
+    dex: [76, 95],
+    int: [81, 105],
+    hp: [186, 212],
+    taming: null,
+    barding: 70.8
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [],
+  credits: [250, 300],
+  skills: {
+    wrestling: [40, 80],
+    tactics: [50, 70],
+    magic_resistance: [70, 85]
+  }
+}, {
+  id: 171,
+  name: 'fire gargoyle',
+  difficulty: 3,
+  description: 'fire gargoyle',
+  armor: 32,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [351, 400],
+    dex: [126, 145],
+    int: [226, 250],
+    hp: [211, 240],
+    taming: null,
+    barding: 97
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [40, 80],
+    tactics: [80, 100],
+    magic_resistance: [90, 105]
+  }
+}, {
+  id: 172,
+  name: 'gargoyle',
+  difficulty: 2,
+  description: 'gargoyle',
+  armor: 32,
+  stats: {
+    str: [146, 175],
+    dex: [76, 95],
+    int: [81, 105],
+    hp: [88, 105],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 173,
+  name: 'gargoyle destroyer',
+  description: 'gargoyle destroyer',
+  armor: 50,
+  difficulty: 4,
+  karma: -10000,
+  fame: 10000,
+  stats: {
+    str: [760, 850],
+    dex: [102, 150],
+    int: [152, 200],
+    hp: [482, 485],
+    taming: null,
+    barding: 110.8
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [],
+  credits: [750, 950],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [120, 160]
+  }
+}, {
+  id: 174,
+  name: 'gargoyle enforcer',
+  difficulty: 3,
+  description: 'gargoyle enforcer',
+  armor: 50,
+  karma: -5000,
+  fame: 5000,
+  stats: {
+    str: [260, 350],
+    dex: [76, 95],
+    int: [101, 125],
+    hp: [182, 185],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [],
+  credits: [275, 325],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [70, 80],
+    magic_resistance: [120, 130]
+  }
+}, {
+  id: 175,
+  name: 'obsidian gargoyle',
+  difficulty: 5,
+  description: 'obsidian gargoyle',
+  armor: 48,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [2400, 2900],
+    taming: null,
+    barding: 189
+  },
+  offense: {
+    min: 16,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [80, 90],
+    tactics: [75, 85],
+    magic_resistance: [120, 130]
+  }
+}, {
+  id: 176,
+  name: 'stone gargoyle',
+  difficulty: 2,
+  description: 'stone gargoyle',
+  armor: 50,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [246, 275],
+    dex: [76, 95],
+    int: [81, 105],
+    hp: [148, 165],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'gargoyles',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: [250, 325],
+  skills: {
+    wrestling: [60, 100],
+    tactics: [80, 100],
+    magic_resistance: [85, 100]
+  }
+}, {
+  id: 177,
+  name: 'actor',
+  difficulty: 1,
+  description: 'actor',
+  armor: null,
+  stats: {
+    str: [31, 31],
+    dex: [41, 41],
+    int: [51, 51],
+    hp: [31, 31],
+    taming: null,
+    barding: 12
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 178,
+  name: 'alchemist',
+  description: 'alchemist',
+  difficulty: 1,
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 179,
+  name: 'ancient lich',
+  difficulty: 4,
+  description: 'ancient lich',
+  armor: 60,
+  karma: -23000,
+  fame: 23000,
+  stats: {
+    str: [206, 305],
+    dex: [96, 115],
+    int: [966, 1100],
+    hp: [560, 595],
+    taming: null,
+    barding: 142
+  },
+  offense: {
+    min: 15,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: [1500, 1700],
+  skills: {
+    wrestling: [75, 87],
+    tactics: [90, 100],
+    magic_resistance: [175, 200]
+  }
+}, {
+  id: 180,
+  name: 'animated zombie',
+  description: 'animated zombie',
+  armor: 18,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 181,
+  name: 'artist',
+  description: 'artist',
+  armor: null,
+  difficulty: 1,
+  stats: {
+    str: [31, 31],
+    dex: [41, 41],
+    int: [51, 51],
+    hp: [31, 31],
+    taming: null,
+    barding: 16
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 182,
+  name: 'barkeeper',
+  difficulty: 0,
+  description: 'barkeeper',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 184,
+  name: 'betrayer',
+  difficulty: 4,
+  description: 'betrayer',
+  armor: 65,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [401, 500],
+    dex: [81, 100],
+    int: [151, 200],
+    hp: [241, 300],
+    taming: null,
+    barding: 96.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: [750, 900],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [120, 130]
+  }
+}, {
+  id: 185,
+  name: 'blacksmith',
+  difficulty: 1,
+  description: 'blacksmith',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 186,
+  name: 'bogle',
+  difficulty: 1,
+  description: 'bogle',
+  armor: 28,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 187,
+  name: 'bogling',
+  description: 'bogling',
+  difficulty: 1,
+  armor: 28,
+  karma: -450,
+  fame: 450,
+  stats: {
+    str: [96, 120],
+    dex: [91, 115],
+    int: [21, 45],
+    hp: [58, 72],
+    taming: null,
+    barding: 61.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: [50, 100],
+  skills: {
+    wrestling: [55, 75],
+    tactics: [55, 80],
+    magic_resistance: [75, 100]
+  }
+}, {
+  id: 188,
+  name: 'bone knight',
+  description: 'bone knight',
+  difficulty: 3,
+  armor: 40,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [195, 250],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [118, 150],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 8,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'WoodenShield',
+    chance: [1, 1]
+  }],
+  credits: [175, 275],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [95, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 189,
+  name: 'bone magi',
+  difficulty: 3,
+  description: 'bone magi',
+  armor: 38,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [76, 100],
+    dex: [56, 75],
+    int: [186, 210],
+    hp: [46, 60],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 190,
+  name: 'bridegroom',
+  difficulty: 2,
+  description: 'bridegroom',
+  armor: null,
+  stats: {
+    str: [90, 100],
+    dex: [90, 100],
+    int: [15, 25],
+    hp: [90, 100],
+    taming: null,
+    barding: 33
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{}],
+  credits: [150, 250],
+  skills: {}
+}, {
+  id: 191,
+  name: 'brigand',
+  difficulty: 1,
+  description: 'A brigand sharpens a dagger.',
+  armor: 0,
+  karma: 1000,
+  fame: 1000,
+  aggro: true,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [61, 75],
+    hp: [100, 120],
+    taming: null,
+    barding: 56
+  },
+  offense: {
+    min: 10,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 150],
+  skills: {
+    wrestling: [15, 37],
+    tactics: [65, 87],
+    magic_resistance: [25, 47]
+  }
+}, {
+  id: 192,
+  name: 'brigand archer',
+  difficulty: 1,
+  description: 'A brigand archer readies his bow.',
+  armor: 0,
+  aggro: true,
+  stats: {
+    str: [125, 150],
+    dex: [125, 150],
+    int: [500, 750],
+    hp: [150, 200],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 10,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 193,
+  name: 'brigand strong',
+  difficulty: 1,
+  description: 'A strong brigand is flexing as he prepares to attack.',
+  armor: 0,
+  stats: {
+    str: [125, 150],
+    dex: [81, 95],
+    int: [500, 750],
+    hp: [150, 175],
+    taming: null,
+    barding: 87
+  },
+  aggro: true,
+  offense: {
+    min: 12,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 194,
+  name: 'carpenter',
+  difficulty: 0,
+  description: 'carpenter',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 195,
+  name: 'cobbler',
+  difficulty: 0,
+  description: 'cobbler',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 196,
+  name: 'cook',
+  difficulty: 0,
+  description: 'cook',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 198,
+  name: 'escortable mage',
+  difficulty: 0,
+  description: 'escortable mage',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: 60
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{}],
+  credits: [150, 250],
+  skills: {}
+}, {
+  id: 199,
+  name: 'evil mage',
+  aggro: true,
+  difficulty: 1,
+  description: 'evil mage',
+  armor: 16,
+  karma: 2500,
+  fame: 2500,
+  stats: {
+    str: [81, 105],
+    dex: [91, 115],
+    int: [96, 120],
+    hp: [49, 63],
+    taming: null,
+    barding: 69
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [20, 60],
+    tactics: [65, 87],
+    magic_resistance: [75, 97]
+  }
+}, {
+  id: 200,
+  name: 'evil mage lord',
+  difficulty: 2,
+  aggro: true,
+  description: 'evil mage lord',
+  armor: 16,
+  karma: 10500,
+  fame: 10500,
+  stats: {
+    str: [81, 105],
+    dex: [191, 215],
+    int: [126, 150],
+    hp: [49, 63],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [20, 80],
+    tactics: [65, 87],
+    magic_resistance: [77, 100]
+  }
+}, {
+  id: 201,
+  name: 'executioner',
+  difficulty: 3,
+  aggro: true,
+  description: 'An executioner sharpens his axe as he approaches.',
+  armor: null,
+  karma: 5000,
+  fame: 5000,
+  stats: {
+    str: [386, 400],
+    dex: [151, 165],
+    int: [1000, 1100],
+    hp: [386, 400],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 8,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [500, 650],
+  skills: {
+    wrestling: 0,
+    tactics: 125.0,
+    magic_resistance: [77, 100]
+  }
+}, {
+  id: 202,
+  name: 'faction deathknight',
+  description: 'faction deathknight',
+  armor: 0,
+  stats: {
+    str: [126, 150],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 203,
+  name: 'faction henchman',
+  description: 'faction henchman',
+  armor: 0,
+  stats: {
+    str: [91, 115],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 10,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 204,
+  name: 'faction knight',
+  description: 'faction knight',
+  armor: 0,
+  stats: {
+    str: [126, 150],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 205,
+  name: 'faction mercenary',
+  description: 'faction mercenary',
+  armor: 0,
+  stats: {
+    str: [116, 125],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 206,
+  name: 'faction necromancer',
+  description: 'faction necromancer',
+  armor: null,
+  stats: {
+    str: [151, 175],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 207,
+  name: 'faction paladin',
+  description: 'faction paladin',
+  armor: null,
+  stats: {
+    str: [151, 175],
+    dex: [61, 85],
+    int: [81, 95],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 208,
+  name: 'faction sorceress',
+  description: 'faction sorceress',
+  armor: null,
+  stats: {
+    str: [126, 150],
+    dex: [61, 85],
+    int: [126, 150],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 209,
+  name: 'faction wizard',
+  description: 'faction wizard',
+  armor: null,
+  stats: {
+    str: [151, 175],
+    dex: [61, 85],
+    int: [151, 175],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 210,
+  name: 'farmer',
+  description: 'A farmer is looking at his crops.',
+  difficulty: 0,
+  armor: 1,
+  stats: {
+    str: [0, 1],
+    dex: [0, 1],
+    int: [0, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 211,
+  name: 'fisherman',
+  difficulty: 0,
+  description: 'fisherman',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 212,
+  name: 'furtrader',
+  difficulty: 0,
+  description: 'furtrader',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 213,
+  name: 'ghoul',
+  difficulty: 1,
+  description: 'ghoul',
+  armor: 28,
+  karma: -2500,
+  fame: 2500,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 45
+  },
+  offense: {
+    min: 7,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Weapon',
+    chance: [1, 1]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 215,
+  name: 'gypsy',
+  difficulty: 0,
+  description: 'gypsy',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 216,
+  name: 'hairstylist',
+  difficulty: 0,
+  description: 'hairstylist',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 217,
+  name: 'human brigand',
+  difficulty: 1,
+  description: 'A human brigand lunges at you.',
+  armor: 0,
+  aggro: true,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [61, 75],
+    hp: [1, 1],
+    taming: null,
+    barding: 40
+  },
+  offense: {
+    min: 15,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Weapon',
+    chance: [1, 1]
+  }],
+  credits: [50, 150],
+  skills: {}
+}, {
+  id: 218,
+  name: 'knight of ni',
+  difficulty: 2,
+  description: 'knight of ni',
+  armor: 35,
+  stats: {
+    str: [250, 375],
+    dex: [81, 95],
+    int: [500, 750],
+    hp: [150, 175],
+    taming: null,
+    barding: 83
+  },
+  offense: {
+    min: 12,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 219,
+  name: 'lich',
+  aggro: true,
+  difficulty: 2,
+  description: 'lich',
+  armor: 50,
+  karma: 8000,
+  fame: 8000,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [276, 305],
+    hp: [103, 120],
+    taming: null,
+    barding: 92
+  },
+  offense: {
+    min: 24,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [275, 324],
+  skills: {
+    wrestling: [0, 0],
+    tactics: [70, 90],
+    magic_resistance: [80, 100]
+  }
+}, {
+  id: 220,
+  name: 'lich lord',
+  aggro: true,
+  difficulty: 3,
+  description: 'lich lord',
+  armor: 50,
+  karma: 18000,
+  fame: 18000,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [566, 655],
+    hp: [250, 303],
+    taming: null,
+    barding: 109
+  },
+  offense: {
+    min: 11,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [450, 600],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [150, 200]
+  }
+}, {
+  id: 221,
+  name: 'lord fenix',
+  difficulty: 4,
+  aggro: true,
+  description: 'lord fenix',
+  armor: 0,
+  stats: {
+    str: [381, 405],
+    dex: [191, 215],
+    int: [726, 1100],
+    hp: [650, 863],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 222,
+  name: 'lord jamkul shieldheart',
+  difficulty: 4,
+  aggro: true,
+  description: 'lord jamkul shieldheart',
+  armor: 0,
+  stats: {
+    str: [381, 405],
+    dex: [191, 215],
+    int: [726, 1100],
+    hp: [650, 863],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 223,
+  name: 'lord kronos the elemental mage',
+  difficulty: 5,
+  aggro: true,
+  description: 'lord kronos the elemental mage',
+  armor: 30,
+  stats: {
+    str: [450, 550],
+    dex: [75, 85],
+    int: [420, 475],
+    hp: [1400, 1550],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 15,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 224,
+  name: 'lord xerxes',
+  difficulty: 3,
+  aggro: true,
+  description: 'lord xerxes',
+  armor: 0,
+  stats: {
+    str: [381, 405],
+    dex: [191, 215],
+    int: [726, 1100],
+    hp: [650, 863],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 225,
+  name: 'merchant',
+  difficulty: 0,
+  description: 'merchant',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 226,
+  name: 'messenger',
+  description: 'messenger',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 227,
+  name: 'mummy',
+  description: 'mummy',
+  difficulty: 2,
+  aggro: true,
+  armor: 50,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [346, 370],
+    dex: [71, 90],
+    int: [26, 40],
+    hp: [208, 222],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 13,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Bones',
+    chance: [1, 1]
+  }],
+  credits: [305, 315],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}, {
+  id: 228,
+  name: 'noble',
+  description: 'noble',
+  armor: null,
+  stats: {
+    str: [1, 1],
+    dex: [1, 1],
+    int: [1, 1],
+    hp: [1, 1],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 0,
+    max: 0,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: '150-250 Gold Coins',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 229,
+  name: 'pirate bartender',
+  difficulty: 3,
+  aggro: true,
+  description: 'pirate bartender',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1350],
+    taming: null,
+    barding: 166
+  },
+  offense: {
+    min: 9,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: [150, 250],
+  skills: {}
+}, {
+  id: 230,
+  name: 'pirate boatswain',
+  difficulty: 3,
+  aggro: true,
+  description: 'pirate boatswain',
+  armor: 0,
+  stats: {
+    str: [200, 225],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [200, 225],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 10,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 231,
+  difficulty: 4,
+  name: 'pirate captain',
+  aggro: true,
+  description: 'pirate captain',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1400],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 13,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: [400, 500],
+  skills: {}
+}, {
+  id: 232,
+  difficulty: 4,
+  name: 'pirate captain ghost',
+  aggro: true,
+  description: 'pirate captain ghost',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1350],
+    taming: null,
+    barding: 143
+  },
+  offense: {
+    min: 9,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'tattered spellbook',
+    chance: [1, 200]
+  }],
+  credits: [400, 500],
+  skills: {}
+}, {
+  id: 233,
+  name: 'pirate digger',
+  difficulty: 4,
+  aggro: true,
+  description: 'pirate digger',
+  armor: 0,
+  stats: {
+    str: [325, 375],
+    dex: [90, 120],
+    int: [2000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 166
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: [250, 350],
+  skills: {}
+}, {
+  id: 234,
+  name: 'pirate ghost',
+  difficulty: 2,
+  aggro: true,
+  description: 'pirate ghost',
+  armor: 0,
+  stats: {
+    str: [81, 105],
+    dex: [191, 215],
+    int: [1000, 1100],
+    hp: [125, 175],
+    taming: null,
+    barding: 105
+  },
+  offense: {
+    min: 12,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [100, 200],
+  skills: {}
+}, {
+  id: 235,
+  name: 'pirate navigator',
+  difficulty: 3,
+  aggro: true,
+  description: 'pirate navigator',
+  armor: 0,
+  stats: {
+    str: [325, 375],
+    dex: [110, 120],
+    int: [1000, 1100],
+    hp: [325, 375],
+    taming: null,
+    barding: 116
+  },
+  offense: {
+    min: 10,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: [250, 350],
+  skills: {}
+}, {
+  id: 236,
+  name: 'pirate quartermaster',
+  difficulty: 2,
+  aggro: true,
+  description: 'pirate quartermaster',
+  armor: 0,
+  stats: {
+    str: [375, 425],
+    dex: [90, 120],
+    int: [1000, 1100],
+    hp: [375, 425],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 10,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: [200, 300],
+  skills: {}
+}, {
+  id: 237,
+  name: 'pirate sailor',
+  difficulty: 1,
+  aggro: true,
+  description: 'pirate sailor',
+  armor: 0,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [85, 100],
+    taming: null,
+    barding: 104
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [85, 120],
+  skills: {}
+}, {
+  id: 238,
+  name: 'ratman',
+  difficulty: 1,
+  description: 'A ratman ears pick up as it sees you.',
+  armor: 28,
+  karma: 1500,
+  fame: 1500,
+  aggro: true,
+  stats: {
+    str: [96, 120],
+    dex: [81, 100],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 38
+  },
+  offense: {
+    min: 4,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [50, 75],
+    tactics: [50, 75],
+    magic_resistance: [35, 60]
+  }
+}, {
+  id: 239,
+  name: 'ratman archer',
+  difficulty: 2,
+  aggro: true,
+  description: 'ratman archer',
+  armor: 56,
+  karma: 6500,
+  fame: 6500,
+  stats: {
+    str: [146, 180],
+    dex: [101, 130],
+    int: [116, 140],
+    hp: [88, 108],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 15,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [300, 350],
+  skills: {
+    wrestling: [50, 75],
+    tactics: [50, 75],
+    magic_resistance: [65, 90]
+  }
+}, {
+  id: 240,
+  name: 'ratman mage',
+  difficulty: 1,
+  aggro: true,
+  description: 'ratman mage',
+  armor: 44,
+  karma: 7500,
+  fame: 7500,
+  stats: {
+    str: [146, 180],
+    dex: [101, 130],
+    int: [186, 210],
+    hp: [88, 108],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [275, 352],
+  skills: {
+    wrestling: [50, 75],
+    tactics: [50, 75],
+    magic_resistance: [65, 90]
+  }
+}, {
+  id: 242,
+  difficulty: 0,
+  aggro: true,
+  name: 'restless soul',
+  description: 'restless soul',
+  armor: 6,
+  karma: 500,
+  fame: 500,
+  stats: {
+    str: [26, 40],
+    dex: [26, 40],
+    int: [26, 40],
+    hp: [16, 24],
+    taming: null,
+    barding: 19
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [20, 30],
+    tactics: [20, 30],
+    magic_resistance: [20, 30]
+  }
+}, {
+  id: 243,
+  name: 'revenant',
+  difficulty: 2,
+  aggro: true,
+  description: 'revenant',
+  armor: 62,
+  karma: 0,
+  fame: 0,
+  stats: {
+    str: [196, 250],
+    dex: [110, 120],
+    int: [128, 138],
+    hp: [500, 550],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 7,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Various Bones',
+    chance: [1, 1]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 244,
+  difficulty: 4,
+  aggro: true,
+  name: 'rotting corpse',
+  description: 'A rotting corpse shambles towards you.',
+  armor: 40,
+  karma: 12500,
+  fame: 12500,
+  stats: {
+    str: [301, 350],
+    dex: [75, 75],
+    int: [151, 200],
+    hp: [1200, 1200],
+    taming: null,
+    barding: 125
+  },
+  offense: {
+    min: 8,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 100]
+  }],
+  credits: [1050, 1279],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [100, 100],
+    magic_resistance: [200, 250]
+  }
+}, {
+  id: 245,
+  name: 'shade',
+  difficulty: 1,
+  aggro: true,
+  description: 'shade',
+  armor: 28,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 65
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 246,
+  name: 'skeletal knight',
+  difficulty: 1,
+  aggro: true,
+  description: 'skeletal knight',
+  armor: 40,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [196, 250],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [118, 150],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 8,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'WoodenShield',
+    chance: [1, 1]
+  }],
+  credits: [175, 275],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [95, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 247,
+  name: 'skeletal mage',
+  difficulty: 1,
+  aggro: true,
+  description: 'skeletal mage',
+  armor: 38,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [76, 100],
+    dex: [56, 75],
+    int: [186, 210],
+    hp: [46, 60],
+    taming: null,
+    barding: 77
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Potion',
+    chance: [1, 1]
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 248,
+  name: 'skeleton',
+  difficulty: 1,
+  description: 'A skeleton wordlessly approaches.',
+  armor: 16,
+  karma: 450,
+  fame: 450,
+  aggro: true,
+  stats: {
+    str: [56, 80],
+    dex: [56, 75],
+    int: [16, 40],
+    hp: [34, 48],
+    taming: null,
+    barding: 36
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Bones',
+    chance: [1, 1]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 249,
+  name: 'spectre',
+  difficulty: 1,
+  aggro: true,
+  description: 'spectre',
+  armor: 28,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 250,
+  name: 'undead parrot',
+  difficulty: 2,
+  aggro: true,
+  description: 'undead parrot',
+  armor: 0,
+  stats: {
+    str: [85, 110],
+    dex: [125, 150],
+    int: [1000, 1100],
+    hp: [85, 125],
+    taming: null,
+    barding: 113
+  },
+  offense: {
+    min: 10,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: [100, 200],
+  skills: {}
+}, {
+  id: 251,
+  name: 'undead pirate captain',
+  difficulty: 3,
+  aggro: true,
+  description: 'undead pirate captain',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1250, 1350],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 1]
+  }],
+  credits: [300, 400],
+  skills: {}
+}, {
+  id: 252,
+  name: 'undead pirate sailor',
+  description: 'undead pirate sailor',
+  armor: 0,
+  difficulty: 2,
+  aggro: true,
+  stats: {
+    str: [86, 100],
+    dex: [70, 95],
+    int: [1000, 1100],
+    hp: [85, 155],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 6,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 253,
+  name: 'wandering healer',
+  difficulty: 0,
+  aggro: false,
+  description: 'A wandering healer hums to himself.',
+  armor: 25,
+  karma: 10000,
+  fame: 1000,
+  stats: {
+    str: [100, 100],
+    dex: [100, 100],
+    int: [100, 100],
+    hp: [1000, 1000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 4,
+    max: 6,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [0, 0],
+    tactics: [82, 100],
+    magic_resistance: [82, 100]
+  }
+}, {
+  id: 254,
+  name: 'wraith',
+  difficulty: 1,
+  aggro: true,
+  description: 'wraith',
+  armor: 28,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 67
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 55],
+    tactics: [45, 60],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 255,
+  name: 'zombie',
+  difficulty: 1,
+  description: 'A zombie moans nearby.',
+  armor: 18,
+  karma: 600,
+  fame: 600,
+  aggro: true,
+  stats: {
+    str: [46, 70],
+    dex: [31, 50],
+    int: [26, 40],
+    hp: [28, 42],
+    taming: null,
+    barding: 33
+  },
+  offense: {
+    min: 3,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    description: 'Random Body Part or Bone',
+    chance: [1, 1]
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}, {
+  id: 256,
+  difficulty: 2,
+  aggro: true,
+  name: 'cave troll',
+  description: 'A cave troll is chewing on a human limb.',
+  armor: 40,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [475, 525],
+    dex: [75, 85],
+    int: [250, 350],
+    hp: [725, 875],
+    taming: null,
+    barding: 121
+  },
+  offense: {
+    min: 14,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: [314, 486],
+  skills: {
+    wrestling: [81, 104],
+    tactics: [87, 101],
+    magic_resistance: [71, 82]
+  }
+}, {
+  id: 257,
+  difficulty: 2,
+  aggro: true,
+  name: 'forest troll',
+  description: 'A forest troll swings a tree branch at you.',
+  armor: 40,
+  stats: {
+    str: [750, 800],
+    dex: [75, 85],
+    int: [250, 350],
+    hp: [700, 825],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 258,
+  name: 'gamayun',
+  description: 'The Gamayun screeches loudly.',
+  difficulty: 3,
+  aggro: true,
+  armor: 38,
+  stats: {
+    str: [320, 340],
+    dex: [100, 110],
+    int: [500, 700],
+    hp: [400, 550],
+    taming: null,
+    barding: 105
+  },
+  offense: {
+    min: 9,
+    max: 31,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 259,
+  difficulty: 2,
+  aggro: true,
+  name: 'mountain troll',
+  description: 'A mountain troll is tossing rocks here.',
+  armor: 40,
+  stats: {
+    str: [475, 525],
+    dex: [75, 85],
+    int: [250, 350],
+    hp: [600, 625],
+    taming: null,
+    barding: 113
+  },
+  offense: {
+    min: 9,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 262,
+  difficulty: 3,
+  aggro: true,
+  name: 'spectral rabbit',
+  description: 'A spectral rabbit floats toward you.',
+  armor: 40,
+  stats: {
+    str: [401, 650],
+    dex: [160, 180],
+    int: [500, 600],
+    hp: [650, 950],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 10]
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 263,
+  name: 'arctic ogre lord',
+  difficulty: 3,
+  aggro: true,
+  description: 'An arctic ogre lord gives you an icy stare.',
+  armor: 50,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [767, 945],
+    dex: [66, 75],
+    int: [46, 70],
+    hp: [476, 552],
+    taming: null,
+    barding: 96
+  },
+  offense: {
+    min: 20,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'RawRibs'
+  }],
+  credits: [750, 950],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [125, 140]
+  }
+}, {
+  id: 267,
+  difficulty: 1,
+  name: 'centaur',
+  description: 'centaur',
+  armor: 50,
+  karma: 0,
+  fame: 6500,
+  stats: {
+    str: [202, 300],
+    dex: [104, 260],
+    int: [91, 100],
+    hp: [130, 172],
+    taming: null,
+    barding: 72
+  },
+  offense: {
+    min: 13,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [95, 100],
+    tactics: [90, 100],
+    magic_resistance: [50, 80]
+  }
+}, {
+  id: 269,
+  difficulty: 2,
+  aggro: true,
+  name: 'cyclops',
+  description: 'cyclops',
+  armor: 48,
+  karma: -4500,
+  fame: 4500,
+  stats: {
+    str: [336, 385],
+    dex: [96, 115],
+    int: [31, 55],
+    hp: [202, 231],
+    taming: null,
+    barding: 65
+  },
+  offense: {
+    min: 7,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [80, 100],
+    magic_resistance: [60, 105]
+  }
+}, {
+  id: 270,
+  difficulty: 3,
+  aggro: true,
+  name: 'dark wisp',
+  description: 'dark wisp',
+  armor: 40,
+  karma: 10000,
+  fame: 15000,
+  stats: {
+    str: [196, 225],
+    dex: [196, 225],
+    int: [196, 225],
+    hp: [118, 135],
+    taming: null,
+    barding: 60
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: [400, 500],
+  skills: {
+    wrestling: [50, 50],
+    tactics: [80, 80],
+    magic_resistance: [80, 90]
+  }
+}, {
+  id: 271,
+  difficulty: 3,
+  aggro: true,
+  name: 'elder gazer',
+  description: 'elder gazer',
+  armor: 50,
+  karma: -12500,
+  fame: 12500,
+  stats: {
+    str: [296, 325],
+    dex: [86, 105],
+    int: [291, 385],
+    hp: [178, 195],
+    taming: null,
+    barding: 87
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [400, 600],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [115, 130]
+  }
+}, {
+  id: 272,
+  difficulty: 3,
+  aggro: true,
+  name: 'ethereal warrior',
+  description: 'ethereal warrior',
+  armor: 120,
+  karma: 7000,
+  fame: 7000,
+  stats: {
+    str: [586, 785],
+    dex: [177, 255],
+    int: [351, 450],
+    hp: [352, 471],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 13,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [900, 1200],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [90, 100],
+    magic_resistance: [90, 100]
+  }
+}, {
+  id: 273,
+  difficulty: 1,
+  name: 'ettin',
+  description: 'An ettin knocks over some small trees.',
+  armor: 38,
+  karma: -3000,
+  fame: 3000,
+  aggro: true,
+  stats: {
+    str: [136, 165],
+    dex: [56, 75],
+    int: [31, 55],
+    hp: [82, 99],
+    taming: null,
+    barding: 42
+  },
+  offense: {
+    min: 7,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [50, 60],
+    tactics: [50, 70],
+    magic_resistance: [40, 55]
+  }
+}, {
+  id: 275,
+  name: 'frost troll',
+  difficulty: 2,
+  aggro: true,
+  description: 'A frost troll swings an icy club at you.',
+  armor: 50,
+  karma: -4000,
+  fame: 4000,
+  stats: {
+    str: [76, 100],
+    dex: [126, 145],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 62
+  },
+  offense: {
+    min: 6,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [80, 100],
+    tactics: [80, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 277,
+  difficulty: 1,
+  aggro: true,
+  name: 'gazer',
+  description: 'gazer',
+  armor: 36,
+  karma: -3500,
+  fame: 3500,
+  stats: {
+    str: [96, 125],
+    dex: [86, 105],
+    int: [141, 165],
+    hp: [58, 75],
+    taming: null,
+    barding: 68
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [50, 70],
+    magic_resistance: [50, 70]
+  }
+}, {
+  id: 278,
+  difficulty: 1,
+  aggro: true,
+  name: 'gazer larva',
+  description: 'gazer larva',
+  armor: 25,
+  karma: -900,
+  fame: 900,
+  stats: {
+    str: [76, 100],
+    dex: [51, 75],
+    int: [56, 80],
+    hp: [36, 47],
+    taming: null,
+    barding: 56.7
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: [25, 50],
+  skills: {
+    wrestling: [70, 70],
+    tactics: [70, 70],
+    magic_resistance: [70, 70]
+  }
+}, {
+  id: 279,
+  name: 'harpy',
+  difficulty: 1,
+  description: 'A harpy screeches as it attacks.',
+  armor: 28,
+  karma: 2500,
+  fame: 2500,
+  aggro: true,
+  stats: {
+    str: [86, 120],
+    dex: [86, 110],
+    int: [51, 75],
+    hp: [58, 72],
+    taming: null,
+    barding: 47
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 150],
+  skills: {
+    wrestling: [60, 90],
+    tactics: [70, 100],
+    magic_resistance: [50, 65]
+  }
+}, {
+  id: 280,
+  name: 'headless one',
+  difficulty: 1,
+  description: 'A headless one blindly moves toward you.',
+  armor: 18,
+  stats: {
+    str: [26, 50],
+    dex: [36, 55],
+    int: [16, 30],
+    hp: [16, 30],
+    taming: null,
+    barding: 19
+  },
+  aggro: true,
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 281,
+  name: 'hell hound',
+  difficulty: 1,
+  aggro: true,
+  description: 'hell hound',
+  armor: 30,
+  karma: 3400,
+  fame: 3400,
+  stats: {
+    str: [102, 150],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [66, 125],
+    taming: 85.5,
+    barding: 39
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [57, 75]
+  }
+}, {
+  id: 282,
+  name: 'horde minion',
+  description: 'horde minion',
+  armor: 18,
+  karma: 500,
+  fame: 500,
+  stats: {
+    str: [16, 40],
+    dex: [31, 60],
+    int: [11, 25],
+    hp: [10, 24],
+    taming: null,
+    barding: 26.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {
+    wrestling: [25, 40],
+    tactics: [0, 15],
+    magic_resistance: [null, null]
+  }
+}, {
+  id: 283,
+  name: 'imp',
+  description: 'imp',
+  armor: 30,
+  karma: 2500,
+  fame: 2500,
+  stats: {
+    str: [91, 115],
+    dex: [61, 80],
+    int: [86, 105],
+    hp: [55, 70],
+    taming: 83.1,
+    barding: 56
+  },
+  offense: {
+    min: 10,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [40, 44],
+    tactics: [42, 50],
+    magic_resistance: [30, 50]
+  }
+}, {
+  id: 285,
+  name: 'kirin',
+  description: 'kirin',
+  armor: 0,
+  stats: {
+    str: [286, 325],
+    dex: [86, 105],
+    int: [186, 225],
+    hp: [191, 210],
+    taming: null,
+    barding: 82
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 286,
+  name: 'mongbat',
+  difficulty: 0,
+  description: 'A mongbat swoops in for an attack.',
+  armor: 10,
+  karma: 150,
+  fame: 150,
+  aggro: true,
+  stats: {
+    str: [6, 10],
+    dex: [26, 38],
+    int: [6, 14],
+    hp: [4, 6],
+    taming: 18.9,
+    barding: 7
+  },
+  offense: {
+    min: 1,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [5, 10],
+    tactics: [5, 10],
+    magic_resistance: [5, 14]
+  }
+}, {
+  id: 288,
+  name: 'ogre',
+  difficulty: 1,
+  description: 'You smell an ogre nearby.',
+  armor: 32,
+  karma: 3000,
+  fame: 3000,
+  aggro: true,
+  stats: {
+    str: [166, 195],
+    dex: [46, 65],
+    int: [46, 70],
+    hp: [100, 117],
+    taming: null,
+    barding: 53
+  },
+  offense: {
+    min: 9,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [70, 80],
+    tactics: [60, 70],
+    magic_resistance: [55, 70]
+  }
+}, {
+  id: 289,
+  name: 'ogre lord',
+  difficulty: 3,
+  description: 'ogre lord',
+  armor: 50,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [767, 945],
+    dex: [66, 75],
+    int: [46, 70],
+    hp: [476, 552],
+    taming: null,
+    barding: 96
+  },
+  offense: {
+    min: 20,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [600, 650],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [125, 140]
+  }
+}, {
+  id: 291,
+  name: 'pixie',
+  description: 'pixie',
+  armor: 100,
+  karma: 7000,
+  fame: 7000,
+  stats: {
+    str: [21, 30],
+    dex: [301, 400],
+    int: [201, 250],
+    hp: [13, 18],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 9,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [10, 12],
+    tactics: [10, 20],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 293,
+  difficulty: 1,
+  name: 'scorpion',
+  description: 'scorpion',
+  armor: 28,
+  karma: 2000,
+  fame: 2000,
+  stats: {
+    str: [73, 115],
+    dex: [76, 95],
+    int: [16, 30],
+    hp: [50, 63],
+    taming: 47.1,
+    barding: 55
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [50, 65],
+    tactics: [60, 75],
+    magic_resistance: [30, 35]
+  }
+}, {
+  id: 294,
+  name: 'sea horse',
+  description: 'sea horse',
+  armor: null,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  difficulty: 3,
+  id: 295,
+  aggro: true,
+  name: 'shadow wisp',
+  description: 'shadow wisp',
+  armor: 18,
+  karma: 500,
+  fame: 500,
+  stats: {
+    str: [50, 50],
+    dex: [60, 60],
+    int: [100, 100],
+    hp: [50, 50],
+    taming: null,
+    barding: 30
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [100, 200],
+  skills: {
+    wrestling: [25, 40],
+    tactics: [0, 15],
+    magic_resistance: [10, 10]
+  }
+}, {
+  id: 297,
+  difficulty: 2,
+  aggro: true,
+  name: 'stone harpy',
+  description: 'stone harpy',
+  armor: 50,
+  karma: 4500,
+  fame: 4500,
+  stats: {
+    str: [296, 320],
+    dex: [86, 110],
+    int: [51, 75],
+    hp: [178, 192],
+    taming: null,
+    barding: 63
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [290, 325],
+  skills: {
+    wrestling: [70, 100],
+    tactics: [70, 100],
+    magic_resistance: [50, 65]
+  }
+}, {
+  id: 298,
+  difficulty: 0,
+  name: 'strong mongbat',
+  description: 'strong mongbat',
+  armor: 10,
+  stats: {
+    str: [6, 10],
+    dex: [26, 38],
+    int: [6, 14],
+    hp: [4, 6],
+    taming: 71.1,
+    barding: 14
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 299,
+  difficulty: 4,
+  aggro: true,
+  name: 'succubus',
+  description: 'succubus',
+  armor: 80,
+  karma: -24000,
+  fame: 24000,
+  stats: {
+    str: [488, 620],
+    dex: [121, 170],
+    int: [498, 657],
+    hp: [312, 353],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1000, 1200],
+  skills: {
+    wrestling: [80, 90],
+    tactics: [80, 90],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 300,
+  difficulty: 4,
+  aggro: true,
+  name: 'titan',
+  description: 'titan',
+  armor: 40,
+  karma: 11500,
+  fame: 11500,
+  stats: {
+    str: [536, 585],
+    dex: [126, 145],
+    int: [281, 305],
+    hp: [322, 351],
+    taming: null,
+    barding: 100
+  },
+  offense: {
+    min: 13,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [600, 800],
+  skills: {
+    wrestling: [40, 50],
+    tactics: [60, 80],
+    magic_resistance: [85, 100]
+  }
+}, {
+  id: 301,
+  difficulty: 2,
+  aggro: true,
+  name: 'troll',
+  description: 'troll',
+  armor: 40,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [176, 205],
+    dex: [46, 65],
+    int: [46, 70],
+    hp: [106, 123],
+    taming: null,
+    barding: 50
+  },
+  offense: {
+    min: 8,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [50, 70],
+    magic_resistance: [45, 60]
+  }
+}, {
+  id: 303,
+  difficulty: 2,
+  name: 'wisp',
+  description: 'A wisp floats through the air.',
+  armor: 40,
+  karma: 0,
+  fame: 4000,
+  stats: {
+    str: [196, 225],
+    dex: [196, 225],
+    int: [196, 225],
+    hp: [118, 135],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 17,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'misc_monsters',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Light Source'
+  }],
+  credits: [400, 500],
+  skills: {
+    wrestling: [80, 80],
+    tactics: [80, 80],
+    magic_resistance: [80, 80]
+  }
+}, {
+  id: 304,
+  difficulty: 1,
+  name: 'orc',
+  description: 'An orc snarls at you.',
+  armor: 28,
+  aggro: true,
+  stats: {
+    str: [96, 120],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 42
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 305,
+  difficulty: 2,
+  aggro: true,
+  name: 'orc bomber',
+  description: 'orc bomber',
+  armor: 30,
+  karma: 2500,
+  fame: 2500,
+  stats: {
+    str: [147, 215],
+    dex: [91, 115],
+    int: [61, 85],
+    hp: [95, 123],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 1,
+    max: 8,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [60, 85],
+    tactics: [75, 90],
+    magic_resistance: [70, 85]
+  }
+}, {
+  id: 306,
+  difficulty: 3,
+  aggro: true,
+  name: 'orc brute',
+  description: 'orc brute',
+  armor: 50,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [767, 945],
+    dex: [66, 75],
+    int: [46, 70],
+    hp: [476, 552],
+    taming: null,
+    barding: 94.3
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [],
+  credits: [750, 950],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [90, 100],
+    magic_resistance: [125, 140]
+  }
+}, (_ref = {
+  id: 307,
+  name: 'orc captain',
+  difficulty: 1,
+  aggro: true,
+  description: 'An orc captain readies its axe.',
+  armor: 34,
+  karma: 2500,
+  fame: 2500
+}, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'aggro', true), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'stats', {
+  str: [111, 145],
+  dex: [101, 135],
+  int: [86, 110],
+  hp: [67, 87],
+  taming: null,
+  barding: 60
+}), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'offense', {
+  min: 5,
+  max: 15,
+  speed: 2.5
+}), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'move', 1), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'mob_type', 'orcs'), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'attackable', true), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'inventory', [{
+  chance: [1, 400],
+  description: 'Platinum Coin'
+}]), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'credits', [100, 150]), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref, 'skills', {
+  wrestling: [0, 0],
+  tactics: [85, 100],
+  magic_resistance: [70, 85]
+}), _ref), {
+  id: 308,
+  difficulty: 1,
+  aggro: true,
+  name: 'orc scout',
+  description: 'An orc scout points its bow at you.',
+  armor: null,
+  karma: 1500,
+  fame: 1500,
+  stats: {
+    str: [96, 120],
+    dex: [101, 130],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 15,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [0, 0],
+    tactics: [55, 80],
+    magic_resistance: [50, 75]
+  }
+}, (_ref2 = {
+  id: 309,
+  difficulty: 1,
+  aggro: true,
+  name: 'orcish lord',
+  description: 'An orcish lord quickly approaches.',
+  armor: 0
+}, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'aggro', true), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'stats', {
+  str: [147, 215],
+  dex: [91, 115],
+  int: [61, 85],
+  hp: [95, 123],
+  taming: null,
+  barding: 61
+}), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'offense', {
+  min: 4,
+  max: 14,
+  speed: 2.5
+}), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'move', 1), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'mob_type', 'orcs'), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'attackable', true), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'inventory', [{
+  chance: [1, 3],
+  description: 'Random Reagent'
+}]), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'credits', 0), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_ref2, 'skills', {}), _ref2), {
+  id: 310,
+  difficulty: 1,
+  aggro: true,
+  name: 'orcish mage',
+  description: 'orcish mage',
+  armor: 30,
+  stats: {
+    str: [116, 150],
+    dex: [91, 115],
+    int: [161, 185],
+    hp: [70, 90],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 4,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'orcs',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 311,
+  difficulty: 2,
+  aggro: true,
+  name: 'bog thing',
+  description: 'bog thing',
+  armor: 28,
+  karma: -8000,
+  fame: 8000,
+  stats: {
+    str: [801, 900],
+    dex: [46, 65],
+    int: [36, 50],
+    hp: [481, 540],
+    taming: null,
+    barding: 86.1
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [],
+  credits: [275, 325],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [70, 85],
+    magic_resistance: [90, 95]
+  }
+}, {
+  id: 312,
+  difficulty: 1,
+  aggro: true,
+  name: 'corpser',
+  description: 'corpser',
+  armor: 18,
+  karma: -1000,
+  fame: 1000,
+  stats: {
+    str: [156, 180],
+    dex: [26, 45],
+    int: [26, 40],
+    hp: [94, 108],
+    taming: null,
+    barding: 46
+  },
+  offense: {
+    min: 10,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1000],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 313,
+  difficulty: 1,
+  aggro: true,
+  name: 'quagmire',
+  description: 'quagmire',
+  armor: 32,
+  karma: 1500,
+  fame: 1500,
+  stats: {
+    str: [101, 130],
+    dex: [66, 85],
+    int: [31, 55],
+    hp: [91, 105],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [],
+  credits: [125, 175],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 60],
+    magic_resistance: [65, 75]
+  }
+}, {
+  id: 314,
+  difficulty: 2,
+  aggro: true,
+  name: 'reaper',
+  description: 'reaper',
+  armor: 40,
+  karma: 3500,
+  fame: 3500,
+  stats: {
+    str: [66, 215],
+    dex: [66, 75],
+    int: [101, 250],
+    hp: [40, 129],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 9,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [50, 60],
+    tactics: [45, 60],
+    magic_resistance: [100, 125]
+  }
+}, {
+  id: 315,
+  difficulty: 1,
+  aggro: true,
+  name: 'swamp tentacle',
+  description: 'swamp tentacle',
+  armor: 28,
+  karma: 3000,
+  fame: 3000,
+  stats: {
+    str: [96, 120],
+    dex: [66, 85],
+    int: [16, 30],
+    hp: [58, 72],
+    taming: null,
+    barding: 44
+  },
+  offense: {
+    min: 6,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [125, 175],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [65, 80],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 316,
+  difficulty: 2,
+  aggro: true,
+  name: 'whipping vine',
+  description: 'whipping vine',
+  armor: 45,
+  karma: 1000,
+  fame: 1000,
+  stats: {
+    str: [251, 300],
+    dex: [76, 100],
+    int: [26, 40],
+    hp: [251, 300],
+    taming: null,
+    barding: 76.6
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'plants',
+  attackable: true,
+  inventory: [],
+  credits: [null, null],
+  skills: {
+    wrestling: [70, 70],
+    tactics: [70.70],
+    magic_resistance: [70, 70]
+  }
+}, {
+  id: 321,
+  name: 'ancient wyrm',
+  difficulty: 4,
+  aggro: true,
+  description: 'ancient wyrm',
+  armor: 70,
+  karma: -22500,
+  fame: 22500,
+  stats: {
+    str: [1000, 1100],
+    dex: [86, 175],
+    int: [686, 775],
+    hp: [658, 711],
+    taming: null,
+    barding: 149
+  },
+  offense: {
+    min: 29,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1600, 1800],
+  skills: {
+    wrestling: [110, 120],
+    tactics: [127, 137],
+    magic_resistance: [100, 150]
+  }
+}, {
+  id: 322,
+  difficulty: 5,
+  aggro: true,
+  name: 'azure dragon',
+  description: 'azure dragon',
+  armor: 80,
+  stats: {
+    str: [1000, 1100],
+    dex: [120, 130],
+    int: [770, 820],
+    hp: [3000, 3000],
+    taming: null,
+    barding: 239
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'PlatinumCoin'
+  }],
+  credits: [2000, 2400],
+  skills: {
+    wrestling: [110, 140],
+    tactics: [127, 157],
+    magic_resistance: [100, 160]
+  }
+}, {
+  id: 323,
+  difficulty: 2,
+  aggro: true,
+  name: 'deep sea serpent',
+  description: 'deep sea serpent',
+  armor: 60,
+  karma: -6000,
+  fame: 6000,
+  stats: {
+    str: [251, 425],
+    dex: [87, 135],
+    int: [87, 155],
+    hp: [151, 255],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 6,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [60, 70],
+    tactics: [60, 70],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 324,
+  difficulty: 3,
+  aggro: true,
+  name: 'dragon',
+  description: 'dragon',
+  armor: 60,
+  karma: -15000,
+  fame: 15000,
+  stats: {
+    str: [796, 825],
+    dex: [86, 105],
+    int: [436, 475],
+    hp: [478, 495],
+    taming: 93.9,
+    barding: 112
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [1000, 1200],
+  skills: {
+    wrestling: [90, 92],
+    tactics: [97, 100],
+    magic_resistance: [99, 100]
+  }
+}, {
+  id: 325,
+  difficulty: 2,
+  aggro: true,
+  name: 'drake',
+  description: 'drake',
+  armor: 46,
+  karma: -5500,
+  fame: 5500,
+  stats: {
+    str: [401, 430],
+    dex: [133, 152],
+    int: [101, 140],
+    hp: [241, 258],
+    taming: 84.3,
+    barding: 79
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [65, 90],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 326,
+  difficulty: 5,
+  aggro: true,
+  name: 'elder wyrm',
+  description: 'elder wyrm',
+  armor: 90,
+  stats: {
+    str: [1000, 1100],
+    dex: [125, 145],
+    int: [1000, 1100],
+    hp: [5000, 5000],
+    taming: null,
+    barding: 365
+  },
+  offense: {
+    min: 29,
+    max: 36,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: [2000, 2400],
+  skills: {
+    wrestling: [110, 140],
+    tactics: [127, 157],
+    magic_resistance: [100, 160]
+  }
+}, {
+  id: 327,
+  name: 'kraken',
+  difficulty: 3,
+  aggro: true,
+  description: 'kraken',
+  armor: 50,
+  karma: 11000,
+  fame: 11000,
+  stats: {
+    str: [250, 275],
+    dex: [90, 110],
+    int: [26, 40],
+    hp: [250, 275],
+    taming: null,
+    barding: 89
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Special Fishing Net'
+  }],
+  credits: [275, 325],
+  skills: {
+    wrestling: [45, 60],
+    tactics: [45, 60],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 329,
+  difficulty: 1,
+  aggro: true,
+  name: 'lizardman',
+  description: 'lizardman',
+  armor: 28,
+  karma: 1500,
+  fame: 1500,
+  stats: {
+    str: [96, 120],
+    dex: [86, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 46
+  },
+  offense: {
+    min: 5,
+    max: 7,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 75],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [55, 80],
+    magic_resistance: [35, 60]
+  }
+}, {
+  id: 330,
+  difficulty: 4,
+  aggro: true,
+  name: 'lock lake monster',
+  description: 'lock lake monster',
+  armor: 60,
+  stats: {
+    str: [756, 780],
+    dex: [226, 245],
+    int: [100, 200],
+    hp: [750, 800],
+    taming: null,
+    barding: 93
+  },
+  offense: {
+    min: 19,
+    max: 33,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Fishing Net Piece'
+  }],
+  credits: [1000, 1200],
+  skills: {
+    wrestling: [50, 70],
+    tactics: [55, 80],
+    magic_resistance: [35, 60]
+  }
+}, {
+  id: 331,
+  difficulty: 3,
+  aggro: true,
+  name: 'ophidian archmage',
+  description: 'ophidian archmage',
+  armor: 44,
+  stats: {
+    str: [281, 305],
+    dex: [191, 215],
+    int: [226, 250],
+    hp: [169, 183],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 36,
+    max: 45,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 332,
+  name: 'ophidian knight',
+  difficulty: 3,
+  aggro: true,
+  description: 'ophidian knight',
+  armor: 40,
+  stats: {
+    str: [417, 595],
+    dex: [166, 175],
+    int: [46, 70],
+    hp: [266, 342],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 16,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 333,
+  difficulty: 2,
+  aggro: true,
+  name: 'ophidian mage',
+  description: 'ophidian mage',
+  armor: 30,
+  stats: {
+    str: [181, 205],
+    dex: [191, 215],
+    int: [96, 120],
+    hp: [109, 123],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 5,
+    max: 10,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 334,
+  difficulty: 4,
+  aggro: true,
+  name: 'ophidian matriarch',
+  description: 'ophidian matriarch',
+  armor: 50,
+  karma: 16000,
+  fame: 16000,
+  stats: {
+    str: [416, 505],
+    dex: [96, 115],
+    int: [366, 455],
+    hp: [250, 303],
+    taming: null,
+    barding: 98
+  },
+  offense: {
+    min: 11,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [550, 650],
+  skills: {
+    wrestling: [60, 80],
+    tactics: [50, 70],
+    magic_resistance: [90, 100]
+  }
+}, {
+  id: 336,
+  difficulty: 2,
+  aggro: true,
+  name: 'ophidian warrior',
+  description: 'ophidian warrior',
+  armor: 36,
+  karma: 4500,
+  fame: 4500,
+  stats: {
+    str: [150, 320],
+    dex: [94, 190],
+    int: [64, 160],
+    hp: [128, 155],
+    taming: null,
+    barding: 65
+  },
+  offense: {
+    min: 5,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [70, 90],
+    tactics: [75, 90],
+    magic_resistance: [70, 85]
+  }
+}, {
+  id: 337,
+  difficulty: 2,
+  aggro: true,
+  name: 'sea serpent',
+  description: 'sea serpent',
+  armor: 30,
+  karma: 6000,
+  fame: 6000,
+  stats: {
+    str: [168, 225],
+    dex: [58, 85],
+    int: [53, 95],
+    hp: [110, 127],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [60, 70],
+    tactics: [60, 70],
+    magic_resistance: [60, 75]
+  }
+}, {
+  id: 338,
+  difficulty: 4,
+  aggro: true,
+  name: 'serpentine dragon',
+  description: 'serpentine dragon',
+  armor: 36,
+  karma: 15000,
+  fame: 15000,
+  stats: {
+    str: [111, 140],
+    dex: [201, 220],
+    int: [1000, 1100],
+    hp: [480, 480],
+    taming: null,
+    barding: 130
+  },
+  offense: {
+    min: 5,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Level 4 Treasure Map'
+  }],
+  credits: [900, 1100],
+  skills: {
+    wrestling: [30, 100],
+    tactics: [50, 60],
+    magic_resistance: [100, 100]
+  }
+}, {
+  id: 339,
+  difficulty: 4,
+  aggro: true,
+  name: 'shadow wyrm',
+  description: 'shadow wyrm',
+  armor: 70,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 200],
+    int: [488, 620],
+    hp: [558, 599],
+    taming: null,
+    barding: 141
+  },
+  offense: {
+    min: 29,
+    max: 35,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1550, 1800],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: [100, 130]
+  }
+}, {
+  id: 340,
+  difficulty: 2,
+  aggro: true,
+  name: 'shipwreck kraken',
+  description: 'shipwreck kraken',
+  armor: 40,
+  stats: {
+    str: [250, 275],
+    dex: [90, 110],
+    int: [26, 40],
+    hp: [250, 275],
+    taming: null,
+    barding: 74
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 341,
+  name: 'skeletal dragon',
+  difficulty: 5,
+  aggro: true,
+  description: 'skeletal dragon',
+  armor: 80,
+  karma: 22500,
+  fame: 22500,
+  stats: {
+    str: [898, 1030],
+    dex: [68, 200],
+    int: [488, 620],
+    hp: [558, 599],
+    taming: null,
+    barding: 118.3
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [],
+  credits: [1600, 1800],
+  skills: {
+    wrestling: [97, 100],
+    tactics: [97, 100],
+    magic_resistance: [100, 130]
+  }
+}, {
+  id: 342,
+  difficulty: 4,
+  aggro: true,
+  name: 'white wyrm',
+  description: 'white wyrm',
+  armor: 64,
+  karma: 18000,
+  fame: 18000,
+  stats: {
+    str: [721, 760],
+    dex: [101, 130],
+    int: [386, 425],
+    hp: [433, 456],
+    taming: 96.3,
+    barding: 103
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: [1200, 1400],
+  skills: {
+    wrestling: [90, 100],
+    tactics: [97, 100],
+    magic_resistance: [99, 100]
+  }
+}, {
+  id: 343,
+  difficulty: 3,
+  aggro: true,
+  name: 'wyvern',
+  description: 'wyvern',
+  armor: 40,
+  karma: 4000,
+  fame: 4000,
+  stats: {
+    str: [202, 240],
+    dex: [153, 172],
+    int: [51, 90],
+    hp: [125, 141],
+    taming: null,
+    barding: 79
+  },
+  offense: {
+    min: 8,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'reptiles',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: [175, 225],
+  skills: {
+    wrestling: [65, 80],
+    tactics: [65, 90],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 345,
+  difficulty: 1,
+  aggro: true,
+  name: 'frost ooze',
+  description: 'frost ooze',
+  armor: 38,
+  karma: -450,
+  fame: 450,
+  stats: {
+    str: [18, 30],
+    dex: [16, 21],
+    int: [16, 20],
+    hp: [13, 17],
+    taming: null,
+    barding: 11
+  },
+  offense: {
+    min: 3,
+    max: 9,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'slimes',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 200]
+  }],
+  credits: 0,
+  skills: {
+    wrestling: [25, 40],
+    tactics: [19, 34],
+    magic_resistance: [5, 10]
+  }
+}, {
+  id: 347,
+  difficulty: 3,
+  aggro: true,
+  name: 'plague beast',
+  description: 'plague beast',
+  armor: 30,
+  karma: 13000,
+  fame: 13000,
+  stats: {
+    str: [302, 500],
+    dex: [80, 80],
+    int: [16, 20],
+    hp: [318, 404],
+    taming: null,
+    barding: 81.5
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'slimes',
+  attackable: true,
+  inventory: [],
+  credits: [450, 600],
+  skills: {
+    wrestling: [100, 100],
+    tactics: [100, 100],
+    magic_resistance: [35, 35]
+  }
+}, {
+  id: 348,
+  difficulty: 1,
+  aggro: true,
+  name: 'slime',
+  description: 'slime',
+  armor: 8,
+  karma: 300,
+  fame: 300,
+  stats: {
+    str: [22, 34],
+    dex: [16, 21],
+    int: [16, 20],
+    hp: [15, 19],
+    taming: 23.1,
+    barding: 27
+  },
+  offense: {
+    min: 1,
+    max: 5,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'slimes',
+  attackable: true,
+  inventory: [{
+    description: 'Platinum Coin',
+    chance: [1, 400]
+  }],
+  credits: [25, 50],
+  skills: {
+    wrestling: [19, 34],
+    tactics: [19, 34],
+    magic_resistance: [15, 20]
+  }
+}, {
+  id: 349,
+  difficulty: 4,
+  aggro: true,
+  name: 'abominable snowman',
+  description: 'abominable snowman',
+  armor: 35,
+  stats: {
+    str: [446, 515],
+    dex: [126, 155],
+    int: [281, 305],
+    hp: [700, 900],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 15,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Yeti Statue  2 Hues (1151, 1154)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 350,
+  difficulty: 4,
+  aggro: true,
+  name: 'acolyte of death',
+  description: 'acolyte of death',
+  armor: 36,
+  stats: {
+    str: [351, 400],
+    dex: [101, 150],
+    int: [502, 700],
+    hp: [750, 1000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 351,
+  name: 'avarice',
+  difficulty: 4,
+  aggro: true,
+  description: 'avarice',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1100, 2000],
+    hp: [850, 1100],
+    taming: null,
+    barding: 158
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 352,
+  name: 'balam the daemon knight',
+  difficulty: 5,
+  aggro: true,
+  description: 'balam the daemon knight',
+  armor: 40,
+  stats: {
+    str: [550, 575],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 353,
+  name: 'black knight',
+  difficulty: 4,
+  aggro: true,
+  description: 'black knight',
+  armor: 40,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [3000, 4000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 354,
+  name: 'blitzen',
+  description: 'blitzen',
+  difficulty: 3,
+  aggro: true,
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 160
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 25],
+    description: 'Santas Lair Scroll (Dungeon)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 355,
+  name: 'bloated zombie',
+  difficulty: 2,
+  aggro: true,
+  description: 'bloated zombie',
+  armor: 30,
+  stats: {
+    str: [485, 545],
+    dex: [81, 120],
+    int: [375, 425],
+    hp: [455, 525],
+    taming: null,
+    barding: 102
+  },
+  offense: {
+    min: 21,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 356,
+  name: 'blood necromancer',
+  description: 'blood necromancer',
+  armor: 50,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [903, 1120],
+    taming: null,
+    barding: 156
+  },
+  offense: {
+    min: 18,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 357,
+  name: 'bloodthirsty turkey',
+  description: 'bloodthirsty turkey',
+  armor: 40,
+  stats: {
+    str: [1000, 1100],
+    dex: [235, 250],
+    int: [301, 325],
+    hp: [1650, 1750],
+    taming: null,
+    barding: 123
+  },
+  offense: {
+    min: 17,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 358,
+  name: 'comet',
+  description: 'comet',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 200],
+    int: [750, 1100],
+    hp: [850, 1100],
+    taming: null,
+    barding: 134
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 359,
+  name: 'corrupt soul',
+  description: 'corrupt soul',
+  armor: 28,
+  stats: {
+    str: [75, 80],
+    dex: [16, 45],
+    int: [111, 125],
+    hp: [100, 175],
+    taming: null,
+    barding: 72
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 360,
+  name: 'crystal ogre',
+  description: 'crystal ogre',
+  armor: 32,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [1250, 1500],
+    taming: null,
+    barding: 134
+  },
+  offense: {
+    min: 21,
+    max: 32,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 361,
+  name: 'crystal wolf',
+  description: 'crystal wolf',
+  armor: 22,
+  stats: {
+    str: [125, 150],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [58, 72],
+    taming: null,
+    barding: 50
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 362,
+  name: 'cuckold',
+  description: 'cuckold',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1100, 2100],
+    hp: [850, 1100],
+    taming: null,
+    barding: 146
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 363,
+  name: 'cupid',
+  description: 'cupid',
+  armor: 40,
+  stats: {
+    str: [898, 1100],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 151
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 364,
+  name: 'cupids apprentice archer',
+  description: 'cupids apprentice archer',
+  armor: 15,
+  stats: {
+    str: [106, 116],
+    dex: [91, 115],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 69
+  },
+  offense: {
+    min: 11,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 365,
+  name: 'cupids archer',
+  description: 'cupids archer',
+  armor: 20,
+  stats: {
+    str: [110, 125],
+    dex: [100, 110],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 12,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 366,
+  name: 'cupids rookie archer',
+  description: 'cupids rookie archer',
+  armor: 10,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 68
+  },
+  offense: {
+    min: 10,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 367,
+  name: 'cupids veteran archer',
+  description: 'cupids veteran archer',
+  armor: 25,
+  stats: {
+    str: [110, 130],
+    dex: [110, 130],
+    int: [100, 200],
+    hp: [1, 1],
+    taming: null,
+    barding: 71
+  },
+  offense: {
+    min: 13,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 368,
+  name: 'dancer',
+  description: 'dancer',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 155
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 369,
+  name: 'dark elf archer',
+  description: 'dark elf archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [800, 1000],
+    hp: [288, 308],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    min: 15,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 370,
+  name: 'dark elf axer',
+  description: 'dark elf axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 950],
+    hp: [325, 500],
+    taming: null,
+    barding: 106
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 371,
+  name: 'dark elf battle mage',
+  description: 'dark elf battle mage',
+  armor: 50,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [566, 655],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 372,
+  name: 'dark elf commander',
+  description: 'dark elf commander',
+  armor: 60,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [3000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 373,
+  name: 'dark elf fencer',
+  description: 'dark elf fencer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 950],
+    hp: [325, 500],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 374,
+  name: 'dark elf knight',
+  description: 'dark elf knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [1100, 1250],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 375,
+  name: 'dark elf macer',
+  description: 'dark elf macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 950],
+    hp: [325, 500],
+    taming: null,
+    barding: 103
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 376,
+  name: 'dark elf mage',
+  description: 'dark elf mage',
+  armor: 35,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [705, 950],
+    hp: [103, 120],
+    taming: null,
+    barding: 88
+  },
+  offense: {
+    min: 15,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 377,
+  name: 'dark elf ranger',
+  description: 'dark elf ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Random Ranger Armor Piece'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 378,
+  name: 'dark elf spirit',
+  description: 'dark elf spirit',
+  armor: 45,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [12000, 15000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 9,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 379,
+  name: 'dasher',
+  description: 'dasher',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 157
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 380,
+  name: 'defiled zombie',
+  description: 'defiled zombie',
+  armor: 27,
+  stats: {
+    str: [445, 505],
+    dex: [61, 100],
+    int: [375, 425],
+    hp: [415, 485],
+    taming: null,
+    barding: 96
+  },
+  offense: {
+    min: 17,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 381,
+  name: 'despair',
+  description: 'despair',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 162
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 382,
+  name: 'donner',
+  description: 'donner',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 152
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 383,
+  name: 'easter bunny',
+  description: 'easter bunny',
+  armor: 40,
+  stats: {
+    str: [350, 350],
+    dex: [205, 205],
+    int: [50, 50],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 6,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Rabbits Feet'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 384,
+  name: 'elf archer',
+  description: 'elf archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [705, 940],
+    hp: [288, 308],
+    taming: null,
+    barding: 105
+  },
+  offense: {
+    min: 15,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 385,
+  name: 'elf axer',
+  description: 'elf axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [705, 1000],
+    hp: [325, 500],
+    taming: null,
+    barding: 112
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 386,
+  name: 'elf battle mage',
+  description: 'elf battle mage',
+  armor: 50,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [566, 655],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 387,
+  name: 'elf fencer',
+  description: 'elf fencer',
+  armor: 45,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 388,
+  name: 'elf knight',
+  description: 'elf knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [505, 750],
+    hp: [1100, 1250],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 389,
+  name: 'elf macer',
+  description: 'elf macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 111
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 390,
+  name: 'elf mage',
+  description: 'elf mage',
+  armor: 35,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [276, 305],
+    hp: [250, 320],
+    taming: null,
+    barding: 87
+  },
+  offense: {
+    min: 15,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 391,
+  name: 'elf ranger',
+  description: 'elf ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Random Ranger Armor Piece'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 392,
+  name: 'evil polar bear',
+  description: 'evil polar bear',
+  armor: 18,
+  stats: {
+    str: [150, 450],
+    dex: [80, 140],
+    int: [50, 500],
+    hp: [250, 750],
+    taming: null,
+    barding: 100
+  },
+  offense: {
+    min: 8,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 393,
+  name: 'fire reaper',
+  description: 'fire reaper',
+  armor: 40,
+  stats: {
+    str: [215, 315],
+    dex: [66, 75],
+    int: [750, 1000],
+    hp: [250, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 394,
+  name: 'flame archer',
+  description: 'flame archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [716, 940],
+    hp: [288, 308],
+    taming: null,
+    barding: 109
+  },
+  offense: {
+    min: 11,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 395,
+  name: 'flame axer',
+  description: 'flame axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [750, 1000],
+    hp: [325, 500],
+    taming: null,
+    barding: 115
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 396,
+  name: 'flame battle mage',
+  description: 'flame battle mage',
+  armor: 50,
+  stats: {
+    str: [416, 505],
+    dex: [146, 165],
+    int: [3000, 4000],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'polar bear statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 397,
+  name: 'flame fencer',
+  description: 'flame fencer',
+  armor: 45,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 107
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 398,
+  name: 'flame ghoul',
+  description: 'flame ghoul',
+  armor: 50,
+  stats: {
+    str: [345, 370],
+    dex: [71, 90],
+    int: [26, 40],
+    hp: [208, 222],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 13,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 399,
+  name: 'flame knight',
+  description: 'flame knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 400,
+  name: 'flame macer',
+  description: 'flame macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 101
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 401,
+  name: 'flame mage',
+  description: 'flame mage',
+  armor: 35,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 108
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 402,
+  name: 'flame ranger',
+  description: 'flame ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Ranger Armor of Fire  1 Random Piece, 4 Fire Hues'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 403,
+  name: 'fluffy',
+  description: 'fluffy',
+  armor: 70,
+  stats: {
+    str: [1000, 1100],
+    dex: [180, 190],
+    int: [1000, 1100],
+    hp: [2000, 2325],
+    taming: null,
+    barding: 186
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Level 6 Treasure Map'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 404,
+  name: 'frankensteins monster',
+  description: 'frankensteins monster',
+  armor: 78,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 16,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 405,
+  name: 'frost archer',
+  description: 'frost archer',
+  armor: 35,
+  stats: {
+    str: [146, 180],
+    dex: [180, 205],
+    int: [716, 940],
+    hp: [288, 308],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 11,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 406,
+  name: 'frost axer',
+  description: 'frost axer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [750, 1000],
+    hp: [325, 500],
+    taming: null,
+    barding: 116
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 407,
+  name: 'frost battle mage',
+  description: 'frost battle mage',
+  armor: 50,
+  stats: {
+    str: [415, 505],
+    dex: [146, 165],
+    int: [3000, 4000],
+    hp: [450, 750],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 14,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Polar Bear Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 408,
+  name: 'frost fencer',
+  description: 'frost fencer',
+  armor: 45,
+  stats: {
+    str: [205, 325],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 14,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 409,
+  name: 'frost knight',
+  description: 'frost knight',
+  armor: 90,
+  stats: {
+    str: [425, 525],
+    dex: [125, 150],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 25],
+    description: 'Ice Fortress Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 410,
+  name: 'frost macer',
+  description: 'frost macer',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [75, 100],
+    int: [505, 750],
+    hp: [325, 500],
+    taming: null,
+    barding: 101
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 411,
+  name: 'frost mage',
+  description: 'frost mage',
+  armor: 35,
+  stats: {
+    str: [171, 200],
+    dex: [126, 145],
+    int: [700, 950],
+    hp: [250, 320],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 412,
+  name: 'frost ranger',
+  description: 'frost ranger',
+  armor: 45,
+  stats: {
+    str: [305, 425],
+    dex: [125, 135],
+    int: [3000, 4000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Ranger Armor of Frost  1 Random Piece, 4 Ice Hues'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 413,
+  name: 'gluttony',
+  description: 'gluttony',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 162
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 414,
+  name: 'goblin',
+  description: 'goblin',
+  armor: 32,
+  stats: {
+    str: [175, 200],
+    dex: [81, 105],
+    int: [650, 710],
+    hp: [275, 325],
+    taming: null,
+    barding: 94
+  },
+  offense: {
+    min: 10,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 415,
+  name: 'good polar bear',
+  description: 'good polar bear',
+  armor: 0,
+  stats: {
+    str: [125, 175],
+    dex: [81, 105],
+    int: [26, 50],
+    hp: [125, 250],
+    taming: 80.1,
+    barding: 70
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 416,
+  name: 'grave necromancer',
+  description: 'grave necromancer',
+  armor: 40,
+  stats: {
+    str: [216, 305],
+    dex: [96, 115],
+    int: [966, 1000],
+    hp: [3000, 3000],
+    taming: null,
+    barding: 210
+  },
+  offense: {
+    min: 15,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 417,
+  name: 'greed',
+  description: 'greed',
+  armor: 60,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 418,
+  name: 'grinch',
+  description: 'grinch',
+  armor: 120,
+  stats: {
+    str: [586, 785],
+    dex: [177, 255],
+    int: [351, 450],
+    hp: [5000, 6000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 13,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Piece of Grinch Clothing'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 419,
+  name: 'headlesshorseless',
+  description: 'headlesshorseless',
+  armor: 36,
+  stats: {
+    str: [428, 480],
+    dex: [136, 155],
+    int: [86, 130],
+    hp: [550, 750],
+    taming: null,
+    barding: 122
+  },
+  offense: {
+    min: 14,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 420,
+  name: 'holiday elf (beefy)',
+  description: 'holiday elf (beefy)',
+  armor: null,
+  stats: {
+    str: [150, 175],
+    dex: [110, 120],
+    int: [200, 250],
+    hp: [180, 250],
+    taming: null,
+    barding: 86
+  },
+  offense: {
+    min: 16,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: '200-275 Gold Coins'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 421,
+  name: 'holiday elf (rough)',
+  description: 'holiday elf (rough)',
+  armor: null,
+  stats: {
+    str: [125, 150],
+    dex: [110, 120],
+    int: [200, 250],
+    hp: [130, 190],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: '150-225 Gold Coins'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 422,
+  name: 'holiday elf (wimpy)',
+  description: 'holiday elf (wimpy)',
+  armor: null,
+  stats: {
+    str: [86, 100],
+    dex: [81, 95],
+    int: [200, 250],
+    hp: [75, 125],
+    taming: null,
+    barding: 76
+  },
+  offense: {
+    min: 8,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: '75-150 Gold Coins'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 423,
+  name: 'holiday reindeer',
+  description: 'holiday reindeer',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 424,
+  name: 'hubris',
+  description: 'hubris',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 174
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 425,
+  name: 'ice ghoul',
+  description: 'ice ghoul',
+  armor: 50,
+  stats: {
+    str: [345, 370],
+    dex: [71, 90],
+    int: [26, 40],
+    hp: [208, 222],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 13,
+    max: 23,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Frozen Continent Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 426,
+  name: 'ice golem',
+  description: 'ice golem',
+  armor: 40,
+  stats: {
+    str: [156, 185],
+    dex: [96, 115],
+    int: [171, 192],
+    hp: [225, 425],
+    taming: null,
+    barding: 81
+  },
+  offense: {
+    min: 10,
+    max: 21,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 427,
+  name: 'ice reaper',
+  description: 'ice reaper',
+  armor: 40,
+  stats: {
+    str: [215, 315],
+    dex: [66, 75],
+    int: [750, 1000],
+    hp: [250, 500],
+    taming: null,
+    barding: 110
+  },
+  offense: {
+    min: 15,
+    max: 19,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'Ice Reaper Statuette  4 Hues'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 428,
+  name: 'krampus',
+  description: 'krampus',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 19,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'the naughty list  a rare runebook'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 429,
+  name: 'leprechaun',
+  description: 'leprechaun',
+  armor: null,
+  stats: {
+    str: [81, 105],
+    dex: [191, 215],
+    int: [126, 150],
+    hp: [175, 325],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 14,
+    max: 24,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Leprechaun Sandals'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 430,
+  name: 'leprechaun jockey',
+  description: 'leprechaun jockey',
+  armor: null,
+  stats: {
+    str: [161, 205],
+    dex: [75, 100],
+    int: [126, 150],
+    hp: [1250, 1500],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 431,
+  name: 'lust',
+  description: 'lust',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 161
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 432,
+  name: 'mini daemon',
+  description: 'mini daemon',
+  armor: 58,
+  stats: {
+    str: [476, 505],
+    dex: [76, 95],
+    int: [301, 325],
+    hp: [286, 303],
+    taming: null,
+    barding: 98
+  },
+  offense: {
+    min: 7,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Hidden Village Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 433,
+  name: 'minion of cupid',
+  description: 'minion of cupid',
+  armor: 10,
+  stats: {
+    str: [75, 100],
+    dex: [46, 58],
+    int: [16, 24],
+    hp: [25, 50],
+    taming: null,
+    barding: 33
+  },
+  offense: {
+    min: 8,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 434,
+  name: 'mutant fluffy',
+  description: 'mutant fluffy',
+  armor: 60,
+  stats: {
+    str: [696, 775],
+    dex: [86, 105],
+    int: [436, 475],
+    hp: [578, 595],
+    taming: null,
+    barding: 117
+  },
+  offense: {
+    min: 16,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 435,
+  name: 'plague zombie',
+  description: 'plague zombie',
+  armor: 24,
+  stats: {
+    str: [415, 465],
+    dex: [51, 85],
+    int: [375, 450],
+    hp: [385, 445],
+    taming: null,
+    barding: 97
+  },
+  offense: {
+    min: 14,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 436,
+  name: 'polar bear boss',
+  description: 'polar bear boss',
+  armor: 50,
+  stats: {
+    str: [900, 1050],
+    dex: [114, 155],
+    int: [1000, 1100],
+    hp: [1000, 1100],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 16,
+    max: 2,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'StrengthPotion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 437,
+  name: 'poltergeist',
+  description: 'poltergeist',
+  armor: 34,
+  stats: {
+    str: [166, 210],
+    dex: [96, 115],
+    int: [325, 375],
+    hp: [146, 190],
+    taming: null,
+    barding: 92
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 438,
+  name: 'prancer',
+  description: 'prancer',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 167
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 439,
+  name: 'queen of the damned',
+  description: 'queen of the damned',
+  armor: 40,
+  stats: {
+    str: [750, 850],
+    dex: [105, 115],
+    int: [420, 475],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted High Level Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 440,
+  name: 'ridable polar bear',
+  description: 'ridable polar bear',
+  armor: 18,
+  stats: {
+    str: [116, 140],
+    dex: [81, 105],
+    int: [26, 50],
+    hp: [70, 84],
+    taming: 11.1,
+    barding: 44
+  },
+  offense: {
+    min: 7,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 441,
+  name: 'royal mummy',
+  description: 'royal mummy',
+  armor: 40,
+  stats: {
+    str: [625, 725],
+    dex: [150, 170],
+    int: [26, 40],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 157
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted High Level Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 442,
+  name: 'rudolph',
+  description: 'rudolph',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 171
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 50],
+    description: 'Santas Lair Scroll (Overworld)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 443,
+  name: 'savage turkey',
+  description: 'savage turkey',
+  armor: 30,
+  stats: {
+    str: [605, 625],
+    dex: [140, 150],
+    int: [301, 325],
+    hp: [1050, 1100],
+    taming: null,
+    barding: 97
+  },
+  offense: {
+    min: 13,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 444,
+  name: 'servant of cupid',
+  description: 'servant of cupid',
+  armor: 15,
+  stats: {
+    str: [96, 115],
+    dex: [56, 68],
+    int: [16, 24],
+    hp: [50, 75],
+    taming: null,
+    barding: 44
+  },
+  offense: {
+    min: 9,
+    max: 13,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 445,
+  name: 'skeletal blood knight',
+  description: 'skeletal blood knight',
+  armor: 35,
+  stats: {
+    str: [496, 650],
+    dex: [96, 135],
+    int: [636, 690],
+    hp: [518, 750],
+    taming: null,
+    barding: 116
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 446,
+  name: 'skeletal blood mage',
+  description: 'skeletal blood mage',
+  armor: 44,
+  stats: {
+    str: [166, 210],
+    dex: [56, 75],
+    int: [386, 410],
+    hp: [850, 950],
+    taming: null,
+    barding: 140
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 450,
+  name: 'sloth',
+  description: 'sloth',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 168
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Sloth Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 451,
+  name: 'snow vortex',
+  description: 'snow vortex',
+  armor: 50,
+  stats: {
+    str: [326, 355],
+    dex: [166, 185],
+    int: [71, 95],
+    hp: [296, 413],
+    taming: null,
+    barding: 78
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 452,
+  name: 'sorcerer of cupid',
+  description: 'sorcerer of cupid',
+  armor: 25,
+  stats: {
+    str: [50, 75],
+    dex: [26, 38],
+    int: [125, 150],
+    hp: [75, 100],
+    taming: null,
+    barding: 70
+  },
+  offense: {
+    min: 8,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 453,
+  name: 'succubus concubine',
+  description: 'succubus concubine',
+  armor: 25,
+  stats: {
+    str: [225, 275],
+    dex: [75, 150],
+    int: [325, 400],
+    hp: [1500, 2000],
+    taming: null,
+    barding: 163
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 454,
+  name: 'turkey archer',
+  description: 'turkey archer',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 138
+  },
+  offense: {
+    min: 18,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item(17 Possible Items)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 455,
+  name: 'turkey fencer',
+  description: 'turkey fencer',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 138
+  },
+  offense: {
+    min: 14,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item  17 Possible Items'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 456,
+  name: 'turkey knight',
+  description: 'turkey knight',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [72, 150],
+    int: [505, 750],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 27,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item  (17 Possible Items)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 457,
+  name: 'turkey macer',
+  description: 'turkey macer',
+  armor: 35,
+  stats: {
+    str: [305, 425],
+    dex: [150, 175],
+    int: [505, 750],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 138
+  },
+  offense: {
+    min: 17,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 10],
+    description: 'Random Event Clothing Item (17 Possible Items)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 458,
+  name: 'turkinator',
+  description: 'turkinator',
+  armor: 40,
+  stats: {
+    str: [1000, 1100],
+    dex: [125, 150],
+    int: [301, 325],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 256
+  },
+  offense: {
+    min: 17,
+    max: 26,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted Gems'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 459,
+  name: 'undead captain johne',
+  description: 'undead captain johne',
+  armor: 40,
+  stats: {
+    str: [625, 725],
+    dex: [150, 170],
+    int: [26, 40],
+    hp: [4000, 5000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 18,
+    max: 28,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'captain Johnes cutlass'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 460,
+  name: 'undead cat',
+  description: 'undead cat',
+  armor: 30,
+  stats: {
+    str: [102, 150],
+    dex: [81, 105],
+    int: [36, 60],
+    hp: [35, 65],
+    taming: null,
+    barding: 50
+  },
+  offense: {
+    min: 11,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 461,
+  name: 'undead cat lady',
+  description: 'undead cat lady',
+  armor: 0,
+  stats: {
+    str: [650, 750],
+    dex: [110, 120],
+    int: [2000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 176
+  },
+  offense: {
+    min: 12,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 100],
+    description: 'a vial of catnip'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 462,
+  name: 'undead dragon',
+  description: 'undead dragon',
+  armor: 40,
+  stats: {
+    str: [750, 900],
+    dex: [68, 125],
+    int: [488, 620],
+    hp: [3000, 4000],
+    taming: null,
+    barding: 220
+  },
+  offense: {
+    min: 20,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 463,
+  name: 'vampire',
+  description: 'vampire',
+  armor: 35,
+  stats: {
+    str: [446, 515],
+    dex: [126, 155],
+    int: [281, 305],
+    hp: [700, 800],
+    taming: null,
+    barding: 132
+  },
+  offense: {
+    min: 15,
+    max: 22,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 464,
+  name: 'vampire lord',
+  description: 'vampire lord',
+  armor: 30,
+  stats: {
+    str: [450, 500],
+    dex: [191, 215],
+    int: [800, 1000],
+    hp: [4000, 5000],
+    taming: null,
+    barding: 207
+  },
+  offense: {
+    min: 10,
+    max: 20,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Assorted Medium Level Scrolls'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 465,
+  name: 'vampire mistress',
+  description: 'vampire mistress',
+  armor: 20,
+  stats: {
+    str: [225, 75],
+    dex: [75, 150],
+    int: [325, 400],
+    hp: [1250, 1750],
+    taming: null,
+    barding: 182
+  },
+  offense: {
+    min: 5,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 466,
+  name: 'vanity',
+  description: 'vanity',
+  armor: 38,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [850, 1000],
+    taming: null,
+    barding: 172
+  },
+  offense: {
+    min: 13,
+    max: 17,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 200],
+    description: 'Vanity Statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 467,
+  name: 'vixen',
+  description: 'vixen',
+  armor: 40,
+  stats: {
+    str: [898, 1000],
+    dex: [68, 100],
+    int: [1000, 2000],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 146
+  },
+  offense: {
+    min: 15,
+    max: 25,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 250],
+    description: 'vixen statuette'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 468,
+  name: 'walking dead',
+  description: 'walking dead',
+  armor: 21,
+  stats: {
+    str: [145, 175],
+    dex: [41, 70],
+    int: [375, 450],
+    hp: [225, 250],
+    taming: null,
+    barding: 84
+  },
+  offense: {
+    min: 11,
+    max: 15,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 469,
+  name: 'warrior of cupid',
+  description: 'warrior of cupid',
+  armor: 20,
+  stats: {
+    str: [105, 125],
+    dex: [66, 88],
+    int: [16, 24],
+    hp: [75, 100],
+    taming: null,
+    barding: 53
+  },
+  offense: {
+    min: 10,
+    max: 14,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Valentines Candy'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 470,
+  name: 'white witch',
+  description: 'white witch',
+  armor: 55,
+  stats: {
+    str: [250, 275],
+    dex: [126, 145],
+    int: [676, 905],
+    hp: [2000, 3000],
+    taming: null,
+    barding: null
+  },
+  offense: {
+    min: 24,
+    max: 29,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 20],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 471,
+  name: 'wild turkey',
+  description: 'wild turkey',
+  armor: 20,
+  stats: {
+    str: [505, 525],
+    dex: [100, 120],
+    int: [301, 325],
+    hp: [475, 525],
+    taming: null,
+    barding: 75
+  },
+  offense: {
+    min: 8,
+    max: 16,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 472,
+  name: 'zombie',
+  description: 'zombie',
+  armor: 18,
+  difficulty: 1,
+  aggro: true,
+  karma: 600,
+  fame: 600,
+  stats: {
+    str: [125, 135],
+    dex: [31, 50],
+    int: [375, 425],
+    hp: [75, 125],
+    taming: null,
+    barding: 73
+  },
+  offense: {
+    min: 8,
+    max: 12,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'special',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potions'
+  }],
+  credits: [50, 100],
+  skills: {
+    wrestling: [35, 50],
+    tactics: [35, 50],
+    magic_resistance: [15, 40]
+  }
+}, {
+  id: 473,
+  aggro: true,
+  name: 'blade spirit',
+  description: 'blade spirit',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'summons',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 474,
+  aggro: true,
+  name: 'energy vortex',
+  description: 'energy vortex',
+  armor: 40,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'summons',
+  attackable: true,
+  inventory: [],
+  credits: 0,
+  skills: {}
+}, {
+  id: 476,
+  name: 'animated zombie',
+  description: 'animated zombie',
+  armor: 18,
+  stats: {
+    taming: null,
+    barding: null
+  },
+  offense: {
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'Random Potion'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 477,
+  name: 'bogle',
+  description: 'bogle',
+  armor: 28,
+  stats: {
+    str: [76, 100],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [46, 60],
+    taming: null,
+    barding: 64
+  },
+  offense: {
+    min: 7,
+    max: 11,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 400],
+    description: 'Platinum Coin'
+  }],
+  credits: 0,
+  skills: {}
+}, {
+  id: 478,
+  name: 'bone knight',
+  description: 'bone knight',
+  difficulty: 2,
+  aggro: true,
+  armor: 40,
+  karma: -3000,
+  fame: 3000,
+  stats: {
+    str: [195, 250],
+    dex: [76, 95],
+    int: [36, 60],
+    hp: [118, 150],
+    taming: null,
+    barding: 61
+  },
+  offense: {
+    min: 8,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 1],
+    description: 'WoodenShield'
+  }],
+  credits: [175, 275],
+  skills: {
+    wrestling: [85, 95],
+    tactics: [95, 100],
+    magic_resistance: [65, 80]
+  }
+}, {
+  id: 480,
+  difficulty: 3,
+  aggro: true,
+  name: 'dark one',
+  description: 'dark one',
+  armor: 65,
+  stats: {
+    str: [770, 830],
+    dex: [146, 185],
+    int: [1000, 1100],
+    hp: [1000, 1100],
+    taming: null,
+    barding: 243
+  },
+  offense: {
+    min: 14,
+    max: 18,
+    speed: 2.5
+  },
+  move: 1,
+  mob_type: 'humanoid',
+  attackable: true,
+  inventory: [{
+    chance: [1, 4],
+    description: 'Peculiar Meat (Carve)'
+  }],
+  credits: 0,
+  skills: {}
+}];
+
+// http: //www.uoguide.com/Fame
+// http: //www.uoguide.com/Brown_Bear
+// http: //www.uorenaissance.com/info/BrownBear
+
+/***/ }),
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9928,7 +23014,7 @@ module.exports = function (name) {
 var _prodInvariant = __webpack_require__(32),
     _assign = __webpack_require__(11);
 
-var ReactNoopUpdateQueue = __webpack_require__(91);
+var ReactNoopUpdateQueue = __webpack_require__(92);
 
 var canDefineProperty = __webpack_require__(47);
 var emptyObject = __webpack_require__(48);
@@ -10058,7 +23144,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10074,7 +23160,7 @@ module.exports = {
 
 
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 function warnNoop(publicInstance, callerName) {
   if (process.env.NODE_ENV !== 'production') {
@@ -10159,7 +23245,7 @@ module.exports = ReactNoopUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10184,7 +23270,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10230,7 +23316,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10257,11 +23343,11 @@ var ReactCurrentOwner = __webpack_require__(18);
 var ReactComponentTreeHook = __webpack_require__(14);
 var ReactElement = __webpack_require__(25);
 
-var checkReactTypeSpec = __webpack_require__(153);
+var checkReactTypeSpec = __webpack_require__(155);
 
 var canDefineProperty = __webpack_require__(47);
-var getIteratorFn = __webpack_require__(93);
-var warning = __webpack_require__(2);
+var getIteratorFn = __webpack_require__(94);
+var warning = __webpack_require__(3);
 var lowPriorityWarning = __webpack_require__(59);
 
 function getDeclarationErrorAddendum() {
@@ -10491,7 +23577,7 @@ module.exports = ReactElementValidator;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10508,7 +23594,7 @@ module.exports = ReactElementValidator;
 // Therefore we re-export development-only version with all the PropTypes checks here.
 // However if one is migrating to the `prop-types` npm library, they will go through the
 // `index.js` entry point, and it will branch depending on the environment.
-var factory = __webpack_require__(157);
+var factory = __webpack_require__(159);
 module.exports = function(isValidElement) {
   // It is still allowed in 15.5.
   var throwOnDirectAccess = false;
@@ -10517,7 +23603,7 @@ module.exports = function(isValidElement) {
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10536,14 +23622,14 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(174);
 
 
 
@@ -10794,13 +23880,13 @@ var ActionTypes = {
 }
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(173);
 
 
 
@@ -10866,11 +23952,11 @@ function isPlainObject(value) {
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(167);
 
 
 /** Built-in value references. */
@@ -10880,7 +23966,7 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 var g;
@@ -10907,7 +23993,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10935,7 +24021,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10974,7 +24060,7 @@ function compose() {
 }
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10997,7 +24083,7 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11014,7 +24100,7 @@ module.exports = ReactDOMComponentFlags;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -11061,7 +24147,7 @@ module.exports = accumulateInto;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11097,7 +24183,7 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11135,7 +24221,7 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11152,7 +24238,7 @@ module.exports = getTextContentAccessor;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11260,7 +24346,7 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11287,7 +24373,7 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11415,7 +24501,7 @@ var inputValueTracking = {
 module.exports = inputValueTracking;
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11471,7 +24557,7 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11501,7 +24587,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11558,7 +24644,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11588,7 +24674,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11747,7 +24833,7 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11767,8 +24853,8 @@ var DOMProperty = __webpack_require__(23);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInstrumentation = __webpack_require__(16);
 
-var quoteAttributeValueForBrowser = __webpack_require__(212);
-var warning = __webpack_require__(2);
+var quoteAttributeValueForBrowser = __webpack_require__(214);
+var warning = __webpack_require__(3);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
 var illegalAttributeNameCache = {};
@@ -11988,7 +25074,7 @@ module.exports = DOMPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12010,7 +25096,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12032,7 +25118,7 @@ var LinkedValueUtils = __webpack_require__(68);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(19);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var didWarnValueLink = false;
 var didWarnValueDefaultValue = false;
@@ -12216,7 +25302,7 @@ module.exports = ReactDOMSelect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12232,16 +25318,16 @@ module.exports = ReactDOMSelect;
 
 
 
-var _prodInvariant = __webpack_require__(4),
+var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(11);
 
-var ReactCompositeComponent = __webpack_require__(220);
-var ReactEmptyComponent = __webpack_require__(120);
-var ReactHostComponent = __webpack_require__(121);
+var ReactCompositeComponent = __webpack_require__(222);
+var ReactEmptyComponent = __webpack_require__(121);
+var ReactHostComponent = __webpack_require__(122);
 
-var getNextDebugID = __webpack_require__(223);
+var getNextDebugID = __webpack_require__(225);
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 // To avoid a cyclic dependency, we create the final class in this module
 var ReactCompositeComponentWrapper = function (element) {
@@ -12351,7 +25437,7 @@ module.exports = instantiateReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12368,7 +25454,7 @@ module.exports = instantiateReactComponent;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var React = __webpack_require__(31);
 
@@ -12397,7 +25483,7 @@ module.exports = ReactNodeTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12432,7 +25518,7 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12448,7 +25534,7 @@ module.exports = ReactEmptyComponent;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -12506,7 +25592,7 @@ module.exports = ReactHostComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12522,15 +25608,15 @@ module.exports = ReactHostComponent;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var ReactCurrentOwner = __webpack_require__(18);
-var REACT_ELEMENT_TYPE = __webpack_require__(224);
+var REACT_ELEMENT_TYPE = __webpack_require__(226);
 
-var getIteratorFn = __webpack_require__(225);
+var getIteratorFn = __webpack_require__(227);
 var invariant = __webpack_require__(1);
 var KeyEscapeUtils = __webpack_require__(72);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';
 var SUBSEPARATOR = ':';
@@ -12688,7 +25774,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12769,7 +25855,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12785,11 +25871,11 @@ module.exports = EventListener;
 
 
 
-var ReactDOMSelection = __webpack_require__(237);
+var ReactDOMSelection = __webpack_require__(239);
 
-var containsNode = __webpack_require__(239);
-var focusNode = __webpack_require__(113);
-var getActiveElement = __webpack_require__(125);
+var containsNode = __webpack_require__(241);
+var focusNode = __webpack_require__(114);
+var getActiveElement = __webpack_require__(126);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -12897,7 +25983,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12939,7 +26025,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12955,7 +26041,7 @@ module.exports = getActiveElement;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var DOMLazyTree = __webpack_require__(34);
 var DOMProperty = __webpack_require__(23);
@@ -12963,22 +26049,22 @@ var React = __webpack_require__(31);
 var ReactBrowserEventEmitter = __webpack_require__(54);
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDOMContainerInfo = __webpack_require__(254);
-var ReactDOMFeatureFlags = __webpack_require__(255);
-var ReactFeatureFlags = __webpack_require__(108);
+var ReactDOMContainerInfo = __webpack_require__(256);
+var ReactDOMFeatureFlags = __webpack_require__(257);
+var ReactFeatureFlags = __webpack_require__(109);
 var ReactInstanceMap = __webpack_require__(43);
 var ReactInstrumentation = __webpack_require__(16);
-var ReactMarkupChecksum = __webpack_require__(256);
+var ReactMarkupChecksum = __webpack_require__(258);
 var ReactReconciler = __webpack_require__(33);
 var ReactUpdateQueue = __webpack_require__(73);
 var ReactUpdates = __webpack_require__(19);
 
 var emptyObject = __webpack_require__(48);
-var instantiateReactComponent = __webpack_require__(118);
+var instantiateReactComponent = __webpack_require__(119);
 var invariant = __webpack_require__(1);
 var setInnerHTML = __webpack_require__(52);
 var shouldUpdateReactComponent = __webpack_require__(71);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 var ROOT_ATTR_NAME = DOMProperty.ROOT_ATTRIBUTE_NAME;
@@ -13483,7 +26569,7 @@ module.exports = ReactMount;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13499,7 +26585,7 @@ module.exports = ReactMount;
 
 
 
-var ReactNodeTypes = __webpack_require__(119);
+var ReactNodeTypes = __webpack_require__(120);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -13518,11 +26604,11 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(267);
+var aFunction = __webpack_require__(269);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -13544,16 +26630,16 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(29) && !__webpack_require__(37)(function () {
-  return Object.defineProperty(__webpack_require__(130)('div'), 'a', { get: function () { return 7; } }).a != 7;
+  return Object.defineProperty(__webpack_require__(131)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(36);
@@ -13566,12 +26652,12 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(30);
 var toIObject = __webpack_require__(38);
-var arrayIndexOf = __webpack_require__(269)(false);
+var arrayIndexOf = __webpack_require__(271)(false);
 var IE_PROTO = __webpack_require__(79)('IE_PROTO');
 
 module.exports = function (object, names) {
@@ -13589,11 +26675,11 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(133);
+var cof = __webpack_require__(134);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -13601,7 +26687,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -13612,7 +26698,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports) {
 
 // Unique ID creation requires a high quality random # generator.  In the
@@ -13650,7 +26736,7 @@ if (getRandomValues) {
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports) {
 
 /**
@@ -13679,7 +26765,7 @@ module.exports = bytesToUuid;
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -13698,20 +26784,26 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 /***/ }),
-/* 137 */
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(281), __esModule: true };
+
+/***/ }),
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var LIBRARY = __webpack_require__(84);
 var $export = __webpack_require__(27);
-var redefine = __webpack_require__(138);
+var redefine = __webpack_require__(140);
 var hide = __webpack_require__(35);
 var has = __webpack_require__(30);
 var Iterators = __webpack_require__(85);
-var $iterCreate = __webpack_require__(286);
+var $iterCreate = __webpack_require__(287);
 var setToStringTag = __webpack_require__(87);
-var getPrototypeOf = __webpack_require__(136);
+var getPrototypeOf = __webpack_require__(137);
 var ITERATOR = __webpack_require__(39)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
@@ -13775,18 +26867,18 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(35);
 
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(131);
+var $keys = __webpack_require__(132);
 var hiddenKeys = __webpack_require__(81).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
@@ -13795,7 +26887,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE = __webpack_require__(58);
@@ -13803,7 +26895,7 @@ var createDesc = __webpack_require__(55);
 var toIObject = __webpack_require__(38);
 var toPrimitive = __webpack_require__(76);
 var has = __webpack_require__(30);
-var IE8_DOM_DEFINE = __webpack_require__(129);
+var IE8_DOM_DEFINE = __webpack_require__(130);
 var gOPD = Object.getOwnPropertyDescriptor;
 
 exports.f = __webpack_require__(29) ? gOPD : function getOwnPropertyDescriptor(O, P) {
@@ -13817,7 +26909,7 @@ exports.f = __webpack_require__(29) ? gOPD : function getOwnPropertyDescriptor(O
 
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13831,9 +26923,9 @@ exports.f = __webpack_require__(29) ? gOPD : function getOwnPropertyDescriptor(O
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
 
@@ -14266,7 +27358,7 @@ var InventoryList = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (InventoryList);
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14280,7 +27372,7 @@ var InventoryList = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
 
 
@@ -14546,7 +27638,7 @@ var PlayerStatus = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (PlayerStatus);
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14560,9 +27652,9 @@ var PlayerStatus = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -14645,7 +27737,7 @@ var MessageList = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (MessageList);
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14659,9 +27751,248 @@ var MessageList = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
+
+
+
+
+
+
+
+
+
+var Mob = function (_Component) {
+  __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(Mob, _Component);
+
+  function Mob(props) {
+    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Mob);
+
+    var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Mob.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Mob)).call(this, props));
+
+    _this.keys = {
+      actions: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions'),
+      attack: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions'),
+      lore: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions')
+    };
+
+    _this.state = {
+      mob: _this.props.data,
+      player: _this.props.store.getState().Player,
+      showAction: false,
+      showCombat: _this.props.store.getState().Mobs.showCombat,
+      buttons: {
+        anatomy: true,
+        animal_lore: true,
+        attack: true
+      }
+    };
+
+    _this.unsubscribe = props.store.subscribe(function () {
+      if (_this.mounted) {
+        var mob = _this.props.store.getState().Mobs.list[_this.props.data.key] || _this.props.data;
+        _this.setState({
+          mob: mob,
+          player: _this.props.store.getState().Player,
+          showAction: _this.state.showAction,
+          showCombat: _this.props.store.getState().Mobs.showCombat
+        });
+      }
+    });
+    return _this;
+  }
+
+  __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Mob, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      // Make sure to unsubscribe!
+      this.unsubscribe();
+      this.mounted = false;
+      clearInterval(this.check_aggro);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.mounted = true;
+      this.check_aggro = this.check_aggro || setInterval(function () {
+        _this2.checkAggro();
+      }, 1000);
+      this.checkAggro();
+    }
+  }, {
+    key: 'checkAggro',
+    value: function checkAggro() {
+      if (this.state.mob.aggro && !this.props.store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0 && this.state.player.status.dead !== true) {
+        // Aggro mob attack!
+        this.toggleCombat();
+      }
+    }
+  }, {
+    key: 'toggleMobAction',
+    value: function toggleMobAction() {
+      var action = !this.state.showAction;
+      this.setState({ showAction: action });
+    }
+  }, {
+    key: 'toggleCombat',
+    value: function toggleCombat() {
+      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.MOBS.SHOW_ACTION, payload: {} });
+      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.MOBS.IN_COMBAT, payload: { data: this.state.mob } });
+      __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].modal(this.props.store, '', '', 'combat');
+    }
+  }, {
+    key: 'animalLore',
+    value: function animalLore(mob) {
+      var _this3 = this;
+
+      var buttons = this.state.buttons;
+      buttons.animal_lore = false;
+      this.setState({ buttons: buttons });
+
+      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.ANIMAL_LORE, payload: { mob: mob } });
+
+      setTimeout(function () {
+        buttons.animal_lore = true;
+        _this3.setState({ buttons: buttons });
+      }, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].SETTINGS.SKILL_TIMEOUT * 1000);
+    }
+  }, {
+    key: 'anatomy',
+    value: function anatomy(mob) {
+      var _this4 = this;
+
+      var buttons = this.state.buttons;
+      buttons.anatomy = false;
+      this.setState({ buttons: buttons });
+
+      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.ANATOMY, payload: { mob: mob } });
+      setTimeout(function () {
+        buttons.anatomy = true;
+        _this4.setState({ buttons: buttons });
+      }, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].SETTINGS.SKILL_TIMEOUT * 1000);
+    }
+  }, {
+    key: 'getMobActions',
+    value: function getMobActions() {
+      var _this5 = this;
+
+      if (!this.state.showAction) {
+        return '';
+      }
+
+      var buttons = [];
+      var buttonStyle = {};
+
+      buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+        disabled: !this.state.buttons.attack && !this.state.player.status.dead && this.state.mob.attackable,
+        btn: true,
+        'btn-default': true,
+        top5: true
+      });
+      buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'button',
+        { key: this.keys.attack, disabled: !this.state.buttons.attack, type: 'button', className: buttonStyle, onClick: function onClick(e) {
+            return _this5.toggleCombat();
+          } },
+        'Attack'
+      ));
+
+      if (this.state.mob.mob_type !== 'humanoid') {
+        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+          disabled: !this.state.buttons.animal_lore && !this.state.player.status.dead,
+          btn: true,
+          'btn-default': true,
+          top5: true
+        });
+        buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'button',
+          { key: this.keys.lore, disabled: !this.state.buttons.animal_lore, type: 'button', className: buttonStyle, onClick: function onClick(e) {
+              return _this5.animalLore(_this5.state.mob);
+            } },
+          'Animal Lore'
+        ));
+      } else {
+        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+          disabled: !this.state.buttons.anatomy && !this.state.player.status.dead,
+          btn: true,
+          'btn-default': true,
+          top5: true
+        });
+        buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'button',
+          { key: this.keys.anatomy, disabled: !this.state.buttons.anatomy, type: 'button', className: buttonStyle, onClick: function onClick(e) {
+              return _this5.anatomy(_this5.state.mob);
+            } },
+          'Anatomy'
+        ));
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'div',
+        { className: 'row' },
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'col-lg-10 col-md-10 col-sm-10' },
+          buttons
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this6 = this;
+
+      var mob_classes = __WEBPACK_IMPORTED_MODULE_7_classnames__({
+        red: this.state.mob.aggro
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'div',
+        { className: 'row' },
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'col-lg-10 col-md-10 col-sm-10 col-xs-12' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'a',
+            { href: '#', onClick: function onClick(e) {
+                return _this6.toggleMobAction();
+              }, className: mob_classes },
+            this.state.mob.description
+          ),
+          this.getMobActions()
+        )
+      );
+    }
+  }]);
+
+  return Mob;
+}(__WEBPACK_IMPORTED_MODULE_5_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (Mob);
+
+/***/ }),
+/* 147 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
 
@@ -14711,7 +28042,7 @@ var PlayerControls = function (_Component) {
         return;
       }
 
-      if (this.state.player.stamina <= 0) {
+      if (this.state.player.stamina <= 0 && !this.state.player.status.dead) {
         __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].notifyWarning(this.props.store, 'You are too tired to move.');
         return;
       }
@@ -14777,6 +28108,21 @@ var PlayerControls = function (_Component) {
             });
           }
           break;
+        default:
+          // handles UP/DOWN
+          if (this.state.player.dungeon.step === 1 && dir === __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UP) {
+            // Leave dungeon
+            this.props.store.dispatch({
+              type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.DUNGEON,
+              payload: { dungeon: false }
+            });
+          } else {
+            this.props.store.dispatch({
+              type: dir,
+              payload: {}
+            });
+          }
+          break;
       }
     }
   }, {
@@ -14817,19 +28163,31 @@ var PlayerControls = function (_Component) {
         switch (e.keyCode) {
           case 38:
             // up
-            _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.NORTH);
+            if (_this2.state.player.dungeon === false) {
+              _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.NORTH);
+            } else {
+              _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UP);
+            }
             break;
           case 40:
             // down
-            _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.SOUTH);
+            if (_this2.state.player.dungeon === false) {
+              _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.SOUTH);
+            } else {
+              _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.DOWN);
+            }
             break;
           case 37:
             // left
-            _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.WEST);
+            if (_this2.state.player.dungeon === false) {
+              _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.WEST);
+            }
             break;
           case 39:
             // right
-            _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.EAST);
+            if (_this2.state.player.dungeon === false) {
+              _this2.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.EAST);
+            }
             break;
           case 82:
             // R
@@ -14913,18 +28271,58 @@ var PlayerControls = function (_Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {}
   }, {
+    key: 'renderDungeonButtons',
+    value: function renderDungeonButtons() {
+      var _this3 = this;
+
+      return this.state.player.dungeon === false ? '' : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'div',
+        { className: 'col-lg-6 col-md-7 col-sm-12 col-xs-7' },
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+          '\xA0'
+        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'btn-group-vertical' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'button',
+            {
+              type: 'button',
+              className: 'btn btn-default btn-direction',
+              onClick: function onClick() {
+                return _this3.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.UP);
+              } },
+            'Up'
+          ),
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'button',
+            {
+              type: 'button',
+              disabled: this.state.player.dungeon.step === this.state.player.dungeon.depth,
+              className: 'btn btn-default btn-direction',
+              onClick: function onClick() {
+                return _this3.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.DOWN);
+              } },
+            'Down'
+          )
+        )
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var player = this.state.player;
       var planet = this.state.planet;
 
       // Buttons
-      var east = player.x < planet.width && !this.state.app.modal.open ? false : true;
-      var west = player.x > 0 && !this.state.app.modal.open ? false : true;
-      var north = player.y > 0 && !this.state.app.modal.open ? false : true;
-      var south = player.y < planet.height && !this.state.app.modal.open ? false : true;
+      var east = player.x < planet.width && !this.state.app.modal.open && this.state.player.dungeon === false ? false : true;
+      var west = player.x > 0 && !this.state.app.modal.open && this.state.player.dungeon === false ? false : true;
+      var north = player.y > 0 && !this.state.app.modal.open && this.state.player.dungeon === false ? false : true;
+      var south = player.y < planet.height && !this.state.app.modal.open && this.state.player.dungeon === false ? false : true;
 
       var move_disabled = this.state.player.stamina === 0 ? true : false;
 
@@ -14977,7 +28375,7 @@ var PlayerControls = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     'button',
                     { disabled: west, type: 'button', className: 'btn btn-default btn-direction', onClick: function onClick() {
-                        return _this3.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.WEST);
+                        return _this4.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.WEST);
                       } },
                     'W'
                   )
@@ -14988,14 +28386,14 @@ var PlayerControls = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     'button',
                     { disabled: north, type: 'button', className: 'btn btn-default btn-direction', onClick: function onClick() {
-                        return _this3.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.NORTH);
+                        return _this4.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.NORTH);
                       } },
                     'N'
                   ),
                   __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     'button',
-                    { disabled: false, type: 'button', className: 'btn btn-default btn-direction', onClick: function onClick() {
-                        return _this3.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.SOUTH);
+                    { disabled: south, type: 'button', className: 'btn btn-default btn-direction', onClick: function onClick() {
+                        return _this4.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.SOUTH);
                       } },
                     'S'
                   )
@@ -15006,12 +28404,13 @@ var PlayerControls = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     'button',
                     { disabled: east, type: 'button', className: 'btn btn-default btn-direction', onClick: function onClick() {
-                        return _this3.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.EAST);
+                        return _this4.move(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.EAST);
                       } },
                     'E'
                   )
                 )
               ),
+              this.renderDungeonButtons(),
               __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
                 { className: 'hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4' },
@@ -15022,7 +28421,7 @@ var PlayerControls = function (_Component) {
                     'button',
                     { disabled: move_disabled, type: 'button', className: run_classes,
                       onClick: function onClick() {
-                        return _this3.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.RUN);
+                        return _this4.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.RUN);
                       } },
                     'Run'
                   )
@@ -15038,7 +28437,7 @@ var PlayerControls = function (_Component) {
                     'button',
                     { disabled: move_disabled, type: 'button', className: hide_classes,
                       onClick: function onClick() {
-                        return _this3.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE);
+                        return _this4.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE);
                       } },
                     'Hide'
                   )
@@ -15054,7 +28453,7 @@ var PlayerControls = function (_Component) {
                     'button',
                     { disabled: move_disabled, type: 'button', className: med_classes,
                       onClick: function onClick() {
-                        return _this3.meditate();
+                        return _this4.meditate();
                       } },
                     'Meditate'
                   )
@@ -15071,7 +28470,7 @@ var PlayerControls = function (_Component) {
                   'button',
                   { disabled: move_disabled, type: 'button', className: run_classes,
                     onClick: function onClick() {
-                      return _this3.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.RUN);
+                      return _this4.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.RUN);
                     } },
                   'Run'
                 )
@@ -15087,7 +28486,7 @@ var PlayerControls = function (_Component) {
                   'button',
                   { disabled: move_disabled, type: 'button', className: hide_classes,
                     onClick: function onClick() {
-                      return _this3.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE);
+                      return _this4.updatePlayerMovement(__WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.PLAYER.HIDE);
                     } },
                   'Hide'
                 )
@@ -15103,7 +28502,7 @@ var PlayerControls = function (_Component) {
                   'button',
                   { disabled: move_disabled, type: 'button', className: med_classes,
                     onClick: function onClick() {
-                      return _this3.meditate();
+                      return _this4.meditate();
                     } },
                   'Meditate'
                 )
@@ -15121,13 +28520,7 @@ var PlayerControls = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (PlayerControls);
 
 /***/ }),
-/* 145 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: SyntaxError: Unexpected token, expected , (8842:4)\n\n\u001b[0m \u001b[90m 8840 | \u001b[39m  {\n \u001b[90m 8841 | \u001b[39m    id\u001b[33m:\u001b[39m \u001b[35m277\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 8842 | \u001b[39m    difficulty\u001b[33m:\u001b[39m \u001b[35m1\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m      | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 8843 | \u001b[39m    aggro\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m\u001b[33m,\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 8844 | \u001b[39m    name\u001b[33m:\u001b[39m \u001b[32m'gazer'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 8845 | \u001b[39m    description\u001b[33m:\u001b[39m \u001b[32m'gazer'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n");
-
-/***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15149,23 +28542,22 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_App__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reducers__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AndromedaService__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_App__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reducers__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AndromedaService__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_MobData__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_MobData___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__data_MobData__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_MobData__ = __webpack_require__(90);
 
 
 
@@ -15178,17 +28570,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var store = Object(__WEBPACK_IMPORTED_MODULE_1_redux__["b" /* createStore */])(__WEBPACK_IMPORTED_MODULE_5__reducers__["a" /* default */], {}, Object(__WEBPACK_IMPORTED_MODULE_1_redux__["a" /* applyMiddleware */])(__WEBPACK_IMPORTED_MODULE_6__services_AndromedaService__["a" /* default */]));
 
-// if (Config.ENV === 'dev') {
-window.store = store;
-window.Config = __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */];
-window.ItemData = __WEBPACK_IMPORTED_MODULE_7__data_ItemData__["a" /* ItemData */];
-window.MobData = __WEBPACK_IMPORTED_MODULE_8__data_MobData__["MobData"];
-// }
+if (__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].ENV === 'dev') {
+  window.store = store;
+  window.Config = __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */];
+  window.ItemData = __WEBPACK_IMPORTED_MODULE_7__data_ItemData__["a" /* ItemData */];
+  window.MobData = __WEBPACK_IMPORTED_MODULE_8__data_MobData__["a" /* MobData */];
+}
 
 __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_App__["a" /* default */], { store: store }), document.querySelector('#app'));
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15204,11 +28596,11 @@ __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 
 
 
-var PooledClass = __webpack_require__(149);
+var PooledClass = __webpack_require__(151);
 var ReactElement = __webpack_require__(25);
 
 var emptyFunction = __webpack_require__(17);
-var traverseAllChildren = __webpack_require__(150);
+var traverseAllChildren = __webpack_require__(152);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -15384,7 +28776,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15502,7 +28894,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15521,12 +28913,12 @@ module.exports = PooledClass;
 var _prodInvariant = __webpack_require__(32);
 
 var ReactCurrentOwner = __webpack_require__(18);
-var REACT_ELEMENT_TYPE = __webpack_require__(92);
+var REACT_ELEMENT_TYPE = __webpack_require__(93);
 
-var getIteratorFn = __webpack_require__(93);
+var getIteratorFn = __webpack_require__(94);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(151);
-var warning = __webpack_require__(2);
+var KeyEscapeUtils = __webpack_require__(153);
+var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';
 var SUBSEPARATOR = ':';
@@ -15684,7 +29076,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15748,7 +29140,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15773,7 +29165,7 @@ var ReactElement = __webpack_require__(25);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(94);
+  var ReactElementValidator = __webpack_require__(95);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
@@ -15923,7 +29315,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15941,11 +29333,11 @@ module.exports = ReactDOMFactories;
 
 var _prodInvariant = __webpack_require__(32);
 
-var ReactPropTypeLocationNames = __webpack_require__(154);
-var ReactPropTypesSecret = __webpack_require__(155);
+var ReactPropTypeLocationNames = __webpack_require__(156);
+var ReactPropTypesSecret = __webpack_require__(157);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
 
@@ -16016,7 +29408,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16047,7 +29439,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16069,7 +29461,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16088,12 +29480,12 @@ module.exports = ReactPropTypesSecret;
 var _require = __webpack_require__(25),
     isValidElement = _require.isValidElement;
 
-var factory = __webpack_require__(95);
+var factory = __webpack_require__(96);
 
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16108,11 +29500,11 @@ module.exports = factory(isValidElement);
 
 var emptyFunction = __webpack_require__(17);
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 var assign = __webpack_require__(11);
 
-var ReactPropTypesSecret = __webpack_require__(96);
-var checkPropTypes = __webpack_require__(158);
+var ReactPropTypesSecret = __webpack_require__(97);
+var checkPropTypes = __webpack_require__(160);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -16643,7 +30035,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16658,8 +30050,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(1);
-  var warning = __webpack_require__(2);
-  var ReactPropTypesSecret = __webpack_require__(96);
+  var warning = __webpack_require__(3);
+  var ReactPropTypesSecret = __webpack_require__(97);
   var loggedTypeFailures = {};
 }
 
@@ -16710,7 +30102,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16729,7 +30121,7 @@ module.exports = checkPropTypes;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16745,19 +30137,19 @@ module.exports = '15.6.1';
 
 
 
-var _require = __webpack_require__(90),
+var _require = __webpack_require__(91),
     Component = _require.Component;
 
 var _require2 = __webpack_require__(25),
     isValidElement = _require2.isValidElement;
 
-var ReactNoopUpdateQueue = __webpack_require__(91);
-var factory = __webpack_require__(161);
+var ReactNoopUpdateQueue = __webpack_require__(92);
+var factory = __webpack_require__(163);
 
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16777,7 +30169,7 @@ var emptyObject = __webpack_require__(48);
 var _invariant = __webpack_require__(1);
 
 if (process.env.NODE_ENV !== 'production') {
-  var warning = __webpack_require__(2);
+  var warning = __webpack_require__(3);
 }
 
 var MIXINS_KEY = 'mixins';
@@ -17691,7 +31083,7 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17735,16 +31127,16 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(101);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(102);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
 /* unused harmony reexport combineReducers */
 /* unused harmony reexport bindActionCreators */
@@ -17771,13 +31163,13 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(170);
 
 
 
@@ -17809,11 +31201,11 @@ function baseGetTag(value) {
 
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(168);
 
 
 /** Detect free variable `self`. */
@@ -17826,7 +31218,7 @@ var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || fr
 
 
 /***/ }),
-/* 166 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17835,14 +31227,14 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 /* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(100)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(101)))
 
 /***/ }),
-/* 167 */
+/* 169 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(100);
 
 
 /** Used for built-in method references. */
@@ -17892,7 +31284,7 @@ function getRawTag(value) {
 
 
 /***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17921,11 +31313,11 @@ function objectToString(value) {
 
 
 /***/ }),
-/* 169 */
+/* 171 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(172);
 
 
 /** Built-in value references. */
@@ -17935,7 +31327,7 @@ var getPrototype = Object(__WEBPACK_IMPORTED_MODULE_0__overArg_js__["a" /* defau
 
 
 /***/ }),
-/* 170 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17957,7 +31349,7 @@ function overArg(func, transform) {
 
 
 /***/ }),
-/* 171 */
+/* 173 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17993,11 +31385,11 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(174);
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(176);
 /* global window */
 
 
@@ -18018,10 +31410,10 @@ if (typeof self !== 'undefined') {
 var result = Object(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(100), __webpack_require__(173)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(101), __webpack_require__(175)(module)))
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -18051,7 +31443,7 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18076,14 +31468,14 @@ function symbolObservablePonyfill(root) {
 
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* unused harmony export default */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(102);
 
 
 
@@ -18217,7 +31609,7 @@ function combineReducers(reducers) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18271,12 +31663,12 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyMiddleware;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(103);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -18327,17 +31719,17 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(179);
+module.exports = __webpack_require__(181);
 
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18356,16 +31748,16 @@ module.exports = __webpack_require__(179);
 
 
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDefaultInjection = __webpack_require__(180);
-var ReactMount = __webpack_require__(126);
+var ReactDefaultInjection = __webpack_require__(182);
+var ReactMount = __webpack_require__(127);
 var ReactReconciler = __webpack_require__(33);
 var ReactUpdates = __webpack_require__(19);
-var ReactVersion = __webpack_require__(258);
+var ReactVersion = __webpack_require__(260);
 
-var findDOMNode = __webpack_require__(259);
-var getHostComponentFromComposite = __webpack_require__(127);
-var renderSubtreeIntoContainer = __webpack_require__(260);
-var warning = __webpack_require__(2);
+var findDOMNode = __webpack_require__(261);
+var getHostComponentFromComposite = __webpack_require__(128);
+var renderSubtreeIntoContainer = __webpack_require__(262);
+var warning = __webpack_require__(3);
 
 ReactDefaultInjection.inject();
 
@@ -18441,9 +31833,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV !== 'production') {
   var ReactInstrumentation = __webpack_require__(16);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(261);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(262);
-  var ReactDOMInvalidARIAHook = __webpack_require__(263);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(263);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(264);
+  var ReactDOMInvalidARIAHook = __webpack_require__(265);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -18454,7 +31846,7 @@ module.exports = ReactDOM;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18470,25 +31862,25 @@ module.exports = ReactDOM;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(181);
-var BeforeInputEventPlugin = __webpack_require__(182);
-var ChangeEventPlugin = __webpack_require__(186);
-var DefaultEventPluginOrder = __webpack_require__(194);
-var EnterLeaveEventPlugin = __webpack_require__(195);
-var HTMLDOMPropertyConfig = __webpack_require__(196);
-var ReactComponentBrowserEnvironment = __webpack_require__(197);
-var ReactDOMComponent = __webpack_require__(203);
+var ARIADOMPropertyConfig = __webpack_require__(183);
+var BeforeInputEventPlugin = __webpack_require__(184);
+var ChangeEventPlugin = __webpack_require__(188);
+var DefaultEventPluginOrder = __webpack_require__(196);
+var EnterLeaveEventPlugin = __webpack_require__(197);
+var HTMLDOMPropertyConfig = __webpack_require__(198);
+var ReactComponentBrowserEnvironment = __webpack_require__(199);
+var ReactDOMComponent = __webpack_require__(205);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDOMEmptyComponent = __webpack_require__(229);
-var ReactDOMTreeTraversal = __webpack_require__(230);
-var ReactDOMTextComponent = __webpack_require__(231);
-var ReactDefaultBatchingStrategy = __webpack_require__(232);
-var ReactEventListener = __webpack_require__(233);
-var ReactInjection = __webpack_require__(235);
-var ReactReconcileTransaction = __webpack_require__(236);
-var SVGDOMPropertyConfig = __webpack_require__(242);
-var SelectEventPlugin = __webpack_require__(243);
-var SimpleEventPlugin = __webpack_require__(244);
+var ReactDOMEmptyComponent = __webpack_require__(231);
+var ReactDOMTreeTraversal = __webpack_require__(232);
+var ReactDOMTextComponent = __webpack_require__(233);
+var ReactDefaultBatchingStrategy = __webpack_require__(234);
+var ReactEventListener = __webpack_require__(235);
+var ReactInjection = __webpack_require__(237);
+var ReactReconcileTransaction = __webpack_require__(238);
+var SVGDOMPropertyConfig = __webpack_require__(244);
+var SelectEventPlugin = __webpack_require__(245);
+var SimpleEventPlugin = __webpack_require__(246);
 
 var alreadyInjected = false;
 
@@ -18545,7 +31937,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18624,7 +32016,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18642,9 +32034,9 @@ module.exports = ARIADOMPropertyConfig;
 
 var EventPropagators = __webpack_require__(40);
 var ExecutionEnvironment = __webpack_require__(13);
-var FallbackCompositionState = __webpack_require__(183);
-var SyntheticCompositionEvent = __webpack_require__(184);
-var SyntheticInputEvent = __webpack_require__(185);
+var FallbackCompositionState = __webpack_require__(185);
+var SyntheticCompositionEvent = __webpack_require__(186);
+var SyntheticInputEvent = __webpack_require__(187);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -19013,7 +32405,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19033,7 +32425,7 @@ var _assign = __webpack_require__(11);
 
 var PooledClass = __webpack_require__(26);
 
-var getTextContentAccessor = __webpack_require__(106);
+var getTextContentAccessor = __webpack_require__(107);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -19113,7 +32505,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19154,7 +32546,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19196,7 +32588,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19219,10 +32611,10 @@ var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(19);
 var SyntheticEvent = __webpack_require__(21);
 
-var inputValueTracking = __webpack_require__(109);
+var inputValueTracking = __webpack_require__(110);
 var getEventTarget = __webpack_require__(62);
 var isEventSupported = __webpack_require__(63);
-var isTextInputElement = __webpack_require__(110);
+var isTextInputElement = __webpack_require__(111);
 
 var eventTypes = {
   change: {
@@ -19513,7 +32905,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19530,7 +32922,7 @@ module.exports = ChangeEventPlugin;
 
 
 
-var ReactOwner = __webpack_require__(188);
+var ReactOwner = __webpack_require__(190);
 
 var ReactRef = {};
 
@@ -19607,7 +32999,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 188 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19624,7 +33016,7 @@ module.exports = ReactRef;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -19706,7 +33098,7 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 189 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19723,13 +33115,13 @@ module.exports = ReactOwner;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(190);
-var ReactHostOperationHistoryHook = __webpack_require__(191);
+var ReactInvalidSetStateWarningHook = __webpack_require__(192);
+var ReactHostOperationHistoryHook = __webpack_require__(193);
 var ReactComponentTreeHook = __webpack_require__(14);
 var ExecutionEnvironment = __webpack_require__(13);
 
-var performanceNow = __webpack_require__(192);
-var warning = __webpack_require__(2);
+var performanceNow = __webpack_require__(194);
+var warning = __webpack_require__(3);
 
 var hooks = [];
 var didHookThrowForEvent = {};
@@ -20073,7 +33465,7 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20090,7 +33482,7 @@ module.exports = ReactDebugTool;
 
 
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 if (process.env.NODE_ENV !== 'production') {
   var processingChildContext = false;
@@ -20116,7 +33508,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20155,7 +33547,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20170,7 +33562,7 @@ module.exports = ReactHostOperationHistoryHook;
  * @typechecks
  */
 
-var performance = __webpack_require__(193);
+var performance = __webpack_require__(195);
 
 var performanceNow;
 
@@ -20192,7 +33584,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20218,7 +33610,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 194 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20249,7 +33641,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 195 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20352,7 +33744,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 196 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20593,7 +33985,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 197 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20610,7 +34002,7 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 var DOMChildrenOperations = __webpack_require__(65);
-var ReactDOMIDOperations = __webpack_require__(202);
+var ReactDOMIDOperations = __webpack_require__(204);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -20626,7 +34018,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 198 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20642,12 +34034,12 @@ module.exports = ReactComponentBrowserEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var DOMLazyTree = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(13);
 
-var createNodesFromMarkup = __webpack_require__(199);
+var createNodesFromMarkup = __webpack_require__(201);
 var emptyFunction = __webpack_require__(17);
 var invariant = __webpack_require__(1);
 
@@ -20678,7 +34070,7 @@ module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 199 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20697,8 +34089,8 @@ module.exports = Danger;
 
 var ExecutionEnvironment = __webpack_require__(13);
 
-var createArrayFromMixed = __webpack_require__(200);
-var getMarkupWrap = __webpack_require__(201);
+var createArrayFromMixed = __webpack_require__(202);
+var getMarkupWrap = __webpack_require__(203);
 var invariant = __webpack_require__(1);
 
 /**
@@ -20766,7 +34158,7 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 200 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20897,7 +34289,7 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 201 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20996,7 +34388,7 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 202 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21034,7 +34426,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 203 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21052,36 +34444,36 @@ module.exports = ReactDOMIDOperations;
 
 
 
-var _prodInvariant = __webpack_require__(4),
+var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(11);
 
-var AutoFocusUtils = __webpack_require__(204);
-var CSSPropertyOperations = __webpack_require__(205);
+var AutoFocusUtils = __webpack_require__(206);
+var CSSPropertyOperations = __webpack_require__(207);
 var DOMLazyTree = __webpack_require__(34);
 var DOMNamespaces = __webpack_require__(66);
 var DOMProperty = __webpack_require__(23);
-var DOMPropertyOperations = __webpack_require__(115);
+var DOMPropertyOperations = __webpack_require__(116);
 var EventPluginHub = __webpack_require__(41);
 var EventPluginRegistry = __webpack_require__(49);
 var ReactBrowserEventEmitter = __webpack_require__(54);
-var ReactDOMComponentFlags = __webpack_require__(103);
+var ReactDOMComponentFlags = __webpack_require__(104);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDOMInput = __webpack_require__(215);
-var ReactDOMOption = __webpack_require__(216);
-var ReactDOMSelect = __webpack_require__(117);
-var ReactDOMTextarea = __webpack_require__(217);
+var ReactDOMInput = __webpack_require__(217);
+var ReactDOMOption = __webpack_require__(218);
+var ReactDOMSelect = __webpack_require__(118);
+var ReactDOMTextarea = __webpack_require__(219);
 var ReactInstrumentation = __webpack_require__(16);
-var ReactMultiChild = __webpack_require__(218);
-var ReactServerRenderingTransaction = __webpack_require__(227);
+var ReactMultiChild = __webpack_require__(220);
+var ReactServerRenderingTransaction = __webpack_require__(229);
 
 var emptyFunction = __webpack_require__(17);
 var escapeTextContentForBrowser = __webpack_require__(53);
 var invariant = __webpack_require__(1);
 var isEventSupported = __webpack_require__(63);
 var shallowEqual = __webpack_require__(70);
-var inputValueTracking = __webpack_require__(109);
+var inputValueTracking = __webpack_require__(110);
 var validateDOMNesting = __webpack_require__(74);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var Flags = ReactDOMComponentFlags;
 var deleteListener = EventPluginHub.deleteListener;
@@ -22050,7 +35442,7 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 204 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22068,7 +35460,7 @@ module.exports = ReactDOMComponent;
 
 var ReactDOMComponentTree = __webpack_require__(12);
 
-var focusNode = __webpack_require__(113);
+var focusNode = __webpack_require__(114);
 
 var AutoFocusUtils = {
   focusDOMComponent: function () {
@@ -22079,7 +35471,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 205 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22095,15 +35487,15 @@ module.exports = AutoFocusUtils;
 
 
 
-var CSSProperty = __webpack_require__(114);
+var CSSProperty = __webpack_require__(115);
 var ExecutionEnvironment = __webpack_require__(13);
 var ReactInstrumentation = __webpack_require__(16);
 
-var camelizeStyleName = __webpack_require__(206);
-var dangerousStyleValue = __webpack_require__(208);
-var hyphenateStyleName = __webpack_require__(209);
-var memoizeStringOnly = __webpack_require__(211);
-var warning = __webpack_require__(2);
+var camelizeStyleName = __webpack_require__(208);
+var dangerousStyleValue = __webpack_require__(210);
+var hyphenateStyleName = __webpack_require__(211);
+var memoizeStringOnly = __webpack_require__(213);
+var warning = __webpack_require__(3);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
   return hyphenateStyleName(styleName);
@@ -22300,7 +35692,7 @@ module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 206 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22315,7 +35707,7 @@ module.exports = CSSPropertyOperations;
 
 
 
-var camelize = __webpack_require__(207);
+var camelize = __webpack_require__(209);
 
 var msPattern = /^-ms-/;
 
@@ -22343,7 +35735,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 207 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22378,7 +35770,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 208 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22394,8 +35786,8 @@ module.exports = camelize;
 
 
 
-var CSSProperty = __webpack_require__(114);
-var warning = __webpack_require__(2);
+var CSSProperty = __webpack_require__(115);
+var warning = __webpack_require__(3);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 var styleWarnings = {};
@@ -22463,7 +35855,7 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 209 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22478,7 +35870,7 @@ module.exports = dangerousStyleValue;
 
 
 
-var hyphenate = __webpack_require__(210);
+var hyphenate = __webpack_require__(212);
 
 var msPattern = /^ms-/;
 
@@ -22505,7 +35897,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 210 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22541,7 +35933,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 211 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22574,7 +35966,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 212 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22605,7 +35997,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 213 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22642,7 +36034,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 214 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22748,7 +36140,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 215 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22764,16 +36156,16 @@ module.exports = getVendorPrefixedEventName;
 
 
 
-var _prodInvariant = __webpack_require__(4),
+var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(11);
 
-var DOMPropertyOperations = __webpack_require__(115);
+var DOMPropertyOperations = __webpack_require__(116);
 var LinkedValueUtils = __webpack_require__(68);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(19);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var didWarnValueLink = false;
 var didWarnCheckedLink = false;
@@ -23041,7 +36433,7 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 216 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23061,9 +36453,9 @@ var _assign = __webpack_require__(11);
 
 var React = __webpack_require__(31);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactDOMSelect = __webpack_require__(117);
+var ReactDOMSelect = __webpack_require__(118);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 var didWarnInvalidOptionChildren = false;
 
 function flattenChildren(children) {
@@ -23169,7 +36561,7 @@ module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 217 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23185,7 +36577,7 @@ module.exports = ReactDOMOption;
 
 
 
-var _prodInvariant = __webpack_require__(4),
+var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(11);
 
 var LinkedValueUtils = __webpack_require__(68);
@@ -23193,7 +36585,7 @@ var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(19);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var didWarnValueLink = false;
 var didWarnValDefaultVal = false;
@@ -23335,7 +36727,7 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 218 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23351,7 +36743,7 @@ module.exports = ReactDOMTextarea;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var ReactComponentEnvironment = __webpack_require__(69);
 var ReactInstanceMap = __webpack_require__(43);
@@ -23359,10 +36751,10 @@ var ReactInstrumentation = __webpack_require__(16);
 
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactReconciler = __webpack_require__(33);
-var ReactChildReconciler = __webpack_require__(219);
+var ReactChildReconciler = __webpack_require__(221);
 
 var emptyFunction = __webpack_require__(17);
-var flattenChildren = __webpack_require__(226);
+var flattenChildren = __webpack_require__(228);
 var invariant = __webpack_require__(1);
 
 /**
@@ -23787,7 +37179,7 @@ module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 219 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23805,11 +37197,11 @@ module.exports = ReactMultiChild;
 
 var ReactReconciler = __webpack_require__(33);
 
-var instantiateReactComponent = __webpack_require__(118);
+var instantiateReactComponent = __webpack_require__(119);
 var KeyEscapeUtils = __webpack_require__(72);
 var shouldUpdateReactComponent = __webpack_require__(71);
-var traverseAllChildren = __webpack_require__(122);
-var warning = __webpack_require__(2);
+var traverseAllChildren = __webpack_require__(123);
+var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
 
@@ -23946,7 +37338,7 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 220 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23962,7 +37354,7 @@ module.exports = ReactChildReconciler;
 
 
 
-var _prodInvariant = __webpack_require__(4),
+var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(11);
 
 var React = __webpack_require__(31);
@@ -23971,18 +37363,18 @@ var ReactCurrentOwner = __webpack_require__(18);
 var ReactErrorUtils = __webpack_require__(61);
 var ReactInstanceMap = __webpack_require__(43);
 var ReactInstrumentation = __webpack_require__(16);
-var ReactNodeTypes = __webpack_require__(119);
+var ReactNodeTypes = __webpack_require__(120);
 var ReactReconciler = __webpack_require__(33);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(221);
+  var checkReactTypeSpec = __webpack_require__(223);
 }
 
 var emptyObject = __webpack_require__(48);
 var invariant = __webpack_require__(1);
 var shallowEqual = __webpack_require__(70);
 var shouldUpdateReactComponent = __webpack_require__(71);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var CompositeTypes = {
   ImpureClass: 0,
@@ -24852,7 +38244,7 @@ module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 221 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24868,13 +38260,13 @@ module.exports = ReactCompositeComponent;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
-var ReactPropTypeLocationNames = __webpack_require__(222);
-var ReactPropTypesSecret = __webpack_require__(116);
+var ReactPropTypeLocationNames = __webpack_require__(224);
+var ReactPropTypesSecret = __webpack_require__(117);
 
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
 
@@ -24945,7 +38337,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 222 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24976,7 +38368,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 223 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25002,7 +38394,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 224 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25027,7 +38419,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 225 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25073,7 +38465,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 226 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25091,8 +38483,8 @@ module.exports = getIteratorFn;
 
 
 var KeyEscapeUtils = __webpack_require__(72);
-var traverseAllChildren = __webpack_require__(122);
-var warning = __webpack_require__(2);
+var traverseAllChildren = __webpack_require__(123);
+var warning = __webpack_require__(3);
 
 var ReactComponentTreeHook;
 
@@ -25155,7 +38547,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 227 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25176,7 +38568,7 @@ var _assign = __webpack_require__(11);
 var PooledClass = __webpack_require__(26);
 var Transaction = __webpack_require__(50);
 var ReactInstrumentation = __webpack_require__(16);
-var ReactServerUpdateQueue = __webpack_require__(228);
+var ReactServerUpdateQueue = __webpack_require__(230);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -25251,7 +38643,7 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 228 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25272,7 +38664,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var ReactUpdateQueue = __webpack_require__(73);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 function warnNoop(publicInstance, callerName) {
   if (process.env.NODE_ENV !== 'production') {
@@ -25396,7 +38788,7 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 229 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25461,7 +38853,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 230 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25477,7 +38869,7 @@ module.exports = ReactDOMEmptyComponent;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var invariant = __webpack_require__(1);
 
@@ -25603,7 +38995,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 231 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25619,7 +39011,7 @@ module.exports = {
 
 
 
-var _prodInvariant = __webpack_require__(4),
+var _prodInvariant = __webpack_require__(5),
     _assign = __webpack_require__(11);
 
 var DOMChildrenOperations = __webpack_require__(65);
@@ -25771,7 +39163,7 @@ module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 232 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25844,7 +39236,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 233 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25862,14 +39254,14 @@ module.exports = ReactDefaultBatchingStrategy;
 
 var _assign = __webpack_require__(11);
 
-var EventListener = __webpack_require__(123);
+var EventListener = __webpack_require__(124);
 var ExecutionEnvironment = __webpack_require__(13);
 var PooledClass = __webpack_require__(26);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(19);
 
 var getEventTarget = __webpack_require__(62);
-var getUnboundedScrollPosition = __webpack_require__(234);
+var getUnboundedScrollPosition = __webpack_require__(236);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -26004,7 +39396,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 234 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26046,7 +39438,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 235 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26066,9 +39458,9 @@ var DOMProperty = __webpack_require__(23);
 var EventPluginHub = __webpack_require__(41);
 var EventPluginUtils = __webpack_require__(60);
 var ReactComponentEnvironment = __webpack_require__(69);
-var ReactEmptyComponent = __webpack_require__(120);
+var ReactEmptyComponent = __webpack_require__(121);
 var ReactBrowserEventEmitter = __webpack_require__(54);
-var ReactHostComponent = __webpack_require__(121);
+var ReactHostComponent = __webpack_require__(122);
 var ReactUpdates = __webpack_require__(19);
 
 var ReactInjection = {
@@ -26085,7 +39477,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 236 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26103,10 +39495,10 @@ module.exports = ReactInjection;
 
 var _assign = __webpack_require__(11);
 
-var CallbackQueue = __webpack_require__(107);
+var CallbackQueue = __webpack_require__(108);
 var PooledClass = __webpack_require__(26);
 var ReactBrowserEventEmitter = __webpack_require__(54);
-var ReactInputSelection = __webpack_require__(124);
+var ReactInputSelection = __webpack_require__(125);
 var ReactInstrumentation = __webpack_require__(16);
 var Transaction = __webpack_require__(50);
 var ReactUpdateQueue = __webpack_require__(73);
@@ -26269,7 +39661,7 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 237 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26287,8 +39679,8 @@ module.exports = ReactReconcileTransaction;
 
 var ExecutionEnvironment = __webpack_require__(13);
 
-var getNodeForCharacterOffset = __webpack_require__(238);
-var getTextContentAccessor = __webpack_require__(106);
+var getNodeForCharacterOffset = __webpack_require__(240);
+var getTextContentAccessor = __webpack_require__(107);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -26486,7 +39878,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 238 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26565,7 +39957,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 239 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26580,7 +39972,7 @@ module.exports = getNodeForCharacterOffset;
  * 
  */
 
-var isTextNode = __webpack_require__(240);
+var isTextNode = __webpack_require__(242);
 
 /*eslint-disable no-bitwise */
 
@@ -26608,7 +40000,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 240 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26623,7 +40015,7 @@ module.exports = containsNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(241);
+var isNode = __webpack_require__(243);
 
 /**
  * @param {*} object The object to check.
@@ -26636,7 +40028,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 241 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26664,7 +40056,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 242 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26971,7 +40363,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 243 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26990,11 +40382,11 @@ module.exports = SVGDOMPropertyConfig;
 var EventPropagators = __webpack_require__(40);
 var ExecutionEnvironment = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(12);
-var ReactInputSelection = __webpack_require__(124);
+var ReactInputSelection = __webpack_require__(125);
 var SyntheticEvent = __webpack_require__(21);
 
-var getActiveElement = __webpack_require__(125);
-var isTextInputElement = __webpack_require__(110);
+var getActiveElement = __webpack_require__(126);
+var isTextInputElement = __webpack_require__(111);
 var shallowEqual = __webpack_require__(70);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
@@ -27164,7 +40556,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 244 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27181,22 +40573,22 @@ module.exports = SelectEventPlugin;
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
-var EventListener = __webpack_require__(123);
+var EventListener = __webpack_require__(124);
 var EventPropagators = __webpack_require__(40);
 var ReactDOMComponentTree = __webpack_require__(12);
-var SyntheticAnimationEvent = __webpack_require__(245);
-var SyntheticClipboardEvent = __webpack_require__(246);
+var SyntheticAnimationEvent = __webpack_require__(247);
+var SyntheticClipboardEvent = __webpack_require__(248);
 var SyntheticEvent = __webpack_require__(21);
-var SyntheticFocusEvent = __webpack_require__(247);
-var SyntheticKeyboardEvent = __webpack_require__(248);
+var SyntheticFocusEvent = __webpack_require__(249);
+var SyntheticKeyboardEvent = __webpack_require__(250);
 var SyntheticMouseEvent = __webpack_require__(51);
-var SyntheticDragEvent = __webpack_require__(250);
-var SyntheticTouchEvent = __webpack_require__(251);
-var SyntheticTransitionEvent = __webpack_require__(252);
+var SyntheticDragEvent = __webpack_require__(252);
+var SyntheticTouchEvent = __webpack_require__(253);
+var SyntheticTransitionEvent = __webpack_require__(254);
 var SyntheticUIEvent = __webpack_require__(42);
-var SyntheticWheelEvent = __webpack_require__(253);
+var SyntheticWheelEvent = __webpack_require__(255);
 
 var emptyFunction = __webpack_require__(17);
 var getEventCharCode = __webpack_require__(75);
@@ -27396,7 +40788,7 @@ module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 245 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27440,7 +40832,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 246 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27483,7 +40875,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 247 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27524,7 +40916,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 248 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27543,7 +40935,7 @@ module.exports = SyntheticFocusEvent;
 var SyntheticUIEvent = __webpack_require__(42);
 
 var getEventCharCode = __webpack_require__(75);
-var getEventKey = __webpack_require__(249);
+var getEventKey = __webpack_require__(251);
 var getEventModifierState = __webpack_require__(64);
 
 /**
@@ -27613,7 +41005,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 249 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27730,7 +41122,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 250 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27771,7 +41163,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 251 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27821,7 +41213,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 252 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27865,7 +41257,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 253 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27921,7 +41313,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 254 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27960,7 +41352,7 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 255 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27984,7 +41376,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 256 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28000,7 +41392,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var adler32 = __webpack_require__(257);
+var adler32 = __webpack_require__(259);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -28039,7 +41431,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 257 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28088,7 +41480,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 258 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28107,7 +41499,7 @@ module.exports = adler32;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 259 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28123,15 +41515,15 @@ module.exports = '15.6.1';
 
 
 
-var _prodInvariant = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(5);
 
 var ReactCurrentOwner = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInstanceMap = __webpack_require__(43);
 
-var getHostComponentFromComposite = __webpack_require__(127);
+var getHostComponentFromComposite = __webpack_require__(128);
 var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 /**
  * Returns the DOM node rendered by this element.
@@ -28173,7 +41565,7 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 260 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28189,12 +41581,12 @@ module.exports = findDOMNode;
 
 
 
-var ReactMount = __webpack_require__(126);
+var ReactMount = __webpack_require__(127);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 261 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28214,7 +41606,7 @@ var DOMProperty = __webpack_require__(23);
 var EventPluginRegistry = __webpack_require__(49);
 var ReactComponentTreeHook = __webpack_require__(14);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 if (process.env.NODE_ENV !== 'production') {
   var reactProps = {
@@ -28312,7 +41704,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 262 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28330,7 +41722,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 var ReactComponentTreeHook = __webpack_require__(14);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var didWarnValueNull = false;
 
@@ -28361,7 +41753,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 263 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28380,7 +41772,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 var DOMProperty = __webpack_require__(23);
 var ReactComponentTreeHook = __webpack_require__(14);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(3);
 
 var warnedProperties = {};
 var rARIA = new RegExp('^(aria)-[' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -28460,31 +41852,31 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 264 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(265), __esModule: true };
+module.exports = { "default": __webpack_require__(267), __esModule: true };
 
 /***/ }),
-/* 265 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(266);
+__webpack_require__(268);
 module.exports = __webpack_require__(20).Object.assign;
 
 
 /***/ }),
-/* 266 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(27);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(268) });
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(270) });
 
 
 /***/ }),
-/* 267 */
+/* 269 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -28494,7 +41886,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 268 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28504,7 +41896,7 @@ var getKeys = __webpack_require__(56);
 var gOPS = __webpack_require__(82);
 var pIE = __webpack_require__(58);
 var toObject = __webpack_require__(83);
-var IObject = __webpack_require__(132);
+var IObject = __webpack_require__(133);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -28535,14 +41927,14 @@ module.exports = !$assign || __webpack_require__(37)(function () {
 
 
 /***/ }),
-/* 269 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(38);
-var toLength = __webpack_require__(270);
-var toAbsoluteIndex = __webpack_require__(271);
+var toLength = __webpack_require__(272);
+var toAbsoluteIndex = __webpack_require__(273);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -28564,7 +41956,7 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ }),
-/* 270 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -28576,7 +41968,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 271 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(78);
@@ -28589,11 +41981,11 @@ module.exports = function (index, length) {
 
 
 /***/ }),
-/* 272 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var v1 = __webpack_require__(273);
-var v4 = __webpack_require__(274);
+var v1 = __webpack_require__(275);
+var v4 = __webpack_require__(276);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -28603,11 +41995,11 @@ module.exports = uuid;
 
 
 /***/ }),
-/* 273 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(134);
-var bytesToUuid = __webpack_require__(135);
+var rng = __webpack_require__(135);
+var bytesToUuid = __webpack_require__(136);
 
 // **`v1()` - Generate time-based UUID**
 //
@@ -28718,11 +42110,11 @@ module.exports = v1;
 
 
 /***/ }),
-/* 274 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(134);
-var bytesToUuid = __webpack_require__(135);
+var rng = __webpack_require__(135);
+var bytesToUuid = __webpack_require__(136);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -28753,7 +42145,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 275 */
+/* 277 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28767,12 +42159,12 @@ module.exports = v4;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ui_navbar__ = __webpack_require__(310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ui_modals___ = __webpack_require__(314);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ui_UI__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ui_navbar__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ui_modals___ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ui_UI__ = __webpack_require__(326);
 
 
 
@@ -28885,22 +42277,22 @@ var App = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (App);
 
 /***/ }),
-/* 276 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(277);
+__webpack_require__(279);
 module.exports = __webpack_require__(20).Object.getPrototypeOf;
 
 
 /***/ }),
-/* 277 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
 var toObject = __webpack_require__(83);
-var $getPrototypeOf = __webpack_require__(136);
+var $getPrototypeOf = __webpack_require__(137);
 
-__webpack_require__(278)('getPrototypeOf', function () {
+__webpack_require__(280)('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
     return $getPrototypeOf(toObject(it));
   };
@@ -28908,7 +42300,7 @@ __webpack_require__(278)('getPrototypeOf', function () {
 
 
 /***/ }),
-/* 278 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives
@@ -28924,16 +42316,10 @@ module.exports = function (KEY, exec) {
 
 
 /***/ }),
-/* 279 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(280), __esModule: true };
-
-/***/ }),
-/* 280 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(281);
+__webpack_require__(282);
 var $Object = __webpack_require__(20).Object;
 module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
@@ -28941,7 +42327,7 @@ module.exports = function defineProperty(it, key, desc) {
 
 
 /***/ }),
-/* 281 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(27);
@@ -28950,30 +42336,30 @@ $export($export.S + $export.F * !__webpack_require__(29), 'Object', { defineProp
 
 
 /***/ }),
-/* 282 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(283), __esModule: true };
-
-/***/ }),
 /* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(284);
-__webpack_require__(289);
-module.exports = __webpack_require__(88).f('iterator');
-
+module.exports = { "default": __webpack_require__(284), __esModule: true };
 
 /***/ }),
 /* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(285);
+__webpack_require__(290);
+module.exports = __webpack_require__(88).f('iterator');
+
+
+/***/ }),
+/* 285 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
-var $at = __webpack_require__(285)(true);
+var $at = __webpack_require__(286)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(137)(String, 'String', function (iterated) {
+__webpack_require__(139)(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -28989,7 +42375,7 @@ __webpack_require__(137)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(78);
@@ -29012,7 +42398,7 @@ module.exports = function (TO_STRING) {
 
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29032,7 +42418,7 @@ module.exports = function (Constructor, NAME, next) {
 
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(28);
@@ -29051,7 +42437,7 @@ module.exports = __webpack_require__(29) ? Object.defineProperties : function de
 
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var document = __webpack_require__(24).document;
@@ -29059,10 +42445,10 @@ module.exports = document && document.documentElement;
 
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(290);
+__webpack_require__(291);
 var global = __webpack_require__(24);
 var hide = __webpack_require__(35);
 var Iterators = __webpack_require__(85);
@@ -29084,13 +42470,13 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var addToUnscopables = __webpack_require__(291);
-var step = __webpack_require__(292);
+var addToUnscopables = __webpack_require__(292);
+var step = __webpack_require__(293);
 var Iterators = __webpack_require__(85);
 var toIObject = __webpack_require__(38);
 
@@ -29098,7 +42484,7 @@ var toIObject = __webpack_require__(38);
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(137)(Array, 'Array', function (iterated, kind) {
+module.exports = __webpack_require__(139)(Array, 'Array', function (iterated, kind) {
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -29125,14 +42511,14 @@ addToUnscopables('entries');
 
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports) {
 
 module.exports = function () { /* empty */ };
 
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports) {
 
 module.exports = function (done, value) {
@@ -29141,24 +42527,24 @@ module.exports = function (done, value) {
 
 
 /***/ }),
-/* 293 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(294), __esModule: true };
-
-/***/ }),
 /* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(295);
-__webpack_require__(300);
+module.exports = { "default": __webpack_require__(295), __esModule: true };
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(296);
 __webpack_require__(301);
 __webpack_require__(302);
+__webpack_require__(303);
 module.exports = __webpack_require__(20).Symbol;
 
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29168,8 +42554,8 @@ var global = __webpack_require__(24);
 var has = __webpack_require__(30);
 var DESCRIPTORS = __webpack_require__(29);
 var $export = __webpack_require__(27);
-var redefine = __webpack_require__(138);
-var META = __webpack_require__(296).KEY;
+var redefine = __webpack_require__(140);
+var META = __webpack_require__(297).KEY;
 var $fails = __webpack_require__(37);
 var shared = __webpack_require__(80);
 var setToStringTag = __webpack_require__(87);
@@ -29177,16 +42563,16 @@ var uid = __webpack_require__(57);
 var wks = __webpack_require__(39);
 var wksExt = __webpack_require__(88);
 var wksDefine = __webpack_require__(89);
-var enumKeys = __webpack_require__(297);
-var isArray = __webpack_require__(298);
+var enumKeys = __webpack_require__(298);
+var isArray = __webpack_require__(299);
 var anObject = __webpack_require__(44);
 var isObject = __webpack_require__(36);
 var toIObject = __webpack_require__(38);
 var toPrimitive = __webpack_require__(76);
 var createDesc = __webpack_require__(55);
 var _create = __webpack_require__(86);
-var gOPNExt = __webpack_require__(299);
-var $GOPD = __webpack_require__(140);
+var gOPNExt = __webpack_require__(300);
+var $GOPD = __webpack_require__(142);
 var $DP = __webpack_require__(28);
 var $keys = __webpack_require__(56);
 var gOPD = $GOPD.f;
@@ -29311,7 +42697,7 @@ if (!USE_NATIVE) {
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
-  __webpack_require__(139).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(141).f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(58).f = $propertyIsEnumerable;
   __webpack_require__(82).f = $getOwnPropertySymbols;
 
@@ -29399,7 +42785,7 @@ setToStringTag(global.JSON, 'JSON', true);
 
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var META = __webpack_require__(57)('meta');
@@ -29458,7 +42844,7 @@ var meta = module.exports = {
 
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
@@ -29479,23 +42865,23 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(133);
+var cof = __webpack_require__(134);
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
 
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = __webpack_require__(38);
-var gOPN = __webpack_require__(139).f;
+var gOPN = __webpack_require__(141).f;
 var toString = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -29515,50 +42901,50 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports) {
 
-
-
-/***/ }),
-/* 301 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(89)('asyncIterator');
 
 
 /***/ }),
 /* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(89)('observable');
+__webpack_require__(89)('asyncIterator');
 
 
 /***/ }),
 /* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(304), __esModule: true };
+__webpack_require__(89)('observable');
+
 
 /***/ }),
 /* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(305);
-module.exports = __webpack_require__(20).Object.setPrototypeOf;
-
+module.exports = { "default": __webpack_require__(305), __esModule: true };
 
 /***/ }),
 /* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.19 Object.setPrototypeOf(O, proto)
-var $export = __webpack_require__(27);
-$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(306).set });
+__webpack_require__(306);
+module.exports = __webpack_require__(20).Object.setPrototypeOf;
 
 
 /***/ }),
 /* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.19 Object.setPrototypeOf(O, proto)
+var $export = __webpack_require__(27);
+$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(307).set });
+
+
+/***/ }),
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -29573,7 +42959,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = __webpack_require__(128)(Function.call, __webpack_require__(140).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(129)(Function.call, __webpack_require__(142).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -29589,16 +42975,16 @@ module.exports = {
 
 
 /***/ }),
-/* 307 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(308), __esModule: true };
-
-/***/ }),
 /* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(309);
+module.exports = { "default": __webpack_require__(309), __esModule: true };
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(310);
 var $Object = __webpack_require__(20).Object;
 module.exports = function create(P, D) {
   return $Object.create(P, D);
@@ -29606,7 +42992,7 @@ module.exports = function create(P, D) {
 
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(27);
@@ -29615,7 +43001,7 @@ $export($export.S, 'Object', { create: __webpack_require__(86) });
 
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29629,12 +43015,12 @@ $export($export.S, 'Object', { create: __webpack_require__(86) });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__NavbarRight__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__NavItem__ = __webpack_require__(312);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__NavDropdown__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__NavbarRight__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__NavItem__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__NavDropdown__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Config__ = __webpack_require__(2);
 
 
 
@@ -29862,7 +43248,7 @@ var Navbar = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Navbar);
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29876,7 +43262,7 @@ var Navbar = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
 
 
@@ -29915,7 +43301,7 @@ var NavbarRight = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (NavbarRight);
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29929,7 +43315,7 @@ var NavbarRight = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
 
 
@@ -29995,7 +43381,7 @@ var NavItem = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (NavItem);
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30009,9 +43395,9 @@ var NavItem = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -30078,7 +43464,7 @@ var NavDropdown = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (NavDropdown);
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30094,16 +43480,16 @@ var NavDropdown = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__InventoryList__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SkillsList__ = __webpack_require__(315);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SpellBook__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__PlayerStats__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Store__ = __webpack_require__(318);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ContainerActions__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Combat__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__InventoryList__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SkillsList__ = __webpack_require__(316);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SpellBook__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__PlayerStats__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Store__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ContainerActions__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Combat__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Config__ = __webpack_require__(2);
 
 
 
@@ -30350,7 +43736,7 @@ var Modal = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Modal);
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30364,9 +43750,9 @@ var Modal = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -30444,7 +43830,7 @@ var SkillsList = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (SkillsList);
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30458,9 +43844,9 @@ var SkillsList = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -30521,7 +43907,7 @@ var SpellBook = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (SpellBook);
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30535,9 +43921,9 @@ var SpellBook = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -30643,7 +44029,7 @@ var PlayerStats = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (PlayerStats);
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30657,15 +44043,15 @@ var PlayerStats = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Crafting__ = __webpack_require__(319);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Buy__ = __webpack_require__(320);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Sell__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Crafting__ = __webpack_require__(320);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Buy__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Sell__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__data_ItemData__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__PlayerStatus__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__InventoryList__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__PlayerStatus__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__InventoryList__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_classnames__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_classnames__);
 
@@ -31102,7 +44488,7 @@ var Store = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Store);
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31116,9 +44502,9 @@ var Store = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
 
 
@@ -31447,7 +44833,7 @@ http://uorforum.com/threads/magical-item-properties.3003/
 */
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31461,9 +44847,9 @@ http://uorforum.com/threads/magical-item-properties.3003/
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
 
 
@@ -31675,7 +45061,7 @@ var Buy = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Buy);
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31689,9 +45075,9 @@ var Buy = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
 
 
@@ -31907,7 +45293,7 @@ var Sell = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Sell);
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31921,9 +45307,9 @@ var Sell = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -31971,7 +45357,7 @@ var ContainerActions = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ContainerActions);
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31989,13 +45375,13 @@ var ContainerActions = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__MessageList__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CombatStatus__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__MessageList__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CombatStatus__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__data_ItemData__ = __webpack_require__(22);
 
 
@@ -32356,22 +45742,20 @@ var Combat = function (_Component) {
       if (this.state.player.hp <= 0 || this.state.mob.hp <= 0 || this.state.fled === true) {
         clearInterval(this.tick);
 
-        if (this.state.mob.hp <= 0) {
-          // Player wins
-          this.playerWin();
-        } else {
-          // Mob wins
-          this.mobWin();
+        if (this.state.fled !== true) {
+          if (this.state.mob.hp <= 0) {
+            // Player wins
+            this.playerWin();
+          } else {
+            // Mob wins
+            this.mobWin();
+          }
         }
 
         this.props.store.dispatch({
           type: __WEBPACK_IMPORTED_MODULE_8__Config__["a" /* default */].ACTIONS.APP.MODAL_UPDATE,
           payload: { locked: false }
         });
-
-        // this.props.store.dispatch({
-        //   type: Config.ACTIONS.MOBS.CLEAR_COMBAT, payload: {}
-        // });
       } else {
         this.timer += 0.25;
       }
@@ -32407,6 +45791,7 @@ var Combat = function (_Component) {
           stamina: 1,
           x: 0,
           y: 0,
+          dungeon: false,
           status: status,
           score: score,
           credits: credits
@@ -32726,7 +46111,7 @@ var Combat = function (_Component) {
 // 9) Apply Resulting Damage
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32742,10 +46127,10 @@ var Combat = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_ItemData__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Config__ = __webpack_require__(2);
 
 
 
@@ -33128,7 +46513,7 @@ var CombatStatus = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (CombatStatus);
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33142,12 +46527,12 @@ var CombatStatus = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MainPanel__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__RightPanel__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__BottomPanel__ = __webpack_require__(332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__PlayerControls__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MainPanel__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__RightPanel__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__BottomPanel__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__PlayerControls__ = __webpack_require__(147);
 
 
 
@@ -33205,7 +46590,7 @@ var UI = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (UI);
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33219,9 +46604,11 @@ var UI = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Map__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Map__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Dungeon__ = __webpack_require__(331);
+
 
 
 
@@ -33239,22 +46626,35 @@ var MainPanel = function (_Component) {
     var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (MainPanel.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(MainPanel)).call(this, props));
 
     _this.state = {
-      map: true
+      planet: props.store.getState().Planet,
+      player: props.store.getState().Player
     };
-
-    // props.store.subscribe(() => {
-    //   this.setState({
-    //     right: { body: this.props.store.getState().User.user_name }
-    //   });
-    // });
     return _this;
   }
 
   __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(MainPanel, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      // Make sure to unsubscribe!
+      this.unsubscribe();
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.unsubscribe = this.props.store.subscribe(function () {
+        _this2.setState({
+          planet: _this2.props.store.getState().Planet,
+          player: _this2.props.store.getState().Player
+        });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
 
-      var render = this.state.map ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Map__["a" /* default */], { store: this.props.store }) : '';
+      var render = this.state.player.dungeon === false ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Map__["a" /* default */], { store: this.props.store }) : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Dungeon__["a" /* default */], { data: this.state.player.dungeon, store: this.props.store });
 
       return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
         'div',
@@ -33270,7 +46670,7 @@ var MainPanel = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (MainPanel);
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33286,12 +46686,12 @@ var MainPanel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Decoration__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Town__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Mob__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Decoration__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Town__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Mob__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Config__ = __webpack_require__(2);
 
 
 
@@ -33325,9 +46725,9 @@ var Map = function (_Component) {
 
     _this.unsubscribe = props.store.subscribe(function () {
       _this.setState({
-        planet: _this.props.store.getState().Planet,
-        player: _this.props.store.getState().Player,
-        mobs: _this.props.store.getState().Mobs,
+        planet: props.store.getState().Planet,
+        player: props.store.getState().Player,
+        mobs: props.store.getState().Mobs,
         town: _.findWhere(props.store.getState().Planet.towns, { x: props.store.getState().Player.x, y: props.store.getState().Player.y })
       });
     });
@@ -33365,9 +46765,38 @@ var Map = function (_Component) {
       return zone;
     }
   }, {
+    key: 'enterDungeon',
+    value: function enterDungeon(dungeon) {
+      this.props.store.dispatch({
+        type: __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.PLAYER.DUNGEON,
+        payload: {
+          dungeon: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, dungeon, { step: 1 })
+        }
+      });
+    }
+  }, {
+    key: 'getDungeon',
+    value: function getDungeon() {
+      var _this2 = this;
+
+      var dungeon = _.findWhere(this.state.planet.dungeons, { x: this.state.player.x, y: this.state.player.y });
+
+      if (dungeon) {
+        return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+          'a',
+          { href: '#', className: 'blood-red', onClick: function onClick() {
+              return _this2.enterDungeon(dungeon);
+            } },
+          dungeon.description
+        );
+      } else {
+        return '';
+      }
+    }
+  }, {
     key: 'getDecorations',
     value: function getDecorations(zone) {
-      var _this2 = this;
+      var _this3 = this;
 
       // Need to keep persistent data of objects/decorations in a Location Store
       if (!zone || !zone.decorations || zone.decorations.length === 0) {
@@ -33401,13 +46830,13 @@ var Map = function (_Component) {
               var found = $.extend(true, {
                 key: __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].randomKey('decoration'),
                 type: 'decoration',
-                x: _this2.state.player.x,
-                y: _this2.state.player.y
+                x: _this3.state.player.x,
+                y: _this3.state.player.y
               }, _.last(potentialDecorations));
 
               decorations.push(found);
 
-              _this2.state.planet.locations.push(found);
+              _this3.state.planet.locations.push(found);
             }
           };
 
@@ -33432,7 +46861,7 @@ var Map = function (_Component) {
   }, {
     key: 'getDecorationResults',
     value: function getDecorationResults(decorations) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (decorations.length > 0) {
         return _.map(decorations, function (decoration) {
@@ -33440,11 +46869,11 @@ var Map = function (_Component) {
           switch (decoration.type) {
             case 'decoration':
               if (decoration.key) {
-                return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Decoration__["a" /* default */], { key: decoration.key, data: decoration, store: _this3.props.store });
+                return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Decoration__["a" /* default */], { key: decoration.key, data: decoration, store: _this4.props.store });
               }
               break;
             case 'town':
-              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Town__["a" /* default */], { key: _this3.keys.town, data: decoration, store: _this3.props.store, className: 'top5' });
+              return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Town__["a" /* default */], { key: _this4.keys.town, data: decoration, store: _this4.props.store, className: 'top5' });
               break;
           }
         });
@@ -33455,22 +46884,22 @@ var Map = function (_Component) {
   }, {
     key: 'getTownMobs',
     value: function getTownMobs() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (!!this.state.town.mobs && this.state.town.mobs.length > 0) {
         var mobs = [];
         _.each(this.state.town.mobs, function (mob) {
           // Extends object by value, not reference
           var found = $.extend(true, {
-            key: 'town_mob_' + _this4.state.town.x + '_' + _this4.state.town.y + '_' + mob.id,
+            key: 'town_mob_' + _this5.state.town.x + '_' + _this5.state.town.y + '_' + mob.id,
             type: 'mob',
-            x: _this4.state.town.x,
-            y: _this4.state.town.y
+            x: _this5.state.town.x,
+            y: _this5.state.town.y
           }, mob);
 
-          if (!_.findWhere(_this4.state.planet.locations, { type: 'mob', key: 'town_mob_' + _this4.state.town.x + '_' + _this4.state.town.y + '_' + mob.id, x: _this4.state.town.x, y: _this4.state.town.y })) {
-            _this4.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
-            __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this4.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
+          if (!_.findWhere(_this5.state.planet.locations, { type: 'mob', key: 'town_mob_' + _this5.state.town.x + '_' + _this5.state.town.y + '_' + mob.id, x: _this5.state.town.x, y: _this5.state.town.y })) {
+            _this5.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
+            __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this5.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
           }
 
           mobs.push(found);
@@ -33484,7 +46913,7 @@ var Map = function (_Component) {
   }, {
     key: 'getMobs',
     value: function getMobs(zone) {
-      var _this5 = this;
+      var _this6 = this;
 
       if (!zone || !zone.mobs || zone.mobs.length === 0) {
         return [];
@@ -33521,15 +46950,15 @@ var Map = function (_Component) {
             var found = $.extend(true, {
               key: __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].randomKey('mob'),
               type: 'mob',
-              x: _this5.state.player.x,
-              y: _this5.state.player.y
+              x: _this6.state.player.x,
+              y: _this6.state.player.y
             }, _.sample(potentialMobs)); // _.sample() returns random array element
 
-            _this5.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
+            _this6.state.planet.locations.push({ x: found.x, y: found.y, type: found.type, key: found.key });
 
             mobs.push(found);
 
-            __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this5.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
+            __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].dispatch(_this6.props.store, __WEBPACK_IMPORTED_MODULE_10__Config__["a" /* default */].ACTIONS.MOBS.CREATE, { mob: found });
           }
         };
 
@@ -33541,8 +46970,8 @@ var Map = function (_Component) {
         // go through locations and get state.mobs by key
         mobs = _.map(locations, function (loc) {
 
-          if (loc.key && _this5.state.mobs.list[loc.key]) {
-            return _this5.state.mobs.list[loc.key];
+          if (loc.key && _this6.state.mobs.list[loc.key]) {
+            return _this6.state.mobs.list[loc.key];
           } else {
             return loc;
           }
@@ -33561,13 +46990,13 @@ var Map = function (_Component) {
   }, {
     key: 'getMobResults',
     value: function getMobResults(mobs) {
-      var _this6 = this;
+      var _this7 = this;
 
       if (mobs.length > 0) {
         return _.map(mobs, function (mob) {
           // type isn't set if the room contains an empty location record.
           if (mob.type === 'mob' && mob.key) {
-            return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__Mob__["a" /* default */], { key: mob.key, data: mob, store: _this6.props.store });
+            return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__Mob__["a" /* default */], { key: mob.key, data: mob, store: _this7.props.store });
           }
         });
       } else {
@@ -33580,6 +47009,7 @@ var Map = function (_Component) {
       var planet = this.state.planet;
       var zone = this.getZone();
       var decorations = this.getDecorations(zone);
+      var dungeon = this.getDungeon();
       var mobs = !this.state.town ? this.getMobs(zone) : this.getTownMobs();
       var town_name = !!this.state.town ? ' - ' + this.state.town.name : '';
       return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
@@ -33590,7 +47020,7 @@ var Map = function (_Component) {
           { className: 'row' },
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'h5',
-            { className: 'col-lg-4 col-md-4 col-sm-4 col-xs-4 bold' },
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6 bold' },
             planet.name,
             town_name
           )
@@ -33602,6 +47032,15 @@ var Map = function (_Component) {
             'div',
             { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
             zone.description
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+          'div',
+          { className: 'row bottom5' },
+          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            dungeon
           )
         ),
         __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
@@ -33632,7 +47071,7 @@ var Map = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Map);
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33646,9 +47085,9 @@ var Map = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -33721,7 +47160,7 @@ var Decoration = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Decoration);
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33735,9 +47174,9 @@ var Decoration = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
 
 
 
@@ -33783,245 +47222,6 @@ var Town = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Town);
 
 /***/ }),
-/* 330 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
-
-
-
-
-
-
-
-
-
-var Mob = function (_Component) {
-  __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(Mob, _Component);
-
-  function Mob(props) {
-    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Mob);
-
-    var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Mob.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Mob)).call(this, props));
-
-    _this.keys = {
-      actions: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions'),
-      attack: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions'),
-      lore: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].randomKey('mob_actions')
-    };
-
-    _this.state = {
-      mob: _this.props.data,
-      player: _this.props.store.getState().Player,
-      showAction: false,
-      showCombat: _this.props.store.getState().Mobs.showCombat,
-      buttons: {
-        anatomy: true,
-        animal_lore: true,
-        attack: true
-      }
-    };
-
-    _this.unsubscribe = props.store.subscribe(function () {
-      if (_this.mounted) {
-        var mob = _this.props.store.getState().Mobs.list[_this.props.data.key] || _this.props.data;
-        _this.setState({
-          mob: mob,
-          player: _this.props.store.getState().Player,
-          showAction: _this.state.showAction,
-          showCombat: _this.props.store.getState().Mobs.showCombat
-        });
-      }
-    });
-    return _this;
-  }
-
-  __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Mob, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      // Make sure to unsubscribe!
-      this.unsubscribe();
-      this.mounted = false;
-      clearInterval(this.check_aggro);
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      this.mounted = true;
-      this.check_aggro = this.check_aggro || setInterval(function () {
-        _this2.checkAggro();
-      }, 1000);
-      this.checkAggro();
-    }
-  }, {
-    key: 'checkAggro',
-    value: function checkAggro() {
-      if (this.state.mob.aggro && !this.props.store.getState().App.modal.open && _.isUndefined(this.props.store.getState().Mobs.combat) && _.findIndex(this.props.store.getState().Mobs.recent_combat, { key: this.state.mob.key }) < 0 && this.state.mob.stamina > 0 && this.state.player.status.dead !== true) {
-        // Aggro mob attack!
-        this.toggleCombat();
-      }
-    }
-  }, {
-    key: 'toggleMobAction',
-    value: function toggleMobAction() {
-      var action = !this.state.showAction;
-      this.setState({ showAction: action });
-    }
-  }, {
-    key: 'toggleCombat',
-    value: function toggleCombat() {
-      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.MOBS.SHOW_ACTION, payload: {} });
-      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.MOBS.IN_COMBAT, payload: { data: this.state.mob } });
-      __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].modal(this.props.store, '', '', 'combat');
-    }
-  }, {
-    key: 'animalLore',
-    value: function animalLore(mob) {
-      var _this3 = this;
-
-      var buttons = this.state.buttons;
-      buttons.animal_lore = false;
-      this.setState({ buttons: buttons });
-
-      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.ANIMAL_LORE, payload: { mob: mob } });
-
-      setTimeout(function () {
-        buttons.animal_lore = true;
-        _this3.setState({ buttons: buttons });
-      }, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].SETTINGS.SKILL_TIMEOUT * 1000);
-    }
-  }, {
-    key: 'anatomy',
-    value: function anatomy(mob) {
-      var _this4 = this;
-
-      var buttons = this.state.buttons;
-      buttons.anatomy = false;
-      this.setState({ buttons: buttons });
-
-      this.props.store.dispatch({ type: __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].ACTIONS.SKILLS.ANATOMY, payload: { mob: mob } });
-      setTimeout(function () {
-        buttons.anatomy = true;
-        _this4.setState({ buttons: buttons });
-      }, __WEBPACK_IMPORTED_MODULE_6__Config__["a" /* default */].SETTINGS.SKILL_TIMEOUT * 1000);
-    }
-  }, {
-    key: 'getMobActions',
-    value: function getMobActions() {
-      var _this5 = this;
-
-      if (!this.state.showAction) {
-        return '';
-      }
-
-      var buttons = [];
-      var buttonStyle = {};
-
-      buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
-        disabled: !this.state.buttons.attack && !this.state.player.status.dead && this.state.mob.attackable,
-        btn: true,
-        'btn-default': true,
-        top5: true
-      });
-      buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'button',
-        { key: this.keys.attack, disabled: !this.state.buttons.attack, type: 'button', className: buttonStyle, onClick: function onClick(e) {
-            return _this5.toggleCombat();
-          } },
-        'Attack'
-      ));
-
-      if (this.state.mob.mob_type !== 'humanoid') {
-        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
-          disabled: !this.state.buttons.animal_lore && !this.state.player.status.dead,
-          btn: true,
-          'btn-default': true,
-          top5: true
-        });
-        buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          'button',
-          { key: this.keys.lore, disabled: !this.state.buttons.animal_lore, type: 'button', className: buttonStyle, onClick: function onClick(e) {
-              return _this5.animalLore(_this5.state.mob);
-            } },
-          'Animal Lore'
-        ));
-      } else {
-        buttonStyle = __WEBPACK_IMPORTED_MODULE_7_classnames__({
-          disabled: !this.state.buttons.anatomy && !this.state.player.status.dead,
-          btn: true,
-          'btn-default': true,
-          top5: true
-        });
-        buttons.push(__WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          'button',
-          { key: this.keys.anatomy, disabled: !this.state.buttons.anatomy, type: 'button', className: buttonStyle, onClick: function onClick(e) {
-              return _this5.anatomy(_this5.state.mob);
-            } },
-          'Anatomy'
-        ));
-      }
-
-      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'div',
-        { className: 'row' },
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          'div',
-          { className: 'col-lg-10 col-md-10 col-sm-10' },
-          buttons
-        )
-      );
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this6 = this;
-
-      var mob_classes = __WEBPACK_IMPORTED_MODULE_7_classnames__({
-        red: this.state.mob.aggro
-      });
-
-      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-        'div',
-        { className: 'row' },
-        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-          'div',
-          { className: 'col-lg-10 col-md-10 col-sm-10 col-xs-12' },
-          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-            'a',
-            { href: '#', onClick: function onClick(e) {
-                return _this6.toggleMobAction();
-              }, className: mob_classes },
-            this.state.mob.description
-          ),
-          this.getMobActions()
-        )
-      );
-    }
-  }]);
-
-  return Mob;
-}(__WEBPACK_IMPORTED_MODULE_5_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (Mob);
-
-/***/ }),
 /* 331 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -34036,10 +47236,359 @@ var Mob = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__PlayerStatus__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__PlayerControls__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Mob__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_MobData__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__TreasureChest__ = __webpack_require__(333);
+
+
+
+
+
+
+
+
+
+
+
+var Dungeon = function (_Component) {
+  __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(Dungeon, _Component);
+
+  function Dungeon(props) {
+    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Dungeon);
+
+    var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Dungeon.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Dungeon)).call(this, props));
+
+    _this.state = {
+      dungeon: props.store.getState().Player.dungeon,
+      combat: props.store.getState().Mobs.combat,
+      player: props.store.getState().Player,
+      planet: props.store.getState().Planet,
+      mobs: [],
+      treasure: []
+    };
+    return _this;
+  }
+
+  __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Dungeon, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      // Make sure to unsubscribe!
+      this.mounted = false;
+      this.unsubscribe();
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.mounted = true;
+      this.unsubscribe = this.props.store.subscribe(function () {
+        if (_this2.mounted) {
+          _this2.checkForMobs();
+          _this2.checkForTreasure();
+          _this2.setState({
+            dungeon: _this2.props.store.getState().Player.dungeon,
+            combat: _this2.props.store.getState().Mobs.combat
+          });
+        }
+      });
+    }
+  }, {
+    key: 'calcLevel',
+    value: function calcLevel(step, maxDiff, maxDepth) {
+      return Math.round(step * maxDiff / maxDepth);
+    }
+  }, {
+    key: 'getMobs',
+    value: function getMobs() {
+      var _this3 = this;
+
+      var mobs = _.where(this.state.mobs, { dungeon: this.state.dungeon.step });
+      return _.filter(mobs, function (mob) {
+        return mob.hp > 0;
+      }).map(function (mob) {
+        return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Mob__["a" /* default */], { store: _this3.props.store, data: mob, key: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].randomKey('dungeonMob') });
+      });
+    }
+  }, {
+    key: 'checkForMobs',
+    value: function checkForMobs() {
+      // Checks if there are any mobs in current location.
+      var mobs = _.where(this.state.mobs, { dungeon: this.state.dungeon.step });
+      var mobList = this.state.mobs;
+
+      if (!mobs || mobs.length === 0) {
+        mobs = [];
+
+        var chance = _.random(0, 100);
+        var level = this.calcLevel(this.state.dungeon.step, this.props.data.difficultyMax, this.props.data.depth);
+        level = level < this.props.data.difficultyMin ? this.props.data.difficultyMin : level;
+
+        if (chance <= this.props.data.mobChance) {
+          var potentialMobs = _.where(__WEBPACK_IMPORTED_MODULE_8__data_MobData__["a" /* MobData */], { difficulty: level, aggro: true });
+          for (var i = 0; i < _.random(0, this.props.data.mobMax); i++) {
+            var mob = __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].clone(_.sample(potentialMobs));
+            mob.dungeon = this.state.dungeon.step;
+            mob.key = __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].randomKey('dungeonMob');
+            mobList.push(mob);
+            mobs.push(mob);
+
+            this.props.store.dispatch({
+              type: __WEBPACK_IMPORTED_MODULE_7__Config__["a" /* default */].ACTIONS.MOBS.CREATE,
+              payload: { mob: mob }
+            });
+
+            this.setState({
+              mobs: mobList
+            });
+          }
+        } else {
+          mobList.push({ dungeon: this.state.dungeon.step, hp: 0 });
+
+          this.setState({
+            mobs: mobList
+          });
+        }
+      } else {
+        // Update mob list from current combat state
+        if (!this.state.combat) {
+          return;
+        }
+
+        var mobIndex = _.findIndex(this.state.mobs, { key: this.state.combat.key });
+        if (mobIndex !== -1) {
+          mobList[mobIndex] = this.state.combat;
+          this.setState({
+            mobs: mobList
+          });
+        }
+      }
+    }
+  }, {
+    key: 'checkForTreasure',
+    value: function checkForTreasure() {
+      var chance = _.random(0, 100);
+      var treasure = _.findWhere(this.state.treasure, { dungeon: this.state.dungeon.step });
+      var treasureList = this.state.treasure;
+      if (!treasure) {
+        if (chance <= this.props.data.treasureChance) {
+          treasureList.push({ dungeon: this.state.dungeon.step, empty: false });
+        } else {
+          treasureList.push({ dungeon: this.state.dungeon.step, empty: true });
+        }
+
+        this.setState({
+          treasure: treasureList
+        });
+      }
+      console.log(this.state.treasure);
+    }
+  }, {
+    key: 'getTreasureChest',
+    value: function getTreasureChest() {
+      var chest = '';
+      var treasure = _.findWhere(this.state.treasure, { dungeon: this.state.dungeon.step, empty: false });
+
+      if (treasure) {
+        chest = __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__TreasureChest__["a" /* default */], { store: this.props.store, level: this.calcLevel(this.state.dungeon.step, this.props.data.treasureMax, this.props.data.depth), data: treasure });
+      }
+
+      return chest;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var treasure = this.getTreasureChest();
+      var mobs = this.getMobs();
+
+      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'h5',
+            { className: 'col-lg-6 col-md-6 col-sm-6 col-xs-6 bold' },
+            this.state.planet.name,
+            ' - ',
+            this.props.data.name,
+            ' (',
+            this.state.dungeon.step,
+            '/',
+            this.props.data.depth,
+            ')'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row bottom5' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            this.props.data.description
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            treasure
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+          'div',
+          { className: 'row' },
+          __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            'div',
+            { className: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' },
+            mobs
+          )
+        )
+      );
+    }
+  }]);
+
+  return Dungeon;
+}(__WEBPACK_IMPORTED_MODULE_5_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (Dungeon);
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _defineProperty = __webpack_require__(138);
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (obj, key, value) {
+  if (key in obj) {
+    (0, _defineProperty2.default)(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+/***/ }),
+/* 333 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
+
+
+
+
+
+
+
+
+var Dungeon = function (_Component) {
+  __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(Dungeon, _Component);
+
+  function Dungeon(props) {
+    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Dungeon);
+
+    var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Dungeon.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(Dungeon)).call(this, props));
+
+    _this.state = {
+      locked: true,
+      data: props.data
+    };
+    return _this;
+  }
+
+  __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Dungeon, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {}
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'clickTreasure',
+    value: function clickTreasure() {
+      if (this.state.locked) {
+        console.log('You attempt to unlock the chest.');
+      } else {
+        console.log('You open the chest.');
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var locked = this.state.locked ? 'locked' : 'unlocked';
+      return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+        'a',
+        { href: '#', className: 'green', onClick: function onClick() {
+            _this2.clickTreasure();
+          } },
+        '(',
+        this.props.level,
+        ')A small, ',
+        locked,
+        ' treasure chest is sitting here.'
+      );
+    }
+  }]);
+
+  return Dungeon;
+}(__WEBPACK_IMPORTED_MODULE_5_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (Dungeon);
+
+/***/ }),
+/* 334 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__PlayerStatus__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__PlayerControls__ = __webpack_require__(147);
 
 
 
@@ -34084,7 +47633,7 @@ var RightPanel = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (RightPanel);
 
 /***/ }),
-/* 332 */
+/* 335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34098,10 +47647,10 @@ var RightPanel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__MessageList__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__MessageList__ = __webpack_require__(145);
 
 
 
@@ -34140,23 +47689,23 @@ var BottomPanel = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (BottomPanel);
 
 /***/ }),
-/* 333 */
+/* 336 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__User__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Messages__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Planet__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Inventory__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Skills__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Mobs__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Effects__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Queue__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Bank__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__User__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Player__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Messages__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Planet__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Inventory__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Skills__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Mobs__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Effects__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Queue__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Bank__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Config__ = __webpack_require__(2);
 
 
 
@@ -34255,13 +47804,13 @@ var Reducers = function Reducers() {
 /* harmony default export */ __webpack_exports__["a"] = (Reducers);
 
 /***/ }),
-/* 334 */
+/* 337 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(2);
 
 
 var USER = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.USER;
@@ -34292,13 +47841,13 @@ var User = function User() {
 /* harmony default export */ __webpack_exports__["a"] = (User);
 
 /***/ }),
-/* 335 */
+/* 338 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(2);
 
 
 var PLAYER = __WEBPACK_IMPORTED_MODULE_1__components_Config__["a" /* default */].ACTIONS.PLAYER;
@@ -34328,6 +47877,7 @@ var Player = function Player() {
     credits: 15,
     encumbrance: 0,
     move: 1,
+    dungeon: false,
     status: {
       inn: false,
       meditate: false,
@@ -34533,6 +48083,21 @@ var Player = function Player() {
       state.Player.stamina = state.Player.status.run ? update_stamina(-1) : state.Player.stamina;
       state.Player.status.run = state.Player.stamina === 0 ? false : state.Player.status.run;
       break;
+    case PLAYER.UP:
+      if (state.Player.dungeon !== false && state.Player.dungeon.step > 0) {
+        // Need to check for exiting at 0.
+        state.Player.dungeon.step = move(state.Player.dungeon.step, -increment(), state.Player.dungeon.depth);
+        state.Player.stamina = state.Player.status.run ? update_stamina(-1) : state.Player.stamina;
+        state.Player.status.run = state.Player.stamina === 0 ? false : state.Player.status.run;
+      }
+      break;
+    case PLAYER.DOWN:
+      if (state.Player.dungeon !== false && state.Player.dungeon.step < state.Player.dungeon.depth) {
+        state.Player.dungeon.step = move(state.Player.dungeon.step, increment(), state.Player.dungeon.depth);
+        state.Player.stamina = state.Player.status.run ? update_stamina(-1) : state.Player.stamina;
+        state.Player.status.run = state.Player.stamina === 0 ? false : state.Player.status.run;
+      }
+      break;
     case PLAYER.TICK:
       state.Player.score.timer++;
 
@@ -34556,6 +48121,9 @@ var Player = function Player() {
         state.Player.stamina = update_stamina(1);
       }
       break;
+    case PLAYER.DUNGEON:
+      state.Player.dungeon = payload.dungeon;
+      break;
     case PLAYER.COMBAT.RUN:
       state.Combat.actions.run = payload.run;
       break;
@@ -34575,11 +48143,11 @@ var Player = function Player() {
 /* harmony default export */ __webpack_exports__["a"] = (Player);
 
 /***/ }),
-/* 336 */
+/* 339 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(2);
 
 var MESSAGES = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.MESSAGES;
 
@@ -34644,20 +48212,19 @@ var Messages = function Messages() {
 /* harmony default export */ __webpack_exports__["a"] = (Messages);
 
 /***/ }),
-/* 337 */
+/* 340 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_PlanetData__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_DecorationData__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_MobData__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_MobData___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__data_MobData__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__data_ZoneData__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__data_TownData__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_StoreData__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_PlanetData__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_DecorationData__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_MobData__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__data_ZoneData__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__data_TownData__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_StoreData__ = __webpack_require__(345);
 
 
 
@@ -34695,9 +48262,9 @@ var Planet = function Planet() {
 
         if (zone.difficulty && zone.difficultyChance) {
           if (zone.difficulty == -1) {
-            zone.difficulty = _.random(0, _.max(_.pluck(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["MobData"], 'difficulty')));
+            zone.difficulty = _.random(0, _.max(_.pluck(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], 'difficulty')));
           }
-          _.each(_.where(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["MobData"], { difficulty: zone.difficulty }), function (mob) {
+          _.each(_.where(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], { difficulty: zone.difficulty }), function (mob) {
             mob.chance = zone.difficultyChance;
             zone.mobs.push(_.extend(mob));
           });
@@ -34706,7 +48273,7 @@ var Planet = function Planet() {
         if (zone.mobs) {
           _.each(zone.mobs, function (mob) {
             if (!mob.name) {
-              _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["MobData"], { id: mob.id }));
+              _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], { id: mob.id }));
             }
           });
         }
@@ -34725,7 +48292,7 @@ var Planet = function Planet() {
 
         if (town.mobs) {
           _.each(town.mobs, function (mob) {
-            _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["MobData"], { id: mob.id }));
+            _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], { id: mob.id }));
           });
         }
       });
@@ -34738,10 +48305,10 @@ var Planet = function Planet() {
 
       if (state.Planet.defaultZone.difficulty && state.Planet.defaultZone.difficultyChance) {
         if (state.Planet.defaultZone.difficulty == -1) {
-          state.Planet.defaultZone.difficulty = _.random(0, _.max(_.pluck(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["MobData"], 'difficulty')));
+          state.Planet.defaultZone.difficulty = _.random(0, _.max(_.pluck(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], 'difficulty')));
         }
 
-        _.each(_.where(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["MobData"], { difficulty: state.Planet.defaultZone.difficulty }), function (mob) {
+        _.each(_.where(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], { difficulty: state.Planet.defaultZone.difficulty }), function (mob) {
           mob.chance = state.Planet.defaultZone.difficultyChance;
           state.Planet.defaultZone.mobs.push(_.extend(mob));
         });
@@ -34750,7 +48317,7 @@ var Planet = function Planet() {
       if (state.Planet.defaultZone.mobs) {
         _.each(state.Planet.defaultZone.mobs, function (mob) {
           if (!mob.name) {
-            _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["MobData"], { id: mob.id }));
+            _.extend(mob, _.findWhere(__WEBPACK_IMPORTED_MODULE_4__data_MobData__["a" /* MobData */], { id: mob.id }));
           }
         });
       }
@@ -34781,7 +48348,7 @@ var Planet = function Planet() {
 /* harmony default export */ __webpack_exports__["a"] = (Planet);
 
 /***/ }),
-/* 338 */
+/* 341 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34805,6 +48372,20 @@ var PlanetData = [{
   width: 2000,
   planetX: 0,
   planetY: 0,
+  dungeons: [{
+    difficultyMin: 0,
+    difficultyMax: 2,
+    depth: 150,
+    mobChance: 15,
+    mobMax: 2,
+    treasureMax: 1,
+    treasureChance: 1,
+    x: 666,
+    y: 666,
+    name: 'Covetous',
+    description: 'A modest fallen tower in a bleak mountain range marks the entrance to the dungeon of Covetous.'
+  }],
+
   towns: [{
     id: 1,
     x: 0,
@@ -34847,13 +48428,14 @@ var PlanetData = [{
 }];
 
 /***/ }),
-/* 339 */
+/* 342 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DecorationData; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(2);
 
+// decoration.inventory: Means that a successful skill check will place this item in inventory
 
 var DecorationData = [{
   id: 1,
@@ -34881,7 +48463,7 @@ var DecorationData = [{
     maxMessage: 'There is no more wood to be harvested.',
     result: {
       message: 'You pick up some logs.',
-      inventory: true, // Means that a successful skill check will place this item in inventory
+      inventory: true,
       item: 1
     }
   }
@@ -34948,7 +48530,7 @@ var DecorationData = [{
 }];
 
 /***/ }),
-/* 340 */
+/* 343 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34966,8 +48548,6 @@ var ZoneData = [{
   id: 1,
   name: 'Plains Zone 1',
   description: 'Rolling fields stretch as far as the eye can see.',
-  difficulty: 2,
-  difficultyChance: 50,
   mobs: [{
     id: 1,
     chance: 20
@@ -35561,13 +49141,14 @@ var ZoneData = [{
     id: 4,
     chance: 10
   }],
-  maxDecorations: 3,
-  treasure: []
+  maxDecorations: 3
 }, {
   id: 5,
   name: 'Desert Zone 1',
   description: 'Desert as far as the eye can see.',
   mobs: [],
+  difficulty: 1,
+  difficultyChance: 20,
   decorations: [{
     id: 4,
     chance: 10
@@ -35577,7 +49158,7 @@ var ZoneData = [{
 }];
 
 /***/ }),
-/* 341 */
+/* 344 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35586,18 +49167,44 @@ var TownData = [{
   id: 1,
   name: 'Yew',
   description: 'The small town of Yew lies here. Barely a town, it seems more like a large outpost. A handful of people mill around the dirt streets.',
-  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 5 }, { id: 4 }],
-  mobs: [{ id: 7 }]
+  stores: [{
+    id: 7
+  }, {
+    id: 1
+  }, {
+    id: 2
+  }, {
+    id: 5
+  }, {
+    id: 4
+  }],
+  mobs: [{
+    id: 7
+  }]
 }, {
   id: 2,
   name: 'Skara Brae',
   description: 'The city of Skara Brae seems to pop out of the woods. People cart goods back and forth along the cobblestone streets.',
-  stores: [{ id: 7 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 6 }],
-  mobs: [{ id: 7 }]
+  stores: [{
+    id: 7
+  }, {
+    id: 1
+  }, {
+    id: 2
+  }, {
+    id: 3
+  }, {
+    id: 4
+  }, {
+    id: 6
+  }],
+  mobs: [{
+    id: 7
+  }]
 }];
 
 /***/ }),
-/* 342 */
+/* 345 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35663,13 +49270,13 @@ var StoreData = [{
 }];
 
 /***/ }),
-/* 343 */
+/* 346 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(22);
 
 
@@ -35867,14 +49474,14 @@ var Inventory = function Inventory() {
 /* harmony default export */ __webpack_exports__["a"] = (Inventory);
 
 /***/ }),
-/* 344 */
+/* 347 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_SkillData__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_SkillData__ = __webpack_require__(348);
 
 
 
@@ -36170,7 +49777,7 @@ var Skills = function Skills() {
 /* harmony default export */ __webpack_exports__["a"] = (Skills);
 
 /***/ }),
-/* 345 */
+/* 348 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36335,6 +49942,16 @@ var SkillData = {
     primary: 'intelligence',
     secondary: 'strength',
     title: 'Naturalist'
+  },
+  lockpicking: {
+    id: 17,
+    name: 'Lockpicking',
+    description: '',
+    current: 0.0,
+    modifier: 0,
+    primary: 'dexterity',
+    secondary: 'intelligence',
+    title: 'Infiltrator'
   }
 };
 
@@ -36469,7 +50086,7 @@ Veterinary  Veterinarian
 */
 
 /***/ }),
-/* 346 */
+/* 349 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36477,7 +50094,7 @@ Veterinary  Veterinarian
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Config__ = __webpack_require__(2);
 
 
 
@@ -36608,11 +50225,11 @@ var Mobs = function Mobs() {
 /* harmony default export */ __webpack_exports__["a"] = (Mobs);
 
 /***/ }),
-/* 347 */
+/* 350 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(2);
 
 
 // Not a true reducer. Does not return a state object
@@ -36739,11 +50356,11 @@ Example: ((17 - 1) * (100.0 / (100 + 20))) = 13 ticks.
 */
 
 /***/ }),
-/* 348 */
+/* 351 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Config__ = __webpack_require__(2);
 
 var QUEUE = __WEBPACK_IMPORTED_MODULE_0__components_Config__["a" /* default */].ACTIONS.QUEUE;
 
@@ -36782,13 +50399,13 @@ var Queue = function Queue() {
 /* harmony default export */ __webpack_exports__["a"] = (Queue);
 
 /***/ }),
-/* 349 */
+/* 352 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Config__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_ItemData__ = __webpack_require__(22);
 
 
@@ -36922,17 +50539,17 @@ var Bank = function Bank() {
 /* harmony default export */ __webpack_exports__["a"] = (Bank);
 
 /***/ }),
-/* 350 */
+/* 353 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent__ = __webpack_require__(356);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Config__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Config__ = __webpack_require__(2);
 
 
 
@@ -37011,17 +50628,6 @@ var AndromedaService = function AndromedaService(store) {
           // Fire and forget request
           if (__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].ENV === 'prod') {
             __WEBPACK_IMPORTED_MODULE_2_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.SKILLS + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
-              if (err) {
-                console.error(err);
-                return;
-              }
-            });
-          }
-          break;
-        case ACTIONS.MOBS.SAVE:
-          // Fire and forget request
-          if (__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].ENV === 'prod') {
-            __WEBPACK_IMPORTED_MODULE_2_superagent___default.a.post(__WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.API + __WEBPACK_IMPORTED_MODULE_3__components_Config__["a" /* default */].URLS.MOBS + '/' + payload.player_id).send({ data: __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_json_stringify___default()(payload) }).set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').end(function (err, res) {
               if (err) {
                 console.error(err);
                 return;
@@ -37138,13 +50744,13 @@ var AndromedaService = function AndromedaService(store) {
 /* harmony default export */ __webpack_exports__["a"] = (AndromedaService);
 
 /***/ }),
-/* 351 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(352), __esModule: true };
+module.exports = { "default": __webpack_require__(355), __esModule: true };
 
 /***/ }),
-/* 352 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var core = __webpack_require__(20);
@@ -37155,7 +50761,7 @@ module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
 
 
 /***/ }),
-/* 353 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -37172,11 +50778,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(354);
-var RequestBase = __webpack_require__(355);
-var isObject = __webpack_require__(146);
-var ResponseBase = __webpack_require__(356);
-var Agent = __webpack_require__(358);
+var Emitter = __webpack_require__(357);
+var RequestBase = __webpack_require__(358);
+var isObject = __webpack_require__(148);
+var ResponseBase = __webpack_require__(359);
+var Agent = __webpack_require__(361);
 
 /**
  * Noop.
@@ -38081,7 +51687,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 354 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -38250,7 +51856,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 355 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38259,7 +51865,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(146);
+var isObject = __webpack_require__(148);
 
 /**
  * Expose `RequestBase`.
@@ -38951,7 +52557,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 356 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38961,7 +52567,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(357);
+var utils = __webpack_require__(360);
 
 /**
  * Expose `ResponseBase`.
@@ -39092,7 +52698,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 357 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39170,7 +52776,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 358 */
+/* 361 */
 /***/ (function(module, exports) {
 
 function Agent() {
