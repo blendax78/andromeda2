@@ -81,5 +81,5 @@ export const StoreData = [
     craft: [],
     buy: [],
     type: 'bank'
-  },
+  }
 ];

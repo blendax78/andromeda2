@@ -806,8 +806,7 @@ export const ZoneData = [
         chance: 10
       }
     ],
-    maxDecorations: 3,
-    treasure: []
+    maxDecorations: 3
   },
   {
     id: 5,
