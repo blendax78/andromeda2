@@ -100,7 +100,7 @@ class PlayerControls extends Component {
       break;
       default:
         // handles UP/DOWN
-        if (this.state.player.dungeon.step === 0 && dir === Config.ACTIONS.PLAYER.UP) {
+        if (this.state.player.dungeon.step === 1 && dir === Config.ACTIONS.PLAYER.UP) {
           // Leave dungeon
           this.props.store.dispatch({
             type: Config.ACTIONS.PLAYER.DUNGEON,

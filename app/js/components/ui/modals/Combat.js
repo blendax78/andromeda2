@@ -381,6 +381,7 @@ class Combat extends Component {
         stamina: 1,
         x: 0,
         y: 0,
+        dungeon: false,
         status: status,
         score: score,
         credits: credits

@@ -9,6 +9,7 @@ class Dungeon extends Component {
     super(props);
 
     this.state = {
+      dungeon: this.props.store.getState().Player.dungeon,
       player: props.store.getState().Player,
       planet: props.store.getState().Planet,
       mobs: [],
@@ -26,8 +27,9 @@ class Dungeon extends Component {
     this.mounted = true;
     this.unsubscribe = this.props.store.subscribe(() => {
       if (this.mounted) {
+        this.checkForMobs();
         this.setState({
-          player: this.props.store.getState().Player
+          dungeon: this.props.store.getState().Player.dungeon
         });
       }
     });
@@ -37,58 +39,62 @@ class Dungeon extends Component {
     return Math.round((step * maxDiff) / maxDepth);
   }
 
-// move getmobs to player state update & remove settimeout calls
   getMobs() {
-    var mobs = _.where(this.state.mobs, { dungeon: this.state.player.dungeon.step });
-    // console.log(42, mobs);
-      // mobs = _.filter(mobs, (mob) => {
-      //   return mob.hp && mob.hp > 0;
-      // });
+    let mobs = _.where(this.state.mobs, { dungeon: this.state.dungeon.step });
+    return _.filter(mobs, (mob) => {
+      return mob.hp > 0;
+    }).map((mob) => {
+      return <Mob store={this.props.store} data={mob} key={Config.randomKey('dungeonMob')} />
+    });
+  }
+
+  checkForMobs() {
+    // Checks if there are any mobs in current location.
+    var mobs = _.where(this.state.mobs, { dungeon: this.state.dungeon.step });
+
     if (!mobs || mobs.length === 0) {
       mobs = [];
       var mobList = this.state.mobs;
       let chance = _.random(0, 100);
-      let level = this.calcLevel(this.state.player.dungeon.step, this.props.data.difficultyMax, this.props.data.depth);
+      let level = this.calcLevel(this.state.dungeon.step, this.props.data.difficultyMax, this.props.data.depth);
       level = (level < this.props.data.difficultyMin) ? this.props.data.difficultyMin : level;
 
       if (chance <= this.props.data.mobChance) {
-        console.log('chance', chance, this.props.data.mobChance);
-        let potentialMobs = _.where(MobData, { difficulty: level });
+        let potentialMobs = _.where(MobData, { difficulty: level, aggro: true });
         for (var i = 0; i < _.random(0, this.props.data.mobMax); i++) {
           let mob = Config.clone(_.sample(potentialMobs));
-          mob.dungeon = this.state.player.dungeon.step;
-          setTimeout(() => {
-            mobList.push(mob);
-            console.log(mobs);
-            mobs.push(mob);
-
-            this.setState({
-              mobs: mobList
-            })
-          }, 0);
-        }
-      } else {
-        setTimeout(() => {
-          mobList.push({ dungeon: this.state.player.dungeon.step, hp: 0 });
+          mob.dungeon = this.state.dungeon.step;
+          mob.key = Config.randomKey('dungeonMob');
+          mobList.push(mob);
+          mobs.push(mob);
+          console.log(mob);
+          this.props.store.dispatch({
+            type: Config.ACTIONS.MOBS.CREATE,
+            payload: {mob: mob}
+          });
 
           this.setState({
             mobs: mobList
           })
-        }, 0);
-      }
+        }
+      } else {
+        mobList.push({ dungeon: this.state.dungeon.step, hp: 0 });
 
+        this.setState({
+          mobs: mobList
+        });
+      }
     }
-    console.log('111',mobs);
-    return 'mob';
   }
 
   getTreasureChest() {
     let chance = _.random(0, 100);
+    let treasure = '';
 
     if (chance <= this.props.data.treasureChance) {
-      console.log('treasure!!');
+      treasure = <TreasureChest store={this.props.store} level={this.calcLevel(this.state.dungeon.step, this.props.data.treasureMax, this.props.data.depth)}/>;
     }
-    return <TreasureChest store={this.props.store} level={this.calcLevel(this.state.player.dungeon.step, this.props.data.treasureMax, this.props.data.depth)}/>
+    return treasure;
   }
 
   render() {
@@ -99,7 +105,7 @@ class Dungeon extends Component {
         <div>
           <div className="row">
             <h5 className="col-lg-6 col-md-6 col-sm-6 col-xs-6 bold">
-              {this.state.planet.name} - {this.props.data.name} ({this.state.player.dungeon.step}/{this.props.data.depth})
+              {this.state.planet.name} - {this.props.data.name} ({this.state.dungeon.step}/{this.props.data.depth})
             </h5>
           </div>
           <div className="row bottom5">
