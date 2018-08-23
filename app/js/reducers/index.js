@@ -22,7 +22,8 @@ const Reducers = (state = {}, action) => {
           body: false,
           open: false,
           locked: false
-        }
+        },
+        containers: []
       },
       User: User(state, action),
       Player: Player(state, action),
@@ -80,6 +81,18 @@ const Reducers = (state = {}, action) => {
         break;
         case APP.MODAL_UPDATE:
           state.App.modal = { ...state.App.modal, ...payload };
+        break;
+        case APP.CONTAINER_CREATE:
+          state.App.containers.push(payload.container);
+        break;
+        case APP.CONTAINER_UNLOCK:
+          let index = _.findIndex(state.App.containers, { key: payload.key });
+
+          if (index < 0) {
+            break;
+          } else {
+            state.App.containers[index].locked = false;
+          }
         break;
       }
     break;

@@ -125,6 +125,70 @@ const Skills = (state = {}, action) => {
 
   };
 
+  let checkLockpicking = (treasure) => {
+    // skill_needed represents the  minimum skill (40% chance)
+    let skill_needed = 100;
+
+    switch (treasure.level) {
+      case 0:
+        skill_needed = 0;
+      break;
+      case 1:
+        skill_needed = 5;
+      break;
+      case 2:
+        skill_needed = 45;
+      break;
+      case 3:
+        skill_needed = 65;
+      break;
+      case 4:
+        skill_needed = 75;
+      break;
+      case 5:
+        skill_needed = 99;
+      break;
+      case 6:
+        skill_needed = 100;
+      break;
+    }
+
+    let chest = _.findWhere(state.App.containers, { key: treasure.key });
+
+    if (chest) {
+      if (state.Skills.lockpicking.current + state.Skills.lockpicking.modifier < skill_needed) {
+        notifyWarning('You have no idea how to pick that lock.');
+        return false;
+      }
+
+      // Need to perform algebra to determine random max
+      // skill_needed/x = 2/5
+      // 2x = 5*skill_needed
+      // x = 5*skill_needed / 2
+      // x = skill_needed / 0.4
+      let random_max = Math.round(skill_needed / 0.4);
+      let random = _.random(1, random_max);
+      let chance = (random_max > 0) ? 
+        Math.round((state.Skills.lockpicking.current + state.Skills.lockpicking.modifier) / random_max) :
+        40 + ((state.Skills.lockpicking.current + state.Skills.lockpicking.modifier) * 2);
+
+      if ((random <= state.Skills.lockpicking.current + state.Skills.lockpicking.modifier) ||
+        (random_max === 0 && _.random(1,100) <= 40)) {
+        checkSkillGain('lockpicking', chance);
+        notifySuccess('You quickly pick the lock.')
+        state.Queue.add('actions', Config.ACTIONS.APP.CONTAINER_UNLOCK, { key: treasure.key });
+        return true;
+      } else {
+        notify('You are unable to pick the lock.')
+        if (state.Skills.lockpicking.current < 20.0) {
+          // If under 20, check on fail.
+          checkSkillGain('lockpicking');
+        }
+        return false;
+      }
+    }
+  }
+
   let checkObjectSuccess = (skill) => {
     // This function is called when an object is clicked and a skill is checked.
     let random = _.random(1, 100);
@@ -261,6 +325,9 @@ console.log('AL', mob);
     break;
     case SKILLS.MINING:
       checkObjectSuccess('mining');
+    break;
+    case SKILLS.LOCKPICKING:
+      checkLockpicking(payload.treasure);
     break;
     case SKILLS.HIDING:
       hide();

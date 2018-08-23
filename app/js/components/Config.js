@@ -8,7 +8,9 @@ const Config = {
     APP: {
       MODAL_SHOW: 'APP.MODAL.SHOW',
       MODAL_HIDE: 'APP.MODAL.HIDE',
-      MODAL_UPDATE: 'APP.MODAL.UPDATE'
+      MODAL_UPDATE: 'APP.MODAL.UPDATE',
+      CONTAINER_CREATE: 'APP.CONTAINER.CREATE',
+      CONTAINER_UNLOCK: 'APP.CONTAINER.UNLOCK'
     },
     COMBAT: {
       RUN: 'COMBAT.RUN',
@@ -98,6 +100,7 @@ const Config = {
       ANATOMY: 'SKILLS.ANATOMY',
       ANIMAL_LORE: 'SKILLS.ANIMAL_LORE',
       HIDING: 'SKILLS.HIDING',
+      LOCKPICKING: 'SKILLS.LOCKPICKING',
       LUMBERJACKING: 'SKILLS.LUMBERJACKING',
       MEDITATION: 'SKILLS.MEDITATION',
       MINING: 'SKILLS.MINING',
@@ -341,10 +344,20 @@ const Config = {
     store.getState().Skills.swordsmanship.current = 100;
     store.getState().Skills.tactics.current = 100;
     store.getState().Player.strength = 100;
+    store.getState().Player.dexterity = 100;
     store.getState().Player.credits = 1000;
     store.getState().Player.status.hp_regen = 5;
     store.getState().Player.status.mp_regen = 5;
     store.getState().Player.status.stamina_regen = 5;
+    store.getState().Player.x = 666;
+
+    return {
+      goto: function(x,y) {
+        store.getState().Player.x = x;
+        store.getState().Player.y = y;
+      }
+    }
+
   }
 
 }

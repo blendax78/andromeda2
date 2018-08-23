@@ -119,7 +119,6 @@ class Dungeon extends Component {
         treasure: treasureList
       });
     }
-    console.log(this.state.treasure);
   }
 
   getTreasureChest() {

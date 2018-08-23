@@ -27,7 +27,7 @@ export const PlanetData = [
         mobChance: 15,
         mobMax: 2,
         treasureMax: 1,
-        treasureChance: 1,
+        treasureChance: 100,
         x: 666,
         y: 666,
         name: 'Covetous',
