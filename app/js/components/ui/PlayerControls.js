@@ -253,37 +253,52 @@ class PlayerControls extends Component {
     }
   }
 
-  componentDidUpdate() {
+  renderMovementButtons() {
+    // Buttons
+    let east = (this.state.player.x < this.state.planet.width && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
+    let west = (this.state.player.x > 0 && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
+    let north = (this.state.player.y > 0 && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
+    let south = (this.state.player.y < this.state.planet.height && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
+
+    return (this.state.player.dungeon !== false) ? '' :
+      <div className="">
+        <div className="col-lg-6 col-md-7 col-sm-12 col-xs-7 center">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">&nbsp;</div>
+          <div className="btn-group">
+            <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>W</button>
+          </div>
+          <div className="btn-group-vertical">
+            <button disabled={north} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.NORTH)}>N</button>
+            <button disabled={south} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.SOUTH)}>S</button>
+          </div>
+          <div className="btn-group">
+            <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.EAST)}>E</button>
+          </div>
+        </div>
+      </div>;
   }
 
   renderDungeonButtons() {
     return (this.state.player.dungeon === false) ? '' :
-      <div className="col-lg-6 col-md-7 col-sm-12 col-xs-7">
-        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">&nbsp;</div>
-        <div className="btn-group-vertical">
-          <button
-            type="button"
-            className="btn btn-default btn-direction"
-            onClick={() => this.move(Config.ACTIONS.PLAYER.UP)}>Up</button>
-          <button 
-            type="button" 
-            disabled={this.state.player.dungeon.step === this.state.player.dungeon.depth} 
-            className="btn btn-default btn-direction"
-            onClick={() => this.move(Config.ACTIONS.PLAYER.DOWN)}>Down</button>
+      <div className="">
+        <div className="col-lg-6 col-md-7 col-sm-12 col-xs-7 center">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">&nbsp;</div>
+          <div className="btn-group-vertical col-lg-12 col-md-12 col-sm-12 col-xs-12 center">
+            <button
+              type="button"
+              className="btn btn-default btn-direction"
+              onClick={() => this.move(Config.ACTIONS.PLAYER.UP)}>Up</button>
+            <button 
+              type="button" 
+              disabled={this.state.player.dungeon.step === this.state.player.dungeon.depth} 
+              className="btn btn-default btn-direction"
+              onClick={() => this.move(Config.ACTIONS.PLAYER.DOWN)}>Down</button>
+          </div>
         </div>
-      </div>
+      </div>;
   }
 
   render() {
-    let player = this.state.player;
-    let planet = this.state.planet;
-
-    // Buttons
-    let east = (player.x < planet.width && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
-    let west = (player.x > 0 && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
-    let north = (player.y > 0 && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
-    let south = (player.y < planet.height && !this.state.app.modal.open && this.state.player.dungeon === false) ? false : true;
-
     let move_disabled = (this.state.player.stamina === 0) ? true : false;
 
     let hide_classes = classNames({
@@ -311,66 +326,22 @@ class PlayerControls extends Component {
             <p className="bold">Controls</p>
 
             <div className="row">
-              <div className="col-lg-6 col-md-7 col-sm-12 col-xs-7">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">&nbsp;</div>
-                <div className="btn-group">
-                  <button disabled={west} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.WEST)}>W</button>
-                </div>
-                <div className="btn-group-vertical">
-                  <button disabled={north} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.NORTH)}>N</button>
-                  <button disabled={south} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.SOUTH)}>S</button>
-                </div>
-                <div className="btn-group">
-                  <button disabled={east} type="button" className="btn btn-default btn-direction" onClick={() => this.move(Config.ACTIONS.PLAYER.EAST)}>E</button>
-                </div>
-              </div>
 
+              {this.renderMovementButtons()}
               {this.renderDungeonButtons()}
 
-              <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4">
-                <label className="checkbox-inline">
+              <div className="row">
+                <div className="col-lg-4 col-md-5 col-sm-12 col-xs-5 top5 btn-group-vertical">
                   <button disabled={move_disabled} type="button" className={run_classes} 
                     onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN)}>Run</button>
-                </label>
-              </div>
-
-              <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4 top5">
-                <label className="checkbox-inline">
-                  <button disabled={move_disabled} type="button" className={hide_classes} 
-                    onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
-                </label>
-              </div>
-
-              <div className="hidden-sm col-lg-4 col-md-5 col-sm-5 col-xs-4 top5">
-                <label className="checkbox-inline">
-                  <button disabled={move_disabled} type="button" className={med_classes} 
-                    onClick={() => this.meditate()}>Meditate</button>
-                </label>
+                    <button disabled={move_disabled} type="button" className={hide_classes} 
+                      onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
+                    <button disabled={move_disabled} type="button" className={med_classes} 
+                      onClick={() => this.meditate()}>Meditate</button>
+                </div>
               </div>
             </div>
-
-
-              <div className="hidden-lg hidden-md hidden-xs col-sm-6 top5">
-                <label className="checkbox-inline">
-                  <button disabled={move_disabled} type="button" className={run_classes} 
-                    onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.RUN)}>Run</button>
-                </label>
-              </div>
-
-              <div className="hidden-lg hidden-md hidden-xs col-sm-6 top5">
-                <label className="checkbox-inline">
-                  <button disabled={move_disabled} type="button" className={hide_classes} 
-                    onClick={() => this.updatePlayerMovement(Config.ACTIONS.PLAYER.HIDE)}>Hide</button>
-                </label>
-              </div>
-
-              <div className="hidden-lg hidden-md hidden-xs col-sm-8 top5">
-                <label className="checkbox-inline">
-                  <button disabled={move_disabled} type="button" className={med_classes} 
-                    onClick={() => this.meditate()}>Meditate</button>
-                </label>
-              </div>
-            </div>
+          </div>
 
         </div>
       </div>
