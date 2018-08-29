@@ -54,6 +54,7 @@ class TreasureChest extends Component {
     treasure.credits = this.addGold(this.props.level);
     treasure.items = this.addItems(this.props.level);
     treasure.locked = true;
+    treasure.open = false;
 
     this.props.store.dispatch({
       type: Config.ACTIONS.APP.CONTAINER_CREATE,
@@ -72,7 +73,46 @@ class TreasureChest extends Component {
         }
       });
     } else {
-      Config.notify(this.props.store, 'You open the chest.');
+
+      if (!this.state.treasure.open) {
+        Config.notify(this.props.store, 'You open the chest.');
+        this.props.store.dispatch({
+          type: Config.ACTIONS.APP.CONTAINER_UPDATE,
+          payload: {
+            ...this.state.treasure,
+            open: true
+          }
+        });
+
+        if (this.state.treasure.credits > 0) {
+          Config.notifySuccess(this.props.store, `You found ${this.state.treasure.credits} credits.`);  
+          this.props.store.dispatch({
+            type: Config.ACTIONS.PLAYER.UPDATE,
+            payload: {
+              credits: this.state.treasure.credits + this.props.store.getState().Player.credits,
+            }
+          });
+
+          this.props.store.dispatch({
+            type: Config.ACTIONS.APP.CONTAINER_UPDATE,
+            payload: {
+              ...this.state.treasure,
+              open: true,
+              credits: 0
+            }
+          });
+        }
+      } else {
+          Config.notify(this.props.store, 'You close the chest.');
+          this.props.store.dispatch({
+            type: Config.ACTIONS.APP.CONTAINER_UPDATE,
+            payload: {
+              ...this.state.treasure,
+              open: false
+            }
+          });
+      }
+    
     }
   }
 

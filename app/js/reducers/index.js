@@ -38,6 +38,7 @@ const Reducers = (state = {}, action) => {
   }
 
   let method = type.split('.')[0];
+  let index = 0;
 
   switch (method) {
     case 'USER':
@@ -85,8 +86,19 @@ const Reducers = (state = {}, action) => {
         case APP.CONTAINER_CREATE:
           state.App.containers.push(payload.container);
         break;
+        case APP.CONTAINER_UPDATE:
+          index = _.findIndex(state.App.containers, { key: payload.key });
+          let container = state.App.containers[index];
+
+          if (index < 0) {
+            break;
+          } else {
+            state.App.containers[index] = {...container, ...payload};
+          }
+          state.App.containers.push(payload.container);
+        break;
         case APP.CONTAINER_UNLOCK:
-          let index = _.findIndex(state.App.containers, { key: payload.key });
+          index = _.findIndex(state.App.containers, { key: payload.key });
 
           if (index < 0) {
             break;
