@@ -4,7 +4,7 @@ import SkillsList from './SkillsList';
 import SpellBook from './SpellBook';
 import PlayerStats from './PlayerStats';
 import Store from './Store';
-import ContainerActions from './ContainerActions';
+import Container from './Container';
 import Combat from './Combat';
 import Config from '../../Config';
 
@@ -101,14 +101,14 @@ class Modal extends Component {
     };
   }
 
-  setContainerActionsModal() {
-    let mob = this.state.modal.data;
+  setContainerModal() {
+    let container = this.state.modal.data;
 
-    if (mob) {
+    if (container) {
       this.state.modal = {
-        body: <ContainerActions store={this.props.store} data={mob}/>,
-        title: 'Container',
-        type: 'container_actions'
+        body: <Container store={this.props.store} data={container}/>,
+        title: container.title,
+        type: 'container'
       };
     }
   }
@@ -127,14 +127,14 @@ class Modal extends Component {
       case 'player_stats':
         this.setPlayerStatsModal();
       break;
-      case 'container_actions':
-        this.setContainerActionsModal();
-      break;
       case 'store':
         this.setStoreModal();
       break;
       case 'combat':
         this.setCombatModal();
+      break;
+      case 'container':
+        this.setContainerModal();
       break;
     }
     

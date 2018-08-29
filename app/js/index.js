@@ -4,11 +4,22 @@ import ReactDOM from 'react-dom';
 import Config from './components/Config';
 import App from './components/App';
 import Reducers from './reducers';
-import AndromedaService from './services/AndromedaService';
+
+import {BankService, InventoryService, PlayerService, SkillService, UserService} from './services';
+
 import { ItemData } from './data/ItemData';
 import { MobData } from './data/MobData';
 
-let store = createStore(Reducers, {}, applyMiddleware(AndromedaService));
+
+const services = [
+  BankService,
+  InventoryService,
+  PlayerService,
+  SkillService,
+  UserService
+];
+
+let store = createStore(Reducers, {}, applyMiddleware(...services));
 
 if (Config.ENV === 'dev') {
   window.store = store;
