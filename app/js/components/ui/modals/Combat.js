@@ -142,7 +142,6 @@ class Combat extends Component {
       let chance = Math.round(25 + ((player.move - mob.move) * 20) + run_stamina);
 
       if (_.random(1, 100) <= chance) {
-        return;
         Config.notifyWarning(this.props.store, 'You flee from battle.');
     
         let score = this.state.player.score;

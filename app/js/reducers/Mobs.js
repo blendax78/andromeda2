@@ -35,8 +35,8 @@ const Mobs = (state = {}, action) => {
     }
   };
 
-  let mob_tick = (mob) => {
-    if (mob.hp && mob.hp !== mob.maxhp && mob.hp > 0) {
+  let mob_tick = (mob, test) => {
+    if (mob.hp && mob.hp < mob.maxhp && mob.hp > 0) {
       mob.partialhp = mob.partialhp || 0;
       mob.partialhp += 0.1;
 
@@ -46,7 +46,7 @@ const Mobs = (state = {}, action) => {
       }
     }
 
-    if (mob.stamina && mob.stamina !== mob.maxstamina && mob.hp > 0) {
+    if (mob.stamina && mob.stamina < mob.dexterity && mob.hp > 0) {
       mob.partialstamina = mob.partialstamina || 0;
       mob.partialstamina += 0.2;
 
