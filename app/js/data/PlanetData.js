@@ -33,8 +33,7 @@ export const PlanetData = [
         name: 'Covetous',
         description: 'A modest fallen tower in a bleak mountain range marks the entrance to the dungeon of Covetous.'
       }
-    ]
-    ,
+    ],
     towns: [
       {
         id: 1,
@@ -45,7 +44,7 @@ export const PlanetData = [
         id: 2,
         x: 200,
         y: 500
-      },
+      }
     ],
     zones: [
       {
