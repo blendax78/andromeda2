@@ -12,7 +12,7 @@ class Loader(object):
         setattr(self, key, [])
       elif isinstance(data[key], dict):
         setattr(self, key, {})
-      elif isinstance(data[key], bool):
-        setattr(self, key, None)
+      # elif isinstance(data[key], bool):
+      #   setattr(self, key, None)
       else:
         setattr(self, key, None)
