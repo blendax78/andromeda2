@@ -7,8 +7,8 @@ export const PlanetData = [
   {
     id: 0,
     name: 'Space',
-    height: 50000,
-    width: 50000,
+    height: 5000000,
+    width: 5000000,
     zones: [],
     defaultZone: 0
   },
@@ -78,7 +78,6 @@ export const PlanetData = [
     width: 1200,
     planetX: 25,
     planetY: 38,
-    landscapes: [2],
     zones: [
     ],
     defaultZone: 5
