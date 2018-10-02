@@ -1,18 +1,14 @@
 class Loader(object):
 
-  def __init__(self, data):
-    self.template = {}
-
+  def __init__(self, data={}, empty=False):
     for key in data:
-      self.template[key] = data[key]
-
-      if isinstance(data[key], str):
-        setattr(self, key, '')
+      if isinstance(data[key], str) or isinstance(data[key], unicode):
+        setattr(self, key, '' if empty else data[key])
       elif isinstance(data[key], list):
-        setattr(self, key, [])
+        setattr(self, key, [] if empty else data[key])
       elif isinstance(data[key], dict):
-        setattr(self, key, {})
-      # elif isinstance(data[key], bool):
-      #   setattr(self, key, None)
+        setattr(self, key, {} if empty else data[key])
+      elif isinstance(data[key], int) or isinstance(data[key], float):
+        setattr(self, key, None if empty else data[key])
       else:
-        setattr(self, key, None)
+        setattr(self, key, None if empty else data[key])
