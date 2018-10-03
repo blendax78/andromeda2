@@ -3,6 +3,11 @@ import random
 from classes.loader import Loader
 from libs import generate_planet_name, generate_dungeon_name, generate_dungeon_description
 
+# TODO:
+# Check that planet doesn't exist at location (look at get_dungeons for checking)
+# towns
+# zones?
+# check planet_id from gnerated JSON files (in terraform.py)
 class Planet(Loader):
   def generate(self, id, zone_max, space, difficulty_max):
     self.id = id + 1
@@ -17,9 +22,6 @@ class Planet(Loader):
     self.difficulty = self.get_difficulty(difficulty_max)
     self.dungeons = self.get_dungeons(self.difficulty, difficulty_max, self.height, self.width)
 
-    print(self.__dict__)
-
-
   def get_difficulty(self, max):
     rand = random.randint(1,100)
     if rand <= 75:
@@ -29,22 +31,20 @@ class Planet(Loader):
 
   def get_dungeons(self, planet_diff, max, height, width):
     dungeons = []
-    coords_x = []
-    coords_y = []
+    coords = {}
 
     for d in range(random.randint(0, 100)):
       x = random.randint(0, width)
       y = random.randint(0, height)
 
-      while x in coords_x:
+      while x in coords and y in coords[x]:
         x = random.randint(0, width)
-
-      coords_x.append(x)
-
-      while y in coords_y:
         y = random.randint(0, height)
 
-      coords_y.append(y)
+      if x not in coords:
+        coords[x] = {}
+
+      coords[x][y] = True
 
       dungeons.append({
         'difficultyMin': planet_diff - 2 if planet_diff >= 2 else 0,
@@ -56,5 +56,5 @@ class Planet(Loader):
         'name': generate_dungeon_name(),
         'description': generate_dungeon_description()
       })
-
+    print('coords',coords)
     return dungeons
