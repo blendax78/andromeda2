@@ -53,13 +53,8 @@ class Planet(Loader):
         'mobChance': random.randint(0,100),
         'x': x,
         'y': y,
-<<<<<<< HEAD
         'name': generate_dungeon_name(),
         'description': generate_dungeon_description()
-=======
-        'name': 'Poop',
-        'description': 'Poop !!!!!'
->>>>>>> 18b2a7233bbf22c45b3ec074151fe86173aca376
       })
 
     return dungeons
