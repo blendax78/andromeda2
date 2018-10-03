@@ -1,7 +1,7 @@
 import random
 
 from classes.loader import Loader
-from libs import generate_planet_name
+from libs import generate_planet_name, generate_dungeon_name, generate_dungeon_description
 
 class Planet(Loader):
   def generate(self, id, zone_max, space, difficulty_max):
@@ -53,8 +53,8 @@ class Planet(Loader):
         'mobChance': random.randint(0,100),
         'x': x,
         'y': y,
-        'name': 'Poop',
-        'description': 'Poop !!!!!'
+        'name': generate_dungeon_name(),
+        'description': generate_dungeon_description()
       })
 
     return dungeons
