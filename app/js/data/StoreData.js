@@ -1,5 +1,14 @@
 export const StoreData = [
   {
+    id: 0,
+    name: 'Planetary Teleporter',
+    description: 'A large metallic platform juts out of the ground. Next to it is a small computer terminal.',
+    sell: [],
+    craft: [],
+    buy: [],
+    type: 'teleporter'
+  },
+  {
     id: 1,
     name: 'A small blacksmithy',
     description: 'A stout man stands behind a small forge.',

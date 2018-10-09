@@ -7,7 +7,9 @@ STORE_DATA_FILE = 'StoreData.js'
 PLANET_DATA_FILE = 'PlanetData.js'
 STATIC_DIR = 'static/data'
 
+import os
 import json
+from json.decoder import JSONDecodeError
 
 from libs import load_js_data
 from classes import *
@@ -19,19 +21,56 @@ town_data = load_js_data(JSON_DATA_DIR + TOWN_DATA_FILE)
 store_data = load_js_data(JSON_DATA_DIR + STORE_DATA_FILE)
 planet_data = load_js_data(JSON_DATA_DIR + PLANET_DATA_FILE)
 
+# files = [ fn for fn in os.listdir(STATIC_DIR + '/planets') if '.json' in fn.lower() ]
+
+planet_coords = {}
+terraform_data = []
+
+terraform_planet_id = 0
+maual_planet_id = 0
+
+for planet in planet_data:
+  maual_planet_id = planet['id']
+  if 'planetX' not in planet:
+    continue
+
+  if planet['planetX'] not in planet_coords:
+    planet_coords[planet['planetX']] = {}
+
+  planet_coords[planet['planetX']][planet['planetY']] = True
+
+for fn in os.listdir(STATIC_DIR + '/planets'):
+  if '.json' in fn.lower():
+    try:
+      with open('%s/planets/%s' % (STATIC_DIR, fn)) as f:
+        planet = json.load(f)
+        terraform_planet_id = planet['id']
+
+        if planet['planetX'] not in planet_coords:
+          planet_coords[planet['planetX']] = {}
+
+        planet_coords[planet['planetX']][planet['planetY']] = True
+    except (FileNotFoundError, JSONDecodeError) as e:
+      continue
+
 planet = Planet()
 space = Planet(planet_data[0])
+
 difficulty = max([mob['difficulty'] for mob in mob_data if 'difficulty' in mob])
+last_id = maual_planet_id if maual_planet_id > terraform_planet_id else terraform_planet_id
 
-planet.generate(planet_data[-1]['id'], zone_data[-1]['id'], space, difficulty)
+new_planet = planet.generate(last_id, zone_data[-1]['id'], space, planet_coords, difficulty)
+print(new_planet.planetX, new_planet.planetY)
+try:
+  with open(STATIC_DIR + '/planets/%i.json' % new_planet.id, 'w') as f:
+    f.write(json.dumps(new_planet.__dict__))
 
-f = open(STATIC_DIR + '/planets/%i.json' % planet.id, 'w')
-f.write(json.dumps(planet.__dict__))
-f.close()
+  print('NEW PLANET GENERATED: %s' % new_planet.name)
+except (FileNotFoundError, JSONDecodeError) as e:
+  print('ERROR when generating new planet: %s' % new_planet.name)
 
-# print('****%s****' % generate_planet_name())
-# print(mob_data[0])
-# print(zone_data[1])
-# print(decoration_data[1])
-# print(town_data[1])
-# print(zone_data[1])
+
+# TODO:
+# Generate monsters & legendary monsters
+# towns
+# zones?

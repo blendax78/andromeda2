@@ -811,7 +811,7 @@ export const ZoneData = [
   {
     id: 5,
     name: 'Desert Zone 1',
-    description: 'Desert as far as the eye can see.',
+    description: 'Desert as far as the eye can see. ',
     mobs: [],
     difficulty: 1,
     difficultyChance: 20,
@@ -819,6 +819,22 @@ export const ZoneData = [
       {
         id: 4,
         chance: 10
+      }
+    ],
+    maxDecorations: 1,
+    treasure: []
+  },
+  {
+    id: 6,
+    name: 'Desert Zone 2',
+    description: 'Rocky outcroppings stick out from the sand dunes. The nightmarish landscape seems to glow from the powerful sun.',
+    mobs: [],
+    difficulty: 3,
+    difficultyChance: 15,
+    decorations: [
+      {
+        id: 6,
+        chance: 5
       }
     ],
     maxDecorations: 1,

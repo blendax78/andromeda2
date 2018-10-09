@@ -2,7 +2,7 @@ class Loader(object):
 
   def __init__(self, data={}, empty=False):
     for key in data:
-      if isinstance(data[key], str) or isinstance(data[key], unicode):
+      if isinstance(data[key], str):
         setattr(self, key, '' if empty else data[key])
       elif isinstance(data[key], list):
         setattr(self, key, [] if empty else data[key])
