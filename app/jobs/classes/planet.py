@@ -1,11 +1,12 @@
 import random
 
 from classes.loader import Loader
+from classes.town import Town
 from libs import generate_planet_name, generate_dungeon_name, generate_dungeon_description
 
 class Planet(Loader):
-  def generate(self, id, zone_max, space, planet_coords, difficulty_max):
-    self.id = id + 1
+  def generate(self, planet_id, town_id, zone_max, space, planet_coords, difficulty_max):
+    self.id = planet_id + 1
     self.name = generate_planet_name()
     self.height = random.randint(100,5000)
     self.width = random.randint(100,5000)
@@ -14,11 +15,20 @@ class Planet(Loader):
     self.zones =[]
 
     self.planetX, self.planetY = self.get_space_coordinates(space, planet_coords)
-
+    self.towns = self.get_towns(town_id)
+    print(self.towns)
     self.difficulty = self.get_difficulty(difficulty_max)
     self.dungeons = self.get_dungeons(self.difficulty, difficulty_max, self.height, self.width)
 
     return self
+
+  def get_towns(self, town_id):
+    towns = []
+    towns.append(Town().generate(town_id, 0, 0, True).__dict__)
+
+    town_id += 1
+    return towns
+
 
   def get_difficulty(self, max):
     rand = random.randint(1,100)
