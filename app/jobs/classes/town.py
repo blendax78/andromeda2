@@ -1,11 +1,11 @@
 from classes.loader import Loader
-from libs import generate_town_name
+from libs import generate_town_name, generate_town_description
 
 class Town(Loader):
   def generate(self, id, x, y, teleporter=False):
     self.id = id + 1
     self.name = generate_town_name()
-    self.description = ''
+    self.description = generate_town_description()
     self.x = x
     self.y = y
     self.stores = self.get_stores(teleporter)

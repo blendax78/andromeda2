@@ -37,3 +37,19 @@ Once the packages are install, the server can be run with the following command:
 ```
 python run.py
 ```
+
+# To Do
+* Treasure Chests
+* Items in containers / mobs
+* Animal lore modal
+* Magic
+* Regs
+* Tweak mob combat speed
+* More zones
+* Mounts/Pets
+* Oceans & Boates
+* Space & Planets
+* Wandering Mobs
+* Corpses
+* Redo database
+* User can select title
